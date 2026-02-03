@@ -158,7 +158,7 @@ def parse_photos_to_carousel_html(
     rename_files(photos_folder)
 
     pngs = sorted(
-        [p for p in photos_folder.iterdir() if p.is_file() and p.suffix.lower() == ".png"],
+        [p for p in photos_folder.iterdir() if p.is_file() and (p.suffix.lower() == ".png" or p.suffix.lower() == ".jpg")],
         key=lambda p: p.name
     )
 
