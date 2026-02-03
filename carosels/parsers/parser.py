@@ -18,7 +18,7 @@ def sanitize_filename(name: str) -> str:
     p = Path(name)
 
     stem = p.stem.lower().replace(" ", "_")
-    stem = re.sub(r"[^a-z0-9_-]", "", stem)
+    stem = re.sub(r"[^a-z0-9_]", "", stem)
     stem = re.sub(r"_+", "_", stem).strip("_")
     if not stem:
         stem = "file"
