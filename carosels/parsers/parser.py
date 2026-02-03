@@ -29,25 +29,6 @@ def sanitize_filename(name: str) -> str:
     return f"{stem}{suffix}"
 
 
-def unique_path(path: Path) -> Path:
-    """
-    If path exists, add _1, _2, ... until it doesn't.
-    """
-    if not path.exists():
-        return path
-
-    parent = path.parent
-    stem = path.stem
-    suffix = path.suffix
-
-    i = 1
-    while True:
-        candidate = parent / f"{stem}_{i}{suffix}"
-        if not candidate.exists():
-            return candidate
-        i += 1
-
-
 def rename_files(folder: Union[str, Path]) -> None:
     """
     Renames files in folder (non-recursive) using sanitize_filename, collision-safe.
@@ -61,7 +42,7 @@ def rename_files(folder: Union[str, Path]) -> None:
             continue
 
         sanitized = sanitize_filename(path.name)
-        target = unique_path(path.with_name(sanitized))
+        target = path.with_name(sanitized)
 
         if path == target:
             continue
