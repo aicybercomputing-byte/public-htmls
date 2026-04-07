@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>USF Feed Grid</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Barlow+Condensed:600" rel="stylesheet" />
+  <link rel="stylesheet" href="https://www.usf.edu/_resources/css/v3/global.css" />
+  <link rel="stylesheet" href="https://www.usf.edu/_resources/css/v3/home.css" />
+
+  <style>
+   *,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#feed-grid-root {
+  width: 100%;
+}
+
+.widget.widget--3,
+.widget_content.widget_imageGrid.u-flex--large {
+  width: 100%;
+}
+
+.widget_imageGridItemWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  column-gap: 1rem;
+  row-gap: 1.5rem;
+  align-items: start;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.widget_imageGridItem {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 0.75rem;
+  min-width: 0;
+  width: 100%;
+  align-content: start;
+}
+
+.widget_imageGridItem > a {
+  display: block;
+  text-decoration: none;
+}
+
+.widget_textTitle {
+  margin: 0;
+  font-family: "Barlow Condensed", Arial, sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.05;
+  font-weight: 600;
+}
+
+.widget_featureImageLink {
+  display: block;
+  width: 100%;
+}
+
+.widget_featureImageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 320 / 213;
+  overflow: hidden;
+  background: #f2f2f2;
+}
+
+.widget_featureImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  border: 0;
+}
+
+.widget_featureText {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.feed-grid-error {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+}
+
+@media (max-width: 1024px) {
+  .widget_imageGridItemWrapper {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    max-width: 760px;
+  }
+}
+
+@media (max-width: 640px) {
+  .widget_imageGridItemWrapper {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+}
+  </style>
+</head>
+<body>
+  <div id="feed-grid-root">
+    <div class="widget widget--3">
+      <div class="widget_content widget_imageGrid u-flex--large">
+        <div class="widget_imageGridItemWrapper" id="feed-grid-items"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const FEED_URL =
+        "https://www.usf.edu/news/rss.ashx?dir=/ai-cybersecurity-computing/news/&limit=12&tags=News%20AI%20College%20Category,News%20AI%20College%20Category:%20Artificial%20Intelligence,News%20AI%20College%20Category:%20Computing,News%20AI%20College%20Category:%20Cyberherd,News%20AI%20College%20Category:%20Cybersecurity,News%20AI%20College%20Category:%20Research";
+
+      const MAX_ITEMS = 3;
+      const FALLBACK_IMAGE = "https://www.usf.edu/images/feature-rocky.jpg";
+
+      const ALLOWED_LINK_HOSTS = new Set([
+        "www.usf.edu",
+        "usf.edu"
+      ]);
+
+      const ALLOWED_IMAGE_HOSTS = new Set([
+        "www.usf.edu",
+        "usf.edu"
+      ]);
+
+      const container = document.getElementById("feed-grid-items");
+
+      function decodeXmlEntities(str) {
+        if (!str) return "";
+        return str
+          .replace(/&lt;/g, "<")
+          .replace(/&gt;/g, ">")
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
+          .replace(/&apos;/g, "'")
+          .replace(/&amp;/g, "&");
+      }
+
+      function stripHtmlToText(html) {
+        if (!html) return "";
+        const withoutTags = html.replace(/<[^>]*>/g, " ");
+        return decodeXmlEntities(withoutTags).replace(/\s+/g, " ").trim();
+      }
+
+      function truncate(text, maxLen) {
+        if (!text || text.length <= maxLen) return text || "";
+        return text.slice(0, maxLen).trimEnd() + "...";
+      }
+
+      function safeUrl(rawUrl, fallback = "#", allowedHosts = null) {
+        if (!rawUrl) return fallback;
+
+        try {
+          const url = new URL(rawUrl, window.location.href);
+          const allowedProtocols = url.protocol === "http:" || url.protocol === "https:";
+
+          if (!allowedProtocols) {
+            return fallback;
+          }
+
+          if (allowedHosts && !allowedHosts.has(url.hostname)) {
+            return fallback;
+          }
+
+          return url.href;
+        } catch (error) {
+          return fallback;
+        }
+      }
+
+      function safeLinkUrl(rawUrl, fallback = "#") {
+        return safeUrl(rawUrl, fallback, ALLOWED_LINK_HOSTS);
+      }
+
+      function safeImageUrl(rawUrl, fallback = FALLBACK_IMAGE) {
+        return safeUrl(rawUrl, fallback, ALLOWED_IMAGE_HOSTS);
+      }
+
+      function firstText(node, selectors) {
+        for (const selector of selectors) {
+          const found = node.querySelector(selector);
+          if (found && found.textContent) {
+            return found.textContent.trim();
+          }
+        }
+        return "";
+      }
+
+      function firstAttr(node, selectors, attrName) {
+        for (const selector of selectors) {
+          const found = node.querySelector(selector);
+          if (found) {
+            const value = found.getAttribute(attrName);
+            if (value) return value.trim();
+          }
+        }
+        return "";
+      }
+
+      function extractImageFromDescription(descriptionHtml) {
+        if (!descriptionHtml) return "";
+        const imgMatch = descriptionHtml.match(/<img\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/i);
+        if (!imgMatch || !imgMatch[1]) return "";
+        return safeImageUrl(decodeXmlEntities(imgMatch[1]), "");
+      }
+
+      function extractImageUrl(item) {
+        const enclosureUrl = firstAttr(item, ["enclosure[type^='image/']"], "url");
+        if (enclosureUrl) {
+          return safeImageUrl(enclosureUrl, "");
+        }
+
+        const mediaContentUrl =
+          firstAttr(item, ["media\\:content"], "url") ||
+          firstAttr(item, ["content"], "url");
+        if (mediaContentUrl) {
+          return safeImageUrl(mediaContentUrl, "");
+        }
+
+        const mediaThumbUrl =
+          firstAttr(item, ["media\\:thumbnail"], "url") ||
+          firstAttr(item, ["thumbnail"], "url");
+        if (mediaThumbUrl) {
+          return safeImageUrl(mediaThumbUrl, "");
+        }
+
+        const descriptionHtml =
+          firstText(item, ["description"]) ||
+          firstText(item, ["content\\:encoded", "encoded"]) ||
+          "";
+
+        const descriptionImage = extractImageFromDescription(descriptionHtml);
+        if (descriptionImage) {
+          return descriptionImage;
+        }
+
+        return FALLBACK_IMAGE;
+      }
+
+      function buildCard(item) {
+        const rawTitle = firstText(item, ["title"]);
+        const rawLink = firstText(item, ["link"]);
+        const rawDescription =
+          firstText(item, ["description"]) ||
+          firstText(item, ["content\\:encoded", "encoded"]) ||
+          "";
+
+        const title = decodeXmlEntities(rawTitle) || "Untitled";
+        const link = safeLinkUrl(rawLink, "#");
+        const blurb = truncate(stripHtmlToText(rawDescription), 150);
+        const imageUrl = extractImageUrl(item);
+        const alt = title;
+
+        const card = document.createElement("div");
+        card.className = "widget_imageGridItem";
+
+        const titleLink = document.createElement("a");
+        titleLink.href = link;
+        titleLink.target = "_blank";
+        titleLink.rel = "noopener noreferrer";
+
+        const heading = document.createElement("h2");
+        heading.className = "widget_textTitle";
+        heading.textContent = title;
+        titleLink.appendChild(heading);
+
+        const imageLink = document.createElement("a");
+        imageLink.className = "widget_featureImageLink";
+        imageLink.href = link;
+        imageLink.target = "_blank";
+        imageLink.rel = "noopener noreferrer";
+
+        const imageFrame = document.createElement("div");
+        imageFrame.className = "widget_featureImageFrame";
+
+        const image = document.createElement("img");
+        image.className = "widget_featureImage";
+        image.src = safeImageUrl(imageUrl, FALLBACK_IMAGE);
+        image.alt = alt;
+        image.loading = "lazy";
+        image.referrerPolicy = "no-referrer";
+
+        image.onerror = function () {
+          if (image.src !== FALLBACK_IMAGE) {
+            image.src = FALLBACK_IMAGE;
+          }
+        };
+
+        imageFrame.appendChild(image);
+        imageLink.appendChild(imageFrame);
+
+        const p = document.createElement("p");
+        p.className = "widget_featureText";
+        p.textContent = blurb;
+
+        card.appendChild(titleLink);
+        card.appendChild(imageLink);
+        card.appendChild(p);
+
+        return card;
+      }
+
+      function renderError(message) {
+        const root = document.getElementById("feed-grid-root");
+        root.textContent = "";
+
+        const box = document.createElement("div");
+        box.className = "feed-grid-error";
+        box.textContent = message;
+
+        root.appendChild(box);
+      }
+
+      async function loadFeed() {
+        try {
+          const response = await fetch(FEED_URL, {
+            method: "GET",
+            mode: "cors",
+            cache: "no-store",
+            credentials: "omit"
+          });
+
+          if (!response.ok) {
+            throw new Error("Feed request failed with status " + response.status);
+          }
+
+          const xmlText = await response.text();
+          const parser = new DOMParser();
+          const xml = parser.parseFromString(xmlText, "application/xml");
+
+          const parserError = xml.querySelector("parsererror");
+          if (parserError) {
+            throw new Error("RSS XML could not be parsed.");
+          }
+
+          const items = Array.from(xml.querySelectorAll("rss > channel > item")).slice(0, MAX_ITEMS);
+
+          if (!items.length) {
+            throw new Error("No feed items were found.");
+          }
+
+          container.textContent = "";
+          for (const item of items) {
+            container.appendChild(buildCard(item));
+          }
+        } catch (error) {
+          console.error(error);
+          renderError("The feed could not be loaded in the browser.");
+        }
+      }
+
+      loadFeed();
+    })();
+  </script>
+</body>
+</html>
