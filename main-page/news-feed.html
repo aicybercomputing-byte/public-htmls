@@ -1,417 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>USF Feed Grid</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Latest News Widget</title>
 
-    <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  >
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: #111;
-            background: #fff;
-        }
+  <style>
+    .bellini-news-widget,
+    .bellini-news-widget * {
+      box-sizing: border-box;
+    }
 
-        #feed-grid-root {
-            width: 100%;
-            padding: 0;
-            margin: 0;
-        }
+    .bellini-news-widget {
+      --usf-green: #006747;
+      --usf-gold: #cfc493;
+      --text: #1f2933;
+      --muted: #4c5966;
+      --border: #d8dde3;
+      --bg: #ffffff;
 
-        .widget {
-            width: 100%;
-        }
+      width: 100%;
+      font-family: "Open Sans", Arial, sans-serif;
+      color: var(--text);
+    }
 
-        .widget_content {
-            width: 100%;
-        }
+    .bellini-news-widget .news-shell {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        .widget_imageGridItemWrapper {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            column-gap: 1rem;
-            row-gap: 1.5rem;
-            align-items: start;
-            width: 100%;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0;
-        }
+    .bellini-news-widget .news-heading {
+      margin: 0 0 1.1rem;
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      font-size: clamp(2rem, 3.2vw, 2.6rem);
+      line-height: 1;
+      font-weight: 700;
+      color: var(--usf-green);
+      letter-spacing: 0.01em;
+      text-transform: none;
+    }
 
-        .widget_imageGridItem {
-            display: grid;
-            grid-template-rows: auto auto 1fr;
-            gap: 0.75rem;
-            min-width: 0;
-            width: 100%;
-            align-content: start;
-        }
+    .bellini-news-widget .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+      align-items: stretch;
+    }
 
-        .widget_imageGridItem>a {
-            color: inherit;
-            text-decoration: none;
-        }
+    .bellini-news-widget .news-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
 
-        .widget_titleLink {
-            display: block;
-            color: inherit;
-            text-decoration: none;
-        }
+    .bellini-news-widget .news-card:hover,
+    .bellini-news-widget .news-card:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+      border-color: #c8d0d8;
+      outline: none;
+    }
 
-        .widget_titleWrap {
-            min-height: 3.3rem;
-            max-height: 3.3rem;
-            display: flex;
-            align-items: flex-start;
-            overflow: hidden;
-        }
+    .bellini-news-widget .news-image-wrap {    
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #e9edf1;
+    }
 
-        .widget_textTitle {
-            margin: 0;
-            font-size: 1.2rem;
-            line-height: 1.05;
-            font-weight: 700;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
+    .bellini-news-widget .news-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-        .widget_featureImageLink {
-            display: block;
-            width: 100%;
-        }
+    .bellini-news-widget .news-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 1rem 1.1rem 1.2rem;
+      flex: 1 1 auto;
+    }
 
-        .widget_featureImageFrame {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 320 / 213;
-            overflow: hidden;
-            background: #f2f2f2;
-        }
+    .bellini-news-widget .news-title {
+      margin: 0;
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      font-size: clamp(1.55rem, 2vw, 2rem);
+      line-height: 1;
+      font-weight: 700;
+      color: var(--usf-green);
+    }
 
-        .widget_featureImage {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            margin: 0;
-            border: 0;
-        }
+    .bellini-news-widget .news-summary {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
 
-        .widget_featureText {
-            margin: 0;
-            line-height: 1.5;
-            font-size: 1rem;
-        }
+    .bellini-news-widget .news-footer {
+      margin-top: 1.1rem;
+    }
 
-        .feed-grid-error {
-            padding: 1rem;
-            border: 1px solid #ccc;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+    .bellini-news-widget .news-more {
+      display: inline-block;
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--usf-green);
+      text-decoration: none;
+    }
 
-        @media (max-width: 1024px) {
-            .widget_imageGridItemWrapper {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                max-width: 760px;
-            }
-        }
+    .bellini-news-widget .news-more:hover,
+    .bellini-news-widget .news-more:focus-visible {
+      text-decoration: underline;
+      outline: none;
+    }
 
-        @media (max-width: 640px) {
-            .widget_imageGridItemWrapper {
-                grid-template-columns: 1fr;
-                max-width: 420px;
-            }
-
-            .widget_titleWrap {
-                min-height: auto;
-                max-height: none;
-            }
-
-            .widget_textTitle {
-                -webkit-line-clamp: unset;
-            }
-        }
-    </style>
+    @media (max-width: 980px) {
+      .bellini-news-widget .news-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-
 <body>
-    <div id="feed-grid-root">
-        <div class="widget widget--3">
-            <div class="widget_content widget_imageGrid">
-                <div class="widget_imageGridItemWrapper" id="feed-grid-items"></div>
-            </div>
-        </div>
+
+  <section class="bellini-news-widget" aria-labelledby="bellini-news-heading">
+    <div class="news-shell">
+
+      <div class="news-grid">
+        
+         <a
+          class="news-card"
+          href="https://www.tampafp.com/tampa-bays-tech-evolution-why-digital-infrastructure-is-the-new-sunshine-state-gold/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Tampa Bay’s Tech Evolution: Why Digital Infrastructure Is The New Sunshine State Gold"
+        >
+          <span class="news-image-wrap">
+            <img
+              class="news-image"
+              src="https://www.usf.edu/ai-cybersecurity-computing/news/images/2026/tablet-technology.jpg"
+              alt="Tampa Bay’s Tech Evolution: Why Digital Infrastructure Is The New Sunshine State Gold"
+            />
+          </span>
+          <div class="news-body">
+            <h3 class="news-title">Tampa Bay’s Tech Evolution: Why Digital Infrastructure Is The New Sunshine State Gold</h3>
+            <p class="news-summary">
+              A new Tampa Free Press article highlights how the University of South Florida’s Bellini College of Artificial Intelligence, Cybersecurity and Computing is helping drive Tampa Bay’s tech evolution. Through research, partnerships and talent development in AI and cybersecurity, the college is strengthening the region’s digital infrastructure and preparing the workforce needed to support a rapidly growing innovation economy.
+            </p>
+          </div>
+        </a>
+    
+         <a
+          class="news-card"
+          href="https://www.usf.edu/ai-cybersecurity-computing/news/2026/from-robotics-competitions-to-microsoft-internship-usf-student-builds-path-in-cybersecurity.aspx"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="From robotics competitions to Microsoft internship, USF student builds path in cybersecurity"
+        >
+          <span class="news-image-wrap">
+            <img
+              class="news-image"
+              src="https://www.usf.edu/ai-cybersecurity-computing/news/images/2026/dsc-2576-web-card.jpg"
+              alt="From robotics competitions to Microsoft internship, USF student builds path in cybersecurity"
+            />
+          </span>
+          <div class="news-body">
+            <h3 class="news-title">From robotics competitions to Microsoft internship, USF student builds path in cybersecurity</h3>
+            <p class="news-summary">
+              USF student Fagan Afandiyev turned an early passion for robotics competitions into a path toward a career in cybersecurity. After gaining experience through student competitions and industry consulting, he will spend the summer as a penetration testing intern at Microsoft, where he will help identify system vulnerabilities before attackers can exploit them.
+            </p>
+          </div>
+        </a>
+    
+         <a
+          class="news-card"
+          href="https://www.usf.edu/ons/news/2026/two-usf-students-named-2026-goldwater-scholars.aspx"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Two USF Students Named 2026 Goldwater Scholars"
+        >
+          <span class="news-image-wrap">
+            <img
+              class="news-image"
+              src="https://www.usf.edu/ons/news/images/2026/goldwater-hero.png"
+              alt="Two USF Students Named 2026 Goldwater Scholars"
+            />
+          </span>
+          <div class="news-body">
+            <h3 class="news-title">Two USF Students Named 2026 Goldwater Scholars</h3>
+            <p class="news-summary">
+              University of South Florida third-year students Caleb Fernandes and Diya Upadhyaya have been awarded the nation’s highest honor for undergraduate STEM research, the Goldwater Scholarship. Continuing its remarkable research growth, USF has now produced at least one Goldwater Scholar every year since 2018.
+            </p>
+          </div>
+        </a>
+    
+      </div>
+
+      
     </div>
+  </section>
 
-    <script>
-        (function () {
-            "use strict";
-
-            const FEED_URL =
-                "https://www.usf.edu/news/rss.ashx?dir=/ai-cybersecurity-computing/news/&limit=12&tags=News%20AI%20College%20Category,News%20AI%20College%20Category:%20Artificial%20Intelligence,News%20AI%20College%20Category:%20Computing,News%20AI%20College%20Category:%20Cyberherd,News%20AI%20College%20Category:%20Cybersecurity,News%20AI%20College%20Category:%20Research";
-
-            const MAX_ITEMS = 3;
-
-            const ALLOWED_LINK_HOSTS = new Set([
-                "www.usf.edu",
-                "usf.edu"
-            ]);
-
-            const ALLOWED_IMAGE_HOSTS = new Set([
-                "www.usf.edu",
-                "usf.edu"
-            ]);
-
-            const DATA_URI_FALLBACK_IMAGE =
-                "data:image/svg+xml;charset=UTF-8," +
-                encodeURIComponent(
-                    '<svg xmlns="http://www.w3.org/2000/svg" width="320" height="213" viewBox="0 0 320 213">' +
-                    '<rect width="320" height="213" fill="#f2f2f2"/>' +
-                    '<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#666" font-family="Arial" font-size="18">No Image</text>' +
-                    "</svg>"
-                );
-
-            const container = document.getElementById("feed-grid-items");
-
-            function decodeXmlEntities(str) {
-                if (!str) return "";
-                return str
-                    .replace(/&lt;/g, "<")
-                    .replace(/&gt;/g, ">")
-                    .replace(/&quot;/g, '"')
-                    .replace(/&#39;/g, "'")
-                    .replace(/&apos;/g, "'")
-                    .replace(/&amp;/g, "&");
-            }
-
-            function stripHtmlToText(html) {
-                if (!html) return "";
-                const withoutTags = html.replace(/<[^>]*>/g, " ");
-                return decodeXmlEntities(withoutTags).replace(/\s+/g, " ").trim();
-            }
-
-            function truncate(text, maxLen) {
-                if (!text || text.length <= maxLen) return text || "";
-                return text.slice(0, maxLen).trimEnd() + "...";
-            }
-
-            function safeUrl(rawUrl, fallback = "#", allowedHosts = null) {
-                if (!rawUrl) return fallback;
-
-                try {
-                    const url = new URL(rawUrl, window.location.href);
-                    const allowedProtocol = url.protocol === "http:" || url.protocol === "https:";
-
-                    if (!allowedProtocol) {
-                        return fallback;
-                    }
-
-                    if (allowedHosts && !allowedHosts.has(url.hostname)) {
-                        return fallback;
-                    }
-
-                    return url.href;
-                } catch (error) {
-                    return fallback;
-                }
-            }
-
-            function safeLinkUrl(rawUrl, fallback = "#") {
-                return safeUrl(rawUrl, fallback, ALLOWED_LINK_HOSTS);
-            }
-
-            function safeImageUrl(rawUrl, fallback = DATA_URI_FALLBACK_IMAGE) {
-                return safeUrl(rawUrl, fallback, ALLOWED_IMAGE_HOSTS);
-            }
-
-            function firstText(node, selectors) {
-                for (const selector of selectors) {
-                    const found = node.querySelector(selector);
-                    if (found && found.textContent) {
-                        return found.textContent.trim();
-                    }
-                }
-                return "";
-            }
-
-            function firstAttr(node, selectors, attrName) {
-                for (const selector of selectors) {
-                    const found = node.querySelector(selector);
-                    if (found) {
-                        const value = found.getAttribute(attrName);
-                        if (value) return value.trim();
-                    }
-                }
-                return "";
-            }
-
-            function extractImageFromDescription(descriptionHtml) {
-                if (!descriptionHtml) return "";
-                const imgMatch = descriptionHtml.match(/<img\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/i);
-                if (!imgMatch || !imgMatch[1]) return "";
-                return safeImageUrl(decodeXmlEntities(imgMatch[1]), "");
-            }
-
-            function extractImageUrl(item) {
-                const enclosureUrl = firstAttr(item, ["enclosure[type^='image/']"], "url");
-                if (enclosureUrl) return safeImageUrl(enclosureUrl, "");
-
-                const mediaContentUrl =
-                    firstAttr(item, ["media\\:content"], "url") ||
-                    firstAttr(item, ["content"], "url");
-                if (mediaContentUrl) return safeImageUrl(mediaContentUrl, "");
-
-                const mediaThumbUrl =
-                    firstAttr(item, ["media\\:thumbnail"], "url") ||
-                    firstAttr(item, ["thumbnail"], "url");
-                if (mediaThumbUrl) return safeImageUrl(mediaThumbUrl, "");
-
-                const descriptionHtml =
-                    firstText(item, ["description"]) ||
-                    firstText(item, ["content\\:encoded", "encoded"]) ||
-                    "";
-
-                const descriptionImage = extractImageFromDescription(descriptionHtml);
-                if (descriptionImage) return descriptionImage;
-
-                return DATA_URI_FALLBACK_IMAGE;
-            }
-
-            function buildCard(item) {
-                const rawTitle = firstText(item, ["title"]);
-                const rawLink = firstText(item, ["link"]);
-                const rawDescription =
-                    firstText(item, ["description"]) ||
-                    firstText(item, ["content\\:encoded", "encoded"]) ||
-                    "";
-
-                const title = decodeXmlEntities(rawTitle) || "Untitled";
-                const link = safeLinkUrl(rawLink, "#");
-                const blurb = truncate(stripHtmlToText(rawDescription), 150);
-                const imageUrl = extractImageUrl(item);
-
-                const card = document.createElement("div");
-                card.className = "widget_imageGridItem";
-
-                const titleLink = document.createElement("a");
-                titleLink.className = "widget_titleLink";
-                titleLink.href = link;
-                titleLink.target = "_blank";
-                titleLink.rel = "noopener noreferrer";
-
-                const titleWrap = document.createElement("div");
-                titleWrap.className = "widget_titleWrap";
-
-                const heading = document.createElement("h2");
-                heading.className = "widget_textTitle";
-                heading.textContent = title;
-
-                titleWrap.appendChild(heading);
-                titleLink.appendChild(titleWrap);
-
-                const imageLink = document.createElement("a");
-                imageLink.className = "widget_featureImageLink";
-                imageLink.href = link;
-                imageLink.target = "_blank";
-                imageLink.rel = "noopener noreferrer";
-
-                const imageFrame = document.createElement("div");
-                imageFrame.className = "widget_featureImageFrame";
-
-                const image = document.createElement("img");
-                image.className = "widget_featureImage";
-                image.src = safeImageUrl(imageUrl, DATA_URI_FALLBACK_IMAGE);
-                image.alt = title;
-                image.loading = "lazy";
-                image.referrerPolicy = "no-referrer";
-
-                image.onerror = function () {
-                    if (image.src !== DATA_URI_FALLBACK_IMAGE) {
-                        image.src = DATA_URI_FALLBACK_IMAGE;
-                    }
-                };
-
-                imageFrame.appendChild(image);
-                imageLink.appendChild(imageFrame);
-
-                const p = document.createElement("p");
-                p.className = "widget_featureText";
-                p.textContent = blurb;
-
-                card.appendChild(titleLink);
-                card.appendChild(imageLink);
-                card.appendChild(p);
-
-                return card;
-            }
-
-            function renderError(message) {
-                const root = document.getElementById("feed-grid-root");
-                root.textContent = "";
-
-                const box = document.createElement("div");
-                box.className = "feed-grid-error";
-                box.textContent = message;
-
-                root.appendChild(box);
-            }
-
-            async function loadFeed() {
-                try {
-                    const response = await fetch(FEED_URL, {
-                        method: "GET",
-                        mode: "cors",
-                        cache: "no-store",
-                        credentials: "omit",
-                        redirect: "follow"
-                    });
-
-                    if (!response.ok) {
-                        const body = await response.text();
-                        throw new Error("Feed request failed: HTTP " + response.status + " | " + body.slice(0, 500));
-                    }
-
-                    const xmlText = await response.text();
-                    const parser = new DOMParser();
-                    const xml = parser.parseFromString(xmlText, "application/xml");
-
-                    const parserError = xml.querySelector("parsererror");
-                    if (parserError) {
-                        throw new Error("RSS XML could not be parsed.");
-                    }
-
-                    const items = Array.from(xml.querySelectorAll("rss > channel > item")).slice(0, MAX_ITEMS);
-
-                    if (!items.length) {
-                        throw new Error("No feed items were found.");
-                    }
-
-                    container.textContent = "";
-                    for (const item of items) {
-                        container.appendChild(buildCard(item));
-                    }
-                } catch (error) {
-                    console.error(error);
-                    renderError(String(error.message || error));
-                }
-            }
-
-            loadFeed();
-        })();
-    </script>
 </body>
-
 </html>
