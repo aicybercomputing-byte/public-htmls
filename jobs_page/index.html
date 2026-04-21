@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Careers &amp; Job Outlook — Bellini College</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #ffffff;
+      --surface: #f5f5f3;
+      --border: rgba(0, 0, 0, 0.12);
+      --border-mid: rgba(0, 0, 0, 0.22);
+      --text: #1a1a18;
+      --text-2: #5f5e5a;
+      --text-3: #888780;
+      --green: #0f6e56;
+      --green-mid: #1d9e75;
+      --green-light: #e1f5ee;
+      --green-text: #085041;
+      --amber: #854f0b;
+      --amber-light: #faeeda;
+      --amber-text: #633806;
+      --blue-light: #e6f1fb;
+      --blue-text: #0c447c;
+      --r-md: 8px;
+      --r-lg: 12px;
+    }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+      line-height: 1.5;
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .hero {
+      border-bottom: 0.5px solid var(--border);
+      padding-bottom: 1rem;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 0.4rem;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      color: var(--text-2);
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    .stat-bar {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border: 0.5px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      margin: 1.25rem 0;
+    }
+
+    .stat {
+      padding: 1rem 1.25rem;
+      background: var(--surface);
+      border-right: 0.5px solid var(--border);
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-2);
+      line-height: 1.4;
+    }
+
+    .stat-src {
+      font-size: 10px;
+      color: var(--text-3);
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 4px;
+    }
+
+    .c-green {
+      color: var(--green);
+    }
+
+    .c-amber {
+      color: var(--amber);
+    }
+
+    .tabs {
+      display: flex;
+      border-bottom: 0.5px solid var(--border);
+      margin-bottom: 1.25rem;
+      overflow-x: auto;
+      gap: 0;
+    }
+
+    .tab {
+      padding: 0.6rem 1.1rem;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: var(--text-2);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -0.5px;
+      font-family: 'Source Sans 3', sans-serif;
+      transition: color 0.15s;
+      white-space: nowrap;
+    }
+
+    .tab.active {
+      color: var(--green);
+      border-bottom-color: var(--green);
+    }
+
+    .tab:hover:not(.active) {
+      color: var(--text);
+    }
+
+    .panel {
+      display: none;
+    }
+
+    .panel.active {
+      display: block;
+    }
+
+    .slabel {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 0.75rem;
+    }
+
+    .cards2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .cards3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1rem 1.25rem;
+    }
+
+    .card-head {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-body {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.55;
+    }
+
+    .card-cta {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--green);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .card-cta:hover {
+      text-decoration: underline;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-bottom: 0.5rem;
+    }
+
+    .badge.green {
+      background: var(--green-light);
+      color: var(--green-text);
+    }
+
+    .badge.amber {
+      background: var(--amber-light);
+      color: var(--amber-text);
+    }
+
+    .badge.blue {
+      background: var(--blue-light);
+      color: var(--blue-text);
+    }
+
+    .occ-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-bottom: 1.5rem;
+    }
+
+    .occ-table th {
+      text-align: left;
+      padding: 6px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-2);
+      border-bottom: 0.5px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .occ-table td {
+      padding: 8px 10px;
+      border-bottom: 0.5px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .occ-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .occ-table tr:hover td {
+      background: var(--surface);
+    }
+
+    .bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bar-track {
+      flex: 1;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+    }
+
+    .bar-fill {
+      height: 4px;
+      border-radius: 2px;
+      background: var(--green-mid);
+    }
+
+    .bar-fill.neutral {
+      background: var(--border-mid);
+    }
+
+    .pct {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      min-width: 42px;
+      text-align: right;
+    }
+
+    .pct.up {
+      color: var(--green);
+    }
+
+    .fl-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 1.25rem;
+    }
+
+    .fl-cell {
+      border: 0.5px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 0.75rem 1rem;
+      background: var(--surface);
+    }
+
+    .fl-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.1;
+    }
+
+    .fl-desc {
+      font-size: 11px;
+      color: var(--text-2);
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    .pathway {
+      display: flex;
+      margin-bottom: 1.5rem;
+    }
+
+    .pw-step {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      font-size: 12px;
+      border: 0.5px solid var(--border);
+      border-right: none;
+      background: var(--surface);
+    }
+
+    .pw-step:first-child {
+      border-radius: var(--r-md) 0 0 var(--r-md);
+    }
+
+    .pw-step:last-child {
+      border-right: 0.5px solid var(--border);
+      border-radius: 0 var(--r-md) var(--r-md) 0;
+    }
+
+    .pw-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--green-mid);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .pw-label {
+      font-weight: 500;
+      font-size: 12px;
+      margin-bottom: 2px;
+    }
+
+    .pw-sub {
+      font-size: 11px;
+      color: var(--text-2);
+    }
+
+    .source-note {
+      font-size: 11px;
+      color: var(--text-3);
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.6;
+      border-top: 0.5px solid var(--border);
+      padding-top: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Form elements */
+    input,
+    select,
+    textarea {
+      font-size: 13px;
+      padding: 7px 10px;
+      border: 0.5px solid var(--border-mid);
+      border-radius: var(--r-md);
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Source Sans 3', sans-serif;
+      width: 100%;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 2px solid var(--green-mid);
+      outline-offset: 1px;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--green-light);
+      border: none;
+      padding: 0.5rem 1.25rem;
+      border-radius: var(--r-md);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+
+    .btn-primary:hover {
+      background: var(--green-text);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* ── JOB MATCH ── */
+    .jm-form {
+      border: 0.5px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.25rem;
+      background: var(--surface);
+      margin-bottom: 1.25rem;
+    }
+
+    .jm-form h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .jm-form p {
+      font-size: 13px;
+      color: var(--text-2);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .jm-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .jm-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .jm-field label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-2);
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .jm-field textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    .jm-full {
+      grid-column: 1 / -1;
+    }
+
+    .jm-loading {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      padding: 1rem 0;
+      color: var(--text-2);
+      font-size: 13px;
+    }
+
+    .jm-spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--border);
+      border-top-color: var(--green);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .jm-result-card {
+      border: 0.5px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1rem 1.25rem;
+      background: var(--bg);
+      margin-bottom: 10px;
+      transition: border-color 0.15s;
+    }
+
+    .jm-result-card:hover {
+      border-color: var(--green);
+    }
+
+    .jm-rc-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 0.4rem;
+    }
+
+    .jm-rc-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .jm-rc-match {
+      font-size: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--green-light);
+      color: var(--green-text);
+      padding: 3px 8px;
+      border-radius: 3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .jm-rc-meta {
+      font-size: 12px;
+      color: var(--text-2);
+      margin-bottom: 0.5rem;
+    }
+
+    .jm-rc-why {
+      font-size: 12px;
+      color: var(--text-2);
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+      border-left: 2px solid var(--green-mid);
+      padding-left: 10px;
+    }
+
+    .jm-co-chip {
+      font-size: 11px;
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 3px;
+      padding: 2px 7px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .jm-rc-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 0.75rem;
+    }
+
+    .jm-link {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: var(--r-md);
+      border: 0.5px solid var(--border-mid);
+      color: var(--text);
+      text-decoration: none;
+      background: var(--surface);
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+
+    .jm-link:hover {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    .jm-link.primary {
+      background: var(--green);
+      color: var(--green-light);
+      border-color: var(--green);
+    }
+
+    .jm-link.primary:hover {
+      background: var(--green-text);
+    }
+
+    /* ── EVENTS ── */
+    .ev-filter-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .ev-filter {
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 0.5px solid var(--border-mid);
+      background: var(--bg);
+      color: var(--text-2);
+      cursor: pointer;
+      font-family: 'Source Sans 3', sans-serif;
+      transition: all 0.15s;
+    }
+
+    .ev-filter.active {
+      background: var(--green);
+      color: var(--green-light);
+      border-color: var(--green);
+    }
+
+    .ev-filter:hover:not(.active) {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    .ev-list {
+      border: 0.5px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .ev-item {
+      display: grid;
+      grid-template-columns: 64px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 0.9rem 1.25rem;
+      border-bottom: 0.5px solid var(--border);
+      background: var(--bg);
+      transition: background 0.1s;
+    }
+
+    .ev-item:last-child {
+      border-bottom: none;
+    }
+
+    .ev-item:hover {
+      background: var(--surface);
+    }
+
+    .ev-month {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-3);
+      font-family: 'JetBrains Mono', monospace;
+      text-align: center;
+    }
+
+    .ev-day {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1;
+      color: var(--green);
+      text-align: center;
+    }
+
+    .ev-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .ev-meta {
+      font-size: 12px;
+      color: var(--text-2);
+    }
+
+    .ev-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .ev-type-badge {
+      font-size: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 2px 7px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .ev-type-fair {
+      background: var(--blue-light);
+      color: var(--blue-text);
+    }
+
+    .ev-type-talk {
+      background: var(--amber-light);
+      color: var(--amber-text);
+    }
+
+    .ev-type-resume {
+      background: var(--green-light);
+      color: var(--green-text);
+    }
+
+    .ev-type-net {
+      background: #fbeaf0;
+      color: #72243e;
+    }
+
+    .ev-type-info {
+      background: #f1efe8;
+      color: #444441;
+    }
+
+    .ev-add {
+      font-size: 11px;
+      color: var(--green);
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .ev-add:hover {
+      text-decoration: underline;
+    }
+
+    .ev-submit-box {
+      border: 0.5px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.25rem;
+      background: var(--surface);
+    }
+
+    .ev-submit-box h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+    }
+
+    .ev-submit-box p {
+      font-size: 13px;
+      color: var(--text-2);
+      margin-bottom: 0.75rem;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .form-row>* {
+      flex: 1;
+    }
+
+    /* Employer form */
+    .recruit-form {
+      border: 0.5px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.25rem;
+      background: var(--surface);
+      margin-bottom: 1rem;
+    }
+
+    /* Footer */
+    .page-footer {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 0.5rem;
+      padding-top: 0.75rem;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .live-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-mid);
+      margin-right: 5px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.4;
+      }
+    }
+
+    .footer-text {
+      font-size: 11px;
+      color: var(--text-3);
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- <div class="hero">
+    <p class="eyebrow">Bellini College of AI, Cybersecurity &amp; Computing &mdash; USF</p>
+    <h1>Tech Careers &amp; Job Outlook</h1>
+    <p class="hero-sub">Data-driven intelligence on the computing job market &mdash; for prospective students, current
+      students, and employers. Updated quarterly.</p>
+  </div> -->
+
+  <div class="stat-bar">
+    <div class="stat">
+      <div class="stat-num c-green">+17.9%</div>
+      <div class="stat-label">Software developer growth 2023&ndash;2033</div>
+      <div class="stat-src">BLS / MLR 2025</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">546K</div>
+      <div class="stat-label">Tech workers in Florida (#4 nationally)</div>
+      <div class="stat-src">CompTIA 2025</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num c-amber">$102,908</div>
+      <div class="stat-label">Median FL tech wage &mdash; 122% above state median</div>
+      <div class="stat-src">CompTIA / Lightcast 2024</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">12,735</div>
+      <div class="stat-label">Active FL job postings requiring AI skills</div>
+      <div class="stat-src">CompTIA 2024</div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showPanel('prospective',this)">Prospective students</button>
+    <button class="tab" onclick="showPanel('current',this)">Current students</button>
+    <button class="tab" onclick="showPanel('matchme',this)">Find my job ✦</button>
+    <button class="tab" onclick="showPanel('events',this)">Events calendar</button>
+    <button class="tab" onclick="showPanel('employers',this)">Employers</button>
+  </div>
+
+  <!-- ══ PROSPECTIVE ══ -->
+  <div class="panel active" id="panel-prospective">
+    <p class="slabel">National occupation projections &mdash; 2023 to 2033</p>
+    <table class="occ-table">
+      <thead>
+        <tr>
+          <th style="width:38%">Occupation</th>
+          <th>2023 jobs</th>
+          <th>Growth</th>
+          <th style="width:30%">vs. 4.0% avg</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Software developers</strong></td>
+          <td class="mono">1,692,100</td>
+          <td class="pct up">+17.9%</td>
+          <td>
+            <div class="bar-wrap">
+              <div class="bar-track">
+                <div class="bar-fill" style="width:100%"></div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Computer occupations (all)</td>
+          <td class="mono">5,021,800</td>
+          <td class="pct up">+11.7%</td>
+          <td>
+            <div class="bar-wrap">
+              <div class="bar-track">
+                <div class="bar-fill" style="width:65%"></div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Database architects</td>
+          <td class="mono">61,400</td>
+          <td class="pct up">+10.8%</td>
+          <td>
+            <div class="bar-wrap">
+              <div class="bar-track">
+                <div class="bar-fill" style="width:60%"></div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Financial &amp; investment analysts</td>
+          <td class="mono">347,400</td>
+          <td class="pct up">+9.5%</td>
+          <td>
+            <div class="bar-wrap">
+              <div class="bar-track">
+                <div class="bar-fill" style="width:53%"></div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Database administrators</td>
+          <td class="mono">80,500</td>
+          <td class="pct up">+8.2%</td>
+          <td>
+            <div class="bar-wrap">
+              <div class="bar-track">
+                <div class="bar-fill" style="width:46%"></div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td style="color:var(--text-2)">All occupations (benchmark)</td>
+          <td class="mono" style="color:var(--text-2)">167,849,800</td>
+          <td class="pct" style="color:var(--text-2)">+4.0%</td>
+          <td>
+            <div class="bar-wrap">
+              <div class="bar-track">
+                <div class="bar-fill neutral" style="width:22%"></div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="slabel">Florida spotlight</p>
+    <div class="fl-strip">
+      <div class="fl-cell">
+        <div class="fl-num c-green">107,404</div>
+        <div class="fl-desc">Software dev jobs in FL &mdash; +5.0% projected 2025 (3.2&times; benchmark)</div>
+      </div>
+      <div class="fl-cell">
+        <div class="fl-num c-green">16,973</div>
+        <div class="fl-desc">Data science &amp; ML jobs &mdash; +5.6% projected, fastest-growing FL category</div>
+      </div>
+      <div class="fl-cell">
+        <div class="fl-num c-green">#3</div>
+        <div class="fl-desc">Florida&rsquo;s aggregate CompTIA ranking among all 50 states</div>
+      </div>
+    </div>
+    <p class="slabel">Why the AI era boosts &mdash; not replaces &mdash; computing careers</p>
+    <div class="cards2">
+      <div class="card">
+        <div class="badge green">BLS finding</div>
+        <div class="card-head">Productivity creates demand</div>
+        <div class="card-body">AI-assisted productivity lowers software costs, expanding the market and boosting demand
+          for the very developers who build AI tools &mdash; a virtuous cycle for computing graduates.</div>
+      </div>
+      <div class="card">
+        <div class="badge amber">CompTIA 2025</div>
+        <div class="card-head">Data &amp; AI: fastest-growing segment</div>
+        <div class="card-body">Data science, ML, and database roles are Florida&rsquo;s fastest-growing tech category at
+          5.6% annually &mdash; 3.6&times; the national benchmark. Directly aligned with Bellini programs.</div>
+      </div>
+    </div>
+    <div class="source-note">Sources: BLS Monthly Labor Review Feb 2025 (Machovec, Rieley &amp; Rolen) &mdash; national
+      projections 2023&ndash;2033. CompTIA State of the Tech Workforce 2025 (Lightcast / BLS) &mdash; Florida
+      state-level figures.</div>
+  </div>
+
+  <!-- ══ CURRENT STUDENTS ══ -->
+  <div class="panel" id="panel-current">
+    <p class="slabel">Your career pathway</p>
+    <div class="pathway">
+      <div class="pw-step">
+        <div class="pw-num">01</div>
+        <div class="pw-label">Advising</div>
+        <div class="pw-sub">Meet career advisor &mdash; semester 1</div>
+      </div>
+      <div class="pw-step">
+        <div class="pw-num">02</div>
+        <div class="pw-label">Resume &amp; portfolio</div>
+        <div class="pw-sub">GitHub, LinkedIn, capstone</div>
+      </div>
+      <div class="pw-step">
+        <div class="pw-num">03</div>
+        <div class="pw-label">Employer events</div>
+        <div class="pw-sub">Talks, fairs, info sessions</div>
+      </div>
+      <div class="pw-step">
+        <div class="pw-num">04</div>
+        <div class="pw-label">Internship</div>
+        <div class="pw-sub">Co-op, research, or industry</div>
+      </div>
+      <div class="pw-step">
+        <div class="pw-num">05</div>
+        <div class="pw-label">Full-time offer</div>
+        <div class="pw-sub">FL #3 for tech job gains</div>
+      </div>
+    </div>
+    <p class="slabel">Career resources</p>
+    <div class="cards3">
+      <div class="card">
+        <div class="badge blue">Advising</div>
+        <div class="card-head">Schedule with your advisor</div>
+        <div class="card-body">1:1 sessions for resume review, interview prep, and job search strategy. Drop-in hours
+          Tues &amp; Thurs.</div><a class="card-cta" href="#">Book appointment &rarr;</a>
+      </div>
+      <div class="card">
+        <div class="badge blue">Jobs board</div>
+        <div class="card-head">Bellini career portal</div>
+        <div class="card-body">Curated postings from employer partners, updated weekly. Internships, co-ops, and
+          full-time roles.</div><a class="card-cta" href="#">Browse openings &rarr;</a>
+      </div>
+      <div class="card">
+        <div class="badge green">Market data</div>
+        <div class="card-head">Salary benchmarks</div>
+        <div class="card-body">FL median tech wage is $102,908 &mdash; 122% above state median. Breakdowns by role and
+          experience level.</div><a class="card-cta" href="#">View salary data &rarr;</a>
+      </div>
+      <div class="card">
+        <div class="badge amber">AI jobs</div>
+        <div class="card-head">AI-specific opportunities</div>
+        <div class="card-body">12,735 Florida postings require AI skills. Track the live trend via AIMaps (UMD &amp;
+          LinkUp).</div><a class="card-cta" href="https://www.aimaps.ai/florida.php" target="_blank">AIMaps Florida
+          &rarr;</a>
+      </div>
+      <div class="card">
+        <div class="badge blue">Networking</div>
+        <div class="card-head">Alumni connections</div>
+        <div class="card-body">Connect with Bellini alumni in tech, cybersecurity, and AI through our LinkedIn community
+          and mentorship program.</div><a class="card-cta" href="#">Join the network &rarr;</a>
+      </div>
+      <div class="card">
+        <div class="badge green">Certifications</div>
+        <div class="card-head">Industry certifications</div>
+        <div class="card-body">CompTIA Security+, AWS, Google Cloud &mdash; credentials that employers actively request
+          in postings.</div><a class="card-cta" href="#">Cert pathways &rarr;</a>
+      </div>
+    </div>
+    <p class="slabel">Florida metro opportunities</p>
+    <div class="fl-strip">
+      <div class="fl-cell">
+        <div class="fl-num">#2</div>
+        <div class="fl-desc">Orlando &mdash; 2nd nationally for metro tech employment job gains</div>
+      </div>
+      <div class="fl-cell">
+        <div class="fl-num">112,890</div>
+        <div class="fl-desc">Active tech job postings in FL in 2024 across all occupation categories</div>
+      </div>
+      <div class="fl-cell">
+        <div class="fl-num">46,687</div>
+        <div class="fl-desc">Tech business establishments in FL &mdash; mostly small businesses</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FIND MY JOB ══ -->
+  <div class="panel" id="panel-matchme">
+    <div class="jm-form">
+      <h2>Find my job &mdash; AI-powered matching</h2>
+      <p>Fill in your profile and get 4 personalized role recommendations with direct links to live job searches on
+        LinkedIn and Indeed, pre-filtered for your skills and location.</p>
+      <div class="jm-grid">
+        <div class="jm-field">
+          <label>Degree program</label>
+          <select id="jm-program">
+            <option value="">Select program...</option>
+            <option>BS Computer Science</option>
+            <option>MS Artificial Intelligence</option>
+            <option>MS Data Intelligence</option>
+            <option>MS Cybersecurity</option>
+            <option>MS Computer Engineering</option>
+            <option>PhD Computer Science / AI</option>
+          </select>
+        </div>
+        <div class="jm-field">
+          <label>Graduation / availability</label>
+          <select id="jm-grad">
+            <option value="">Select...</option>
+            <option>Currently seeking (graduated)</option>
+            <option>Spring 2025</option>
+            <option>Summer 2025</option>
+            <option>Fall 2025</option>
+            <option>Spring 2026</option>
+            <option>1–2 years out</option>
+            <option>Seeking internship now</option>
+          </select>
+        </div>
+        <div class="jm-field">
+          <label>Top technical skills</label>
+          <input type="text" id="jm-skills" placeholder="e.g. Python, PyTorch, SQL, React, Kubernetes..." />
+        </div>
+        <div class="jm-field">
+          <label>Preferred location</label>
+          <select id="jm-location">
+            <option>Tampa Bay area</option>
+            <option>Orlando metro</option>
+            <option>Miami / South FL</option>
+            <option>Anywhere in Florida</option>
+            <option>Remote / anywhere in US</option>
+          </select>
+        </div>
+        <div class="jm-field">
+          <label>Work authorization</label>
+          <select id="jm-auth">
+            <option>US citizen / permanent resident</option>
+            <option>F-1 OPT / STEM OPT eligible</option>
+            <option>H-1B sponsorship needed</option>
+          </select>
+        </div>
+        <div class="jm-field">
+          <label>Work arrangement</label>
+          <select id="jm-mode">
+            <option>No preference</option>
+            <option>On-site</option>
+            <option>Hybrid</option>
+            <option>Remote only</option>
+          </select>
+        </div>
+        <div class="jm-field jm-full">
+          <label>Interests &amp; additional context (optional)</label>
+          <textarea id="jm-notes"
+            placeholder="e.g. interested in healthcare AI, open to startups, 2 fintech internships, want to avoid defense sector..."></textarea>
+        </div>
+      </div>
+      <button class="btn-primary" id="jm-btn" onclick="runJobMatch()">Find my job matches &rarr;</button>
+    </div>
+
+    <div class="jm-loading" id="jm-loading">
+      <div class="jm-spinner"></div>
+      <span>Analyzing your profile and generating personalized matches&hellip;</span>
+    </div>
+
+    <div id="jm-results"></div>
+  </div>
+
+  <!-- ══ EVENTS CALENDAR ══ -->
+  <div class="panel" id="panel-events">
+    <p class="slabel">Upcoming career events</p>
+    <div class="ev-filter-row">
+      <button class="ev-filter active" onclick="filterEvents('all',this)">All events</button>
+      <button class="ev-filter" onclick="filterEvents('fair',this)">Career fairs</button>
+      <button class="ev-filter" onclick="filterEvents('talk',this)">Company talks</button>
+      <button class="ev-filter" onclick="filterEvents('resume',this)">Resume &amp; interview</button>
+      <button class="ev-filter" onclick="filterEvents('net',this)">Networking</button>
+      <button class="ev-filter" onclick="filterEvents('info',this)">Info sessions</button>
+    </div>
+    <div class="ev-list" id="ev-list">
+      <div class="ev-item" data-type="talk">
+        <div>
+          <div class="ev-month">Apr</div>
+          <div class="ev-day">17</div>
+        </div>
+        <div>
+          <div class="ev-title">Microsoft Azure AI &mdash; Engineering Career Paths</div>
+          <div class="ev-meta">4:00&ndash;5:30 pm &middot; ENB 202 &middot; ACM student chapter</div>
+        </div>
+        <div class="ev-right"><span class="ev-type-badge ev-type-talk">Company talk</span><a class="ev-add" href="#">+
+            Add to calendar</a></div>
+      </div>
+      <div class="ev-item" data-type="resume">
+        <div>
+          <div class="ev-month">Apr</div>
+          <div class="ev-day">22</div>
+        </div>
+        <div>
+          <div class="ev-title">Resume &amp; LinkedIn Review Drop-In</div>
+          <div class="ev-meta">10:00 am&ndash;2:00 pm &middot; Bellini 1st floor lounge &middot; Career Services</div>
+        </div>
+        <div class="ev-right"><span class="ev-type-badge ev-type-resume">Resume / interview</span><a class="ev-add"
+            href="#">+ Add to calendar</a></div>
+      </div>
+      <div class="ev-item" data-type="net">
+        <div>
+          <div class="ev-month">Apr</div>
+          <div class="ev-day">24</div>
+        </div>
+        <div>
+          <div class="ev-title">Women in Computing Networking Reception</div>
+          <div class="ev-meta">6:00&ndash;8:00 pm &middot; Marshall Student Center &middot; WiC chapter + industry
+            sponsors</div>
+        </div>
+        <div class="ev-right"><span class="ev-type-badge ev-type-net">Networking</span><a class="ev-add" href="#">+ Add
+            to calendar</a></div>
+      </div>
+      <div class="ev-item" data-type="talk">
+        <div>
+          <div class="ev-month">Apr</div>
+          <div class="ev-day">29</div>
+        </div>
+        <div>
+          <div class="ev-title">Lockheed Martin &mdash; Cybersecurity &amp; Systems Engineering Roles</div>
+          <div class="ev-meta">3:30&ndash;5:00 pm &middot; ENB 207 &middot; IEEE &amp; Cybersecurity Club</div>
+        </div>
+        <div class="ev-right"><span class="ev-type-badge ev-type-talk">Company talk</span><a class="ev-add" href="#">+
+            Add to calendar</a></div>
+      </div>
+      <div class="ev-item" data-type="info">
+        <div>
+          <div class="ev-month">May</div>
+          <div class="ev-day">1</div>
+        </div>
+        <div>
+          <div class="ev-title">MSAI Program Info Session for Undergrads</div>
+          <div class="ev-meta">12:00&ndash;1:00 pm &middot; Zoom &middot; Graduate Admissions + MSAI faculty</div>
+        </div>
+        <div class="ev-right"><span class="ev-type-badge ev-type-info">Info session</span><a class="ev-add" href="#">+
+            Add to calendar</a></div>
+      </div>
+      <div class="ev-item" data-type="resume">
+        <div>
+          <div class="ev-month">May</div>
+          <div class="ev-day">6</div>
+        </div>
+        <div>
+          <div class="ev-title">Technical Interview Prep Workshop</div>
+          <div class="ev-meta">5:00&ndash;7:00 pm &middot; ENB 320 &middot; Career Services + ACM</div>
+        </div>
+        <div class="ev-right"><span class="ev-type-badge ev-type-resume">Resume / interview</span><a class="ev-add"
+            href="#">+ Add to calendar</a></div>
+      </div>
+      <div class="ev-item" data-type="talk">
+        <div>
+          <div class="ev-month">May</div>
+          <div class="ev-day">13</div>
+        </div>
+        <div>
+          <div class="ev-title">Raymond James Financial &mdash; FinTech &amp; AI Opportunities</div>
+          <div class="ev-meta">4:00&ndash;5:30 pm &middot; ENB 202 &middot; AI student organization</div>
+        </div>
+        <div class="ev-right"><span class="ev-type-badge ev-type-talk">Company talk</span><a class="ev-add" href="#">+
+            Add to calendar</a></div>
+      </div>
+      <div class="ev-item" data-type="net">
+        <div>
+          <div class="ev-month">May</div>
+          <div class="ev-day">15</div>
+        </div>
+        <div>
+          <div class="ev-title">Bellini Alumni Mixer &mdash; Tampa Bay Tech</div>
+          <div class="ev-meta">6:30&ndash;9:00 pm &middot; Armature Works, Tampa &middot; Bellini Development Office
+          </div>
+        </div>
+        <div class="ev-right"><span class="ev-type-badge ev-type-net">Networking</span><a class="ev-add" href="#">+ Add
+            to calendar</a></div>
+      </div>
+      <div class="ev-item" data-type="fair">
+        <div>
+          <div class="ev-month">Sep</div>
+          <div class="ev-day">10</div>
+        </div>
+        <div>
+          <div class="ev-title">Fall Tech Career Fair &mdash; Bellini College</div>
+          <div class="ev-meta">10:00 am&ndash;3:00 pm &middot; USF Sun Dome &middot; 60+ employers expected</div>
+        </div>
+        <div class="ev-right"><span class="ev-type-badge ev-type-fair">Career fair</span><a class="ev-add" href="#">+
+            Add to calendar</a></div>
+      </div>
+      <div class="ev-item" data-type="fair">
+        <div>
+          <div class="ev-month">Feb</div>
+          <div class="ev-day">4</div>
+        </div>
+        <div>
+          <div class="ev-title">Spring Engineering &amp; Computing Career Fair</div>
+          <div class="ev-meta">10:00 am&ndash;3:00 pm &middot; USF Sun Dome &middot; Bellini + Engineering co-hosted
+          </div>
+        </div>
+        <div class="ev-right"><span class="ev-type-badge ev-type-fair">Career fair</span><a class="ev-add" href="#">+
+            Add to calendar</a></div>
+      </div>
+    </div>
+
+    <div class="ev-submit-box">
+      <h3>Submit an event</h3>
+      <p>Student org hosting a company talk? Faculty organizing an employer visit? Submit it to appear on this calendar.
+      </p>
+      <div class="form-row"><input type="text" placeholder="Event name" /><input type="text"
+          placeholder="Date &amp; time" /></div>
+      <div class="form-row">
+        <input type="text" placeholder="Location / format" />
+        <select>
+          <option>Career fair</option>
+          <option>Company talk</option>
+          <option>Resume / interview</option>
+          <option>Networking</option>
+          <option>Info session</option>
+        </select>
+      </div>
+      <button class="btn-primary" style="margin-top:2px">Submit event</button>
+    </div>
+  </div>
+
+  <!-- ══ EMPLOYERS ══ -->
+  <div class="panel" id="panel-employers">
+    <p class="slabel">Why recruit from Bellini College</p>
+    <div class="cards2">
+      <div class="card">
+        <div class="badge green">Talent pipeline</div>
+        <div class="card-head">Programs aligned to market demand</div>
+        <div class="card-body">BS CS, MS AI, MS Data Intelligence, MS Cybersecurity, and MS Computer Engineering &mdash;
+          mapped to the fastest-growing occupation categories in Florida and nationally.</div>
+      </div>
+      <div class="card">
+        <div class="badge amber">AI-ready graduates</div>
+        <div class="card-head">Curriculum built for the AI era</div>
+        <div class="card-body">Graduates trained in ML, deep learning, NLP, and applied AI systems &mdash; directly
+          addressing the 12,735 Florida postings requiring AI skills identified in 2024.</div>
+      </div>
+      <div class="card">
+        <div class="badge blue">Scale</div>
+        <div class="card-head">One of Florida&rsquo;s largest computing colleges</div>
+        <div class="card-body">68+ faculty across AI, cybersecurity, CS, and computer engineering. USF is
+          Florida&rsquo;s fastest-growing research university.</div>
+      </div>
+      <div class="card">
+        <div class="badge green">Location</div>
+        <div class="card-head">Tampa Bay &mdash; a rising tech market</div>
+        <div class="card-body">Florida is #4 nationally in net tech employment and #3 for projected 2025 job gains.
+          Tampa Bay between two of the fastest-growing tech metros in the state.</div>
+      </div>
+    </div>
+    <p class="slabel">Recruiting options</p>
+    <div class="cards3">
+      <div class="card">
+        <div class="card-head">On-campus recruiting</div>
+        <div class="card-body">Info sessions, tech talks, and interview suites. Spring and fall career fairs with
+          targeted computing tracks.</div><a class="card-cta" href="#">Schedule a visit &rarr;</a>
+      </div>
+      <div class="card">
+        <div class="card-head">Internship partnerships</div>
+        <div class="card-body">Post internship and co-op positions directly to Bellini students via our career portal.
+        </div><a class="card-cta" href="#">Post a position &rarr;</a>
+      </div>
+      <div class="card">
+        <div class="card-head">Capstone sponsorship</div>
+        <div class="card-body">Sponsor a senior or graduate capstone. Your real-world problem, our students&rsquo;
+          solutions &mdash; with faculty oversight.</div><a class="card-cta" href="#">Explore capstones &rarr;</a>
+      </div>
+    </div>
+    <p class="slabel">Contact our career team</p>
+    <div class="recruit-form">
+      <div class="form-row"><input type="text" placeholder="Company name" /><input type="text"
+          placeholder="Your name &amp; title" /></div>
+      <div class="form-row"><input type="email" placeholder="Work email" /><select>
+          <option>Internship / co-op posting</option>
+          <option>Full-time recruiting</option>
+          <option>Capstone sponsorship</option>
+          <option>Campus event / info session</option>
+          <option>Other partnership</option>
+        </select></div>
+      <button class="btn-primary">Send inquiry</button>
+      <p class="source-note" style="border:none;padding:0;margin-top:0.5rem;">Our career advisor will respond within 2
+        business days.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="live-dot"></span>
+    <span class="footer-text">BLS MLR Feb 2025 &bull; CompTIA State of Tech Workforce 2025 &bull; AIMaps / LinkUp &bull;
+      Maintained by Bellini College Career Services &bull; Updated quarterly</span>
+  </div>
+
+  <script>
+    function showPanel(id, btn) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('panel-' + id).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    function filterEvents(type, btn) {
+      document.querySelectorAll('.ev-filter').forEach(f => f.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.ev-item').forEach(item => {
+        item.style.display = (type === 'all' || item.dataset.type === type) ? '' : 'none';
+      });
+    }
+
+    async function runJobMatch() {
+      const program = document.getElementById('jm-program').value;
+      const grad = document.getElementById('jm-grad').value;
+      const skills = document.getElementById('jm-skills').value;
+      const location = document.getElementById('jm-location').value;
+      const auth = document.getElementById('jm-auth').value;
+      const mode = document.getElementById('jm-mode').value;
+      const notes = document.getElementById('jm-notes').value;
+
+      if (!program || !grad) { alert('Please select your degree program and graduation timeline.'); return; }
+
+      const btn = document.getElementById('jm-btn');
+      const loading = document.getElementById('jm-loading');
+      const results = document.getElementById('jm-results');
+      btn.disabled = true;
+      loading.style.display = 'flex';
+      results.innerHTML = '';
+
+      const prompt = `You are a career advisor at Bellini College of AI, Cybersecurity and Computing at the University of South Florida.
+
+Student profile:
+- Program: ${program}
+- Availability: ${grad}
+- Skills: ${skills || 'not specified'}
+- Location preference: ${location}
+- Work authorization: ${auth}
+- Work arrangement: ${mode}
+- Additional context: ${notes || 'none'}
+
+Florida tech context: 546K tech workers (#4 nationally), $102,908 median wage, 107,404 software dev jobs (+5.0%), 16,973 data/ML jobs (+5.6%), 12,735 AI-skills postings in 2024.
+
+Return exactly 4 personalized job match recommendations. For each include:
+- title: specific job title
+- why: 2-sentence explanation of why it fits this student specifically
+- salary: realistic Florida salary range
+- companies: 3 real Florida-based or remote-hiring companies that are strong fits
+- linkedin: LinkedIn jobs search URL using https://www.linkedin.com/jobs/search/?keywords=ENCODED_TITLE&location=ENCODED_LOCATION (encode spaces as +)
+- indeed: Indeed jobs search URL using https://www.indeed.com/jobs?q=ENCODED_TITLE&l=ENCODED_LOCATION
+- score: match percentage 0-100
+
+Respond ONLY with a raw JSON array. No markdown fences, no explanation, no preamble.`;
+
+      try {
+        const resp = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 1200,
+            messages: [{ role: 'user', content: prompt }]
+          })
+        });
+        const data = await resp.json();
+        const raw = (data.content || []).map(c => c.text || '').join('').trim();
+        const jobs = JSON.parse(raw.replace(/```json|```/g, '').trim());
+        renderResults(jobs);
+      } catch (e) {
+        results.innerHTML = '<p style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">Could not load matches &mdash; please try again or visit career services.</p>';
+      } finally {
+        btn.disabled = false;
+        loading.style.display = 'none';
+      }
+    }
+
+    function renderResults(jobs) {
+      const el = document.getElementById('jm-results');
+      if (!jobs || !jobs.length) { el.innerHTML = '<p style="font-size:13px;color:var(--text-2);">No results. Refine your profile and try again.</p>'; return; }
+      let html = '<p class="slabel" style="margin-bottom:0.75rem;">Your personalized matches</p>';
+      jobs.forEach(j => {
+        const score = Math.round(+j.score) || 85;
+        const chips = (j.companies || []).map(c => `<span class="jm-co-chip">${c}</span>`).join(' ');
+        html += `<div class="jm-result-card">
+      <div class="jm-rc-top"><div class="jm-rc-title">${j.title}</div><div class="jm-rc-match">${score}% match</div></div>
+      <div class="jm-rc-meta">${j.salary || ''}</div>
+      <div class="jm-rc-why">${j.why}</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:0;">${chips}</div>
+      <div class="jm-rc-links">
+        <a class="jm-link primary" href="${j.linkedin}" target="_blank">Search on LinkedIn &rarr;</a>
+        <a class="jm-link" href="${j.indeed}" target="_blank">Search on Indeed &rarr;</a>
+      </div>
+    </div>`;
+      });
+      html += '<p style="font-size:11px;color:var(--text-3);font-family:\'JetBrains Mono\',monospace;margin-top:0.75rem;">Matches are AI-generated guidance, not curated listings. Use links to search live postings. Contact career services for personalized advising.</p>';
+      el.innerHTML = html;
+    }
+  </script>
+</body>
+
+</html>
