@@ -1,3 +1,5 @@
-Test
+This is a list of all Belini College External Website Assets
 
-[Open File](carosels/news/2026/website_story.html)
+Quick Links
+[2026 News Carosel](carosels/news/2026/website_story.html)
+[Jobs Page](jobs_page/index.html)
