@@ -1430,7 +1430,7 @@
       });
     }
 
-    const JOB_SEARCH_API_URL = "https://script.google.com/macros/s/AKfycbxiyMXVxRRS6SA1SLsLibPeYUJIHRr71JnQfr00BtA5LGfgEoJ5q2T3btR0vY3hH7s/exec";
+    const JOB_SEARCH_API_URL = "https://script.google.com/macros/s/AKfycbyeHiS8Eaw3pLVlDlkpAYyYvp5NvncjZPTkPSAYEMSJEdI44uwZyBe99jgYfJz2SRU/exec";
     /** If WEBAPP_API_KEY is set in Apps Script, set the same value here (optional; visible in page source). */
     const JOB_SEARCH_API_KEY = "";
 
@@ -1473,6 +1473,25 @@
           reject(new Error("Request too large"));
           return;
         }
+        // #region agent log
+        fetch("http://127.0.0.1:7494/ingest/56222cd2-0b1e-4b81-96eb-8838368431f1", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "19dc22" },
+          body: JSON.stringify({
+            sessionId: "19dc22",
+            location: "jobs_page/index.html:jobSearchJsonp",
+            message: "jsonp request built",
+            data: {
+              hypothesisId: "H1",
+              runId: "pre",
+              urlLen: u.href.length,
+              paramKeys: [...qs.keys()].filter((k) => k !== "callback"),
+              host: u.host
+            },
+            timestamp: Date.now()
+          })
+        }).catch(() => {});
+        // #endregion
 
         const script = document.createElement("script");
         let done = false;
@@ -1491,9 +1510,41 @@
         };
 
         window[cbName] = (data) => {
+          // #region agent log
+          (function (d) {
+            var errStr =
+              d != null && typeof d === "object" && "error" in d ? String(d.error) : null;
+            var resN =
+              d != null && typeof d === "object" && Array.isArray(d.results) ? d.results.length : null;
+            fetch("http://127.0.0.1:7494/ingest/56222cd2-0b1e-4b81-96eb-8838368431f1", {
+              method: "POST",
+              headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "19dc22" },
+              body: JSON.stringify({
+                sessionId: "19dc22",
+                location: "jobs_page/index.html:jsonpCallback",
+                message: "jsonp script invoked",
+                data: { hypothesisId: "H2", runId: "pre", hasError: errStr != null, error: errStr, resultsLen: resN },
+                timestamp: Date.now()
+              })
+            }).catch(function () {});
+          })(data);
+          // #endregion
           finish(() => resolve(data));
         };
         script.onerror = () => {
+          // #region agent log
+          fetch("http://127.0.0.1:7494/ingest/56222cd2-0b1e-4b81-96eb-8838368431f1", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "19dc22" },
+            body: JSON.stringify({
+              sessionId: "19dc22",
+              location: "jobs_page/index.html:scriptOnError",
+              message: "jsonp script load error",
+              data: { hypothesisId: "H4", runId: "pre" },
+              timestamp: Date.now()
+            })
+          }).catch(() => {});
+          // #endregion
           finish(() => reject(new Error("Load failed")));
         };
         const tid = setTimeout(() => {
@@ -1558,12 +1609,34 @@
               '<p style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">Too many searches right now. Please try again in a little while.</p>';
             return;
           }
+          if (data.error === "Internal error") {
+            results.innerHTML =
+              '<p style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">The job search service hit a server error. Please try again later. If it keeps happening, the Google Apps Script that powers this form needs to be fixed (check the script&rsquo;s <strong>Executions</strong> log for the failure).</p>';
+            return;
+          }
           results.innerHTML = loadErrorHtml;
           return;
         }
         const jobs = Array.isArray(data.results) ? data.results : [];
         renderResults(jobs);
       } catch (e) {
+        // #region agent log
+        fetch("http://127.0.0.1:7494/ingest/56222cd2-0b1e-4b81-96eb-8838368431f1", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "19dc22" },
+          body: JSON.stringify({
+            sessionId: "19dc22",
+            location: "jobs_page/index.html:runJobMatch",
+            message: "runJobMatch catch",
+            data: {
+              hypothesisId: "H3",
+              runId: "pre",
+              err: String(e && e.message != null ? e.message : e)
+            },
+            timestamp: Date.now()
+          })
+        }).catch(() => {});
+        // #endregion
         results.innerHTML = loadErrorHtml;
       } finally {
         btn.disabled = false;
