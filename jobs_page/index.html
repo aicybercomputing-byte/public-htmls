@@ -1437,6 +1437,21 @@
     const JOB_SEARCH_JSONP_MAX_URL = 7500;
     const JOB_SEARCH_JSONP_TIMEOUT_MS = 40000;
 
+    function jobSearchDebugQuery() {
+      try {
+        return new URLSearchParams(window.location.search).get("jobsearch_debug") === "1";
+      } catch {
+        return false;
+      }
+    }
+    function jobSearchEscapeHtml(s) {
+      return String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
     function randomJsonpCallbackName() {
       const bytes = new Uint8Array(16);
       crypto.getRandomValues(bytes);
@@ -1593,12 +1608,22 @@
           authorization: auth || undefined
         };
         if (JOB_SEARCH_API_KEY) params.api_key = JOB_SEARCH_API_KEY;
+        if (jobSearchDebugQuery()) params.err_detail = "1";
 
         const data = await jobSearchJsonp(JOB_SEARCH_API_URL, params);
         if (data == null || typeof data !== "object" || Array.isArray(data)) {
           throw new Error("Invalid response");
         }
         if (data.error) {
+          if (jobSearchDebugQuery() && typeof data.detail === "string" && data.detail.trim() !== "") {
+            results.innerHTML =
+              "<p style=\"font-size:13px;color:var(--text-2);padding:0.5rem 0;\">Debug mode: server error <code>" +
+              jobSearchEscapeHtml(String(data.error)) +
+              "</code> &mdash; details below. Remove <code>?jobsearch_debug=1</code> when done.</p><pre style=\"font-size:12px;white-space:pre-wrap;word-break:break-word;padding:0.5rem 0;\">" +
+              jobSearchEscapeHtml(data.detail) +
+              "</pre>";
+            return;
+          }
           if (data.error === "Unauthorized") {
             results.innerHTML =
               '<p style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">The jobs API requires a matching key. Set <code>JOB_SEARCH_API_KEY</code> in this page to the same value as <code>WEBAPP_API_KEY</code> in Apps Script properties (or remove the key from the script for testing only).</p>';
@@ -1610,8 +1635,13 @@
             return;
           }
           if (data.error === "Internal error") {
-            results.innerHTML =
-              '<p style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">The job search service hit a server error. Please try again later. If it keeps happening, the Google Apps Script that powers this form needs to be fixed (check the script&rsquo;s <strong>Executions</strong> log for the failure).</p>';
+            if (jobSearchDebugQuery()) {
+              results.innerHTML =
+                '<p style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">The job search service hit a server error. The <strong>Executions</strong> panel can lag, show <em>No logs for this execution</em>, or omit logs when the failure is outside <code>Logger</code> (e.g. platform/timeout). In <code>doGet</code>, use <code>try/catch</code> and when <code>e.parameter.err_detail</code> is <code>1</code>, include <code>detail: e.message</code> (or stack) in the JSONP object so it appears here. Remove <code>jobsearch_debug</code> in production.</p>';
+            } else {
+              results.innerHTML =
+                '<p style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">The job search service hit a server error. Please try again later or contact career services.</p>';
+            }
             return;
           }
           results.innerHTML = loadErrorHtml;
