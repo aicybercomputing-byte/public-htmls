@@ -896,6 +896,7 @@
     <button class="tab active" onclick="showPanel('prospective',this)">Prospective students</button>
     <button class="tab" onclick="showPanel('current',this)">Current students</button>
     <button class="tab" onclick="showPanel('matchme',this)">Find my job ✦</button>
+    <button class="tab" onclick="showPanel('internships',this)">Find my internship ✦</button>
     <button class="tab" onclick="showPanel('events',this)">Events calendar</button>
     <button class="tab" onclick="showPanel('employers',this)">Employers</button>
   </div>
@@ -1199,6 +1200,86 @@
     <div id="jm-results"></div>
   </div>
 
+  <!-- ══ FIND MY INTERNSHIP ══ -->
+  <div class="panel" id="panel-internships">
+    <div class="jm-form">
+      <h3>Find my internship &mdash; AI-powered matching</h3>
+      <p>Fill in your profile and get 4 personalized internship recommendations with direct links to live job searches on
+        LinkedIn and Indeed, pre-filtered for your skills and location.</p>
+      <div class="jm-grid">
+        <div class="jm-field">
+          <label>Degree program</label>
+          <select id="ji-program">
+            <option value="">Select program...</option>
+            <option value="computer science">BS Computer Science</option>
+            <option value="artificial intelligence">MS Artificial Intelligence</option>
+            <option value="data science">MS Data Intelligence</option>
+            <option value="cybersecurity">MS Cybersecurity</option>
+            <option value="computer engineering">MS Computer Engineering</option>
+            <option value="computer science">PhD Computer Science / AI</option>
+          </select>
+        </div>
+        <div class="jm-field">
+          <label>Graduation / availability</label>
+          <select id="ji-grad">
+            <option>Select...</option>
+            <option>Currently seeking (graduated)</option>
+            <option>Spring 2025</option>
+            <option>Summer 2025</option>
+            <option>Fall 2025</option>
+            <option>Spring 2026</option>
+            <option>1-2 years out</option>
+            <option>Seeking internship now</option>
+          </select>
+        </div>
+        <div class="jm-field">
+          <label>Top technical skills</label>
+          <input type="text" id="ji-skills" placeholder="e.g. Python, PyTorch, SQL, React, Kubernetes..." />
+        </div>
+        <div class="jm-field">
+          <label>Preferred location</label>
+          <select id="ji-location">
+            <option value="Florida" selected>Anywhere in Florida</option>
+            <option value="Tampa, FL">Tampa Bay area</option>
+            <option value="Orlando, FL">Orlando metro</option>
+            <option value="Miami, FL">Miami / South FL</option>
+            <option value="United States">Remote / anywhere in US</option>
+          </select>
+        </div>
+        <div class="jm-field">
+          <label>Work authorization</label>
+          <select id="ji-auth">
+            <option>US citizen / permanent resident</option>
+            <option>F-1 OPT / STEM OPT eligible</option>
+            <option>H-1B sponsorship needed</option>
+          </select>
+        </div>
+        <div class="jm-field">
+          <label>Work arrangement</label>
+          <select id="ji-mode">
+            <option>No preference</option>
+            <option>On-site</option>
+            <option>Hybrid</option>
+            <option>Remote only</option>
+          </select>
+        </div>
+        <div class="jm-field jm-full">
+          <label>Interests &amp; additional context (optional)</label>
+          <textarea id="ji-notes"
+            placeholder="e.g. interested in healthcare AI, open to startups, 2 fintech internships, want to avoid defense sector..."></textarea>
+        </div>
+      </div>
+      <button class="btn-primary" id="ji-btn" onclick="runInternshipMatch()">Find my internship matches &rarr;</button>
+    </div>
+
+    <div class="jm-loading" id="ji-loading">
+      <div class="jm-spinner"></div>
+      <span>Analyzing your profile and generating personalized internship matches&hellip;</span>
+    </div>
+
+    <div id="ji-results"></div>
+  </div>
+
   <!-- ══ EVENTS CALENDAR ══ -->
   <div class="panel" id="panel-events">
     <p class="slabel">Upcoming career events</p>
@@ -1335,7 +1416,7 @@
     const EVENTS_FEED_URL =
       typeof window.EVENTS_FEED_URL !== "undefined" && window.EVENTS_FEED_URL
         ? window.EVENTS_FEED_URL
-        : "https://script.google.com/macros/s/AKfycbzXRZIjQnK04USWhUTCiy5PD9edAwxHSaw5Ww35A-Mk3cDRizo4Sj2Pr4HDog6AUzd9/exec";
+        : "https://script.google.com/macros/s/AKfycbzXRZIjQnK04USWhUTCiy5PD9edAwxHSaw5Ww35A-Mk3cDRizo4Sj2Pr4HDog6AUzd9/exechttps://script.google.com/macros/s/AKfycbxYQx4SvkkkYqK-eicOVLC8Bt5n3xryuDtZZcbdheX36MnFhK6FJBJ-l8W3bTNsBpgv/exec";
 
     const JOB_SEARCH_JSONP_MAX_URL = 7500;
     const JOB_SEARCH_JSONP_TIMEOUT_MS = 40000;
@@ -1475,19 +1556,41 @@
     }
 
     async function runJobMatch() {
-      const program = document.getElementById('jm-program').value;
-      const grad = document.getElementById('jm-grad').value;
-      const skills = document.getElementById('jm-skills').value;
-      const location = document.getElementById('jm-location').value;
-      const auth = document.getElementById('jm-auth').value;
-      const mode = document.getElementById('jm-mode').value;
-      const notes = document.getElementById('jm-notes').value;
+      return runMatchSearch({
+        fieldPrefix: 'jm',
+        btnId: 'jm-btn',
+        loadingId: 'jm-loading',
+        resultsId: 'jm-results',
+        headingText: 'Your personalized matches',
+        forceInternshipSearch: false
+      });
+    }
+
+    async function runInternshipMatch() {
+      return runMatchSearch({
+        fieldPrefix: 'ji',
+        btnId: 'ji-btn',
+        loadingId: 'ji-loading',
+        resultsId: 'ji-results',
+        headingText: 'Your personalized internship matches',
+        forceInternshipSearch: true
+      });
+    }
+
+    async function runMatchSearch(config) {
+      const program = document.getElementById(config.fieldPrefix + '-program').value;
+      const grad = document.getElementById(config.fieldPrefix + '-grad').value;
+      const skills = document.getElementById(config.fieldPrefix + '-skills').value;
+      const location = document.getElementById(config.fieldPrefix + '-location').value;
+      const auth = document.getElementById(config.fieldPrefix + '-auth').value;
+      const mode = document.getElementById(config.fieldPrefix + '-mode').value;
+      const notes = document.getElementById(config.fieldPrefix + '-notes').value;
 
       if (!program || !grad) { alert('Please select your degree program and graduation timeline.'); return; }
 
-      const btn = document.getElementById('jm-btn');
-      const loading = document.getElementById('jm-loading');
-      const results = document.getElementById('jm-results');
+      const btn = document.getElementById(config.btnId);
+      const loading = document.getElementById(config.loadingId);
+      const results = document.getElementById(config.resultsId);
       btn.disabled = true;
       loading.style.display = 'flex';
       results.innerHTML = '';
@@ -1502,7 +1605,7 @@
         const params = {
           action: "job-search",
           /* program is option value (USAJOBS keyword); skills append extra terms */
-          query_text: [program, (skills || "").trim()].filter(Boolean).join(" ").trim(),
+          query_text: [program, (skills || "").trim(), config.forceInternshipSearch ? "internship" : ""].filter(Boolean).join(" ").trim(),
           location_text: location || "Florida",
           employment_type: grad,
           remote_mode: mode || undefined,
@@ -1551,7 +1654,7 @@
           return;
         }
         const jobs = Array.isArray(data.results) ? data.results : [];
-        renderResults(jobs);
+        renderResults(jobs, config.resultsId, config.headingText);
       } catch (e) {
         // #region agent log
         fetch("http://127.0.0.1:7494/ingest/56222cd2-0b1e-4b81-96eb-8838368431f1", {
@@ -1577,10 +1680,10 @@
       }
     }
 
-    function renderResults(jobs) {
-      const el = document.getElementById('jm-results');
+    function renderResults(jobs, resultsId, headingText) {
+      const el = document.getElementById(resultsId);
       if (!jobs || !jobs.length) { el.innerHTML = '<p style="font-size:13px;color:var(--text-2);">No results. Refine your profile and try again.</p>'; return; }
-      let html = '<p class="slabel" style="margin-bottom:0.75rem;">Your personalized matches</p>';
+      let html = '<p class="slabel" style="margin-bottom:0.75rem;">' + headingText + '</p>';
       jobs.forEach(j => {
         const score = Math.round(+(j.match_score || j.score)) || 85;
         const chips = (j.companies || []).map(c => `<span class="jm-co-chip">${c}</span>`).join(' ');

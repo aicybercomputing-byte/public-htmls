@@ -56,3 +56,7 @@
 {"sessionId":"19dc22","location":"jobs_page/index.html:scriptOnError","message":"jsonp script load error","data":{"hypothesisId":"H4","runId":"pre"},"timestamp":1777490933765}
 {"sessionId":"19dc22","location":"jobs_page/index.html:jobSearchJsonp","message":"jsonp request built","data":{"hypothesisId":"H1","runId":"pre","urlLen":171,"paramKeys":["action"],"host":"script.google.com"},"timestamp":1777491071818}
 {"sessionId":"19dc22","location":"jobs_page/index.html:scriptOnError","message":"jsonp script load error","data":{"hypothesisId":"H4","runId":"pre"},"timestamp":1777491072496}
+{"sessionId":"19dc22","location":"jobs_page/index.html:jobSearchJsonp","message":"jsonp request built","data":{"hypothesisId":"H1","runId":"pre","urlLen":283,"paramKeys":["action"],"host":"script.google.com"},"timestamp":1777495157557}
+{"sessionId":"19dc22","location":"jobs_page/index.html:scriptOnError","message":"jsonp script load error","data":{"hypothesisId":"H4","runId":"pre"},"timestamp":1777495157686}
+{"sessionId":"19dc22","location":"jobs_page/index.html:jobSearchJsonp","message":"jsonp request built","data":{"hypothesisId":"H1","runId":"pre","urlLen":356,"paramKeys":["action","query_text","location_text","employment_type","remote_mode","limit_per_provider","authorization"],"host":"script.google.com"},"timestamp":1777495168571}
+{"sessionId":"19dc22","location":"jobs_page/index.html:jsonpCallback","message":"jsonp script invoked","data":{"hypothesisId":"H2","runId":"pre","hasError":false,"error":null,"resultsLen":6},"timestamp":1777495175108}
