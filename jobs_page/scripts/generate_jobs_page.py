@@ -292,31 +292,10 @@ def render_grad_options(rows: List[dict]) -> str:
 
 
 def render_event_items(rows: List[dict]) -> str:
-    blocks = []
-    for row in rows:
-        meta = row["meta_json"]
-        ev_type = html.escape(meta.get("event_type", "info"))
-        month = html.escape(meta.get("month", "Jan"))
-        day = html.escape(meta.get("day", "1"))
-        title = html.escape(meta.get("title", row["label"]))
-        details = html.escape(meta.get("details", "Details TBD"))
-        badge_class = html.escape(meta.get("badge_class", "ev-type-info"))
-        badge_label = html.escape(meta.get("badge_label", "Info session"))
-        add_url = html.escape(meta.get("add_url", "#"), quote=True)
-        blocks.append(
-            f"      <div class=\"ev-item\" data-type=\"{ev_type}\">\n"
-            "        <div>\n"
-            f"          <div class=\"ev-month\">{month}</div>\n"
-            f"          <div class=\"ev-day\">{day}</div>\n"
-            "        </div>\n"
-            "        <div>\n"
-            f"          <div class=\"ev-title\">{title}</div>\n"
-            f"          <div class=\"ev-meta\">{details}</div>\n"
-            "        </div>\n"
-            f"        <div class=\"ev-right\"><span class=\"ev-type-badge {badge_class}\">{badge_label}</span><a class=\"ev-add\" href=\"{add_url}\">+ Add to calendar</a></div>\n"
-            "      </div>"
-        )
-    return "\n".join(blocks)
+    """Runtime calendar uses Apps Script JSONP (`loadCareerEvents`); workbook rows ignored."""
+    return (
+        '      <p class="slabel ev-loading-msg" style="margin-bottom:0.75rem;color:var(--text-2);">Loading events…</p>'
+    )
 
 
 def render_footer_text(rows: List[dict]) -> str:
