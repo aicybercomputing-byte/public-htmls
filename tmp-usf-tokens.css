@@ -1,0 +1,141 @@
+:root {
+	/*  ==========================================================================
+		Colors
+	==========================================================================  */
+    --color-primary-usfgreen: #006747;
+    --color-primary-gold: #CFC493;
+	
+    --color-secondary-evergreen: #005432;
+    --color-secondary-sand: #EDEBD1;
+	
+    --color-accent-apple: #9CCB3B;
+    --color-accent-lemongrass: #DBE442;
+    --color-accent-seaglass: #80B0A6;
+	--color-accent-sky: #29AFCE;
+    --color-accent-storm: #006484;
+	--color-accent-teal: #009374;
+	
+	--color-neutral-lightgray: #EFEFF0;
+    --color-neutral-gray: #7E96A0;
+	--color-neutral-silver: #CAD2D8;   
+    --color-neutral-slate: #466069;
+    --color-neutral-softblack: #303434;
+	
+    --color-transparent: rgba(255, 0, 0, 0);
+	
+	--color-text-light: #ffffff;
+    --color-text-dark: var(--color-neutral-softblack);
+	--color-text-muted: #747777;
+
+	
+    /*  ==========================================================================
+		Typography
+	==========================================================================  */
+	/* Font Families */
+    --font-family-primary: "Open Sans", "Arial", sans-serif;
+    --font-family-secondary: "Barlow Condensed", sans-serif;
+
+    /* Font Sizes */
+	--font-size-base: 1rem;
+	--font-size-lg: 1.5rem;
+	--font-size-sm: 0.875rem;
+	
+	/* Font Sizes - Headings */
+    --font-size-h1: 3rem;
+    --font-size-h2: 2.25rem;
+    --font-size-h3: 1.75rem;
+    --font-size-h4: 1.5rem;
+    --font-size-h5: 1.25rem;
+    --font-size-h6: 1.125rem;
+
+    /* Line Height */
+    --line-height-tight: 1.2;
+	--line-height-snug: 1.35;
+	--line-height-normal: 1.5;
+	--line-height-relaxed: 1.65;
+	--line-height-loose: 1.8;
+
+    /* Letter Spacing */
+    --letter-spacing-tighter: -0.05rem;
+	--letter-spacing-tight: -0.025rem;
+	--letter-spacing-normal: 0rem;
+	--letter-spacing-wide: 0.025rem;
+	--letter-spacing-wider: 0.05rem;
+	--letter-spacing-widest: 0.1rem;
+	
+	
+	/*  ==========================================================================
+		Layout
+	==========================================================================  */
+	/* Container */
+	--container-max-width: 1280px;
+	--container-padding-inline: 1rem;
+	--container-padding-inline-md: 2rem;
+	--container-padding-block: 2rem;
+	--container-gap: 1.5rem;
+	
+	/* Breakpoint */
+	--breakpoint-xs: 480px;
+	--breakpoint-sm: 768px;
+	--breakpoint-md: 1024px;
+	--breakpoint-lg: 1280px;
+	--breakpoint-xl: 1536px;
+	
+	/* Spacing */
+	--space-auto:	auto;
+	--space-0:	0;
+	--space-1:	0.25rem;
+	--space-2:	0.5rem;
+	--space-3:	1rem;
+	--space-4:	1.5rem;
+	--space-5:	2rem;
+	--space-6:	3rem;
+	--space-7:	4rem;
+	
+	/* Z-Index */
+	--z-default: 0;
+	--z-dropdown: 100;
+	--z-sticky: 200;
+	--z-modal: 1000;
+	--z-tooltip: 1100;
+	
+	/* Border Radius */
+	--radius-sm: 4px;
+	--radius-md: 8px;
+	--radius-lg: 12px;
+	
+	
+	/*  ==========================================================================
+		Grid
+	==========================================================================  */
+	--grid-columns: 12;
+	--grid-gap: 1.5rem;
+	--grid-row-gap: 1.5rem;
+	--grid-column-gap: 1.5rem;
+	--grid-margin-inline: 1rem;
+	
+	
+	/*  ==========================================================================
+		Flexbox
+	==========================================================================  */
+	--flex-col-1: 8.333%;
+	--flex-col-2: 16.667%;
+	--flex-col-3: 25%;
+	--flex-col-4: 33.333%;
+	--flex-col-5: 41.667%;
+	--flex-col-6: 50%;
+	--flex-col-7: 58.333%;
+	--flex-col-8: 66.667%;
+	--flex-col-9: 75%;
+	--flex-col-10: 83.333%;
+	--flex-col-11: 91.667%;
+	--flex-col-12: 100%;
+	
+
+    /*  ==========================================================================
+		HR Weights
+	==========================================================================  */
+    --hr-medium-weight: 0.1875rem;
+    --hr-heavy-weight: 0.313rem;
+
+}

@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "events": [
+    {
+      "id": "rss-a1b2c3d4",
+      "title": "Career Fair - Spring 2026",
+      "start_iso": "2026-05-02T14:00:00.000Z",
+      "end_iso": "2026-05-02T16:00:00.000Z",
+      "location": "USF - Marshall Student Center",
+      "link": "https://example.edu/events/123",
+      "source": "Bellini calendar (RSS)",
+      "ev_type": "fair",
+      "badge_label": "Career fair",
+      "meta_line": "10:00 AM-12:00 PM ET - USF - Marshall Student Center"
+    }
+  ],
+  "fetch_errors": []
+}

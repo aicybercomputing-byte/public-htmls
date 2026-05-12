@@ -9,9 +9,17 @@
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%230f6e56'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap"
     rel="stylesheet" />
+  <!-- USF core stylesheet stack from the live Bellini page. -->
+  <link type="text/css" rel="stylesheet" href="https://www.usf.edu/_resources/css/v4/tokens.css" />
+  <link type="text/css" rel="stylesheet" href="https://www.usf.edu/_resources/css/v4/base-utilities.css" />
+  <link type="text/css" rel="stylesheet" href="https://www.usf.edu/_resources/css/v4/ui-components.css" />
+  <link type="text/css" rel="stylesheet" href="https://www.usf.edu/_resources/css/v4/styles.css" />
+  <link type="text/css" rel="stylesheet" href="https://www.usf.edu/_resources/css/v4/legacy/legacy-global.css" />
+  <link type="text/css" rel="stylesheet" href="https://www.usf.edu/_resources/css/v4/legacy/legacy-secondary.css" />
   <style>
     *,
     *::before,
@@ -42,14 +50,24 @@
       --r-lg: 12px;
     }
 
-    body {
+    .jobs-page-root {
       font-family: 'Open Sans', sans-serif;
       color: var(--text);
       background: var(--bg);
+      width: 100%;
       max-width: 900px;
       margin: 0 auto;
       padding: 0;
       line-height: 1.5;
+    }
+
+    /* Force-remove shadows from local and imported styles. */
+    .jobs-page-root *,
+    .jobs-page-root *::before,
+    .jobs-page-root *::after {
+      box-shadow: none !important;
+      text-shadow: none !important;
+      filter: none !important;
     }
 
     .mono {
@@ -90,21 +108,42 @@
     .stat-bar {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      border: 0.5px solid var(--border);
-      border-radius: var(--r-lg);
+      grid-auto-rows: 1fr;
+      align-items: stretch;
+      width: 100%;
+      max-width: 100%;
+      border: 1px solid #b2b2b2;
+      border-radius: 0;
       overflow: hidden;
       margin-top: 0; /* Or a smaller value like 0.5rem */
       margin-bottom: 1.25rem; /* Keeps the bottom space as is */
     }
 
     .stat {
-      padding: 1rem 1.25rem;
-      background: var(--surface);
-      border-right: 0.5px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      height: 100%;
+      min-width: 0;
+      padding: 1.5em;
+      background: #efeff0;
+      border-right: 1px solid #b2b2b2;
+      box-shadow: none;
+      background-image: none;
+      border-radius: 0;
     }
 
     .stat:last-child {
       border-right: none;
+    }
+
+    .stat::before,
+    .stat::after {
+      content: none !important;
+      display: none !important;
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
     }
 
     .stat-num {
@@ -114,6 +153,7 @@
       line-height: 1.05;
       letter-spacing: 0.01em;
       margin-bottom: 4px;
+      color: #006747;
     }
 
     .stat-label {
@@ -135,6 +175,12 @@
 
     .c-amber {
       color: var(--amber);
+    }
+
+    .stat-num.c-green,
+    .stat-num.c-amber,
+    .stat-num {
+      color: #006747 !important;
     }
 
     .tabs {
@@ -192,6 +238,9 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
       margin-bottom: 1.5rem;
+      align-items: stretch;
+      width: 100%;
+      max-width: 100%;
     }
 
     .cards3 {
@@ -199,42 +248,81 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
       margin-bottom: 1.5rem;
+      align-items: stretch;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    @media (max-width: 900px) {
+      .cards2,
+      .cards3 {
+        grid-template-columns: 1fr;
+      }
     }
 
     .card {
-      background: var(--bg);
-      border: 0.5px solid var(--border);
-      border-radius: var(--r-lg);
-      padding: 1rem 1.25rem;
+      background: #efeff0;
+      border: 1px solid #b2b2b2;
+      border-radius: 0;
+      padding: 1.5em;
+      height: 100%;
+      min-width: 0;
     }
 
     .card-head {
-      font-family: 'Open Sans', sans-serif;
-      font-size: 14px;
+      color: #006747;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5em;
       font-weight: 600;
-      line-height: 1.2;
-      letter-spacing: 0.01em;
-      margin-bottom: 0.4rem;
+      line-height: 1.25em;
+      letter-spacing: 0;
+      margin: 0 0 0.35em 0;
     }
 
     .card-body {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-2);
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
-    .card-cta {
+    .card-cta,
+    .ev-add {
       display: inline-block;
       margin-top: 0.75rem;
       font-size: 12px;
       font-weight: 600;
-      color: var(--green);
+      color: #006747;
       text-decoration: none;
       cursor: pointer;
+      text-underline-offset: 0.2em;
     }
 
-    .card-cta:hover {
+    .card-cta::after,
+    .ev-add::after {
+      content: "›";
+      color: #9ccb3c;
+      display: inline-block;
+      margin-left: 0.35em;
+      transition: margin 0.2s;
+    }
+
+    .card-cta:hover,
+    .card-cta:focus,
+    .card-cta:active,
+    .ev-add:hover,
+    .ev-add:focus,
+    .ev-add:active {
+      color: #006747;
       text-decoration: underline;
+    }
+
+    .card-cta:hover::after,
+    .card-cta:focus::after,
+    .card-cta:active::after,
+    .ev-add:hover::after,
+    .ev-add:focus::after,
+    .ev-add:active::after {
+      margin-left: 0.7em;
     }
 
     .badge {
@@ -263,9 +351,52 @@
 
     .occ-table {
       width: 100%;
+      table-layout: fixed;
       border-collapse: collapse;
       font-size: 13px;
       margin-bottom: 1.5rem;
+    }
+
+    .projection-controls {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .projection-controls label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-2);
+      font-family: 'Open Sans', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .projection-status {
+      font-size: 11px;
+      color: var(--text-3);
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    #prospective-degree-select {
+      width: min(100%, 360px);
+      max-width: 100%;
+    }
+
+    .projection-debug {
+      margin-top: 0.5rem;
+      font-size: 11px;
+      color: var(--text-3);
+      font-family: 'Open Sans', sans-serif;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border-top: 1px solid #b2b2b2;
+      padding-top: 0.5rem;
+      display: none;
     }
 
     .occ-table th {
@@ -282,6 +413,8 @@
       padding: 8px 10px;
       border-bottom: 0.5px solid var(--border);
       vertical-align: middle;
+      min-width: 0;
+      overflow-wrap: anywhere;
     }
 
     .occ-table tr:last-child td {
@@ -332,51 +465,335 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
       margin-bottom: 1.25rem;
+      align-items: stretch;
+      width: 100%;
+      max-width: 100%;
     }
 
     .fl-cell {
-      border: 0.5px solid var(--border);
-      border-radius: var(--r-md);
-      padding: 0.75rem 1rem;
-      background: var(--surface);
+      border: 1px solid #b2b2b2;
+      border-radius: 0;
+      padding: 1.5em;
+      background: #efeff0;
+      height: 100%;
+      min-width: 0;
     }
 
     .fl-num {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 18px;
+      font-size: 22px;
       font-weight: 700;
       line-height: 1.05;
       letter-spacing: 0.01em;
     }
 
     .fl-desc {
-      font-size: 11px;
+      font-size: 13px;
       color: var(--text-2);
-      margin-top: 3px;
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+
+    .fl-src {
+      font-size: 11px;
+      color: var(--text-3);
+      margin-top: 6px;
       line-height: 1.4;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    /* Guard against host-page CSS collisions in spotlight/cards blocks. */
+    .jobs-page-root .slabel {
+      display: block;
+      clear: both;
+      margin-top: 0;
+    }
+
+    .jobs-page-root .fl-strip,
+    .jobs-page-root .cards2 {
+      position: relative;
+      clear: both;
+      isolation: isolate;
+      overflow: visible;
+    }
+
+    .jobs-page-root .fl-cell,
+    .jobs-page-root .card {
+      float: none !important;
+      width: auto !important;
+      margin: 0 !important;
+      align-self: stretch;
+      position: static !important;
+      inset: auto !important;
+      transform: none !important;
+    }
+
+    .jobs-page-root .stat {
+      padding: 1.5em !important;
+      margin: 0 !important;
+      position: static !important;
+      top: auto !important;
+      transform: none !important;
+      background: #efeff0 !important;
+      background-image: none !important;
+    }
+
+    .jobs-page-root .stat::before,
+    .jobs-page-root .stat::after,
+    .jobs-page-root .stat:not(:first-child)::before,
+    .jobs-page-root .stat:not(:first-child)::after {
+      content: none !important;
+      display: none !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: none !important;
+    }
+
+    .jobs-page-root .stat > * {
+      margin-top: 0 !important;
+    }
+
+    .jobs-page-root .tabs {
+      align-items: stretch !important;
+    }
+
+    .jobs-page-root .tab {
+      margin: 0 0 -0.5px 0 !important;
+      padding: 0.6rem 1.1rem !important;
+      position: static !important;
+      top: auto !important;
+      transform: none !important;
+      line-height: 1.2 !important;
+      align-self: stretch;
+    }
+
+    .jobs-page-root .tab::before,
+    .jobs-page-root .tab::after,
+    .jobs-page-root .tab:not(:first-child)::before,
+    .jobs-page-root .tab:not(:first-child)::after {
+      content: none !important;
+      display: none !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: none !important;
+    }
+
+    .jobs-page-root .pw-step {
+      margin: 0 !important;
+      padding: 1.5em !important;
+      position: static !important;
+      top: auto !important;
+      transform: none !important;
+      background: #efeff0 !important;
+      background-image: none !important;
+    }
+
+    .jobs-page-root .pw-step::before,
+    .jobs-page-root .pw-step::after,
+    .jobs-page-root .pw-step:not(:first-child)::before,
+    .jobs-page-root .pw-step:not(:first-child)::after {
+      content: none !important;
+      display: none !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: none !important;
+    }
+
+    .jobs-page-root .pw-step > * {
+      margin-top: 0 !important;
+    }
+
+    .jobs-page-root .card-head {
+      margin-top: 0 !important;
+    }
+
+    .jobs-page-root .panel {
+      overflow: visible;
+    }
+
+    /* Section flow hardening: keep label and content rows independent everywhere. */
+    .jobs-page-root .panel .slabel {
+      display: block;
+      clear: both;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+      margin: 0 0 0.75rem 0;
+      background: transparent;
+    }
+
+    .jobs-page-root .panel .slabel::before,
+    .jobs-page-root .panel .slabel::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    .jobs-page-root .panel .slabel + .stat-bar,
+    .jobs-page-root .panel .slabel + .fl-strip,
+    .jobs-page-root .panel .slabel + .cards2,
+    .jobs-page-root .panel .slabel + .cards3,
+    .jobs-page-root .panel .slabel + .pathway,
+    .jobs-page-root .panel .slabel + .ev-list,
+    .jobs-page-root .panel .slabel + .recruit-form {
+      clear: both;
+      position: relative;
+      z-index: 1;
+      margin-top: 0;
+    }
+
+    .jobs-page-root .source-note {
+      position: relative;
+      z-index: 2;
+      clear: both;
+      display: block;
+      margin-top: 1rem;
+      background: var(--bg);
+    }
+
+    .jobs-page-root #panel-prospective .prospective-spotlight-row,
+    .jobs-page-root #panel-prospective .prospective-ai-label-row,
+    .jobs-page-root #panel-prospective .prospective-ai-cards-row {
+      display: block;
+      clear: both;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .jobs-page-root #panel-prospective .prospective-spotlight-row {
+      margin-bottom: 0.9rem;
+    }
+
+    .jobs-page-root #panel-prospective .prospective-ai-label-row {
+      margin-bottom: 0.85rem;
+    }
+
+    .jobs-page-root #panel-prospective .prospective-ai-label-row .slabel {
+      margin: 0;
+      line-height: 1.35;
+      background: transparent;
+    }
+
+    .jobs-page-root #panel-prospective .prospective-ai-cards-row {
+      margin-bottom: 1rem;
+    }
+
+    .jobs-page-root #panel-current .current-pathway-row,
+    .jobs-page-root #panel-current .current-resources-label-row,
+    .jobs-page-root #panel-current .current-resources-cards-row {
+      display: block;
+      clear: both;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .jobs-page-root #panel-current .current-pathway-row {
+      margin-bottom: 0.85rem;
+    }
+
+    .jobs-page-root #panel-current .current-resources-label-row {
+      margin-bottom: 0.75rem;
+    }
+
+    .jobs-page-root #panel-current .current-resources-label-row .slabel {
+      margin: 0;
+      line-height: 1.35;
+      background: transparent;
+    }
+
+    .jobs-page-root #panel-current .current-resources-cards-row {
+      margin-bottom: 1rem;
+    }
+
+    .jobs-page-root #panel-current .current-resources-cards-row .cards3 {
+      gap: 12px;
+      align-items: stretch;
+      grid-auto-rows: 1fr;
+    }
+
+    .jobs-page-root #panel-current .current-resources-cards-row .card {
+      height: 100% !important;
+      padding: 1.15em;
+      display: flex;
+      flex-direction: column;
+      align-self: stretch;
+    }
+
+    .jobs-page-root #panel-current .current-resources-cards-row .card-body {
+      margin-bottom: 0.6rem;
+      flex: 1 1 auto;
+    }
+
+    .jobs-page-root .ev-filter-row {
+      align-items: center;
+    }
+
+    .jobs-page-root .ev-filter {
+      margin: 0 !important;
+      padding: 4px 12px !important;
+      position: static !important;
+      top: auto !important;
+      transform: none !important;
+      line-height: 1.2 !important;
+      vertical-align: middle;
+      align-self: center;
+    }
+
+    .jobs-page-root .ev-filter::before,
+    .jobs-page-root .ev-filter::after,
+    .jobs-page-root .ev-filter:not(:first-child)::before,
+    .jobs-page-root .ev-filter:not(:first-child)::after {
+      content: none !important;
+      display: none !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: none !important;
     }
 
     .pathway {
       display: flex;
       margin-bottom: 1.5rem;
+      align-items: stretch;
+      width: 100%;
+      max-width: 100%;
     }
 
     .pw-step {
-      flex: 1;
-      padding: 0.75rem 1rem;
+      flex: 1 1 0;
+      padding: 1.5em;
       font-size: 12px;
-      border: 0.5px solid var(--border);
+      border: 1px solid #b2b2b2;
       border-right: none;
-      background: var(--surface);
+      background: #efeff0;
+      border-radius: 0;
+      min-width: 0;
+    }
+
+    .stat-bar > *,
+    .cards2 > *,
+    .cards3 > *,
+    .fl-strip > *,
+    .pathway > * {
+      min-width: 0;
     }
 
     .pw-step:first-child {
-      border-radius: var(--r-md) 0 0 var(--r-md);
+      border-radius: 0;
     }
 
     .pw-step:last-child {
-      border-right: 0.5px solid var(--border);
-      border-radius: 0 var(--r-md) var(--r-md) 0;
+      border-right: 1px solid #b2b2b2;
+      border-radius: 0;
     }
 
     .pw-num {
@@ -434,19 +851,21 @@
     }
 
     .btn-primary {
-      background: var(--green);
-      color: var(--green-light);
+      background-color: #006747;
+      color: #fff;
       border: none;
-      padding: 0.5rem 1.25rem;
-      border-radius: var(--r-md);
+      padding: 0.5em 1em;
+      border-radius: 4px;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 400;
+      text-transform: uppercase;
+      text-align: center;
       cursor: pointer;
       font-family: 'Open Sans', sans-serif;
     }
 
     .btn-primary:hover {
-      background: var(--green-text);
+      background-color: #327052;
     }
 
     .btn-primary:disabled {
@@ -456,10 +875,10 @@
 
     /* ── JOB MATCH ── */
     .jm-form {
-      border: 0.5px solid var(--border);
-      border-radius: var(--r-lg);
-      padding: 1.25rem;
-      background: var(--surface);
+      border: 1px solid #b2b2b2;
+      border-radius: 0;
+      padding: 1.5em;
+      background: #efeff0;
       margin-bottom: 1.25rem;
     }
 
@@ -477,6 +896,22 @@
       color: var(--text-2);
       margin-bottom: 1rem;
       line-height: 1.5;
+    }
+
+    .jm-file-note {
+      display: none !important;
+      margin-bottom: 0;
+      padding: 0.75rem 1rem;
+      background: var(--amber-light);
+      border: 1px solid var(--border-mid);
+      border-radius: var(--r-md);
+      font-size: 13px;
+      color: var(--amber-text);
+    }
+
+    .jm-file-note.is-visible {
+      display: block !important;
+      margin-bottom: 1rem;
     }
 
     .jm-grid {
@@ -625,13 +1060,19 @@
     }
 
     .jm-link.primary {
-      background: var(--green);
-      color: var(--green-light);
-      border-color: var(--green);
+      background-color: #006747;
+      color: #fff;
+      border-color: #006747;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-weight: 400;
+      text-align: center;
     }
 
     .jm-link.primary:hover {
-      background: var(--green-text);
+      background-color: #327052;
+      border-color: #327052;
+      color: #fff;
     }
 
     /* ── EVENTS ── */
@@ -655,9 +1096,12 @@
     }
 
     .ev-filter.active {
-      background: var(--green);
-      color: var(--green-light);
-      border-color: var(--green);
+      background-color: #006747;
+      color: #fff;
+      border-color: #006747;
+      border-radius: 4px;
+      font-weight: 400;
+      text-transform: uppercase;
     }
 
     .ev-filter:hover:not(.active) {
@@ -765,23 +1209,15 @@
     }
 
     .ev-add {
-      font-size: 11px;
-      color: var(--green);
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
+      margin-top: 0;
       white-space: nowrap;
     }
 
-    .ev-add:hover {
-      text-decoration: underline;
-    }
-
     .ev-submit-box {
-      border: 0.5px solid var(--border);
-      border-radius: var(--r-lg);
-      padding: 1.25rem;
-      background: var(--surface);
+      border: 1px solid #b2b2b2;
+      border-radius: 0;
+      padding: 1.5em;
+      background: #efeff0;
     }
 
     .ev-submit-box h3 {
@@ -811,10 +1247,10 @@
 
     /* Employer form */
     .recruit-form {
-      border: 0.5px solid var(--border);
-      border-radius: var(--r-lg);
-      padding: 1.25rem;
-      background: var(--surface);
+      border: 1px solid #b2b2b2;
+      border-radius: 0;
+      padding: 1.5em;
+      background: #efeff0;
       margin-bottom: 1rem;
     }
 
@@ -860,35 +1296,432 @@
 
 <body>
   <script>
+    // <![CDATA[
+    var DEFAULT_STAT_BAR_ITEMS = [
+      {
+        item_name: "software_developer_growth",
+        value: "+17.9%",
+        title: "Software developer growth 2023-2033",
+        citation: "BLS / MLR 2025"
+      },
+      {
+        item_name: "fl_tech_workers",
+        value: "546K",
+        title: "Tech workers in Florida (#4 nationally)",
+        citation: "CompTIA 2025"
+      },
+      {
+        item_name: "fl_median_tech_wage",
+        value: "$102,908",
+        title: "Median FL tech wage - 122% above state median",
+        citation: "CompTIA / Lightcast 2024"
+      },
+      {
+        item_name: "fl_ai_skill_postings",
+        value: "12,735",
+        title: "Active FL job postings requiring AI skills",
+        citation: "CompTIA 2024"
+      }
+    ];
+
+    // DLP-safe default: load dashboard stats from local static JSON.
+    // Expected payload: one JSON object containing all sections
+    // (stat_bar, prospective_spotlight, current_metro, prospective_ai_cards,
+    // current_resources_cards, employer_value_cards, employer_recruiting_cards).
+    var DASHBOARD_STATS_JSON_URL = "./microsoft/dashboard/dashboard_stats_power_automate_response.json";
+    var DEFAULT_PROSPECTIVE_SPOTLIGHT_ITEMS = [
+      {
+        item_name: "fl_software_dev_jobs",
+        value: "107,404",
+        title: "Software dev jobs in FL - +5.0% projected 2025 (3.2x benchmark)",
+        citation: "CompTIA / Lightcast 2025"
+      },
+      {
+        item_name: "fl_data_science_ml_jobs",
+        value: "16,973",
+        title: "Data science & ML jobs - +5.6% projected, fastest-growing FL category",
+        citation: "CompTIA / Lightcast 2025"
+      },
+      {
+        item_name: "fl_compTIA_state_rank",
+        value: "#3",
+        title: "Florida aggregate CompTIA ranking among all 50 states",
+        citation: "CompTIA 2025"
+      }
+    ];
+
+    var DEFAULT_CURRENT_METRO_ITEMS = [
+      {
+        item_name: "orlando_metro_rank",
+        value: "#2",
+        title: "Orlando - 2nd nationally for metro tech employment job gains",
+        citation: "CompTIA 2025"
+      },
+      {
+        item_name: "fl_active_tech_postings_2024",
+        value: "112,890",
+        title: "Active tech job postings in FL in 2024 across all occupation categories",
+        citation: "CompTIA 2025"
+      },
+      {
+        item_name: "fl_tech_business_establishments",
+        value: "46,687",
+        title: "Tech business establishments in FL - mostly small businesses",
+        citation: "CompTIA 2025"
+      }
+    ];
+    var DEFAULT_PROSPECTIVE_AI_CARDS = [
+      {
+        item_name: "bls_productivity_demand",
+        badge: "BLS finding",
+        badge_color: "green",
+        title: "Productivity creates demand",
+        body: "AI-assisted productivity lowers software costs, expanding the market and boosting demand for the very developers who build AI tools - a virtuous cycle for computing graduates."
+      },
+      {
+        item_name: "comptia_data_ai_growth",
+        badge: "CompTIA 2025",
+        badge_color: "amber",
+        title: "Data & AI: fastest-growing segment",
+        body: "Data science, ML, and database roles are Florida's fastest-growing tech category at 5.6% annually - 3.6x the national benchmark. Directly aligned with Bellini programs."
+      }
+    ];
+    var DEFAULT_CURRENT_RESOURCES_CARDS = [
+      {
+        item_name: "advising",
+        badge: "Advising",
+        badge_color: "blue",
+        title: "Schedule with your advisor",
+        body: "1:1 sessions for resume review, interview prep, and job search strategy. Drop-in hours Tues & Thurs.",
+        cta_text: "Book appointment",
+        cta_href: "#"
+      },
+      {
+        item_name: "jobs_board",
+        badge: "Jobs board",
+        badge_color: "blue",
+        title: "Bellini career portal",
+        body: "Curated postings from employer partners, updated weekly. Internships, co-ops, and full-time roles.",
+        cta_text: "Browse openings",
+        cta_href: "#"
+      },
+      {
+        item_name: "market_data",
+        badge: "Market data",
+        badge_color: "green",
+        title: "Salary benchmarks",
+        body: "FL median tech wage is $102,908 - 122% above state median. Breakdowns by role and experience level.",
+        cta_text: "View salary data",
+        cta_href: "#"
+      },
+      {
+        item_name: "ai_jobs",
+        badge: "AI jobs",
+        badge_color: "amber",
+        title: "AI-specific opportunities",
+        body: "12,735 Florida postings require AI skills. Track the live trend via AIMaps (UMD & LinkUp).",
+        cta_text: "AIMaps Florida",
+        cta_href: "https://www.aimaps.ai/florida.php",
+        cta_target: "_blank"
+      },
+      {
+        item_name: "networking",
+        badge: "Networking",
+        badge_color: "blue",
+        title: "Alumni connections",
+        body: "Connect with Bellini alumni in tech, cybersecurity, and AI through our LinkedIn community and mentorship program.",
+        cta_text: "Join the network",
+        cta_href: "#"
+      },
+      {
+        item_name: "certifications",
+        badge: "Certifications",
+        badge_color: "green",
+        title: "Industry certifications",
+        body: "CompTIA Security+, AWS, Google Cloud - credentials employers actively request in postings.",
+        cta_text: "Cert pathways",
+        cta_href: "#"
+      }
+    ];
+    var DEFAULT_EMPLOYER_VALUE_CARDS = [
+      {
+        item_name: "talent_pipeline",
+        badge: "Talent pipeline",
+        badge_color: "green",
+        title: "Programs aligned to market demand",
+        body: "BS CS, MS AI, MS Data Intelligence, MS Cybersecurity, and MS Computer Engineering - mapped to fastest-growing occupation categories in Florida and nationally.",
+        cta_text: "Learn more",
+        cta_href: "#"
+      },
+      {
+        item_name: "ai_ready_graduates",
+        badge: "AI-ready graduates",
+        badge_color: "amber",
+        title: "Curriculum built for the AI era",
+        body: "Graduates trained in ML, deep learning, NLP, and applied AI systems - directly addressing 12,735 Florida postings requiring AI skills identified in 2024.",
+        cta_text: "Learn more",
+        cta_href: "#"
+      },
+      {
+        item_name: "scale",
+        badge: "Scale",
+        badge_color: "blue",
+        title: "One of Florida's largest computing colleges",
+        body: "68+ faculty across AI, cybersecurity, CS, and computer engineering. USF is Florida's fastest-growing research university.",
+        cta_text: "Learn more",
+        cta_href: "#"
+      },
+      {
+        item_name: "location",
+        badge: "Location",
+        badge_color: "green",
+        title: "Tampa Bay - a rising tech market",
+        body: "Florida is #4 nationally in net tech employment and #3 for projected 2025 job gains. Tampa Bay between two of fastest-growing tech metros in state.",
+        cta_text: "Learn more",
+        cta_href: "#"
+      }
+    ];
+    var DEFAULT_EMPLOYER_RECRUITING_CARDS = [
+      {
+        item_name: "on_campus_recruiting",
+        title: "On-campus recruiting",
+        body: "Info sessions, tech talks, and interview suites. Spring and fall career fairs with targeted computing tracks.",
+        cta_text: "Schedule a visit",
+        cta_href: "#"
+      },
+      {
+        item_name: "internship_partnerships",
+        title: "Internship partnerships",
+        body: "Post internship and co-op positions directly to Bellini students via our career portal.",
+        cta_text: "Post a position",
+        cta_href: "#"
+      },
+      {
+        item_name: "capstone_sponsorship",
+        title: "Capstone sponsorship",
+        body: "Sponsor a senior or graduate capstone. Your real-world problem, our students' solutions - with faculty oversight.",
+        cta_text: "Explore capstones",
+        cta_href: "#"
+      }
+    ];
+
+    function getStatNumberClass(itemName) {
+      if (itemName === "software_developer_growth") return "stat-num c-green";
+      if (itemName === "fl_median_tech_wage") return "stat-num c-amber";
+      return "stat-num";
+    }
+
+    function escapeHtml(text) {
+      return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function renderStatBarItems(items) {
+      var host = document.getElementById("stat-bar-items");
+      if (!host) return;
+      if (!Array.isArray(items) || !items.length) items = DEFAULT_STAT_BAR_ITEMS;
+
+      host.innerHTML = items.map(function (item) {
+        var itemName = item && item.item_name ? String(item.item_name) : "";
+        var value = item && item.value ? escapeHtml(item.value) : "";
+        var title = item && item.title ? escapeHtml(item.title) : "";
+        var citation = item && item.citation ? escapeHtml(item.citation) : "";
+        return '<div class="stat">' +
+          '<div class="' + getStatNumberClass(itemName) + '">' + value + '</div>' +
+          '<div class="stat-label">' + title + '</div>' +
+          '<div class="stat-src">' + citation + '</div>' +
+          '</div>';
+      }).join("");
+    }
+
+    function getSpotlightNumberClass(itemName) {
+      var greenItems = {
+        fl_software_dev_jobs: true,
+        fl_data_science_ml_jobs: true,
+        fl_compTIA_state_rank: true
+      };
+      return greenItems[itemName] ? "fl-num c-green" : "fl-num";
+    }
+
+    function renderProspectiveSpotlightItems(items) {
+      var host = document.getElementById("prospective-spotlight-items");
+      if (!host) return;
+      if (!Array.isArray(items) || !items.length) items = DEFAULT_PROSPECTIVE_SPOTLIGHT_ITEMS;
+
+      host.innerHTML = items.map(function (item) {
+        var itemName = item && item.item_name ? String(item.item_name) : "";
+        var value = item && item.value ? escapeHtml(item.value) : "";
+        var title = item && item.title ? escapeHtml(item.title) : "";
+        var citation = item && item.citation ? escapeHtml(item.citation) : "";
+        return '<div class="fl-cell">' +
+          '<div class="' + getSpotlightNumberClass(itemName) + '">' + value + '</div>' +
+          '<div class="fl-desc">' + title + '</div>' +
+          (citation ? '<div class="fl-src">' + citation + '</div>' : "") +
+          '</div>';
+      }).join("");
+    }
+
+    function renderCurrentMetroItems(items) {
+      var host = document.getElementById("current-metro-items");
+      if (!host) return;
+      if (!Array.isArray(items) || !items.length) items = DEFAULT_CURRENT_METRO_ITEMS;
+
+      host.innerHTML = items.map(function (item) {
+        var value = item && item.value ? escapeHtml(item.value) : "";
+        var title = item && item.title ? escapeHtml(item.title) : "";
+        var citation = item && item.citation ? escapeHtml(item.citation) : "";
+        return '<div class="fl-cell">' +
+          '<div class="fl-num">' + value + '</div>' +
+          '<div class="fl-desc">' + title + '</div>' +
+          (citation ? '<div class="fl-src">' + citation + '</div>' : "") +
+          '</div>';
+      }).join("");
+    }
+
+    function getBadgeColorClass(badgeColor) {
+      var safe = badgeColor || "blue";
+      return safe === "green" || safe === "amber" || safe === "blue" ? safe : "blue";
+    }
+
+    function renderProspectiveAiCards(items) {
+      var host = document.getElementById("prospective-ai-cards-items");
+      if (!host) return;
+      if (!Array.isArray(items) || !items.length) items = DEFAULT_PROSPECTIVE_AI_CARDS;
+
+      host.innerHTML = items.map(function (item) {
+        var badge = item && item.badge ? escapeHtml(item.badge) : "";
+        var badgeColor = getBadgeColorClass(item && item.badge_color ? String(item.badge_color) : "");
+        var title = item && item.title ? escapeHtml(item.title) : "";
+        var body = item && item.body ? escapeHtml(item.body) : "";
+        return '<div class="card">' +
+          '<div class="badge ' + badgeColor + '">' + badge + '</div>' +
+          '<h3 class="card-head">' + title + '</h3>' +
+          '<div class="card-body">' + body + '</div>' +
+          '</div>';
+      }).join("");
+    }
+
+    function renderCurrentResourceCards(items) {
+      var host = document.getElementById("current-resources-cards-items");
+      if (!host) return;
+      if (!Array.isArray(items) || !items.length) items = DEFAULT_CURRENT_RESOURCES_CARDS;
+
+      host.innerHTML = items.map(function (item) {
+        var badge = item && item.badge ? escapeHtml(item.badge) : "";
+        var badgeColor = getBadgeColorClass(item && item.badge_color ? String(item.badge_color) : "");
+        var title = item && item.title ? escapeHtml(item.title) : "";
+        var body = item && item.body ? escapeHtml(item.body) : "";
+        var ctaText = item && item.cta_text ? escapeHtml(item.cta_text) : "";
+        var ctaHref = item && item.cta_href ? escapeHtml(item.cta_href) : "#";
+        var ctaTarget = item && item.cta_target === "_blank" ? ' target="_blank" rel="noopener noreferrer"' : "";
+        var cta = ctaText ? '<a class="card-cta" href="' + ctaHref + '"' + ctaTarget + '>' + ctaText + '</a>' : "";
+        return '<div class="card">' +
+          '<div class="badge ' + badgeColor + '">' + badge + '</div>' +
+          '<h3 class="card-head">' + title + '</h3>' +
+          '<div class="card-body">' + body + '</div>' +
+          cta +
+          '</div>';
+      }).join("");
+    }
+
+    function renderEmployerValueCards(items) {
+      var host = document.getElementById("employer-value-cards-items");
+      if (!host) return;
+      if (!Array.isArray(items) || !items.length) items = DEFAULT_EMPLOYER_VALUE_CARDS;
+
+      host.innerHTML = items.map(function (item) {
+        var badge = item && item.badge ? escapeHtml(item.badge) : "";
+        var badgeColor = getBadgeColorClass(item && item.badge_color ? String(item.badge_color) : "");
+        var title = item && item.title ? escapeHtml(item.title) : "";
+        var body = item && item.body ? escapeHtml(item.body) : "";
+        var ctaText = item && item.cta_text ? escapeHtml(item.cta_text) : "";
+        var ctaHref = item && item.cta_href ? escapeHtml(item.cta_href) : "#";
+        var ctaTarget = item && item.cta_target === "_blank" ? ' target="_blank" rel="noopener noreferrer"' : "";
+        var cta = ctaText ? '<a class="card-cta" href="' + ctaHref + '"' + ctaTarget + '>' + ctaText + '</a>' : "";
+        return '<div class="card">' +
+          '<div class="badge ' + badgeColor + '">' + badge + '</div>' +
+          '<h3 class="card-head">' + title + '</h3>' +
+          '<div class="card-body">' + body + '</div>' +
+          cta +
+          '</div>';
+      }).join("");
+    }
+
+    function renderEmployerRecruitingCards(items) {
+      var host = document.getElementById("employer-recruiting-cards-items");
+      if (!host) return;
+      if (!Array.isArray(items) || !items.length) items = DEFAULT_EMPLOYER_RECRUITING_CARDS;
+
+      host.innerHTML = items.map(function (item) {
+        var title = item && item.title ? escapeHtml(item.title) : "";
+        var body = item && item.body ? escapeHtml(item.body) : "";
+        var ctaText = item && item.cta_text ? escapeHtml(item.cta_text) : "";
+        var ctaHref = item && item.cta_href ? escapeHtml(item.cta_href) : "#";
+        var ctaTarget = item && item.cta_target === "_blank" ? ' target="_blank" rel="noopener noreferrer"' : "";
+        var cta = ctaText ? '<a class="card-cta" href="' + ctaHref + '"' + ctaTarget + '>' + ctaText + '</a>' : "";
+        return '<div class="card">' +
+          '<h3 class="card-head">' + title + '</h3>' +
+          '<div class="card-body">' + body + '</div>' +
+          cta +
+          '</div>';
+      }).join("");
+    }
+
+    function renderDashboardStats(payload) {
+      var data = payload && typeof payload === "object" ? payload : {};
+      var statBarItems = Array.isArray(data.stat_bar) ? data.stat_bar : null;
+      var prospectiveSpotlightItems = Array.isArray(data.prospective_spotlight) ? data.prospective_spotlight : null;
+      var currentMetroItems = Array.isArray(data.current_metro) ? data.current_metro : null;
+      var prospectiveAiCards = Array.isArray(data.prospective_ai_cards) ? data.prospective_ai_cards : null;
+      var currentResourcesCards = Array.isArray(data.current_resources_cards) ? data.current_resources_cards : null;
+      var employerValueCards = Array.isArray(data.employer_value_cards) ? data.employer_value_cards : null;
+      var employerRecruitingCards = Array.isArray(data.employer_recruiting_cards) ? data.employer_recruiting_cards : null;
+
+      renderStatBarItems(statBarItems);
+      renderProspectiveSpotlightItems(prospectiveSpotlightItems);
+      renderCurrentMetroItems(currentMetroItems);
+      renderProspectiveAiCards(prospectiveAiCards);
+      renderCurrentResourceCards(currentResourcesCards);
+      renderEmployerValueCards(employerValueCards);
+      renderEmployerRecruitingCards(employerRecruitingCards);
+    }
+
+    function loadDashboardStats() {
+      if (!DASHBOARD_STATS_JSON_URL) {
+        renderDashboardStats({});
+        return;
+      }
+
+      fetch(DASHBOARD_STATS_JSON_URL, { cache: "no-store" })
+        .then(function (response) {
+          if (!response.ok) throw new Error("Dashboard stats JSON request failed");
+          return response.json();
+        })
+        .then(function (payload) {
+          renderDashboardStats(payload);
+        })
+        .catch(function () {
+          renderDashboardStats({});
+        });
+    }
+
     (function () {
       try {
         var fn = document.getElementById("jm-file-protocol-note");
-        if (fn && location.protocol === "file:") fn.style.display = "block";
+        if (fn && location.protocol === "file:") fn.classList.add("is-visible");
       } catch (e) {}
     })();
+
+    document.addEventListener("DOMContentLoaded", loadDashboardStats);
+    // ]]>
   </script>
-  <div class="stat-bar">
+  <div class="jobs-page-root">
+  <div class="stat-bar" id="stat-bar-items">
     <!-- GEN:stat_items:start -->
-    <div class="stat">
-      <div class="stat-num c-green">+17.9%</div>
-      <div class="stat-label">Software developer growth 2023-2033</div>
-      <div class="stat-src">BLS / MLR 2025</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">546K</div>
-      <div class="stat-label">Tech workers in Florida (#4 nationally)</div>
-      <div class="stat-src">CompTIA 2025</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num c-amber">$102,908</div>
-      <div class="stat-label">Median FL tech wage - 122% above state median</div>
-      <div class="stat-src">CompTIA / Lightcast 2024</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">12,735</div>
-      <div class="stat-label">Active FL job postings requiring AI skills</div>
-      <div class="stat-src">CompTIA 2024</div>
-    </div>
     <!-- GEN:stat_items:end -->
   </div>
 
@@ -904,20 +1737,28 @@
   <!-- ══ PROSPECTIVE ══ -->
   <div class="panel active" id="panel-prospective">
     <p class="slabel">National occupation projections &mdash; 2023 to 2033</p>
+    <div class="projection-controls">
+      <div>
+        <select id="prospective-degree-select" aria-label="Select degree program for projections"></select>
+      </div>
+      <div id="projection-status" class="projection-status" aria-live="polite"></div>
+    </div>
     <table class="occ-table">
       <thead>
         <tr>
-          <th style="width:38%">Occupation</th>
+          <th style="width:34%">Occupation</th>
           <th>2023 jobs</th>
+          <th>2033 est.</th>
           <th>Growth</th>
-          <th style="width:30%">vs. 4.0% avg</th>
+          <th style="width:24%">vs. 4.0% avg</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="projection-body">
         <!-- GEN:projection_rows:start -->
         <tr>
           <td>Software developers</td>
           <td class="mono">1,692,100</td>
+          <td class="mono">1,995,900</td>
           <td class="pct up">+17.9%</td>
           <td>
             <div class="bar-wrap">
@@ -930,6 +1771,7 @@
         <tr>
           <td>Computer occupations (all)</td>
           <td class="mono">5,021,800</td>
+          <td class="mono">5,610,700</td>
           <td class="pct up">+11.7%</td>
           <td>
             <div class="bar-wrap">
@@ -942,6 +1784,7 @@
         <tr>
           <td>Database architects</td>
           <td class="mono">61,400</td>
+          <td class="mono">68,000</td>
           <td class="pct up">+10.8%</td>
           <td>
             <div class="bar-wrap">
@@ -954,6 +1797,7 @@
         <tr>
           <td>Financial &amp; investment analysts</td>
           <td class="mono">347,400</td>
+          <td class="mono">380,300</td>
           <td class="pct up">+9.5%</td>
           <td>
             <div class="bar-wrap">
@@ -966,6 +1810,7 @@
         <tr>
           <td>Database administrators</td>
           <td class="mono">80,500</td>
+          <td class="mono">87,100</td>
           <td class="pct up">+8.2%</td>
           <td>
             <div class="bar-wrap">
@@ -978,6 +1823,7 @@
         <tr>
           <td style="color:var(--text-2)">All occupations (benchmark)</td>
           <td class="mono" style="color:var(--text-2)">167,849,800</td>
+          <td class="mono" style="color:var(--text-2)">174,563,800</td>
           <td class="pct up" style="color:var(--text-2)">+4.0%</td>
           <td>
             <div class="bar-wrap">
@@ -990,36 +1836,19 @@
     <!-- GEN:projection_rows:end -->
       </tbody>
     </table>
+    <div id="projection-debug" class="projection-debug" aria-live="polite"></div>
     <p class="slabel">Florida spotlight</p>
-    <div class="fl-strip">
-      <!-- GEN:prospective_spotlight:start -->
-      <div class="fl-cell">
-        <div class="fl-num c-green">107,404</div>
-        <div class="fl-desc">Software dev jobs in FL - +5.0% projected 2025 (3.2x benchmark)</div>
+    <div class="prospective-spotlight-row">
+      <div class="fl-strip" id="prospective-spotlight-items">
+        <!-- GEN:prospective_spotlight:start -->
+      <!-- GEN:prospective_spotlight:end -->
       </div>
-      <div class="fl-cell">
-        <div class="fl-num c-green">16,973</div>
-        <div class="fl-desc">Data science &amp; ML jobs - +5.6% projected, fastest-growing FL category</div>
-      </div>
-      <div class="fl-cell">
-        <div class="fl-num c-green">#3</div>
-        <div class="fl-desc">Florida aggregate CompTIA ranking among all 50 states</div>
-      </div>
-    <!-- GEN:prospective_spotlight:end -->
     </div>
-    <p class="slabel">Why the AI era boosts &mdash; not replaces &mdash; computing careers</p>
-    <div class="cards2">
-      <div class="card">
-        <div class="badge green">BLS finding</div>
-        <div class="card-head">Productivity creates demand</div>
-        <div class="card-body">AI-assisted productivity lowers software costs, expanding the market and boosting demand
-          for the very developers who build AI tools &mdash; a virtuous cycle for computing graduates.</div>
-      </div>
-      <div class="card">
-        <div class="badge amber">CompTIA 2025</div>
-        <div class="card-head">Data &amp; AI: fastest-growing segment</div>
-        <div class="card-body">Data science, ML, and database roles are Florida&rsquo;s fastest-growing tech category at
-          5.6% annually &mdash; 3.6&times; the national benchmark. Directly aligned with Bellini programs.</div>
+    <div class="prospective-ai-label-row">
+      <p class="slabel">Why the AI era boosts &mdash; not replaces &mdash; computing careers</p>
+    </div>
+    <div class="prospective-ai-cards-row">
+      <div class="cards2" id="prospective-ai-cards-items">
       </div>
     </div>
     <div class="source-note">
@@ -1032,83 +1861,47 @@
   <!-- ══ CURRENT STUDENTS ══ -->
   <div class="panel" id="panel-current">
     <p class="slabel">Your career pathway</p>
-    <div class="pathway">
-      <div class="pw-step">
-        <div class="pw-num">01</div>
-        <div class="pw-label">Advising</div>
-        <div class="pw-sub">Meet career advisor &mdash; semester 1</div>
-      </div>
-      <div class="pw-step">
-        <div class="pw-num">02</div>
-        <div class="pw-label">Resume &amp; portfolio</div>
-        <div class="pw-sub">GitHub, LinkedIn, capstone</div>
-      </div>
-      <div class="pw-step">
-        <div class="pw-num">03</div>
-        <div class="pw-label">Employer events</div>
-        <div class="pw-sub">Talks, fairs, info sessions</div>
-      </div>
-      <div class="pw-step">
-        <div class="pw-num">04</div>
-        <div class="pw-label">Internship</div>
-        <div class="pw-sub">Co-op, research, or industry</div>
-      </div>
-      <div class="pw-step">
-        <div class="pw-num">05</div>
-        <div class="pw-label">Full-time offer</div>
-        <div class="pw-sub">FL #3 for tech job gains</div>
+    <div class="current-pathway-row">
+      <div class="pathway">
+        <div class="pw-step">
+          <div class="pw-num">01</div>
+          <div class="pw-label">Advising</div>
+          <div class="pw-sub">Meet career advisor &mdash; semester 1</div>
+        </div>
+        <div class="pw-step">
+          <div class="pw-num">02</div>
+          <div class="pw-label">Resume &amp; portfolio</div>
+          <div class="pw-sub">GitHub, LinkedIn, capstone</div>
+        </div>
+        <div class="pw-step">
+          <div class="pw-num">03</div>
+          <div class="pw-label">Employer events</div>
+          <div class="pw-sub">Talks, fairs, info sessions</div>
+        </div>
+        <div class="pw-step">
+          <div class="pw-num">04</div>
+          <div class="pw-label">Internship</div>
+          <div class="pw-sub">Co-op, research, or industry</div>
+        </div>
+        <div class="pw-step">
+          <div class="pw-num">05</div>
+          <div class="pw-label">Full-time offer</div>
+          <div class="pw-sub">FL #3 for tech job gains</div>
+        </div>
       </div>
     </div>
-    <p class="slabel">Career resources</p>
-    <div class="cards3">
-      <!-- GEN:current_resources:start -->
-      <div class="card">
-        <div class="badge blue">Advising</div>
-        <div class="card-head">Schedule with your advisor</div>
-        <div class="card-body">1:1 sessions for resume review, interview prep, and job search strategy. Drop-in hours Tues &amp; Thurs.</div><a class="card-cta" href="#">Book appointment -&gt;</a>
+    <div class="current-resources-label-row">
+      <p class="slabel">Career resources</p>
+    </div>
+    <div class="current-resources-cards-row">
+      <div class="cards3" id="current-resources-cards-items">
+        <!-- GEN:current_resources:start -->
+      <!-- GEN:current_resources:end -->
       </div>
-      <div class="card">
-        <div class="badge blue">Jobs board</div>
-        <div class="card-head">Bellini career portal</div>
-        <div class="card-body">Curated postings from employer partners, updated weekly. Internships, co-ops, and full-time roles.</div><a class="card-cta" href="#">Browse openings -&gt;</a>
-      </div>
-      <div class="card">
-        <div class="badge green">Market data</div>
-        <div class="card-head">Salary benchmarks</div>
-        <div class="card-body">FL median tech wage is $102,908 - 122% above state median. Breakdowns by role and experience level.</div><a class="card-cta" href="#">View salary data -&gt;</a>
-      </div>
-      <div class="card">
-        <div class="badge amber">AI jobs</div>
-        <div class="card-head">AI-specific opportunities</div>
-        <div class="card-body">12,735 Florida postings require AI skills. Track the live trend via AIMaps (UMD &amp; LinkUp).</div><a class="card-cta" href="https://www.aimaps.ai/florida.php" target="_blank">AIMaps Florida -&gt;</a>
-      </div>
-      <div class="card">
-        <div class="badge blue">Networking</div>
-        <div class="card-head">Alumni connections</div>
-        <div class="card-body">Connect with Bellini alumni in tech, cybersecurity, and AI through our LinkedIn community and mentorship program.</div><a class="card-cta" href="#">Join the network -&gt;</a>
-      </div>
-      <div class="card">
-        <div class="badge green">Certifications</div>
-        <div class="card-head">Industry certifications</div>
-        <div class="card-body">CompTIA Security+, AWS, Google Cloud - credentials employers actively request in postings.</div><a class="card-cta" href="#">Cert pathways -&gt;</a>
-      </div>
-    <!-- GEN:current_resources:end -->
     </div>
     <p class="slabel">Florida metro opportunities</p>
-    <div class="fl-strip">
+    <div class="fl-strip" id="current-metro-items">
       <!-- GEN:current_metro:start -->
-      <div class="fl-cell">
-        <div class="fl-num">#2</div>
-        <div class="fl-desc">Orlando - 2nd nationally for metro tech employment job gains</div>
-      </div>
-      <div class="fl-cell">
-        <div class="fl-num">112,890</div>
-        <div class="fl-desc">Active tech job postings in FL in 2024 across all occupation categories</div>
-      </div>
-      <div class="fl-cell">
-        <div class="fl-num">46,687</div>
-        <div class="fl-desc">Tech business establishments in FL - mostly small businesses</div>
-      </div>
     <!-- GEN:current_metro:end -->
     </div>
   </div>
@@ -1116,7 +1909,7 @@
   <!-- ══ FIND MY JOB ══ -->
   <div class="panel" id="panel-matchme">
     <div class="jm-form">
-      <div id="jm-file-protocol-note" class="jm-file-note" style="display:none;margin-bottom:1rem;padding:0.75rem 1rem;background:var(--amber-light);border:1px solid var(--border-mid);border-radius:var(--r-md);font-size:13px;color:var(--amber-text);">
+      <div id="jm-file-protocol-note" class="jm-file-note">
         You opened this page as a local file (<code>file://</code>). Browsers often block the live job search script in that mode. Serve the folder over HTTP instead, for example: run <code>python -m http.server 8080</code> inside <code>jobs_page</code>, then open <code>http://127.0.0.1:8080/</code>.
       </div>
       <h3>Find my job &mdash; AI-powered matching</h3>
@@ -1320,47 +2113,12 @@
   <!-- ══ EMPLOYERS ══ -->
   <div class="panel" id="panel-employers">
     <p class="slabel">Why recruit from Bellini College</p>
-    <div class="cards2">
+    <div class="cards2" id="employer-value-cards-items">
       <!-- GEN:employer_value_cards:start -->
-      <div class="card">
-        <div class="badge green">Talent pipeline</div>
-        <div class="card-head">Programs aligned to market demand</div>
-        <div class="card-body">BS CS, MS AI, MS Data Intelligence, MS Cybersecurity, and MS Computer Engineering - mapped to fastest-growing occupation categories in Florida and nationally.</div><a class="card-cta" href="#">Learn more -&gt;</a>
-      </div>
-      <div class="card">
-        <div class="badge amber">AI-ready graduates</div>
-        <div class="card-head">Curriculum built for the AI era</div>
-        <div class="card-body">Graduates trained in ML, deep learning, NLP, and applied AI systems - directly addressing 12,735 Florida postings requiring AI skills identified in 2024.</div><a class="card-cta" href="#">Learn more -&gt;</a>
-      </div>
-      <div class="card">
-        <div class="badge blue">Scale</div>
-        <div class="card-head">One of Florida&#x27;s largest computing colleges</div>
-        <div class="card-body">68+ faculty across AI, cybersecurity, CS, and computer engineering. USF is Florida&#x27;s fastest-growing research university.</div><a class="card-cta" href="#">Learn more -&gt;</a>
-      </div>
-      <div class="card">
-        <div class="badge green">Location</div>
-        <div class="card-head">Tampa Bay - a rising tech market</div>
-        <div class="card-body">Florida is #4 nationally in net tech employment and #3 for projected 2025 job gains. Tampa Bay between two of fastest-growing tech metros in state.</div><a class="card-cta" href="#">Learn more -&gt;</a>
-      </div>
     <!-- GEN:employer_value_cards:end -->
     </div>
     <p class="slabel">Recruiting options</p>
-    <div class="cards3">
-      <div class="card">
-        <div class="card-head">On-campus recruiting</div>
-        <div class="card-body">Info sessions, tech talks, and interview suites. Spring and fall career fairs with
-          targeted computing tracks.</div><a class="card-cta" href="#">Schedule a visit &rarr;</a>
-      </div>
-      <div class="card">
-        <div class="card-head">Internship partnerships</div>
-        <div class="card-body">Post internship and co-op positions directly to Bellini students via our career portal.
-        </div><a class="card-cta" href="#">Post a position &rarr;</a>
-      </div>
-      <div class="card">
-        <div class="card-head">Capstone sponsorship</div>
-        <div class="card-body">Sponsor a senior or graduate capstone. Your real-world problem, our students&rsquo;
-          solutions &mdash; with faculty oversight.</div><a class="card-cta" href="#">Explore capstones &rarr;</a>
-      </div>
+    <div class="cards3" id="employer-recruiting-cards-items">
     </div>
     <p class="slabel">Contact our career team</p>
     <div class="recruit-form">
@@ -1386,7 +2144,9 @@
     <!-- GEN:footer_text:end -->
   </div>
 
+  </div>
   <script>
+    // <![CDATA[
     function showPanel(id, btn) {
       document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -1405,6 +2165,269 @@
     const JOB_SEARCH_API_URL = "https://script.google.com/macros/s/AKfycbyn5LtR00k9L61pDULfPpIAPzdOjsV8GlXcW8crABgFDNHiQRxvFjgv0yUubUS7YNk/exec";
     /** If WEBAPP_API_KEY is set in Apps Script, set the same value here (optional; visible in page source). */
     const JOB_SEARCH_API_KEY = "";
+    const NATIONAL_GROWTH_BENCHMARK_PCT = 4.0;
+
+    const LIGHTCAST_BASE_CONFIG = {
+      apiKey: "n3pncM4UFnbKWMWVoFy65EOR9AkCZTd93WC2Q1x8",
+      clientName: "UniversitySouthFloridaCMS",
+      country: "us",
+      geoIds: ["-1"],
+      level: "nation"
+    };
+
+    const LIGHTCAST_DEGREE_CONFIGS = {
+      bscs: { key: "bscs", label: "BS Computer Science", occupationCodes: ["15-1211.00","15-1211.01","15-1242.00","15-1244.00","15-1253.00","15-1255.00","15-1255.01","15-1299.01","15-1299.03","15-1299.04","15-1299.06","15-1299.07"] },
+      bscp: { key: "bscp", label: "BS Computer Engineering", occupationCodes: ["15-1231.00","15-1232.00","15-1241.01","15-1252.00","15-1253.00","17-2061.00"] },
+      bscse: { key: "bscse", label: "BS Computer Science and Engineering", occupationCodes: ["11-3021.00","15-1211.00","15-1221.00","15-1241.00","15-1242.00","15-1243.00","15-1244.00","15-1253.00","15-1255.00","15-1299.04","15-1299.06","25-1021.00"] },
+      bsai: { key: "bsai", label: "BS Artificial Intelligence", occupationCodes: ["15-1253.00","15-1299.01","15-1299.03","15-2051.01","15-2051.02"] },
+      bscys: { key: "bscys", label: "BS Cybersecurity", occupationCodes: ["15-1212.00","15-1231.00","15-1242.00","15-1244.00","15-1299.04","15-1299.06"] },
+      bsit: { key: "bsit", label: "BS Information Technology", occupationCodes: ["15-1211.00","15-1211.01","15-1212.00","15-1231.00","15-1244.00","15-1252.00","15-1253.00","15-1299.01"] },
+      mscs: { key: "mscs", label: "MS Computer Science", occupationCodes: ["15-1221.00","15-1241.00","15-1242.00","15-1243.00","15-1252.00","15-1253.00","15-1299.08","15-1299.09","15-2051.00"] },
+      mscpe: { key: "mscpe", label: "MS Computer Engineering", occupationCodes: ["15-1221.00","15-1241.00","15-1243.00","15-1251.00","15-1252.00","15-1253.00","15-1299.08","17-2061.00"] },
+      msai: { key: "msai", label: "MS Artificial Intelligence", occupationCodes: ["15-1221.00","15-1241.00","15-1243.00","15-1252.00","15-1299.08","15-2031.00","15-2041.00","15-2051.00"] },
+      mscys: { key: "mscys", label: "MS Cybersecurity", occupationCodes: ["11-3021.00","13-1199.07","15-1212.00","15-1241.00","15-1299.04","15-1299.05","15-1299.08"] }
+    };
+
+    function parseNum(v) {
+      if (typeof v === "number") return Number.isFinite(v) ? v : null;
+      if (typeof v !== "string") return null;
+      const n = Number(v.replace(/,/g, "").trim());
+      return Number.isFinite(n) ? n : null;
+    }
+
+    function pickNum(obj, keys) {
+      for (const k of keys) {
+        if (obj && Object.prototype.hasOwnProperty.call(obj, k)) {
+          const n = parseNum(obj[k]);
+          if (n != null) return { value: n, key: k };
+        }
+      }
+      return { value: null, key: null };
+    }
+
+    function pickEmploymentYear(career, year) {
+      if (!career || !Array.isArray(career.employment)) {
+        return { value: null, key: null, raw: null };
+      }
+      for (const row of career.employment) {
+        if (!row || parseNum(row.year) !== year) continue;
+        const n = parseNum(row.number);
+        if (n != null) {
+          return { value: n, key: "employment[" + year + "]", raw: row.number };
+        }
+      }
+      return { value: null, key: null, raw: null };
+    }
+
+    function formatInt(n) {
+      return (parseNum(n) ?? 0).toLocaleString("en-US");
+    }
+
+    function formatPct(n) {
+      const v = parseNum(n) ?? 0;
+      return (v >= 0 ? "+" : "") + v.toFixed(1) + "%";
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function projectionDebugEnabled() {
+      try {
+        return new URLSearchParams(window.location.search).get("projection_debug") === "1";
+      } catch {
+        return false;
+      }
+    }
+
+    function buildLightcastWidgetDataUrl(degreeKey) {
+      const degreeConfig = LIGHTCAST_DEGREE_CONFIGS[degreeKey];
+      if (!degreeConfig || !Array.isArray(degreeConfig.occupationCodes) || !degreeConfig.occupationCodes.length) {
+        throw new Error("No occupation codes configured.");
+      }
+      const params = new URLSearchParams();
+      params.set("occupationCodes", degreeConfig.occupationCodes.join(","));
+      params.set("geoIds", LIGHTCAST_BASE_CONFIG.geoIds.join(","));
+      params.set("level", LIGHTCAST_BASE_CONFIG.level);
+      params.set("cacheTimestamp", Date.now().toString());
+      return "https://api.pathways.moderncampus.net/v1/tenant-public/clients/" +
+        encodeURIComponent(LIGHTCAST_BASE_CONFIG.clientName) + "/" +
+        encodeURIComponent(LIGHTCAST_BASE_CONFIG.country) + "/widget-data?" + params.toString();
+    }
+
+    async function fetchLightcastDataForDegree(degreeKey) {
+      const response = await fetch(buildLightcastWidgetDataUrl(degreeKey), {
+        method: "GET",
+        mode: "cors",
+        cache: "default",
+        credentials: "omit",
+        headers: {
+          "Accept": "application/json",
+          "x-api-key": LIGHTCAST_BASE_CONFIG.apiKey
+        }
+      });
+      if (!response.ok) throw new Error("Projection API request failed (" + response.status + ").");
+      const payload = await response.json();
+      if (!payload || !payload.data || !Array.isArray(payload.data.careers)) {
+        throw new Error("Unexpected projection payload.");
+      }
+      return payload.data.careers;
+    }
+
+    function toProjectionRow(career) {
+      const title = career.occupationTitle || career.title || career.name || (career.occupation && career.occupation.title) || "Occupation";
+      const jobs2023YearPick = pickEmploymentYear(career, 2023);
+      const jobs2033YearPick = pickEmploymentYear(career, 2033);
+      const jobs2023FallbackPick = pickNum(career, [
+        "jobsCurrent",
+        "currentEmployment",
+        "employment",
+        "employment2023",
+        "baseEmployment",
+        "jobsBase",
+        "currentJobs"
+      ]);
+      const jobs2033FallbackPick = pickNum(career, [
+        "jobsProjected",
+        "projectedEmployment",
+        "projectedJobs",
+        "employment2033",
+        "futureEmployment",
+        "forecastEmployment"
+      ]);
+      const apiGrowthPick = pickNum(career, [
+        "percentChange",
+        "growthRate",
+        "projectedGrowthPercent",
+        "percent_growth"
+      ]);
+      const jobs2023 = jobs2023YearPick.value ?? jobs2023FallbackPick.value ?? 0;
+      const jobs2033 = jobs2033YearPick.value ?? jobs2033FallbackPick.value;
+      const apiGrowthPct = apiGrowthPick.value;
+      const computedGrowthPct =
+        jobs2033 != null && jobs2023 > 0
+          ? ((jobs2033 - jobs2023) / jobs2023) * 100
+          : null;
+      const growthPct = computedGrowthPct != null ? computedGrowthPct : (apiGrowthPct ?? 0);
+      return {
+        title,
+        jobs2023,
+        jobs2033,
+        growthPct,
+        _debug: {
+          jobs2023Field: jobs2023YearPick.key || jobs2023FallbackPick.key,
+          jobs2033Field: jobs2033YearPick.key || jobs2033FallbackPick.key,
+          growthField: apiGrowthPick.key,
+          jobs2023Raw: jobs2023YearPick.key ? jobs2023YearPick.raw : (jobs2023FallbackPick.key ? career[jobs2023FallbackPick.key] : null),
+          jobs2033Raw: jobs2033YearPick.key ? jobs2033YearPick.raw : (jobs2033FallbackPick.key ? career[jobs2033FallbackPick.key] : null),
+          growthRaw: apiGrowthPick.key ? career[apiGrowthPick.key] : null,
+          growthSource: computedGrowthPct != null ? "computed(2033-2023)" : "api_field"
+        }
+      };
+    }
+
+    function renderProjectionTableRows(rows, debugMeta) {
+      const body = document.getElementById("projection-body");
+      const debugEl = document.getElementById("projection-debug");
+      const debugOn = projectionDebugEnabled();
+      if (!body) return;
+      if (!rows.length) {
+        body.innerHTML = '<tr><td colspan="4" style="color:var(--text-2);">No projection rows returned for this program.</td></tr>';
+        if (debugEl) {
+          debugEl.style.display = debugOn ? "block" : "none";
+          debugEl.textContent = debugOn ? "projection_debug=1, but no rows returned." : "";
+        }
+        return;
+      }
+      const sorted = [...rows].sort((a, b) => b.growthPct - a.growthPct).slice(0, 8);
+      const maxGrowth = Math.max(...sorted.map(r => Math.max(r.growthPct, 0)), 1);
+      let html = "";
+      sorted.forEach((r) => {
+        const w = Math.max(4, Math.round((Math.max(r.growthPct, 0) / maxGrowth) * 100));
+        html += '<tr>' +
+          '<td>' + escapeHtml(r.title) + '</td>' +
+          '<td class="mono">' + formatInt(r.jobs2023) + '</td>' +
+          '<td class="mono">' + (r.jobs2033 != null ? formatInt(r.jobs2033) : "—") + '</td>' +
+          '<td class="pct up">' + formatPct(r.growthPct) + '</td>' +
+          '<td><div class="bar-wrap"><div class="bar-track"><div class="bar-fill" style="width:' + w + '%"></div></div></div></td>' +
+          '</tr>';
+      });
+      const benchmarkWidth = Math.max(4, Math.min(100, Math.round((NATIONAL_GROWTH_BENCHMARK_PCT / maxGrowth) * 100)));
+      html += '<tr>' +
+        '<td style="color:var(--text-2)">All occupations (benchmark)</td>' +
+        '<td class="mono" style="color:var(--text-2)">—</td>' +
+        '<td class="mono" style="color:var(--text-2)">—</td>' +
+        '<td class="pct up" style="color:var(--text-2)">+' + NATIONAL_GROWTH_BENCHMARK_PCT.toFixed(1) + '%</td>' +
+        '<td><div class="bar-wrap"><div class="bar-track"><div class="bar-fill neutral" style="width:' + benchmarkWidth + '%"></div></div></div></td>' +
+        '</tr>';
+      body.innerHTML = html;
+      if (debugEl) {
+        if (debugOn) {
+          const lines = sorted.map((r) =>
+            r.title + " | " +
+            "2023=" + (r._debug.jobs2023Field || "n/a") + ":" + String(r._debug.jobs2023Raw) + " | " +
+            "2033=" + (r._debug.jobs2033Field || "n/a") + ":" + String(r._debug.jobs2033Raw) + " | " +
+            "growth_field=" + (r._debug.growthField || "n/a") + ":" + String(r._debug.growthRaw) + " | " +
+            "source=" + r._debug.growthSource + " | " +
+            "final_growth=" + r.growthPct.toFixed(2) + "%"
+          );
+          debugEl.style.display = "block";
+          const extra = debugMeta
+            ? (
+              "\n\ncareer_count=" + String(debugMeta.careerCount) +
+              "\nfirst_career_keys=" + (debugMeta.firstCareerKeys || []).join(", ") +
+              "\n\nfirst_career_sample=\n" + (debugMeta.firstCareerSample || "")
+            )
+            : "";
+          debugEl.textContent =
+            "projection_debug=1\n" +
+            "maxGrowth=" + maxGrowth.toFixed(2) + ", benchmarkWidth=" + benchmarkWidth + "%\n\n" +
+            lines.join("\n") + extra;
+        } else {
+          debugEl.style.display = "none";
+          debugEl.textContent = "";
+        }
+      }
+    }
+
+    async function refreshProspectiveProjectionTable(degreeKey) {
+      const status = document.getElementById("projection-status");
+      if (status) status.textContent = "Loading projections...";
+      try {
+        const careers = await fetchLightcastDataForDegree(degreeKey);
+        const rows = careers.map(toProjectionRow).filter(r => r.title && r.jobs2023 != null && r.growthPct != null);
+        const firstCareer = careers && careers.length ? careers[0] : null;
+        const debugMeta = {
+          careerCount: Array.isArray(careers) ? careers.length : 0,
+          firstCareerKeys: firstCareer && typeof firstCareer === "object" ? Object.keys(firstCareer) : [],
+          firstCareerSample: firstCareer ? JSON.stringify(firstCareer, null, 2).slice(0, 5000) : ""
+        };
+        renderProjectionTableRows(rows, debugMeta);
+        const label = LIGHTCAST_DEGREE_CONFIGS[degreeKey] ? LIGHTCAST_DEGREE_CONFIGS[degreeKey].label : "Program";
+        if (status) status.textContent = "Showing latest national projections for " + label + ".";
+      } catch (err) {
+        if (status) status.textContent = "Could not load projections. Please try again.";
+      }
+    }
+
+    function initProspectiveProjectionDegreeSelect() {
+      const select = document.getElementById("prospective-degree-select");
+      if (!select) return;
+      const keys = Object.keys(LIGHTCAST_DEGREE_CONFIGS);
+      select.innerHTML = keys
+        .map((k) => '<option value="' + escapeHtml(k) + '">' + escapeHtml(LIGHTCAST_DEGREE_CONFIGS[k].label) + '</option>')
+        .join("");
+      const defaultKey = "bscs";
+      if (keys.includes(defaultKey)) select.value = defaultKey;
+      select.addEventListener("change", (e) => {
+        refreshProspectiveProjectionTable(e.target.value);
+      });
+      refreshProspectiveProjectionTable(select.value);
+    }
     
     /** Optional; must match WEBAPP_API_KEY on the calendar Apps Script project when set (visible in page source). */
     const CALENDAR_FEED_API_KEY = ""
@@ -1416,7 +2439,21 @@
     const EVENTS_FEED_URL =
       typeof window.EVENTS_FEED_URL !== "undefined" && window.EVENTS_FEED_URL
         ? window.EVENTS_FEED_URL
-        : "https://script.google.com/macros/s/AKfycbzXRZIjQnK04USWhUTCiy5PD9edAwxHSaw5Ww35A-Mk3cDRizo4Sj2Pr4HDog6AUzd9/exechttps://script.google.com/macros/s/AKfycbxYQx4SvkkkYqK-eicOVLC8Bt5n3xryuDtZZcbdheX36MnFhK6FJBJ-l8W3bTNsBpgv/exec";
+        : "https://script.google.com/macros/s/AKfycbzXRZIjQnK04USWhUTCiy5PD9edAwxHSaw5Ww35A-Mk3cDRizo4Sj2Pr4HDog6AUzd9/exec";
+
+    function normalizeAppsScriptExecUrl(url) {
+      var value = String(url || "").trim();
+      if (!value) return "";
+      var marker = "/exec";
+      var firstExecIdx = value.indexOf(marker);
+      if (firstExecIdx === -1) return value;
+      var secondSchemeIdx = value.indexOf("https://", firstExecIdx + marker.length);
+      if (secondSchemeIdx !== -1) {
+        // Recover from accidental concat like ".../exechttps://.../exec" by taking the last URL.
+        return value.slice(secondSchemeIdx);
+      }
+      return value;
+    }
 
     const JOB_SEARCH_JSONP_MAX_URL = 7500;
     const JOB_SEARCH_JSONP_TIMEOUT_MS = 40000;
@@ -1755,7 +2792,7 @@
     async function loadCareerEvents() {
       const el = document.getElementById("ev-list");
       if (!el) return;
-      const base = EVENTS_FEED_URL;
+      const base = normalizeAppsScriptExecUrl(EVENTS_FEED_URL);
       if (!base) {
         el.innerHTML =
           '<p class="slabel" style="color:var(--text-2);">Calendar feed URL is not configured. Deploy the calendar Apps Script project (<code>jobs_api/calendar_webapp/README.md</code>), paste its web app URL into <code>EVENTS_FEED_URL</code> in this file, or set <code>window.EVENTS_FEED_URL</code>.</p>';
@@ -1843,7 +2880,7 @@
           <div class="ev-title">${title}</div>
           <div class="ev-meta">${meta}</div>
         </div>
-        <div class="ev-right"><span class="ev-type-badge ev-type-${type}">${badge}</span><a class="ev-add" href="${calHref}" target="_blank" rel="noopener noreferrer">+ Add to calendar</a></div>
+        <div class="ev-right"><span class="ev-type-badge ev-type-${type}">${badge}</span><a class="ev-add" href="${calHref}" target="_blank" rel="noopener noreferrer">Add to calendar</a></div>
       </div>`;
       });
       html +=
@@ -1856,7 +2893,9 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       loadCareerEvents();
+      initProspectiveProjectionDegreeSelect();
     });
+    // ]]>
   </script>
 </body>
 
