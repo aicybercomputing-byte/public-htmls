@@ -83,13 +83,20 @@
       margin-bottom: 0.4rem;
     }
 
-    h3 {
+    .heading-bellini-jobs {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 26px;
       font-weight: 700;
       line-height: 1.15;
       letter-spacing: 0.01em;
       margin-bottom: 0.5rem;
+    }
+
+    .paragraph-bellini-jobs {
+      font-family: 'Open Sans', sans-serif;
+      font-size: inherit;
+      line-height: 1.5;
+      margin: 0 0 1em 0;
     }
 
     .hero-sub-bellini-jobs {
@@ -880,7 +887,7 @@
       margin-bottom: 1.25rem;
     }
 
-    .jm-form h3 {
+    .jm-form .heading-bellini-jobs {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 16px;
       font-weight: 700;
@@ -889,7 +896,7 @@
       margin-bottom: 0.25rem;
     }
 
-    .jm-form p {
+    .jm-form .paragraph-bellini-jobs {
       font-size: 13px;
       color: var(--text-2);
       margin-bottom: 1rem;
@@ -1218,7 +1225,7 @@
       background: #efeff0;
     }
 
-    .ev-submit-box h3 {
+    .ev-submit-box .heading-bellini-jobs {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 14px;
       font-weight: 700;
@@ -1227,7 +1234,7 @@
       margin-bottom: 0.35rem;
     }
 
-    .ev-submit-box p {
+    .ev-submit-box .paragraph-bellini-jobs {
       font-size: 13px;
       color: var(--text-2);
       margin-bottom: 0.75rem;
@@ -1296,7 +1303,47 @@
       font-family: 'Open Sans', sans-serif;
     }
 
-    /* Aggressive host-CSS overrides for embedded context */
+    /* Scoped overrides for remaining elements affected by host CSS (td, button, form fields) */
+    .jobs-page-root table {
+      border-spacing: 0 !important;
+    }
+
+    .jobs-page-root td {
+      border-top: 0 !important;
+      border-bottom: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    .jobs-page-root .occ-table th,
+    .jobs-page-root .occ-table td {
+      border-bottom: 0.5px solid var(--border) !important;
+    }
+
+    .jobs-page-root .occ-table tr:last-child td {
+      border-bottom: 0 !important;
+    }
+
+    .jobs-page-root button {
+      display: inline-block !important;
+      margin: 0 !important;
+      cursor: pointer !important;
+      text-decoration: none !important;
+    }
+
+    .jobs-page-root .btn-primary-bellini-jobs {
+      display: inline-block !important;
+      padding: 0.5em 1em !important;
+      margin: 0 !important;
+    }
+
+    .jobs-page-root input,
+    .jobs-page-root select,
+    .jobs-page-root textarea {
+      padding: 7px 10px !important;
+      font-size: 13px !important;
+      width: 100% !important;
+    }
+
     .jobs-page-root .fl-strip,
     .jobs-page-root .cards2,
     .jobs-page-root .cards3,
@@ -1660,7 +1707,7 @@
         var body = item && item.body ? escapeHtml(item.body) : "";
         return '<div class="card-bellini-jobs">' +
           '<div class="badge-bellini-jobs ' + badgeColor + '">' + badge + '</div>' +
-          '<h3 class="card-head">' + title + '</h3>' +
+          '<div class="card-head">' + title + '</div>' +
           '<div class="card-body">' + body + '</div>' +
           '</div>';
       }).join("");
@@ -1682,7 +1729,7 @@
         var cta = ctaText ? '<a class="card-cta" href="' + ctaHref + '"' + ctaTarget + '>' + ctaText + '</a>' : "";
         return '<div class="card-bellini-jobs">' +
           '<div class="badge-bellini-jobs ' + badgeColor + '">' + badge + '</div>' +
-          '<h3 class="card-head">' + title + '</h3>' +
+          '<div class="card-head">' + title + '</div>' +
           '<div class="card-body">' + body + '</div>' +
           cta +
           '</div>';
@@ -1705,7 +1752,7 @@
         var cta = ctaText ? '<a class="card-cta" href="' + ctaHref + '"' + ctaTarget + '>' + ctaText + '</a>' : "";
         return '<div class="card-bellini-jobs">' +
           '<div class="badge-bellini-jobs ' + badgeColor + '">' + badge + '</div>' +
-          '<h3 class="card-head">' + title + '</h3>' +
+          '<div class="card-head">' + title + '</div>' +
           '<div class="card-body">' + body + '</div>' +
           cta +
           '</div>';
@@ -1725,7 +1772,7 @@
         var ctaTarget = item && item.cta_target === "_blank" ? ' target="_blank" rel="noopener noreferrer"' : "";
         var cta = ctaText ? '<a class="card-cta" href="' + ctaHref + '"' + ctaTarget + '>' + ctaText + '</a>' : "";
         return '<div class="card-bellini-jobs">' +
-          '<h3 class="card-head">' + title + '</h3>' +
+          '<div class="card-head">' + title + '</div>' +
           '<div class="card-body">' + body + '</div>' +
           cta +
           '</div>';
@@ -1797,7 +1844,7 @@
 
   <!-- â•â• PROSPECTIVE â•â• -->
   <div class="panel-bellini-jobs active" id="panel-prospective">
-    <p class="slabel-bellini-jobs">National occupation projections &mdash; 2023 to 2033</p>
+    <div class="slabel-bellini-jobs">National occupation projections &mdash; 2023 to 2033</div>
     <div class="projection-controls">
       <div>
         <select id="prospective-degree-select" aria-label="Select degree program for projections"></select>
@@ -1898,7 +1945,7 @@
       </tbody>
     </table>
     <div id="projection-debug" class="projection-debug" aria-live="polite"></div>
-    <p class="slabel-bellini-jobs">Florida spotlight</p>
+    <div class="slabel-bellini-jobs">Florida spotlight</div>
     <table style="width:100%;border-collapse:collapse;table-layout:fixed;margin:0;padding:0;border:0;background:transparent;">
       <tbody>
         <tr><td style="padding:0;border:0;background:transparent;display:block;width:100%;">
@@ -1911,7 +1958,7 @@
         </td></tr>
         <tr><td style="padding:0;border:0;background:transparent;display:block;width:100%;">
           <div class="prospective-ai-label-row">
-            <p class="slabel-bellini-jobs">Why the AI era boosts &mdash; not replaces &mdash; computing careers</p>
+            <div class="slabel-bellini-jobs">Why the AI era boosts &mdash; not replaces &mdash; computing careers</div>
           </div>
         </td></tr>
         <tr><td style="padding:0;border:0;background:transparent;display:block;width:100%;">
@@ -1931,7 +1978,7 @@
 
   <!-- â•â• CURRENT STUDENTS â•â• -->
   <div class="panel-bellini-jobs" id="panel-current">
-    <p class="slabel-bellini-jobs">Your career pathway</p>
+    <div class="slabel-bellini-jobs">Your career pathway</div>
     <div class="current-pathway-row">
       <div class="pathway-bellini-jobs">
         <div class="pw-step">
@@ -1962,7 +2009,7 @@
       </div>
     </div>
     <div class="current-resources-label-row">
-      <p class="slabel-bellini-jobs">Career resources</p>
+      <div class="slabel-bellini-jobs">Career resources</div>
     </div>
     <div class="current-resources-cards-row">
       <div class="cards3" id="current-resources-cards-items">
@@ -1970,7 +2017,7 @@
       <!-- GEN:current_resources:end -->
       </div>
     </div>
-    <p class="slabel-bellini-jobs">Florida metro opportunities</p>
+    <div class="slabel-bellini-jobs">Florida metro opportunities</div>
     <div class="fl-strip" id="current-metro-items">
       <!-- GEN:current_metro:start -->
     <!-- GEN:current_metro:end -->
@@ -1983,9 +2030,9 @@
       <div id="jm-file-protocol-note" class="jm-file-note">
         You opened this page as a local file (<code>file://</code>). Browsers often block the live job search script in that mode. Serve the folder over HTTP instead, for example: run <code>python -m http.server 8080</code> inside <code>jobs_page</code>, then open <code>http://127.0.0.1:8080/</code>.
       </div>
-      <h3>Find my job &mdash; AI-powered matching</h3>
-      <p>Fill in your profile and get 4 personalized role recommendations with direct links to live job searches on
-        LinkedIn and Indeed, pre-filtered for your skills and location.</p>
+      <div class="heading-bellini-jobs">Find my job &mdash; AI-powered matching</div>
+      <div class="paragraph-bellini-jobs">Fill in your profile and get 4 personalized role recommendations with direct links to live job searches on
+        LinkedIn and Indeed, pre-filtered for your skills and location.</div>
       <div class="jm-grid">
         <div class="jm-field">
           <label>Degree program</label>
@@ -2067,9 +2114,9 @@
   <!-- â•â• FIND MY INTERNSHIP â•â• -->
   <div class="panel-bellini-jobs" id="panel-internships">
     <div class="jm-form">
-      <h3>Find my internship &mdash; AI-powered matching</h3>
-      <p>Fill in your profile and get 4 personalized internship recommendations with direct links to live job searches on
-        LinkedIn and Indeed, pre-filtered for your skills and location.</p>
+      <div class="heading-bellini-jobs">Find my internship &mdash; AI-powered matching</div>
+      <div class="paragraph-bellini-jobs">Fill in your profile and get 4 personalized internship recommendations with direct links to live job searches on
+        LinkedIn and Indeed, pre-filtered for your skills and location.</div>
       <div class="jm-grid">
         <div class="jm-field">
           <label>Degree program</label>
@@ -2146,7 +2193,7 @@
 
   <!-- â•â• EVENTS CALENDAR â•â• -->
   <div class="panel-bellini-jobs" id="panel-events">
-    <p class="slabel-bellini-jobs">Upcoming career events</p>
+    <div class="slabel-bellini-jobs">Upcoming career events</div>
     <div class="ev-filter-row">
       <button class="ev-filter active" onclick="filterEvents('all',this)">All events</button>
       <button class="ev-filter" onclick="filterEvents('fair',this)">Career fairs</button>
@@ -2157,14 +2204,14 @@
     </div>
     <div class="ev-list" id="ev-list">
       <!-- GEN:event_items:start -->
-      <p class="slabel-bellini-jobs ev-loading-msg" style="margin-bottom:0.75rem;color:var(--text-2);">Loading eventsâ€¦</p>
+      <div class="slabel-bellini-jobs ev-loading-msg" style="margin-bottom:0.75rem;color:var(--text-2);">Loading eventsâ€¦</div>
     <!-- GEN:event_items:end -->
     </div>
 
     <div class="ev-submit-box">
-      <h3>Submit an event</h3>
-      <p>Student org hosting a company talk? Faculty organizing an employer visit? Submit it to appear on this calendar.
-      </p>
+      <div class="heading-bellini-jobs">Submit an event</div>
+      <div class="paragraph-bellini-jobs">Student org hosting a company talk? Faculty organizing an employer visit? Submit it to appear on this calendar.
+      </div>
       <div class="form-row-bellini-jobs"><input type="text" placeholder="Event name" /><input type="text"
           placeholder="Date &amp; time" /></div>
       <div class="form-row-bellini-jobs">
@@ -2183,15 +2230,15 @@
 
   <!-- â•â• EMPLOYERS â•â• -->
   <div class="panel-bellini-jobs" id="panel-employers">
-    <p class="slabel-bellini-jobs">Why recruit from Bellini College</p>
+    <div class="slabel-bellini-jobs">Why recruit from Bellini College</div>
     <div class="cards2" id="employer-value-cards-items">
       <!-- GEN:employer_value_cards:start -->
     <!-- GEN:employer_value_cards:end -->
     </div>
-    <p class="slabel-bellini-jobs">Recruiting options</p>
+    <div class="slabel-bellini-jobs">Recruiting options</div>
     <div class="cards3" id="employer-recruiting-cards-items">
     </div>
-    <p class="slabel-bellini-jobs">Contact our career team</p>
+    <div class="slabel-bellini-jobs">Contact our career team</div>
     <div class="recruit-form">
       <div class="form-row-bellini-jobs"><input type="text" placeholder="Company name" /><input type="text"
           placeholder="Your name &amp; title" /></div>
@@ -2203,8 +2250,8 @@
           <option>Other partnership</option>
         </select></div>
       <button class="btn-primary-bellini-jobs">Send inquiry</button>
-      <p class="source-note-bellini-jobs" style="border:none;padding:0;margin-top:0.5rem;">Our career advisor will respond within 2
-        business days.</p>
+      <div class="source-note-bellini-jobs" style="border:none;padding:0;margin-top:0.5rem;">Our career advisor will respond within 2
+        business days.</div>
     </div>
   </div>
 
@@ -2703,7 +2750,7 @@
       loading.style.display = 'flex';
       results.innerHTML = '';
 
-      const loadErrorHtml = '<p style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">Could not load matches &mdash; please try again or visit career services.</p>';
+      const loadErrorHtml = '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">Could not load matches &mdash; please try again or visit career services.</div>';
 
       try {
         if (!JOB_SEARCH_API_URL) {
@@ -2731,30 +2778,30 @@
         if (data.error) {
           if (jobSearchDebugQuery() && typeof data.detail === "string" && data.detail.trim() !== "") {
             results.innerHTML =
-              "<p style=\"font-size:13px;color:var(--text-2);padding:0.5rem 0;\">Debug mode: server error <code>" +
+              "<div class=\"paragraph-bellini-jobs\" style=\"font-size:13px;color:var(--text-2);padding:0.5rem 0;\">Debug mode: server error <code>" +
               jobSearchEscapeHtml(String(data.error)) +
-              "</code> &mdash; details below. Remove <code>?jobsearch_debug=1</code> when done.</p><pre style=\"font-size:12px;white-space:pre-wrap;word-break:break-word;padding:0.5rem 0;\">" +
+              "</code> &mdash; details below. Remove <code>?jobsearch_debug=1</code> when done.</div><pre style=\"font-size:12px;white-space:pre-wrap;word-break:break-word;padding:0.5rem 0;\">" +
               jobSearchEscapeHtml(data.detail) +
               "</pre>";
             return;
           }
           if (data.error === "Unauthorized") {
             results.innerHTML =
-              '<p style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">The jobs API requires a matching key. Set <code>JOB_SEARCH_API_KEY</code> in this page to the same value as <code>WEBAPP_API_KEY</code> in Apps Script properties (or remove the key from the script for testing only).</p>';
+              '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">The jobs API requires a matching key. Set <code>JOB_SEARCH_API_KEY</code> in this page to the same value as <code>WEBAPP_API_KEY</code> in Apps Script properties (or remove the key from the script for testing only).</div>';
             return;
           }
           if (data.error === "Rate limit exceeded") {
             results.innerHTML =
-              '<p style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">Too many searches right now. Please try again in a little while.</p>';
+              '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">Too many searches right now. Please try again in a little while.</div>';
             return;
           }
           if (data.error === "Internal error") {
             if (jobSearchDebugQuery()) {
               results.innerHTML =
-                '<p style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">The job search service hit a server error. The <strong>Executions</strong> panel can lag, show <em>No logs for this execution</em>, or omit logs when the failure is outside <code>Logger</code> (e.g. platform/timeout). In <code>doGet</code>, use <code>try/catch</code> and when <code>e.parameter.err_detail</code> is <code>1</code>, include <code>detail: e.message</code> (or stack) in the JSONP object so it appears here. Remove <code>jobsearch_debug</code> in production.</p>';
+                '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">The job search service hit a server error. The <strong>Executions</strong> panel can lag, show <em>No logs for this execution</em>, or omit logs when the failure is outside <code>Logger</code> (e.g. platform/timeout). In <code>doGet</code>, use <code>try/catch</code> and when <code>e.parameter.err_detail</code> is <code>1</code>, include <code>detail: e.message</code> (or stack) in the JSONP object so it appears here. Remove <code>jobsearch_debug</code> in production.</div>';
             } else {
               results.innerHTML =
-                '<p style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">The job search service hit a server error. Please try again later or contact career services.</p>';
+                '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">The job search service hit a server error. Please try again later or contact career services.</div>';
             }
             return;
           }
@@ -2790,8 +2837,8 @@
 
     function renderResults(jobs, resultsId, headingText) {
       const el = document.getElementById(resultsId);
-      if (!jobs || !jobs.length) { el.innerHTML = '<p style="font-size:13px;color:var(--text-2);">No results. Refine your profile and try again.</p>'; return; }
-      let html = '<p class="slabel-bellini-jobs" style="margin-bottom:0.75rem;">' + headingText + '</p>';
+      if (!jobs || !jobs.length) { el.innerHTML = '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);">No results. Refine your profile and try again.</div>'; return; }
+      let html = '<div class="slabel-bellini-jobs" style="margin-bottom:0.75rem;">' + headingText + '</div>';
       jobs.forEach(j => {
         const score = Math.round(+(j.match_score || j.score)) || 85;
         const chips = (j.companies || []).map(c => `<span class="jm-co-chip">${c}</span>`).join(' ');
@@ -2811,7 +2858,7 @@
       </div>
     </div>`;
       });
-      html += '<p style="font-size:11px;color:var(--text-3);font-family:\'Open Sans\',sans-serif;margin-top:0.75rem;">Live search uses federal listings (USAJOBS)&mdash;confirm details on the agency posting. Contact career services for personalized advising.</p>';
+      html += '<div class="paragraph-bellini-jobs" style="font-size:11px;color:var(--text-3);font-family:\'Open Sans\',sans-serif;margin-top:0.75rem;">Live search uses federal listings (USAJOBS)&mdash;confirm details on the agency posting. Contact career services for personalized advising.</div>';
       el.innerHTML = html;
     }
 
@@ -2866,7 +2913,7 @@
       const base = normalizeAppsScriptExecUrl(EVENTS_FEED_URL);
       if (!base) {
         el.innerHTML =
-          '<p class="slabel-bellini-jobs" style="color:var(--text-2);">Calendar feed URL is not configured. Deploy the calendar Apps Script project (<code>jobs_api/calendar_webapp/README.md</code>), paste its web app URL into <code>EVENTS_FEED_URL</code> in this file, or set <code>window.EVENTS_FEED_URL</code>.</p>';
+          '<div class="slabel-bellini-jobs" style="color:var(--text-2);">Calendar feed URL is not configured. Deploy the calendar Apps Script project (<code>jobs_api/calendar_webapp/README.md</code>), paste its web app URL into <code>EVENTS_FEED_URL</code> in this file, or set <code>window.EVENTS_FEED_URL</code>.</div>';
         return;
       }
       try {
@@ -2878,19 +2925,19 @@
         if (data.error) {
           const code = String(data.error);
           let hint =
-            '<p class="slabel-bellini-jobs" style="color:var(--text-2);">Events feed unavailable.</p>';
+            '<div class="slabel-bellini-jobs" style="color:var(--text-2);">Events feed unavailable.</div>';
           if (code === "Unauthorized") {
             hint +=
-              '<p style="font-size:13px;color:var(--text-2);margin-top:0.5rem;">Set <code>CALENDAR_FEED_API_KEY</code> (calendar script) or <code>JOB_SEARCH_API_KEY</code> to match <code>WEBAPP_API_KEY</code> on that calendar deployment, or leave keys unset for testing.</p>';
+              '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);margin-top:0.5rem;">Set <code>CALENDAR_FEED_API_KEY</code> (calendar script) or <code>JOB_SEARCH_API_KEY</code> to match <code>WEBAPP_API_KEY</code> on that calendar deployment, or leave keys unset for testing.</div>';
           } else if (code === "Rate limit exceeded") {
             hint +=
-              '<p style="font-size:13px;color:var(--text-2);margin-top:0.5rem;">Too many requests. Try again shortly.</p>';
+              '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);margin-top:0.5rem;">Too many requests. Try again shortly.</div>';
           } else if (code === "Not found") {
             hint +=
-              '<p style="font-size:13px;color:var(--text-2);margin-top:0.5rem;">Wrong URL or web app missing <code>action=events</code>. Use the deployment from <code>CalendarWebApp.gs</code> + <code>EventsFeed.gs</code> (<code>jobs_api/calendar_webapp/README.md</code>).</p>';
+              '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);margin-top:0.5rem;">Wrong URL or web app missing <code>action=events</code>. Use the deployment from <code>CalendarWebApp.gs</code> + <code>EventsFeed.gs</code> (<code>jobs_api/calendar_webapp/README.md</code>).</div>';
           } else if (code === "events_failed" || code === "Internal error") {
             hint +=
-              '<p style="font-size:13px;color:var(--text-2);margin-top:0.5rem;">Server error while building the calendar. Try again later.</p>';
+              '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);margin-top:0.5rem;">Server error while building the calendar. Try again later.</div>';
           }
           if (eventsDebugQuery() && typeof data.detail === "string" && data.detail.trim() !== "") {
             hint +=
@@ -2899,7 +2946,7 @@
               "</pre>";
           }
           hint +=
-            '<p style="font-size:13px;margin-top:0.75rem;"><a href="https://www.usf.edu/ai-cybersecurity-computing/calendar/">Bellini calendar</a></p>';
+            '<div class="paragraph-bellini-jobs" style="font-size:13px;margin-top:0.75rem;"><a href="https://www.usf.edu/ai-cybersecurity-computing/calendar/">Bellini calendar</a></div>';
           el.innerHTML = hint;
           return;
         }
@@ -2907,9 +2954,9 @@
         renderEventCards(events, data.fetch_errors);
       } catch (err) {
         let hint =
-          '<p class="slabel-bellini-jobs" style="color:var(--text-2);">Could not load events &mdash; network error or invalid script response.</p>';
+          '<div class="slabel-bellini-jobs" style="color:var(--text-2);">Could not load events &mdash; network error or invalid script response.</div>';
         hint +=
-          '<p style="font-size:13px;color:var(--text-2);margin-top:0.5rem;">If you recently added calendar feeds, confirm the Apps Script deployment includes <code>action=events</code> (see <code>EVENTS_INTEGRATION.md</code>). Plain JSON errors break JSONP unless wrapped with <code>callback(...)</code>.</p>';
+          '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);margin-top:0.5rem;">If you recently added calendar feeds, confirm the Apps Script deployment includes <code>action=events</code> (see <code>EVENTS_INTEGRATION.md</code>). Plain JSON errors break JSONP unless wrapped with <code>callback(...)</code>.</div>';
         if (eventsDebugQuery()) {
           hint +=
             '<pre style="font-size:12px;white-space:pre-wrap;margin-top:0.5rem;color:var(--text-3);">' +
@@ -2917,7 +2964,7 @@
             "</pre>";
         }
         hint +=
-          '<p style="font-size:13px;margin-top:0.75rem;"><a href="https://www.usf.edu/ai-cybersecurity-computing/calendar/">Bellini calendar</a></p>';
+          '<div class="paragraph-bellini-jobs" style="font-size:13px;margin-top:0.75rem;"><a href="https://www.usf.edu/ai-cybersecurity-computing/calendar/">Bellini calendar</a></div>';
         el.innerHTML = hint;
       }
     }
@@ -2926,10 +2973,10 @@
       const el = document.getElementById("ev-list");
       if (!events.length) {
         let msg =
-          '<p class="slabel-bellini-jobs" style="color:var(--text-2);">No upcoming events listed. Check back soon.</p>';
+          '<div class="slabel-bellini-jobs" style="color:var(--text-2);">No upcoming events listed. Check back soon.</div>';
         if (fetchErrors && fetchErrors.length)
           msg +=
-            '<p style="font-size:11px;color:var(--text-3);margin-top:0.5rem;">Some feeds could not be refreshed.</p>';
+            '<div class="paragraph-bellini-jobs" style="font-size:11px;color:var(--text-3);margin-top:0.5rem;">Some feeds could not be refreshed.</div>';
         el.innerHTML = msg;
         return;
       }
@@ -2955,10 +3002,10 @@
       </div>`;
       });
       html +=
-        '<p style="font-size:11px;color:var(--text-3);font-family:\'Open Sans\',sans-serif;margin-top:0.75rem;">Sourced from the Bellini calendar RSS and registered student organizations (iCal). Verify date and location before attending.</p>';
+        '<div class="paragraph-bellini-jobs" style="font-size:11px;color:var(--text-3);font-family:\'Open Sans\',sans-serif;margin-top:0.75rem;">Sourced from the Bellini calendar RSS and registered student organizations (iCal). Verify date and location before attending.</div>';
       if (fetchErrors && fetchErrors.length)
         html +=
-          '<p style="font-size:11px;color:var(--text-3);margin-top:0.35rem;">Note: one or more feeds returned an error when refreshing.</p>';
+          '<div class="paragraph-bellini-jobs" style="font-size:11px;color:var(--text-3);margin-top:0.35rem;">Note: one or more feeds returned an error when refreshing.</div>';
       el.innerHTML = html;
     }
 
