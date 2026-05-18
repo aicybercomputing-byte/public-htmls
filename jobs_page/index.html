@@ -432,16 +432,19 @@
     }
 
     .bar-track {
-      flex: 1;
+      flex: 1 1 auto;
       height: 4px;
       background: var(--border);
       border-radius: 2px;
+      display: block;
+      min-width: 0;
     }
 
     .bar-fill {
       height: 4px;
       border-radius: 2px;
       background: var(--green-mid);
+      display: block;
     }
 
     .bar-fill.neutral {
