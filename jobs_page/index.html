@@ -769,124 +769,58 @@
       background: none !important;
     }
 
-    /* Layout lock: containers are now <table> elements to defeat host CSS. */
-    .jobs-page-root table.stat-bar,
-    .jobs-page-root table.fl-strip,
-    .jobs-page-root table.cards2,
-    .jobs-page-root table.cards3,
-    .jobs-page-root table.pathway,
-    .jobs-page-root table.jm-grid {
-      display: table !important;
+    /* Layout lock: defeat host-page CSS that breaks our grid containers. */
+    .jobs-page-root .stat-bar {
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      grid-auto-rows: 1fr !important;
+      align-items: stretch !important;
       width: 100% !important;
       max-width: 100% !important;
-      table-layout: fixed !important;
-      margin-left: 0 !important;
-      margin-right: 0 !important;
+      gap: 0 !important;
     }
 
-    .jobs-page-root table.stat-bar > tbody,
-    .jobs-page-root table.fl-strip > tbody,
-    .jobs-page-root table.cards2 > tbody,
-    .jobs-page-root table.cards3 > tbody,
-    .jobs-page-root table.pathway > tbody,
-    .jobs-page-root table.jm-grid > tbody {
-      display: table-row-group !important;
+    .jobs-page-root .fl-strip {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      gap: 12px !important;
+      align-items: stretch !important;
+      width: 100% !important;
+      max-width: 100% !important;
     }
 
-    .jobs-page-root table.stat-bar > tbody > tr,
-    .jobs-page-root table.fl-strip > tbody > tr,
-    .jobs-page-root table.cards2 > tbody > tr,
-    .jobs-page-root table.cards3 > tbody > tr,
-    .jobs-page-root table.pathway > tbody > tr,
-    .jobs-page-root table.jm-grid > tbody > tr {
-      display: table-row !important;
+    .jobs-page-root .cards2 {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 12px !important;
+      align-items: stretch !important;
+      width: 100% !important;
+      max-width: 100% !important;
     }
 
-    .jobs-page-root table.stat-bar > tbody > tr > td,
-    .jobs-page-root table.fl-strip > tbody > tr > td,
-    .jobs-page-root table.cards2 > tbody > tr > td,
-    .jobs-page-root table.cards3 > tbody > tr > td,
-    .jobs-page-root table.pathway > tbody > tr > td,
-    .jobs-page-root table.jm-grid > tbody > tr > td {
-      display: table-cell !important;
-      vertical-align: top !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      border: 0 !important;
-      background: transparent !important;
+    .jobs-page-root .cards3 {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      gap: 12px !important;
+      align-items: stretch !important;
+      width: 100% !important;
+      max-width: 100% !important;
     }
 
-    /* stat-bar: cells flush together, border on inner .stat handles separators */
-    .jobs-page-root table.stat-bar { border: 1px solid #b2b2b2 !important; border-collapse: collapse !important; border-spacing: 0 !important; margin-bottom: 1.25rem !important; }
-
-    /* pathway: cells flush together, border on inner .pw-step handles separators */
-    .jobs-page-root table.pathway { border-collapse: collapse !important; border-spacing: 0 !important; margin-bottom: 1.5rem !important; }
-
-    /* fl-strip, cards2, cards3: 12px gap between cells via cell padding */
-    .jobs-page-root table.fl-strip,
-    .jobs-page-root table.cards2,
-    .jobs-page-root table.cards3 {
-      border-collapse: collapse !important;
-      border-spacing: 0 !important;
-      margin-bottom: 1.5rem !important;
+    .jobs-page-root .pathway {
+      display: flex !important;
+      align-items: stretch !important;
+      width: 100% !important;
+      max-width: 100% !important;
     }
 
-    .jobs-page-root table.fl-strip > tbody > tr > td,
-    .jobs-page-root table.cards2 > tbody > tr > td,
-    .jobs-page-root table.cards3 > tbody > tr > td {
-      padding-left: 6px !important;
-      padding-right: 6px !important;
-    }
-
-    .jobs-page-root table.fl-strip > tbody > tr > td:first-child,
-    .jobs-page-root table.cards2 > tbody > tr > td:first-child,
-    .jobs-page-root table.cards3 > tbody > tr > td:first-child {
-      padding-left: 0 !important;
-    }
-
-    .jobs-page-root table.fl-strip > tbody > tr > td:last-child,
-    .jobs-page-root table.cards2 > tbody > tr > td:last-child,
-    .jobs-page-root table.cards3 > tbody > tr > td:last-child {
-      padding-right: 0 !important;
-    }
-
-    /* Inner cell wrappers fill their td */
-    .jobs-page-root table.stat-bar .stat,
-    .jobs-page-root table.fl-strip .fl-cell,
-    .jobs-page-root table.cards2 .card,
-    .jobs-page-root table.cards3 .card,
-    .jobs-page-root table.pathway .pw-step {
-      height: 100% !important;
-      box-sizing: border-box !important;
-    }
-
-    /* stat: borders between cells, none on last (override .stat:last-child which now matches all) */
-    .jobs-page-root table.stat-bar > tbody > tr > td:not(:last-child) .stat {
-      border-right: 1px solid #b2b2b2 !important;
-    }
-    .jobs-page-root table.stat-bar > tbody > tr > td:last-child .stat {
-      border-right: none !important;
-    }
-
-    /* pathway: borders between steps, right border only on last */
-    .jobs-page-root table.pathway > tbody > tr > td .pw-step {
-      border-right: none !important;
-    }
-    .jobs-page-root table.pathway > tbody > tr > td:last-child .pw-step {
-      border-right: 1px solid #b2b2b2 !important;
-    }
-
-    /* jm-grid: 10px gap between cells (h+v) via border-spacing */
-    .jobs-page-root table.jm-grid {
-      border-collapse: separate !important;
-      border-spacing: 10px !important;
-      margin: 12px -10px !important;
-      width: calc(100% + 20px) !important;
-      max-width: calc(100% + 20px) !important;
-    }
-
-    .jobs-page-root table.jm-grid > tbody > tr > td {
-      padding: 0 !important;
+    .jobs-page-root .jm-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+      align-items: start !important;
+      width: 100% !important;
+      max-width: 100% !important;
     }
 
     .jobs-page-root .jm-field {
@@ -894,43 +828,18 @@
       flex-direction: column !important;
       gap: 4px !important;
       min-width: 0 !important;
+      align-self: start !important;
     }
 
-    /* Defeat USF's $('.content table') responsive-table treatment */
-    .jobs-page-root table.responsive-table,
-    .jobs-page-root table.stat-bar,
-    .jobs-page-root table.fl-strip,
-    .jobs-page-root table.cards2,
-    .jobs-page-root table.cards3,
-    .jobs-page-root table.pathway,
-    .jobs-page-root table.jm-grid {
-      display: table !important;
-    }
-    .jobs-page-root table.responsive-table > tbody { display: table-row-group !important; }
-    .jobs-page-root table.responsive-table > tbody > tr { display: table-row !important; }
-    .jobs-page-root table.responsive-table > tbody > tr > td { display: table-cell !important; }
-
-    /* Suppress USF-added pseudo content from [data-usf-tblcolumn] */
-    .jobs-page-root table td::before,
-    .jobs-page-root table td::after,
-    .jobs-page-root table td[data-usf-tblcolumn]::before,
-    .jobs-page-root table td[data-usf-tblcolumn]::after {
-      content: none !important;
-      display: none !important;
+    .jobs-page-root .jm-full {
+      grid-column: 1 / -1 !important;
     }
 
     @media (max-width: 900px) {
-      .jobs-page-root table.cards2 > tbody > tr,
-      .jobs-page-root table.cards3 > tbody > tr,
-      .jobs-page-root table.fl-strip > tbody > tr {
-        display: block !important;
-      }
-      .jobs-page-root table.cards2 > tbody > tr > td,
-      .jobs-page-root table.cards3 > tbody > tr > td,
-      .jobs-page-root table.fl-strip > tbody > tr > td {
-        display: block !important;
-        width: 100% !important;
-        padding: 0 0 12px 0 !important;
+      .jobs-page-root .cards2,
+      .jobs-page-root .cards3,
+      .jobs-page-root .fl-strip {
+        grid-template-columns: 1fr !important;
       }
     }
 
@@ -1699,17 +1608,17 @@
       if (!host) return;
       if (!Array.isArray(items) || !items.length) items = DEFAULT_STAT_BAR_ITEMS;
 
-      host.innerHTML = '<tr>' + items.map(function (item) {
+      host.innerHTML = items.map(function (item) {
         var itemName = item && item.item_name ? String(item.item_name) : "";
         var value = item && item.value ? escapeHtml(item.value) : "";
         var title = item && item.title ? escapeHtml(item.title) : "";
         var citation = item && item.citation ? escapeHtml(item.citation) : "";
-        return '<td><div class="stat">' +
+        return '<div class="stat">' +
           '<div class="' + getStatNumberClass(itemName) + '">' + value + '</div>' +
           '<div class="stat-label">' + title + '</div>' +
           '<div class="stat-src">' + citation + '</div>' +
-          '</div></td>';
-      }).join("") + '</tr>';
+          '</div>';
+      }).join("");
     }
 
     function getSpotlightNumberClass(itemName) {
@@ -1726,17 +1635,17 @@
       if (!host) return;
       if (!Array.isArray(items) || !items.length) items = DEFAULT_PROSPECTIVE_SPOTLIGHT_ITEMS;
 
-      host.innerHTML = '<tr>' + items.map(function (item) {
+      host.innerHTML = items.map(function (item) {
         var itemName = item && item.item_name ? String(item.item_name) : "";
         var value = item && item.value ? escapeHtml(item.value) : "";
         var title = item && item.title ? escapeHtml(item.title) : "";
         var citation = item && item.citation ? escapeHtml(item.citation) : "";
-        return '<td><div class="fl-cell">' +
+        return '<div class="fl-cell">' +
           '<div class="' + getSpotlightNumberClass(itemName) + '">' + value + '</div>' +
           '<div class="fl-desc">' + title + '</div>' +
           (citation ? '<div class="fl-src">' + citation + '</div>' : "") +
-          '</div></td>';
-      }).join("") + '</tr>';
+          '</div>';
+      }).join("");
     }
 
     function renderCurrentMetroItems(items) {
@@ -1744,16 +1653,16 @@
       if (!host) return;
       if (!Array.isArray(items) || !items.length) items = DEFAULT_CURRENT_METRO_ITEMS;
 
-      host.innerHTML = '<tr>' + items.map(function (item) {
+      host.innerHTML = items.map(function (item) {
         var value = item && item.value ? escapeHtml(item.value) : "";
         var title = item && item.title ? escapeHtml(item.title) : "";
         var citation = item && item.citation ? escapeHtml(item.citation) : "";
-        return '<td><div class="fl-cell">' +
+        return '<div class="fl-cell">' +
           '<div class="fl-num">' + value + '</div>' +
           '<div class="fl-desc">' + title + '</div>' +
           (citation ? '<div class="fl-src">' + citation + '</div>' : "") +
-          '</div></td>';
-      }).join("") + '</tr>';
+          '</div>';
+      }).join("");
     }
 
     function getBadgeColorClass(badgeColor) {
@@ -1766,17 +1675,17 @@
       if (!host) return;
       if (!Array.isArray(items) || !items.length) items = DEFAULT_PROSPECTIVE_AI_CARDS;
 
-      host.innerHTML = '<tr>' + items.map(function (item) {
+      host.innerHTML = items.map(function (item) {
         var badge = item && item.badge ? escapeHtml(item.badge) : "";
         var badgeColor = getBadgeColorClass(item && item.badge_color ? String(item.badge_color) : "");
         var title = item && item.title ? escapeHtml(item.title) : "";
         var body = item && item.body ? escapeHtml(item.body) : "";
-        return '<td><div class="card">' +
+        return '<div class="card">' +
           '<div class="badge ' + badgeColor + '">' + badge + '</div>' +
           '<h3 class="card-head">' + title + '</h3>' +
           '<div class="card-body">' + body + '</div>' +
-          '</div></td>';
-      }).join("") + '</tr>';
+          '</div>';
+      }).join("");
     }
 
     function renderCurrentResourceCards(items) {
@@ -1784,7 +1693,7 @@
       if (!host) return;
       if (!Array.isArray(items) || !items.length) items = DEFAULT_CURRENT_RESOURCES_CARDS;
 
-      host.innerHTML = '<tr>' + items.map(function (item) {
+      host.innerHTML = items.map(function (item) {
         var badge = item && item.badge ? escapeHtml(item.badge) : "";
         var badgeColor = getBadgeColorClass(item && item.badge_color ? String(item.badge_color) : "");
         var title = item && item.title ? escapeHtml(item.title) : "";
@@ -1793,13 +1702,13 @@
         var ctaHref = item && item.cta_href ? escapeHtml(item.cta_href) : "#";
         var ctaTarget = item && item.cta_target === "_blank" ? ' target="_blank" rel="noopener noreferrer"' : "";
         var cta = ctaText ? '<a class="card-cta" href="' + ctaHref + '"' + ctaTarget + '>' + ctaText + '</a>' : "";
-        return '<td><div class="card">' +
+        return '<div class="card">' +
           '<div class="badge ' + badgeColor + '">' + badge + '</div>' +
           '<h3 class="card-head">' + title + '</h3>' +
           '<div class="card-body">' + body + '</div>' +
           cta +
-          '</div></td>';
-      }).join("") + '</tr>';
+          '</div>';
+      }).join("");
     }
 
     function renderEmployerValueCards(items) {
@@ -1807,7 +1716,7 @@
       if (!host) return;
       if (!Array.isArray(items) || !items.length) items = DEFAULT_EMPLOYER_VALUE_CARDS;
 
-      host.innerHTML = '<tr>' + items.map(function (item) {
+      host.innerHTML = items.map(function (item) {
         var badge = item && item.badge ? escapeHtml(item.badge) : "";
         var badgeColor = getBadgeColorClass(item && item.badge_color ? String(item.badge_color) : "");
         var title = item && item.title ? escapeHtml(item.title) : "";
@@ -1816,13 +1725,13 @@
         var ctaHref = item && item.cta_href ? escapeHtml(item.cta_href) : "#";
         var ctaTarget = item && item.cta_target === "_blank" ? ' target="_blank" rel="noopener noreferrer"' : "";
         var cta = ctaText ? '<a class="card-cta" href="' + ctaHref + '"' + ctaTarget + '>' + ctaText + '</a>' : "";
-        return '<td><div class="card">' +
+        return '<div class="card">' +
           '<div class="badge ' + badgeColor + '">' + badge + '</div>' +
           '<h3 class="card-head">' + title + '</h3>' +
           '<div class="card-body">' + body + '</div>' +
           cta +
-          '</div></td>';
-      }).join("") + '</tr>';
+          '</div>';
+      }).join("");
     }
 
     function renderEmployerRecruitingCards(items) {
@@ -1830,19 +1739,19 @@
       if (!host) return;
       if (!Array.isArray(items) || !items.length) items = DEFAULT_EMPLOYER_RECRUITING_CARDS;
 
-      host.innerHTML = '<tr>' + items.map(function (item) {
+      host.innerHTML = items.map(function (item) {
         var title = item && item.title ? escapeHtml(item.title) : "";
         var body = item && item.body ? escapeHtml(item.body) : "";
         var ctaText = item && item.cta_text ? escapeHtml(item.cta_text) : "";
         var ctaHref = item && item.cta_href ? escapeHtml(item.cta_href) : "#";
         var ctaTarget = item && item.cta_target === "_blank" ? ' target="_blank" rel="noopener noreferrer"' : "";
         var cta = ctaText ? '<a class="card-cta" href="' + ctaHref + '"' + ctaTarget + '>' + ctaText + '</a>' : "";
-        return '<td><div class="card">' +
+        return '<div class="card">' +
           '<h3 class="card-head">' + title + '</h3>' +
           '<div class="card-body">' + body + '</div>' +
           cta +
-          '</div></td>';
-      }).join("") + '</tr>';
+          '</div>';
+      }).join("");
     }
 
     function renderDashboardStats(payload) {
@@ -1894,10 +1803,10 @@
     // ]]>
   </script>
   <div class="jobs-page-root">
-  <table class="stat-bar"><tbody id="stat-bar-items">
+  <div class="stat-bar" id="stat-bar-items">
     <!-- GEN:stat_items:start -->
     <!-- GEN:stat_items:end -->
-  </tbody></table>
+  </div>
 
   <div class="tabs">
     <button class="tab active" onclick="showPanel('prospective',this)">Prospective students</button>
@@ -2013,17 +1922,17 @@
     <div id="projection-debug" class="projection-debug" aria-live="polite"></div>
     <p class="slabel">Florida spotlight</p>
     <div class="prospective-spotlight-row">
-      <table class="fl-strip"><tbody id="prospective-spotlight-items">
+      <div class="fl-strip" id="prospective-spotlight-items">
         <!-- GEN:prospective_spotlight:start -->
       <!-- GEN:prospective_spotlight:end -->
-      </tbody></table>
+      </div>
     </div>
     <div class="prospective-ai-label-row">
       <p class="slabel">Why the AI era boosts &mdash; not replaces &mdash; computing careers</p>
     </div>
     <div class="prospective-ai-cards-row">
-      <table class="cards2"><tbody id="prospective-ai-cards-items">
-      </tbody></table>
+      <div class="cards2" id="prospective-ai-cards-items">
+      </div>
     </div>
     <div class="source-note">
       <!-- GEN:prospective_source_note:start -->
@@ -2036,48 +1945,48 @@
   <div class="panel" id="panel-current">
     <p class="slabel">Your career pathway</p>
     <div class="current-pathway-row">
-      <table class="pathway"><tbody><tr>
-        <td><div class="pw-step">
+      <div class="pathway">
+        <div class="pw-step">
           <div class="pw-num">01</div>
           <div class="pw-label">Advising</div>
           <div class="pw-sub">Meet career advisor &mdash; semester 1</div>
-        </div></td>
-        <td><div class="pw-step">
+        </div>
+        <div class="pw-step">
           <div class="pw-num">02</div>
           <div class="pw-label">Resume &amp; portfolio</div>
           <div class="pw-sub">GitHub, LinkedIn, capstone</div>
-        </div></td>
-        <td><div class="pw-step">
+        </div>
+        <div class="pw-step">
           <div class="pw-num">03</div>
           <div class="pw-label">Employer events</div>
           <div class="pw-sub">Talks, fairs, info sessions</div>
-        </div></td>
-        <td><div class="pw-step">
+        </div>
+        <div class="pw-step">
           <div class="pw-num">04</div>
           <div class="pw-label">Internship</div>
           <div class="pw-sub">Co-op, research, or industry</div>
-        </div></td>
-        <td><div class="pw-step">
+        </div>
+        <div class="pw-step">
           <div class="pw-num">05</div>
           <div class="pw-label">Full-time offer</div>
           <div class="pw-sub">FL #3 for tech job gains</div>
-        </div></td>
-      </tr></tbody></table>
+        </div>
+      </div>
     </div>
     <div class="current-resources-label-row">
       <p class="slabel">Career resources</p>
     </div>
     <div class="current-resources-cards-row">
-      <table class="cards3"><tbody id="current-resources-cards-items">
+      <div class="cards3" id="current-resources-cards-items">
         <!-- GEN:current_resources:start -->
       <!-- GEN:current_resources:end -->
-      </tbody></table>
+      </div>
     </div>
     <p class="slabel">Florida metro opportunities</p>
-    <table class="fl-strip"><tbody id="current-metro-items">
+    <div class="fl-strip" id="current-metro-items">
       <!-- GEN:current_metro:start -->
     <!-- GEN:current_metro:end -->
-    </tbody></table>
+    </div>
   </div>
 
   <!-- ══ FIND MY JOB ══ -->
@@ -2089,9 +1998,8 @@
       <h3>Find my job &mdash; AI-powered matching</h3>
       <p>Fill in your profile and get 4 personalized role recommendations with direct links to live job searches on
         LinkedIn and Indeed, pre-filtered for your skills and location.</p>
-      <table class="jm-grid"><tbody>
-        <tr>
-        <td><div class="jm-field">
+      <div class="jm-grid">
+        <div class="jm-field">
           <label>Degree program</label>
           <select id="jm-program">
             <option value="">Select program...</option>
@@ -2103,8 +2011,8 @@
             <option value="computer engineering">MS Computer Engineering</option>
             <option value="computer science">PhD Computer Science / AI</option>
           </select>
-        </div></td>
-        <td><div class="jm-field">
+        </div>
+        <div class="jm-field">
           <label>Graduation / availability</label>
           <select id="jm-grad">
             <!-- GEN:jm_grad_options:start -->
@@ -2118,14 +2026,12 @@
             <option>Seeking internship now</option>
     <!-- GEN:jm_grad_options:end -->
           </select>
-        </div></td>
-        </tr>
-        <tr>
-        <td><div class="jm-field">
+        </div>
+        <div class="jm-field">
           <label>Top technical skills</label>
           <input type="text" id="jm-skills" placeholder="e.g. Python, PyTorch, SQL, React, Kubernetes..." />
-        </div></td>
-        <td><div class="jm-field">
+        </div>
+        <div class="jm-field">
           <label>Preferred location</label>
           <select id="jm-location">
             <!-- value = USAJOBS LocationName-friendly strings; default Florida matches editor debug searches -->
@@ -2135,18 +2041,16 @@
             <option value="Miami, FL">Miami / South FL</option>
             <option value="United States">Remote / anywhere in US</option>
           </select>
-        </div></td>
-        </tr>
-        <tr>
-        <td><div class="jm-field">
+        </div>
+        <div class="jm-field">
           <label>Work authorization</label>
           <select id="jm-auth">
             <option>US citizen / permanent resident</option>
             <option>F-1 OPT / STEM OPT eligible</option>
             <option>H-1B sponsorship needed</option>
           </select>
-        </div></td>
-        <td><div class="jm-field">
+        </div>
+        <div class="jm-field">
           <label>Work arrangement</label>
           <select id="jm-mode">
             <option>No preference</option>
@@ -2154,16 +2058,13 @@
             <option>Hybrid</option>
             <option>Remote only</option>
           </select>
-        </div></td>
-        </tr>
-        <tr>
-        <td colspan="2"><div class="jm-field jm-full">
+        </div>
+        <div class="jm-field jm-full">
           <label>Interests &amp; additional context (optional)</label>
           <textarea id="jm-notes"
             placeholder="e.g. interested in healthcare AI, open to startups, 2 fintech internships, want to avoid defense sector..."></textarea>
-        </div></td>
-        </tr>
-      </tbody></table>
+        </div>
+      </div>
       <button class="btn-primary" id="jm-btn" onclick="runJobMatch()">Find my job matches &rarr;</button>
     </div>
 
@@ -2181,9 +2082,8 @@
       <h3>Find my internship &mdash; AI-powered matching</h3>
       <p>Fill in your profile and get 4 personalized internship recommendations with direct links to live job searches on
         LinkedIn and Indeed, pre-filtered for your skills and location.</p>
-      <table class="jm-grid"><tbody>
-        <tr>
-        <td><div class="jm-field">
+      <div class="jm-grid">
+        <div class="jm-field">
           <label>Degree program</label>
           <select id="ji-program">
             <option value="">Select program...</option>
@@ -2194,8 +2094,8 @@
             <option value="computer engineering">MS Computer Engineering</option>
             <option value="computer science">PhD Computer Science / AI</option>
           </select>
-        </div></td>
-        <td><div class="jm-field">
+        </div>
+        <div class="jm-field">
           <label>Graduation / availability</label>
           <select id="ji-grad">
             <option>Select...</option>
@@ -2207,14 +2107,12 @@
             <option>1-2 years out</option>
             <option>Seeking internship now</option>
           </select>
-        </div></td>
-        </tr>
-        <tr>
-        <td><div class="jm-field">
+        </div>
+        <div class="jm-field">
           <label>Top technical skills</label>
           <input type="text" id="ji-skills" placeholder="e.g. Python, PyTorch, SQL, React, Kubernetes..." />
-        </div></td>
-        <td><div class="jm-field">
+        </div>
+        <div class="jm-field">
           <label>Preferred location</label>
           <select id="ji-location">
             <option value="Florida" selected>Anywhere in Florida</option>
@@ -2223,18 +2121,16 @@
             <option value="Miami, FL">Miami / South FL</option>
             <option value="United States">Remote / anywhere in US</option>
           </select>
-        </div></td>
-        </tr>
-        <tr>
-        <td><div class="jm-field">
+        </div>
+        <div class="jm-field">
           <label>Work authorization</label>
           <select id="ji-auth">
             <option>US citizen / permanent resident</option>
             <option>F-1 OPT / STEM OPT eligible</option>
             <option>H-1B sponsorship needed</option>
           </select>
-        </div></td>
-        <td><div class="jm-field">
+        </div>
+        <div class="jm-field">
           <label>Work arrangement</label>
           <select id="ji-mode">
             <option>No preference</option>
@@ -2242,16 +2138,13 @@
             <option>Hybrid</option>
             <option>Remote only</option>
           </select>
-        </div></td>
-        </tr>
-        <tr>
-        <td colspan="2"><div class="jm-field jm-full">
+        </div>
+        <div class="jm-field jm-full">
           <label>Interests &amp; additional context (optional)</label>
           <textarea id="ji-notes"
             placeholder="e.g. interested in healthcare AI, open to startups, 2 fintech internships, want to avoid defense sector..."></textarea>
-        </div></td>
-        </tr>
-      </tbody></table>
+        </div>
+      </div>
       <button class="btn-primary" id="ji-btn" onclick="runInternshipMatch()">Find my internship matches &rarr;</button>
     </div>
 
@@ -2303,13 +2196,13 @@
   <!-- ══ EMPLOYERS ══ -->
   <div class="panel" id="panel-employers">
     <p class="slabel">Why recruit from Bellini College</p>
-    <table class="cards2"><tbody id="employer-value-cards-items">
+    <div class="cards2" id="employer-value-cards-items">
       <!-- GEN:employer_value_cards:start -->
     <!-- GEN:employer_value_cards:end -->
-    </tbody></table>
+    </div>
     <p class="slabel">Recruiting options</p>
-    <table class="cards3"><tbody id="employer-recruiting-cards-items">
-    </tbody></table>
+    <div class="cards3" id="employer-recruiting-cards-items">
+    </div>
     <p class="slabel">Contact our career team</p>
     <div class="recruit-form">
       <div class="form-row"><input type="text" placeholder="Company name" /><input type="text"
