@@ -1297,6 +1297,76 @@
     }
 
     /* Aggressive host-CSS overrides for embedded context */
+    /* Reset element-level rules from host page (styles.css, legacy-*.css) */
+    .jobs-page-root p {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      display: block !important;
+      font-size: inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
+      margin-top: 0 !important;
+      text-decoration: none !important;
+      text-shadow: none !important;
+    }
+
+    .jobs-page-root table {
+      border-spacing: 0 !important;
+    }
+
+    .jobs-page-root td {
+      border-top: 0 !important;
+      border-bottom: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    .jobs-page-root .occ-table th,
+    .jobs-page-root .occ-table td {
+      border-bottom: 0.5px solid var(--border) !important;
+    }
+
+    .jobs-page-root .occ-table tr:last-child td {
+      border-bottom: 0 !important;
+    }
+
+    .jobs-page-root h3 {
+      text-transform: none !important;
+      letter-spacing: 0.01em !important;
+      color: inherit !important;
+      font-size: 26px !important;
+    }
+
+    .jobs-page-root .card-head {
+      font-size: 1.5em !important;
+      color: #006747 !important;
+    }
+
+    .jobs-page-root .jm-form h3,
+    .jobs-page-root .ev-submit-box h3 {
+      font-size: 16px !important;
+    }
+
+    .jobs-page-root button {
+      display: inline-block !important;
+      margin: 0 !important;
+      cursor: pointer !important;
+      text-decoration: none !important;
+    }
+
+    .jobs-page-root .btn-primary-bellini-jobs {
+      display: inline-block !important;
+      padding: 0.5em 1em !important;
+      margin: 0 !important;
+    }
+
+    .jobs-page-root input,
+    .jobs-page-root select,
+    .jobs-page-root textarea {
+      padding: 7px 10px !important;
+      font-size: 13px !important;
+      width: 100% !important;
+    }
+
     .jobs-page-root .fl-strip,
     .jobs-page-root .cards2,
     .jobs-page-root .cards3,
