@@ -1650,7 +1650,7 @@
       if (!Array.isArray(items) || !items.length) items = DEFAULT_PROSPECTIVE_AI_CARDS;
 
       host.innerHTML = items.map(function (item) {
-        var badge = item && item.badge-bellini-jobs ? escapeHtml(item.badge-bellini-jobs) : "";
+        var badge = item && item.badge ? escapeHtml(item.badge) : "";
         var badgeColor = getBadgeColorClass(item && item.badge_color ? String(item.badge_color) : "");
         var title = item && item.title ? escapeHtml(item.title) : "";
         var body = item && item.body ? escapeHtml(item.body) : "";
@@ -1668,7 +1668,7 @@
       if (!Array.isArray(items) || !items.length) items = DEFAULT_CURRENT_RESOURCES_CARDS;
 
       host.innerHTML = items.map(function (item) {
-        var badge = item && item.badge-bellini-jobs ? escapeHtml(item.badge-bellini-jobs) : "";
+        var badge = item && item.badge ? escapeHtml(item.badge) : "";
         var badgeColor = getBadgeColorClass(item && item.badge_color ? String(item.badge_color) : "");
         var title = item && item.title ? escapeHtml(item.title) : "";
         var body = item && item.body ? escapeHtml(item.body) : "";
@@ -1691,7 +1691,7 @@
       if (!Array.isArray(items) || !items.length) items = DEFAULT_EMPLOYER_VALUE_CARDS;
 
       host.innerHTML = items.map(function (item) {
-        var badge = item && item.badge-bellini-jobs ? escapeHtml(item.badge-bellini-jobs) : "";
+        var badge = item && item.badge ? escapeHtml(item.badge) : "";
         var badgeColor = getBadgeColorClass(item && item.badge_color ? String(item.badge_color) : "");
         var title = item && item.title ? escapeHtml(item.title) : "";
         var body = item && item.body ? escapeHtml(item.body) : "";
