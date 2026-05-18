@@ -47,20 +47,22 @@
       display: flex;
       flex-direction: column;
       height: 100%;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      text-decoration: none;
+      background: transparent;
+      border: none;
       color: inherit;
-      overflow: hidden;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      overflow: visible;
     }
 
     .bellini-news-widget .news-card:hover,
-    .bellini-news-widget .news-card:focus-visible {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-      border-color: #c8d0d8;
+    .bellini-news-widget .news-card:focus-within {
+      
       outline: none;
+    }
+
+    .bellini-news-widget .news-image-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
     }
 
     .bellini-news-widget .news-image-wrap {
@@ -81,25 +83,69 @@
     .bellini-news-widget .news-body {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
-      padding: 1rem 1.1rem 1.2rem;
+      gap: 0.45rem;
+      padding: 0.8rem 0 0;
       flex: 1 1 auto;
     }
 
     .bellini-news-widget .news-title {
       margin: 0;
-      font-family: "Barlow Condensed", Arial, sans-serif;
-      font-size: clamp(1.55rem, 2vw, 2rem);
-      line-height: 1;
+      font-family: "Open Sans", Arial, sans-serif;
+      font-size: 20px;
       font-weight: 700;
-      color: var(--usf-green);
+      color: #006747;
+      line-height: 1.16;
+    }
+
+    .bellini-news-widget .news-title-link {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .bellini-news-widget .news-card:hover .news-title-link,
+    .bellini-news-widget .news-card:focus-within .news-title-link {
+      text-decoration: underline;
+      text-underline-offset: 0.12em;
     }
 
     .bellini-news-widget .news-summary {
       margin: 0;
-      font-size: 1rem;
-      line-height: 1.55;
-      color: var(--muted);
+      font-family: "Open Sans", Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #000000;
+      line-height: 1.5;
+    }
+
+    .bellini-news-widget .bellini_newsItem_details {
+      margin: 0;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 17.6px;
+      font-weight: 600;
+      color: #3f565e;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    .bellini-news-widget .newsItem_date {
+      margin-right: 0.75rem;
+    }
+
+    .bellini-news-widget .bellini_newsItem_category {
+      display: inline-block;
+    }
+
+    .bellini-news-widget .bellini-news-link,
+    .bellini-news-widget .bellini_newsItem_category a {
+      color: #006747;
+      text-decoration: none;
+    }
+
+    .bellini-news-widget .bellini-news-link:hover,
+    .bellini-news-widget .bellini-news-link:focus-visible,
+    .bellini-news-widget .bellini_newsItem_category a:hover,
+    .bellini-news-widget .bellini_newsItem_category a:focus-visible {
+      text-decoration: underline;
     }
 
     @media (max-width: 980px) {
@@ -114,82 +160,111 @@
     <div class="news-shell">
       <div class="news-grid">
         
-         <a
-          class="news-card"
-          href="https://www.usf.edu/ai-cybersecurity-computing/news/2026/usf-researcher-leads-workshop-on-explainable-voice-ai-in-healthcare-at-voice-ai-symposium.aspx"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="USF researcher leads workshop on explainable voice AI in healthcare at Voice AI Symposium"
-        >
-          <span class="news-image-wrap">
-            <img
-              class="news-image"
-              src="1.jpg"
-              alt="USF researcher leads workshop on explainable voice AI in healthcare at Voice AI Symposium"
-            />
-          </span>
+         <article class="news-card">
+          <a
+            class="news-image-link"
+            href="https://www.usf.edu/ai-cybersecurity-computing/news/2026/usf-researcher-leads-workshop-on-explainable-voice-ai-in-healthcare-at-voice-ai-symposium.aspx"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="USF researcher leads workshop on explainable voice AI in healthcare at Voice AI Symposium"
+          >
+            <span class="news-image-wrap">
+              <img
+                class="news-image"
+                src="1.jpg"
+                alt="USF researcher leads workshop on explainable voice AI in healthcare at Voice AI Symposium"
+              />
+            </span>
+          </a>
           <div class="news-body">
-            <h3 class="news-title">USF researcher leads workshop on explainable voice AI in healthcare at Voice AI Symposium</h3>
+            <h3 class="news-title">
+              <a
+                class="news-title-link"
+                href="https://www.usf.edu/ai-cybersecurity-computing/news/2026/usf-researcher-leads-workshop-on-explainable-voice-ai-in-healthcare-at-voice-ai-symposium.aspx"
+                target="_blank"
+                rel="noopener noreferrer"
+              >USF researcher leads workshop on explainable voice AI in healthcare at Voice AI Symposium</a>
+            </h3>
             <p class="news-summary">
               At the 2026 Voice AI Symposium, researchers highlighted how collaboration between clinicians and computer scientists is shaping the future of healthcare AI. Workshops and panels explored explainable models, real-world challenges, and new technologies using voice data. The event emphasized building trustworthy tools that translate innovation into practical patient care solutions and improving accuracy outcomes safety adoption across clinical everyday environments.
             </p>
+            <p class="bellini_newsItem_details"><span class="newsItem_date">May 14, 2026</span><span class="bellini_newsItem_category"><a class="bellini-news-link" href="/ai-cybersecurity-computing/news/index.aspx?category=Artificial%20Intelligence&amp;year=all">Artificial Intelligence</a></span>, <span class="bellini_newsItem_category"><a class="bellini-news-link" href="/ai-cybersecurity-computing/news/index.aspx?category=Research&amp;year=all">Research</a></span></p>
           </div>
-        </a>
+        </article>
     
-         <a
-          class="news-card"
-          href="https://www.usf.edu/ai-cybersecurity-computing/news/2026/induction-ceremonies-recognize-bellini-college-students-entering-tech-and-engineering-fields.aspx"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Induction ceremonies recognize Bellini College students entering tech and engineering fields"
-        >
-          <span class="news-image-wrap">
-            <img
-              class="news-image"
-              src="2.jpg"
-              alt="Induction ceremonies recognize Bellini College students entering tech and engineering fields"
-            />
-          </span>
+         <article class="news-card">
+          <a
+            class="news-image-link"
+            href="https://www.usf.edu/ai-cybersecurity-computing/news/2026/induction-ceremonies-recognize-bellini-college-students-entering-tech-and-engineering-fields.aspx"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Induction ceremonies recognize Bellini College students entering tech and engineering fields"
+          >
+            <span class="news-image-wrap">
+              <img
+                class="news-image"
+                src="2.jpg"
+                alt="Induction ceremonies recognize Bellini College students entering tech and engineering fields"
+              />
+            </span>
+          </a>
           <div class="news-body">
-            <h3 class="news-title">Induction ceremonies recognize Bellini College students entering tech and engineering fields</h3>
+            <h3 class="news-title">
+              <a
+                class="news-title-link"
+                href="https://www.usf.edu/ai-cybersecurity-computing/news/2026/induction-ceremonies-recognize-bellini-college-students-entering-tech-and-engineering-fields.aspx"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Induction ceremonies recognize Bellini College students entering tech and engineering fields</a>
+            </h3>
             <p class="news-summary">
               Students from the Bellini College of Artificial Intelligence, Cybersecurity and Computing were recognized during induction ceremonies celebrating their transition into engineering and technology professions. The event highlighted the ethical responsibilities of the field, honored graduates entering computer science, cybersecurity, information technology and engineering careers, and featured keynote remarks from physician, innovator and Bellini College advisory board member José Morey.
             </p>
+            <p class="bellini_newsItem_details"><span class="newsItem_date">May 8, 2026</span><span class="bellini_newsItem_category"><a class="bellini-news-link" href="/ai-cybersecurity-computing/news/index.aspx?category=Computing&amp;year=all">Computing</a></span>, <span class="bellini_newsItem_category"><a class="bellini-news-link" href="/ai-cybersecurity-computing/news/index.aspx?category=Cybersecurity&amp;year=all">Cybersecurity</a></span></p>
           </div>
-        </a>
+        </article>
     
-         <a
-          class="news-card"
-          href="https://www.usf.edu/ai-cybersecurity-computing/news/images/2026/stroke-rehab-device-490.jpg"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="USF-led innovations tackle cybersecurity and health challenges with early-stage funding"
-        >
-          <span class="news-image-wrap">
-            <img
-              class="news-image"
-              src="3.jpg"
-              alt="USF-led innovations tackle cybersecurity and health challenges with early-stage funding"
-            />
-          </span>
+         <article class="news-card">
+          <a
+            class="news-image-link"
+            href="https://www.usf.edu/ai-cybersecurity-computing/news/images/2026/stroke-rehab-device-490.jpg"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="USF-led innovations tackle cybersecurity and health challenges with early-stage funding"
+          >
+            <span class="news-image-wrap">
+              <img
+                class="news-image"
+                src="3.jpg"
+                alt="USF-led innovations tackle cybersecurity and health challenges with early-stage funding"
+              />
+            </span>
+          </a>
           <div class="news-body">
-            <h3 class="news-title">USF-led innovations tackle cybersecurity and health challenges with early-stage funding</h3>
+            <h3 class="news-title">
+              <a
+                class="news-title-link"
+                href="https://www.usf.edu/ai-cybersecurity-computing/news/images/2026/stroke-rehab-device-490.jpg"
+                target="_blank"
+                rel="noopener noreferrer"
+              >USF-led innovations tackle cybersecurity and health challenges with early-stage funding</a>
+            </h3>
             <p class="news-summary">
               The Florida High Tech Corridor and USF Research continue to accelerate the translation of bold ideas into real-world impact through the Early-Stage Innovation Fund, announcing a new cohort of faculty-led projects poised for commercialization.
             </p>
+            <p class="bellini_newsItem_details"><span class="newsItem_date">May 8, 2026</span><span class="bellini_newsItem_category"><a class="bellini-news-link" href="/ai-cybersecurity-computing/news/index.aspx?category=Research&amp;year=all">Research</a></span></p>
           </div>
-        </a>
+        </article>
     
       </div>
-      <br/>
+      <br/><strong>
       <a
+            class="bellini-news-link more-news-link"
             href="https://www.usf.edu/ai-cybersecurity-computing/news/"
             target="_blank"
             rel="noopener noreferrer"
-            style="display:inline; color:#006747; font-weight:700; text-decoration:none;"
-            onmouseover="this.style.textDecoration='underline'"
-            onmouseout="this.style.textDecoration='none'"
         >More News &gt;&gt;&gt;</a>
+        </strong>
     </div>
   </section>
 </body>
