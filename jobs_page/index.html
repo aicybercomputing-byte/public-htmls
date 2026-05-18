@@ -1299,6 +1299,60 @@
       color: var(--text-3);
       font-family: 'Open Sans', sans-serif;
     }
+
+    /* Aggressive host-CSS overrides for embedded context */
+    .jobs-page-root .fl-strip,
+    .jobs-page-root .cards2,
+    .jobs-page-root .cards3,
+    .jobs-page-root .fl-cell,
+    .jobs-page-root .card,
+    .jobs-page-root #panel-prospective > *,
+    .jobs-page-root #panel-matchme > * {
+      overflow: visible !important;
+      clip: auto !important;
+      clip-path: none !important;
+      max-height: none !important;
+    }
+
+    .jobs-page-root .prospective-ai-label-row .slabel {
+      overflow: visible !important;
+      clip: auto !important;
+      clip-path: none !important;
+      max-height: none !important;
+      display: block !important;
+      width: 100% !important;
+    }
+
+    .jobs-page-root .jm-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+      margin-bottom: 12px !important;
+    }
+
+    .jobs-page-root .jm-field {
+      display: flex !important;
+      flex-direction: column !important;
+      width: auto !important;
+      flex: 1 !important;
+      gap: 4px !important;
+    }
+
+    .jobs-page-root .jm-full {
+      grid-column: 1 / -1 !important;
+    }
+
+    .jobs-page-root .form-row {
+      display: flex !important;
+      gap: 10px !important;
+      width: 100% !important;
+      margin-bottom: 10px !important;
+    }
+
+    .jobs-page-root .form-row > * {
+      flex: 1 !important;
+      width: auto !important;
+    }
   </style>
 </head>
 
