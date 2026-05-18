@@ -1398,6 +1398,64 @@
       min-width: 0 !important;
       width: auto !important;
     }
+
+    /* Host-page CSS collisions: label, select/option, and card child elements */
+    .jobs-page-root label {
+      display: block !important;
+      overflow: visible !important;
+      text-indent: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      position: static !important;
+      max-height: none !important;
+      clip: auto !important;
+      clip-path: none !important;
+      float: none !important;
+      width: auto !important;
+      transform: none !important;
+      list-style: none !important;
+    }
+
+    .jobs-page-root label::before,
+    .jobs-page-root label::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    .jobs-page-root select {
+      list-style: none !important;
+      text-indent: 0 !important;
+      overflow: visible !important;
+    }
+
+    .jobs-page-root select::before,
+    .jobs-page-root select::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    .jobs-page-root .badge-bellini-jobs,
+    .jobs-page-root .card-head,
+    .jobs-page-root .card-body,
+    .jobs-page-root .card-cta,
+    .jobs-page-root .slabel-bellini-jobs,
+    .jobs-page-root .jm-field label {
+      overflow: visible !important;
+      clip: auto !important;
+      clip-path: none !important;
+      max-height: none !important;
+      text-indent: 0 !important;
+    }
+
+    .jobs-page-root .badge-bellini-jobs::before,
+    .jobs-page-root .badge-bellini-jobs::after,
+    .jobs-page-root .card-head::before,
+    .jobs-page-root .card-head::after,
+    .jobs-page-root .card-body::before,
+    .jobs-page-root .card-body::after {
+      content: none !important;
+      display: none !important;
+    }
   </style>
 </head>
 
