@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <title>Tech Careers &amp; Job Outlook â€” Bellini College</title>
+  <title>Tech Careers &amp; Job Outlook — Bellini College</title>
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%230f6e56'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -293,7 +293,7 @@
 
     .card-cta::after,
     .ev-add::after {
-      content: "â€º";
+      content: "›";
       color: #9ccb3c;
       display: inline-block;
       margin-left: 0.35em;
@@ -878,7 +878,7 @@
       cursor: not-allowed;
     }
 
-    /* â”€â”€ JOB MATCH â”€â”€ */
+    /* ── JOB MATCH ── */
     .jm-form {
       border: 1px solid #b2b2b2;
       border-radius: 0;
@@ -1080,7 +1080,7 @@
       color: #fff;
     }
 
-    /* â”€â”€ EVENTS â”€â”€ */
+    /* ── EVENTS ── */
     .ev-filter-row {
       display: flex;
       gap: 8px;
@@ -1836,13 +1836,13 @@
   <div class="tabs-bellini-jobs">
     <button class="tab-bellini-jobs active" onclick="showPanel('prospective',this)">Prospective students</button>
     <button class="tab-bellini-jobs" onclick="showPanel('current',this)">Current students</button>
-    <button class="tab-bellini-jobs" onclick="showPanel('matchme',this)">Find my job âœ¦</button>
-    <button class="tab-bellini-jobs" onclick="showPanel('internships',this)">Find my internship âœ¦</button>
+    <button class="tab-bellini-jobs" onclick="showPanel('matchme',this)">Find my job ✦</button>
+    <button class="tab-bellini-jobs" onclick="showPanel('internships',this)">Find my internship ✦</button>
     <button class="tab-bellini-jobs" onclick="showPanel('events',this)">Events calendar</button>
     <button class="tab-bellini-jobs" onclick="showPanel('employers',this)">Employers</button>
   </div>
 
-  <!-- â•â• PROSPECTIVE â•â• -->
+  <!-- ══ PROSPECTIVE ══ -->
   <div class="panel-bellini-jobs active" id="panel-prospective">
     <div class="slabel-bellini-jobs">National occupation projections &mdash; 2023 to 2033</div>
     <div class="projection-controls">
@@ -1976,7 +1976,7 @@
     </div>
   </div>
 
-  <!-- â•â• CURRENT STUDENTS â•â• -->
+  <!-- ══ CURRENT STUDENTS ══ -->
   <div class="panel-bellini-jobs" id="panel-current">
     <div class="slabel-bellini-jobs">Your career pathway</div>
     <div class="current-pathway-row">
@@ -2024,7 +2024,7 @@
     </div>
   </div>
 
-  <!-- â•â• FIND MY JOB â•â• -->
+  <!-- ══ FIND MY JOB ══ -->
   <div class="panel-bellini-jobs" id="panel-matchme">
     <div class="jm-form">
       <div id="jm-file-protocol-note" class="jm-file-note">
@@ -2111,7 +2111,7 @@
     <div id="jm-results"></div>
   </div>
 
-  <!-- â•â• FIND MY INTERNSHIP â•â• -->
+  <!-- ══ FIND MY INTERNSHIP ══ -->
   <div class="panel-bellini-jobs" id="panel-internships">
     <div class="jm-form">
       <div class="heading-bellini-jobs">Find my internship &mdash; AI-powered matching</div>
@@ -2191,7 +2191,7 @@
     <div id="ji-results"></div>
   </div>
 
-  <!-- â•â• EVENTS CALENDAR â•â• -->
+  <!-- ══ EVENTS CALENDAR ══ -->
   <div class="panel-bellini-jobs" id="panel-events">
     <div class="slabel-bellini-jobs">Upcoming career events</div>
     <div class="ev-filter-row">
@@ -2204,7 +2204,7 @@
     </div>
     <div class="ev-list" id="ev-list">
       <!-- GEN:event_items:start -->
-      <div class="slabel-bellini-jobs ev-loading-msg" style="margin-bottom:0.75rem;color:var(--text-2);">Loading eventsâ€¦</div>
+      <div class="slabel-bellini-jobs ev-loading-msg" style="margin-bottom:0.75rem;color:var(--text-2);">Loading events…</div>
     <!-- GEN:event_items:end -->
     </div>
 
@@ -2228,7 +2228,7 @@
     </div>
   </div>
 
-  <!-- â•â• EMPLOYERS â•â• -->
+  <!-- ══ EMPLOYERS ══ -->
   <div class="panel-bellini-jobs" id="panel-employers">
     <div class="slabel-bellini-jobs">Why recruit from Bellini College</div>
     <div class="cards2" id="employer-value-cards-items">
@@ -2258,7 +2258,7 @@
   <div class="page-footer-bellini-jobs">
     <span class="live-dot-bellini-jobs"></span>
     <!-- GEN:footer_text:start -->
-    <span class="footer-text-bellini-jobs">BLS MLR Feb 2025 â€¢ CompTIA State of Tech Workforce 2025 â€¢ AIMaps / LinkUp â€¢ Maintained by Bellini College Career Services â€¢ Updated quarterly</span>
+    <span class="footer-text-bellini-jobs">BLS MLR Feb 2025 • CompTIA State of Tech Workforce 2025 • AIMaps / LinkUp • Maintained by Bellini College Career Services • Updated quarterly</span>
     <!-- GEN:footer_text:end -->
   </div>
 
@@ -2469,7 +2469,7 @@
         html += '<tr>' +
           '<td>' + escapeHtml(r.title) + '</td>' +
           '<td class="mono-bellini-jobs">' + formatInt(r.jobs2023) + '</td>' +
-          '<td class="mono-bellini-jobs">' + (r.jobs2033 != null ? formatInt(r.jobs2033) : "â€”") + '</td>' +
+          '<td class="mono-bellini-jobs">' + (r.jobs2033 != null ? formatInt(r.jobs2033) : "—") + '</td>' +
           '<td class="pct-bellini-jobs up">' + formatPct(r.growthPct) + '</td>' +
           '<td><div class="bar-wrap"><div class="bar-track"><div class="bar-fill" style="width:' + w + '%"></div></div></div></td>' +
           '</tr>';
@@ -2477,8 +2477,8 @@
       const benchmarkWidth = Math.max(4, Math.min(100, Math.round((NATIONAL_GROWTH_BENCHMARK_PCT / maxGrowth) * 100)));
       html += '<tr>' +
         '<td style="color:var(--text-2)">All occupations (benchmark)</td>' +
-        '<td class="mono-bellini-jobs" style="color:var(--text-2)">â€”</td>' +
-        '<td class="mono-bellini-jobs" style="color:var(--text-2)">â€”</td>' +
+        '<td class="mono-bellini-jobs" style="color:var(--text-2)">—</td>' +
+        '<td class="mono-bellini-jobs" style="color:var(--text-2)">—</td>' +
         '<td class="pct-bellini-jobs up" style="color:var(--text-2)">+' + NATIONAL_GROWTH_BENCHMARK_PCT.toFixed(1) + '%</td>' +
         '<td><div class="bar-wrap"><div class="bar-track"><div class="bar-fill neutral-bellini-jobs" style="width:' + benchmarkWidth + '%"></div></div></div></td>' +
         '</tr>';
@@ -2845,7 +2845,7 @@
         const applyLink = j.apply_url ? `<a class="jm-link primary" href="${j.apply_url}" target="_blank">Apply now &rarr;</a>` : '';
         const linkedinLink = j.linkedin ? `<a class="jm-link primary" href="${j.linkedin}" target="_blank">Search on LinkedIn &rarr;</a>` : '';
         const indeedLink = j.indeed ? `<a class="jm-link" href="${j.indeed}" target="_blank">Search on Indeed &rarr;</a>` : '';
-        const meta = [j.location || '', j.pay || j.salary || '', j.source || '', j.provider ? `Provider: ${j.provider}` : ''].filter(Boolean).join(' â€¢ ');
+        const meta = [j.location || '', j.pay || j.salary || '', j.source || '', j.provider ? `Provider: ${j.provider}` : ''].filter(Boolean).join(' • ');
         html += `<div class="jm-result-card">
       <div class="jm-rc-top"><div class="jm-rc-title">${j.title}</div><div class="jm-rc-match">${score}% match</div></div>
       <div class="jm-rc-meta">${meta}</div>
