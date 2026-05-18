@@ -428,8 +428,10 @@
     .bar-wrap {
       display: flex;
       align-items: center;
+      justify-content: flex-start;
       gap: 8px;
       width: 100%;
+      height: auto;
     }
 
     .bar-track {
@@ -439,6 +441,7 @@
       border-radius: 2px;
       display: block;
       min-width: 0;
+      align-self: center;
     }
 
     .bar-fill {
@@ -446,6 +449,7 @@
       border-radius: 2px;
       background: var(--green-mid);
       display: block;
+      width: 100%;
     }
 
     .bar-fill.neutral {
