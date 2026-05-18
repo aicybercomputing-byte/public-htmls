@@ -101,7 +101,7 @@
 
     .stat-bar {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       grid-auto-rows: 1fr;
       align-items: stretch;
       width: 100%;
@@ -229,7 +229,7 @@
 
     .cards2 {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 12px;
       margin-bottom: 1.5rem;
       align-items: stretch;
@@ -239,19 +239,12 @@
 
     .cards3 {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 12px;
       margin-bottom: 1.5rem;
       align-items: stretch;
       width: 100%;
       max-width: 100%;
-    }
-
-    @media (max-width: 900px) {
-      .cards2,
-      .cards3 {
-        grid-template-columns: 1fr;
-      }
     }
 
     .card-bellini-jobs {
@@ -464,7 +457,7 @@
 
     .fl-strip {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 12px;
       margin-bottom: 1.25rem;
       align-items: stretch;
@@ -763,7 +756,9 @@
     }
 
     .pathway-bellini-jobs {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0;
       margin-bottom: 1.5rem;
       align-items: stretch;
       width: 100%;
@@ -772,6 +767,7 @@
 
     .pw-step {
       flex: 1 1 0;
+      min-width: 0;
       padding: 1.5em;
       font-size: 12px;
       border: 1px solid #b2b2b2;
@@ -918,7 +914,7 @@
 
     .jm-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 10px;
       margin-bottom: 12px;
     }
@@ -1239,8 +1235,14 @@
 
     .form-row-bellini-jobs {
       display: flex;
+      flex-wrap: wrap;
       gap: 10px;
       margin-bottom: 10px;
+    }
+
+    .form-row-bellini-jobs > * {
+      flex: 1 1 200px;
+      min-width: 0;
     }
 
     .form-row-bellini-jobs>* {
@@ -1319,7 +1321,7 @@
 
     .jobs-page-root .jm-grid {
       display: grid !important;
-      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
       gap: 10px !important;
       margin-bottom: 12px !important;
     }
@@ -1338,13 +1340,15 @@
 
     .jobs-page-root .form-row-bellini-jobs {
       display: flex !important;
+      flex-wrap: wrap !important;
       gap: 10px !important;
       width: 100% !important;
       margin-bottom: 10px !important;
     }
 
     .jobs-page-root .form-row-bellini-jobs > * {
-      flex: 1 !important;
+      flex: 1 1 200px !important;
+      min-width: 0 !important;
       width: auto !important;
     }
   </style>
