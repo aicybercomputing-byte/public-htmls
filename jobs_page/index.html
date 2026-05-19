@@ -2,2347 +2,738 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <title>Tech Careers &amp; Job Outlook â€” Bellini College</title>
-  <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%230f6e56'/%3E%3C/svg%3E" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap"
-    rel="stylesheet" />
-  <!-- USF core stylesheet stack from the live Bellini page. -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Careers &amp; Job Outlook</title>
   <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    #jobs-asset-root {
+      font-family: inherit;
+      color: inherit;
     }
 
-    :root {
-      --bg: #ffffff;
-      --surface: #f5f5f3;
-      --border: rgba(0, 0, 0, 0.12);
-      --border-mid: rgba(0, 0, 0, 0.22);
-      --text: #1a1a18;
-      --text-2: #5f5e5a;
-      --text-3: #888780;
-      --green: #0f6e56;
-      --green-mid: #1d9e75;
-      --green-light: #e1f5ee;
-      --green-text: #085041;
-      --amber: #854f0b;
-      --amber-light: #faeeda;
-      --amber-text: #633806;
-      --blue-light: #e6f1fb;
-      --blue-text: #0c447c;
-      --r-md: 8px;
-      --r-lg: 12px;
-    }
-
-    .jobs-page-root {
-      font-family: 'Open Sans', sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0;
-      line-height: 1.5;
-    }
-
-    /* Force-remove shadows from local and imported styles. */
-    .jobs-page-root *,
-    .jobs-page-root *::before,
-    .jobs-page-root *::after {
-      box-shadow: none !important;
-      text-shadow: none !important;
-      filter: none !important;
-    }
-
-    .mono-bellini-jobs {
-      font-family: 'Open Sans', sans-serif;
-    }
-
-    .hero-bellini-jobs {
-      border-bottom: 0.5px solid var(--border);
-      padding-bottom: 1rem;
-    }
-
-    .eyebrow-bellini-jobs {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-2);
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-    }
-
-    .heading-bellini-jobs {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 26px;
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: 0.01em;
-      margin-bottom: 0.5rem;
-    }
-
-    .paragraph-bellini-jobs {
-      font-family: 'Open Sans', sans-serif;
-      font-size: inherit;
-      line-height: 1.5;
-      margin: 0 0 1em 0;
-    }
-
-    .hero-sub-bellini-jobs {
-      font-size: 14px;
-      color: var(--text-2);
-      max-width: 600px;
-      line-height: 1.6;
-    }
-
-    .stat-bar {
+    .jobs-tabs {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      grid-auto-rows: 1fr;
-      align-items: stretch;
+      grid-auto-flow: column;
+      grid-auto-columns: max-content;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 2rem 0;
+      border-bottom: 1px solid currentColor;
       width: 100%;
-      max-width: 100%;
-      border: 1px solid #b2b2b2;
-      border-radius: 0;
-      overflow: hidden;
-      margin-top: 0; /* Or a smaller value like 0.5rem */
-      margin-bottom: 1.25rem; /* Keeps the bottom space as is */
     }
 
-    .stat-bellini-jobs {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      height: 100%;
-      min-width: 0;
-      padding: 1.5em;
-      background: #efeff0;
-      border-right: 1px solid #b2b2b2;
-      box-shadow: none;
-      background-image: none;
-      border-radius: 0;
-    }
+    .jobs-tabs button {
+      display: grid;
+      place-items: center;
 
-    .stat-bellini-jobs:last-child {
-      border-right: none;
-    }
-
-    .stat-bellini-jobs::before,
-    .stat-bellini-jobs::after {
-      content: none !important;
-      display: none !important;
-      background: none !important;
-      border: none !important;
-      box-shadow: none !important;
-    }
-
-    .stat-num {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: 0.01em;
-      margin-bottom: 4px;
-      color: #006747;
-    }
-
-    .stat-label {
-      font-size: 11px;
-      color: var(--text-2);
-      line-height: 1.4;
-    }
-
-    .stat-src {
-      font-size: 10px;
-      color: var(--text-3);
-      font-family: 'Open Sans', sans-serif;
-      margin-top: 4px;
-    }
-
-    .c-green {
-      color: var(--green);
-    }
-
-    .c-amber {
-      color: var(--amber);
-    }
-
-    .stat-num.c-green,
-    .stat-num.c-amber,
-    .stat-num {
-      color: #006747 !important;
-    }
-
-    .tabs-bellini-jobs {
-      display: flex;
-      border-bottom: 0.5px solid var(--border);
-      margin-bottom: 1.25rem;
-      overflow: hidden;
-      gap: 0;
-    }
-
-    .tab-bellini-jobs {
-      padding: 0.6rem 1.1rem;
-      font-size: 13px;
-      font-weight: 400;
-      cursor: pointer;
+      padding: 0.75rem;
       border: none;
-      background: none;
-      color: var(--text-2);
-      border-bottom: 2px solid transparent;
-      margin-bottom: -0.5px;
-      font-family: 'Open Sans', sans-serif;
-      transition: color 0.15s;
+      background: transparent;
+      cursor: pointer;
+      font-size: 1rem;
+      font-family: inherit;
       white-space: nowrap;
+      opacity: 0.5;
     }
 
-    .tab-bellini-jobs.active {
-      color: var(--green);
-      border-bottom-color: var(--green);
+    .jobs-tabs button.active {
+      opacity: 1;
+      font-weight: 600;
+      border-bottom: 2px solid currentColor;
     }
 
-    .tab-bellini-jobs:hover:not(.active) {
-      color: var(--text);
+    .jobs-tabs button:hover {
+      opacity: 0.8;
     }
 
-    .panel-bellini-jobs {
+    .jobs-tabs button.active:hover {
+      opacity: 1;
+    }
+
+    .jobs-panel {
       display: none;
     }
 
-    .panel-bellini-jobs.active {
+    .jobs-panel.active {
       display: block;
     }
 
-    .slabel-bellini-jobs {
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-2);
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-
-    .cards2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 12px;
-      margin-bottom: 1.5rem;
-      align-items: stretch;
-      width: 100%;
-      max-width: 100%;
-    }
-
-    .cards3 {
+    .jobs-stat-bar {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
-      margin-bottom: 1.5rem;
-      align-items: stretch;
-      width: 100%;
-      max-width: 100%;
+      grid-auto-rows: 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+      align-items: start;
     }
 
-    .card-bellini-jobs {
-      background: #efeff0;
-      border: 1px solid #b2b2b2;
-      border-radius: 0;
-      padding: 1.5em;
-      height: 100%;
-      min-width: 0;
+    .jobs-stat-bar>* {
+      align-self: start;
+      margin: 2px 0 0 0;
+      padding: 0;
     }
 
-    .card-head {
-      color: #006747;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.5em;
+    .jobs-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+      align-items: start;
+    }
+
+    .jobs-card-grid>* {
+      align-self: start;
+      padding: 10px;
+      background-color: #CAD2D8;
+    }
+
+    .jobs-card-grid> :first-child {
+      padding-top: 10px !important;
+      padding-bottom: 10px;
+    }
+
+    /* Form layout: centered at 80% width with two-column support */
+    .jobs-form {
+      display: grid;
+      margin: 1.5rem auto;
+    }
+
+    .jobs-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .jobs-form-row.full {
+      grid-template-columns: 1fr;
+      padding: 2px;
+    }
+
+    .jobs-form-group {
+      display: grid;
+      gap: 0.25rem;
+    }
+
+    .jobs-form-group label {
       font-weight: 600;
-      line-height: 1.25em;
-      letter-spacing: 0;
-      margin: 0 0 0.35em 0;
+      font-size: 0.95rem;
     }
 
-    .card-body {
-      font-size: 14px;
-      color: var(--text-2);
-      line-height: 1.6;
+    .jobs-form-group input,
+    .jobs-form-group select,
+    .jobs-form-group textarea {
+      padding: 0.5rem;
+      font-family: inherit;
+      font-size: inherit;
+      border: 1px solid black;
     }
 
-    .card-cta,
-    .ev-add {
-      display: inline-block;
-      margin-top: 0.75rem;
-      font-size: 12px;
+    .jobs-form button {
+      padding: 0.75rem 1.5rem;
       font-weight: 600;
-      color: #006747;
-      text-decoration: none;
       cursor: pointer;
-      text-underline-offset: 0.2em;
+      font-family: inherit;
+      font-size: inherit;
+      align-self: start;
     }
 
-    .card-cta::after,
-    .ev-add::after {
-      content: "â€º";
-      color: #9ccb3c;
-      display: inline-block;
-      margin-left: 0.35em;
-      transition: margin 0.2s;
-    }
-
-    .card-cta:hover,
-    .card-cta:focus,
-    .card-cta:active,
-    .ev-add:hover,
-    .ev-add:focus,
-    .ev-add:active {
-      color: #006747;
-      text-decoration: underline;
-    }
-
-    .card-cta:hover::after,
-    .card-cta:focus::after,
-    .card-cta:active::after,
-    .ev-add:hover::after,
-    .ev-add:focus::after,
-    .ev-add:active::after {
-      margin-left: 0.7em;
-    }
-
-    .badge-bellini-jobs {
-      display: inline-block;
-      font-size: 10px;
-      font-family: 'Open Sans', sans-serif;
-      padding: 2px 7px;
-      border-radius: 3px;
-      margin-bottom: 0.5rem;
-    }
-
-    .badge-bellini-jobs.green-bellini-jobs {
-      background: var(--green-light);
-      color: var(--green-text);
-    }
-
-    .badge-bellini-jobs.amber-bellini-jobs {
-      background: var(--amber-light);
-      color: var(--amber-text);
-    }
-
-    .badge-bellini-jobs.blue-bellini-jobs {
-      background: var(--blue-light);
-      color: var(--blue-text);
-    }
-
-    .occ-table {
+    .jobs-table {
       width: 100%;
-      table-layout: fixed;
       border-collapse: collapse;
-      font-size: 13px;
-      margin-bottom: 1.5rem;
+      margin: 1.5rem 0;
+      border-bottom: 3px solid rgba(128, 128, 128, 0.7);
+      ;
     }
 
-    .projection-controls {
-      display: flex;
-      align-items: flex-end;
-      gap: 10px;
-      margin-bottom: 0.75rem;
-      flex-wrap: wrap;
+    .jobs-table th,
+    .jobs-table td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid grey;
+
     }
 
-    .projection-controls label {
-      font-size: 11px;
+    .jobs-table th {
+      opacity: 1;
       font-weight: 600;
-      color: var(--text-2);
-      font-family: 'Open Sans', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      display: block;
-      margin-bottom: 4px;
+      border-bottom: 3px solid grey;
+      border-top: 0px solid #FFFFFF00;
+      ;
     }
 
-    .projection-status {
-      font-size: 11px;
-      color: var(--text-3);
-      font-family: 'Open Sans', sans-serif;
+    .jobs-table tbody tr:hover {
+      opacity: 0.9;
     }
 
-    #prospective-degree-select {
-      width: min(100%, 360px);
-      max-width: 100%;
+    .jobs-filters {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: max-content;
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+      align-items: center;
     }
 
-    .projection-debug {
-      margin-top: 0.5rem;
-      font-size: 11px;
-      color: var(--text-3);
-      font-family: 'Open Sans', sans-serif;
-      white-space: pre-wrap;
-      word-break: break-word;
-      border-top: 1px solid #b2b2b2;
-      padding-top: 0.5rem;
+    .jobs-filters button {
+      padding: 0.5rem 1rem !important;
+      border: 1px solid currentColor;
+      background: transparent;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 1rem;
+      white-space: nowrap;
+      line-height: 1.5 !important;
+      box-sizing: border-box !important;
+      margin: 0 !important;
+      vertical-align: middle;
+      align-self: center;
+      font-weight: 600;
+    }
+
+    .jobs-filters button.active {
+      opacity: 1;
+      padding: 0.5rem 1rem !important;
+      margin: 0 !important;
+      line-height: 1.5 !important;
+      box-sizing: border-box !important;
+    }
+
+    .jobs-event-item {
+      padding: 1rem;
+      border: 1px solid currentColor;
+      margin: 0.75rem 0;
+      opacity: 0.8;
+    }
+
+    .jobs-event-item.hidden {
       display: none;
     }
 
-    .occ-table th {
-      text-align: left;
-      padding: 6px 10px;
-      font-size: 11px;
+    .jobs-event-item h4 {
+      margin: 0 0 0.5rem 0;
       font-weight: 600;
-      color: var(--text-2);
-      border-bottom: 0.5px solid var(--border);
-      font-family: 'Open Sans', sans-serif;
     }
 
-    .occ-table td {
-      padding: 8px 10px;
-      border-bottom: 0.5px solid var(--border);
+    .jobs-event-item p {
+      margin: 0.25rem 0;
+      font-size: 0.95rem;
+    }
+
+    .jobs-loading {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      opacity: 0.6;
+    }
+
+    .jobs-loading.active {
+      display: block;
+    }
+
+    .jobs-results {
+      margin: 2rem 0;
+    }
+
+    .jobs-result-item {
+      padding: 1rem;
+      margin: 0.75rem 0;
+      border: 1px solid currentColor;
+      opacity: 0.8;
+    }
+
+    .jobs-result-item h4 {
+      margin: 0 0 0.5rem 0;
+    }
+
+    h2 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .bar-cell {
       vertical-align: middle;
-      min-width: 0;
-      overflow-wrap: anywhere;
-    }
-
-    .occ-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .occ-table tr:hover td {
-      background: var(--surface);
     }
 
     .bar-wrap {
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      gap: 8px;
-      width: 100%;
-      height: auto;
-    }
-
-    .bar-track {
-      flex: 1 1 auto;
-      height: 4px;
-      background: var(--border);
-      border-radius: 2px;
-      display: block;
-      min-width: 0;
-      align-self: center;
-    }
-
-    .bar-fill {
-      height: 4px;
-      border-radius: 2px;
-      background: var(--green-mid);
-      display: block;
-      width: 100%;
-    }
-
-    .bar-fill.neutral-bellini-jobs {
-      background: var(--border-mid);
-    }
-
-    .pct-bellini-jobs {
-      font-family: 'Open Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      min-width: 42px;
-      text-align: right;
-    }
-
-    .pct-bellini-jobs.up {
-      color: var(--green);
-    }
-
-    .fl-strip {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-      margin-bottom: 1.25rem;
-      align-items: stretch;
-      width: 100%;
-      max-width: 100%;
-    }
-
-    .fl-cell {
-      border: 1px solid #b2b2b2;
-      border-radius: 0;
-      padding: 1.5em;
-      background: #efeff0;
       height: 100%;
-      min-width: 0;
-    }
-
-    .fl-num {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: 0.01em;
-    }
-
-    .fl-desc {
-      font-size: 13px;
-      color: var(--text-2);
-      margin-top: 5px;
-      line-height: 1.5;
-    }
-
-    .fl-src {
-      font-size: 11px;
-      color: var(--text-3);
-      margin-top: 6px;
-      line-height: 1.4;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-
-    /* Guard against host-page CSS collisions in spotlight/cards blocks. */
-    .jobs-page-root .slabel-bellini-jobs {
-      display: block;
-      clear: both;
-      margin-top: 0;
-    }
-
-    .jobs-page-root .fl-strip,
-    .jobs-page-root .cards2 {
-      position: relative;
-      clear: both;
-      isolation: isolate;
-      overflow: visible;
-    }
-
-    .jobs-page-root .fl-cell,
-    .jobs-page-root .card-bellini-jobs {
-      float: none !important;
-      width: auto !important;
-      margin: 0 !important;
-      align-self: stretch;
-      position: static !important;
-      inset: auto !important;
-      transform: none !important;
-    }
-
-    .jobs-page-root .stat-bellini-jobs {
-      padding: 1.5em !important;
-      margin: 0 !important;
-      position: static !important;
-      top: auto !important;
-      transform: none !important;
-      background: #efeff0 !important;
-      background-image: none !important;
-    }
-
-    .jobs-page-root .stat-bellini-jobs::before,
-    .jobs-page-root .stat-bellini-jobs::after,
-    .jobs-page-root .stat-bellini-jobs:not(:first-child)::before,
-    .jobs-page-root .stat-bellini-jobs:not(:first-child)::after {
-      content: none !important;
-      display: none !important;
-      height: 0 !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border: 0 !important;
-      background: none !important;
-    }
-
-    .jobs-page-root .stat-bellini-jobs > * {
-      margin-top: 0 !important;
-    }
-
-    .jobs-page-root .tabs-bellini-jobs {
-      align-items: stretch !important;
-    }
-
-    .jobs-page-root .tab-bellini-jobs {
-      margin: 0 0 -0.5px 0 !important;
-      padding: 0.6rem 1.1rem !important;
-      position: static !important;
-      top: auto !important;
-      transform: none !important;
-      line-height: 1.2 !important;
-      align-self: stretch;
-    }
-
-    .jobs-page-root .tab-bellini-jobs::before,
-    .jobs-page-root .tab-bellini-jobs::after,
-    .jobs-page-root .tab-bellini-jobs:not(:first-child)::before,
-    .jobs-page-root .tab-bellini-jobs:not(:first-child)::after {
-      content: none !important;
-      display: none !important;
-      height: 0 !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border: 0 !important;
-      background: none !important;
-    }
-
-    .jobs-page-root .pw-step {
-      margin: 0 !important;
-      padding: 1.5em !important;
-      position: static !important;
-      top: auto !important;
-      transform: none !important;
-      background: #efeff0 !important;
-      background-image: none !important;
-    }
-
-    .jobs-page-root .pw-step::before,
-    .jobs-page-root .pw-step::after,
-    .jobs-page-root .pw-step:not(:first-child)::before,
-    .jobs-page-root .pw-step:not(:first-child)::after {
-      content: none !important;
-      display: none !important;
-      height: 0 !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border: 0 !important;
-      background: none !important;
-    }
-
-    .jobs-page-root .pw-step > * {
-      margin-top: 0 !important;
-    }
-
-    .jobs-page-root .card-head {
-      margin-top: 0 !important;
-    }
-
-    .jobs-page-root .panel-bellini-jobs {
-      overflow: visible;
-    }
-
-    /* Section flow hardening: keep label and content rows independent everywhere. */
-    .jobs-page-root .panel-bellini-jobs .slabel-bellini-jobs {
-      display: block;
-      clear: both;
-      width: 100%;
-      position: relative;
-      z-index: 2;
-      margin: 0 0 0.75rem 0;
-      background: transparent;
-    }
-
-    .jobs-page-root .panel-bellini-jobs .slabel-bellini-jobs::before,
-    .jobs-page-root .panel-bellini-jobs .slabel-bellini-jobs::after {
-      content: none !important;
-      display: none !important;
-    }
-
-    .jobs-page-root .panel-bellini-jobs .slabel-bellini-jobs + .stat-bar,
-    .jobs-page-root .panel-bellini-jobs .slabel-bellini-jobs + .fl-strip,
-    .jobs-page-root .panel-bellini-jobs .slabel-bellini-jobs + .cards2,
-    .jobs-page-root .panel-bellini-jobs .slabel-bellini-jobs + .cards3,
-    .jobs-page-root .panel-bellini-jobs .slabel-bellini-jobs + .pathway-bellini-jobs,
-    .jobs-page-root .panel-bellini-jobs .slabel-bellini-jobs + .ev-list,
-    .jobs-page-root .panel-bellini-jobs .slabel-bellini-jobs + .recruit-form {
-      clear: both;
-      position: relative;
-      z-index: 1;
-      margin-top: 0;
-    }
-
-    .jobs-page-root .source-note-bellini-jobs {
-      position: relative;
-      z-index: 2;
-      clear: both;
-      display: block;
-      margin-top: 1rem;
-      background: var(--bg);
-    }
-
-    .jobs-page-root #panel-prospective .prospective-spotlight-row,
-    .jobs-page-root #panel-prospective .prospective-ai-label-row,
-    .jobs-page-root #panel-prospective .prospective-ai-cards-row {
-      display: block;
-      clear: both;
-      width: 100%;
-      position: relative;
-      z-index: 1;
-    }
-
-    .jobs-page-root #panel-prospective .prospective-spotlight-row {
-      margin-bottom: 0.9rem;
-    }
-
-    .jobs-page-root #panel-prospective .prospective-ai-label-row {
-      margin-bottom: 0.85rem;
-    }
-
-    .jobs-page-root #panel-prospective .prospective-ai-label-row .slabel-bellini-jobs {
-      margin: 0;
-      line-height: 1.35;
-      background: transparent;
-    }
-
-    .jobs-page-root #panel-prospective .prospective-ai-cards-row {
-      margin-bottom: 1rem;
-    }
-
-    .jobs-page-root #panel-current .current-pathway-row,
-    .jobs-page-root #panel-current .current-resources-label-row,
-    .jobs-page-root #panel-current .current-resources-cards-row {
-      display: block;
-      clear: both;
-      width: 100%;
-      position: relative;
-      z-index: 1;
-    }
-
-    .jobs-page-root #panel-current .current-pathway-row {
-      margin-bottom: 0.85rem;
-    }
-
-    .jobs-page-root #panel-current .current-resources-label-row {
-      margin-bottom: 0.75rem;
-    }
-
-    .jobs-page-root #panel-current .current-resources-label-row .slabel-bellini-jobs {
-      margin: 0;
-      line-height: 1.35;
-      background: transparent;
-    }
-
-    .jobs-page-root #panel-current .current-resources-cards-row {
-      margin-bottom: 1rem;
-    }
-
-    .jobs-page-root #panel-current .current-resources-cards-row .cards3 {
-      gap: 12px;
-      align-items: stretch;
-      grid-auto-rows: 1fr;
-    }
-
-    .jobs-page-root #panel-current .current-resources-cards-row .card-bellini-jobs {
-      height: 100% !important;
-      padding: 1.15em;
-      display: flex;
-      flex-direction: column;
-      align-self: stretch;
-    }
-
-    .jobs-page-root #panel-current .current-resources-cards-row .card-body {
-      margin-bottom: 0.6rem;
-      flex: 1 1 auto;
-    }
-
-    .jobs-page-root .ev-filter-row {
-      align-items: center;
-    }
-
-    .jobs-page-root .ev-filter {
-      margin: 0 !important;
-      padding: 4px 12px !important;
-      position: static !important;
-      top: auto !important;
-      transform: none !important;
-      line-height: 1.2 !important;
-      vertical-align: middle;
-      align-self: center;
-    }
-
-    .jobs-page-root .ev-filter::before,
-    .jobs-page-root .ev-filter::after,
-    .jobs-page-root .ev-filter:not(:first-child)::before,
-    .jobs-page-root .ev-filter:not(:first-child)::after {
-      content: none !important;
-      display: none !important;
-      height: 0 !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border: 0 !important;
-      background: none !important;
-    }
-
-    .pathway-bellini-jobs {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 0;
-      margin-bottom: 1.5rem;
-      align-items: stretch;
-      width: 100%;
-      max-width: 100%;
-    }
-
-    .pw-step {
-      flex: 1 1 0;
-      min-width: 0;
-      padding: 1.5em;
-      font-size: 12px;
-      border: 1px solid #b2b2b2;
-      border-right: none;
-      background: #efeff0;
-      border-radius: 0;
-      min-width: 0;
-    }
-
-    .stat-bar > *,
-    .cards2 > *,
-    .cards3 > *,
-    .fl-strip > *,
-    .pathway-bellini-jobs > * {
-      min-width: 0;
-    }
-
-    .pw-step:first-child {
-      border-radius: 0;
-    }
-
-    .pw-step:last-child {
-      border-right: 1px solid #b2b2b2;
-      border-radius: 0;
-    }
-
-    .pw-num {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--green-mid);
-      line-height: 1.15;
-      letter-spacing: 0.01em;
-      margin-bottom: 4px;
-    }
-
-    .pw-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 600;
-      font-size: 12px;
-      line-height: 1.2;
-      margin-bottom: 2px;
-    }
-
-    .pw-sub {
-      font-size: 11px;
-      color: var(--text-2);
-    }
-
-    .source-note-bellini-jobs {
-      font-size: 11px;
-      color: var(--text-3);
-      font-family: 'Open Sans', sans-serif;
-      line-height: 1.6;
-      border-top: 0.5px solid var(--border);
-      padding-top: 0.75rem;
-      margin-top: 0.5rem;
-    }
-
-    /* Form elements */
-    input,
-    select,
-    textarea {
-      font-size: 13px;
-      padding: 7px 10px;
-      border: 0.5px solid var(--border-mid);
-      border-radius: var(--r-md);
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Open Sans', sans-serif;
       width: 100%;
     }
 
-    input:focus,
-    select:focus,
-    textarea:focus {
-      outline: 2px solid var(--green-mid);
-      outline-offset: 1px;
-    }
-
-    .btn-primary-bellini-jobs {
-      background-color: #006747;
-      color: #fff;
-      border: none;
-      padding: 0.5em 1em;
-      border-radius: 4px;
-      font-size: 13px;
-      font-weight: 400;
-      text-transform: uppercase;
-      text-align: center;
-      cursor: pointer;
-      font-family: 'Open Sans', sans-serif;
-    }
-
-    .btn-primary-bellini-jobs:hover {
-      background-color: #327052;
-    }
-
-    .btn-primary-bellini-jobs:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    /* â”€â”€ JOB MATCH â”€â”€ */
-    .jm-form {
-      border: 1px solid #b2b2b2;
-      border-radius: 0;
-      padding: 1.5em;
-      background: #efeff0;
-      margin-bottom: 1.25rem;
-    }
-
-    .jm-form .heading-bellini-jobs {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: 0.01em;
-      margin-bottom: 0.25rem;
-    }
-
-    .jm-form .paragraph-bellini-jobs {
-      font-size: 13px;
-      color: var(--text-2);
-      margin-bottom: 1rem;
-      line-height: 1.5;
-    }
-
-    .jm-file-note {
-      display: none !important;
-      margin-bottom: 0;
-      padding: 0.75rem 1rem;
-      background: var(--amber-light);
-      border: 1px solid var(--border-mid);
-      border-radius: var(--r-md);
-      font-size: 13px;
-      color: var(--amber-text);
-    }
-
-    .jm-file-note.is-visible {
-      display: block !important;
-      margin-bottom: 1rem;
-    }
-
-    .jm-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .jm-field {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .jm-field label {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-2);
-      font-family: 'Open Sans', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .jm-field textarea {
-      resize: vertical;
-      min-height: 60px;
-    }
-
-    .jm-full {
-      grid-column: 1 / -1;
-    }
-
-    .jm-loading {
-      display: none;
-      align-items: center;
-      gap: 10px;
-      padding: 1rem 0;
-      color: var(--text-2);
-      font-size: 13px;
-    }
-
-    .jm-spinner {
-      width: 16px;
-      height: 16px;
-      border: 2px solid var(--border);
-      border-top-color: var(--green);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      flex-shrink: 0;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .jm-result-card {
-      border: 0.5px solid var(--border);
-      border-radius: var(--r-lg);
-      padding: 1rem 1.25rem;
-      background: var(--bg);
-      margin-bottom: 10px;
-      transition: border-color 0.15s;
-    }
-
-    .jm-result-card:hover {
-      border-color: var(--green);
-    }
-
-    .jm-rc-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 0.4rem;
-    }
-
-    .jm-rc-title {
-      font-family: 'Open Sans', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      line-height: 1.2;
-      letter-spacing: 0.01em;
-    }
-
-    .jm-rc-match {
-      font-size: 10px;
-      font-family: 'Open Sans', sans-serif;
-      background: var(--green-light);
-      color: var(--green-text);
-      padding: 3px 8px;
-      border-radius: 3px;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .jm-rc-meta {
-      font-size: 12px;
-      color: var(--text-2);
-      margin-bottom: 0.5rem;
-    }
-
-    .jm-rc-why {
-      font-size: 12px;
-      color: var(--text-2);
-      line-height: 1.55;
-      margin-bottom: 0.75rem;
-      border-left: 2px solid var(--green-mid);
-      padding-left: 10px;
-    }
-
-    .jm-co-chip {
-      font-size: 11px;
-      background: var(--surface);
-      border: 0.5px solid var(--border);
-      border-radius: 3px;
-      padding: 2px 7px;
-      font-family: 'Open Sans', sans-serif;
-    }
-
-    .jm-rc-links {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 0.75rem;
-    }
-
-    .jm-link {
-      font-size: 12px;
-      font-weight: 600;
-      padding: 5px 12px;
-      border-radius: var(--r-md);
-      border: 0.5px solid var(--border-mid);
-      color: var(--text);
-      text-decoration: none;
-      background: var(--surface);
-      cursor: pointer;
-      transition: border-color 0.15s;
-    }
-
-    .jm-link:hover {
-      border-color: var(--green);
-      color: var(--green);
-    }
-
-    .jm-link.primary {
-      background-color: #006747;
-      color: #fff;
-      border-color: #006747;
-      border-radius: 4px;
-      text-transform: uppercase;
-      font-weight: 400;
-      text-align: center;
-    }
-
-    .jm-link.primary:hover {
-      background-color: #327052;
-      border-color: #327052;
-      color: #fff;
-    }
-
-    /* â”€â”€ EVENTS â”€â”€ */
-    .ev-filter-row {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 1.25rem;
-      flex-wrap: wrap;
-    }
-
-    .ev-filter {
-      font-size: 12px;
-      padding: 4px 12px;
-      border-radius: 20px;
-      border: 0.5px solid var(--border-mid);
-      background: var(--bg);
-      color: var(--text-2);
-      cursor: pointer;
-      font-family: 'Open Sans', sans-serif;
-      transition: all 0.15s;
-    }
-
-    .ev-filter.active {
-      background-color: #006747;
-      color: #fff;
-      border-color: #006747;
-      border-radius: 4px;
-      font-weight: 400;
-      text-transform: uppercase;
-    }
-
-    .ev-filter:hover:not(.active) {
-      border-color: var(--green);
-      color: var(--green);
-    }
-
-    .ev-list {
-      border: 0.5px solid var(--border);
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      margin-bottom: 1.5rem;
-    }
-
-    .ev-item {
-      display: grid;
-      grid-template-columns: 64px 1fr auto;
-      gap: 16px;
-      align-items: center;
-      padding: 0.9rem 1.25rem;
-      border-bottom: 0.5px solid var(--border);
-      background: var(--bg);
-      transition: background 0.1s;
-    }
-
-    .ev-item:last-child {
-      border-bottom: none;
-    }
-
-    .ev-item:hover {
-      background: var(--surface);
-    }
-
-    .ev-month {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-3);
-      font-family: 'Open Sans', sans-serif;
-      text-align: center;
-    }
-
-    .ev-day {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: 0.01em;
-      color: var(--green);
-      text-align: center;
-    }
-
-    .ev-title {
-      font-family: 'Open Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 1.2;
-      letter-spacing: 0.01em;
-      margin-bottom: 2px;
-    }
-
-    .ev-meta {
-      font-size: 12px;
-      color: var(--text-2);
-    }
-
-    .ev-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-    }
-
-    .ev-type-badge {
-      font-size: 10px;
-      font-family: 'Open Sans', sans-serif;
-      padding: 2px 7px;
-      border-radius: 3px;
-      white-space: nowrap;
-    }
-
-    .ev-type-fair {
-      background: var(--blue-light);
-      color: var(--blue-text);
-    }
-
-    .ev-type-talk {
-      background: var(--amber-light);
-      color: var(--amber-text);
-    }
-
-    .ev-type-resume {
-      background: var(--green-light);
-      color: var(--green-text);
-    }
-
-    .ev-type-net {
-      background: #fbeaf0;
-      color: #72243e;
-    }
-
-    .ev-type-info {
-      background: #f1efe8;
-      color: #444441;
-    }
-
-    .ev-add {
-      margin-top: 0;
-      white-space: nowrap;
-    }
-
-    .ev-submit-box {
-      border: 1px solid #b2b2b2;
-      border-radius: 0;
-      padding: 1.5em;
-      background: #efeff0;
-    }
-
-    .ev-submit-box .heading-bellini-jobs {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: 0.01em;
-      margin-bottom: 0.35rem;
-    }
-
-    .ev-submit-box .paragraph-bellini-jobs {
-      font-size: 13px;
-      color: var(--text-2);
-      margin-bottom: 0.75rem;
-    }
-
-    .form-row-bellini-jobs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .form-row-bellini-jobs > * {
-      flex: 1 1 200px;
-      min-width: 0;
-    }
-
-    .form-row-bellini-jobs>* {
-      flex: 1;
-    }
-
-    /* Employer form */
-    .recruit-form {
-      border: 1px solid #b2b2b2;
-      border-radius: 0;
-      padding: 1.5em;
-      background: #efeff0;
-      margin-bottom: 1rem;
-    }
-
-    /* Footer */
-    .page-footer-bellini-jobs {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 0.5rem;
-      padding-top: 0.75rem;
-      border-top: 0.5px solid var(--border);
-    }
-
-    .live-dot-bellini-jobs {
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green-mid);
-      margin-right: 5px;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-
-      0%,
-      100% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0.4;
-      }
-    }
-
-    .footer-text-bellini-jobs {
-      font-size: 11px;
-      color: var(--text-3);
-      font-family: 'Open Sans', sans-serif;
-    }
-
-    /* Scoped overrides for remaining elements affected by host CSS (td, button, form fields) */
-    .jobs-page-root table {
-      border-spacing: 0 !important;
-    }
-
-    .jobs-page-root td {
-      border-top: 0 !important;
-      border-bottom: 0 !important;
-      margin-top: 0 !important;
-    }
-
-    .jobs-page-root .occ-table th,
-    .jobs-page-root .occ-table td {
-      border-bottom: 0.5px solid var(--border) !important;
-    }
-
-    .jobs-page-root .occ-table tr:last-child td {
-      border-bottom: 0 !important;
-    }
-
-    .jobs-page-root button {
-      display: inline-block !important;
-      margin: 0 !important;
-      cursor: pointer !important;
-      text-decoration: none !important;
-    }
-
-    .jobs-page-root .btn-primary-bellini-jobs {
-      display: inline-block !important;
-      padding: 0.5em 1em !important;
-      margin: 0 !important;
-    }
-
-    .jobs-page-root input,
-    .jobs-page-root select,
-    .jobs-page-root textarea {
-      padding: 7px 10px !important;
-      font-size: 13px !important;
-      width: 100% !important;
-    }
-
-    .jobs-page-root .fl-strip,
-    .jobs-page-root .cards2,
-    .jobs-page-root .cards3,
-    .jobs-page-root .fl-cell,
-    .jobs-page-root .card-bellini-jobs,
-    .jobs-page-root #panel-prospective > *,
-    .jobs-page-root #panel-matchme > * {
-      overflow: visible !important;
-      clip: auto !important;
-      clip-path: none !important;
-      max-height: none !important;
-    }
-
-    .jobs-page-root .prospective-ai-label-row .slabel-bellini-jobs {
-      overflow: visible !important;
-      clip: auto !important;
-      clip-path: none !important;
-      max-height: none !important;
-      display: block !important;
-      width: 100% !important;
-    }
-
-    .jobs-page-root .jm-grid {
-      display: grid !important;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
-      gap: 10px !important;
-      margin-bottom: 12px !important;
-    }
-
-    .jobs-page-root .jm-field {
-      display: flex !important;
-      flex-direction: column !important;
-      width: auto !important;
-      flex: 1 !important;
-      gap: 4px !important;
-    }
-
-    .jobs-page-root .jm-full {
-      grid-column: 1 / -1 !important;
-    }
-
-    .jobs-page-root .form-row-bellini-jobs {
-      display: flex !important;
-      flex-wrap: wrap !important;
-      gap: 10px !important;
-      width: 100% !important;
-      margin-bottom: 10px !important;
-    }
-
-    .jobs-page-root .form-row-bellini-jobs > * {
-      flex: 1 1 200px !important;
-      min-width: 0 !important;
-      width: auto !important;
-    }
-
-    /* Host-page CSS collisions: label, select/option, and card child elements */
-    .jobs-page-root label {
-      display: block !important;
-      overflow: visible !important;
-      text-indent: 0 !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      position: static !important;
-      max-height: none !important;
-      clip: auto !important;
-      clip-path: none !important;
-      float: none !important;
-      width: auto !important;
-      transform: none !important;
-      list-style: none !important;
-    }
-
-    .jobs-page-root label::before,
-    .jobs-page-root label::after {
-      content: none !important;
-      display: none !important;
-    }
-
-    .jobs-page-root select {
-      list-style: none !important;
-      text-indent: 0 !important;
-      overflow: visible !important;
-    }
-
-    .jobs-page-root select::before,
-    .jobs-page-root select::after {
-      content: none !important;
-      display: none !important;
-    }
-
-    .jobs-page-root .badge-bellini-jobs,
-    .jobs-page-root .card-head,
-    .jobs-page-root .card-body,
-    .jobs-page-root .card-cta,
-    .jobs-page-root .slabel-bellini-jobs,
-    .jobs-page-root .jm-field label {
-      overflow: visible !important;
-      clip: auto !important;
-      clip-path: none !important;
-      max-height: none !important;
-      text-indent: 0 !important;
-    }
-
-    .jobs-page-root .badge-bellini-jobs::before,
-    .jobs-page-root .badge-bellini-jobs::after,
-    .jobs-page-root .card-head::before,
-    .jobs-page-root .card-head::after,
-    .jobs-page-root .card-body::before,
-    .jobs-page-root .card-body::after {
-      content: none !important;
-      display: none !important;
+    .bar {
+      height: 8px;
+      background: #006747;
     }
   </style>
 </head>
 
 <body>
+
+  <div id="jobs-asset-root">
+
+    <div class="jobs-stat-bar" id="stat-bar">
+      <div class="c-calloutText c-calloutText--gray">
+        <h3 class="c-calloutText_heading">5.6M</h3>
+        <div class="c-calloutText_text">Tech jobs projected by 2033</div>
+      </div>
+      <div class="c-calloutText c-calloutText--gray">
+        <h3 class="c-calloutText_heading">+11.7%</h3>
+        <div class="c-calloutText_text">Growth vs 4.0% average</div>
+      </div>
+      <div class="c-calloutText c-calloutText--gray">
+        <h3 class="c-calloutText_heading">3x</h3>
+        <div class="c-calloutText_text">Faster than all occupations</div>
+      </div>
+    </div>
+
+    <div class="jobs-tabs">
+      <button class="active" style="font-weight: 600; margin-top: -10px; align-self: end;" data-panel="prospective"
+        onclick="switchPanel('prospective', this)">Prospective Students</button>
+      <button data-panel="current" onclick="switchPanel('current', this)">Current Students</button>
+      <button data-panel="matchme" onclick="switchPanel('matchme', this)">Find My Job ✨</button>
+      <button data-panel="internships" onclick="switchPanel('internships', this)">Find My Internship ✨</button>
+      <button data-panel="events" onclick="switchPanel('events', this)">Events Calendar</button>
+      <button data-panel="employers" onclick="switchPanel('employers', this)">Employers</button>
+    </div>
+    <div id="prospective" class="jobs-panel active">
+      <h3>National Occupation Projections — 2023 to 2033</h3>
+
+      <div style="margin: 1.5rem 0;">
+        <div class="jobs-form-group">
+          <label for="prospective-degree">Select Degree Program:</label>
+          <select id="prospective-degree" onchange="updateProjections()" style="max-width: 400px;">
+            <option value="bscs">BS Computer Science</option>
+            <option value="bscp">BS Computer Engineering</option>
+            <option value="bscse">BS Computer Science and Engineering</option>
+            <option value="bsai">BS Artificial Intelligence</option>
+            <option value="bscys">BS Cybersecurity</option>
+            <option value="bsit">BS Information Technology</option>
+            <option value="mscs">MS Computer Science</option>
+            <option value="mscpe">MS Computer Engineering</option>
+            <option value="msai">MS Artificial Intelligence</option>
+            <option value="mscys">MS Cybersecurity</option>
+          </select>
+        </div>
+        <div id="projection-status" style="margin-top: 0.5rem; font-size: 0.9rem;"></div>
+      </div>
+
+      <table class="jobs-table">
+        <thead>
+          <tr>
+            <th style="width: 50%;">Occupation</th>
+            <th style="width: 10%;">2023 Jobs</th>
+            <th style="width: 10%;">2033 Est.</th>
+            <th style="width: 5%;">Growth</th>
+            <th style="width: 25%;">Trend</th>
+          </tr>
+        </thead>
+        <tbody id="projection-body">
+          <tr>
+            <td>Software developers</td>
+            <td>1,692,100</td>
+            <td>1,995,900</td>
+            <td>+17.9%</td>
+            <td class="bar-cell">
+              <div class="bar-wrap">
+                <div class="bar" style="width: 100%;">
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Computer occupations (all)</td>
+            <td>5,021,800</td>
+            <td>5,610,700</td>
+            <td>+11.7%</td>
+            <td class="bar-cell">
+              <div class="bar-wrap">
+                <div class="bar" style="width: 100%;">
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Database architects</td>
+            <td>61,400</td>
+            <td>68,000</td>
+            <td>+10.8%</td>
+            <td class="bar-cell">
+              <div class="bar-wrap">
+                <div class="bar" style="width: 100%;">
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Financial &amp; investment analysts</td>
+            <td>347,400</td>
+            <td>380,300</td>
+            <td>+9.5%</td>
+            <td class="bar-cell">
+              <div class="bar-wrap">
+                <div class="bar" style="width: 100%;">
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Florida Spotlight</h3>
+      <table style="border-collapse: separate; border-spacing: 5px; width: 100%">
+        <tr>
+          <td>
+            <div class="c-calloutText c-calloutText--grey" style="height:120px;">
+              <h3 class="c-calloutText_heading">
+                Tampa Bay
+              </h3>
+              <div class="c-calloutText_text">
+                <p class="p1">
+                  Growing tech hub with 45,000+ IT professionals
+                </p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="c-calloutText c-calloutText--grey" style="height:120px;">
+              <h3 class="c-calloutText_heading">
+                Miami
+              </h3>
+              <div class="c-calloutText_text">
+                <p class="p1">
+                  Startup ecosystem and fintech innovation center
+                </p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="c-calloutText c-calloutText--grey" style="height:120px;">
+              <h3 class="c-calloutText_heading">
+                Jacksonville
+              </h3>
+              <div class="c-calloutText_text">
+                <p class="p1">
+                  Defense and aerospace technology sector
+                </p>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <h3>Why the AI Era Boosts — Not Replaces — Computing Careers</h3>
+      <table style="border-collapse: separate; border-spacing: 5px; width: 100%">
+        <tr>
+          <td>
+            <div class="c-calloutText c-calloutText--grey" style="height:120px;">
+              <h3 class="c-calloutText_heading">
+                Increased Demand
+              </h3>
+              <div class="c-calloutText_text">
+                <p class="p1">
+                  AI tools drive productivity, creating more skilled job opportunities
+                </p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="c-calloutText c-calloutText--grey" style="height:120px;">
+              <h3 class="c-calloutText_heading">
+                New Roles
+              </h3>
+              <div class="c-calloutText_text">
+                <p class="p1">
+                  AI ethicists, prompt engineers, AI trainers emerging as new specialties
+                </p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="c-calloutText c-calloutText--grey" style="height:120px;">
+              <h3 class="c-calloutText_heading">
+                Higher Wages
+              </h3>
+              <div class="c-calloutText_text">
+                <p class="p1">
+                  Tech workers who understand AI earn 15-25% more on average
+                </p>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="current" class="jobs-panel">
+      <h3>Resources for Current Students</h3>
+
+      <h2>Career Development</h2>
+      <table style="border-collapse: separate; border-spacing: 5px; width: 100%">
+        <tr>
+          <td>
+            <div class="c-calloutText c-calloutText--grey" style="height:120px;">
+              <h3 class="c-calloutText_heading">Career Services</h3>
+              <div class="c-calloutText_text">
+                <p class="p1">One-on-one mentoring and resume reviews</p>
+              </div>
+            </div>
+          </td>
+          <td>
+
+            <div class="c-calloutText c-calloutText--grey" style="height:120px;">
+              <h3 class="c-calloutText_heading">Internship Program</h3>
+              <div class="c-calloutText_text">
+                <p class="p1">Partner with leading tech companies</p>
+              </div>
+          </td>
+          <td>
+
+            <div class="c-calloutText c-calloutText--grey" style="height:120px;">
+              <h3 class="c-calloutText_heading">Technical Workshops</h3>
+              <div class="c-calloutText_text">
+                <p class="p1">Industry-led training on emerging technologies</p>
+              </div>
+          </td>
+        </tr>
+      </table>
+
+      <h2>Growing Metro Areas</h2>
+      <table style="border-collapse: separate; border-spacing: 5px; width: 100%">
+        <tr>
+          <td>
+            <div class="c-calloutText c-calloutText--grey" style="height:150px;">
+              <h3 class="c-calloutText_heading">Austin, TX</h3>
+              <div class="c-calloutText_text">
+                <p class="p1">Tech talent hotspot with 8,500+ new jobs/year</p>
+              </div>
+          </td>
+          <td>
+
+            <div class="c-calloutText c-calloutText--grey" style="height:150px;">
+              <h3 class="c-calloutText_heading">Seattle, WA</h3>
+              <div class="c-calloutText_text">
+                <p class="p1">Cloud computing and AI innovation center</p>
+              </div>
+          </td>
+          <td>
+
+            <div class="c-calloutText c-calloutText--grey" style="height:150px;">
+              <h3 class="c-calloutText_heading">Denver, CO</h3>
+              <div class="c-calloutText_text">
+                <p class="p1">Rapidly growing tech sector, 25% YoY growth</p>
+              </div>
+          </td>
+          <td>
+
+            <div class="c-calloutText c-calloutText--grey" style="height:150px;">
+              <h3 class="c-calloutText_heading">Raleigh-Durham, NC</h3>
+              <div class="c-calloutText_text">
+                <p class="p1">Research Triangle with strong tech ecosystem</p>
+              </div>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+
+    <!-- FIND MY JOB: Left column (degree+grad) | Right column (location+auth) | Full-width skills -->
+    <div id="matchme" class="jobs-panel">
+      <h3>Find My Job Match</h3>
+
+      <form class="jobs-form">
+        <!-- Row 1: Degree + Graduation on left, Location + Authorization on right -->
+
+        <table style="width: 100%; margin: 0; border-collapse: collapse; border-spacing: 0;">
+          <tr style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+            <th style="width: 50%; margin: 0; padding: 0;"></th>
+            <th style="width: 50%; margin: 0; padding: 0;"></th>
+          </tr>
+          <tr style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+            <td style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+              <div class="jobs-form-group">
+                <label for="jm-program">Your Degree Program:</label>
+                <select id="jm-program" data-option-set="degreePrograms"></select>
+              </div>
+            </td>
+            <td style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+              <div class="jobs-form-group">
+                <label for="jm-grad">Graduation Year:</label>
+                <select id="jm-grad" data-option-set="graduationTerms"></select>
+              </div>
+            </td>
+          </tr>
+          <tr style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+            <td style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+              <div class="jobs-form-group">
+                <label for="jm-location">Preferred Location:</label>
+                <select id="jm-location" data-option-set="locations"></select>
+              </div>
+            </td>
+            <td style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+              <div class="jobs-form-group">
+                <label for="jm-auth">Work Authorization:</label>
+                <select id="jm-auth">
+                  <option>US citizen / permanent resident</option>
+                  <option>F-1 OPT / STEM OPT eligible</option>
+                  <option>H-1B sponsorship needed</option>
+                </select>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <!-- Row 2: Full-width Skills -->
+        <table style="width: 100%; margin: 0; border-collapse: collapse; border-spacing: 0;">
+          <tr style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+            <td style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+              <div class="jobs-form-group">
+                <label for="jm-skills">Your Skills (comma-separated):</label>
+                <input type="text" id="jm-skills" placeholder="e.g. Python, React, SQL, AWS">
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <button type="button" id="jm-btn" onclick="runJobMatch()">Find My Job Matches →</button>
+      </form>
+
+      <div class="jobs-loading" id="jm-loading">Loading job matches...</div>
+      <div class="jobs-results" id="jm-results"></div>
+    </div>
+
+    <!-- FIND MY INTERNSHIP: Two columns with program+grad on left, skills on right -->
+    <div id="internships" class="jobs-panel">
+      <h3>Find My Internship Match</h3>
+      <form class="jobs-form">
+        <table style="width: 100%; margin: 0; border-collapse: collapse; border-spacing: 0;">
+          <tr style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+            <th style="width: 50%; margin: 0; padding: 0;"></th>
+            <th style="width: 50%; margin: 0; padding: 0;"></th>
+          </tr>
+          <tr style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+            <td style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+              <div class="jobs-form-group">
+                <label for="ji-program">Your Degree Program:</label>
+                <select id="ji-program" data-option-set="degreePrograms"></select>
+              </div>
+            </td>
+            <td style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+              <div class="jobs-form-group">
+                <label for="ji-grad">Graduation Year:</label>
+                <select id="ji-grad" data-option-set="graduationTerms"></select>
+              </div>
+            </td>
+          </tr>
+          <tr style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+            <td style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+              <div class="jobs-form-group">
+                <label for="ji-location">Preferred Location:</label>
+                <select id="ji-location" data-option-set="locations"></select>
+              </div>
+            </td>
+            <td style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+              <div class="jobs-form-group">
+                <label for="ji-auth">Work Authorization:</label>
+                <select id="ji-auth">
+                  <option>US citizen / permanent resident</option>
+                  <option>F-1 OPT / STEM OPT eligible</option>
+                  <option>H-1B sponsorship needed</option>
+                </select>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <!-- Row 1: Degree + Graduation (left) | Skills (right) -->
+        <table style="width: 100%; margin: 0; border-collapse: collapse; border-spacing: 0;">
+          <tr style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+            <td style="border-top: none; border-bottom: none; border: 0px solid #FFFFFF00;">
+              <div class="jobs-form-group">
+                <label for="ji-skills">Your Skills (comma-separated):</label>
+                <input type="text" id="jm-skills" placeholder="e.g. Python, React, SQL, AWS">
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <button type="button" id="ji-btn" onclick="runInternshipMatch()">Find My Internship Matches →</button>
+      </form>
+
+      <div class="jobs-loading" id="ji-loading">Loading internship matches...</div>
+      <div class="jobs-results" id="ji-results"></div>
+    </div>
+
+    <div id="events" class="jobs-panel">
+      <h3>Events Calendar</h3>
+
+      <div class="jobs-filters">
+        <button class="active" onclick="filterEvents('all', this)">All Events</button>
+        <button onclick="filterEvents('workshops', this)">Workshops</button>
+        <button onclick="filterEvents('panels', this)">Panels</button>
+        <button onclick="filterEvents('networking', this)">Networking</button>
+      </div>
+
+      <div id="events-list" class="dateItems-list">
+        <!-- Events will be generated here by JavaScript -->
+      </div>
+    </div>
+
+    <div id="employers" class="jobs-panel">
+      <h3>Recruit Bellini College Talent</h3>
+      <p>Connect with our top computer science and technology students. Fill out the form below to express your hiring
+        interest.</p>
+
+      <form class="jobs-form" id="recruit-form" onsubmit="submitRecruitment(event)">
+        <div class="jobs-form-group">
+          <label for="recruit-company">Company Name:</label>
+          <input type="text" id="recruit-company" required>
+        </div>
+
+        <div class="jobs-form-group">
+          <label for="recruit-email">Contact Email:</label>
+          <input type="email" id="recruit-email" required>
+        </div>
+
+        <div class="jobs-form-group">
+          <label for="recruit-positions">Open Positions:</label>
+          <textarea id="recruit-positions" required style="min-height: 100px;"></textarea>
+        </div>
+
+        <button type="submit">Submit Your Interest</button>
+      </form>
+    </div>
+
+  </div>
+
   <script>
-    // <![CDATA[
-    var DEFAULT_STAT_BAR_ITEMS = [
-      {
-        item_name: "software_developer_growth",
-        value: "+17.9%",
-        title: "Software developer growth 2023-2033",
-        citation: "BLS / MLR 2025"
-      },
-      {
-        item_name: "fl_tech_workers",
-        value: "546K",
-        title: "Tech workers in Florida (#4 nationally)",
-        citation: "CompTIA 2025"
-      },
-      {
-        item_name: "fl_median_tech_wage",
-        value: "$102,908",
-        title: "Median FL tech wage - 122% above state median",
-        citation: "CompTIA / Lightcast 2024"
-      },
-      {
-        item_name: "fl_ai_skill_postings",
-        value: "12,735",
-        title: "Active FL job postings requiring AI skills",
-        citation: "CompTIA 2024"
-      }
-    ];
-
-    // DLP-safe default: load dashboard stats from local static JSON.
-    // Expected payload: one JSON object containing all sections
-    // (stat_bar, prospective_spotlight, current_metro, prospective_ai_cards,
-    // current_resources_cards, employer_value_cards, employer_recruiting_cards).
-    var DASHBOARD_STATS_JSON_URL = "./microsoft/dashboard/dashboard_stats_power_automate_response.json";
-    var DEFAULT_PROSPECTIVE_SPOTLIGHT_ITEMS = [
-      {
-        item_name: "fl_software_dev_jobs",
-        value: "107,404",
-        title: "Software dev jobs in FL - +5.0% projected 2025 (3.2x benchmark)",
-        citation: "CompTIA / Lightcast 2025"
-      },
-      {
-        item_name: "fl_data_science_ml_jobs",
-        value: "16,973",
-        title: "Data science & ML jobs - +5.6% projected, fastest-growing FL category",
-        citation: "CompTIA / Lightcast 2025"
-      },
-      {
-        item_name: "fl_compTIA_state_rank",
-        value: "#3",
-        title: "Florida aggregate CompTIA ranking among all 50 states",
-        citation: "CompTIA 2025"
-      }
-    ];
-
-    var DEFAULT_CURRENT_METRO_ITEMS = [
-      {
-        item_name: "orlando_metro_rank",
-        value: "#2",
-        title: "Orlando - 2nd nationally for metro tech employment job gains",
-        citation: "CompTIA 2025"
-      },
-      {
-        item_name: "fl_active_tech_postings_2024",
-        value: "112,890",
-        title: "Active tech job postings in FL in 2024 across all occupation categories",
-        citation: "CompTIA 2025"
-      },
-      {
-        item_name: "fl_tech_business_establishments",
-        value: "46,687",
-        title: "Tech business establishments in FL - mostly small businesses",
-        citation: "CompTIA 2025"
-      }
-    ];
-    var DEFAULT_PROSPECTIVE_AI_CARDS = [
-      {
-        item_name: "bls_productivity_demand",
-        badge: "BLS finding",
-        badge_color: "green",
-        title: "Productivity creates demand",
-        body: "AI-assisted productivity lowers software costs, expanding the market and boosting demand for the very developers who build AI tools - a virtuous cycle for computing graduates."
-      },
-      {
-        item_name: "comptia_data_ai_growth",
-        badge: "CompTIA 2025",
-        badge_color: "amber",
-        title: "Data & AI: fastest-growing segment",
-        body: "Data science, ML, and database roles are Florida's fastest-growing tech category at 5.6% annually - 3.6x the national benchmark. Directly aligned with Bellini programs."
-      }
-    ];
-    var DEFAULT_CURRENT_RESOURCES_CARDS = [
-      {
-        item_name: "advising",
-        badge: "Advising",
-        badge_color: "blue",
-        title: "Schedule with your advisor",
-        body: "1:1 sessions for resume review, interview prep, and job search strategy. Drop-in hours Tues & Thurs.",
-        cta_text: "Book appointment",
-        cta_href: "#"
-      },
-      {
-        item_name: "jobs_board",
-        badge: "Jobs board",
-        badge_color: "blue",
-        title: "Bellini career portal",
-        body: "Curated postings from employer partners, updated weekly. Internships, co-ops, and full-time roles.",
-        cta_text: "Browse openings",
-        cta_href: "#"
-      },
-      {
-        item_name: "market_data",
-        badge: "Market data",
-        badge_color: "green",
-        title: "Salary benchmarks",
-        body: "FL median tech wage is $102,908 - 122% above state median. Breakdowns by role and experience level.",
-        cta_text: "View salary data",
-        cta_href: "#"
-      },
-      {
-        item_name: "ai_jobs",
-        badge: "AI jobs",
-        badge_color: "amber",
-        title: "AI-specific opportunities",
-        body: "12,735 Florida postings require AI skills. Track the live trend via AIMaps (UMD & LinkUp).",
-        cta_text: "AIMaps Florida",
-        cta_href: "https://www.aimaps.ai/florida.php",
-        cta_target: "_blank"
-      },
-      {
-        item_name: "networking",
-        badge: "Networking",
-        badge_color: "blue",
-        title: "Alumni connections",
-        body: "Connect with Bellini alumni in tech, cybersecurity, and AI through our LinkedIn community and mentorship program.",
-        cta_text: "Join the network",
-        cta_href: "#"
-      },
-      {
-        item_name: "certifications",
-        badge: "Certifications",
-        badge_color: "green",
-        title: "Industry certifications",
-        body: "CompTIA Security+, AWS, Google Cloud - credentials employers actively request in postings.",
-        cta_text: "Cert pathways",
-        cta_href: "#"
-      }
-    ];
-    var DEFAULT_EMPLOYER_VALUE_CARDS = [
-      {
-        item_name: "talent_pipeline",
-        badge: "Talent pipeline",
-        badge_color: "green",
-        title: "Programs aligned to market demand",
-        body: "BS CS, MS AI, MS Data Intelligence, MS Cybersecurity, and MS Computer Engineering - mapped to fastest-growing occupation categories in Florida and nationally.",
-        cta_text: "Learn more",
-        cta_href: "#"
-      },
-      {
-        item_name: "ai_ready_graduates",
-        badge: "AI-ready graduates",
-        badge_color: "amber",
-        title: "Curriculum built for the AI era",
-        body: "Graduates trained in ML, deep learning, NLP, and applied AI systems - directly addressing 12,735 Florida postings requiring AI skills identified in 2024.",
-        cta_text: "Learn more",
-        cta_href: "#"
-      },
-      {
-        item_name: "scale",
-        badge: "Scale",
-        badge_color: "blue",
-        title: "One of Florida's largest computing colleges",
-        body: "68+ faculty across AI, cybersecurity, CS, and computer engineering. USF is Florida's fastest-growing research university.",
-        cta_text: "Learn more",
-        cta_href: "#"
-      },
-      {
-        item_name: "location",
-        badge: "Location",
-        badge_color: "green",
-        title: "Tampa Bay - a rising tech market",
-        body: "Florida is #4 nationally in net tech employment and #3 for projected 2025 job gains. Tampa Bay between two of fastest-growing tech metros in state.",
-        cta_text: "Learn more",
-        cta_href: "#"
-      }
-    ];
-    var DEFAULT_EMPLOYER_RECRUITING_CARDS = [
-      {
-        item_name: "on_campus_recruiting",
-        title: "On-campus recruiting",
-        body: "Info sessions, tech talks, and interview suites. Spring and fall career fairs with targeted computing tracks.",
-        cta_text: "Schedule a visit",
-        cta_href: "#"
-      },
-      {
-        item_name: "internship_partnerships",
-        title: "Internship partnerships",
-        body: "Post internship and co-op positions directly to Bellini students via our career portal.",
-        cta_text: "Post a position",
-        cta_href: "#"
-      },
-      {
-        item_name: "capstone_sponsorship",
-        title: "Capstone sponsorship",
-        body: "Sponsor a senior or graduate capstone. Your real-world problem, our students' solutions - with faculty oversight.",
-        cta_text: "Explore capstones",
-        cta_href: "#"
-      }
-    ];
-
-    function getStatNumberClass(itemName) {
-      if (itemName === "software_developer_growth") return "stat-num c-green";
-      if (itemName === "fl_median_tech_wage") return "stat-num c-amber";
-      return "stat-num";
+    //<![CDATA[
+    function switchPanel(panelName, button) {
+      document.querySelectorAll('.jobs-panel').forEach(panel => panel.classList.remove('active'));
+      const panel = document.getElementById(panelName);
+      if (panel) panel.classList.add('active');
+      document.querySelectorAll('.jobs-tabs button').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
     }
 
-    function escapeHtml(text) {
-      return String(text)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
-    }
-
-    function renderStatBarItems(items) {
-      var host = document.getElementById("stat-bar-items");
-      if (!host) return;
-      if (!Array.isArray(items) || !items.length) items = DEFAULT_STAT_BAR_ITEMS;
-
-      host.innerHTML = items.map(function (item) {
-        var itemName = item && item.item_name ? String(item.item_name) : "";
-        var value = item && item.value ? escapeHtml(item.value) : "";
-        var title = item && item.title ? escapeHtml(item.title) : "";
-        var citation = item && item.citation ? escapeHtml(item.citation) : "";
-        return '<div class="stat-bellini-jobs">' +
-          '<div class="' + getStatNumberClass(itemName) + '">' + value + '</div>' +
-          '<div class="stat-label">' + title + '</div>' +
-          '<div class="stat-src">' + citation + '</div>' +
-          '</div>';
-      }).join("");
-    }
-
-    function getSpotlightNumberClass(itemName) {
-      var greenItems = {
-        fl_software_dev_jobs: true,
-        fl_data_science_ml_jobs: true,
-        fl_compTIA_state_rank: true
-      };
-      return greenItems[itemName] ? "fl-num c-green" : "fl-num";
-    }
-
-    function renderProspectiveSpotlightItems(items) {
-      var host = document.getElementById("prospective-spotlight-items");
-      if (!host) return;
-      if (!Array.isArray(items) || !items.length) items = DEFAULT_PROSPECTIVE_SPOTLIGHT_ITEMS;
-
-      host.innerHTML = items.map(function (item) {
-        var itemName = item && item.item_name ? String(item.item_name) : "";
-        var value = item && item.value ? escapeHtml(item.value) : "";
-        var title = item && item.title ? escapeHtml(item.title) : "";
-        var citation = item && item.citation ? escapeHtml(item.citation) : "";
-        return '<div class="fl-cell">' +
-          '<div class="' + getSpotlightNumberClass(itemName) + '">' + value + '</div>' +
-          '<div class="fl-desc">' + title + '</div>' +
-          (citation ? '<div class="fl-src">' + citation + '</div>' : "") +
-          '</div>';
-      }).join("");
-    }
-
-    function renderCurrentMetroItems(items) {
-      var host = document.getElementById("current-metro-items");
-      if (!host) return;
-      if (!Array.isArray(items) || !items.length) items = DEFAULT_CURRENT_METRO_ITEMS;
-
-      host.innerHTML = items.map(function (item) {
-        var value = item && item.value ? escapeHtml(item.value) : "";
-        var title = item && item.title ? escapeHtml(item.title) : "";
-        var citation = item && item.citation ? escapeHtml(item.citation) : "";
-        return '<div class="fl-cell">' +
-          '<div class="fl-num">' + value + '</div>' +
-          '<div class="fl-desc">' + title + '</div>' +
-          (citation ? '<div class="fl-src">' + citation + '</div>' : "") +
-          '</div>';
-      }).join("");
-    }
-
-    function getBadgeColorClass(badgeColor) {
-      var safe = badgeColor || "blue";
-      var name = safe === "green" || safe === "amber" || safe === "blue" ? safe : "blue";
-      return name + "-bellini-jobs";
-    }
-
-    function renderProspectiveAiCards(items) {
-      var host = document.getElementById("prospective-ai-cards-items");
-      if (!host) return;
-      if (!Array.isArray(items) || !items.length) items = DEFAULT_PROSPECTIVE_AI_CARDS;
-
-      host.innerHTML = items.map(function (item) {
-        var badge = item && item.badge ? escapeHtml(item.badge) : "";
-        var badgeColor = getBadgeColorClass(item && item.badge_color ? String(item.badge_color) : "");
-        var title = item && item.title ? escapeHtml(item.title) : "";
-        var body = item && item.body ? escapeHtml(item.body) : "";
-        return '<div class="card-bellini-jobs">' +
-          '<div class="badge-bellini-jobs ' + badgeColor + '">' + badge + '</div>' +
-          '<div class="card-head">' + title + '</div>' +
-          '<div class="card-body">' + body + '</div>' +
-          '</div>';
-      }).join("");
-    }
-
-    function renderCurrentResourceCards(items) {
-      var host = document.getElementById("current-resources-cards-items");
-      if (!host) return;
-      if (!Array.isArray(items) || !items.length) items = DEFAULT_CURRENT_RESOURCES_CARDS;
-
-      host.innerHTML = items.map(function (item) {
-        var badge = item && item.badge ? escapeHtml(item.badge) : "";
-        var badgeColor = getBadgeColorClass(item && item.badge_color ? String(item.badge_color) : "");
-        var title = item && item.title ? escapeHtml(item.title) : "";
-        var body = item && item.body ? escapeHtml(item.body) : "";
-        var ctaText = item && item.cta_text ? escapeHtml(item.cta_text) : "";
-        var ctaHref = item && item.cta_href ? escapeHtml(item.cta_href) : "#";
-        var ctaTarget = item && item.cta_target === "_blank" ? ' target="_blank" rel="noopener noreferrer"' : "";
-        var cta = ctaText ? '<a class="card-cta" href="' + ctaHref + '"' + ctaTarget + '>' + ctaText + '</a>' : "";
-        return '<div class="card-bellini-jobs">' +
-          '<div class="badge-bellini-jobs ' + badgeColor + '">' + badge + '</div>' +
-          '<div class="card-head">' + title + '</div>' +
-          '<div class="card-body">' + body + '</div>' +
-          cta +
-          '</div>';
-      }).join("");
-    }
-
-    function renderEmployerValueCards(items) {
-      var host = document.getElementById("employer-value-cards-items");
-      if (!host) return;
-      if (!Array.isArray(items) || !items.length) items = DEFAULT_EMPLOYER_VALUE_CARDS;
-
-      host.innerHTML = items.map(function (item) {
-        var badge = item && item.badge ? escapeHtml(item.badge) : "";
-        var badgeColor = getBadgeColorClass(item && item.badge_color ? String(item.badge_color) : "");
-        var title = item && item.title ? escapeHtml(item.title) : "";
-        var body = item && item.body ? escapeHtml(item.body) : "";
-        var ctaText = item && item.cta_text ? escapeHtml(item.cta_text) : "";
-        var ctaHref = item && item.cta_href ? escapeHtml(item.cta_href) : "#";
-        var ctaTarget = item && item.cta_target === "_blank" ? ' target="_blank" rel="noopener noreferrer"' : "";
-        var cta = ctaText ? '<a class="card-cta" href="' + ctaHref + '"' + ctaTarget + '>' + ctaText + '</a>' : "";
-        return '<div class="card-bellini-jobs">' +
-          '<div class="badge-bellini-jobs ' + badgeColor + '">' + badge + '</div>' +
-          '<div class="card-head">' + title + '</div>' +
-          '<div class="card-body">' + body + '</div>' +
-          cta +
-          '</div>';
-      }).join("");
-    }
-
-    function renderEmployerRecruitingCards(items) {
-      var host = document.getElementById("employer-recruiting-cards-items");
-      if (!host) return;
-      if (!Array.isArray(items) || !items.length) items = DEFAULT_EMPLOYER_RECRUITING_CARDS;
-
-      host.innerHTML = items.map(function (item) {
-        var title = item && item.title ? escapeHtml(item.title) : "";
-        var body = item && item.body ? escapeHtml(item.body) : "";
-        var ctaText = item && item.cta_text ? escapeHtml(item.cta_text) : "";
-        var ctaHref = item && item.cta_href ? escapeHtml(item.cta_href) : "#";
-        var ctaTarget = item && item.cta_target === "_blank" ? ' target="_blank" rel="noopener noreferrer"' : "";
-        var cta = ctaText ? '<a class="card-cta" href="' + ctaHref + '"' + ctaTarget + '>' + ctaText + '</a>' : "";
-        return '<div class="card-bellini-jobs">' +
-          '<div class="card-head">' + title + '</div>' +
-          '<div class="card-body">' + body + '</div>' +
-          cta +
-          '</div>';
-      }).join("");
-    }
-
-    function renderDashboardStats(payload) {
-      var data = payload && typeof payload === "object" ? payload : {};
-      var statBarItems = Array.isArray(data.stat_bar) ? data.stat_bar : null;
-      var prospectiveSpotlightItems = Array.isArray(data.prospective_spotlight) ? data.prospective_spotlight : null;
-      var currentMetroItems = Array.isArray(data.current_metro) ? data.current_metro : null;
-      var prospectiveAiCards = Array.isArray(data.prospective_ai_cards) ? data.prospective_ai_cards : null;
-      var currentResourcesCards = Array.isArray(data.current_resources_cards) ? data.current_resources_cards : null;
-      var employerValueCards = Array.isArray(data.employer_value_cards) ? data.employer_value_cards : null;
-      var employerRecruitingCards = Array.isArray(data.employer_recruiting_cards) ? data.employer_recruiting_cards : null;
-
-      renderStatBarItems(statBarItems);
-      renderProspectiveSpotlightItems(prospectiveSpotlightItems);
-      renderCurrentMetroItems(currentMetroItems);
-      renderProspectiveAiCards(prospectiveAiCards);
-      renderCurrentResourceCards(currentResourcesCards);
-      renderEmployerValueCards(employerValueCards);
-      renderEmployerRecruitingCards(employerRecruitingCards);
-    }
-
-    function loadDashboardStats() {
-      if (!DASHBOARD_STATS_JSON_URL) {
-        renderDashboardStats({});
-        return;
-      }
-
-      fetch(DASHBOARD_STATS_JSON_URL, { cache: "no-store" })
-        .then(function (response) {
-          if (!response.ok) throw new Error("Dashboard stats JSON request failed");
-          return response.json();
-        })
-        .then(function (payload) {
-          renderDashboardStats(payload);
-        })
-        .catch(function () {
-          renderDashboardStats({});
-        });
-    }
-
-    (function () {
-      try {
-        var fn = document.getElementById("jm-file-protocol-note");
-        if (fn && location.protocol === "file:") fn.classList.add("is-visible");
-      } catch (e) {}
-    })();
-
-    document.addEventListener("DOMContentLoaded", loadDashboardStats);
-    // ]]>
-  </script>
-  <div class="jobs-page-root">
-  <div class="stat-bar" id="stat-bar-items">
-    <!-- GEN:stat_items:start -->
-    <!-- GEN:stat_items:end -->
-  </div>
-
-  <div class="tabs-bellini-jobs">
-    <button class="tab-bellini-jobs active" onclick="showPanel('prospective',this)">Prospective students</button>
-    <button class="tab-bellini-jobs" onclick="showPanel('current',this)">Current students</button>
-    <button class="tab-bellini-jobs" onclick="showPanel('matchme',this)">Find my job âœ¦</button>
-    <button class="tab-bellini-jobs" onclick="showPanel('internships',this)">Find my internship âœ¦</button>
-    <button class="tab-bellini-jobs" onclick="showPanel('events',this)">Events calendar</button>
-    <button class="tab-bellini-jobs" onclick="showPanel('employers',this)">Employers</button>
-  </div>
-
-  <!-- â•â• PROSPECTIVE â•â• -->
-  <div class="panel-bellini-jobs active" id="panel-prospective">
-    <div class="slabel-bellini-jobs">National occupation projections &mdash; 2023 to 2033</div>
-    <div class="projection-controls">
-      <div>
-        <select id="prospective-degree-select" aria-label="Select degree program for projections"></select>
-      </div>
-      <div id="projection-status" class="projection-status" aria-live="polite"></div>
-    </div>
-    <table class="occ-table">
-      <thead>
-        <tr>
-          <th style="width:34%">Occupation</th>
-          <th>2023 jobs</th>
-          <th>2033 est.</th>
-          <th>Growth</th>
-          <th style="width:24%">vs. 4.0% avg</th>
-        </tr>
-      </thead>
-      <tbody id="projection-body">
-        <!-- GEN:projection_rows:start -->
-        <tr>
-          <td>Software developers</td>
-          <td class="mono-bellini-jobs">1,692,100</td>
-          <td class="mono-bellini-jobs">1,995,900</td>
-          <td class="pct-bellini-jobs up">+17.9%</td>
-          <td>
-            <div class="bar-wrap">
-              <div class="bar-track">
-                <div class="bar-fill" style="width:100%"></div>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Computer occupations (all)</td>
-          <td class="mono-bellini-jobs">5,021,800</td>
-          <td class="mono-bellini-jobs">5,610,700</td>
-          <td class="pct-bellini-jobs up">+11.7%</td>
-          <td>
-            <div class="bar-wrap">
-              <div class="bar-track">
-                <div class="bar-fill" style="width:65%"></div>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Database architects</td>
-          <td class="mono-bellini-jobs">61,400</td>
-          <td class="mono-bellini-jobs">68,000</td>
-          <td class="pct-bellini-jobs up">+10.8%</td>
-          <td>
-            <div class="bar-wrap">
-              <div class="bar-track">
-                <div class="bar-fill" style="width:60%"></div>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Financial &amp; investment analysts</td>
-          <td class="mono-bellini-jobs">347,400</td>
-          <td class="mono-bellini-jobs">380,300</td>
-          <td class="pct-bellini-jobs up">+9.5%</td>
-          <td>
-            <div class="bar-wrap">
-              <div class="bar-track">
-                <div class="bar-fill" style="width:53%"></div>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Database administrators</td>
-          <td class="mono-bellini-jobs">80,500</td>
-          <td class="mono-bellini-jobs">87,100</td>
-          <td class="pct-bellini-jobs up">+8.2%</td>
-          <td>
-            <div class="bar-wrap">
-              <div class="bar-track">
-                <div class="bar-fill" style="width:46%"></div>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td style="color:var(--text-2)">All occupations (benchmark)</td>
-          <td class="mono-bellini-jobs" style="color:var(--text-2)">167,849,800</td>
-          <td class="mono-bellini-jobs" style="color:var(--text-2)">174,563,800</td>
-          <td class="pct-bellini-jobs up" style="color:var(--text-2)">+4.0%</td>
-          <td>
-            <div class="bar-wrap">
-              <div class="bar-track">
-                <div class="bar-fill neutral-bellini-jobs" style="width:22%"></div>
-              </div>
-            </div>
-          </td>
-        </tr>
-    <!-- GEN:projection_rows:end -->
-      </tbody>
-    </table>
-    <div id="projection-debug" class="projection-debug" aria-live="polite"></div>
-    <div class="slabel-bellini-jobs">Florida spotlight</div>
-    <table style="width:100%;border-collapse:collapse;table-layout:fixed;margin:0;padding:0;border:0;background:transparent;">
-      <tbody>
-        <tr><td style="padding:0;border:0;background:transparent;display:block;width:100%;">
-          <div class="prospective-spotlight-row">
-            <div class="fl-strip" id="prospective-spotlight-items">
-              <!-- GEN:prospective_spotlight:start -->
-            <!-- GEN:prospective_spotlight:end -->
-            </div>
-          </div>
-        </td></tr>
-        <tr><td style="padding:0;border:0;background:transparent;display:block;width:100%;">
-          <div class="prospective-ai-label-row">
-            <div class="slabel-bellini-jobs">Why the AI era boosts &mdash; not replaces &mdash; computing careers</div>
-          </div>
-        </td></tr>
-        <tr><td style="padding:0;border:0;background:transparent;display:block;width:100%;">
-          <div class="prospective-ai-cards-row">
-            <div class="cards2" id="prospective-ai-cards-items">
-            </div>
-          </div>
-        </td></tr>
-      </tbody>
-    </table>
-    <div class="source-note-bellini-jobs">
-      <!-- GEN:prospective_source_note:start -->
-      Sources: BLS Monthly Labor Review Feb 2025 (Machovec, Rieley &amp; Rolen) - national projections 2023-2033. CompTIA State of the Tech Workforce 2025 (Lightcast / BLS) - Florida state-level figures.
-    <!-- GEN:prospective_source_note:end -->
-    </div>
-  </div>
-
-  <!-- â•â• CURRENT STUDENTS â•â• -->
-  <div class="panel-bellini-jobs" id="panel-current">
-    <div class="slabel-bellini-jobs">Your career pathway</div>
-    <div class="current-pathway-row">
-      <div class="pathway-bellini-jobs">
-        <div class="pw-step">
-          <div class="pw-num">01</div>
-          <div class="pw-label">Advising</div>
-          <div class="pw-sub">Meet career advisor &mdash; semester 1</div>
-        </div>
-        <div class="pw-step">
-          <div class="pw-num">02</div>
-          <div class="pw-label">Resume &amp; portfolio</div>
-          <div class="pw-sub">GitHub, LinkedIn, capstone</div>
-        </div>
-        <div class="pw-step">
-          <div class="pw-num">03</div>
-          <div class="pw-label">Employer events</div>
-          <div class="pw-sub">Talks, fairs, info sessions</div>
-        </div>
-        <div class="pw-step">
-          <div class="pw-num">04</div>
-          <div class="pw-label">Internship</div>
-          <div class="pw-sub">Co-op, research, or industry</div>
-        </div>
-        <div class="pw-step">
-          <div class="pw-num">05</div>
-          <div class="pw-label">Full-time offer</div>
-          <div class="pw-sub">FL #3 for tech job gains</div>
-        </div>
-      </div>
-    </div>
-    <div class="current-resources-label-row">
-      <div class="slabel-bellini-jobs">Career resources</div>
-    </div>
-    <div class="current-resources-cards-row">
-      <div class="cards3" id="current-resources-cards-items">
-        <!-- GEN:current_resources:start -->
-      <!-- GEN:current_resources:end -->
-      </div>
-    </div>
-    <div class="slabel-bellini-jobs">Florida metro opportunities</div>
-    <div class="fl-strip" id="current-metro-items">
-      <!-- GEN:current_metro:start -->
-    <!-- GEN:current_metro:end -->
-    </div>
-  </div>
-
-  <!-- â•â• FIND MY JOB â•â• -->
-  <div class="panel-bellini-jobs" id="panel-matchme">
-    <div class="jm-form">
-      <div id="jm-file-protocol-note" class="jm-file-note">
-        You opened this page as a local file (<code>file://</code>). Browsers often block the live job search script in that mode. Serve the folder over HTTP instead, for example: run <code>python -m http.server 8080</code> inside <code>jobs_page</code>, then open <code>http://127.0.0.1:8080/</code>.
-      </div>
-      <div class="heading-bellini-jobs">Find my job &mdash; AI-powered matching</div>
-      <div class="paragraph-bellini-jobs">Fill in your profile and get 4 personalized role recommendations with direct links to live job searches on
-        LinkedIn and Indeed, pre-filtered for your skills and location.</div>
-      <div class="jm-grid">
-        <div class="jm-field">
-          <label>Degree program</label>
-          <select id="jm-program">
-            <option value="">Select program...</option>
-            <!-- value = compact USAJOBS Keyword text (debugLogUsaJobsSearch uses e.g. cybersecurity + Florida) -->
-            <option value="computer science">BS Computer Science</option>
-            <option value="artificial intelligence">MS Artificial Intelligence</option>
-            <option value="data science">MS Data Intelligence</option>
-            <option value="cybersecurity">MS Cybersecurity</option>
-            <option value="computer engineering">MS Computer Engineering</option>
-            <option value="computer science">PhD Computer Science / AI</option>
-          </select>
-        </div>
-        <div class="jm-field">
-          <label>Graduation / availability</label>
-          <select id="jm-grad">
-            <!-- GEN:jm_grad_options:start -->
-            <option>Select...</option>
-            <option>Currently seeking (graduated)</option>
-            <option>Spring 2025</option>
-            <option>Summer 2025</option>
-            <option>Fall 2025</option>
-            <option>Spring 2026</option>
-            <option>1-2 years out</option>
-            <option>Seeking internship now</option>
-    <!-- GEN:jm_grad_options:end -->
-          </select>
-        </div>
-        <div class="jm-field">
-          <label>Top technical skills</label>
-          <input type="text" id="jm-skills" placeholder="e.g. Python, PyTorch, SQL, React, Kubernetes..." />
-        </div>
-        <div class="jm-field">
-          <label>Preferred location</label>
-          <select id="jm-location">
-            <!-- value = USAJOBS LocationName-friendly strings; default Florida matches editor debug searches -->
-            <option value="Florida" selected>Anywhere in Florida</option>
-            <option value="Tampa, FL">Tampa Bay area</option>
-            <option value="Orlando, FL">Orlando metro</option>
-            <option value="Miami, FL">Miami / South FL</option>
-            <option value="United States">Remote / anywhere in US</option>
-          </select>
-        </div>
-        <div class="jm-field">
-          <label>Work authorization</label>
-          <select id="jm-auth">
-            <option>US citizen / permanent resident</option>
-            <option>F-1 OPT / STEM OPT eligible</option>
-            <option>H-1B sponsorship needed</option>
-          </select>
-        </div>
-        <div class="jm-field">
-          <label>Work arrangement</label>
-          <select id="jm-mode">
-            <option>No preference</option>
-            <option>On-site</option>
-            <option>Hybrid</option>
-            <option>Remote only</option>
-          </select>
-        </div>
-        <div class="jm-field jm-full">
-          <label>Interests &amp; additional context (optional)</label>
-          <textarea id="jm-notes"
-            placeholder="e.g. interested in healthcare AI, open to startups, 2 fintech internships, want to avoid defense sector..."></textarea>
-        </div>
-      </div>
-      <button class="btn-primary-bellini-jobs" id="jm-btn" onclick="runJobMatch()">Find my job matches &rarr;</button>
-    </div>
-
-    <div class="jm-loading" id="jm-loading">
-      <div class="jm-spinner"></div>
-      <span>Analyzing your profile and generating personalized matches&hellip;</span>
-    </div>
-
-    <div id="jm-results"></div>
-  </div>
-
-  <!-- â•â• FIND MY INTERNSHIP â•â• -->
-  <div class="panel-bellini-jobs" id="panel-internships">
-    <div class="jm-form">
-      <div class="heading-bellini-jobs">Find my internship &mdash; AI-powered matching</div>
-      <div class="paragraph-bellini-jobs">Fill in your profile and get 4 personalized internship recommendations with direct links to live job searches on
-        LinkedIn and Indeed, pre-filtered for your skills and location.</div>
-      <div class="jm-grid">
-        <div class="jm-field">
-          <label>Degree program</label>
-          <select id="ji-program">
-            <option value="">Select program...</option>
-            <option value="computer science">BS Computer Science</option>
-            <option value="artificial intelligence">MS Artificial Intelligence</option>
-            <option value="data science">MS Data Intelligence</option>
-            <option value="cybersecurity">MS Cybersecurity</option>
-            <option value="computer engineering">MS Computer Engineering</option>
-            <option value="computer science">PhD Computer Science / AI</option>
-          </select>
-        </div>
-        <div class="jm-field">
-          <label>Graduation / availability</label>
-          <select id="ji-grad">
-            <option>Select...</option>
-            <option>Currently seeking (graduated)</option>
-            <option>Spring 2025</option>
-            <option>Summer 2025</option>
-            <option>Fall 2025</option>
-            <option>Spring 2026</option>
-            <option>1-2 years out</option>
-            <option>Seeking internship now</option>
-          </select>
-        </div>
-        <div class="jm-field">
-          <label>Top technical skills</label>
-          <input type="text" id="ji-skills" placeholder="e.g. Python, PyTorch, SQL, React, Kubernetes..." />
-        </div>
-        <div class="jm-field">
-          <label>Preferred location</label>
-          <select id="ji-location">
-            <option value="Florida" selected>Anywhere in Florida</option>
-            <option value="Tampa, FL">Tampa Bay area</option>
-            <option value="Orlando, FL">Orlando metro</option>
-            <option value="Miami, FL">Miami / South FL</option>
-            <option value="United States">Remote / anywhere in US</option>
-          </select>
-        </div>
-        <div class="jm-field">
-          <label>Work authorization</label>
-          <select id="ji-auth">
-            <option>US citizen / permanent resident</option>
-            <option>F-1 OPT / STEM OPT eligible</option>
-            <option>H-1B sponsorship needed</option>
-          </select>
-        </div>
-        <div class="jm-field">
-          <label>Work arrangement</label>
-          <select id="ji-mode">
-            <option>No preference</option>
-            <option>On-site</option>
-            <option>Hybrid</option>
-            <option>Remote only</option>
-          </select>
-        </div>
-        <div class="jm-field jm-full">
-          <label>Interests &amp; additional context (optional)</label>
-          <textarea id="ji-notes"
-            placeholder="e.g. interested in healthcare AI, open to startups, 2 fintech internships, want to avoid defense sector..."></textarea>
-        </div>
-      </div>
-      <button class="btn-primary-bellini-jobs" id="ji-btn" onclick="runInternshipMatch()">Find my internship matches &rarr;</button>
-    </div>
-
-    <div class="jm-loading" id="ji-loading">
-      <div class="jm-spinner"></div>
-      <span>Analyzing your profile and generating personalized internship matches&hellip;</span>
-    </div>
-
-    <div id="ji-results"></div>
-  </div>
-
-  <!-- â•â• EVENTS CALENDAR â•â• -->
-  <div class="panel-bellini-jobs" id="panel-events">
-    <div class="slabel-bellini-jobs">Upcoming career events</div>
-    <div class="ev-filter-row">
-      <button class="ev-filter active" onclick="filterEvents('all',this)">All events</button>
-      <button class="ev-filter" onclick="filterEvents('fair',this)">Career fairs</button>
-      <button class="ev-filter" onclick="filterEvents('talk',this)">Company talks</button>
-      <button class="ev-filter" onclick="filterEvents('resume',this)">Resume &amp; interview</button>
-      <button class="ev-filter" onclick="filterEvents('net',this)">Networking</button>
-      <button class="ev-filter" onclick="filterEvents('info',this)">Info sessions</button>
-    </div>
-    <div class="ev-list" id="ev-list">
-      <!-- GEN:event_items:start -->
-      <div class="slabel-bellini-jobs ev-loading-msg" style="margin-bottom:0.75rem;color:var(--text-2);">Loading eventsâ€¦</div>
-    <!-- GEN:event_items:end -->
-    </div>
-
-    <div class="ev-submit-box">
-      <div class="heading-bellini-jobs">Submit an event</div>
-      <div class="paragraph-bellini-jobs">Student org hosting a company talk? Faculty organizing an employer visit? Submit it to appear on this calendar.
-      </div>
-      <div class="form-row-bellini-jobs"><input type="text" placeholder="Event name" /><input type="text"
-          placeholder="Date &amp; time" /></div>
-      <div class="form-row-bellini-jobs">
-        <input type="text" placeholder="Location / format" />
-        <select>
-          <option>Career fair</option>
-          <option>Company talk</option>
-          <option>Resume / interview</option>
-          <option>Networking</option>
-          <option>Info session</option>
-        </select>
-      </div>
-      <button class="btn-primary-bellini-jobs" style="margin-top:2px">Submit event</button>
-    </div>
-  </div>
-
-  <!-- â•â• EMPLOYERS â•â• -->
-  <div class="panel-bellini-jobs" id="panel-employers">
-    <div class="slabel-bellini-jobs">Why recruit from Bellini College</div>
-    <div class="cards2" id="employer-value-cards-items">
-      <!-- GEN:employer_value_cards:start -->
-    <!-- GEN:employer_value_cards:end -->
-    </div>
-    <div class="slabel-bellini-jobs">Recruiting options</div>
-    <div class="cards3" id="employer-recruiting-cards-items">
-    </div>
-    <div class="slabel-bellini-jobs">Contact our career team</div>
-    <div class="recruit-form">
-      <div class="form-row-bellini-jobs"><input type="text" placeholder="Company name" /><input type="text"
-          placeholder="Your name &amp; title" /></div>
-      <div class="form-row-bellini-jobs"><input type="email" placeholder="Work email" /><select>
-          <option>Internship / co-op posting</option>
-          <option>Full-time recruiting</option>
-          <option>Capstone sponsorship</option>
-          <option>Campus event / info session</option>
-          <option>Other partnership</option>
-        </select></div>
-      <button class="btn-primary-bellini-jobs">Send inquiry</button>
-      <div class="source-note-bellini-jobs" style="border:none;padding:0;margin-top:0.5rem;">Our career advisor will respond within 2
-        business days.</div>
-    </div>
-  </div>
-
-  <div class="page-footer-bellini-jobs">
-    <span class="live-dot-bellini-jobs"></span>
-    <!-- GEN:footer_text:start -->
-    <span class="footer-text-bellini-jobs">BLS MLR Feb 2025 â€¢ CompTIA State of Tech Workforce 2025 â€¢ AIMaps / LinkUp â€¢ Maintained by Bellini College Career Services â€¢ Updated quarterly</span>
-    <!-- GEN:footer_text:end -->
-  </div>
-
-  </div>
-  <script>
-    // <![CDATA[
-    function showPanel(id, btn) {
-      document.querySelectorAll('.panel-bellini-jobs').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.tab-bellini-jobs').forEach(t => t.classList.remove('active'));
-      document.getElementById('panel-' + id).classList.add('active');
-      btn.classList.add('active');
-    }
-
-    function filterEvents(type, btn) {
-      document.querySelectorAll('.ev-filter').forEach(f => f.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.ev-item').forEach(item => {
-        item.style.display = (type === 'all' || item.dataset.type === type) ? '' : 'none';
+    function filterEvents(category, button) {
+      const events = document.querySelectorAll('[data-category]');
+      events.forEach(event => {
+        if (category === 'all' || event.dataset.category === category) {
+          event.classList.remove('hidden');
+        } else {
+          event.classList.add('hidden');
+        }
       });
+      document.querySelectorAll('.jobs-filters button').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
     }
 
-    const JOB_SEARCH_API_URL = "https://script.google.com/macros/s/AKfycbyn5LtR00k9L61pDULfPpIAPzdOjsV8GlXcW8crABgFDNHiQRxvFjgv0yUubUS7YNk/exec";
-    /** If WEBAPP_API_KEY is set in Apps Script, set the same value here (optional; visible in page source). */
-    const JOB_SEARCH_API_KEY = "";
-    const NATIONAL_GROWTH_BENCHMARK_PCT = 4.0;
-
+    // ═══ LIGHTCAST API CONFIGURATION ═══
     const LIGHTCAST_BASE_CONFIG = {
       apiKey: "n3pncM4UFnbKWMWVoFy65EOR9AkCZTd93WC2Q1x8",
       clientName: "UniversitySouthFloridaCMS",
@@ -2352,23 +743,40 @@
     };
 
     const LIGHTCAST_DEGREE_CONFIGS = {
-      bscs: { key: "bscs", label: "BS Computer Science", occupationCodes: ["15-1211.00","15-1211.01","15-1242.00","15-1244.00","15-1253.00","15-1255.00","15-1255.01","15-1299.01","15-1299.03","15-1299.04","15-1299.06","15-1299.07"] },
-      bscp: { key: "bscp", label: "BS Computer Engineering", occupationCodes: ["15-1231.00","15-1232.00","15-1241.01","15-1252.00","15-1253.00","17-2061.00"] },
-      bscse: { key: "bscse", label: "BS Computer Science and Engineering", occupationCodes: ["11-3021.00","15-1211.00","15-1221.00","15-1241.00","15-1242.00","15-1243.00","15-1244.00","15-1253.00","15-1255.00","15-1299.04","15-1299.06","25-1021.00"] },
-      bsai: { key: "bsai", label: "BS Artificial Intelligence", occupationCodes: ["15-1253.00","15-1299.01","15-1299.03","15-2051.01","15-2051.02"] },
-      bscys: { key: "bscys", label: "BS Cybersecurity", occupationCodes: ["15-1212.00","15-1231.00","15-1242.00","15-1244.00","15-1299.04","15-1299.06"] },
-      bsit: { key: "bsit", label: "BS Information Technology", occupationCodes: ["15-1211.00","15-1211.01","15-1212.00","15-1231.00","15-1244.00","15-1252.00","15-1253.00","15-1299.01"] },
-      mscs: { key: "mscs", label: "MS Computer Science", occupationCodes: ["15-1221.00","15-1241.00","15-1242.00","15-1243.00","15-1252.00","15-1253.00","15-1299.08","15-1299.09","15-2051.00"] },
-      mscpe: { key: "mscpe", label: "MS Computer Engineering", occupationCodes: ["15-1221.00","15-1241.00","15-1243.00","15-1251.00","15-1252.00","15-1253.00","15-1299.08","17-2061.00"] },
-      msai: { key: "msai", label: "MS Artificial Intelligence", occupationCodes: ["15-1221.00","15-1241.00","15-1243.00","15-1252.00","15-1299.08","15-2031.00","15-2041.00","15-2051.00"] },
-      mscys: { key: "mscys", label: "MS Cybersecurity", occupationCodes: ["11-3021.00","13-1199.07","15-1212.00","15-1241.00","15-1299.04","15-1299.05","15-1299.08"] }
+      bscs: { key: "bscs", label: "BS Computer Science", occupationCodes: ["15-1211.00", "15-1211.01", "15-1242.00", "15-1244.00", "15-1253.00", "15-1255.00", "15-1255.01", "15-1299.01", "15-1299.03", "15-1299.04", "15-1299.06", "15-1299.07"] },
+      bscp: { key: "bscp", label: "BS Computer Engineering", occupationCodes: ["15-1231.00", "15-1232.00", "15-1241.01", "15-1252.00", "15-1253.00", "17-2061.00"] },
+      bscse: { key: "bscse", label: "BS Computer Science and Engineering", occupationCodes: ["11-3021.00", "15-1211.00", "15-1221.00", "15-1241.00", "15-1242.00", "15-1243.00", "15-1244.00", "15-1253.00", "15-1255.00", "15-1299.04", "15-1299.06", "25-1021.00"] },
+      bsai: { key: "bsai", label: "BS Artificial Intelligence", occupationCodes: ["15-1253.00", "15-1299.01", "15-1299.03", "15-2051.01", "15-2051.02"] },
+      bscys: { key: "bscys", label: "BS Cybersecurity", occupationCodes: ["15-1212.00", "15-1231.00", "15-1242.00", "15-1244.00", "15-1299.04", "15-1299.06"] },
+      bsit: { key: "bsit", label: "BS Information Technology", occupationCodes: ["15-1211.00", "15-1211.01", "15-1212.00", "15-1231.00", "15-1244.00", "15-1252.00", "15-1253.00", "15-1299.01"] },
+      mscs: { key: "mscs", label: "MS Computer Science", occupationCodes: ["15-1221.00", "15-1241.00", "15-1242.00", "15-1243.00", "15-1252.00", "15-1253.00", "15-1299.08", "15-1299.09", "15-2051.00"] },
+      mscpe: { key: "mscpe", label: "MS Computer Engineering", occupationCodes: ["15-1221.00", "15-1241.00", "15-1243.00", "15-1251.00", "15-1252.00", "15-1253.00", "15-1299.08", "17-2061.00"] },
+      msai: { key: "msai", label: "MS Artificial Intelligence", occupationCodes: ["15-1221.00", "15-1241.00", "15-1243.00", "15-1252.00", "15-1299.08", "15-2031.00", "15-2041.00", "15-2051.00"] },
+      mscys: { key: "mscys", label: "MS Cybersecurity", occupationCodes: ["11-3021.00", "13-1199.07", "15-1212.00", "15-1241.00", "15-1299.04", "15-1299.05", "15-1299.08"] }
     };
 
+    // ═══ CALENDAR API CONFIGURATION ═══
+    const CALENDAR_FEED_API_KEY = "";
+    const EVENTS_FEED_URL =
+      typeof window.EVENTS_FEED_URL !== "undefined" && window.EVENTS_FEED_URL
+        ? window.EVENTS_FEED_URL
+        : "https://script.google.com/macros/s/AKfycbzXRZIjQnK04USWhUTCiy5PD9edAwxHSaw5Ww35A-Mk3cDRizo4Sj2Pr4HDog6AUzd9/exec";
+
+    // Utility functions
     function parseNum(v) {
       if (typeof v === "number") return Number.isFinite(v) ? v : null;
       if (typeof v !== "string") return null;
       const n = Number(v.replace(/,/g, "").trim());
       return Number.isFinite(n) ? n : null;
+    }
+
+    function formatInt(n) {
+      return (parseNum(n) ?? 0).toLocaleString("en-US");
+    }
+
+    function formatPct(n) {
+      const v = parseNum(n) ?? 0;
+      return (v >= 0 ? "+" : "") + v.toFixed(1) + "%";
     }
 
     function pickNum(obj, keys) {
@@ -2395,31 +803,7 @@
       return { value: null, key: null, raw: null };
     }
 
-    function formatInt(n) {
-      return (parseNum(n) ?? 0).toLocaleString("en-US");
-    }
-
-    function formatPct(n) {
-      const v = parseNum(n) ?? 0;
-      return (v >= 0 ? "+" : "") + v.toFixed(1) + "%";
-    }
-
-    function escapeHtml(s) {
-      return String(s)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
-    }
-
-    function projectionDebugEnabled() {
-      try {
-        return new URLSearchParams(window.location.search).get("projection_debug") === "1";
-      } catch {
-        return false;
-      }
-    }
-
+    // Build Lightcast API URL
     function buildLightcastWidgetDataUrl(degreeKey) {
       const degreeConfig = LIGHTCAST_DEGREE_CONFIGS[degreeKey];
       if (!degreeConfig || !Array.isArray(degreeConfig.occupationCodes) || !degreeConfig.occupationCodes.length) {
@@ -2435,6 +819,7 @@
         encodeURIComponent(LIGHTCAST_BASE_CONFIG.country) + "/widget-data?" + params.toString();
     }
 
+    // Fetch Lightcast data
     async function fetchLightcastDataForDegree(degreeKey) {
       const response = await fetch(buildLightcastWidgetDataUrl(degreeKey), {
         method: "GET",
@@ -2454,6 +839,7 @@
       return payload.data.careers;
     }
 
+    // Convert career object to projection row with robust field extraction
     function toProjectionRow(career) {
       const title = career.occupationTitle || career.title || career.name || (career.occupation && career.occupation.title) || "Occupation";
       const jobs2023YearPick = pickEmploymentYear(career, 2023);
@@ -2493,160 +879,59 @@
         title,
         jobs2023,
         jobs2033,
-        growthPct,
-        _debug: {
-          jobs2023Field: jobs2023YearPick.key || jobs2023FallbackPick.key,
-          jobs2033Field: jobs2033YearPick.key || jobs2033FallbackPick.key,
-          growthField: apiGrowthPick.key,
-          jobs2023Raw: jobs2023YearPick.key ? jobs2023YearPick.raw : (jobs2023FallbackPick.key ? career[jobs2023FallbackPick.key] : null),
-          jobs2033Raw: jobs2033YearPick.key ? jobs2033YearPick.raw : (jobs2033FallbackPick.key ? career[jobs2033FallbackPick.key] : null),
-          growthRaw: apiGrowthPick.key ? career[apiGrowthPick.key] : null,
-          growthSource: computedGrowthPct != null ? "computed(2033-2023)" : "api_field"
-        }
+        growthPct
       };
     }
 
-    function renderProjectionTableRows(rows, debugMeta) {
-      const body = document.getElementById("projection-body");
-      const debugEl = document.getElementById("projection-debug");
-      const debugOn = projectionDebugEnabled();
-      if (!body) return;
-      if (!rows.length) {
-        body.innerHTML = '<tr><td colspan="4" style="color:var(--text-2);">No projection rows returned for this program.</td></tr>';
-        if (debugEl) {
-          debugEl.style.display = debugOn ? "block" : "none";
-          debugEl.textContent = debugOn ? "projection_debug=1, but no rows returned." : "";
-        }
-        return;
-      }
-      const sorted = [...rows].sort((a, b) => b.growthPct - a.growthPct).slice(0, 8);
-      const maxGrowth = Math.max(...sorted.map(r => Math.max(r.growthPct, 0)), 1);
-      let html = "";
-      sorted.forEach((r) => {
-        const w = Math.max(4, Math.round((Math.max(r.growthPct, 0) / maxGrowth) * 100));
-        html += '<tr>' +
-          '<td>' + escapeHtml(r.title) + '</td>' +
-          '<td class="mono-bellini-jobs">' + formatInt(r.jobs2023) + '</td>' +
-          '<td class="mono-bellini-jobs">' + (r.jobs2033 != null ? formatInt(r.jobs2033) : "â€”") + '</td>' +
-          '<td class="pct-bellini-jobs up">' + formatPct(r.growthPct) + '</td>' +
-          '<td><div class="bar-wrap"><div class="bar-track"><div class="bar-fill" style="width:' + w + '%"></div></div></div></td>' +
-          '</tr>';
-      });
-      const benchmarkWidth = Math.max(4, Math.min(100, Math.round((NATIONAL_GROWTH_BENCHMARK_PCT / maxGrowth) * 100)));
-      html += '<tr>' +
-        '<td style="color:var(--text-2)">All occupations (benchmark)</td>' +
-        '<td class="mono-bellini-jobs" style="color:var(--text-2)">â€”</td>' +
-        '<td class="mono-bellini-jobs" style="color:var(--text-2)">â€”</td>' +
-        '<td class="pct-bellini-jobs up" style="color:var(--text-2)">+' + NATIONAL_GROWTH_BENCHMARK_PCT.toFixed(1) + '%</td>' +
-        '<td><div class="bar-wrap"><div class="bar-track"><div class="bar-fill neutral-bellini-jobs" style="width:' + benchmarkWidth + '%"></div></div></div></td>' +
-        '</tr>';
-      body.innerHTML = html;
-      if (debugEl) {
-        if (debugOn) {
-          const lines = sorted.map((r) =>
-            r.title + " | " +
-            "2023=" + (r._debug.jobs2023Field || "n/a") + ":" + String(r._debug.jobs2023Raw) + " | " +
-            "2033=" + (r._debug.jobs2033Field || "n/a") + ":" + String(r._debug.jobs2033Raw) + " | " +
-            "growth_field=" + (r._debug.growthField || "n/a") + ":" + String(r._debug.growthRaw) + " | " +
-            "source=" + r._debug.growthSource + " | " +
-            "final_growth=" + r.growthPct.toFixed(2) + "%"
-          );
-          debugEl.style.display = "block";
-          const extra = debugMeta
-            ? (
-              "\n\ncareer_count=" + String(debugMeta.careerCount) +
-              "\nfirst_career_keys=" + (debugMeta.firstCareerKeys || []).join(", ") +
-              "\n\nfirst_career_sample=\n" + (debugMeta.firstCareerSample || "")
-            )
-            : "";
-          debugEl.textContent =
-            "projection_debug=1\n" +
-            "maxGrowth=" + maxGrowth.toFixed(2) + ", benchmarkWidth=" + benchmarkWidth + "%\n\n" +
-            lines.join("\n") + extra;
-        } else {
-          debugEl.style.display = "none";
-          debugEl.textContent = "";
-        }
-      }
-    }
+    function updateProjections() {
+      const degree = document.getElementById('prospective-degree').value;
+      const status = document.getElementById('projection-status');
+      if (!degree) return;
 
-    async function refreshProspectiveProjectionTable(degreeKey) {
-      const status = document.getElementById("projection-status");
       if (status) status.textContent = "Loading projections...";
-      try {
-        const careers = await fetchLightcastDataForDegree(degreeKey);
-        const rows = careers.map(toProjectionRow).filter(r => r.title && r.jobs2023 != null && r.growthPct != null);
-        const firstCareer = careers && careers.length ? careers[0] : null;
-        const debugMeta = {
-          careerCount: Array.isArray(careers) ? careers.length : 0,
-          firstCareerKeys: firstCareer && typeof firstCareer === "object" ? Object.keys(firstCareer) : [],
-          firstCareerSample: firstCareer ? JSON.stringify(firstCareer, null, 2).slice(0, 5000) : ""
-        };
-        renderProjectionTableRows(rows, debugMeta);
-        const label = LIGHTCAST_DEGREE_CONFIGS[degreeKey] ? LIGHTCAST_DEGREE_CONFIGS[degreeKey].label : "Program";
-        if (status) status.textContent = "Showing latest national projections for " + label + ".";
-      } catch (err) {
-        if (status) status.textContent = "Could not load projections. Please try again.";
-      }
+
+      fetchLightcastDataForDegree(degree)
+        .then(careers => {
+          const rows = careers.map(toProjectionRow).filter(r => r.title && r.jobs2023 != null && r.growthPct != null);
+          const sorted = [...rows].sort((a, b) => b.growthPct - a.growthPct).slice(0, 8);
+          const maxGrowth = Math.max(...sorted.map(r => Math.max(r.growthPct, 0)), 1);
+
+          const body = document.getElementById('projection-body');
+          if (body) {
+            let html = '';
+            sorted.forEach(r => {
+              const w = Math.max(4, Math.round((Math.max(r.growthPct, 0) / maxGrowth) * 100));
+              html += `<tr>
+              <td>${r.title}</td>
+              <td>${formatInt(r.jobs2023)}</td>
+              <td>${r.jobs2033 != null ? formatInt(r.jobs2033) : "–"}</td>
+              <td>${formatPct(r.growthPct)}</td>
+              <td class="bar-cell">
+                <div class="bar-wrap">
+                  <div class="bar" style="width: ${w}%;"></div>
+                </div>
+              </td>
+            </tr>`;
+            });
+            body.innerHTML = html;
+          }
+
+          const label = LIGHTCAST_DEGREE_CONFIGS[degree] ? LIGHTCAST_DEGREE_CONFIGS[degree].label : "Program";
+          if (status) status.textContent = "Showing latest national projections for " + label + ".";
+        })
+        .catch(err => {
+          if (status) status.textContent = "Could not load projections. Please try again.";
+        });
     }
 
-    function initProspectiveProjectionDegreeSelect() {
-      const select = document.getElementById("prospective-degree-select");
-      if (!select) return;
-      const keys = Object.keys(LIGHTCAST_DEGREE_CONFIGS);
-      select.innerHTML = keys
-        .map((k) => '<option value="' + escapeHtml(k) + '">' + escapeHtml(LIGHTCAST_DEGREE_CONFIGS[k].label) + '</option>')
-        .join("");
-      const defaultKey = "bscs";
-      if (keys.includes(defaultKey)) select.value = defaultKey;
-      select.addEventListener("change", (e) => {
-        refreshProspectiveProjectionTable(e.target.value);
-      });
-      refreshProspectiveProjectionTable(select.value);
-    }
-    
-    /** Optional; must match WEBAPP_API_KEY on the calendar Apps Script project when set (visible in page source). */
-    const CALENDAR_FEED_API_KEY = ""
-
-    /**
-     * Separate Apps Script deployment for events.
-     * Override per-page via window.EVENTS_FEED_URL if needed.
-     */
-    const EVENTS_FEED_URL =
-      typeof window.EVENTS_FEED_URL !== "undefined" && window.EVENTS_FEED_URL
-        ? window.EVENTS_FEED_URL
-        : "https://script.google.com/macros/s/AKfycbzXRZIjQnK04USWhUTCiy5PD9edAwxHSaw5Ww35A-Mk3cDRizo4Sj2Pr4HDog6AUzd9/exec";
-
-    function normalizeAppsScriptExecUrl(url) {
-      var value = String(url || "").trim();
-      if (!value) return "";
-      var marker = "/exec";
-      var firstExecIdx = value.indexOf(marker);
-      if (firstExecIdx === -1) return value;
-      var secondSchemeIdx = value.indexOf("https://", firstExecIdx + marker.length);
-      if (secondSchemeIdx !== -1) {
-        // Recover from accidental concat like ".../exechttps://.../exec" by taking the last URL.
-        return value.slice(secondSchemeIdx);
-      }
-      return value;
-    }
-
+    // ═══ GOOGLE APPS SCRIPT API ═══
+    const JOB_SEARCH_API_URL = "https://script.google.com/macros/s/AKfycbyn5LtR00k9L61pDULfPpIAPzdOjsV8GlXcW8crABgFDNHiQRxvFjgv0yUubUS7YNk/exec";
+    const JOB_SEARCH_API_KEY = "";
     const JOB_SEARCH_JSONP_MAX_URL = 7500;
     const JOB_SEARCH_JSONP_TIMEOUT_MS = 40000;
 
-    function jobSearchDebugQuery() {
-      try {
-        return new URLSearchParams(window.location.search).get("jobsearch_debug") === "1";
-      } catch {
-        return false;
-      }
-    }
     function jobSearchEscapeHtml(s) {
-      return String(s)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
+      return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
     }
 
     function randomJsonpCallbackName() {
@@ -2657,23 +942,12 @@
       return s;
     }
 
-    /**
-     * JSONP GET to Apps Script web app (avoids CORS preflight that blocks fetch POST from static pages).
-     */
     function jobSearchJsonp(baseUrl, params) {
       return new Promise((resolve, reject) => {
         const cbName = randomJsonpCallbackName();
         let u;
-        try {
-          u = new URL(baseUrl);
-        } catch {
-          reject(new Error("Invalid API URL"));
-          return;
-        }
-        if (u.protocol !== "https:") {
-          reject(new Error("Invalid API URL"));
-          return;
-        }
+        try { u = new URL(baseUrl); } catch { reject(new Error("Invalid API URL")); return; }
+        if (u.protocol !== "https:") { reject(new Error("Invalid API URL")); return; }
         const qs = new URLSearchParams();
         for (const [k, v] of Object.entries(params)) {
           if (v === undefined || v === null || v === "") continue;
@@ -2681,37 +955,13 @@
         }
         qs.set("callback", cbName);
         u.search = "?" + qs.toString();
-        if (u.href.length > JOB_SEARCH_JSONP_MAX_URL) {
-          reject(new Error("Request too large"));
-          return;
-        }
-        // #region agent log
-        fetch("http://127.0.0.1:7494/ingest/56222cd2-0b1e-4b81-96eb-8838368431f1", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "19dc22" },
-          body: JSON.stringify({
-            sessionId: "19dc22",
-            location: "jobs_page/index.html:jobSearchJsonp",
-            message: "jsonp request built",
-            data: {
-              hypothesisId: "H1",
-              runId: "pre",
-              urlLen: u.href.length,
-              paramKeys: [...qs.keys()].filter((k) => k !== "callback"),
-              host: u.host
-            },
-            timestamp: Date.now()
-          })
-        }).catch(() => {});
-        // #endregion
+        if (u.href.length > JOB_SEARCH_JSONP_MAX_URL) { reject(new Error("Request too large")); return; }
 
         const script = document.createElement("script");
         let done = false;
         const cleanup = () => {
           if (script.parentNode) script.parentNode.removeChild(script);
-          try {
-            delete window[cbName];
-          } catch (_) { /* ignore */ }
+          try { delete window[cbName]; } catch (_) { }
         };
         const finish = (fn) => {
           if (done) return;
@@ -2720,49 +970,9 @@
           cleanup();
           fn();
         };
-
-        window[cbName] = (data) => {
-          // #region agent log
-          (function (d) {
-            var errStr =
-              d != null && typeof d === "object" && "error" in d ? String(d.error) : null;
-            var resN =
-              d != null && typeof d === "object" && Array.isArray(d.results) ? d.results.length : null;
-            fetch("http://127.0.0.1:7494/ingest/56222cd2-0b1e-4b81-96eb-8838368431f1", {
-              method: "POST",
-              headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "19dc22" },
-              body: JSON.stringify({
-                sessionId: "19dc22",
-                location: "jobs_page/index.html:jsonpCallback",
-                message: "jsonp script invoked",
-                data: { hypothesisId: "H2", runId: "pre", hasError: errStr != null, error: errStr, resultsLen: resN },
-                timestamp: Date.now()
-              })
-            }).catch(function () {});
-          })(data);
-          // #endregion
-          finish(() => resolve(data));
-        };
-        script.onerror = () => {
-          // #region agent log
-          fetch("http://127.0.0.1:7494/ingest/56222cd2-0b1e-4b81-96eb-8838368431f1", {
-            method: "POST",
-            headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "19dc22" },
-            body: JSON.stringify({
-              sessionId: "19dc22",
-              location: "jobs_page/index.html:scriptOnError",
-              message: "jsonp script load error",
-              data: { hypothesisId: "H4", runId: "pre" },
-              timestamp: Date.now()
-            })
-          }).catch(() => {});
-          // #endregion
-          finish(() => reject(new Error("Load failed")));
-        };
-        const tid = setTimeout(() => {
-          finish(() => reject(new Error("Timeout")));
-        }, JOB_SEARCH_JSONP_TIMEOUT_MS);
-
+        window[cbName] = (data) => finish(() => resolve(data));
+        script.onerror = () => finish(() => reject(new Error("Load failed")));
+        const tid = setTimeout(() => finish(() => reject(new Error("Timeout"))), JOB_SEARCH_JSONP_TIMEOUT_MS);
         script.src = u.href;
         document.head.appendChild(script);
       });
@@ -2774,7 +984,7 @@
         btnId: 'jm-btn',
         loadingId: 'jm-loading',
         resultsId: 'jm-results',
-        headingText: 'Your personalized matches',
+        headingText: 'Your personalized job matches',
         forceInternshipSearch: false
       });
     }
@@ -2791,76 +1001,49 @@
     }
 
     async function runMatchSearch(config) {
-      const program = document.getElementById(config.fieldPrefix + '-program').value;
-      const grad = document.getElementById(config.fieldPrefix + '-grad').value;
-      const skills = document.getElementById(config.fieldPrefix + '-skills').value;
-      const location = document.getElementById(config.fieldPrefix + '-location').value;
-      const auth = document.getElementById(config.fieldPrefix + '-auth').value;
-      const mode = document.getElementById(config.fieldPrefix + '-mode').value;
-      const notes = document.getElementById(config.fieldPrefix + '-notes').value;
+      const val = (id) => {
+        const el = document.getElementById(id);
+        return el ? el.value : '';
+      };
+      const program = val(config.fieldPrefix + '-program');
+      const grad = val(config.fieldPrefix + '-grad');
+      const skills = val(config.fieldPrefix + '-skills');
+      const location = val(config.fieldPrefix + '-location');
+      const auth = val(config.fieldPrefix + '-auth');
 
       if (!program || !grad) { alert('Please select your degree program and graduation timeline.'); return; }
 
       const btn = document.getElementById(config.btnId);
       const loading = document.getElementById(config.loadingId);
       const results = document.getElementById(config.resultsId);
-      btn.disabled = true;
-      loading.style.display = 'flex';
+      if (btn) btn.disabled = true;
+      if (loading) loading.classList.add('active');
       results.innerHTML = '';
 
-      const loadErrorHtml = '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">Could not load matches &mdash; please try again or visit career services.</div>';
+      const loadErrorHtml = '<div style="font-size:0.9rem;opacity:0.7;padding:0.5rem 0;">Could not load matches — please try again or visit career services.</div>';
 
       try {
-        if (!JOB_SEARCH_API_URL) {
-          throw new Error('JOB_SEARCH_API_URL is not configured.');
-        }
+        if (!JOB_SEARCH_API_URL) throw new Error('JOB_SEARCH_API_URL is not configured.');
 
         const params = {
           action: "job-search",
-          /* program is option value (USAJOBS keyword); skills append extra terms */
           query_text: [program, (skills || "").trim(), config.forceInternshipSearch ? "internship" : ""].filter(Boolean).join(" ").trim(),
           location_text: location || "Florida",
           employment_type: grad,
-          remote_mode: mode || undefined,
           limit_per_provider: "4",
-          notes: notes || undefined,
           authorization: auth || undefined
         };
         if (JOB_SEARCH_API_KEY) params.api_key = JOB_SEARCH_API_KEY;
-        if (jobSearchDebugQuery()) params.err_detail = "1";
 
         const data = await jobSearchJsonp(JOB_SEARCH_API_URL, params);
-        if (data == null || typeof data !== "object" || Array.isArray(data)) {
-          throw new Error("Invalid response");
-        }
+        if (data == null || typeof data !== "object" || Array.isArray(data)) throw new Error("Invalid response");
         if (data.error) {
-          if (jobSearchDebugQuery() && typeof data.detail === "string" && data.detail.trim() !== "") {
-            results.innerHTML =
-              "<div class=\"paragraph-bellini-jobs\" style=\"font-size:13px;color:var(--text-2);padding:0.5rem 0;\">Debug mode: server error <code>" +
-              jobSearchEscapeHtml(String(data.error)) +
-              "</code> &mdash; details below. Remove <code>?jobsearch_debug=1</code> when done.</div><pre style=\"font-size:12px;white-space:pre-wrap;word-break:break-word;padding:0.5rem 0;\">" +
-              jobSearchEscapeHtml(data.detail) +
-              "</pre>";
-            return;
-          }
           if (data.error === "Unauthorized") {
-            results.innerHTML =
-              '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">The jobs API requires a matching key. Set <code>JOB_SEARCH_API_KEY</code> in this page to the same value as <code>WEBAPP_API_KEY</code> in Apps Script properties (or remove the key from the script for testing only).</div>';
+            results.innerHTML = '<div style="font-size:0.9rem;opacity:0.7;padding:0.5rem 0;">The jobs API requires a matching key. Set <code>JOB_SEARCH_API_KEY</code> in this asset to match <code>WEBAPP_API_KEY</code> in Apps Script properties.</div>';
             return;
           }
           if (data.error === "Rate limit exceeded") {
-            results.innerHTML =
-              '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">Too many searches right now. Please try again in a little while.</div>';
-            return;
-          }
-          if (data.error === "Internal error") {
-            if (jobSearchDebugQuery()) {
-              results.innerHTML =
-                '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">The job search service hit a server error. The <strong>Executions</strong> panel can lag, show <em>No logs for this execution</em>, or omit logs when the failure is outside <code>Logger</code> (e.g. platform/timeout). In <code>doGet</code>, use <code>try/catch</code> and when <code>e.parameter.err_detail</code> is <code>1</code>, include <code>detail: e.message</code> (or stack) in the JSONP object so it appears here. Remove <code>jobsearch_debug</code> in production.</div>';
-            } else {
-              results.innerHTML =
-                '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);padding:0.5rem 0;">The job search service hit a server error. Please try again later or contact career services.</div>';
-            }
+            results.innerHTML = '<div style="font-size:0.9rem;opacity:0.7;padding:0.5rem 0;">Too many searches right now. Please try again in a little while.</div>';
             return;
           }
           results.innerHTML = loadErrorHtml;
@@ -2869,85 +1052,59 @@
         const jobs = Array.isArray(data.results) ? data.results : [];
         renderResults(jobs, config.resultsId, config.headingText);
       } catch (e) {
-        // #region agent log
-        fetch("http://127.0.0.1:7494/ingest/56222cd2-0b1e-4b81-96eb-8838368431f1", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "19dc22" },
-          body: JSON.stringify({
-            sessionId: "19dc22",
-            location: "jobs_page/index.html:runJobMatch",
-            message: "runJobMatch catch",
-            data: {
-              hypothesisId: "H3",
-              runId: "pre",
-              err: String(e && e.message != null ? e.message : e)
-            },
-            timestamp: Date.now()
-          })
-        }).catch(() => {});
-        // #endregion
         results.innerHTML = loadErrorHtml;
       } finally {
-        btn.disabled = false;
-        loading.style.display = 'none';
+        if (btn) btn.disabled = false;
+        if (loading) loading.classList.remove('active');
       }
     }
 
     function renderResults(jobs, resultsId, headingText) {
       const el = document.getElementById(resultsId);
-      if (!jobs || !jobs.length) { el.innerHTML = '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);">No results. Refine your profile and try again.</div>'; return; }
-      let html = '<div class="slabel-bellini-jobs" style="margin-bottom:0.75rem;">' + headingText + '</div>';
+      if (!jobs || !jobs.length) {
+        el.innerHTML = '<div style="font-size:0.9rem;opacity:0.7;">No results. Refine your profile and try again.</div>';
+        return;
+      }
+      let html = '<h3 style="margin-bottom:0.75rem;">' + jobSearchEscapeHtml(headingText) + '</h3>';
       jobs.forEach(j => {
         const score = Math.round(+(j.match_score || j.score)) || 85;
-        const chips = (j.companies || []).map(c => `<span class="jm-co-chip">${c}</span>`).join(' ');
-        const applyLink = j.apply_url ? `<a class="jm-link primary" href="${j.apply_url}" target="_blank">Apply now &rarr;</a>` : '';
-        const linkedinLink = j.linkedin ? `<a class="jm-link primary" href="${j.linkedin}" target="_blank">Search on LinkedIn &rarr;</a>` : '';
-        const indeedLink = j.indeed ? `<a class="jm-link" href="${j.indeed}" target="_blank">Search on Indeed &rarr;</a>` : '';
-        const meta = [j.location || '', j.pay || j.salary || '', j.source || '', j.provider ? `Provider: ${j.provider}` : ''].filter(Boolean).join(' â€¢ ');
-        html += `<div class="jm-result-card">
-      <div class="jm-rc-top"><div class="jm-rc-title">${j.title}</div><div class="jm-rc-match">${score}% match</div></div>
-      <div class="jm-rc-meta">${meta}</div>
-      <div class="jm-rc-why">${j.why || 'Based on your selected program, skills, and location.'}</div>
-      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:0;">${chips}</div>
-      <div class="jm-rc-links">
-        ${applyLink}
-        ${linkedinLink}
-        ${indeedLink}
-      </div>
-    </div>`;
+        const title = jobSearchEscapeHtml(j.title || '');
+        const meta = [j.location || '', j.pay || j.salary || '', j.source || '', j.provider ? 'Provider: ' + j.provider : '']
+          .filter(Boolean).map(jobSearchEscapeHtml).join(' • ');
+        const why = jobSearchEscapeHtml(j.why || 'Based on your selected program, skills, and location.');
+        const applyLink = j.apply_url ? `<a href="${jobSearchEscapeHtml(j.apply_url)}" target="_blank" rel="noopener">Apply now →</a>` : '';
+        const linkedinLink = j.linkedin ? `<a href="${jobSearchEscapeHtml(j.linkedin)}" target="_blank" rel="noopener">LinkedIn →</a>` : '';
+        const indeedLink = j.indeed ? `<a href="${jobSearchEscapeHtml(j.indeed)}" target="_blank" rel="noopener">Indeed →</a>` : '';
+        html += `<div class="jobs-result-item">
+        <h4>${title} <span style="float:right;font-size:0.85rem;opacity:0.7;">${score}% match</span></h4>
+        <p style="font-size:0.9rem;opacity:0.8;">${meta}</p>
+        <p>${why}</p>
+        <p style="display:flex;gap:1rem;flex-wrap:wrap;font-size:0.9rem;">${applyLink} ${linkedinLink} ${indeedLink}</p>
+      </div>`;
       });
-      html += '<div class="paragraph-bellini-jobs" style="font-size:11px;color:var(--text-3);font-family:\'Open Sans\',sans-serif;margin-top:0.75rem;">Live search uses federal listings (USAJOBS)&mdash;confirm details on the agency posting. Contact career services for personalized advising.</div>';
+      html += '<div style="font-size:0.8rem;opacity:0.6;margin-top:0.75rem;">Live search uses federal listings (USAJOBS) — confirm details on the agency posting.</div>';
       el.innerHTML = html;
     }
 
-    function formatGcalUtcCompact(iso) {
-      const d = new Date(iso);
-      if (isNaN(d.getTime())) return "";
-      const p = (n) => String(n).padStart(2, "0");
-      return (
-        d.getUTCFullYear() +
-        p(d.getUTCMonth() + 1) +
-        p(d.getUTCDate()) +
-        "T" +
-        p(d.getUTCHours()) +
-        p(d.getUTCMinutes()) +
-        p(d.getUTCSeconds()) +
-        "Z"
-      );
+    function submitRecruitment(event) {
+      event.preventDefault();
+      const company = document.getElementById('recruit-company').value;
+      alert(`Thank you! We've received your recruitment interest for ${company}. We'll be in touch soon.`);
+      document.getElementById('recruit-form').reset();
     }
 
-    function googleCalendarTemplateUrl(ev) {
-      const s = formatGcalUtcCompact(ev.start_iso);
-      const e = formatGcalUtcCompact(ev.end_iso || ev.start_iso);
-      if (!s) return "#";
-      const q = new URLSearchParams({
-        action: "TEMPLATE",
-        text: ev.title || "Event",
-        dates: s + "/" + e
-      });
-      if (ev.location) q.set("location", ev.location);
-      if (ev.link) q.set("details", ev.link);
-      return "https://calendar.google.com/calendar/render?" + q.toString();
+
+    function normalizeAppsScriptExecUrl(url) {
+      var value = String(url || "").trim();
+      if (!value) return "";
+      var marker = "/exec";
+      var firstExecIdx = value.indexOf(marker);
+      if (firstExecIdx === -1) return value;
+      var secondSchemeIdx = value.indexOf("https://", firstExecIdx + marker.length);
+      if (secondSchemeIdx !== -1) {
+        return value.slice(secondSchemeIdx);
+      }
+      return value;
     }
 
     function evMdParts(iso) {
@@ -2957,21 +1114,21 @@
       return { month, day };
     }
 
-    function eventsDebugQuery() {
-      try {
-        return new URLSearchParams(window.location.search).get("events_debug") === "1";
-      } catch {
-        return false;
-      }
+    function googleCalendarTemplateUrl(ev) {
+      const q = new URLSearchParams();
+      q.set("action", "TEMPLATE");
+      q.set("text", ev.title || "");
+      q.set("details", ev.meta_line || "");
+      q.set("dates", (ev.start_iso || "").replace(/-|:/g, "") + "/" + (ev.end_iso || "").replace(/-|:/g, ""));
+      return "https://calendar.google.com/calendar/render?" + q.toString();
     }
 
     async function loadCareerEvents() {
-      const el = document.getElementById("ev-list");
+      const el = document.getElementById("events-list");
       if (!el) return;
       const base = normalizeAppsScriptExecUrl(EVENTS_FEED_URL);
       if (!base) {
-        el.innerHTML =
-          '<div class="slabel-bellini-jobs" style="color:var(--text-2);">Calendar feed URL is not configured. Deploy the calendar Apps Script project (<code>jobs_api/calendar_webapp/README.md</code>), paste its web app URL into <code>EVENTS_FEED_URL</code> in this file, or set <code>window.EVENTS_FEED_URL</code>.</div>';
+        el.innerHTML = '<div style="color:#666;padding:1rem;">Calendar feed URL is not configured.</div>';
         return;
       }
       try {
@@ -2981,98 +1138,136 @@
         const data = await jobSearchJsonp(base, params);
         if (!data || typeof data !== "object") throw new Error("Bad response");
         if (data.error) {
-          const code = String(data.error);
-          let hint =
-            '<div class="slabel-bellini-jobs" style="color:var(--text-2);">Events feed unavailable.</div>';
-          if (code === "Unauthorized") {
-            hint +=
-              '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);margin-top:0.5rem;">Set <code>CALENDAR_FEED_API_KEY</code> (calendar script) or <code>JOB_SEARCH_API_KEY</code> to match <code>WEBAPP_API_KEY</code> on that calendar deployment, or leave keys unset for testing.</div>';
-          } else if (code === "Rate limit exceeded") {
-            hint +=
-              '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);margin-top:0.5rem;">Too many requests. Try again shortly.</div>';
-          } else if (code === "Not found") {
-            hint +=
-              '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);margin-top:0.5rem;">Wrong URL or web app missing <code>action=events</code>. Use the deployment from <code>CalendarWebApp.gs</code> + <code>EventsFeed.gs</code> (<code>jobs_api/calendar_webapp/README.md</code>).</div>';
-          } else if (code === "events_failed" || code === "Internal error") {
-            hint +=
-              '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);margin-top:0.5rem;">Server error while building the calendar. Try again later.</div>';
-          }
-          if (eventsDebugQuery() && typeof data.detail === "string" && data.detail.trim() !== "") {
-            hint +=
-              '<pre style="font-size:12px;white-space:pre-wrap;word-break:break-word;margin-top:0.75rem;color:var(--text-3);">' +
-              jobSearchEscapeHtml(data.detail) +
-              "</pre>";
-          }
-          hint +=
-            '<div class="paragraph-bellini-jobs" style="font-size:13px;margin-top:0.75rem;"><a href="https://www.usf.edu/ai-cybersecurity-computing/calendar/">Bellini calendar</a></div>';
-          el.innerHTML = hint;
+          el.innerHTML = '<div style="color:#666;padding:1rem;">Events feed unavailable.</div>';
           return;
         }
         const events = Array.isArray(data.events) ? data.events : [];
-        renderEventCards(events, data.fetch_errors);
+        renderEventCards(events);
       } catch (err) {
-        let hint =
-          '<div class="slabel-bellini-jobs" style="color:var(--text-2);">Could not load events &mdash; network error or invalid script response.</div>';
-        hint +=
-          '<div class="paragraph-bellini-jobs" style="font-size:13px;color:var(--text-2);margin-top:0.5rem;">If you recently added calendar feeds, confirm the Apps Script deployment includes <code>action=events</code> (see <code>EVENTS_INTEGRATION.md</code>). Plain JSON errors break JSONP unless wrapped with <code>callback(...)</code>.</div>';
-        if (eventsDebugQuery()) {
-          hint +=
-            '<pre style="font-size:12px;white-space:pre-wrap;margin-top:0.5rem;color:var(--text-3);">' +
-            jobSearchEscapeHtml(String(err && err.message != null ? err.message : err)) +
-            "</pre>";
-        }
-        hint +=
-          '<div class="paragraph-bellini-jobs" style="font-size:13px;margin-top:0.75rem;"><a href="https://www.usf.edu/ai-cybersecurity-computing/calendar/">Bellini calendar</a></div>';
-        el.innerHTML = hint;
+        el.innerHTML = '<div style="color:#666;padding:1rem;">Could not load events — network error.</div>';
       }
     }
 
-    function renderEventCards(events, fetchErrors) {
-      const el = document.getElementById("ev-list");
+    function renderEventCards(events) {
+      const el = document.getElementById("events-list");
       if (!events.length) {
-        let msg =
-          '<div class="slabel-bellini-jobs" style="color:var(--text-2);">No upcoming events listed. Check back soon.</div>';
-        if (fetchErrors && fetchErrors.length)
-          msg +=
-            '<div class="paragraph-bellini-jobs" style="font-size:11px;color:var(--text-3);margin-top:0.5rem;">Some feeds could not be refreshed.</div>';
-        el.innerHTML = msg;
+        el.innerHTML = '<div style="color:#666;padding:1rem;">No upcoming events.</div>';
         return;
       }
       let html = "";
       events.forEach((ev) => {
-        const rawType = ev.ev_type && /^[a-z]+$/.test(ev.ev_type) ? ev.ev_type : "info";
-        const type = ["fair", "talk", "resume", "net", "info"].includes(rawType) ? rawType : "info";
         const { month, day } = evMdParts(ev.start_iso);
         const title = jobSearchEscapeHtml(ev.title || "");
         const meta = jobSearchEscapeHtml(ev.meta_line || "");
-        const badge = jobSearchEscapeHtml(ev.badge_label || "Event");
         const calHref = googleCalendarTemplateUrl(ev);
-        html += `<div class="ev-item" data-type="${type}">
-        <div>
-          <div class="ev-month">${jobSearchEscapeHtml(month)}</div>
-          <div class="ev-day">${jobSearchEscapeHtml(String(day))}</div>
+        html += `<div class="dateItem">
+      <a class="dateItem_link u-clearfix u-more" href="${calHref}" target="_blank">
+        <h3 class="dateItem_heading">${title}</h3>
+        <div class="dateItem_block">
+          <p class="dateItem_month">${month}</p>
+          <p class="dateItem_day">${day}</p>
         </div>
-        <div>
-          <div class="ev-title">${title}</div>
-          <div class="ev-meta">${meta}</div>
-        </div>
-        <div class="ev-right"><span class="ev-type-badge ev-type-${type}">${badge}</span><a class="ev-add" href="${calHref}" target="_blank" rel="noopener noreferrer">Add to calendar</a></div>
-      </div>`;
+        <p class="dateItem_summary">${meta}</p>
+        <p class="dateItem_action">Add to calendar&nbsp;<span class="u-more_icon u-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg></span></p>
+      </a>
+    </div>`;
       });
-      html +=
-        '<div class="paragraph-bellini-jobs" style="font-size:11px;color:var(--text-3);font-family:\'Open Sans\',sans-serif;margin-top:0.75rem;">Sourced from the Bellini calendar RSS and registered student organizations (iCal). Verify date and location before attending.</div>';
-      if (fetchErrors && fetchErrors.length)
-        html +=
-          '<div class="paragraph-bellini-jobs" style="font-size:11px;color:var(--text-3);margin-top:0.35rem;">Note: one or more feeds returned an error when refreshing.</div>';
       el.innerHTML = html;
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    function buildGraduationTermOptions(options = {}) {
+      const {
+        today = new Date(),
+        yearCount = 2,
+        terms = ["Spring", "Summer", "Fall"],
+        placeholder = "Select...",
+        finalOption = "2-3+ years out"
+      } = options;
+
+      const currentYear = today.getFullYear();
+
+      const optionLabels = [placeholder, "Already Graduated"];
+
+      for (let offset = 0; offset < yearCount; offset++) {
+        const year = currentYear + offset;
+
+        for (const term of terms) {
+          optionLabels.push(`${term} ${year}`);
+        }
+      }
+
+      optionLabels.push(finalOption);
+
+      return optionLabels.map((label, index) => ({
+        label,
+        value: index === 0 ? "" : label
+      }));
+    }
+
+    const OPTION_SETS = {
+      graduationTerms: buildGraduationTermOptions(),
+
+      locations: [
+        { label: "Florida", value: "Florida" },
+        { label: "Tampa Bay area", value: "Tampa, FL" },
+        { label: "Orlando metro", value: "Orlando, FL" },
+        { label: "Miami / South FL", value: "Miami, FL" },
+        { label: "Remote / anywhere in US", value: "United States" }
+      ],
+
+      degreePrograms: [
+        { label: "Select program...", value: "" },
+        { label: "BS Computer Science", value: "bscs" },
+        { label: "BS Computer Engineering", value: "bscp" },
+        { label: "BS Computer Science and Engineering", value: "bscse" },
+        { label: "BS Artificial Intelligence", value: "bsai" },
+        { label: "BS Cybersecurity", value: "bscys" },
+        { label: "BS Information Technology", value: "bsit" },
+        { label: "MS Computer Science", value: "mscs" },
+        { label: "MS Computer Engineering", value: "mscpe" },
+        { label: "MS Artificial Intelligence", value: "msai" },
+        { label: "MS Cybersecurity", value: "mscys" }
+      ]
+    };
+
+    function populateSelect(selectElement, options) {
+      selectElement.innerHTML = "";
+
+      for (const optionData of options) {
+        const option = document.createElement("option");
+
+        option.value = optionData.value;
+        option.textContent = optionData.label;
+
+        selectElement.appendChild(option);
+      }
+    }
+
+    function populateConfiguredSelects() {
+      const selects = document.querySelectorAll("select[data-option-set]");
+
+      for (const select of selects) {
+        const optionSetName = select.dataset.optionSet;
+        const options = OPTION_SETS[optionSetName];
+
+        if (!options) {
+          console.warn(`Unknown option set: ${optionSetName}`);
+          continue;
+        }
+
+        populateSelect(select, options);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('prospective-degree').value = 'bscs';
+      updateProjections();
       loadCareerEvents();
-      initProspectiveProjectionDegreeSelect();
+      populateConfiguredSelects();
     });
-    // ]]>
+    //]]>
   </script>
+
 </body>
 
 </html>
