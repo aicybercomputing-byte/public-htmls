@@ -20,7 +20,7 @@
     data-year            Year applied to CSV dates that omit one (default 2026)
 -->
 <div id="aix-past-events"
-     data-csv="/ai-x-events.csv"
+     data-csv="/ai-cybersecurity-computing/centers/ai-x/about/ai-x-events.csv"
      data-all-events-url="#"
      data-visible="5"
      data-year="2026"
@@ -138,11 +138,6 @@
   function renderList() {
     view = "list";
     var wrap = el("div");
-
-    var n = events.length;
-    wrap.appendChild(el("div",
-      "background:#fff; border-bottom:1px solid #e3e3e0; padding:10px 16px; font-family:" + HEAD + "; font-weight:600; letter-spacing:.1em; text-transform:uppercase; font-size:11px; color:" + SLATE + ";",
-      { text: n + (n === 1 ? " Event" : " Events") }));
 
     var ul = el("ul", "list-style:none; margin:0; padding:0;");
     events.slice(0, VISIBLE).forEach(function (ev) {

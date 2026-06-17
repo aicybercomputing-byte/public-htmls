@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+  </style>
+</helmet>
+
+<div style="font-family:'Open Sans',Helvetica,Arial,sans-serif; color:#1c1c1c; width:100%; -webkit-font-smoothing:antialiased; background:#f6f6f3; min-height:100vh; padding:40px 20px 64px;">
+  <div style="max-width:880px; margin:0 auto;">
+
+    <!-- LIST VIEW -->
+    <sc-if value="{{ showList }}" hint-placeholder-val="{{ true }}">
+      <div>
+
+        <sc-if value="{{ loading }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:24px 0; font-size:14px; color:#7E96A0;">Loading events&hellip;</div>
+        </sc-if>
+
+        <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:24px 0; font-size:14px; color:#7E96A0;">No events to display.</div>
+        </sc-if>
+
+        <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;" role="list">
+          <sc-for list="{{ events }}" as="ev" hint-placeholder-count="6">
+            <li>
+              <button type="button" onClick="{{ ev.onSelect }}" style="display:flex; align-items:stretch; gap:0; width:100%; text-align:left; cursor:pointer; border:1px solid #e3e3e0; border-left:4px solid #006747; background:#fff; padding:0; box-shadow:0 1px 3px rgba(0,0,0,.05); transition:box-shadow .14s ease, transform .14s ease;" style-hover="box-shadow:0 4px 14px rgba(0,0,0,.10); transform:translateY(-1px);">
+                <span style="display:flex; flex-direction:column; align-items:center; justify-content:center; flex:0 0 84px; background:#f7f7f4; border-right:1px solid #ecece8; padding:14px 8px;">
+                  <span style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:32px; line-height:1; color:#006747;">{{ ev.day }}</span>
+                  <span style="font-family:'Barlow Condensed',sans-serif; font-weight:600; letter-spacing:.06em; text-transform:uppercase; font-size:12px; color:#7E96A0; margin-top:3px; white-space:nowrap;">{{ ev.monYear }}</span>
+                </span>
+                <span style="flex:1 1 auto; min-width:0; padding:16px 20px;">
+                  <span style="display:block; font-family:'Barlow Condensed',sans-serif; font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:11px; color:#009374; margin-bottom:4px;">{{ ev.speaker }}</span>
+                  <span style="display:block; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:20px; line-height:1.18; color:#1c1c1c; margin-bottom:7px; text-wrap:balance;">{{ ev.title }}</span>
+                  <span style="display:block; font-size:13.5px; line-height:1.55; color:#5a5a5a;">{{ ev.excerpt }}</span>
+                </span>
+              </button>
+            </li>
+          </sc-for>
+        </ul>
+      </div>
+    </sc-if>
+
+    <!-- DETAIL VIEW -->
+    <sc-if value="{{ showDetail }}" hint-placeholder-val="{{ false }}">
+      <section>
+        <button type="button" onClick="{{ onBack }}" style="display:inline-flex; align-items:center; gap:6px; background:none; border:none; padding:0; margin:0 0 20px; cursor:pointer; font-family:'Barlow Condensed',sans-serif; font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:13px; color:#006747;" style-hover="color:#009374;">
+          <span style="font-size:16px; line-height:1;">&larr;</span> All events
+        </button>
+
+        <div style="background:#fff; border:1px solid #e3e3e0; box-shadow:0 1px 3px rgba(0,0,0,.06); padding:36px 40px 44px;">
+          <sc-if value="{{ hasSelection }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <p style="margin:0 0 8px; font-family:'Barlow Condensed',sans-serif; font-weight:600; letter-spacing:.12em; text-transform:uppercase; font-size:13px; color:#009374;">{{ selSpeaker }}</p>
+              <h2 style="margin:0 0 16px; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:34px; line-height:1.1; color:#1c1c1c; text-wrap:balance;">{{ selTitle }}</h2>
+
+              <div style="display:flex; flex-wrap:wrap; gap:8px 20px; padding:0 0 18px; margin:0 0 24px; border-bottom:2px solid #006747;">
+                <span style="display:inline-flex; align-items:center; gap:7px; font-size:14px; color:#444;"><span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#cfc493; flex:none;"></span>{{ selDate }}</span>
+              </div>
+
+              <sc-for list="{{ selParagraphs }}" as="para" hint-placeholder-count="1">
+                <p style="margin:0 0 16px; font-size:16px; line-height:1.7; color:#333;">{{ para }}</p>
+              </sc-for>
+
+              <sc-if value="{{ hasBio }}" hint-placeholder-val="{{ true }}">
+                <div style="margin-top:26px; background:#f7f7f4; border-left:4px solid #006747; padding:18px 22px;">
+                  <p style="margin:0 0 8px; font-family:'Barlow Condensed',sans-serif; font-weight:600; letter-spacing:.1em; text-transform:uppercase; font-size:13px; color:#006747;">{{ bioHeading }}</p>
+                  <p style="margin:0; font-size:14.5px; line-height:1.65; color:#444;">{{ selBio }}</p>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+        </div>
+      </section>
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:960,&quot;height&quot;:760},&quot;csvUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;/ai-cybersecurity-computing/centers/ai-x/about/ai-x-events.csv&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;year&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2026,&quot;tsType&quot;:&quot;number&quot;}}">
+class Component extends DCLogic {
+  state = { selectedId: null, view: 'list', events: [], loading: true };
+
+  MONTHS = { jan:0, feb:1, mar:2, apr:3, may:4, jun:5, jul:6, aug:7, sep:8, oct:9, nov:10, dec:11 };
+  MONTH_FULL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  componentDidMount() { this.loadEvents(); }
+
+  async loadEvents() {
+    const primary = this.props.csvUrl || '/ai-cybersecurity-computing/centers/ai-x/about/ai-x-events.csv';
+    const fallback = 'ai-x-events.csv';
+    let text = null;
+    for (const url of [primary, fallback]) {
+      try {
+        const r = await fetch(url, { cache: 'no-store' });
+        if (r.ok) { text = await r.text(); break; }
+      } catch (e) { /* try next */ }
+    }
+    if (text == null) { this.setState({ loading: false, events: [] }); return; }
+    if (!/speaker\s*name/i.test(text.slice(0, 400))) {
+      try { text = decodeURIComponent(escape(atob(text.replace(/\s+/g, '')))); } catch (e) { try { text = atob(text.replace(/\s+/g, '')); } catch (e2) {} }
+    }
+    const events = this.parseEvents(text);
+    this.setState({ events, loading: false });
+  }
+
+  parseCSV(text) {
+    const rows = []; let field = '', row = [], inQ = false;
+    text = text.replace(/^\uFEFF/, '');
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (inQ) {
+        if (c === '"') { if (text[i + 1] === '"') { field += '"'; i++; } else { inQ = false; } }
+        else { field += c; }
+      } else if (c === '"') { inQ = true; }
+      else if (c === ',') { row.push(field); field = ''; }
+      else if (c === '\r') { /* skip */ }
+      else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+      else { field += c; }
+    }
+    if (field.length || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
+
+  clean(s) { return (s == null ? '' : String(s)).replace(/\uFFFD/g, '\u2014').trim(); }
+
+  parseEvents(text) {
+    const rows = this.parseCSV(text);
+    if (!rows.length) return [];
+    const body = rows.slice(1);
+    const out = [];
+    body.forEach((cols, idx) => {
+      const date = this.clean(cols[0]);
+      const speaker = this.clean(cols[1]);
+      const title = this.clean(cols[2]);
+      const description = this.clean(cols[3]);
+      const bio = this.clean(cols[4]);
+      // title & bio optional; date, speaker, description required
+      if (!date || !speaker || !description) return;
+      const d = this.parseDate(date);
+      if (!d) return;
+      out.push({
+        id: idx, speaker, title, description, bio,
+        day: d.day, mon: d.mon, year: d.year, dateLabel: d.dateLabel, sortKey: d.sortKey,
+      });
+    });
+    out.sort((a, b) => a.sortKey - b.sortKey);
+    return out;
+  }
+
+  parseDate(s) {
+    const m = s.match(/^(\d{1,2})\s*[-\/ ]\s*([A-Za-z]{3,})/);
+    if (!m) return null;
+    const dayNum = parseInt(m[1], 10);
+    const mi = this.MONTHS[m[2].slice(0, 3).toLowerCase()];
+    if (mi == null) return null;
+    const year = this.props.year || 2026;
+    return {
+      day: String(dayNum).padStart(2, '0'),
+      mon: m[2].slice(0, 3),
+      year: String(year),
+      dateLabel: this.MONTH_FULL[mi] + ' ' + dayNum + ', ' + year,
+      sortKey: new Date(year, mi, dayNum).getTime(),
+    };
+  }
+
+  excerpt(desc) {
+    const flat = desc.replace(/\s+/g, ' ').trim();
+    if (flat.length <= 175) return flat;
+    const cut = flat.slice(0, 175);
+    const sp = cut.lastIndexOf(' ');
+    return (sp > 120 ? cut.slice(0, sp) : cut).trim() + '\u2026';
+  }
+
+  select(id) { this.setState({ selectedId: id, view: 'detail' }); window.scrollTo(0, 0); }
+  back() { this.setState({ view: 'list' }); }
+
+  renderVals() {
+    const all = this.state.events || [];
+    const sel = all.find(e => e.id === this.state.selectedId) || null;
+
+    const events = all.map(ev => ({
+      ...ev,
+      monYear: ev.mon + " '" + ev.year.slice(2),
+      speaker: ev.title ? ev.speaker : 'Guest Speaker',
+      title: ev.title || ev.speaker,
+      excerpt: this.excerpt(ev.description),
+      onSelect: () => this.select(ev.id),
+    }));
+
+    const selParagraphs = sel ? sel.description.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean) : [];
+
+    return {
+      backUrl: this.props.backUrl || '#',
+      showList: this.state.view === 'list',
+      showDetail: this.state.view === 'detail',
+      loading: this.state.loading,
+      isEmpty: !this.state.loading && all.length === 0,
+      countLabel: this.state.loading ? 'Events' : all.length + (all.length === 1 ? ' Event' : ' Events'),
+      events,
+      onBack: () => this.back(),
+      hasSelection: !!sel,
+      selSpeaker: sel ? (sel.title ? sel.speaker : 'Guest Speaker') : '',
+      selTitle: sel ? (sel.title || sel.speaker) : '',
+      selDate: sel ? sel.dateLabel : '',
+      selParagraphs,
+      hasBio: !!(sel && sel.bio),
+      bioHeading: sel ? 'About ' + sel.speaker : 'About the speaker',
+      selBio: sel ? sel.bio : '',
+    };
+  }
+}
+</script>
+</body>
+</html>
