@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .ce-flip { perspective: 600px; }
+    .ce-flip-inner {
+      position: relative; width: 66px; height: 66px;
+      transition: transform .55s cubic-bezier(.4,.2,.2,1);
+      transform-style: preserve-3d;
+    }
+    .ce-event:hover .ce-flip-inner { transform: rotateY(180deg); }
+    .ce-face {
+      position: absolute; inset: 0; border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; line-height: 1.15;
+      font-family: 'Barlow Condensed', sans-serif;
+      -webkit-backface-visibility: hidden; backface-visibility: hidden;
+    }
+    .ce-face-front { background: #231f20; color: #fff; }
+    .ce-face-back { background: #8cba3f; color: #fff; transform: rotateY(180deg); }
+    .ce-title { transition: color .3s ease; }
+    .ce-event:hover .ce-title { color: #8cba3f; }
+    .ce-btn { perspective: 700px; }
+    .ce-btn-link { display: block; height: 50px; }
+    .ce-btn-inner {
+      position: relative; width: 100%; height: 100%;
+      transition: transform .5s cubic-bezier(.4,.2,.2,1);
+      transform-style: preserve-3d;
+    }
+    .ce-btn-link:hover .ce-btn-inner { transform: rotateX(180deg); }
+    .ce-btn-face {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      text-transform: uppercase; font-weight: 600; font-size: 13px; letter-spacing: .5px;
+      color: #fff; -webkit-backface-visibility: hidden; backface-visibility: hidden;
+    }
+    .ce-btn-front { background: #8cba3f; }
+    .ce-btn-back { background: #231f20; transform: rotateX(180deg); }
+  </style>
+</helmet>
+<div style="font-family:'Open Sans',Arial,sans-serif; color:#2b2b2b; max-width:480px; padding:28px 24px; box-sizing:border-box; -webkit-font-smoothing:antialiased;">
+  <h3 style="margin:0; font-size:22px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#3a3a3a;">Community Events</h3>
+  <div style="width:72px; height:2px; background:#cdb87d; margin:12px 0 30px;"></div>
+
+  <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+    <p style="margin:0 0 24px; font-size:14px; color:#9a3b2e; line-height:1.4;">Could not load events ({{ error }}). Check that the CSV file exists in this folder.</p>
+  </sc-if>
+
+  <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:30px;">
+    <sc-for list="{{ events }}" as="ev" hint-placeholder-count="3">
+      <li style="margin:0;">
+        <a href="{{ ev.url }}" class="ce-event" style="display:flex; gap:20px; align-items:flex-start; text-decoration:none; color:inherit;">
+          <div class="ce-flip" style="flex:none; width:66px; height:66px;">
+            <div class="ce-flip-inner">
+              <div class="ce-face ce-face-front">
+                <sc-if value="{{ ev.isRange }}" hint-placeholder-val="{{ true }}">
+                  <span style="font-size:11px; font-weight:500; letter-spacing:.6px; text-transform:uppercase;">Starts</span>
+                  <span style="font-size:13px; font-weight:600; letter-spacing:.4px; text-transform:uppercase;">{{ ev.rangeLabel }}</span>
+                </sc-if>
+                <sc-if value="{{ ev.isSingle }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size:12px; font-weight:500; letter-spacing:.6px; text-transform:uppercase;">{{ ev.month }}</span>
+                  <span style="font-size:28px; font-weight:600; line-height:1;">{{ ev.day }}</span>
+                </sc-if>
+              </div>
+              <div class="ce-face ce-face-back">
+                <sc-if value="{{ ev.isRange }}" hint-placeholder-val="{{ true }}">
+                  <span style="font-size:11px; font-weight:500; letter-spacing:.6px; text-transform:uppercase;">Starts</span>
+                  <span style="font-size:13px; font-weight:600; letter-spacing:.4px; text-transform:uppercase;">{{ ev.rangeLabel }}</span>
+                </sc-if>
+                <sc-if value="{{ ev.isSingle }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size:12px; font-weight:500; letter-spacing:.6px; text-transform:uppercase;">{{ ev.month }}</span>
+                  <span style="font-size:28px; font-weight:600; line-height:1;">{{ ev.day }}</span>
+                </sc-if>
+              </div>
+            </div>
+          </div>
+          <div style="padding-top:2px;">
+            <p class="ce-title" style="margin:0 0 3px; font-size:17px; font-weight:400; line-height:1.3; color:#8a7d3f;">{{ ev.title }}</p>
+            <p style="margin:0; font-size:16px; font-weight:700; line-height:1.4; color:#2b2b2b;">{{ ev.detail }}</p>
+          </div>
+        </a>
+      </li>
+    </sc-for>
+  </ul>
+
+  <sc-if value="{{ showButtons }}" hint-placeholder-val="{{ true }}">
+    <ul style="list-style:none; margin:34px 0 0; padding:0; display:flex; gap:10px; flex-wrap:wrap;">
+      <li class="ce-btn" style="flex:1 1 0; min-width:96px;"><a class="ce-btn-link" href="#"><div class="ce-btn-inner"><div class="ce-btn-face ce-btn-front">All Events</div><div class="ce-btn-face ce-btn-back">View All Events</div></div></a></li>
+      <li class="ce-btn" style="flex:1 1 0; min-width:96px;"><a class="ce-btn-link" href="#"><div class="ce-btn-inner"><div class="ce-btn-face ce-btn-front">Subscribe</div><div class="ce-btn-face ce-btn-back">Subscribe</div></div></a></li>
+    </ul>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 528, &quot;height&quot;: 720 },
+  &quot;csvUrl&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;community-events.csv&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;maxEvents&quot;: { &quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 3, &quot;min&quot;: 1, &quot;max&quot;: 12, &quot;tsType&quot;: &quot;number&quot; },
+  &quot;showButtons&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; }
+}">
+class Component extends DCLogic {
+  state = { events: null, error: null };
+
+  componentDidMount() { this.load(); }
+
+  async load() {
+    const url = this.props.csvUrl || 'community-events.csv';
+    try {
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const text = await res.text();
+      const rows = this.parseCSV(text).filter(r => r.some(c => (c || '').trim() !== ''));
+      if (!rows.length) { this.setState({ events: [] }); return; }
+      const header = rows.shift().map(h => h.trim().toLowerCase());
+      const col = name => header.indexOf(name);
+      const events = rows.map(r => {
+        const get = n => { const i = col(n); return i >= 0 ? (r[i] || '').trim() : ''; };
+        const month = get('month');
+        const day = get('day');
+        const isRange = /^(y|yes|true|1|starts)$/i.test(get('starts'));
+        return {
+          title: get('title'),
+          detail: get('detail'),
+          url: get('url') || '#',
+          month, day,
+          rangeLabel: (month + ' ' + day).trim(),
+          isRange,
+          isSingle: !isRange,
+        };
+      });
+      this.setState({ events, error: null });
+    } catch (e) {
+      this.setState({ error: e.message, events: [] });
+    }
+  }
+
+  // RFC-4180-ish parser: handles quoted fields, embedded commas, escaped quotes, CRLF
+  parseCSV(input) {
+    const text = String(input).replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    const rows = []; let row = []; let field = ''; let inQuotes = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (inQuotes) {
+        if (c === '"') {
+          if (text[i + 1] === '"') { field += '"'; i++; }
+          else { inQuotes = false; }
+        } else { field += c; }
+      } else if (c === '"') {
+        inQuotes = true;
+      } else if (c === ',') {
+        row.push(field); field = '';
+      } else if (c === '\n') {
+        row.push(field); rows.push(row); row = []; field = '';
+      } else {
+        field += c;
+      }
+    }
+    if (field !== '' || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
+
+  renderVals() {
+    const all = this.state.events;
+    const max = this.props.maxEvents ?? 3;
+    const events = Array.isArray(all) ? all.slice(0, max) : all;
+    return {
+      events,
+      error: this.state.error,
+      hasError: !!this.state.error,
+      showButtons: this.props.showButtons ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>
