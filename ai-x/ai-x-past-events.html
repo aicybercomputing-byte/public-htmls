@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI+X Institute — Past Events</title>
+<!-- USF brand fonts. If your CMS strips this link, the design falls back to Arial (USF's approved alternate font). -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&amp;family=Open+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet" />
+</head>
+<body style="margin:0;">
+
+<!--
+  AI+X PAST EVENTS WIDGET  (self-contained — all markup, styling, and logic in this one file)
+  Configure without touching the code via these attributes on the div below:
+    data-csv             URL of the events CSV (base64-encoded files are auto-decoded)
+    data-all-events-url  Page the "See all events" link points to
+    data-visible         Max events shown before "See all" (default 5)
+    data-year            Year applied to CSV dates that omit one (default 2026)
+-->
+<div id="aix-past-events"
+     data-csv="/ai-cybersecurity-computing/centers/ai-x/about/ai-x-events.csv"
+     data-all-events-url="#"
+     data-visible="5"
+     data-year="2026"
+     style="font-family:'Open Sans',Arial,Helvetica,sans-serif; color:#1c1c1c; width:100%; -webkit-font-smoothing:antialiased;">
+</div>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+(function () {
+  "use strict";
+
+  var ROOT = document.getElementById("aix-past-events");
+  var CSV_PRIMARY  = ROOT.getAttribute("data-csv") || "/ai-cybersecurity-computing/centers/ai-x/about/ai-x-events.csv";
+  var CSV_FALLBACK = "ai-x-events.csv";
+  var ALL_URL      = ROOT.getAttribute("data-all-events-url") || "#";
+  var VISIBLE      = parseInt(ROOT.getAttribute("data-visible"), 10) || 5;
+  var YEAR         = parseInt(ROOT.getAttribute("data-year"), 10) || 2026;
+
+  var HEAD = "'Barlow Condensed','Arial Narrow',Arial,sans-serif";
+  var BODY = "'Open Sans',Arial,Helvetica,sans-serif";
+  var GREEN = "#006747", TEAL = "#009374", GOLD = "#cfc493", SLATE = "#466069", GRAY = "#7E96A0";
+
+  var MONTHS = { jan:0, feb:1, mar:2, apr:3, may:4, jun:5, jul:6, aug:7, sep:8, oct:9, nov:10, dec:11 };
+  var MONTH_FULL = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+  var events = [];          // parsed + filtered + sorted
+  var view = "list";        // "list" | "detail"
+  var selectedId = null;
+
+  /* ---------- tiny DOM helper (all styling stays inline) ---------- */
+  function el(tag, style, opts) {
+    var e = document.createElement(tag);
+    if (style) e.style.cssText = style;
+    if (opts) {
+      if (opts.text != null) e.textContent = opts.text;
+      if (opts.html != null) e.innerHTML = opts.html;
+      if (opts.attrs) for (var k in opts.attrs) e.setAttribute(k, opts.attrs[k]);
+      if (opts.on) for (var ev in opts.on) e.addEventListener(ev, opts.on[ev]);
+    }
+    return e;
+  }
+  function hover(node, onBg, offBg) {
+    node.addEventListener("mouseenter", function () { node.style.background = onBg; });
+    node.addEventListener("mouseleave", function () { node.style.background = offBg; });
+  }
+
+  /* ---------- CSV parsing ---------- */
+  function parseCSV(text) {
+    var rows = [], field = "", row = [], inQ = false;
+    text = text.replace(/^\uFEFF/, "");
+    for (var i = 0; i < text.length; i++) {
+      var c = text[i];
+      if (inQ) {
+        if (c === '"') { if (text[i + 1] === '"') { field += '"'; i++; } else { inQ = false; } }
+        else { field += c; }
+      } else if (c === '"') { inQ = true; }
+      else if (c === ",") { row.push(field); field = ""; }
+      else if (c === "\r") { /* skip */ }
+      else if (c === "\n") { row.push(field); rows.push(row); row = []; field = ""; }
+      else { field += c; }
+    }
+    if (field.length || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
+  function clean(s) { return (s == null ? "" : String(s)).replace(/\uFFFD/g, "\u2014").trim(); }
+
+  function parseDate(s) {
+    var m = s.match(/^(\d{1,2})\s*[-\/ ]\s*([A-Za-z]{3,})/);
+    if (!m) return null;
+    var dayNum = parseInt(m[1], 10);
+    var mi = MONTHS[m[2].slice(0, 3).toLowerCase()];
+    if (mi == null) return null;
+    return {
+      day: String(dayNum).length < 2 ? "0" + dayNum : String(dayNum),
+      mon: m[2].slice(0, 3),
+      year: String(YEAR),
+      label: MONTH_FULL[mi] + " " + dayNum + ", " + YEAR,
+      sortKey: new Date(YEAR, mi, dayNum).getTime()
+    };
+  }
+
+  function buildEvents(text) {
+    var rows = parseCSV(text);
+    if (!rows.length) return [];
+    var out = [];
+    rows.slice(1).forEach(function (cols, idx) {            // drop header row
+      var date = clean(cols[0]), speaker = clean(cols[1]), title = clean(cols[2]),
+          description = clean(cols[3]), bio = clean(cols[4]);
+      if (!date || !speaker || !description) return;   // title & bio optional; these three required
+      var d = parseDate(date);
+      if (!d) return;
+      out.push({ id: idx, speaker: speaker, title: title, description: description, bio: bio,
+                 day: d.day, mon: d.mon, year: d.year, dateLabel: d.label, sortKey: d.sortKey });
+    });
+    out.sort(function (a, b) { return b.sortKey - a.sortKey; });        // newest / upcoming first
+    return out;
+  }
+
+  /* ---------- rendering ---------- */
+  function frame(inner) {
+    ROOT.innerHTML = "";
+    var card = el("div", "border:1px solid #e3e3e0; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.06);");
+    card.appendChild(inner);
+    ROOT.appendChild(card);
+  }
+
+  function renderMessage(msg) {
+    var wrap = el("div");
+    var bar = el("div", "background:#fff; border-bottom:1px solid #e3e3e0; padding:10px 16px; font-family:" + HEAD + "; font-weight:600; letter-spacing:.1em; text-transform:uppercase; font-size:11px; color:" + SLATE + ";", { text: "Events" });
+    wrap.appendChild(bar);
+    wrap.appendChild(el("div", "padding:18px 16px; font-size:13px; color:" + GRAY + ";", { text: msg }));
+    frame(wrap);
+  }
+
+  function renderList() {
+    view = "list";
+    var wrap = el("div");
+
+    var n = events.length;
+    wrap.appendChild(el("div",
+      "background:#fff; border-bottom:1px solid #e3e3e0; padding:10px 16px; font-family:" + HEAD + "; font-weight:600; letter-spacing:.1em; text-transform:uppercase; font-size:11px; color:" + SLATE + ";",
+      { text: n + (n === 1 ? " Event" : " Events") }));
+
+    var ul = el("ul", "list-style:none; margin:0; padding:0;");
+    events.slice(0, VISIBLE).forEach(function (ev) {
+      var li = el("li");
+      var rowBg = "transparent";
+      var btn = el("button",
+        "display:flex; align-items:flex-start; gap:12px; width:100%; text-align:left; cursor:pointer; border:none; border-bottom:1px solid #ebebe7; background:" + rowBg + "; padding:13px 16px 13px 14px; transition:background .12s ease;",
+        { attrs: { type: "button" }, on: { click: function () { selectedId = ev.id; renderDetail(); } } });
+      hover(btn, "#f1f4f2", rowBg);
+
+      var dateCol = el("span", "display:flex; flex-direction:column; align-items:center; flex:0 0 42px; line-height:1;");
+      dateCol.appendChild(el("span", "font-family:" + HEAD + "; font-weight:700; font-size:22px; color:#1c1c1c;", { text: ev.day }));
+      dateCol.appendChild(el("span", "font-family:" + HEAD + "; font-weight:600; letter-spacing:.06em; text-transform:uppercase; font-size:11px; color:" + GRAY + "; margin-top:2px; white-space:nowrap;", { text: ev.mon + " '" + ev.year.slice(2) }));
+      btn.appendChild(dateCol);
+
+      var txtCol = el("span", "flex:1 1 auto; min-width:0;");
+      txtCol.appendChild(el("span", "display:block; font-family:" + HEAD + "; font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:10px; color:" + TEAL + "; margin-bottom:2px;", { text: ev.title ? ev.speaker : "Guest Speaker" }));
+      txtCol.appendChild(el("span", "display:block; font-family:" + BODY + "; font-weight:600; font-size:13.5px; line-height:1.3; color:#1c1c1c; overflow-wrap:anywhere;", { text: ev.title || ev.speaker }));
+      btn.appendChild(txtCol);
+
+      li.appendChild(btn);
+      ul.appendChild(li);
+    });
+    wrap.appendChild(ul);
+
+    var seeAll = el("a",
+      "display:flex; align-items:center; justify-content:center; gap:8px; width:100%; text-decoration:none; border-top:1px solid #e3e3e0; background:#fff; padding:14px 16px; font-family:" + HEAD + "; font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:13px; color:" + GREEN + "; box-sizing:border-box;",
+      { html: "See all events <span style=\"font-size:13px; line-height:1;\">&rarr;</span>", attrs: { href: ALL_URL } });
+    hover(seeAll, "#f1f4f2", "#fff");
+    wrap.appendChild(seeAll);
+
+    frame(wrap);
+  }
+
+  function renderDetail() {
+    view = "detail";
+    var ev = null;
+    for (var i = 0; i < events.length; i++) if (events[i].id === selectedId) { ev = events[i]; break; }
+    if (!ev) { renderList(); return; }
+
+    var pad = el("div", "padding:22px 20px 30px;");
+
+    var back = el("button",
+      "display:inline-flex; align-items:center; gap:6px; background:none; border:none; padding:0; margin:0 0 16px; cursor:pointer; font-family:" + HEAD + "; font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:13px; color:" + GREEN + ";",
+      { html: "<span style=\"font-size:16px; line-height:1;\">&larr;</span> All events", attrs: { type: "button" }, on: { click: renderList } });
+    pad.appendChild(back);
+
+    pad.appendChild(el("p", "margin:0 0 7px; font-family:" + HEAD + "; font-weight:600; letter-spacing:.12em; text-transform:uppercase; font-size:12px; color:" + TEAL + ";", { text: ev.title ? ev.speaker : "Guest Speaker" }));
+    pad.appendChild(el("h3", "margin:0 0 13px; font-family:" + HEAD + "; font-weight:700; font-size:25px; line-height:1.12; color:#1c1c1c; text-wrap:balance;", { text: ev.title || ev.speaker }));
+
+    var meta = el("div", "display:flex; flex-wrap:wrap; gap:8px 20px; padding:0 0 16px; margin:0 0 20px; border-bottom:2px solid " + GREEN + ";");
+    var dateChip = el("span", "display:inline-flex; align-items:center; gap:7px; font-size:13.5px; color:#444;");
+    dateChip.appendChild(el("span", "display:inline-block; width:8px; height:8px; border-radius:50%; background:" + GOLD + "; flex:none;"));
+    dateChip.appendChild(el("span", "", { text: ev.dateLabel }));
+    meta.appendChild(dateChip);
+    pad.appendChild(meta);
+
+    ev.description.split(/\n\s*\n/).map(function (p) { return p.trim(); }).filter(Boolean).forEach(function (p) {
+      pad.appendChild(el("p", "margin:0 0 15px; font-size:15.5px; line-height:1.65; color:#333;", { text: p }));
+    });
+
+    if (ev.bio) {
+      var bio = el("div", "margin-top:22px; background:#f7f7f4; border-left:4px solid " + GREEN + "; padding:16px 18px;");
+      bio.appendChild(el("p", "margin:0 0 8px; font-family:" + HEAD + "; font-weight:600; letter-spacing:.1em; text-transform:uppercase; font-size:12px; color:" + GREEN + ";", { text: "About " + ev.speaker }));
+      bio.appendChild(el("p", "margin:0; font-size:14px; line-height:1.6; color:#444;", { text: ev.bio }));
+      pad.appendChild(bio);
+    }
+
+    frame(pad);
+  }
+
+  /* ---------- load ---------- */
+  function load() {
+    renderMessage("Loading events\u2026");
+    var urls = [CSV_PRIMARY, CSV_FALLBACK], i = 0;
+    function next() {
+      if (i >= urls.length) { renderMessage("Events are unavailable right now."); return; }
+      fetch(urls[i], { cache: "no-store" })
+        .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+        .then(function (text) {
+          if (!/speaker\s*name/i.test(text.slice(0, 400))) {     // live file is base64-encoded
+            try { text = decodeURIComponent(escape(atob(text.replace(/\s+/g, "")))); }
+            catch (e) { try { text = atob(text.replace(/\s+/g, "")); } catch (e2) {} }
+          }
+          events = buildEvents(text);
+          if (!events.length) { renderMessage("No events to display."); return; }
+          selectedId = events[0].id;
+          renderList();
+        })
+        .catch(function () { i++; next(); });
+    }
+    next();
+  }
+
+  load();
+})();
+/* ]]> */
+</script>
+
+</body>
+</html>
