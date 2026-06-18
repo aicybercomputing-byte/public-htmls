@@ -62,6 +62,7 @@
     }
     return e;
   }
+
   function hover(node, onBg, offBg) {
     node.addEventListener("mouseenter", function () { node.style.background = onBg; });
     node.addEventListener("mouseleave", function () { node.style.background = offBg; });
@@ -74,25 +75,51 @@
     for (var i = 0; i < text.length; i++) {
       var c = text[i];
       if (inQ) {
-        if (c === '"') { if (text[i + 1] === '"') { field += '"'; i++; } else { inQ = false; } }
-        else { field += c; }
-      } else if (c === '"') { inQ = true; }
-      else if (c === ",") { row.push(field); field = ""; }
-      else if (c === "\r") { /* skip */ }
-      else if (c === "\n") { row.push(field); rows.push(row); row = []; field = ""; }
-      else { field += c; }
+        if (c === '"') {
+          if (text[i + 1] === '"') {
+            field += '"';
+            i++;
+          } else {
+            inQ = false;
+          }
+        } else {
+          field += c;
+        }
+      } else if (c === '"') {
+        inQ = true;
+      } else if (c === ",") {
+        row.push(field);
+        field = "";
+      } else if (c === "\r") {
+        /* skip */
+      } else if (c === "\n") {
+        row.push(field);
+        rows.push(row);
+        row = [];
+        field = "";
+      } else {
+        field += c;
+      }
     }
-    if (field.length || row.length) { row.push(field); rows.push(row); }
+    if (field.length || row.length) {
+      row.push(field);
+      rows.push(row);
+    }
     return rows;
   }
-  function clean(s) { return (s == null ? "" : String(s)).replace(/\uFFFD/g, "\u2014").trim(); }
+
+  function clean(s) {
+    return (s == null ? "" : String(s)).replace(/\uFFFD/g, "\u2014").trim();
+  }
 
   function parseDate(s) {
     var m = s.match(/^(\d{1,2})\s*[-\/ ]\s*([A-Za-z]{3,})/);
     if (!m) return null;
+
     var dayNum = parseInt(m[1], 10);
     var mi = MONTHS[m[2].slice(0, 3).toLowerCase()];
     if (mi == null) return null;
+
     return {
       day: String(dayNum).length < 2 ? "0" + dayNum : String(dayNum),
       mon: m[2].slice(0, 3),
@@ -105,17 +132,38 @@
   function buildEvents(text) {
     var rows = parseCSV(text);
     if (!rows.length) return [];
+
     var out = [];
-    rows.slice(1).forEach(function (cols, idx) {            // drop header row
-      var date = clean(cols[0]), speaker = clean(cols[1]), title = clean(cols[2]),
-          description = clean(cols[3]), bio = clean(cols[4]);
-      if (!date || !speaker || !description) return;   // title & bio optional; these three required
+    rows.slice(1).forEach(function (cols, idx) {
+      var date = clean(cols[0]),
+          speaker = clean(cols[1]),
+          title = clean(cols[2]),
+          description = clean(cols[3]),
+          bio = clean(cols[4]);
+
+      if (!date || !speaker || !description) return;
+
       var d = parseDate(date);
       if (!d) return;
-      out.push({ id: idx, speaker: speaker, title: title, description: description, bio: bio,
-                 day: d.day, mon: d.mon, year: d.year, dateLabel: d.label, sortKey: d.sortKey });
+
+      out.push({
+        id: idx,
+        speaker: speaker,
+        title: title,
+        description: description,
+        bio: bio,
+        day: d.day,
+        mon: d.mon,
+        year: d.year,
+        dateLabel: d.label,
+        sortKey: d.sortKey
+      });
     });
-    out.sort(function (a, b) { return b.sortKey - a.sortKey; });        // newest / upcoming first
+
+    out.sort(function (a, b) {
+      return b.sortKey - a.sortKey;
+    });
+
     return out;
   }
 
@@ -140,12 +188,25 @@
     var wrap = el("div");
 
     var ul = el("ul", "list-style:none; margin:0; padding:0;");
+
     events.slice(0, VISIBLE).forEach(function (ev) {
       var li = el("li");
       var rowBg = "transparent";
-      var btn = el("button",
+
+      var btn = el(
+        "button",
         "display:flex; align-items:flex-start; gap:12px; width:100%; text-align:left; cursor:pointer; border:none; border-bottom:1px solid #ebebe7; background:" + rowBg + "; padding:13px 16px 13px 14px; transition:background .12s ease;",
-        { attrs: { type: "button" }, on: { click: function () { selectedId = ev.id; renderDetail(); } } });
+        {
+          attrs: { type: "button" },
+          on: {
+            click: function () {
+              selectedId = ev.id;
+              renderDetail();
+            }
+          }
+        }
+      );
+
       hover(btn, "#f1f4f2", rowBg);
 
       var dateCol = el("span", "display:flex; flex-direction:column; align-items:center; flex:0 0 42px; line-height:1;");
@@ -161,11 +222,22 @@
       li.appendChild(btn);
       ul.appendChild(li);
     });
+
     wrap.appendChild(ul);
 
-    var seeAll = el("a",
+    var seeAll = el(
+      "a",
       "display:flex; align-items:center; justify-content:center; gap:8px; width:100%; text-decoration:none; border-top:1px solid #e3e3e0; background:#fff; padding:14px 16px; font-family:" + HEAD + "; font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:13px; color:" + GREEN + "; box-sizing:border-box;",
-      { html: "See all events <span style=\"font-size:13px; line-height:1;\">&rarr;</span>", attrs: { href: ALL_URL } });
+      {
+        html: "See all events <span style=\"font-size:13px; line-height:1;\">&rarr;</span>",
+        attrs: {
+          href: ALL_URL,
+          target: "_blank",
+          rel: "noopener noreferrer"
+        }
+      }
+    );
+
     hover(seeAll, "#f1f4f2", "#fff");
     wrap.appendChild(seeAll);
 
@@ -174,15 +246,32 @@
 
   function renderDetail() {
     view = "detail";
+
     var ev = null;
-    for (var i = 0; i < events.length; i++) if (events[i].id === selectedId) { ev = events[i]; break; }
-    if (!ev) { renderList(); return; }
+    for (var i = 0; i < events.length; i++) {
+      if (events[i].id === selectedId) {
+        ev = events[i];
+        break;
+      }
+    }
+
+    if (!ev) {
+      renderList();
+      return;
+    }
 
     var pad = el("div", "padding:22px 20px 30px;");
 
-    var back = el("button",
+    var back = el(
+      "button",
       "display:inline-flex; align-items:center; gap:6px; background:none; border:none; padding:0; margin:0 0 16px; cursor:pointer; font-family:" + HEAD + "; font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:13px; color:" + GREEN + ";",
-      { html: "<span style=\"font-size:16px; line-height:1;\">&larr;</span> All events", attrs: { type: "button" }, on: { click: renderList } });
+      {
+        html: "<span style=\"font-size:16px; line-height:1;\">&larr;</span> All events",
+        attrs: { type: "button" },
+        on: { click: renderList }
+      }
+    );
+
     pad.appendChild(back);
 
     pad.appendChild(el("p", "margin:0 0 7px; font-family:" + HEAD + "; font-weight:600; letter-spacing:.12em; text-transform:uppercase; font-size:12px; color:" + TEAL + ";", { text: ev.title ? ev.speaker : "Guest Speaker" }));
@@ -195,7 +284,9 @@
     meta.appendChild(dateChip);
     pad.appendChild(meta);
 
-    ev.description.split(/\n\s*\n/).map(function (p) { return p.trim(); }).filter(Boolean).forEach(function (p) {
+    ev.description.split(/\n\s*\n/).map(function (p) {
+      return p.trim();
+    }).filter(Boolean).forEach(function (p) {
       pad.appendChild(el("p", "margin:0 0 15px; font-size:15.5px; line-height:1.65; color:#333;", { text: p }));
     });
 
@@ -212,23 +303,48 @@
   /* ---------- load ---------- */
   function load() {
     renderMessage("Loading events\u2026");
-    var urls = [CSV_PRIMARY, CSV_FALLBACK], i = 0;
+
+    var urls = [CSV_PRIMARY, CSV_FALLBACK],
+        i = 0;
+
     function next() {
-      if (i >= urls.length) { renderMessage("Events are unavailable right now."); return; }
+      if (i >= urls.length) {
+        renderMessage("Events are unavailable right now.");
+        return;
+      }
+
       fetch(urls[i], { cache: "no-store" })
-        .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+        .then(function (r) {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.text();
+        })
         .then(function (text) {
-          if (!/speaker\s*name/i.test(text.slice(0, 400))) {     // live file is base64-encoded
-            try { text = decodeURIComponent(escape(atob(text.replace(/\s+/g, "")))); }
-            catch (e) { try { text = atob(text.replace(/\s+/g, "")); } catch (e2) {} }
+          if (!/speaker\s*name/i.test(text.slice(0, 400))) {
+            try {
+              text = decodeURIComponent(escape(atob(text.replace(/\s+/g, ""))));
+            } catch (e) {
+              try {
+                text = atob(text.replace(/\s+/g, ""));
+              } catch (e2) {}
+            }
           }
+
           events = buildEvents(text);
-          if (!events.length) { renderMessage("No events to display."); return; }
+
+          if (!events.length) {
+            renderMessage("No events to display.");
+            return;
+          }
+
           selectedId = events[0].id;
           renderList();
         })
-        .catch(function () { i++; next(); });
+        .catch(function () {
+          i++;
+          next();
+        });
     }
+
     next();
   }
 
