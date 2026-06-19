@@ -1547,14 +1547,14 @@
 </helmet>
 <div style="font-family:'Open Sans',Arial,sans-serif; color:#2b2b2b; max-width:460px; background:#fff; -webkit-font-smoothing:antialiased;">
   <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
-    <p style="margin:0; padding:18px 32px; font-size:14px; color:#9a3b2e; line-height:1.4;">Could not load events ({{ error }}). Check that the CSV file exists in this folder.</p>
+    <p style="margin:0; padding:18px 32px; font-size:14px; color:#9a3b2e; line-height:1.4;">Could not load events ({{ error }}). Check that the CSV URL is public and allows cross-origin access.</p>
   </sc-if>
 
   <div style="padding:30px 32px 32px;">
     <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:24px;">
       <sc-for list="{{ events }}" as="ev" hint-placeholder-count="3">
         <li style="margin:0;">
-          <a href="{{ ev.url }}" class="ce-event" style="display:flex; gap:18px; align-items:center; text-decoration:none; color:inherit;">
+          <a href="{{ ev.url }}" target="_blank" rel="noopener noreferrer" class="ce-event" style="display:flex; gap:18px; align-items:center; text-decoration:none; color:inherit;">
             <div class="ce-flip" style="flex:none; width:64px; height:64px;">
               <div class="ce-flip-inner">
                 <div class="ce-face ce-face-front" style="border-radius:50%;">
@@ -1584,6 +1584,74 @@
   </div>
 </div>
 </x-dc>
+<script>
+/* Force real links opened from inside an iframe to open in a new browser tab. */
+(function () {
+  function isRealLink(anchor) {
+    if (!anchor) return false;
+    var href = (anchor.getAttribute("href") || "").trim();
+    if (!href || href === "#") return false;
+    if (/^(javascript:|mailto:|tel:)/i.test(href)) return false;
+    return true;
+  }
+
+  function markLinks(root) {
+    if (!root || !root.querySelectorAll) return;
+    var links = root.querySelectorAll("a[href]");
+    for (var i = 0; i < links.length; i++) {
+      if (!isRealLink(links[i])) continue;
+      links[i].setAttribute("target", "_blank");
+      links[i].setAttribute("rel", "noopener noreferrer");
+    }
+  }
+
+  function openExternally(event) {
+    var target = event.target;
+    if (!target || !target.closest) return;
+
+    var anchor = target.closest("a[href]");
+    if (!isRealLink(anchor)) return;
+
+    anchor.setAttribute("target", "_blank");
+    anchor.setAttribute("rel", "noopener noreferrer");
+
+    /* Let browser-native new-tab gestures behave normally. */
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    var opened = window.open(anchor.href, "_blank", "noopener,noreferrer");
+    if (opened) opened.opener = null;
+  }
+
+  document.addEventListener("click", openExternally, true);
+
+  function init() {
+    markLinks(document);
+
+    if (!document.body || !window.MutationObserver) return;
+    var observer = new MutationObserver(function (mutations) {
+      for (var i = 0; i < mutations.length; i++) {
+        for (var j = 0; j < mutations[i].addedNodes.length; j++) {
+          var node = mutations[i].addedNodes[j];
+          if (node.nodeType === 1) markLinks(node);
+        }
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
 <script type="text/x-dc" data-dc-script data-props="{
   &quot;$preview&quot;: { &quot;width&quot;: 528, &quot;height&quot;: 720 },
   &quot;csvUrl&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;community-events.csv&quot;, &quot;tsType&quot;: &quot;string&quot; },
@@ -1596,10 +1664,17 @@ class Component extends DCLogic {
   componentDidMount() { this.load(); }
 
   async load() {
-    const url = this.props.csvUrl || 'community-events.csv';
+    const csvUrl = this.normalizeUrl(this.props.csvUrl || 'community-events.csv');
     try {
-      const res = await fetch(url, { cache: 'no-store' });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const res = await fetch(csvUrl, {
+        cache: 'no-store',
+        mode: 'cors',
+        credentials: 'omit',
+        headers: { 'Accept': 'text/csv,text/plain,*/*' },
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status + ' while loading ' + csvUrl);
+
+      const loadedCsvUrl = res.url || csvUrl;
       const text = await res.text();
       const rows = this.parseCSV(text).filter(r => r.some(c => (c || '').trim() !== ''));
       if (!rows.length) { this.setState({ events: [] }); return; }
@@ -1613,7 +1688,7 @@ class Component extends DCLogic {
         return {
           title: get('title'),
           detail: get('detail'),
-          url: get('url') || '#',
+          url: this.resolveEventUrl(get('url'), loadedCsvUrl),
           month, day,
           rangeLabel: (month + ' ' + day).trim(),
           isRange,
@@ -1624,6 +1699,22 @@ class Component extends DCLogic {
     } catch (e) {
       this.setState({ error: e.message, events: [] });
     }
+  }
+
+  normalizeUrl(url) {
+    const raw = String(url || '').trim();
+    if (!raw) return 'community-events.csv';
+    try { return new URL(raw, window.location.href).href; }
+    catch { return raw; }
+  }
+
+  resolveEventUrl(rawUrl, csvUrl) {
+    const raw = String(rawUrl || '').trim();
+    if (!raw || raw === '#') return '#';
+    if (/^(javascript:)/i.test(raw)) return '#';
+    if (/^(mailto:|tel:)/i.test(raw)) return raw;
+    try { return new URL(raw, csvUrl).href; }
+    catch { return raw; }
   }
 
   // RFC-4180-ish parser: handles quoted fields, embedded commas, escaped quotes, CRLF
