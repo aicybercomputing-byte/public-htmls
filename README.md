@@ -6,6 +6,8 @@ Quick Links
 
 [Jobs Page](jobs_page/index.html)
 
-[AI+X Past Events](ai-x\ai-x-past-events.html)
+[AI+X Current Events](ai-x\ai-x-past-events.html)
+
+[AI+X All Events](ai-x\all-events.html)
 
 [Community Events](ai-x\community-events.html)
