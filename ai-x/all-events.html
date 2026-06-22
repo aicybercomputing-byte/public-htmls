@@ -1,316 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI-X Events</title>
-<style>
-  *, *::before, *::after { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
-    color: #1c1c1c;
-    width: 100%;
-    -webkit-font-smoothing: antialiased;
-    background: #f6f6f3;
-  }
-  .aix-page {
-    min-height: 100vh;
-    padding: 40px 20px 64px;
-  }
-  .aix-wrap {
-    max-width: 880px;
-    margin: 0 auto;
-  }
-  .aix-muted {
-    padding: 24px 0;
-    font-size: 14px;
-    color: #7E96A0;
-  }
-  .aix-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .aix-card-button {
-    display: flex;
-    align-items: stretch;
-    gap: 0;
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
-    border: 1px solid #e3e3e0;
-    border-left: 4px solid #006747;
-    background: #fff;
-    padding: 0;
-    box-shadow: 0 1px 3px rgba(0,0,0,.05);
-    transition: box-shadow .14s ease, transform .14s ease;
-    font: inherit;
-  }
-  .aix-card-button:hover,
-  .aix-card-button:focus-visible {
-    box-shadow: 0 4px 14px rgba(0,0,0,.10);
-    transform: translateY(-1px);
-    outline: 2px solid #009374;
-    outline-offset: 2px;
-  }
-  .aix-date-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 84px;
-    background: #f7f7f4;
-    border-right: 1px solid #ecece8;
-    padding: 14px 8px;
-  }
-  .aix-day {
-    font-family: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 1;
-    color: #006747;
-  }
-  .aix-month-year {
-    font-family: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
-    font-weight: 600;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    font-size: 12px;
-    color: #7E96A0;
-    margin-top: 3px;
-    white-space: nowrap;
-  }
-  .aix-card-body {
-    flex: 1 1 auto;
-    min-width: 0;
-    padding: 16px 20px;
-  }
-  .aix-speaker {
-    display: block;
-    font-family: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
-    font-weight: 600;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    font-size: 11px;
-    color: #009374;
-    margin-bottom: 4px;
-  }
-  .aix-title {
-    display: block;
-    font-family: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 1.18;
-    color: #1c1c1c;
-    margin-bottom: 7px;
-    text-wrap: balance;
-  }
-  .aix-excerpt {
-    display: block;
-    font-size: 13.5px;
-    line-height: 1.55;
-    color: #5a5a5a;
-  }
-  .aix-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0 0 20px;
-    cursor: pointer;
-    font-family: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
-    font-weight: 600;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    font-size: 13px;
-    color: #006747;
-  }
-  .aix-back:hover,
-  .aix-back:focus-visible {
-    color: #009374;
-    outline: 2px solid #009374;
-    outline-offset: 2px;
-  }
-  .aix-detail-card {
-    background: #fff;
-    border: 1px solid #e3e3e0;
-    box-shadow: 0 1px 3px rgba(0,0,0,.06);
-    padding: 36px 40px 44px;
-  }
-  .aix-detail-speaker {
-    margin: 0 0 8px;
-    font-family: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
-    font-weight: 600;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    font-size: 13px;
-    color: #009374;
-  }
-  .aix-detail-title {
-    margin: 0 0 16px;
-    font-family: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
-    font-weight: 700;
-    font-size: 34px;
-    line-height: 1.1;
-    color: #1c1c1c;
-    text-wrap: balance;
-  }
-  .aix-detail-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 20px;
-    padding: 0 0 18px;
-    margin: 0 0 24px;
-    border-bottom: 2px solid #006747;
-  }
-  .aix-meta-date {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 14px;
-    color: #444;
-  }
-  .aix-meta-dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #cfc493;
-    flex: none;
-  }
-  .aix-para {
-    margin: 0 0 16px;
-    font-size: 16px;
-    line-height: 1.7;
-    color: #333;
-  }
-  .aix-bio {
-    margin-top: 26px;
-    background: #f7f7f4;
-    border-left: 4px solid #006747;
-    padding: 18px 22px;
-  }
-  .aix-bio-heading {
-    margin: 0 0 8px;
-    font-family: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
-    font-weight: 600;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    font-size: 13px;
-    color: #006747;
-  }
-  .aix-bio-text {
-    margin: 0;
-    font-size: 14.5px;
-    line-height: 1.65;
-    color: #444;
-  }
-  [hidden] { display: none !important; }
-  @media (max-width: 640px) {
-    .aix-page { padding: 24px 14px 44px; }
-    .aix-date-block { flex-basis: 72px; }
-    .aix-card-body { padding: 14px 16px; }
-    .aix-detail-card { padding: 28px 22px 34px; }
-    .aix-detail-title { font-size: 28px; }
-  }
-</style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI+X Institute — Events Archive</title>
+<!-- USF brand fonts. If your CMS strips this link, the design falls back to Arial. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&amp;family=Open+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet" />
 </head>
-<body>
-<div class="aix-page">
-  <main class="aix-wrap" id="aix-root">
-    <section id="aix-list-view" aria-label="AI-X Events">
-      <div id="aix-status" class="aix-muted">Loading events&hellip;</div>
-      <ul id="aix-list" class="aix-list" role="list" hidden></ul>
-    </section>
 
-    <section id="aix-detail-view" hidden>
-      <button type="button" id="aix-back" class="aix-back"><span aria-hidden="true">&larr;</span> All events</button>
-      <article class="aix-detail-card" id="aix-detail-card"></article>
-    </section>
-  </main>
+<body style="margin:0; background:#ffffff;">
+
+<!--
+  AI+X EVENTS ARCHIVE WIDGET
+  Self-contained — all markup, styling, and logic in this one file.
+
+  Behavior:
+    - Loads events from CSV.
+    - Builds an expandable tree.
+    - Upcoming events appear first in a collapsed section.
+    - Past events are grouped as:
+        Year >
+          Month >
+            Events
+    - Clicking an event opens the formatted detail view inside the widget.
+    - The "View full events page" link opens in a new tab.
+
+  Configure with attributes:
+    data-csv             URL of the events CSV.
+    data-all-events-url  Full events/archive page URL.
+    data-year            Default year applied to CSV dates that omit a year.
+-->
+<div id="aix-past-events"
+     data-all-events-url="https://aicybercomputing-byte.github.io/public-htmls/ai-x/ai-x-past-events.html"
+     data-csv="https://aicybercomputing-byte.github.io/public-htmls/ai-x/ai-x-past-events.html"
+     data-year="2026"
+     style="font-family:'Open Sans',Arial,Helvetica,sans-serif; color:#1c1c1c; width:100%; -webkit-font-smoothing:antialiased;">
 </div>
 
-<script>
+<script type="text/javascript">
+/* <![CDATA[ */
 (function () {
   "use strict";
 
-  var DEFAULT_CSV_URL = "/ai-cybersecurity-computing/centers/ai-x/about/ai-x-events.csv";
-  var FALLBACK_CSV_URL = "ai-x-events.csv";
-  var DEFAULT_YEAR = 2026;
+  var ROOT = document.getElementById("aix-past-events");
 
-  var MONTHS = { jan:0, feb:1, mar:2, apr:3, may:4, jun:5, jul:6, aug:7, sep:8, oct:9, nov:10, dec:11 };
-  var MONTH_FULL = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var CSV_PRIMARY = ROOT.getAttribute("data-csv") || "/ai-cybersecurity-computing/centers/ai-x/about/ai-x-events.csv";
+  var CSV_FALLBACK = "ai-x-events.csv";
+  var ALL_EVENTS_URL = ROOT.getAttribute("data-all-events-url") || "#";
+  var DEFAULT_YEAR = parseInt(ROOT.getAttribute("data-year"), 10) || 2026;
 
-  var listView = document.getElementById("aix-list-view");
-  var detailView = document.getElementById("aix-detail-view");
-  var listEl = document.getElementById("aix-list");
-  var statusEl = document.getElementById("aix-status");
-  var detailCard = document.getElementById("aix-detail-card");
-  var backButton = document.getElementById("aix-back");
+  var HEAD = "'Barlow Condensed','Arial Narrow',Arial,sans-serif";
+  var BODY = "'Open Sans',Arial,Helvetica,sans-serif";
+
+  var GREEN = "#006747";
+  var TEAL = "#009374";
+  var GOLD = "#cfc493";
+  var SLATE = "#466069";
+  var GRAY = "#7E96A0";
+  var BORDER = "#e3e3e0";
+  var ROW_BORDER = "#ebebe7";
+  var SOFT_BG = "#f7f7f4";
+  var HOVER_BG = "#f1f4f2";
+
+  var MONTHS = {
+    jan: 0,
+    feb: 1,
+    mar: 2,
+    apr: 3,
+    may: 4,
+    jun: 5,
+    jul: 6,
+    aug: 7,
+    sep: 8,
+    oct: 9,
+    nov: 10,
+    dec: 11
+  };
+
+  var MONTH_FULL = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+
   var events = [];
+  var selectedId = null;
 
-  function getConfig() {
-    var params = new URLSearchParams(window.location.search || "");
-    return {
-      csvUrl: params.get("csv") || DEFAULT_CSV_URL,
-      fallbackCsvUrl: params.get("fallback") || FALLBACK_CSV_URL,
-      year: parseInt(params.get("year") || String(DEFAULT_YEAR), 10) || DEFAULT_YEAR
-    };
+  var treeState = {
+    upcomingOpen: false,
+    years: {},
+    months: {}
+  };
+
+  function startOfTodayKey() {
+    var now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
   }
 
-  function fetchText(url) {
-    return fetch(url, { cache: "no-store", credentials: "same-origin" }).then(function (response) {
-      if (!response.ok) throw new Error("HTTP " + response.status + " for " + url);
-      return response.text();
+  function el(tag, style, opts) {
+    var e = document.createElement(tag);
+
+    if (style) {
+      e.style.cssText = style;
+    }
+
+    if (opts) {
+      if (opts.text != null) {
+        e.textContent = opts.text;
+      }
+
+      if (opts.html != null) {
+        e.innerHTML = opts.html;
+      }
+
+      if (opts.attrs) {
+        for (var k in opts.attrs) {
+          e.setAttribute(k, opts.attrs[k]);
+        }
+      }
+
+      if (opts.on) {
+        for (var ev in opts.on) {
+          e.addEventListener(ev, opts.on[ev]);
+        }
+      }
+    }
+
+    return e;
+  }
+
+  function hover(node, onBg, offBg) {
+    node.addEventListener("mouseenter", function () {
+      node.style.background = onBg;
+    });
+
+    node.addEventListener("mouseleave", function () {
+      node.style.background = offBg;
     });
   }
 
-  function maybeDecodeBase64(text) {
-    if (/speaker\s*name/i.test(text.slice(0, 400))) return text;
-    try {
-      return decodeURIComponent(escape(atob(text.replace(/\s+/g, ""))));
-    } catch (err) {
-      try {
-        return atob(text.replace(/\s+/g, ""));
-      } catch (err2) {
-        return text;
-      }
-    }
+  function clean(s) {
+    return (s == null ? "" : String(s)).replace(/\uFFFD/g, "\u2014").trim();
   }
 
   function parseCSV(text) {
     var rows = [];
     var field = "";
     var row = [];
-    var inQuotes = false;
-    text = String(text || "").replace(/^\uFEFF/, "");
+    var inQ = false;
+
+    text = text.replace(/^\uFEFF/, "");
 
     for (var i = 0; i < text.length; i++) {
       var c = text[i];
-      if (inQuotes) {
-        if (c === "\"") {
-          if (text[i + 1] === "\"") {
-            field += "\"";
+
+      if (inQ) {
+        if (c === '"') {
+          if (text[i + 1] === '"') {
+            field += '"';
             i++;
           } else {
-            inQuotes = false;
+            inQ = false;
           }
         } else {
           field += c;
         }
-      } else if (c === "\"") {
-        inQuotes = true;
+      } else if (c === '"') {
+        inQ = true;
       } else if (c === ",") {
         row.push(field);
         field = "";
       } else if (c === "\r") {
-        continue;
+        /* skip */
       } else if (c === "\n") {
         row.push(field);
         rows.push(row);
@@ -329,228 +201,679 @@
     return rows;
   }
 
-  function clean(value) {
-    return value == null ? "" : String(value).replace(/\uFFFD/g, "\u2014").trim();
-  }
+  function parseDate(raw) {
+    var s = clean(raw);
 
-  function parseDate(value, fallbackYear) {
-    var s = clean(value);
-    var match;
-    var dayNum = null;
-    var monthText = null;
-    var year = fallbackYear || DEFAULT_YEAR;
-
-    match = s.match(/^(\d{1,2})(?:st|nd|rd|th)?\s*[-\/ ]\s*([A-Za-z]{3,})(?:,?\s*(\d{4}))?/i);
-    if (match) {
-      dayNum = parseInt(match[1], 10);
-      monthText = match[2];
-      if (match[3]) year = parseInt(match[3], 10);
-    } else {
-      match = s.match(/^([A-Za-z]{3,})\s+(\d{1,2})(?:st|nd|rd|th)?(?:,?\s*(\d{4}))?/i);
-      if (!match) return null;
-      monthText = match[1];
-      dayNum = parseInt(match[2], 10);
-      if (match[3]) year = parseInt(match[3], 10);
+    if (!s) {
+      return null;
     }
 
-    var monthIndex = MONTHS[monthText.slice(0, 3).toLowerCase()];
-    if (monthIndex == null || !dayNum || dayNum < 1 || dayNum > 31) return null;
+    s = s
+      .replace(/(\d)(st|nd|rd|th)\b/gi, "$1")
+      .replace(/,/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    var dayNum = null;
+    var monthText = null;
+    var yearNum = null;
+    var m = null;
+
+    /*
+      Supported:
+        20-Aug
+        20 Aug
+        20 August
+        20 August 2026
+        August 20
+        August 20 2026
+        2026-08-20
+    */
+
+    m = s.match(/^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})$/);
+    if (m) {
+      yearNum = parseInt(m[1], 10);
+      var isoMonth = parseInt(m[2], 10) - 1;
+      dayNum = parseInt(m[3], 10);
+
+      if (isoMonth < 0 || isoMonth > 11 || dayNum < 1 || dayNum > 31) {
+        return null;
+      }
+
+      return makeDateObject(dayNum, isoMonth, yearNum);
+    }
+
+    m = s.match(/^(\d{1,2})\s*[-\/ ]\s*([A-Za-z]{3,})(?:\s+(\d{4}))?$/);
+    if (m) {
+      dayNum = parseInt(m[1], 10);
+      monthText = m[2];
+      yearNum = m[3] ? parseInt(m[3], 10) : DEFAULT_YEAR;
+      return makeDateFromMonthText(dayNum, monthText, yearNum);
+    }
+
+    m = s.match(/^([A-Za-z]{3,})\s+(\d{1,2})(?:\s+(\d{4}))?$/);
+    if (m) {
+      monthText = m[1];
+      dayNum = parseInt(m[2], 10);
+      yearNum = m[3] ? parseInt(m[3], 10) : DEFAULT_YEAR;
+      return makeDateFromMonthText(dayNum, monthText, yearNum);
+    }
+
+    return null;
+  }
+
+  function makeDateFromMonthText(dayNum, monthText, yearNum) {
+    var monthKey = String(monthText).slice(0, 3).toLowerCase();
+    var monthIndex = MONTHS[monthKey];
+
+    if (monthIndex == null || dayNum < 1 || dayNum > 31 || !yearNum) {
+      return null;
+    }
+
+    return makeDateObject(dayNum, monthIndex, yearNum);
+  }
+
+  function makeDateObject(dayNum, monthIndex, yearNum) {
+    var dateObj = new Date(yearNum, monthIndex, dayNum);
 
     return {
-      day: String(dayNum).padStart(2, "0"),
-      mon: monthText.slice(0, 3),
-      year: String(year),
-      dateLabel: MONTH_FULL[monthIndex] + " " + dayNum + ", " + year,
-      sortKey: new Date(year, monthIndex, dayNum).getTime()
+      day: String(dayNum).length < 2 ? "0" + dayNum : String(dayNum),
+      dayNum: dayNum,
+      mon: MONTH_FULL[monthIndex].slice(0, 3),
+      monthName: MONTH_FULL[monthIndex],
+      monthIndex: monthIndex,
+      year: String(yearNum),
+      yearNum: yearNum,
+      label: MONTH_FULL[monthIndex] + " " + dayNum + ", " + yearNum,
+      sortKey: dateObj.getTime()
     };
   }
 
-  function parseEvents(text, fallbackYear) {
+  function buildEvents(text) {
     var rows = parseCSV(text);
-    if (!rows.length) return [];
 
-    var body = rows.slice(1);
+    if (!rows.length) {
+      return [];
+    }
+
     var out = [];
 
-    body.forEach(function (cols, index) {
+    rows.slice(1).forEach(function (cols, idx) {
       var date = clean(cols[0]);
       var speaker = clean(cols[1]);
       var title = clean(cols[2]);
       var description = clean(cols[3]);
       var bio = clean(cols[4]);
-      var parsedDate;
 
-      if (!date || !speaker || !description) return;
-      parsedDate = parseDate(date, fallbackYear);
-      if (!parsedDate) return;
+      if (!date || !speaker || !description) {
+        return;
+      }
+
+      var d = parseDate(date);
+
+      if (!d) {
+        return;
+      }
 
       out.push({
-        id: index,
+        id: idx,
         speaker: speaker,
         title: title,
         description: description,
         bio: bio,
-        day: parsedDate.day,
-        mon: parsedDate.mon,
-        year: parsedDate.year,
-        dateLabel: parsedDate.dateLabel,
-        sortKey: parsedDate.sortKey
+        day: d.day,
+        dayNum: d.dayNum,
+        mon: d.mon,
+        monthName: d.monthName,
+        monthIndex: d.monthIndex,
+        year: d.year,
+        yearNum: d.yearNum,
+        dateLabel: d.label,
+        sortKey: d.sortKey
       });
     });
 
-    out.sort(function (a, b) { return a.sortKey - b.sortKey; });
+    out.sort(function (a, b) {
+      return a.sortKey - b.sortKey;
+    });
+
     return out;
   }
 
-  function excerpt(description) {
-    var flat = clean(description).replace(/\s+/g, " ");
-    var cut;
-    var spaceIndex;
+  function frame(inner) {
+    ROOT.innerHTML = "";
 
-    if (flat.length <= 175) return flat;
-    cut = flat.slice(0, 175);
-    spaceIndex = cut.lastIndexOf(" ");
-    return (spaceIndex > 120 ? cut.slice(0, spaceIndex) : cut).trim() + "\u2026";
+    var card = el(
+      "div",
+      "border:1px solid " + BORDER + "; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.06);"
+    );
+
+    card.appendChild(inner);
+    ROOT.appendChild(card);
   }
 
-  function clearChildren(node) {
-    while (node.firstChild) node.removeChild(node.firstChild);
+  function renderMessage(msg) {
+    var wrap = el("div");
+
+    var bar = el(
+      "div",
+      "background:#fff; border-bottom:1px solid " + BORDER + "; padding:10px 16px; font-family:" + HEAD + "; font-weight:600; letter-spacing:.1em; text-transform:uppercase; font-size:11px; color:" + SLATE + ";",
+      { text: "Events" }
+    );
+
+    wrap.appendChild(bar);
+    wrap.appendChild(el(
+      "div",
+      "padding:18px 16px; font-size:13px; color:" + GRAY + ";",
+      { text: msg }
+    ));
+
+    frame(wrap);
   }
 
-  function textEl(tag, className, text) {
-    var el = document.createElement(tag);
-    if (className) el.className = className;
-    el.textContent = text;
-    return el;
+  function renderTree() {
+    selectedId = null;
+
+    var todayKey = startOfTodayKey();
+
+    var upcoming = events
+      .filter(function (ev) {
+        return ev.sortKey >= todayKey;
+      })
+      .sort(function (a, b) {
+        return a.sortKey - b.sortKey;
+      });
+
+    var past = events
+      .filter(function (ev) {
+        return ev.sortKey < todayKey;
+      })
+      .sort(function (a, b) {
+        return b.sortKey - a.sortKey;
+      });
+
+    var wrap = el("div");
+
+    var header = el(
+      "div",
+      "background:#fff; border-bottom:1px solid " + BORDER + "; padding:12px 16px;"
+    );
+
+    var headerTop = el(
+      "div",
+      "display:flex; align-items:flex-start; justify-content:space-between; gap:14px;"
+    );
+
+    var titleBlock = el("div", "min-width:0;");
+
+    titleBlock.appendChild(el(
+      "div",
+      "font-family:" + HEAD + "; font-weight:700; letter-spacing:.1em; text-transform:uppercase; font-size:15px; color:" + GREEN + ";",
+      { text: "Events Archive" }
+    ));
+
+    titleBlock.appendChild(el(
+      "div",
+      "margin-top:3px; font-size:12.5px; line-height:1.45; color:" + GRAY + ";",
+      { text: "Expand a section, then select an event to view its details." }
+    ));
+
+    headerTop.appendChild(titleBlock);
+
+    if (ALL_EVENTS_URL && ALL_EVENTS_URL !== "#") {
+      var fullLink = el(
+        "a",
+        "flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; text-decoration:none; border:1px solid " + GREEN + "; background:#fff; color:" + GREEN + "; padding:7px 10px; font-family:" + HEAD + "; font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:12px; line-height:1; white-space:nowrap;",
+        {
+          html: "View full events page <span style=\"font-size:12px; line-height:1; margin-left:6px;\">&nearr;</span>",
+          attrs: {
+            href: ALL_EVENTS_URL,
+            target: "_blank",
+            rel: "noopener noreferrer"
+          }
+        }
+      );
+
+      hover(fullLink, HOVER_BG, "#fff");
+      headerTop.appendChild(fullLink);
+    }
+
+    header.appendChild(headerTop);
+    wrap.appendChild(header);
+
+    renderUpcomingSection(wrap, upcoming);
+    renderPastSection(wrap, past);
+
+    frame(wrap);
   }
 
-  function renderList() {
-    clearChildren(listEl);
+  function renderUpcomingSection(parent, upcoming) {
+    var section = el("div", "border-bottom:1px solid " + BORDER + ";");
 
-    if (!events.length) {
-      listEl.hidden = true;
-      statusEl.hidden = false;
-      statusEl.textContent = "No events to display.";
+    var btn = makeTreeButton({
+      label: "Upcoming",
+      count: upcoming.length,
+      level: 0,
+      isOpen: treeState.upcomingOpen,
+      isPrimary: true,
+      onClick: function () {
+        treeState.upcomingOpen = !treeState.upcomingOpen;
+        renderTree();
+      }
+    });
+
+    section.appendChild(btn);
+
+    if (treeState.upcomingOpen) {
+      var body = el("div", "background:#fff;");
+
+      if (!upcoming.length) {
+        body.appendChild(el(
+          "div",
+          "padding:13px 16px 13px 38px; font-size:13px; color:" + GRAY + "; border-top:1px solid " + ROW_BORDER + ";",
+          { text: "No upcoming events are currently listed." }
+        ));
+      } else {
+        upcoming.forEach(function (ev) {
+          body.appendChild(makeEventRow(ev, 1));
+        });
+      }
+
+      section.appendChild(body);
+    }
+
+    parent.appendChild(section);
+  }
+
+  function renderPastSection(parent, past) {
+    var section = el("div");
+
+    section.appendChild(el(
+      "div",
+      "background:" + SOFT_BG + "; border-bottom:1px solid " + BORDER + "; padding:10px 16px; font-family:" + HEAD + "; font-weight:700; letter-spacing:.1em; text-transform:uppercase; font-size:13px; color:" + SLATE + ";",
+      { text: "Past Events" }
+    ));
+
+    if (!past.length) {
+      section.appendChild(el(
+        "div",
+        "padding:14px 16px; font-size:13px; color:" + GRAY + ";",
+        { text: "No past events are currently listed." }
+      ));
+
+      parent.appendChild(section);
       return;
     }
 
-    events.forEach(function (eventItem) {
-      var li = document.createElement("li");
-      var button = document.createElement("button");
-      var dateBlock = document.createElement("span");
-      var body = document.createElement("span");
-      var displaySpeaker = eventItem.title ? eventItem.speaker : "Guest Speaker";
-      var displayTitle = eventItem.title || eventItem.speaker;
-
-      button.type = "button";
-      button.className = "aix-card-button";
-      button.addEventListener("click", function () { showDetail(eventItem.id); });
-
-      dateBlock.className = "aix-date-block";
-      dateBlock.appendChild(textEl("span", "aix-day", eventItem.day));
-      dateBlock.appendChild(textEl("span", "aix-month-year", eventItem.mon + " '" + eventItem.year.slice(2)));
-
-      body.className = "aix-card-body";
-      body.appendChild(textEl("span", "aix-speaker", displaySpeaker));
-      body.appendChild(textEl("span", "aix-title", displayTitle));
-      body.appendChild(textEl("span", "aix-excerpt", excerpt(eventItem.description)));
-
-      button.appendChild(dateBlock);
-      button.appendChild(body);
-      li.appendChild(button);
-      listEl.appendChild(li);
+    var grouped = groupPastEvents(past);
+    var years = Object.keys(grouped).sort(function (a, b) {
+      return parseInt(b, 10) - parseInt(a, 10);
     });
 
-    statusEl.hidden = true;
-    listEl.hidden = false;
-  }
+    years.forEach(function (year) {
+      var yearEvents = flattenYear(grouped[year]);
+      var yearOpen = !!treeState.years[year];
 
-  function showList() {
-    detailView.hidden = true;
-    listView.hidden = false;
-    window.scrollTo(0, 0);
-  }
+      var yearBtn = makeTreeButton({
+        label: year,
+        count: yearEvents.length,
+        level: 0,
+        isOpen: yearOpen,
+        isPrimary: false,
+        onClick: function () {
+          treeState.years[year] = !treeState.years[year];
+          renderTree();
+        }
+      });
 
-  function showDetail(id) {
-    var selected = events.find(function (item) { return item.id === id; });
-    var speakerLine;
-    var titleLine;
-    var meta;
-    var dot;
-    var paragraphs;
+      section.appendChild(yearBtn);
 
-    if (!selected) return;
+      if (yearOpen) {
+        var months = Object.keys(grouped[year]).sort(function (a, b) {
+          return parseInt(b, 10) - parseInt(a, 10);
+        });
 
-    clearChildren(detailCard);
+        months.forEach(function (monthIndexText) {
+          var monthIndex = parseInt(monthIndexText, 10);
+          var monthKey = year + "-" + monthIndex;
+          var monthEvents = grouped[year][monthIndexText].slice().sort(function (a, b) {
+            return b.sortKey - a.sortKey;
+          });
 
-    speakerLine = selected.title ? selected.speaker : "Guest Speaker";
-    titleLine = selected.title || selected.speaker;
+          var monthOpen = !!treeState.months[monthKey];
 
-    detailCard.appendChild(textEl("p", "aix-detail-speaker", speakerLine));
-    detailCard.appendChild(textEl("h2", "aix-detail-title", titleLine));
+          var monthBtn = makeTreeButton({
+            label: MONTH_FULL[monthIndex],
+            count: monthEvents.length,
+            level: 1,
+            isOpen: monthOpen,
+            isPrimary: false,
+            onClick: function () {
+              treeState.months[monthKey] = !treeState.months[monthKey];
+              renderTree();
+            }
+          });
 
-    meta = document.createElement("div");
-    meta.className = "aix-detail-meta";
-    dot = document.createElement("span");
-    dot.className = "aix-meta-dot";
-    dot.setAttribute("aria-hidden", "true");
-    var dateSpan = textEl("span", "aix-meta-date", "");
-    dateSpan.appendChild(dot);
-    dateSpan.appendChild(document.createTextNode(selected.dateLabel));
-    meta.appendChild(dateSpan);
-    detailCard.appendChild(meta);
+          section.appendChild(monthBtn);
 
-    paragraphs = selected.description.split(/\n\s*\n/).map(function (p) { return p.trim(); }).filter(Boolean);
-    paragraphs.forEach(function (paragraph) {
-      detailCard.appendChild(textEl("p", "aix-para", paragraph));
+          if (monthOpen) {
+            monthEvents.forEach(function (ev) {
+              section.appendChild(makeEventRow(ev, 2));
+            });
+          }
+        });
+      }
     });
 
-    if (selected.bio) {
-      var bio = document.createElement("div");
-      bio.className = "aix-bio";
-      bio.appendChild(textEl("p", "aix-bio-heading", "About " + selected.speaker));
-      bio.appendChild(textEl("p", "aix-bio-text", selected.bio));
-      detailCard.appendChild(bio);
+    parent.appendChild(section);
+  }
+
+  function groupPastEvents(past) {
+    var grouped = {};
+
+    past.forEach(function (ev) {
+      var y = String(ev.yearNum);
+      var m = String(ev.monthIndex);
+
+      if (!grouped[y]) {
+        grouped[y] = {};
+      }
+
+      if (!grouped[y][m]) {
+        grouped[y][m] = [];
+      }
+
+      grouped[y][m].push(ev);
+    });
+
+    return grouped;
+  }
+
+  function flattenYear(yearObj) {
+    var out = [];
+
+    Object.keys(yearObj).forEach(function (monthKey) {
+      yearObj[monthKey].forEach(function (ev) {
+        out.push(ev);
+      });
+    });
+
+    return out;
+  }
+
+  function makeTreeButton(cfg) {
+    var leftPad = 16 + cfg.level * 22;
+    var arrow = cfg.isOpen ? "▾" : "▸";
+    var bg = cfg.isPrimary ? "#fff" : "#ffffff";
+    var color = cfg.isPrimary ? GREEN : "#1c1c1c";
+
+    var btn = el(
+      "button",
+      "display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%; text-align:left; cursor:pointer; border:none; border-bottom:1px solid " + ROW_BORDER + "; background:" + bg + "; padding:12px 16px 12px " + leftPad + "px; box-sizing:border-box;",
+      {
+        attrs: {
+          type: "button",
+          "aria-expanded": cfg.isOpen ? "true" : "false"
+        },
+        on: {
+          click: cfg.onClick
+        }
+      }
+    );
+
+    var labelWrap = el("span", "display:flex; align-items:center; gap:8px; min-width:0;");
+
+    labelWrap.appendChild(el(
+      "span",
+      "font-family:" + BODY + "; font-size:13px; color:" + GRAY + "; width:14px; flex:0 0 14px;",
+      { text: arrow }
+    ));
+
+    labelWrap.appendChild(el(
+      "span",
+      "font-family:" + HEAD + "; font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:" + (cfg.isPrimary ? "14px" : "13px") + "; color:" + color + "; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;",
+      { text: cfg.label }
+    ));
+
+    btn.appendChild(labelWrap);
+
+    btn.appendChild(el(
+      "span",
+      "font-size:12px; color:" + GRAY + "; white-space:nowrap;",
+      { text: cfg.count + (cfg.count === 1 ? " event" : " events") }
+    ));
+
+    hover(btn, HOVER_BG, bg);
+
+    return btn;
+  }
+
+  function makeEventRow(ev, level) {
+    var leftPad = 16 + level * 22;
+    var bg = "#fff";
+
+    var btn = el(
+      "button",
+      "display:flex; align-items:flex-start; gap:12px; width:100%; text-align:left; cursor:pointer; border:none; border-bottom:1px solid " + ROW_BORDER + "; background:" + bg + "; padding:12px 16px 12px " + leftPad + "px; box-sizing:border-box;",
+      {
+        attrs: {
+          type: "button"
+        },
+        on: {
+          click: function () {
+            selectedId = ev.id;
+            renderDetail();
+          }
+        }
+      }
+    );
+
+    hover(btn, HOVER_BG, bg);
+
+    var dateCol = el(
+      "span",
+      "display:flex; flex-direction:column; align-items:center; flex:0 0 46px; line-height:1;"
+    );
+
+    dateCol.appendChild(el(
+      "span",
+      "font-family:" + HEAD + "; font-weight:700; font-size:22px; color:#1c1c1c;",
+      { text: ev.day }
+    ));
+
+    dateCol.appendChild(el(
+      "span",
+      "font-family:" + HEAD + "; font-weight:600; letter-spacing:.06em; text-transform:uppercase; font-size:11px; color:" + GRAY + "; margin-top:2px; white-space:nowrap;",
+      { text: ev.mon + " '" + ev.year.slice(2) }
+    ));
+
+    btn.appendChild(dateCol);
+
+    var txtCol = el(
+      "span",
+      "flex:1 1 auto; min-width:0;"
+    );
+
+    txtCol.appendChild(el(
+      "span",
+      "display:block; font-family:" + HEAD + "; font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:10px; color:" + TEAL + "; margin-bottom:2px;",
+      { text: ev.title ? ev.speaker : "Guest Speaker" }
+    ));
+
+    txtCol.appendChild(el(
+      "span",
+      "display:block; font-family:" + BODY + "; font-weight:600; font-size:13.5px; line-height:1.3; color:#1c1c1c; overflow-wrap:anywhere;",
+      { text: ev.title || ev.speaker }
+    ));
+
+    btn.appendChild(txtCol);
+
+    return btn;
+  }
+
+  function renderDetail() {
+    var ev = null;
+
+    for (var i = 0; i < events.length; i++) {
+      if (events[i].id === selectedId) {
+        ev = events[i];
+        break;
+      }
     }
 
-    listView.hidden = true;
-    detailView.hidden = false;
-    window.scrollTo(0, 0);
+    if (!ev) {
+      renderTree();
+      return;
+    }
+
+    var pad = el(
+      "div",
+      "padding:22px 20px 30px;"
+    );
+
+    var back = el(
+      "button",
+      "display:inline-flex; align-items:center; gap:6px; background:none; border:none; padding:0; margin:0 0 16px; cursor:pointer; font-family:" + HEAD + "; font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:13px; color:" + GREEN + ";",
+      {
+        html: "<span style=\"font-size:16px; line-height:1;\">&larr;</span> Events archive",
+        attrs: {
+          type: "button"
+        },
+        on: {
+          click: renderTree
+        }
+      }
+    );
+
+    pad.appendChild(back);
+
+    pad.appendChild(el(
+      "p",
+      "margin:0 0 7px; font-family:" + HEAD + "; font-weight:600; letter-spacing:.12em; text-transform:uppercase; font-size:12px; color:" + TEAL + ";",
+      { text: ev.title ? ev.speaker : "Guest Speaker" }
+    ));
+
+    pad.appendChild(el(
+      "h3",
+      "margin:0 0 13px; font-family:" + HEAD + "; font-weight:700; font-size:25px; line-height:1.12; color:#1c1c1c; text-wrap:balance;",
+      { text: ev.title || ev.speaker }
+    ));
+
+    var meta = el(
+      "div",
+      "display:flex; flex-wrap:wrap; gap:8px 20px; padding:0 0 16px; margin:0 0 20px; border-bottom:2px solid " + GREEN + ";"
+    );
+
+    var dateChip = el(
+      "span",
+      "display:inline-flex; align-items:center; gap:7px; font-size:13.5px; color:#444;"
+    );
+
+    dateChip.appendChild(el(
+      "span",
+      "display:inline-block; width:8px; height:8px; border-radius:50%; background:" + GOLD + "; flex:none;"
+    ));
+
+    dateChip.appendChild(el(
+      "span",
+      "",
+      { text: ev.dateLabel }
+    ));
+
+    meta.appendChild(dateChip);
+    pad.appendChild(meta);
+
+    ev.description
+      .split(/\n\s*\n/)
+      .map(function (p) {
+        return p.trim();
+      })
+      .filter(Boolean)
+      .forEach(function (p) {
+        pad.appendChild(el(
+          "p",
+          "margin:0 0 15px; font-size:15.5px; line-height:1.65; color:#333;",
+          { text: p }
+        ));
+      });
+
+    if (ev.bio) {
+      var bio = el(
+        "div",
+        "margin-top:22px; background:" + SOFT_BG + "; border-left:4px solid " + GREEN + "; padding:16px 18px;"
+      );
+
+      bio.appendChild(el(
+        "p",
+        "margin:0 0 8px; font-family:" + HEAD + "; font-weight:600; letter-spacing:.1em; text-transform:uppercase; font-size:12px; color:" + GREEN + ";",
+        { text: "About " + ev.speaker }
+      ));
+
+      bio.appendChild(el(
+        "p",
+        "margin:0; font-size:14px; line-height:1.6; color:#444;",
+        { text: ev.bio }
+      ));
+
+      pad.appendChild(bio);
+    }
+
+    frame(pad);
   }
 
-  function loadEvents() {
-    var config = getConfig();
-    var urls = [config.csvUrl, config.fallbackCsvUrl].filter(function (url, index, arr) {
-      return !!url && arr.indexOf(url) === index;
-    });
+  function load() {
+    renderMessage("Loading events\u2026");
 
-    statusEl.hidden = false;
-    statusEl.textContent = "Loading events\u2026";
-    listEl.hidden = true;
+    var urls = [CSV_PRIMARY, CSV_FALLBACK];
+    var i = 0;
 
-    function tryNext(index) {
-      if (index >= urls.length) {
-        events = [];
-        renderList();
+    function next() {
+      if (i >= urls.length) {
+        renderMessage("Events are unavailable right now.");
         return;
       }
 
-      fetchText(urls[index])
+      fetch(urls[i], { cache: "no-store" })
+        .then(function (r) {
+          if (!r.ok) {
+            throw new Error("HTTP " + r.status);
+          }
+
+          return r.text();
+        })
         .then(function (text) {
-          events = parseEvents(maybeDecodeBase64(text), config.year);
-          renderList();
+          if (!/speaker\s*name/i.test(text.slice(0, 400))) {
+            try {
+              text = decodeURIComponent(escape(atob(text.replace(/\s+/g, ""))));
+            } catch (e) {
+              try {
+                text = atob(text.replace(/\s+/g, ""));
+              } catch (e2) {}
+            }
+          }
+
+          events = buildEvents(text);
+
+          if (!events.length) {
+            renderMessage("No events to display.");
+            return;
+          }
+
+          renderTree();
         })
         .catch(function () {
-          tryNext(index + 1);
+          i++;
+          next();
         });
     }
 
-    tryNext(0);
+    next();
   }
 
-  backButton.addEventListener("click", showList);
-  loadEvents();
+  load();
 })();
+/* ]]> */
 </script>
+
 </body>
 </html>
