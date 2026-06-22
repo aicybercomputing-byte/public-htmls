@@ -151,7 +151,7 @@
   }
 
   function clean(s) {
-    return (s == null ? "" : String(s)).replace(/\uFFFD/g, "\u2014").trim();
+    return (s == null ? "" : String(s)).replace(/\uFFFD/g, "").trim();
   }
 
   function parseCSV(text) {
@@ -420,24 +420,6 @@
 
     headerTop.appendChild(titleBlock);
 
-    if (ALL_EVENTS_URL && ALL_EVENTS_URL !== "#") {
-      var fullLink = el(
-        "a",
-        "flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; text-decoration:none; border:1px solid " + GREEN + "; background:#fff; color:" + GREEN + "; padding:7px 10px; font-family:" + HEAD + "; font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:12px; line-height:1; white-space:nowrap;",
-        {
-          html: "View full events page <span style=\"font-size:12px; line-height:1; margin-left:6px;\">&nearr;</span>",
-          attrs: {
-            href: ALL_EVENTS_URL,
-            target: "_blank",
-            rel: "noopener noreferrer"
-          }
-        }
-      );
-
-      hover(fullLink, HOVER_BG, "#fff");
-      headerTop.appendChild(fullLink);
-    }
-
     header.appendChild(headerTop);
     wrap.appendChild(header);
 
@@ -450,36 +432,22 @@
   function renderUpcomingSection(parent, upcoming) {
     var section = el("div", "border-bottom:1px solid " + BORDER + ";");
 
-    var btn = makeTreeButton({
-      label: "Upcoming",
-      count: upcoming.length,
-      level: 0,
-      isOpen: treeState.upcomingOpen,
-      isPrimary: true,
-      onClick: function () {
-        treeState.upcomingOpen = !treeState.upcomingOpen;
-        renderTree();
-      }
-    });
+    section.appendChild(el(
+      "div",
+      "background:" + SOFT_BG + "; border-bottom:1px solid " + BORDER + "; padding:10px 16px; font-family:" + HEAD + "; font-weight:700; letter-spacing:.1em; text-transform:uppercase; font-size:13px; color:" + SLATE + ";",
+      { text: "Upcoming" }
+    ));
 
-    section.appendChild(btn);
-
-    if (treeState.upcomingOpen) {
-      var body = el("div", "background:#fff;");
-
-      if (!upcoming.length) {
-        body.appendChild(el(
-          "div",
-          "padding:13px 16px 13px 38px; font-size:13px; color:" + GRAY + "; border-top:1px solid " + ROW_BORDER + ";",
-          { text: "No upcoming events are currently listed." }
-        ));
-      } else {
-        upcoming.forEach(function (ev) {
-          body.appendChild(makeEventRow(ev, 1));
-        });
-      }
-
-      section.appendChild(body);
+    if (!upcoming.length) {
+      section.appendChild(el(
+        "div",
+        "padding:14px 16px; font-size:13px; color:" + GRAY + ";",
+        { text: "No upcoming events are currently listed." }
+      ));
+    } else {
+      upcoming.forEach(function (ev) {
+        section.appendChild(makeEventRow(ev, 0));
+      });
     }
 
     parent.appendChild(section);
