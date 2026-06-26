@@ -1081,8 +1081,9 @@
     };
 
     var ug_or_grad = "undergraduate";
-    function getRedirectLink() {
-      const program = document.getElementById("bi-s-program").selectedOptions[0].value;
+    function getRedirectLink(role) {
+      var programSelectId = role === "parent" ? "bi-p-program" : "bi-s-program";
+      const program = document.getElementById(programSelectId).selectedOptions[0].value;
       if (program.includes("Undecided")) {
         if (program.includes("MS") || program.includes("PhD") || program.includes("Graduate Certificate")) {
           return "https://www.usf.edu/ai-cybersecurity-computing/academics/graduate/";
@@ -1126,6 +1127,7 @@
 
         var result = validate(form, role);
         var errorKeys = Object.keys(result.errors);
+        var link = null;
 
         if (errorKeys.length) {
           for (var i = 0; i < errorKeys.length; i++) {
@@ -1155,11 +1157,9 @@
           );
         } finally {
           setSubmitting(form, false);
-          const link = getRedirectLink();
           await new Promise(resolve => setTimeout(resolve, 3000)); // Wait 3 seconds on thank you screen before redirecting
-          if (link) {
-            window.location.replace(link);
-          }
+          // Recompute link at the end in case the user chose a program after the thanks screen.
+          window.location.replace(getRedirectLink(role));
         }
 
       });
