@@ -7,7 +7,7 @@ Static HTML, PCF wireframes, and reference captures for Bellini College web cont
 
 **GitHub Pages base:** [https://aicybercomputing-byte.github.io/public-htmls/](https://aicybercomputing-byte.github.io/public-htmls/)
 
-**Last deployed:** pending first GitHub Actions deploy · commit `local`
+**Last deployed:** 2026-07-06T16:38:05.668Z · commit `044db48`
 <!-- pages-deploy-end -->
 
 ## Browse locally
