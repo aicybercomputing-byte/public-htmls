@@ -9,7 +9,8 @@
     max-width: 880px;
     margin: 0 auto;
     padding: 24px;
-    font-family: 'Shantell Sans', system-ui, sans-serif;
+    font-family: inherit;
+    color: inherit;
   }
 
   #tcap-omni-overview-root .wf {
@@ -21,7 +22,8 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    color: #333;
+    font-family: inherit;
+    color: inherit;
   }
 
   #tcap-omni-overview-root .wf-img {
@@ -43,15 +45,26 @@
     padding: 10px 12px;
   }
 
+  #tcap-omni-overview-root .wf-box {
+    border: 0;
+    padding: 10px 12px;
+    background: #ffffff;
+  }
+
   #tcap-omni-overview-root .wf-btn {
     display: inline-block;
     background: #006747;
     color: #fff;
-    font-size: 14px;
-    padding: 8px 20px;
-    border-radius: 2px;
+    border: 2px solid #006747;
+    border-radius: 0;
+    font-family: inherit;
+    font-size: 1rem;
     font-weight: 700;
+    padding: 8px 20px;
     line-height: 1.2;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
   }
 
   #tcap-omni-overview-root .wf-node {
@@ -70,8 +83,8 @@
   }
 
   #tcap-omni-overview-root .pc-slot {
-    border: 2px dashed #006747;
-    background: #f7faf8;
+    border: 0;
+    background: #ffffff;
     border-radius: 4px;
     padding: 18px;
     text-align: left;
@@ -133,11 +146,11 @@
     margin: 0 0 6px;
     color: #006747;
     line-height: 1.1;
-    font-family: 'Shantell Sans', sans-serif;
+    font-family: inherit;
   }
 
   #tcap-omni-overview-root .pc-card p {
-    font-family: 'Shantell Sans', sans-serif;
+    font-family: inherit;
     font-size: 14px;
     line-height: 1.4;
     margin: 0;
@@ -204,11 +217,11 @@
     text-transform: uppercase;
     letter-spacing: 0.02em;
     line-height: 1.1;
-    font-family: 'Shantell Sans', sans-serif;
+    font-family: inherit;
   }
 
   #tcap-omni-overview-root .pc-box-body {
-    font-family: 'Shantell Sans', sans-serif;
+    font-family: inherit;
     font-size: 14px;
     line-height: 1.4;
     color: #3f3f3f;
@@ -227,7 +240,7 @@
 
   #tcap-omni-overview-root .pc-quick-item {
     display: block;
-    font-family: 'Shantell Sans', sans-serif;
+    font-family: inherit;
     font-size: 14px;
     line-height: 1.2;
     color: #006747;
@@ -322,7 +335,7 @@
   }
 
   #tcap-omni-overview-root .stat-num {
-    font-family: 'Shantell Sans', sans-serif;
+    font-family: inherit;
     font-size: 22px;
     font-weight: 700;
     color: #006747;
@@ -331,7 +344,7 @@
   }
 
   #tcap-omni-overview-root .stat-desc {
-    font-family: 'Shantell Sans', sans-serif;
+    font-family: inherit;
     font-size: 13px;
     line-height: 1.3;
     color: #2b2b2b;
@@ -339,7 +352,7 @@
   }
 
   #tcap-omni-overview-root .stat-src {
-    font-family: 'Shantell Sans', sans-serif;
+    font-family: inherit;
     font-size: 11px;
     line-height: 1.25;
     color: #77756b;
@@ -349,10 +362,6 @@
 
 <div id="tcap-omni-overview-root">
   <div class="wf">
-    <div class="wf-img" style="height:auto;padding:24px 16px;text-align:center;flex-direction:column">
-      <div class="wf-banner-placeholder">banner image</div>
-    </div>
-
     <div class="stat-bar">
       <div class="stat-box">
         <div class="stat-num">+17.9%</div>
@@ -445,6 +454,16 @@
             <li><a class="pc-quick-item" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Careers and internships</a></li>
           </ul>
         </div>
+      </div>
+    </div>
+
+    <div class="wf-box">
+      <div style="display:flex;gap:8px;margin-top:8px;font-size:13px;text-align:center">
+        <div style="flex:1;display:block;background:#006747;color:#fff;border:1.5px solid #006747;border-radius:3px;padding:10px 12px">Overview</div>
+        <a class="wf-box" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" href="stages.html">Layers</a>
+        <a class="wf-box" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" href="experiential-learning.html">Exp. Learning</a>
+        <a class="wf-box" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" href="faq.html">FAQ</a>
+        <a class="wf-box" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a>
       </div>
     </div>
   </div>

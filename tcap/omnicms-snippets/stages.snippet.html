@@ -8,7 +8,8 @@
     max-width: 880px;
     margin: 0 auto;
     padding: 24px;
-    font-family: 'Shantell Sans', system-ui, sans-serif;
+    font-family: inherit;
+    color: inherit;
   }
 
   #tcap-omni-stages-root .wf {
@@ -20,7 +21,8 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    color: #333;
+    font-family: inherit;
+    color: inherit;
   }
 
   #tcap-omni-stages-root .wf-img {
@@ -52,7 +54,6 @@
   }
 
   #tcap-omni-stages-root .stat-num {
-    font-family: 'Shantell Sans', sans-serif;
     font-size: 22px;
     font-weight: 700;
     color: #006747;
@@ -61,7 +62,6 @@
   }
 
   #tcap-omni-stages-root .stat-desc {
-    font-family: 'Shantell Sans', sans-serif;
     font-size: 13px;
     line-height: 1.3;
     color: #2b2b2b;
@@ -69,7 +69,6 @@
   }
 
   #tcap-omni-stages-root .stat-src {
-    font-family: 'Shantell Sans', sans-serif;
     font-size: 11px;
     line-height: 1.25;
     color: #77756b;
@@ -82,20 +81,31 @@
     padding: 10px 12px;
   }
 
+  #tcap-omni-stages-root .wf-box {
+    border: 0;
+    padding: 10px 12px;
+    background: #ffffff;
+  }
+
   #tcap-omni-stages-root .wf-btn {
     display: inline-block;
     background: #006747;
     color: #fff;
-    font-size: 14px;
+    border: 2px solid #006747;
+    border-radius: 0;
+    font-family: inherit;
+    font-size: 1rem;
     padding: 8px 20px;
-    border-radius: 2px;
     font-weight: 700;
     line-height: 1.2;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
   }
 
   #tcap-omni-stages-root .pc-slot {
-    border: 2px dashed #006747;
-    background: #f7faf8;
+    border: 0;
+    background: #ffffff;
     border-radius: 4px;
     padding: 18px;
     text-align: left;
@@ -162,7 +172,6 @@
     margin: 0 0 6px;
     color: #006747;
     line-height: 1.1;
-    font-family: 'Shantell Sans', sans-serif;
     font-weight: 700;
   }
 
@@ -172,7 +181,6 @@
     line-height: 1.4;
     margin: 0;
     color: #3f3f3f;
-    font-family: 'Shantell Sans', sans-serif;
     font-weight: 400;
   }
 
@@ -217,10 +225,6 @@
 
 <div id="tcap-omni-stages-root">
   <div class="wf" data-screen-label="Layers">
-    <div class="wf-img" style="height:auto;padding:20px 16px;text-align:center;flex-direction:column">
-      <div class="wf-banner-placeholder">banner image</div>
-    </div>
-
     <div class="stat-bar">
       <div class="stat-box">
         <div class="stat-num">+17.9%</div>
@@ -272,6 +276,17 @@
         </div>
       </div>
     </div>
+
+    <div class="wf-box">
+      <div style="display:flex;gap:8px;margin-top:8px;font-size:13px;text-align:center">
+        <a class="wf-box" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" href="overview.html">Overview</a>
+        <div style="flex:1;display:block;background:#006747;color:#fff;border:1.5px solid #006747;border-radius:3px;padding:10px 12px">Layers</div>
+        <a class="wf-box" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" href="experiential-learning.html">Exp. Learning</a>
+        <a class="wf-box" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" href="faq.html">FAQ</a>
+        <a class="wf-box" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a>
+      </div>
+    </div>
+
   </div>
 </div>
 
