@@ -1,5 +1,7 @@
 This is a list of all Belini College External Website Assets
 
+**[Full asset index](index.html)** — auto-generated, expandable sections with previews. Regenerates on pull/checkout/commit via `node scripts/install-git-hooks.js`.
+
 Quick Links
 
 [2026 News Carosel](carosels/news/2026/website_story.html)
