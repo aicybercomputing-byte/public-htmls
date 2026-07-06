@@ -1,33 +1,29 @@
 # Bellini College External Website Assets
 
-Static HTML, PCF wireframes, and reference captures for Bellini College web content.
+Static HTML assets for Bellini College web content.
 
-<!-- pages-deploy-start -->
-**Live site:** [https://aicybercomputing-byte.github.io/public-htmls/index.html](https://aicybercomputing-byte.github.io/public-htmls/index.html)
+## Live site
 
-**GitHub Pages base:** [https://aicybercomputing-byte.github.io/public-htmls/](https://aicybercomputing-byte.github.io/public-htmls/)
-
-**Last deployed:** 2026-07-06T16:38:05.668Z · commit `044db48`
-<!-- pages-deploy-end -->
-
-## Browse locally
-
-**[Asset index](index.html)** — expandable sections with previews. Git hooks skip `index.html` and `README.md` so deploy/readme updates do not loop.
-
-```bash
-node scripts/install-git-hooks.js   # once per clone
-node scripts/generate-index.js      # manual regen
-```
+**[Asset index](https://aicybercomputing-byte.github.io/public-htmls/index.html)** · [GitHub Pages](https://aicybercomputing-byte.github.io/public-htmls/)
 
 ## Quick links
 
 | Section | Entry point |
 |---------|-------------|
-| tCAP | [overview.pcf](preview.html?f=tcap%2Foverview.pcf) |
+| tCAP | [overview.html](tcap/overview.html) |
 | Jobs Page | [index.html](jobs_page/index.html) |
 | AI+X Events | [community-events.html](ai-x/community-events.html) |
 | News carousel | [website_story.html](carosels/news/2026/website_story.html) |
 | USF CMS reference | [reference/usf-cms/](reference/usf-cms/) |
+
+## Browse locally
+
+**[Asset index](index.html)** — expandable sections with live HTML previews.
+
+```bash
+node scripts/install-git-hooks.js   # once per clone
+node scripts/generate-index.js      # manual regen
+```
 
 ## Repo layout
 
@@ -40,13 +36,9 @@ main-page/      Main page snippets and images
 more-info/      Shared snippets
 reference/      USF CMS snapshots and live page captures
 scripts/        Index generator, git hooks, utilities
-tcap/           tCAP wireframe pages (.pcf)
+tcap/           tCAP pages (HTML)
 ```
 
 ## GitHub Pages
 
-Deploys from `main` via [`.github/workflows/pages.yml`](.github/workflows/pages.yml).
-
-1. Repo **Settings → Pages → Build and deployment → GitHub Actions**
-2. Push to `main` (README-only pushes are ignored by the deploy workflow)
-3. Actions updates the deploy link block in this README after each successful deploy
+Deploys from `main` via [`.github/workflows/pages.yml`](.github/workflows/pages.yml). Enable **Settings → Pages → GitHub Actions** once per repo.
