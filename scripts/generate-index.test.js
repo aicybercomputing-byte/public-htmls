@@ -3,13 +3,19 @@
 
 const assert = require("assert");
 const path = require("path");
+const fs = require("fs");
 const {
+  affectsIndex,
   collectPages,
   groupPages,
   generateIndex,
   shouldIncludeFile,
   shouldSkipDir,
 } = require("./generate-index.js");
+const {
+  getChangedFiles,
+  hasIndexRelevantChanges,
+} = require("./run-index-hook.js");
 
 const ROOT = path.join(__dirname, "..");
 
@@ -19,6 +25,12 @@ assert.strictEqual(shouldIncludeFile("tcap/faq.pcf"), true);
 assert.strictEqual(shouldIncludeFile("tmp-usf-jobs-live.html"), false);
 assert.strictEqual(shouldIncludeFile("index.html"), false);
 assert.strictEqual(shouldIncludeFile("jobs_page/index.html"), true);
+assert.strictEqual(affectsIndex("tcap/faq.pcf"), true);
+assert.strictEqual(affectsIndex("scripts/generate-index.js"), true);
+assert.strictEqual(affectsIndex("README.md"), false);
+assert.strictEqual(hasIndexRelevantChanges(["README.md"]), false);
+assert.strictEqual(hasIndexRelevantChanges(["tcap/faq.pcf"]), true);
+assert.deepStrictEqual(getChangedFiles("post-checkout", ["a", "a"]), []);
 
 const pages = collectPages(ROOT);
 assert.ok(pages.some((page) => page.relative === "tcap/faq.pcf"));
@@ -36,5 +48,16 @@ const { html } = generateIndex({
 });
 assert.match(html, /tcap\/faq\.pcf/);
 assert.match(html, /Auto-generated index/);
+
+const testOutput = path.join(__dirname, ".index-test-output.html");
+fs.writeFileSync(testOutput, html, "utf8");
+const unchanged = generateIndex({
+  root: ROOT,
+  output: testOutput,
+  write: true,
+  onlyIfChanged: true,
+});
+assert.strictEqual(unchanged.changed, false);
+fs.unlinkSync(testOutput);
 
 console.log("generate-index.test.js: ok");

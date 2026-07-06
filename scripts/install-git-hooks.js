@@ -6,14 +6,24 @@ const path = require("path");
 const { execSync } = require("child_process");
 
 const ROOT = path.join(__dirname, "..");
-const HOOKS = ["post-merge", "post-checkout", "post-commit"];
 
-const HOOK_BODY = `#!/bin/sh
-# public-htmls: regenerate root index.html
+const HOOKS = {
+  "post-commit": `#!/bin/sh
 ROOT="$(git rev-parse --show-toplevel)"
 cd "$ROOT" || exit 1
-node scripts/generate-index.js || exit 0
-`;
+node scripts/run-index-hook.js post-commit
+`,
+  "post-merge": `#!/bin/sh
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT" || exit 1
+node scripts/run-index-hook.js post-merge
+`,
+  "post-checkout": `#!/bin/sh
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT" || exit 1
+node scripts/run-index-hook.js post-checkout "$1" "$2" "$3"
+`,
+};
 
 function getGitDir() {
   try {
@@ -30,9 +40,9 @@ function installHooks(gitDir) {
   const hooksDir = path.resolve(ROOT, gitDir, "hooks");
   fs.mkdirSync(hooksDir, { recursive: true });
 
-  for (const hookName of HOOKS) {
+  for (const [hookName, body] of Object.entries(HOOKS)) {
     const hookPath = path.join(hooksDir, hookName);
-    fs.writeFileSync(hookPath, HOOK_BODY, { mode: 0o755 });
+    fs.writeFileSync(hookPath, body, { mode: 0o755 });
     console.log(`Installed ${hookName}`);
   }
 }
@@ -45,8 +55,11 @@ function main() {
   }
 
   installHooks(gitDir);
-  execSync("node scripts/generate-index.js", { cwd: ROOT, stdio: "inherit" });
-  console.log("Hooks installed and index generated.");
+  execSync("node scripts/generate-index.js --if-changed", {
+    cwd: ROOT,
+    stdio: "inherit",
+  });
+  console.log("Hooks installed.");
 }
 
 if (require.main === module) {
