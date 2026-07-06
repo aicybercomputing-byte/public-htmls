@@ -14,22 +14,43 @@ body{margin:0;background:#f0eee9;font-family:'Shantell Sans',system-ui,sans-seri
 .wf-solid{border:1.5px solid #6f6f68;background:#f4f4ef;padding:10px 12px}
 .wf-img{background:#eef4f1;border:1.5px solid #b5b3aa;display:flex;align-items:center;justify-content:center;color:#42584d}
 .wf-s{font-size:13px;color:#77756b;line-height:1.3}
-.wf-h{font-size:18px;line-height:1.15}
 .wf-btn{display:inline-block;background:#006747;color:#fff;font-size:14px;padding:8px 20px;border-radius:2px}
 a{color:inherit;text-decoration:none}
-.pc-slot{border:2px dashed #006747;background:#f7faf8;border-radius:4px;padding:18px;text-align:left;display:flex;flex-direction:column;gap:14px}
+.stat-bar{display:flex;gap:8px;align-items:stretch}
+.stat-box{flex:1;background:#fff;border:1px solid rgba(0,0,0,.08);padding:12px;text-align:left;min-width:0}
+.stat-num{font-family:'Shantell Sans',sans-serif;font-size:22px;font-weight:700;color:#006747;line-height:1.1;margin:0 0 6px}
+.stat-desc{font-family:'Shantell Sans',sans-serif;font-size:13px;line-height:1.3;color:#2b2b2b;margin:0 0 6px}
+.stat-src{font-family:'Shantell Sans',sans-serif;font-size:11px;line-height:1.25;color:#77756b;margin:0}
+.pc-slot{border:2px dashed #006747;background:#f7faf8;border-radius:4px;padding:18px;text-align:left;display:flex;flex-direction:column;gap:14px;min-height:240px}
 .pc-kicker{font-size:12px;color:#006747;text-transform:uppercase;letter-spacing:.05em}
 .pc-title{font-size:24px;line-height:1.1;color:#006747;margin:0}
 .pc-copy{font-size:14px;line-height:1.35;color:#3f3f3f;margin:0;max-width:700px}
-.pc-grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.pc-grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .pc-card{border:1.5px solid #8a8a82;background:#fff;padding:12px;border-radius:3px;min-width:0}
+.pc-soft{border:1.5px dashed #8a8a82;background:#fcfcfa;padding:12px;border-radius:3px;font-size:13px;line-height:1.35;color:#3f3f3f}
 .pc-green{border-color:#006747;background:#eef4f1}
 .pc-card h3{font-size:17px;margin:0 0 6px;color:#006747;line-height:1.1}
 .pc-card p{font-size:13px;line-height:1.3;margin:0;color:#3f3f3f}
-.pc-list{margin:8px 0 0;padding-left:18px;font-size:13px;line-height:1.35;color:#3f3f3f}
-.pc-list li{margin:4px 0}
-.pc-soft{border:1.5px dashed #8a8a82;background:#fcfcfa;padding:12px;border-radius:3px;font-size:13px;line-height:1.35;color:#3f3f3f}
-@media (max-width:700px){.pc-grid2{grid-template-columns:1fr}.pc-title{font-size:21px}}
+.pc-step{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start}
+.pc-num{width:28px;height:28px;border-radius:50%;border:2px solid #006747;color:#006747;background:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;flex:none}
+.pc-timeline{display:flex;gap:8px;align-items:stretch}
+.pc-timeline .pc-card{flex:1;position:relative}
+.pc-timeline .pc-card:not(:last-child)::after{content:'→';position:absolute;right:-12px;top:44%;color:#006747;font-size:18px}
+.pc-table{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:0;border:1.5px solid #8a8a82;background:#fff}
+.pc-table div{padding:9px;border-right:1px solid #d8d6cd;border-bottom:1px solid #d8d6cd;font-size:13px;line-height:1.25}
+.pc-table div:nth-child(3n){border-right:none}
+.pc-table .head{background:#eef4f1;color:#006747;font-size:14px;font-weight:600}
+@media (max-width:700px){
+  .stat-bar{flex-direction:column}
+  .pc-slot{padding:14px;gap:12px}
+  .pc-title{font-size:21px}
+  .pc-copy{font-size:13px}
+  .pc-grid4,.pc-table{grid-template-columns:1fr}
+  .pc-timeline{flex-direction:column}
+  .pc-timeline .pc-card:not(:last-child)::after{display:none}
+  .pc-table div{border-right:none}
+  .pc-card{padding:11px}
+}
 </style>
 </head>
 <body>
@@ -38,67 +59,116 @@ a{color:inherit;text-decoration:none}
 <div class="wf-chrome"><span>USF / Bellini chrome</span><span>nav</span></div>
 <div class="wf-img" style="height:auto;padding:20px 16px;text-align:center;flex-direction:column">
   <div style="font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#006747">Experiential Learning</div>
-  <div style="font-size:24px;font-weight:600;color:#006747;margin:6px 0;font-family:'Shantell Sans',sans-serif">Apply classroom knowledge in real-world settings</div>
+  <div style="font-size:24px;font-weight:600;color:#006747;margin:6px 0;font-family:'Shantell Sans',sans-serif">Apply what you learn in real settings</div>
 </div>
-<div style="display:flex;gap:8px;text-align:center">
-<div class="wf-solid" style="flex:1"><div class="wf-h">135+</div><div class="wf-s">verified hrs</div></div>
-<div class="wf-solid" style="flex:1"><div class="wf-h">4</div><div class="wf-s">stages</div></div>
-<div class="wf-solid" style="flex:1"><div class="wf-h">3</div><div class="wf-s">pillars</div></div>
-<div class="wf-solid" style="flex:1"><div class="wf-h">CIS</div><div class="wf-s">4950 notation</div></div>
+
+<div class="stat-bar">
+  <div class="stat-box">
+    <div class="stat-num">+17.9%</div>
+    <div class="stat-desc">Software developer growth 2023–2033</div>
+    <div class="stat-src">Software developer growth 2023–2033: BLS / MLR 2025.</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">546K</div>
+    <div class="stat-desc">Tech workers in Florida (No. 4 nationally)</div>
+    <div class="stat-src">Florida tech workforce count: CompTIA 2025.</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">$102,908</div>
+    <div class="stat-desc">Florida tech wage — 122% above state median</div>
+    <div class="stat-src">Median Florida tech wage: CompTIA / Lightcast 2024.</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">12,735</div>
+    <div class="stat-desc">Active Florida job postings requiring AI skills</div>
+    <div class="stat-src">Florida AI-skill job postings: CompTIA 2024.</div>
+  </div>
 </div>
+
 <div class="pc-slot">
-<div>
-<div class="pc-kicker">Overview</div>
-<h2 class="pc-title">Required applied experience for every tCAP student</h2>
-<p class="pc-copy">Experiential learning is a required component of tCAP and gives students the opportunity to apply classroom knowledge in real-world environments.</p>
+  <div>
+    <div class="pc-kicker">Overview</div>
+    <p class="pc-copy">Experiential learning is a required component of tCAP and gives students the opportunity to apply classroom knowledge in real-world environments.</p>
+  </div>
+
+  <div>
+    <div class="pc-kicker">Process</div>
+    <h3 style="font-size:18px;line-height:1.1;color:#006747;margin:0 0 6px">How it works</h3>
+  </div>
+  <div class="pc-timeline">
+    <div class="pc-card pc-step pc-green">
+      <div class="pc-num">1</div>
+      <div><h3>Choose an experience</h3><p>Select an eligible pathway such as an internship, research, capstone, hackathon or study abroad experience.</p></div>
+    </div>
+    <div class="pc-card pc-step">
+      <div class="pc-num">2</div>
+      <div><h3>Get pre-approval</h3><p>Pre-approval of a plan of work and faculty mentor or quality supervisor.</p></div>
+    </div>
+    <div class="pc-card pc-step">
+      <div class="pc-num">3</div>
+      <div><h3>Complete the work</h3><p>Meet the minimum threshold of 135 verified hours and deliver a mid-point update.</p></div>
+    </div>
+    <div class="pc-card pc-step">
+      <div class="pc-num">4</div>
+      <div><h3>Reflect and record</h3><p>Develop and deliver a final report with structured reflection, pass/fail assessment and CIS 4950 notation.</p></div>
+    </div>
+  </div>
+
+  <div>
+    <div class="pc-kicker">Eligible experiences</div>
+    <h3 style="font-size:18px;line-height:1.1;color:#006747;margin:0 0 6px">Approved pathways</h3>
+    <p class="pc-copy">Eligible experiences include internships, undergraduate research through USF Student Engagement in Research &amp; Innovation, capstone projects, cybersecurity support services, entrepreneurship initiatives, competitions, hackathons and study abroad experiences.</p>
+  </div>
+  <div class="pc-grid4">
+    <div class="pc-card pc-green"><h3>Internships</h3><p>Internships.</p></div>
+    <div class="pc-card"><h3>Undergraduate research</h3><p>Undergraduate research through USF Student Engagement in Research &amp; Innovation.</p></div>
+    <div class="pc-card"><h3>Capstone projects</h3><p>Capstone projects.</p></div>
+    <div class="pc-card"><h3>Cybersecurity support</h3><p>Cybersecurity support services.</p></div>
+    <div class="pc-card"><h3>Entrepreneurship</h3><p>Entrepreneurship initiatives.</p></div>
+    <div class="pc-card"><h3>Competitions</h3><p>Competitions.</p></div>
+    <div class="pc-card"><h3>Hackathons</h3><p>Hackathons.</p></div>
+    <div class="pc-card"><h3>Study abroad</h3><p>Study abroad experiences.</p></div>
+  </div>
+
+  <div>
+    <div class="pc-kicker">Requirements</div>
+    <h3 style="font-size:18px;line-height:1.1;color:#006747;margin:0 0 6px">What students need to complete</h3>
+  </div>
+  <div class="pc-table">
+    <div class="head">Requirement</div><div class="head">What it means</div><div class="head">Student output</div>
+    <div>135 verified hours</div><div>Minimum threshold of 135 verified hours</div><div>Tracked hours</div>
+    <div>Pre-approval</div><div>Pre-approval of a plan of work and faculty mentor or quality supervisor</div><div>Approved plan of work</div>
+    <div>Documentation</div><div>Develop and deliver a plan of work, mid-point update and final report with structured reflection</div><div>Plan, midpoint update and final report</div>
+    <div>Assessment</div><div>Assessment of pass/fail using a common rubric</div><div>Pass/fail result</div>
+    <div>CIS 4950</div><div>Recorded as CIS 4950 (badge and transcript notation)</div><div>Badge and transcript notation</div>
+  </div>
+
+  <div>
+    <div class="pc-kicker">Approval process</div>
+    <p class="pc-copy">Students work with faculty mentors or approved supervisors to define goals, complete required documentation and track outcomes throughout the experience.</p>
+  </div>
+
+  <div class="pc-soft">
+    This page will also have more details about the different classes Kurt Friday will be teaching. This is still in the planning phase but needs to be thought about in website design.
+  </div>
 </div>
-<div>
-<div class="pc-kicker">Requirements</div>
-<h3 style="font-size:18px;line-height:1.1;color:#006747;margin:0 0 8px">What every student must complete</h3>
-<ul class="pc-list">
-<li>Minimum threshold of <strong>135 verified hours</strong></li>
-<li>Pre-approval of a plan of work and faculty mentor or quality supervisor</li>
-<li>Develop and deliver a plan of work, mid-point update and final report with structured reflection</li>
-<li>Assessment of pass/fail using a common rubric</li>
-<li>Recorded as <strong>CIS 4950</strong> (badge and transcript notation)</li>
-</ul>
-</div>
-<div>
-<div class="pc-kicker">Eligible experiences</div>
-<h3 style="font-size:18px;line-height:1.1;color:#006747;margin:0 0 8px">Approved pathways</h3>
-<div class="pc-grid2">
-<div class="pc-card pc-green"><h3>Internships</h3><p>Industry placements and supervised professional roles.</p></div>
-<div class="pc-card"><h3>Undergraduate research</h3><p>Research through USF Student Engagement in Research &amp; Innovation.</p></div>
-<div class="pc-card"><h3>Capstone projects</h3><p>Applied academic projects tied to real deliverables.</p></div>
-<div class="pc-card"><h3>Cybersecurity support</h3><p>Cybersecurity support services with defined learning outcomes.</p></div>
-<div class="pc-card"><h3>Entrepreneurship</h3><p>Entrepreneurship initiatives and venture-building experiences.</p></div>
-<div class="pc-card"><h3>Competitions &amp; hackathons</h3><p>Approved team-based technical competitions and hackathon events.</p></div>
-<div class="pc-card"><h3>Study abroad</h3><p>Global experiences that meet program criteria.</p></div>
-</div>
-</div>
-<div>
-<div class="pc-kicker">Approval process</div>
-<h3 style="font-size:18px;line-height:1.1;color:#006747;margin:0 0 8px">How students get started</h3>
-<p class="pc-copy">Students work with faculty mentors or approved supervisors to define goals, complete required documentation and track outcomes throughout the experience.</p>
-</div>
-<div class="pc-soft">
-<strong>Coming soon:</strong> Additional details about related coursework (including classes led by Kurt Friday) are in planning. This section will expand as the curriculum is finalized.
-</div>
-</div>
+
 <div class="wf-box">
-<div class="wf-s">SET MAP — tCAP pages + jobs:</div>
-<div style="display:flex;gap:8px;margin-top:8px;font-size:13px;text-align:center">
-<a class="wf-box" href="overview.html" style="flex:1;display:block">Overview</a>
-<a class="wf-box" href="stages.html" style="flex:1;display:block">Stages</a>
-<div class="wf-solid" style="flex:1">Exp. Learning<br/>(you are here)</div>
-<a class="wf-box" href="faq.html" style="flex:1;display:block">FAQ</a>
-<a class="wf-box" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" style="flex:1;display:block" target="_blank" rel="noopener noreferrer">Jobs Page</a>
+  <div class="wf-s">SET MAP — tCAP pages + jobs:</div>
+  <div style="display:flex;gap:8px;margin-top:8px;font-size:13px;text-align:center">
+    <a class="wf-box" href="overview.html" style="flex:1;display:block">Overview</a>
+    <a class="wf-box" href="stages.html" style="flex:1;display:block">Stages</a>
+    <div class="wf-solid" style="flex:1">Exp. Learning<br />(you are here)</div>
+    <a class="wf-box" href="faq.html" style="flex:1;display:block">FAQ</a>
+    <a class="wf-box" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" style="flex:1;display:block" target="_blank" rel="noopener noreferrer">Jobs Page</a>
+  </div>
 </div>
-</div>
+
 <div class="wf-solid" style="text-align:center;padding:16px">
-<p style="font-family:'Shantell Sans',sans-serif;font-size:14px;margin:0 0 12px;color:#3f3f3f">Explore tCAP, connect with advisors and learn how Bellini College helps students prepare for meaningful technology careers.</p>
-<span class="wf-btn">Talk to an advisor</span>
+  <p style="font-family:'Shantell Sans',sans-serif;font-size:14px;margin:0 0 12px;color:#3f3f3f">Explore tCAP, connect with advisors and learn how Bellini College helps students prepare for meaningful technology careers.</p>
+  <span class="wf-btn">Talk to an advisor</span>
 </div>
+
 </div>
 </div>
 </body>

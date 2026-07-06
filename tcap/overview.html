@@ -32,7 +32,7 @@ a{color:inherit;text-decoration:none}
 .pc-pillar{display:flex;align-items:center;justify-content:center;text-align:center;min-height:72px;padding:16px 12px;transition:background .15s,border-color .15s}
 .pc-pillar h3{font-size:20px;margin:0}
 .pc-pillar:hover{background:#eef4f1;border-color:#006747}
-.pc-fill-box{min-height:200px;padding:16px;text-align:left;display:flex;flex-direction:column;gap:10px;transition:background .15s,border-color .15s}
+.pc-fill-box{padding:16px;text-align:left;display:flex;flex-direction:column;gap:10px;transition:background .15s,border-color .15s;min-height:200px}
 .pc-fill-box:hover{background:#eef4f1;border-color:#006747}
 .pc-box-label{font-size:13px;font-weight:700;color:#006747;text-transform:uppercase;letter-spacing:.05em}
 .pc-box-body{font-family:'Shantell Sans',sans-serif;font-size:16px;line-height:1.45;color:#3f3f3f;flex:1}
@@ -40,7 +40,12 @@ a{color:inherit;text-decoration:none}
 .pc-quick-item{display:block;font-family:'Shantell Sans',sans-serif;font-size:16px;line-height:1.35;color:#006747;text-decoration:underline;text-underline-offset:2px;padding:4px 0}
 .pc-quick-item:hover{color:#004d35}
 .pc-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;flex:1;justify-content:center}
-@media (max-width:700px){.pc-grid2,.pc-grid3{grid-template-columns:1fr}.pc-title{font-size:21px}}
+.stat-bar{display:flex;gap:8px;align-items:stretch}
+.stat-box{flex:1;background:#fff;border:1px solid rgba(0,0,0,.08);padding:12px;text-align:left;min-width:0}
+.stat-num{font-family:'Shantell Sans',sans-serif;font-size:22px;font-weight:700;color:#006747;line-height:1.1;margin:0 0 6px}
+.stat-desc{font-family:'Shantell Sans',sans-serif;font-size:13px;line-height:1.3;color:#2b2b2b;margin:0 0 6px}
+.stat-src{font-family:'Shantell Sans',sans-serif;font-size:11px;line-height:1.25;color:#77756b;margin:0}
+@media (max-width:700px){.stat-bar{flex-direction:column}.pc-grid2,.pc-grid3{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -55,11 +60,27 @@ a{color:inherit;text-decoration:none}
       <p style="font-family:'Shantell Sans',sans-serif;font-size:14px;max-width:640px;margin:0 auto;line-height:1.4;color:#3f3f3f">At the Bellini College of Artificial Intelligence, Cybersecurity and Computing, a degree is just the beginning. The Tech Career Advancement Program helps build real-world experience, professional confidence and industry connections throughout your time at USF.</p>
     </div>
 
-    <div style="display:flex;gap:8px;text-align:center">
-      <div class="wf-solid" style="flex:1"><div class="wf-h">135+</div><div class="wf-s">verified hrs</div></div>
-      <div class="wf-solid" style="flex:1"><div class="wf-h">4</div><div class="wf-s">stages</div></div>
-      <div class="wf-solid" style="flex:1"><div class="wf-h">3</div><div class="wf-s">pillars</div></div>
-      <div class="wf-solid" style="flex:1"><div class="wf-h">CIS</div><div class="wf-s">4950 notation</div></div>
+    <div class="stat-bar">
+      <div class="stat-box">
+        <div class="stat-num">+17.9%</div>
+        <div class="stat-desc">Software developer growth 2023–2033</div>
+        <div class="stat-src">Software developer growth 2023–2033: BLS / MLR 2025.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">546K</div>
+        <div class="stat-desc">Tech workers in Florida (No. 4 nationally)</div>
+        <div class="stat-src">Florida tech workforce count: CompTIA 2025.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">$102,908</div>
+        <div class="stat-desc">Florida tech wage — 122% above state median</div>
+        <div class="stat-src">Median Florida tech wage: CompTIA / Lightcast 2024.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">12,735</div>
+        <div class="stat-desc">Active Florida job postings requiring AI skills</div>
+        <div class="stat-src">Florida AI-skill job postings: CompTIA 2024.</div>
+      </div>
     </div>
 
     <div class="pc-slot">
@@ -83,12 +104,7 @@ a{color:inherit;text-decoration:none}
         <a class="pc-card pc-pillar" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer"><h3>Connection</h3></a>
       </div>
 
-      <a class="pc-card pc-fill-box" href="experiential-learning.html">
-        <h3>Experiential learning overview</h3>
-        <p class="pc-box-body" style="margin:0">Every tCAP student completes applied experiential learning through internships, research, capstones, hackathons, entrepreneurship or other approved opportunities.</p>
-      </a>
-
-      <div class="pc-grid2">
+      <div class="pc-grid3 pc-row-trio">
         <a class="pc-fill-box wf-box" href="stages.html">
           <div class="pc-box-label">Student journey</div>
           <div class="pc-box-body" style="display:flex;flex-direction:column;gap:8px;padding:0">
@@ -97,6 +113,10 @@ a{color:inherit;text-decoration:none}
             <div class="pc-stage-row"><div class="wf-node">3</div><span>Connectivity</span></div>
             <div class="pc-stage-row"><div class="wf-node">4</div><span>Mastery</span></div>
           </div>
+        </a>
+        <a class="pc-fill-box pc-card" href="experiential-learning.html">
+          <div class="pc-box-label">Experiential learning</div>
+          <p class="pc-box-body" style="margin:0">Every tCAP student completes applied experiential learning through internships, research, capstones, hackathons, entrepreneurship or other approved opportunities.</p>
         </a>
         <div class="pc-fill-box pc-card pc-green">
           <div class="pc-box-label">Quick links</div>

@@ -31,7 +31,12 @@ a{color:inherit;text-decoration:none}
 .pc-faq details{border-bottom:1.5px solid #d8d6cd;padding:10px 0}
 .pc-faq summary{cursor:pointer;color:#006747;font-size:15px;line-height:1.2;list-style-position:outside}
 .pc-faq p{font-size:13px;line-height:1.35;margin:8px 0 0 18px;color:#3f3f3f}
-@media (max-width:700px){.pc-grid3{grid-template-columns:1fr}.pc-title{font-size:21px}}
+.stat-bar{display:flex;gap:8px;align-items:stretch}
+.stat-box{flex:1;background:#fff;border:1px solid rgba(0,0,0,.08);padding:12px;text-align:left;min-width:0}
+.stat-num{font-family:'Shantell Sans',sans-serif;font-size:22px;font-weight:700;color:#006747;line-height:1.1;margin:0 0 6px}
+.stat-desc{font-family:'Shantell Sans',sans-serif;font-size:13px;line-height:1.3;color:#2b2b2b;margin:0 0 6px}
+.stat-src{font-family:'Shantell Sans',sans-serif;font-size:11px;line-height:1.25;color:#77756b;margin:0}
+@media (max-width:700px){.stat-bar{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -44,11 +49,27 @@ a{color:inherit;text-decoration:none}
       <div style="font-size:24px;font-weight:600;color:#006747;margin:6px 0;font-family:'Shantell Sans',sans-serif">Quick answers about tCAP</div>
     </div>
 
-    <div style="display:flex;gap:8px;text-align:center">
-      <div class="wf-solid" style="flex:1"><div class="wf-h">135+</div><div class="wf-s">verified hrs</div></div>
-      <div class="wf-solid" style="flex:1"><div class="wf-h">4</div><div class="wf-s">stages</div></div>
-      <div class="wf-solid" style="flex:1"><div class="wf-h">3</div><div class="wf-s">pillars</div></div>
-      <div class="wf-solid" style="flex:1"><div class="wf-h">CIS</div><div class="wf-s">4950 notation</div></div>
+    <div class="stat-bar">
+      <div class="stat-box">
+        <div class="stat-num">+17.9%</div>
+        <div class="stat-desc">Software developer growth 2023–2033</div>
+        <div class="stat-src">Software developer growth 2023–2033: BLS / MLR 2025.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">546K</div>
+        <div class="stat-desc">Tech workers in Florida (No. 4 nationally)</div>
+        <div class="stat-src">Florida tech workforce count: CompTIA 2025.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">$102,908</div>
+        <div class="stat-desc">Florida tech wage — 122% above state median</div>
+        <div class="stat-src">Median Florida tech wage: CompTIA / Lightcast 2024.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">12,735</div>
+        <div class="stat-desc">Active Florida job postings requiring AI skills</div>
+        <div class="stat-src">Florida AI-skill job postings: CompTIA 2024.</div>
+      </div>
     </div>
 
     <div class="pc-slot">
