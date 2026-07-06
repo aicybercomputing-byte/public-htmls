@@ -3,11 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Shantell+Sans:wght@400;600&display=swap" rel="stylesheet" />
 <style>
 body{margin:0;background:#f0eee9;font-family:'Shantell Sans',system-ui,sans-serif}
@@ -25,12 +20,13 @@ body{margin:0;background:#f0eee9;font-family:'Shantell Sans',system-ui,sans-seri
 .wf-node{width:22px;height:22px;border-radius:50%;border:2px solid #006747;background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;color:#006747;flex:none}
 a{color:inherit;text-decoration:none}
 </style>
-</helmet>
+</head>
+<body>
 <div class="page">
-  <div class="wf" data-screen-label="FAQ">
+  <div class="wf" data-screen-label="Stages">
 
     <div class="wf-chrome"><span>USF / Bellini chrome</span><span>nav</span></div>
-    <div class="wf-img" style="height:120px">hero photo + big title — FAQ</div>
+    <div class="wf-img" style="height:120px">hero photo + big title — Stages</div>
 
     <!-- FRAME: 4-stat bar -->
     <div style="display:flex;gap:8px;text-align:center">
@@ -80,41 +76,31 @@ a{color:inherit;text-decoration:none}
       </style>
 
       <div>
-        <div class="pc-kicker">Frequently Asked Questions</div>
-        <h2 class="pc-title">Quick answers about tCAP</h2>
-        <p class="pc-copy">Keep this page direct and scannable. Use accordions so prospective students can answer basic questions without overwhelming the page.</p>
+        <div class="pc-kicker">Student Experience</div>
+        <h2 class="pc-title">A four-stage path from first semester to career readiness</h2>
+        <p class="pc-copy">Each stage gives students a clearer next step, helping them build confidence, experience and professional direction over time.</p>
       </div>
-      <div>
-        <h3 style="font-size:18px;color:#006747;margin:0 0 8px;line-height:1.1">Browse by topic</h3>
-        <div class="pc-grid3">
-          <a class="pc-card pc-green" href="#basics"><h3>Program basics</h3><p>What tCAP is, who participates and when it starts.</p><span class="pc-link">Jump to basics</span></a>
-          <a class="pc-card" href="#experience"><h3>Experiential learning</h3><p>Hours, approved activities and existing tech jobs.</p><span class="pc-link">Jump to experience</span></a>
-          <a class="pc-card" href="#career"><h3>Career support</h3><p>Internships, employers, advisors and portfolio outcomes.</p><span class="pc-link">Jump to career</span></a>
-        </div>
-      </div>
-      <div id="basics">
-        <h3 style="font-size:18px;color:#006747;margin:0 0 6px;line-height:1.1">Program basics</h3>
-        <div class="pc-faq">
-        <details open><summary>What is the Tech Career Advancement Program (tCAP)?</summary><p>tCAP is a structured, multiyear career development program integrated into the Bellini College experience. It combines career readiness, experiential learning and industry engagement.</p></details>
-        <details><summary>Is tCAP required for students at Bellini College?</summary><p>tCAP is integrated into the student experience and includes required experiential learning components that support career readiness and professional development.</p></details>
-        <details><summary>When do students start participating in tCAP?</summary><p>Students begin participating in tCAP during their first semester, with programming that continues throughout their academic journey.</p></details>
-        </div>
-      </div>
-      <div id="experience">
-        <h3 style="font-size:18px;color:#006747;margin:0 0 6px;line-height:1.1">Experiential learning</h3>
-        <div class="pc-faq">
-        <details><summary>What is experiential learning in tCAP?</summary><p>Experiential learning is structured, hands-on experience that allows students to apply classroom knowledge in real-world settings.</p></details>
-        <details><summary>How many hours of experience are required?</summary><p>Students are required to complete at least 135 verified hours of experiential learning through approved and supervised experiences.</p></details>
-        <details><summary>What types of experiences count?</summary><p>Eligible experiences include internships, undergraduate research, capstone projects, cybersecurity or IT support roles, entrepreneurship programs, hackathons, competitions and study abroad opportunities.</p></details>
-        </div>
-      </div>
-      <div id="career">
-        <h3 style="font-size:18px;color:#006747;margin:0 0 6px;line-height:1.1">Career support</h3>
-        <div class="pc-faq">
-        <details><summary>Does tCAP help students get internships?</summary><p>tCAP helps students prepare through career coaching, resume and LinkedIn development, interview preparation and employer engagement.</p></details>
-        <details><summary>How do students connect with employers?</summary><p>Students connect with employers through networking events, mentorship programs, recruiting opportunities and applied project experiences.</p></details>
-        <details><summary>What will I graduate with after completing tCAP?</summary><p>Students graduate with a portfolio of applied work, professional and technical skills, industry connections and real-world experience that supports career readiness.</p></details>
-        </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a class="pc-card pc-stage pc-green" id="foundations" href="#foundations">
+          <div class="pc-num">1</div>
+          <div><h3>Foundations</h3><p><b>Start with direction.</b> Students begin with onboarding, communication development, resume building, LinkedIn setup, GitHub development and goal setting.</p></div>
+          <span class="pc-link">Stage 1 anchor</span>
+        </a>
+        <a class="pc-card pc-stage" id="power-skills" href="#power-skills">
+          <div class="pc-num">2</div>
+          <div><h3>Power Skills</h3><p><b>Build professional confidence.</b> Students participate in mentorship opportunities, leadership development and networking experiences.</p></div>
+          <span class="pc-link">Stage 2 anchor</span>
+        </a>
+        <a class="pc-card pc-stage" id="connectivity" href="#connectivity">
+          <div class="pc-num">3</div>
+          <div><h3>Connectivity</h3><p><b>Engage with opportunity.</b> Career readiness becomes hands-on through internship preparation, employer and alumni engagement, career fair preparation, interview coaching and applied team-based projects.</p></div>
+          <span class="pc-link">Stage 3 anchor</span>
+        </a>
+        <a class="pc-card pc-stage" id="mastery" href="#mastery">
+          <div class="pc-num">4</div>
+          <div><h3>Mastery</h3><p><b>Demonstrate career readiness.</b> Students show mastery through capstones, advanced coursework, certifications and internship or career placement opportunities.</p></div>
+          <span class="pc-link">Stage 4 anchor</span>
+        </a>
       </div>
     </div>
 
@@ -122,10 +108,10 @@ a{color:inherit;text-decoration:none}
     <div class="wf-box">
       <div class="wf-s">SET MAP — 4 pages, each links off this overview:</div>
       <div style="display:flex;gap:8px;margin-top:8px;font-size:13px;text-align:center">
-        <a class="wf-box" style="flex:1;display:block" href="Overview.dc.html">Overview</a>
-        <a class="wf-box" style="flex:1;display:block" href="Stages.dc.html">Stages</a>
-        <a class="wf-box" style="flex:1;display:block" href="Experiential%20Learning.dc.html">Exp. Learning</a>
-        <div class="wf-solid" style="flex:1">FAQ<br />(you are here)</div>
+        <a class="wf-box" style="flex:1;display:block" href="overview.html">Overview</a>
+        <div class="wf-solid" style="flex:1">Stages<br />(you are here)</div>
+        <a class="wf-box" style="flex:1;display:block" href="experiential-learning.html">Exp. Learning</a>
+        <a class="wf-box" style="flex:1;display:block" href="faq.html">FAQ</a>
       </div>
     </div>
 
@@ -142,6 +128,5 @@ a{color:inherit;text-decoration:none}
 
   </div>
 </div>
-</x-dc>
 </body>
 </html>

@@ -3,8 +3,6 @@ name: Deploy GitHub Pages
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - README.md
 
 permissions:
   contents: read
@@ -21,8 +19,6 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    outputs:
-      page_url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -46,32 +42,3 @@ jobs:
       - name: Deploy Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-  update-readme:
-    needs: deploy
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-
-      - name: Update README deploy link
-        env:
-          PAGE_URL: ${{ needs.deploy.outputs.page_url }}
-          DEPLOYED_AT: ${{ github.run_started_at }}
-          GITHUB_SHA: ${{ github.sha }}
-        run: node scripts/update-readme-pages.js
-
-      - name: Commit README
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git diff --staged --quiet || git commit -m "docs: update GitHub Pages deploy link"
-          git push
