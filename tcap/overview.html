@@ -17,7 +17,7 @@ body{margin:0;background:#f0eee9;font-family:'Shantell Sans',system-ui,sans-seri
 .wf-h{font-size:18px;line-height:1.15}
 .wf-s{font-size:13px;color:#77756b;line-height:1.3}
 .wf-btn{display:inline-block;background:#006747;color:#fff;font-size:14px;padding:8px 20px;border-radius:2px}
-.wf-node{width:22px;height:22px;border-radius:50%;border:2px solid #006747;background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;color:#006747;flex:none}
+.wf-node{width:22px;height:22px;border-radius:50%;border:2px solid #006747;background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;color:#006747;flex:none;box-sizing:border-box}
 a{color:inherit;text-decoration:none}
 .pc-slot{border:2px dashed #006747;background:#f7faf8;border-radius:4px;padding:18px;text-align:left;display:flex;flex-direction:column;gap:14px}
 .pc-kicker{font-size:12px;color:#006747;text-transform:uppercase;letter-spacing:.05em}
@@ -30,7 +30,7 @@ a{color:inherit;text-decoration:none}
 .pc-card p{font-family:'Shantell Sans',sans-serif;font-size:14px;line-height:1.4;margin:0;color:#3f3f3f;font-weight:400}
 .pc-green{border-color:#8a8a82;background:#fff}
 .pc-pillars-desc{text-align:center;font-weight:700;font-size:15px;line-height:1.35;color:#3f3f3f;margin:0}
-.pc-pillar{display:flex;align-items:center;justify-content:center;text-align:center;min-height:96px;height:96px;padding:18px 12px;box-sizing:border-box;transition:background .15s,border-color .15s}
+.pc-pillar{display:flex;align-items:center;justify-content:center;text-align:center;min-height:96px;height:96px;padding:0 12px;box-sizing:border-box;transition:background .15s,border-color .15s}
 .pc-pillar h3{font-size:20px;margin:0}
 .pc-pillar:hover{background:#eef4f1;border-color:#006747}
 .pc-fill-box{padding:16px;text-align:left;display:flex;flex-direction:column;gap:10px;transition:background .15s,border-color .15s;min-height:240px;justify-content:center}
@@ -49,7 +49,7 @@ a{color:inherit;text-decoration:none}
 .stat-src{font-family:'Shantell Sans',sans-serif;font-size:11px;line-height:1.25;color:#77756b;margin:0}
 
 .pc-journey{display:flex;gap:10px;align-items:stretch}
-.pc-journey-step{flex:1;position:relative;padding:18px 12px;min-height:96px;height:96px;box-sizing:border-box;display:flex;gap:10px;align-items:center;justify-content:center}
+.pc-journey-step{flex:1;position:relative;padding:0 12px;min-height:96px;height:96px;box-sizing:border-box;display:flex;gap:10px;align-items:center;justify-content:center}
 /* Only the bottom-row boxes on Overview should fit to text and anchor to top. */
 .pc-grid2 > .pc-fill-box{min-height:0;justify-content:flex-start}
 .pc-journey-step h3{margin:0;color:#006747}
@@ -102,19 +102,19 @@ a{color:inherit;text-decoration:none}
       <div class="pc-journey">
         <a class="pc-card pc-journey-step" href="stages.html#foundations">
           <div class="wf-node">1</div>
-          <h3>Foundations</h3>
+          <h3>Targeting Fundamentals</h3>
         </a>
         <a class="pc-card pc-journey-step" href="stages.html#power-skills">
           <div class="wf-node">2</div>
-          <h3>Power Skills</h3>
+          <h3>Core Application</h3>
         </a>
         <a class="pc-card pc-journey-step" href="stages.html#connectivity">
           <div class="wf-node">3</div>
-          <h3>Connectivity</h3>
+          <h3>Advanced Practice</h3>
         </a>
         <a class="pc-card pc-journey-step" href="stages.html#mastery">
           <div class="wf-node">4</div>
-          <h3>Mastery</h3>
+          <h3>Professional Mastery</h3>
         </a>
       </div>
 
@@ -153,7 +153,7 @@ a{color:inherit;text-decoration:none}
         <div class="pc-fill-box pc-card">
           <div class="pc-box-label">Quick links</div>
           <ul class="pc-list">
-            <li><a class="pc-quick-item" href="stages.html">Student experience stages</a></li>
+            <li><a class="pc-quick-item" href="stages.html">Student experience layers</a></li>
             <li><a class="pc-quick-item" href="experiential-learning.html">Experiential learning requirements</a></li>
             <li><a class="pc-quick-item" href="faq.html">Frequently asked questions</a></li>
             <li><a class="pc-quick-item" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Careers and internships</a></li>
@@ -165,7 +165,7 @@ a{color:inherit;text-decoration:none}
     <div class="wf-box">
       <div style="display:flex;gap:8px;margin-top:8px;font-size:13px;text-align:center">
         <div style="flex:1;display:block;background:#006747;color:#fff;border:1.5px solid #006747;border-radius:3px;padding:10px 12px">Overview</div>
-        <a class="wf-box" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" href="stages.html">Stages</a>
+        <a class="wf-box" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" href="stages.html">Layers</a>
         <a class="wf-box" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" href="experiential-learning.html">Exp. Learning</a>
         <a class="wf-box" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" href="faq.html">FAQ</a>
         <a class="wf-box" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a>
