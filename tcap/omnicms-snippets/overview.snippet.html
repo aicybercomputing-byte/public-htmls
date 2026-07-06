@@ -1,0 +1,476 @@
+<style>
+  /* OmniCMS snippet root + isolation */
+  #tcap-omni-overview-root,
+  #tcap-omni-overview-root * {
+    box-sizing: border-box !important;
+  }
+
+  #tcap-omni-overview-root {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 24px;
+    font-family: 'Shantell Sans', system-ui, sans-serif;
+  }
+
+  #tcap-omni-overview-root .wf {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: #333;
+  }
+
+  #tcap-omni-overview-root .wf-img {
+    border: 1.5px solid #b5b3aa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8b897f;
+    font-size: 13px;
+    height: auto;
+    padding: 24px 16px;
+    text-align: center;
+    flex-direction: column;
+  }
+
+  #tcap-omni-overview-root .wf-solid {
+    border: 1.5px solid #6f6f68;
+    background: #f4f4ef;
+    padding: 10px 12px;
+  }
+
+  #tcap-omni-overview-root .wf-btn {
+    display: inline-block;
+    background: #006747;
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 2px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  #tcap-omni-overview-root .wf-node {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid #006747;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #006747;
+    flex: none;
+    box-sizing: border-box;
+  }
+
+  #tcap-omni-overview-root .pc-slot {
+    border: 2px dashed #006747;
+    background: #f7faf8;
+    border-radius: 4px;
+    padding: 18px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-height: 240px;
+  }
+
+  #tcap-omni-overview-root .pc-kicker {
+    font-size: 12px;
+    color: #006747;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  #tcap-omni-overview-root .pc-title {
+    font-size: 24px;
+    line-height: 1.1;
+    color: #006747;
+    margin: 0;
+  }
+
+  #tcap-omni-overview-root .pc-copy {
+    font-size: 14px;
+    line-height: 1.35;
+    color: #3f3f3f;
+    margin: 0;
+    max-width: 680px;
+  }
+
+  #tcap-omni-overview-root .pc-grid2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  #tcap-omni-overview-root .pc-grid3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  #tcap-omni-overview-root .pc-card {
+    border: 1.5px solid #8a8a82;
+    background: #fff;
+    padding: 12px;
+    border-radius: 3px;
+    display: block;
+  }
+
+  #tcap-omni-overview-root .pc-green {
+    border-color: #8a8a82;
+    background: #fff;
+  }
+
+  #tcap-omni-overview-root .pc-card h3 {
+    font-size: 20px;
+    margin: 0 0 6px;
+    color: #006747;
+    line-height: 1.1;
+    font-family: 'Shantell Sans', sans-serif;
+  }
+
+  #tcap-omni-overview-root .pc-card p {
+    font-family: 'Shantell Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 0;
+    color: #3f3f3f;
+    font-weight: 400;
+  }
+
+  #tcap-omni-overview-root .pc-pillars-desc {
+    text-align: center;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.35;
+    color: #3f3f3f;
+    margin: 0;
+  }
+
+  #tcap-omni-overview-root .pc-pillar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 96px;
+    height: 96px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  #tcap-omni-overview-root .pc-pillar h3 {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  #tcap-omni-overview-root .pc-pillar:hover {
+    background: #eef4f1;
+    border-color: #006747;
+  }
+
+  #tcap-omni-overview-root .pc-fill-box {
+    padding: 16px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: background 0.15s, border-color 0.15s;
+    min-height: 240px;
+    justify-content: center;
+  }
+
+  #tcap-omni-overview-root .pc-fill-box:hover {
+    background: #eef4f1;
+    border-color: #006747;
+  }
+
+  #tcap-omni-overview-root .pc-card:hover {
+    background: #eef4f1;
+    border-color: #006747;
+  }
+
+  #tcap-omni-overview-root .pc-box-label {
+    font-size: 20px;
+    font-weight: 700;
+    color: #006747;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    font-family: 'Shantell Sans', sans-serif;
+  }
+
+  #tcap-omni-overview-root .pc-box-body {
+    font-family: 'Shantell Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #3f3f3f;
+  }
+
+  #tcap-omni-overview-root .pc-list {
+    margin: 0;
+    padding-left: 1.25em;
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+    justify-content: flex-start;
+  }
+
+  #tcap-omni-overview-root .pc-quick-item {
+    display: block;
+    font-family: 'Shantell Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.2;
+    color: #006747;
+    text-decoration: none;
+    padding: 0;
+  }
+
+  #tcap-omni-overview-root .pc-quick-item:hover {
+    color: #004d35;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  #tcap-omni-overview-root .pc-journey {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  #tcap-omni-overview-root .pc-journey-step {
+    flex: 1;
+    position: relative;
+    padding: 0 12px;
+    min-height: 96px;
+    height: 96px;
+    box-sizing: border-box;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Fit-to-text + top anchoring (bottom-row boxes behavior) */
+  #tcap-omni-overview-root .pc-grid2 > .pc-fill-box {
+    min-height: 0;
+    justify-content: flex-start;
+  }
+
+  #tcap-omni-overview-root .pc-journey-step h3 {
+    margin: 0;
+    color: #006747;
+  }
+
+  #tcap-omni-overview-root .pc-journey-step:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #006747;
+    font-size: 18px;
+    z-index: 1;
+  }
+
+  #tcap-omni-overview-root .pc-journey-step:hover .wf-node,
+  #tcap-omni-overview-root .pc-journey-step.is-active .wf-node {
+    background: #006747;
+    color: #fff;
+  }
+
+  #tcap-omni-overview-root .pc-journey-step:hover,
+  #tcap-omni-overview-root .pc-journey-step.is-active {
+    background: #eef4f1;
+    border-color: #006747;
+  }
+
+  @media (max-width: 700px) {
+    #tcap-omni-overview-root .stat-bar {
+      flex-direction: column;
+    }
+
+    #tcap-omni-overview-root .pc-grid2,
+    #tcap-omni-overview-root .pc-grid3 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Stat bar */
+  #tcap-omni-overview-root .stat-bar {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  #tcap-omni-overview-root .stat-box {
+    flex: 1;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 12px;
+    text-align: left;
+    min-width: 0;
+  }
+
+  #tcap-omni-overview-root .stat-num {
+    font-family: 'Shantell Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #006747;
+    line-height: 1.1;
+    margin: 0 0 6px;
+  }
+
+  #tcap-omni-overview-root .stat-desc {
+    font-family: 'Shantell Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.3;
+    color: #2b2b2b;
+    margin: 0 0 6px;
+  }
+
+  #tcap-omni-overview-root .stat-src {
+    font-family: 'Shantell Sans', sans-serif;
+    font-size: 11px;
+    line-height: 1.25;
+    color: #77756b;
+    margin: 0;
+  }
+</style>
+
+<div id="tcap-omni-overview-root">
+  <div class="wf">
+    <div class="wf-img" style="height:auto;padding:24px 16px;text-align:center;flex-direction:column">
+      <div class="wf-banner-placeholder">banner image</div>
+    </div>
+
+    <div class="stat-bar">
+      <div class="stat-box">
+        <div class="stat-num">+17.9%</div>
+        <div class="stat-desc">Software developer growth 2023–2033</div>
+        <div class="stat-src">Software developer growth 2023–2033: BLS / MLR 2025.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">546K</div>
+        <div class="stat-desc">Tech workers in Florida (No. 4 nationally)</div>
+        <div class="stat-src">Florida tech workforce count: CompTIA 2025.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">$102,908</div>
+        <div class="stat-desc">Florida tech wage — 122% above state median</div>
+        <div class="stat-src">Median Florida tech wage: CompTIA / Lightcast 2024.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">12,735</div>
+        <div class="stat-desc">Active Florida job postings requiring AI skills</div>
+        <div class="stat-src">Florida AI-skill job postings: CompTIA 2024.</div>
+      </div>
+    </div>
+
+    <div class="wf-solid" style="text-align:center;padding:16px">
+      <span class="wf-btn">Talk to an advisor</span>
+    </div>
+
+    <div class="pc-slot">
+      <div class="pc-grid2">
+        <div class="pc-card pc-green">
+          <h3>What is tCAP?</h3>
+          <p>tCAP is a structured, multiyear career development program designed exclusively for Bellini College students. Instead of waiting until their final year to focus on internships and career preparation, tCAP helps students steadily build experience, skills and professional connections throughout their academic journey.</p>
+        </div>
+        <div class="pc-card">
+          <h3>Why tCAP matters</h3>
+          <p>Employers increasingly seek graduates who can communicate effectively, collaborate on teams, solve applied problems and contribute immediately in professional environments. tCAP combines career readiness, experiential learning and employer engagement to help develop those capabilities before graduation.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="pc-kicker">tCAP Pillars</div>
+      </div>
+      <div class="pc-grid3">
+        <a class="pc-card pc-pillar" href="stages.html"><h3>Readiness</h3></a>
+        <a class="pc-card pc-pillar" href="experiential-learning.html"><h3>Experience</h3></a>
+        <a class="pc-card pc-pillar" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer"><h3>Connection</h3></a>
+      </div>
+
+      <div>
+        <p class="pc-pillars-desc">These are the three pillars that guide the tCAP experience and help students grow professionally and technically.</p>
+      </div>
+
+      <div>
+        <div class="pc-kicker">Student journey</div>
+      </div>
+      <div class="pc-journey">
+        <a class="pc-card pc-journey-step" href="stages.html#foundations">
+          <div class="wf-node">1</div>
+          <h3>Targeting Fundamentals</h3>
+        </a>
+        <a class="pc-card pc-journey-step" href="stages.html#power-skills">
+          <div class="wf-node">2</div>
+          <h3>Core Application</h3>
+        </a>
+        <a class="pc-card pc-journey-step" href="stages.html#connectivity">
+          <div class="wf-node">3</div>
+          <h3>Advanced Practice</h3>
+        </a>
+        <a class="pc-card pc-journey-step" href="stages.html#mastery">
+          <div class="wf-node">4</div>
+          <h3>Professional Mastery</h3>
+        </a>
+      </div>
+
+      <div>
+        <p class="pc-pillars-desc">Move through Foundations, build Power Skills, grow Connectivity, and finish with Mastery.</p>
+      </div>
+
+      <div class="pc-grid2">
+        <a class="pc-fill-box pc-card" href="experiential-learning.html">
+          <div class="pc-box-label">Experiential learning</div>
+          <p class="pc-box-body" style="margin:0">Every tCAP student completes applied experiential learning through internships, research, capstones, hackathons, entrepreneurship or other approved opportunities.</p>
+        </a>
+        <div class="pc-fill-box pc-card">
+          <div class="pc-box-label">Quick links</div>
+          <ul class="pc-list">
+            <li><a class="pc-quick-item" href="stages.html">Student experience layers</a></li>
+            <li><a class="pc-quick-item" href="experiential-learning.html">Experiential learning requirements</a></li>
+            <li><a class="pc-quick-item" href="faq.html">Frequently asked questions</a></li>
+            <li><a class="pc-quick-item" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Careers and internships</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const root = document.getElementById('tcap-omni-overview-root');
+    if (!root) return;
+
+    const steps = Array.from(root.querySelectorAll('.pc-journey-step'));
+    if (!steps.length) return;
+
+    let active = null;
+    const setActive = (step) => {
+      steps.forEach((s) => s.classList.remove('is-active'));
+      active = step || null;
+      if (active) active.classList.add('is-active');
+    };
+
+    steps.forEach((step) => {
+      step.addEventListener('mouseenter', () => setActive(step));
+      step.addEventListener('mouseleave', () => setActive(null));
+      step.addEventListener('click', () => setActive(step)); // mobile
+      step.addEventListener('touchstart', () => setActive(step), { passive: true }); // mobile
+    });
+  })();
+</script>
+
