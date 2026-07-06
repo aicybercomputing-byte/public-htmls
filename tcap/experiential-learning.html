@@ -39,9 +39,9 @@ a{color:inherit;text-decoration:none}
 .pc-timeline .pc-card:not(:last-child)::after{content:'→';position:absolute;right:-12px;top:44%;color:#006747;font-size:18px}
 .pc-timeline .pc-card h3{margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:16px;line-height:1.1}
 .pc-table{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:0;border:1.5px solid #8a8a82;background:#fff}
-.pc-table div{padding:9px;border-right:1px solid #d8d6cd;border-bottom:1px solid #d8d6cd;font-size:13px;line-height:1.25}
+.pc-table div{padding:9px;border-right:1px solid #d8d6cd;border-bottom:1px solid #d8d6cd;font-size:14px;line-height:1.4;font-family:'Shantell Sans',sans-serif;font-weight:400;color:#3f3f3f}
 .pc-table div:nth-child(3n){border-right:none}
-.pc-table .head{background:#eef4f1;color:#006747;font-size:14px;font-weight:600}
+.pc-table .head{background:#eef4f1;color:#006747;font-size:14px;font-weight:600;line-height:1.4;font-family:'Shantell Sans',sans-serif}
 .pc-info-box{border:1.5px solid #8a8a82;background:#fff;border-radius:3px;padding:12px;font-family:'Shantell Sans',sans-serif;font-size:14px;line-height:1.4;color:#3f3f3f;width:100%;box-sizing:border-box}
 .pc-info-source{cursor:pointer;transition:background .15s,border-color .15s}
 .pc-info-source:hover{background:#eef4f1;border-color:#006747}
@@ -73,29 +73,6 @@ a{color:inherit;text-decoration:none}
   <div class="wf-banner-placeholder">banner image</div>
 </div>
 
-<div class="stat-bar">
-  <div class="stat-box">
-    <div class="stat-num">+17.9%</div>
-    <div class="stat-desc">Software developer growth 2023–2033</div>
-    <div class="stat-src">Software developer growth 2023–2033: BLS / MLR 2025.</div>
-  </div>
-  <div class="stat-box">
-    <div class="stat-num">546K</div>
-    <div class="stat-desc">Tech workers in Florida (No. 4 nationally)</div>
-    <div class="stat-src">Florida tech workforce count: CompTIA 2025.</div>
-  </div>
-  <div class="stat-box">
-    <div class="stat-num">$102,908</div>
-    <div class="stat-desc">Florida tech wage — 122% above state median</div>
-    <div class="stat-src">Median Florida tech wage: CompTIA / Lightcast 2024.</div>
-  </div>
-  <div class="stat-box">
-    <div class="stat-num">12,735</div>
-    <div class="stat-desc">Active Florida job postings requiring AI skills</div>
-    <div class="stat-src">Florida AI-skill job postings: CompTIA 2024.</div>
-  </div>
-</div>
-
 <div class="pc-slot">
   <div>
     <p class="pc-copy">Experiential learning is a required component of tCAP and gives students the opportunity to apply classroom knowledge in real-world environments.</p>
@@ -124,6 +101,29 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <div class="pc-info-box" id="pc-stageInfo">Hover to see more info</div>
+
+  <div class="stat-bar">
+    <div class="stat-box">
+      <div class="stat-num">+17.9%</div>
+      <div class="stat-desc">Software developer growth 2023–2033</div>
+      <div class="stat-src">Software developer growth 2023–2033: BLS / MLR 2025.</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">546K</div>
+      <div class="stat-desc">Tech workers in Florida (No. 4 nationally)</div>
+      <div class="stat-src">Florida tech workforce count: CompTIA 2025.</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">$102,908</div>
+      <div class="stat-desc">Florida tech wage — 122% above state median</div>
+      <div class="stat-src">Median Florida tech wage: CompTIA / Lightcast 2024.</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">12,735</div>
+      <div class="stat-desc">Active Florida job postings requiring AI skills</div>
+      <div class="stat-src">Florida AI-skill job postings: CompTIA 2024.</div>
+    </div>
+  </div>
 
   <div class="pc-highlight-card">
     <div class="pc-highlight-media">image</div>
@@ -230,16 +230,15 @@ a{color:inherit;text-decoration:none}
 
 <div class="wf-box">
   <div style="display:flex;gap:8px;margin-top:8px;font-size:13px;text-align:center">
-    <a class="wf-box" href="overview.html" style="flex:1;display:block;background:#006747;color:#fff;border:1.5px solid #006747;border-radius:3px;padding:10px 12px">Overview</a>
-    <a class="wf-box" href="stages.html" style="flex:1;display:block;background:#006747;color:#fff;border:1.5px solid #006747;border-radius:3px;padding:10px 12px">Stages</a>
-    <div style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px">Exp. Learning</div>
-    <a class="wf-box" href="faq.html" style="flex:1;display:block;background:#006747;color:#fff;border:1.5px solid #006747;border-radius:3px;padding:10px 12px">FAQ</a>
-    <a class="wf-box" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" style="flex:1;display:block;background:#006747;color:#fff;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" target="_blank" rel="noopener noreferrer">Jobs Page</a>
+    <a class="wf-box" href="overview.html" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px">Overview</a>
+    <a class="wf-box" href="stages.html" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px">Stages</a>
+    <div style="flex:1;display:block;background:#006747;color:#fff;border:1.5px solid #006747;border-radius:3px;padding:10px 12px">Exp. Learning</div>
+    <a class="wf-box" href="faq.html" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px">FAQ</a>
+    <a class="wf-box" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" target="_blank" rel="noopener noreferrer">Jobs Page</a>
   </div>
 </div>
 
 <div class="wf-solid" style="text-align:center;padding:16px">
-  <p style="font-family:'Shantell Sans',sans-serif;font-size:14px;margin:0 0 12px;color:#3f3f3f">Explore tCAP, connect with advisors and learn how Bellini College helps students prepare for meaningful technology careers.</p>
   <span class="wf-btn">Talk to an advisor</span>
 </div>
 
