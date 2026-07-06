@@ -5,7 +5,6 @@ const assert = require("assert");
 const path = require("path");
 const fs = require("fs");
 const {
-  affectsIndex,
   collectPages,
   groupPages,
   generateIndex,
@@ -15,6 +14,7 @@ const {
 const {
   getChangedFiles,
   hasIndexRelevantChanges,
+  isRelevantChange,
 } = require("./run-index-hook.js");
 
 const ROOT = path.join(__dirname, "..");
@@ -25,11 +25,12 @@ assert.strictEqual(shouldIncludeFile("tcap/faq.pcf"), true);
 assert.strictEqual(shouldIncludeFile("tmp-usf-jobs-live.html"), false);
 assert.strictEqual(shouldIncludeFile("index.html"), false);
 assert.strictEqual(shouldIncludeFile("jobs_page/index.html"), true);
-assert.strictEqual(affectsIndex("tcap/faq.pcf"), true);
-assert.strictEqual(affectsIndex("scripts/generate-index.js"), true);
-assert.strictEqual(affectsIndex("README.md"), false);
-assert.strictEqual(hasIndexRelevantChanges(["README.md"]), false);
-assert.strictEqual(hasIndexRelevantChanges(["tcap/faq.pcf"]), true);
+assert.strictEqual(isRelevantChange("index.html"), false);
+assert.strictEqual(isRelevantChange("README.md"), true);
+assert.strictEqual(isRelevantChange("tcap/faq.pcf"), true);
+assert.strictEqual(hasIndexRelevantChanges(["index.html"]), false);
+assert.strictEqual(hasIndexRelevantChanges(["README.md"]), true);
+assert.strictEqual(hasIndexRelevantChanges(["index.html", "tcap/faq.pcf"]), true);
 assert.deepStrictEqual(getChangedFiles("post-checkout", ["a", "a"]), []);
 
 const pages = collectPages(ROOT);

@@ -3,7 +3,7 @@
 
 const { execSync } = require("child_process");
 const path = require("path");
-const { generateIndex, affectsIndex } = require("./generate-index.js");
+const { generateIndex } = require("./generate-index.js");
 
 const ROOT = path.join(__dirname, "..");
 
@@ -34,8 +34,12 @@ function getChangedFiles(hook, args) {
   }
 }
 
+function isRelevantChange(relativePath) {
+  return relativePath.split(path.sep).join("/") !== "index.html";
+}
+
 function hasIndexRelevantChanges(files) {
-  return files.some((file) => affectsIndex(file));
+  return files.some(isRelevantChange);
 }
 
 function main() {
@@ -60,4 +64,5 @@ if (require.main === module) {
 module.exports = {
   getChangedFiles,
   hasIndexRelevantChanges,
+  isRelevantChange,
 };
