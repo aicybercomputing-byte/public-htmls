@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Student Experience — tCAP</title>
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Shantell+Sans:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="tcap-common.css" />
 <style>
 body{margin:0;background:#f0eee9;font-family:'Shantell Sans',system-ui,sans-serif}
 .page{max-width:880px;margin:0 auto;padding:24px}
@@ -12,7 +13,7 @@ body{margin:0;background:#f0eee9;font-family:'Shantell Sans',system-ui,sans-seri
 .wf-chrome{background:#dfe6e2;border:1.5px solid #9aa8a0;padding:8px 12px;font-size:14px;color:#42584d;display:flex;justify-content:space-between;align-items:center}
 .wf-box{border:1.5px dashed #8a8a82;padding:10px 12px;background:#fcfcfa}
 .wf-solid{border:1.5px solid #6f6f68;background:#f4f4ef;padding:10px 12px}
-.wf-img{background:repeating-linear-gradient(135deg,#eceae3 0 8px,#f7f6f1 8px 16px);border:1.5px solid #b5b3aa;display:flex;align-items:center;justify-content:center;color:#8b897f;font-size:13px}
+.wf-img{border:1.5px solid #b5b3aa;display:flex;align-items:center;justify-content:center;color:#8b897f;font-size:13px}
 .wf-line{height:8px;background:#d8d6cd;border-radius:3px}
 .wf-line.dk{background:#b3b1a6}
 .wf-h{font-size:18px;line-height:1.15}
@@ -27,9 +28,8 @@ a{color:inherit;text-decoration:none}
   <div class="wf" data-screen-label="Stages">
 
     <div class="wf-chrome"><span>USF / Bellini chrome</span><span>nav</span></div>
-    <div class="wf-img" style="height:auto;padding:20px 16px;text-align:center;flex-direction:column;background:#eef4f1;color:#42584d">
-      <div style="font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#006747">Student Experience</div>
-      <div style="font-size:24px;font-weight:600;color:#006747;margin:6px 0;font-family:'Shantell Sans',sans-serif">Your path through tCAP</div>
+    <div class="wf-img" style="height:auto;padding:20px 16px;text-align:center;flex-direction:column">
+      <div class="wf-banner-placeholder">banner image</div>
     </div>
 
     <div class="stat-bar">
@@ -73,7 +73,11 @@ a{color:inherit;text-decoration:none}
         .pc-link{font-size:13px;color:#006747;margin-top:8px;display:inline-block;text-decoration:underline;text-underline-offset:2px}
         .pc-chiprow{display:flex;flex-wrap:wrap;gap:6px}
         .pc-chip{border:1px solid #006747;color:#006747;background:#fff;border-radius:999px;padding:4px 8px;font-size:12px;line-height:1.1}
-        .pc-stage{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:flex-start}
+        .pc-stage{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center}
+.pc-stage:hover{background:#eef4f1;border-color:#006747}
+.pc-stage:hover .pc-num{background:#006747;color:#fff}
+.pc-stage.is-active{background:#eef4f1;border-color:#006747}
+.pc-stage.is-active .pc-num{background:#006747;color:#fff}
         .pc-num{width:28px;height:28px;border-radius:50%;border:2px solid #006747;color:#006747;background:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;flex:none}
         .pc-list{margin:8px 0 0;padding-left:18px;font-size:13px;line-height:1.35;color:#3f3f3f}
         .pc-list li{margin:4px 0}
@@ -105,7 +109,7 @@ a{color:inherit;text-decoration:none}
         <p class="pc-copy">The student experience within tCAP is designed to support your growth throughout your academic journey. Each step builds on the last so you continue developing career readiness, technical confidence and professional experience.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:10px">
-        <div class="pc-card pc-stage pc-green" id="foundations">
+        <div class="pc-card pc-stage" id="foundations">
           <div class="pc-num">1</div>
           <div><h3>Stage 1 — Foundations</h3><p>Students begin with onboarding, communication development, resume building, LinkedIn setup, GitHub development and goal setting.</p></div>
         </div>
@@ -143,5 +147,23 @@ a{color:inherit;text-decoration:none}
 
   </div>
 </div>
+<script>
+(function(){
+  const cards = Array.from(document.querySelectorAll('.pc-stage'));
+  if(!cards.length) return;
+  let active = null;
+  const setActive = (card) => {
+    cards.forEach(c => c.classList.remove('is-active'));
+    active = card || null;
+    if(active) active.classList.add('is-active');
+  };
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => setActive(card));
+    card.addEventListener('mouseleave', () => setActive(null));
+    card.addEventListener('click', () => setActive(card)); // mobile
+    card.addEventListener('touchstart', () => setActive(card), {passive:true}); // mobile
+  });
+})();
+</script>
 </body>
 </html>

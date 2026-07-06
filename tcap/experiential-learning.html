@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Experiential Learning — tCAP</title>
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Shantell+Sans:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="tcap-common.css" />
 <style>
 body{margin:0;background:#f0eee9;font-family:'Shantell Sans',system-ui,sans-serif}
 .page{max-width:880px;margin:0 auto;padding:24px}
@@ -12,7 +13,7 @@ body{margin:0;background:#f0eee9;font-family:'Shantell Sans',system-ui,sans-seri
 .wf-chrome{background:#dfe6e2;border:1.5px solid #9aa8a0;padding:8px 12px;font-size:14px;color:#42584d;display:flex;justify-content:space-between;align-items:center}
 .wf-box{border:1.5px dashed #8a8a82;padding:10px 12px;background:#fcfcfa}
 .wf-solid{border:1.5px solid #6f6f68;background:#f4f4ef;padding:10px 12px}
-.wf-img{background:#eef4f1;border:1.5px solid #b5b3aa;display:flex;align-items:center;justify-content:center;color:#42584d}
+.wf-img{border:1.5px solid #b5b3aa;display:flex;align-items:center;justify-content:center;color:#8b897f;font-size:13px}
 .wf-s{font-size:13px;color:#77756b;line-height:1.3}
 .wf-btn{display:inline-block;background:#006747;color:#fff;font-size:14px;padding:8px 20px;border-radius:2px}
 a{color:inherit;text-decoration:none}
@@ -31,11 +32,12 @@ a{color:inherit;text-decoration:none}
 .pc-green{border-color:#006747;background:#eef4f1}
 .pc-card h3{font-size:17px;margin:0 0 6px;color:#006747;line-height:1.1}
 .pc-card p{font-size:13px;line-height:1.3;margin:0;color:#3f3f3f}
-.pc-step{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start}
+.pc-step{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center}
 .pc-num{width:28px;height:28px;border-radius:50%;border:2px solid #006747;color:#006747;background:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;flex:none}
 .pc-timeline{display:flex;gap:8px;align-items:stretch}
 .pc-timeline .pc-card{flex:1;position:relative}
 .pc-timeline .pc-card:not(:last-child)::after{content:'→';position:absolute;right:-12px;top:44%;color:#006747;font-size:18px}
+.pc-timeline .pc-card h3{margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:16px;line-height:1.1}
 .pc-table{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:0;border:1.5px solid #8a8a82;background:#fff}
 .pc-table div{padding:9px;border-right:1px solid #d8d6cd;border-bottom:1px solid #d8d6cd;font-size:13px;line-height:1.25}
 .pc-table div:nth-child(3n){border-right:none}
@@ -44,7 +46,12 @@ a{color:inherit;text-decoration:none}
 .pc-info-source{cursor:pointer;transition:background .15s,border-color .15s}
 .pc-info-source:hover{background:#eef4f1;border-color:#006747}
 .pc-info-source.is-active{background:#eef4f1;border-color:#006747}
+.pc-info-source:hover .pc-num,
+.pc-info-source.is-active .pc-num{background:#006747;color:#fff}
 .pc-table .is-row-hover{background:#eef4f1}
+
+.pc-highlight-card{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center;background:#eef4f1;border:1.5px solid #006747;border-radius:3px;padding:12px}
+.pc-highlight-media{height:52px;border:1.5px dashed #8a8a82;background:#fff;display:flex;align-items:center;justify-content:center;color:#006747;font-family:'Shantell Sans',sans-serif;font-weight:600}
 @media (max-width:700px){
   .stat-bar{flex-direction:column}
   .pc-slot{padding:14px;gap:12px}
@@ -63,8 +70,7 @@ a{color:inherit;text-decoration:none}
 <div class="wf">
 <div class="wf-chrome"><span>USF / Bellini chrome</span><span>nav</span></div>
 <div class="wf-img" style="height:auto;padding:20px 16px;text-align:center;flex-direction:column">
-  <div style="font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#006747">Experiential Learning</div>
-  <div style="font-size:24px;font-weight:600;color:#006747;margin:6px 0;font-family:'Shantell Sans',sans-serif">Apply what you learn in real settings</div>
+  <div class="wf-banner-placeholder">banner image</div>
 </div>
 
 <div class="stat-bar">
@@ -121,9 +127,12 @@ a{color:inherit;text-decoration:none}
 
   <div class="pc-info-box" id="pc-stageInfo">Hover to see more info</div>
 
-  <div>
-    <div class="pc-kicker">Approval process</div>
-    <p class="pc-copy">Students work with faculty mentors or approved supervisors to define goals, complete required documentation and track outcomes throughout the experience.</p>
+  <div class="pc-highlight-card">
+    <div class="pc-highlight-media">image</div>
+    <div>
+      <div class="pc-kicker">Approval process</div>
+      <p class="pc-copy">Students work with faculty mentors or approved supervisors to define goals, complete required documentation and track outcomes throughout the experience.</p>
+    </div>
   </div>
 
   <div>
