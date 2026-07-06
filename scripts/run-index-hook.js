@@ -34,7 +34,7 @@ function getChangedFiles(hook, args) {
   }
 }
 
-const HOOK_IGNORED_FILES = new Set(["index.html", "README.md"]);
+const HOOK_IGNORED_FILES = new Set(["index.html"]);
 
 function isRelevantChange(relativePath) {
   const relativePosix = relativePath.split(path.sep).join("/");
