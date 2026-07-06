@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Shantell+Sans:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+body{margin:0;background:#f0eee9;font-family:'Shantell Sans',system-ui,sans-serif}
+.page{max-width:880px;margin:0 auto;padding:24px}
+.wf{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:16px;display:flex;flex-direction:column;gap:12px;font-family:'Patrick Hand',cursive;color:#333}
+.wf-chrome{background:#dfe6e2;border:1.5px solid #9aa8a0;padding:8px 12px;font-size:14px;color:#42584d;display:flex;justify-content:space-between;align-items:center}
+.wf-box{border:1.5px dashed #8a8a82;padding:10px 12px;background:#fcfcfa}
+.wf-solid{border:1.5px solid #6f6f68;background:#f4f4ef;padding:10px 12px}
+.wf-img{background:repeating-linear-gradient(135deg,#eceae3 0 8px,#f7f6f1 8px 16px);border:1.5px solid #b5b3aa;display:flex;align-items:center;justify-content:center;color:#8b897f;font-size:13px}
+.wf-line{height:8px;background:#d8d6cd;border-radius:3px}
+.wf-line.dk{background:#b3b1a6}
+.wf-h{font-size:18px;line-height:1.15}
+.wf-s{font-size:13px;color:#77756b;line-height:1.3}
+.wf-btn{display:inline-block;background:#006747;color:#fff;font-size:14px;padding:8px 20px;border-radius:2px}
+.wf-node{width:22px;height:22px;border-radius:50%;border:2px solid #006747;background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;color:#006747;flex:none}
+a{color:inherit;text-decoration:none}
+</style>
+</helmet>
+<div class="page">
+  <div class="wf" data-screen-label="Overview">
+
+    <div class="wf-chrome"><span>USF / Bellini chrome</span><span>nav</span></div>
+    <div class="wf-img" style="height:120px">hero photo + big title — Overview</div>
+
+    <!-- FRAME: 4-stat bar -->
+    <div style="display:flex;gap:8px;text-align:center">
+      <div class="wf-solid" style="flex:1"><div class="wf-h">TBD</div><div class="wf-s">verified hrs</div></div>
+      <div class="wf-solid" style="flex:1"><div class="wf-h">4</div><div class="wf-s">stages</div></div>
+      <div class="wf-solid" style="flex:1"><div class="wf-h">TBD</div><div class="wf-s">dev growth</div></div>
+      <div class="wf-solid" style="flex:1"><div class="wf-h">TBD</div><div class="wf-s">FL tech jobs</div></div>
+    </div>
+
+    <!-- SLOT: Overview content = intro + dashboard grid -->
+    <div style="display:flex;gap:16px">
+      <div style="flex:1"><div class="wf-h">What is tCAP?</div><div class="wf-line" style="margin:8px 0"></div><div class="wf-line"></div><div class="wf-line dk" style="width:70%;margin-top:8px"></div></div>
+      <div style="flex:1"><div class="wf-h">Why it matters</div><div class="wf-line" style="margin:8px 0"></div><div class="wf-line"></div><div class="wf-line dk" style="width:60%;margin-top:8px"></div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="wf-box"><div class="wf-s" style="color:#006747">STAGE PROGRESS</div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">
+          <div style="display:flex;gap:8px;align-items:center"><div class="wf-node" style="background:#006747;color:#fff">1</div><div class="wf-line" style="flex:1"></div></div>
+          <div style="display:flex;gap:8px;align-items:center"><div class="wf-node">2</div><div class="wf-line" style="flex:1"></div></div>
+          <div style="display:flex;gap:8px;align-items:center"><div class="wf-node">3</div><div class="wf-line" style="flex:1"></div></div>
+          <div style="display:flex;gap:8px;align-items:center"><div class="wf-node">4</div><div class="wf-line" style="flex:1"></div></div>
+        </div>
+        <div class="wf-s" style="margin-top:8px">vertical stepper card → tab</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="wf-box"><div class="wf-s" style="color:#006747">3 PILLARS</div><div style="font-size:14px;margin-top:4px">Readiness · Experience · Connection</div></div>
+        <div class="wf-box"><div class="wf-s" style="color:#006747">EL CHECKLIST</div><div class="wf-line" style="margin:7px 0"></div><div class="wf-line" style="width:80%"></div></div>
+      </div>
+    </div>
+
+    <!-- FRAME: SET MAP nav -->
+    <div class="wf-box">
+      <div class="wf-s">SET MAP — 4 pages, each links off this overview:</div>
+      <div style="display:flex;gap:8px;margin-top:8px;font-size:13px;text-align:center">
+        <div class="wf-solid" style="flex:1">Overview<br />(you are here)</div>
+        <a class="wf-box" style="flex:1;display:block" href="Stages.dc.html">Stages</a>
+        <a class="wf-box" style="flex:1;display:block" href="Experiential%20Learning.dc.html">Exp. Learning</a>
+        <a class="wf-box" style="flex:1;display:block" href="FAQ.dc.html">FAQ</a>
+      </div>
+    </div>
+
+    <!-- FRAME: advisor CTA -->
+    <div class="wf-solid" style="text-align:center"><span class="wf-btn">Talk to an advisor</span></div>
+
+    <!-- FRAME: disclaimers -->
+    <div class="wf-box" style="border-style:dotted;background:#faf9f6">
+      <div class="wf-s" style="text-transform:uppercase;letter-spacing:.04em">Disclaimers</div>
+      <div class="wf-line" style="height:6px;margin:6px 0;background:#e4e2d9"></div>
+      <div class="wf-line" style="height:6px;margin:6px 0;width:92%;background:#e4e2d9"></div>
+      <div class="wf-line" style="height:6px;width:70%;background:#e4e2d9"></div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

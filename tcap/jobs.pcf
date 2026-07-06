@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pcf-stylesheet path="/_resources/xsl/v3/brand.xsl" extension="aspx"?>
+<!DOCTYPE document SYSTEM "http://commons.omniupdate.com/dtd/standard.dtd">
+<document>
+<headcode></headcode>
+<bodycode></bodycode>
+<!-- com.omniupdate.properties -->
+<title>Tech Career Accelerator Program (tCAP)</title>
+<!-- /com.omniupdate.properties -->
+
+<config>
+<parameter name="pagetype" prompt="pagetype" alt="Pagetype" group="None">secondary</parameter>
+<!-- com.omniupdate.properties -->
+<!-- CANONICALIZATION -->
+<parameter name="canonical-display" prompt="Set canonical URL?" alt="" section="Canonical URL" type="select" group="none">
+<option value="true" selected="false">Yes</option>
+<option value="false" selected="true">No</option>
+</parameter>
+
+<parameter name="canonical-url" prompt="Canonical URL" alt="Enter the URL people should see in search results." type="text" group="none"></parameter>
+
+<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">Tech Career Accelerator Program (tCAP)</parameter>
+<parameter name="hero-display" prompt="Display Hero?" alt="Select if you would like to display the hero." group="none" type="select">
+<option value="Yes" selected="true">Yes</option>
+<option value="No" selected="false">No</option>
+</parameter>
+<parameter name="breadcrumb-display" prompt="Display Breadcrumbs?" alt="Select if you would like to display breadcrumbs." group="Everyone" type="select">
+<option value="Yes" selected="true">Yes</option>
+<option value="No" selected="false">No</option>
+</parameter>
+<parameter name="include-file" prompt="Include File" alt="Do you want to include a file from the server below the maincontent." group="none" type="radio">
+<option value="true" selected="false">True</option>
+<option value="false" selected="true">False</option>
+</parameter>
+<parameter name="include-file-path" prompt="Choose File." alt="Choose a file to include below the maincontent." type="filechooser" group="none" path="/_resources/includes/" lockout="no">/_resources/includes/included-content.html</parameter>
+<parameter name="additional-content" prompt="Additional Content" alt="Add another editable region below the maincontent. This is typically used if you have included a file." group="none" type="radio">
+<option value="true" selected="false">Show</option>
+<option value="false" selected="true">Hide</option>
+</parameter>
+<parameter name="code-behind" type="select" prompt="ASPX web page model" alt=" Choose code model for you ASPX. NET page" group="none" section="ASPX web page model">
+<option value="" selected="false"></option>
+<option value="single-page" selected="true">Single-page</option>
+<option value="code-behind" selected="false">Code-behind</option>
+</parameter>
+<parameter name="code-behind-source" type="filechooser" group="none" prompt="Code-behind Source file" alt="Choose the code model source of the page.">/_resources/c-sharp/code-behind.cs</parameter>
+<parameter name="inherits-from" prompt="Inherits from " group="none" alt="">_Default</parameter>
+<!-- /com.omniupdate.properties -->
+<parameter name="galleryType" type="select" prompt="Gallery Type" alt="Please select the type of gallery you would like this page to use." section="GALLERY">
+<option value="FlexSlider" selected="true">Flex Slider</option>
+</parameter>
+<!-- com.omniupdate.properties -->
+<parameter name="slideshow" type="select" prompt="Animate Slideshow" alt="Specify if the slideshow will be animated automatically or by user interaction only." section="Gallery">
+<option value="true" selected="true">Animate</option>
+<option value="false" selected="false">Don't Animate</option>
+</parameter>
+<!-- /com.omniupdate.properties -->
+</config>
+<metadata>
+<!-- com.omniupdate.properties -->
+<meta name="Description" content="University of South Florida" />
+<meta name="Keywords" content="University of South Florida" />
+<meta name="Author" content="University of South Florida" />
+<!-- /com.omniupdate.properties -->
+</metadata>
+
+<brand-hero>
+<display>
+<!-- com.omniupdate.div label="brand-content-display" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="select" prompt="Display Content" alt="Select if the Gallery Hero content (heading and text) should display. If 'No' is selected, the Content Title and Image - Large alt text will still be present on the page, but visually hidden." options="Yes:Yes;No:No" section="Gallery Hero"/ -->Yes<!-- /com.omniupdate.div -->
+</display>
+<text-display>
+<!-- com.omniupdate.div label="brand-text-display" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="select" prompt="Display Text" alt="Would you like to display the Gallery Hero text?" options="Yes:Yes;No:No;"/ -->No<!-- /com.omniupdate.div -->
+</text-display>
+<text>
+<!-- com.omniupdate.div label="brand-text" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="textarea" prompt="Text" alt="Enter the text to display in the Gallery Hero, beneath the Content Title."/ --><!-- /com.omniupdate.div -->
+</text>
+<image-small>
+<!-- com.omniupdate.div label="brand-image-small" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="image" prompt="Image - Small" alt="Select a JPG image for the small version of the Gallery Hero image to be displayed on mobile (650px by 450px)."/ --><img src="{{f:76837698}}" alt="woman with glasses and lots of tech graphics imposed on her face" /><!-- /com.omniupdate.div -->
+</image-small>
+<image-large>
+<!-- com.omniupdate.div label="brand-image-large" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="image" prompt="Image - Large" alt="Select a JPG image for the large version of the Gallery Hero image to be displayed on larger screens (1400px by 650px)."/ --><img src="{{f:76820683}}" alt="business analytics" /><!-- /com.omniupdate.div -->
+</image-large>
+</brand-hero>
+
+<maincontent>
+
+<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- ouc:editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000"/ --><table class="gallery-text" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{{a:437079}}</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p><!-- /com.omniupdate.div -->
+</maincontent>
+
+<additional-content>
+<!-- com.omniupdate.div label="additional-content" group="Everyone" button="707" -->
+<!-- com.omniupdate.editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000" -->
+<h2> Additional Content</h2>
+<p> This area is used typically if you have included a file below the main content.</p>
+<!-- /com.omniupdate.div -->
+</additional-content>
+
+</document>
