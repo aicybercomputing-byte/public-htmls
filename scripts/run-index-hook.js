@@ -34,8 +34,11 @@ function getChangedFiles(hook, args) {
   }
 }
 
+const HOOK_IGNORED_FILES = new Set(["index.html", "README.md"]);
+
 function isRelevantChange(relativePath) {
-  return relativePath.split(path.sep).join("/") !== "index.html";
+  const relativePosix = relativePath.split(path.sep).join("/");
+  return !HOOK_IGNORED_FILES.has(relativePosix);
 }
 
 function hasIndexRelevantChanges(files) {
@@ -65,4 +68,5 @@ module.exports = {
   getChangedFiles,
   hasIndexRelevantChanges,
   isRelevantChange,
+  HOOK_IGNORED_FILES,
 };
