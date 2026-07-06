@@ -40,6 +40,11 @@ a{color:inherit;text-decoration:none}
 .pc-table div{padding:9px;border-right:1px solid #d8d6cd;border-bottom:1px solid #d8d6cd;font-size:13px;line-height:1.25}
 .pc-table div:nth-child(3n){border-right:none}
 .pc-table .head{background:#eef4f1;color:#006747;font-size:14px;font-weight:600}
+.pc-info-box{border:1.5px solid #8a8a82;background:#fff;border-radius:3px;padding:12px;font-family:'Shantell Sans',sans-serif;font-size:14px;line-height:1.4;color:#3f3f3f;width:100%;box-sizing:border-box}
+.pc-info-source{cursor:pointer;transition:background .15s,border-color .15s}
+.pc-info-source:hover{background:#eef4f1;border-color:#006747}
+.pc-info-source.is-active{background:#eef4f1;border-color:#006747}
+.pc-table .is-row-hover{background:#eef4f1}
 @media (max-width:700px){
   .stat-bar{flex-direction:column}
   .pc-slot{padding:14px;gap:12px}
@@ -96,22 +101,29 @@ a{color:inherit;text-decoration:none}
     <h3 style="font-size:18px;line-height:1.1;color:#006747;margin:0 0 6px">How it works</h3>
   </div>
   <div class="pc-timeline">
-    <div class="pc-card pc-step pc-green">
+    <div class="pc-card pc-step pc-info-source" data-info="Select an eligible pathway such as an internship, research, capstone, hackathon or study abroad experience.">
       <div class="pc-num">1</div>
-      <div><h3>Choose an experience</h3><p>Select an eligible pathway such as an internship, research, capstone, hackathon or study abroad experience.</p></div>
+      <div><h3>Choose an experience</h3></div>
     </div>
-    <div class="pc-card pc-step">
+    <div class="pc-card pc-step pc-info-source" data-info="Pre-approval of a plan of work and faculty mentor or quality supervisor.">
       <div class="pc-num">2</div>
-      <div><h3>Get pre-approval</h3><p>Pre-approval of a plan of work and faculty mentor or quality supervisor.</p></div>
+      <div><h3>Get pre-approval</h3></div>
     </div>
-    <div class="pc-card pc-step">
+    <div class="pc-card pc-step pc-info-source" data-info="Meet the minimum threshold of 135 verified hours and deliver a mid-point update.">
       <div class="pc-num">3</div>
-      <div><h3>Complete the work</h3><p>Meet the minimum threshold of 135 verified hours and deliver a mid-point update.</p></div>
+      <div><h3>Complete the work</h3></div>
     </div>
-    <div class="pc-card pc-step">
+    <div class="pc-card pc-step pc-info-source" data-info="Develop and deliver a final report with structured reflection, pass/fail assessment and CIS 4950 notation.">
       <div class="pc-num">4</div>
-      <div><h3>Reflect and record</h3><p>Develop and deliver a final report with structured reflection, pass/fail assessment and CIS 4950 notation.</p></div>
+      <div><h3>Reflect and record</h3></div>
     </div>
+  </div>
+
+  <div class="pc-info-box" id="pc-stageInfo">Hover to see more info</div>
+
+  <div>
+    <div class="pc-kicker">Approval process</div>
+    <p class="pc-copy">Students work with faculty mentors or approved supervisors to define goals, complete required documentation and track outcomes throughout the experience.</p>
   </div>
 
   <div>
@@ -120,15 +132,17 @@ a{color:inherit;text-decoration:none}
     <p class="pc-copy">Eligible experiences include internships, undergraduate research through USF Student Engagement in Research &amp; Innovation, capstone projects, cybersecurity support services, entrepreneurship initiatives, competitions, hackathons and study abroad experiences.</p>
   </div>
   <div class="pc-grid4">
-    <div class="pc-card pc-green"><h3>Internships</h3><p>Internships.</p></div>
-    <div class="pc-card"><h3>Undergraduate research</h3><p>Undergraduate research through USF Student Engagement in Research &amp; Innovation.</p></div>
-    <div class="pc-card"><h3>Capstone projects</h3><p>Capstone projects.</p></div>
-    <div class="pc-card"><h3>Cybersecurity support</h3><p>Cybersecurity support services.</p></div>
-    <div class="pc-card"><h3>Entrepreneurship</h3><p>Entrepreneurship initiatives.</p></div>
-    <div class="pc-card"><h3>Competitions</h3><p>Competitions.</p></div>
-    <div class="pc-card"><h3>Hackathons</h3><p>Hackathons.</p></div>
-    <div class="pc-card"><h3>Study abroad</h3><p>Study abroad experiences.</p></div>
+    <div class="pc-card pc-info-source" data-info="Internships."><h3>Internships</h3></div>
+    <div class="pc-card pc-info-source" data-info="Undergraduate research through USF Student Engagement in Research &amp; Innovation."><h3>Undergraduate research</h3></div>
+    <div class="pc-card pc-info-source" data-info="Capstone projects."><h3>Capstone projects</h3></div>
+    <div class="pc-card pc-info-source" data-info="Cybersecurity support services."><h3>Cybersecurity support</h3></div>
+    <div class="pc-card pc-info-source" data-info="Entrepreneurship initiatives."><h3>Entrepreneurship</h3></div>
+    <div class="pc-card pc-info-source" data-info="Competitions."><h3>Competitions</h3></div>
+    <div class="pc-card pc-info-source" data-info="Hackathons."><h3>Hackathons</h3></div>
+    <div class="pc-card pc-info-source" data-info="Study abroad experiences."><h3>Study abroad</h3></div>
   </div>
+
+  <div class="pc-info-box" id="pc-pathwayInfo">Hover to see more info</div>
 
   <div>
     <div class="pc-kicker">Requirements</div>
@@ -143,14 +157,68 @@ a{color:inherit;text-decoration:none}
     <div>CIS 4950</div><div>Recorded as CIS 4950 (badge and transcript notation)</div><div>Badge and transcript notation</div>
   </div>
 
-  <div>
-    <div class="pc-kicker">Approval process</div>
-    <p class="pc-copy">Students work with faculty mentors or approved supervisors to define goals, complete required documentation and track outcomes throughout the experience.</p>
-  </div>
-
   <div class="pc-soft">
     This page will also have more details about the different classes Kurt Friday will be teaching. This is still in the planning phase but needs to be thought about in website design.
   </div>
+
+<script>
+(function(){
+  const defaultText = 'Hover to see more info';
+
+  function setupInfoGroup({sourceSelector, infoBoxId}){
+    const infoBox = document.getElementById(infoBoxId);
+    if(!infoBox) return;
+    const sources = Array.from(document.querySelectorAll(sourceSelector));
+    if(!sources.length) return;
+
+    const setActive = (source) => {
+      sources.forEach(s => s.classList.remove('is-active'));
+      if(source) source.classList.add('is-active');
+      infoBox.textContent = (source && source.dataset && source.dataset.info) ? source.dataset.info : defaultText;
+    };
+
+    // Fix min-height to the tallest option to prevent layout bounce.
+    const original = infoBox.textContent || defaultText;
+    let maxH = 0;
+    sources.forEach(s => {
+      const t = (s.dataset && s.dataset.info) ? s.dataset.info : defaultText;
+      infoBox.textContent = t;
+      const h = infoBox.getBoundingClientRect().height;
+      if(h > maxH) maxH = h;
+    });
+    infoBox.textContent = original;
+    if(maxH) infoBox.style.minHeight = maxH + 'px';
+
+    sources.forEach(s => {
+      s.addEventListener('mouseenter', () => setActive(s));
+      s.addEventListener('mouseleave', () => setActive(null));
+      s.addEventListener('click', () => setActive(s)); // mobile
+      s.addEventListener('touchstart', () => setActive(s), {passive:true}); // mobile
+    });
+  }
+
+  setupInfoGroup({sourceSelector: '.pc-timeline .pc-info-source', infoBoxId: 'pc-stageInfo'});
+  setupInfoGroup({sourceSelector: '.pc-grid4 .pc-info-source', infoBoxId: 'pc-pathwayInfo'});
+
+  // Requirements table hover: highlight only the hovered row.
+  const table = document.querySelector('.pc-table');
+  if(table){
+    const cells = Array.from(table.children);
+    const setRow = (rowIndex, on) => {
+      const start = rowIndex * 3;
+      for(let i = start; i < start + 3 && i < cells.length; i++){
+        cells[i].classList.toggle('is-row-hover', on);
+      }
+    };
+    cells.forEach((cell, idx) => {
+      if(cell.classList.contains('head')) return;
+      const rowIndex = Math.floor(idx / 3);
+      cell.addEventListener('mouseenter', () => setRow(rowIndex, true));
+      cell.addEventListener('mouseleave', () => setRow(rowIndex, false));
+    });
+  }
+})();
+</script>
 </div>
 
 <div class="wf-box">
