@@ -265,6 +265,7 @@
     position: relative;
     padding: 0 12px;
     min-height: 96px;
+    height: 96px;
     box-sizing: border-box;
     display: flex;
     gap: 10px;
@@ -292,26 +293,6 @@
     color: #006747;
     font-size: 18px;
     z-index: 1;
-  }
-
-  /* Debug overlay: see measured heights + outlines in OmniCMS output */
-  #tcap-omni-overview-root.debug-journey .pc-journey-step {
-    outline: 1px dashed rgba(255, 0, 0, 0.6);
-  }
-
-  #tcap-omni-overview-root.debug-journey .pc-journey-step::before {
-    content: attr(data-debug-h);
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 10px;
-    line-height: 1;
-    color: #b00000;
-    background: rgba(255, 255, 255, 0.85);
-    padding: 2px 4px;
-    z-index: 5;
-    pointer-events: none;
-    white-space: nowrap;
   }
 
   #tcap-omni-overview-root .pc-journey-step:hover .wf-node,
@@ -494,9 +475,6 @@
     const root = document.getElementById('tcap-omni-overview-root');
     if (!root) return;
 
-    const DEBUG_JOURNEY = true;
-    if (DEBUG_JOURNEY) root.classList.add('debug-journey');
-
     const steps = Array.from(root.querySelectorAll('.pc-journey-step'));
     if (!steps.length) return;
 
@@ -513,33 +491,6 @@
       step.addEventListener('click', () => setActive(step)); // mobile
       step.addEventListener('touchstart', () => setActive(step), { passive: true }); // mobile
     });
-
-    // Equalize journey-step heights after first render.
-    // Prevents first tile visual offset when rendering/wrapping differs.
-    const syncJourneyStepHeights = () => {
-      steps.forEach((s) => {
-        s.style.minHeight = '';
-      });
-
-      let maxH = 0;
-      steps.forEach((s) => {
-        const h = s.getBoundingClientRect().height;
-        if (DEBUG_JOURNEY) s.dataset.debugH = String(Math.round(h));
-        if (h > maxH) maxH = h;
-      });
-      if (!maxH) return;
-
-      steps.forEach((s) => {
-        if (DEBUG_JOURNEY && s.dataset && s.dataset.debugH === undefined) {
-          const h = s.getBoundingClientRect().height;
-          s.dataset.debugH = String(Math.round(h));
-        }
-        s.style.minHeight = maxH + 'px';
-      });
-    };
-
-    syncJourneyStepHeights();
-    window.addEventListener('resize', () => syncJourneyStepHeights());
   })();
   //]]>
 </script>
