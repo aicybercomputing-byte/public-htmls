@@ -490,6 +490,28 @@
       step.addEventListener('click', () => setActive(step)); // mobile
       step.addEventListener('touchstart', () => setActive(step), { passive: true }); // mobile
     });
+
+    // Equalize journey-step heights after first render.
+    // Prevents first tile visual offset when rendering/wrapping differs.
+    const syncJourneyStepHeights = () => {
+      steps.forEach((s) => {
+        s.style.minHeight = '';
+      });
+
+      let maxH = 0;
+      steps.forEach((s) => {
+        const h = s.getBoundingClientRect().height;
+        if (h > maxH) maxH = h;
+      });
+      if (!maxH) return;
+
+      steps.forEach((s) => {
+        s.style.minHeight = maxH + 'px';
+      });
+    };
+
+    syncJourneyStepHeights();
+    window.addEventListener('resize', () => syncJourneyStepHeights());
   })();
   //]]>
 </script>
