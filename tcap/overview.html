@@ -17,27 +17,12 @@ body{margin:0;background:#f0eee9;font-family:'Shantell Sans',system-ui,sans-seri
 .wf-h{font-size:18px;line-height:1.15}
 .wf-s{font-size:13px;color:#77756b;line-height:1.3}
 .wf-btn{display:inline-block;background:#006747;color:#fff;font-size:14px;padding:8px 20px;border-radius:2px}
-.wf-node{width:22px;height:22px;border-radius:50%;border:2px solid #006747;background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;color:#006747;flex:none;box-sizing:border-box}
 a{color:inherit;text-decoration:none}
 .pc-slot{border:2px dashed #006747;background:#f7faf8;border-radius:4px;padding:18px;text-align:left;display:flex;flex-direction:column;gap:14px}
-.pc-kicker{font-size:12px;color:#006747;text-transform:uppercase;letter-spacing:.05em}
 .pc-title{font-size:24px;line-height:1.1;color:#006747;margin:0}
 .pc-copy{font-size:14px;line-height:1.35;color:#3f3f3f;margin:0}
 .pc-grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.pc-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .pc-card{border:1.5px solid #8a8a82;background:#fff;padding:12px;border-radius:3px;display:block}
-.pc-card h3{font-size:20px;margin:0 0 6px;color:#006747;line-height:1.1;font-family:'Shantell Sans',sans-serif}
-.pc-card p{font-family:'Shantell Sans',sans-serif;font-size:14px;line-height:1.4;margin:0;color:#3f3f3f;font-weight:400}
-.pc-green{border-color:#8a8a82;background:#fff}
-.pc-pillars-desc{text-align:center;font-weight:700;font-size:15px;line-height:1.35;color:#3f3f3f;margin:0}
-.pc-pillar{--word-w:120px;min-height:124px;padding:12px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#006747;text-decoration:none;background:transparent}
-.pc-pillar:hover,.pc-pillar:focus{background:transparent;outline:none}
-.pc-pillar:focus-visible{outline:2px solid #006747;outline-offset:4px}
-.pillar-cap{display:block;width:calc(var(--word-w) + 24px);height:5px;background:#006747;margin-bottom:8px}
-.pillar-thin-top{display:block;width:var(--word-w);height:2px;background:#006747;margin-bottom:4px}
-.pillar-word{display:inline-block;color:#006747;font-size:20px;line-height:1.1;font-weight:700;text-transform:uppercase;letter-spacing:.08em;text-align:center;white-space:nowrap;margin:0;font-family:'Shantell Sans',sans-serif}
-.pillar-thin-bottom{display:block;width:var(--word-w);height:2px;background:#006747;margin-top:4px}
-.pillar-base{display:block;width:calc(var(--word-w) + 24px);height:5px;background:#006747;margin-top:8px}
 .pc-fill-box{padding:16px;text-align:left;display:flex;flex-direction:column;gap:10px;transition:background .15s,border-color .15s;min-height:240px;justify-content:center}
 .pc-fill-box:hover{background:#eef4f1;border-color:#006747}
 .pc-card:hover{background:#eef4f1;border-color:#006747}
@@ -52,24 +37,66 @@ a{color:inherit;text-decoration:none}
 .stat-num{font-family:'Shantell Sans',sans-serif;font-size:22px;font-weight:700;color:#006747;line-height:1.1;margin:0 0 6px}
 .stat-desc{font-family:'Shantell Sans',sans-serif;font-size:13px;line-height:1.3;color:#2b2b2b;margin:0 0 6px}
 .stat-src{font-family:'Shantell Sans',sans-serif;font-size:11px;line-height:1.25;color:#77756b;margin:0}
-
-.pc-journey{display:flex;gap:10px;align-items:stretch}
-.pc-journey-step{flex:1;position:relative;padding:0 12px;min-height:96px;height:96px;box-sizing:border-box;display:flex;gap:10px;align-items:center;justify-content:center;background:#006747;border-color:#006747;transition:background .15s,border-color .15s}
 /* Only the bottom-row boxes on Overview should fit to text and anchor to top. */
 .pc-grid2 > .pc-fill-box{min-height:0;justify-content:flex-start}
-.pc-journey-step h3{margin:0;color:#fff}
-.pc-journey-step .wf-node{background:#006747;border-color:#fff;color:#fff}
-.pc-journey-step:not(:last-child)::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:#fff;font-size:18px;z-index:1}
-.pc-step-title{display:inline}
-.pc-step-more{display:none;font-size:14px;color:inherit}
 
-.pc-journey-step.is-flip-gold{background:#f9b81c;border-color:#f9b81c}
-.pc-journey-step.is-flip-gold h3{color:#006747}
-.pc-journey-step.is-flip-gold .wf-node{background:#f9b81c;border-color:#006747;color:#006747}
-.pc-journey-step.is-flip-gold:not(:last-child)::after{color:#006747}
-.pc-journey-step.is-flip-gold .pc-step-title{display:none}
-.pc-journey-step.is-flip-gold .pc-step-more{display:inline}
-@media (max-width:700px){.stat-bar{flex-direction:column}.pc-grid2,.pc-grid3{grid-template-columns:1fr}}
+/* Shared stylized section header (dashed rule either side of a label). */
+.tcap-section-label{display:flex;align-items:center;justify-content:center;gap:16px;color:#006747;font-size:13px;font-weight:700;line-height:1;letter-spacing:.12em;text-transform:uppercase;text-align:center;margin:0;font-family:'Shantell Sans',sans-serif}
+.tcap-section-label::before,.tcap-section-label::after{content:"";display:block;width:96px;height:1px;background:#006747}
+.tcap-section-label::before{clip-path:polygon(0 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+.tcap-section-label::after{clip-path:polygon(8px 0,100% 0,100% 100%,0 100%)}
+
+/* What is tCAP / Why tCAP matters intro cards */
+.tcap-intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.tcap-intro-card{display:grid;grid-template-columns:46px 1fr;gap:14px;align-items:start}
+.tcap-intro-card + .tcap-intro-card{border-left:1px solid #cfd8d3;padding-left:24px}
+.tcap-icon-circle{width:40px;height:40px;border:2px solid #006747;border-radius:50%;display:grid;place-items:center;color:#006747}
+.tcap-icon-circle svg{width:22px;height:22px;stroke:currentColor}
+.tcap-intro-card h3{margin:0 0 6px;color:#006747;font-size:20px;line-height:1.1;font-weight:700;letter-spacing:.02em;text-transform:uppercase;font-family:'Shantell Sans',sans-serif}
+.tcap-intro-card p{margin:0;color:#3f3f3f;font-size:14px;line-height:1.4;font-family:'Shantell Sans',sans-serif}
+
+/* "The tCAP Model" header above the pillars */
+.tcap-model-header{max-width:640px;margin:6px auto 0;text-align:center}
+.tcap-model-header h2{margin:14px 0 8px;color:#006747;font-size:28px;line-height:1.1;font-weight:700;font-family:'Shantell Sans',sans-serif}
+.tcap-model-header p{margin:0 auto;color:#3f3f3f;font-size:15px;line-height:1.4;font-family:'Shantell Sans',sans-serif}
+
+/* Pillars */
+.tcap-pillars-band{position:relative;padding:16px 0 6px}
+.tcap-pillars-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:36px;align-items:start;width:100%}
+.tcap-pillar{min-width:0;text-align:center;color:#006747;text-decoration:none;display:block;position:relative}
+.tcap-pillar:not(:last-of-type)::after{content:"•••";position:absolute;top:44px;right:-24px;color:#006747;font-size:14px;line-height:1;letter-spacing:.1em;white-space:nowrap}
+.tcap-pillar-lines{--word-w:0px;--cap-overhang:24px;--thin-line-h:2px;--thick-line-h:5px;--gap-thick-thin:8px;--gap-thin-word:4px;width:100%;max-width:220px;margin:0 auto;display:flex;flex-direction:column;align-items:center}
+.tcap-pillar-cap,.tcap-pillar-base{display:block;width:calc(var(--word-w) + var(--cap-overhang));max-width:100%;height:var(--thick-line-h);background:#006747}
+.tcap-pillar-cap{margin-bottom:var(--gap-thick-thin)}
+.tcap-pillar-thin{display:block;width:var(--word-w);max-width:100%;height:var(--thin-line-h);background:#006747}
+.tcap-pillar-thin.top{margin-bottom:var(--gap-thin-word)}
+.tcap-pillar-thin.bottom{margin-top:var(--gap-thin-word)}
+.tcap-pillar-word{display:inline-block;max-width:100%;color:#006747;font-size:20px;line-height:1.1;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;font-family:'Shantell Sans',sans-serif}
+.tcap-pillar-base{margin-top:var(--gap-thick-thin)}
+.tcap-pillar p{margin:14px auto 0;max-width:220px;color:#3f3f3f;font-size:14px;line-height:1.35;font-family:'Shantell Sans',sans-serif}
+
+/* Student journey */
+.tcap-journey-header{margin:0}
+.tcap-journey-grid{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:10px;align-items:center}
+.tcap-journey-card{min-height:110px;padding:16px 14px;background:linear-gradient(145deg,#006747,#004d35);border-radius:6px;color:#fff;text-decoration:none;display:grid;grid-template-columns:36px 1fr;grid-template-rows:auto auto;column-gap:10px;row-gap:8px;align-items:start}
+.tcap-journey-num{width:30px;height:30px;border:2px solid #fff;border-radius:50%;display:grid;place-items:center;font-size:16px;font-weight:700;line-height:1}
+.tcap-journey-title{margin:2px 0 0;color:#fff;font-size:14px;line-height:1.1;font-weight:700;letter-spacing:.02em;text-transform:uppercase;font-family:'Shantell Sans',sans-serif}
+.tcap-journey-icon{grid-column:1 / -1;display:flex;justify-content:center;color:#fff}
+.tcap-journey-icon svg{width:36px;height:36px;stroke:currentColor}
+.tcap-journey-dots{color:#006747;font-size:22px;line-height:1;letter-spacing:.12em;white-space:nowrap}
+.tcap-journey-caption{margin:0;text-align:center;color:#3f3f3f;font-size:15px;line-height:1.35;font-weight:700;font-family:'Shantell Sans',sans-serif}
+
+@media (max-width:700px){
+  .stat-bar{flex-direction:column}
+  .pc-grid2{grid-template-columns:1fr}
+  .tcap-intro-grid{grid-template-columns:1fr;gap:20px}
+  .tcap-intro-card + .tcap-intro-card{border-left:0;padding-left:0;border-top:1px solid #cfd8d3;padding-top:20px}
+  .tcap-pillars-grid{grid-template-columns:1fr;gap:28px;max-width:280px;margin:0 auto}
+  .tcap-pillar:not(:last-of-type)::after{display:none}
+  .tcap-journey-grid{grid-template-columns:1fr;gap:12px}
+  .tcap-journey-dots{display:none}
+  .tcap-section-label::before,.tcap-section-label::after{width:52px}
+}
 </style>
 </head>
 <body>
@@ -110,73 +137,138 @@ a{color:inherit;text-decoration:none}
     </div>
 
     <div class="pc-slot">
-      <div class="pc-grid2">
-        <div class="pc-card pc-green">
-          <h3>What is tCAP?</h3>
-          <p>tCAP is a structured, multiyear career development program designed exclusively for Bellini College students. Instead of waiting until their final year to focus on internships and career preparation, tCAP helps students steadily build experience, skills and professional connections throughout their academic journey.</p>
+      <div class="tcap-intro-grid">
+        <div class="tcap-intro-card">
+          <div class="tcap-icon-circle" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 18 24 9l18 9-18 9L6 18Z"></path>
+              <path d="M14 23v9c3 4 17 4 20 0v-9"></path>
+              <path d="M40 19v12"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>What is tCAP?</h3>
+            <p>tCAP is a structured, multiyear career development program designed exclusively for Bellini College students. Instead of waiting until their final year to focus on internships and career preparation, tCAP helps students steadily build experience, skills and professional connections throughout their academic journey.</p>
+          </div>
         </div>
-        <div class="pc-card">
-          <h3>Why tCAP matters</h3>
-          <p>Employers increasingly seek graduates who can communicate effectively, collaborate on teams, solve applied problems and contribute immediately in professional environments. tCAP combines career readiness, experiential learning and employer engagement to help develop those capabilities before graduation.</p>
+        <div class="tcap-intro-card">
+          <div class="tcap-icon-circle" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="24" cy="15" r="5"></circle>
+              <circle cx="12" cy="18" r="4"></circle>
+              <circle cx="36" cy="18" r="4"></circle>
+              <path d="M16 36v-3c0-5 4-9 8-9s8 4 8 9v3"></path>
+              <path d="M5 36v-3c0-4 3-7 7-7"></path>
+              <path d="M43 36v-3c0-4-3-7-7-7"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Why tCAP matters</h3>
+            <p>Employers increasingly seek graduates who can communicate effectively, collaborate on teams, solve applied problems and contribute immediately in professional environments. tCAP combines career readiness, experiential learning and employer engagement to help develop those capabilities before graduation.</p>
+          </div>
         </div>
       </div>
 
-      <div>
-        <div class="pc-kicker">tCAP Pillars</div>
+      <div class="tcap-model-header">
+        <p class="tcap-section-label">The tCAP Model</p>
+        <h2>Three Pillars. Endless Possibilities.</h2>
+        <p>The tCAP experience is built on three pillars that work together to develop your career readiness, applied skills and professional network.</p>
       </div>
-      <div class="pc-grid3">
-        <a class="pc-pillar" href="stages.html">
-          <span class="pillar-cap"></span>
-          <span class="pillar-thin-top"></span>
-          <span class="pillar-word">Readiness</span>
-          <span class="pillar-thin-bottom"></span>
-          <span class="pillar-base"></span>
+
+      <div class="tcap-pillars-band">
+        <div class="tcap-pillars-grid">
+          <a class="tcap-pillar" href="stages.html">
+            <div class="tcap-pillar-lines">
+              <span class="tcap-pillar-cap"></span>
+              <span class="tcap-pillar-thin top"></span>
+              <span class="tcap-pillar-word">Readiness</span>
+              <span class="tcap-pillar-thin bottom"></span>
+              <span class="tcap-pillar-base"></span>
+            </div>
+            <p>Build the foundation with self-awareness, goal setting and essential professional skills to launch your career with confidence.</p>
+          </a>
+          <a class="tcap-pillar" href="experiential-learning.html">
+            <div class="tcap-pillar-lines">
+              <span class="tcap-pillar-cap"></span>
+              <span class="tcap-pillar-thin top"></span>
+              <span class="tcap-pillar-word">Experience</span>
+              <span class="tcap-pillar-thin bottom"></span>
+              <span class="tcap-pillar-base"></span>
+            </div>
+            <p>Learn by doing. Apply what you know through projects, internships, externships, research and performance-based learning.</p>
+          </a>
+          <a class="tcap-pillar" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">
+            <div class="tcap-pillar-lines">
+              <span class="tcap-pillar-cap"></span>
+              <span class="tcap-pillar-thin top"></span>
+              <span class="tcap-pillar-word">Connection</span>
+              <span class="tcap-pillar-thin bottom"></span>
+              <span class="tcap-pillar-base"></span>
+            </div>
+            <p>Grow your network and collaborate with peers, mentors and employers who open doors to opportunities and long-term success.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="tcap-journey-header">
+        <p class="tcap-section-label">Student Journey</p>
+      </div>
+      <div class="tcap-journey-grid">
+        <a class="tcap-journey-card" href="stages.html#foundations">
+          <div class="tcap-journey-num">1</div>
+          <h3 class="tcap-journey-title">Targeting<br>Fundamentals</h3>
+          <div class="tcap-journey-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="24" cy="25" r="14"></circle>
+              <circle cx="24" cy="25" r="8"></circle>
+              <circle cx="24" cy="25" r="2"></circle>
+              <path d="M24 25 38 11"></path>
+              <path d="M34 11h7v7"></path>
+            </svg>
+          </div>
         </a>
-        <a class="pc-pillar" href="experiential-learning.html">
-          <span class="pillar-cap"></span>
-          <span class="pillar-thin-top"></span>
-          <span class="pillar-word">Experience</span>
-          <span class="pillar-thin-bottom"></span>
-          <span class="pillar-base"></span>
+        <div class="tcap-journey-dots" aria-hidden="true">••••</div>
+        <a class="tcap-journey-card" href="stages.html#power-skills">
+          <div class="tcap-journey-num">2</div>
+          <h3 class="tcap-journey-title">Core<br>Application</h3>
+          <div class="tcap-journey-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="12" width="30" height="28" rx="2"></rect>
+              <path d="M16 8v8M32 8v8M9 20h30"></path>
+              <path d="M16 30h9M16 35h6"></path>
+              <circle cx="33" cy="33" r="6"></circle>
+              <path d="m30 33 2 2 4-5"></path>
+            </svg>
+          </div>
         </a>
-        <a class="pc-pillar" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">
-          <span class="pillar-cap"></span>
-          <span class="pillar-thin-top"></span>
-          <span class="pillar-word">Connection</span>
-          <span class="pillar-thin-bottom"></span>
-          <span class="pillar-base"></span>
+        <div class="tcap-journey-dots" aria-hidden="true">••••</div>
+        <a class="tcap-journey-card" href="stages.html#connectivity">
+          <div class="tcap-journey-num">3</div>
+          <h3 class="tcap-journey-title">Advanced<br>Practice</h3>
+          <div class="tcap-journey-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M28 8c6 2 10 6 12 12-4 8-10 14-19 18l-9-9C16 20 20 13 28 8Z"></path>
+              <path d="M18 34 10 38l4-8"></path>
+              <circle cx="29" cy="19" r="3"></circle>
+              <path d="M19 39v4M25 37v5M12 33H7"></path>
+            </svg>
+          </div>
+        </a>
+        <div class="tcap-journey-dots" aria-hidden="true">••••</div>
+        <a class="tcap-journey-card" href="stages.html#mastery">
+          <div class="tcap-journey-num">4</div>
+          <h3 class="tcap-journey-title">Professional<br>Mastery</h3>
+          <div class="tcap-journey-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 10h16v9c0 6-3 11-8 13-5-2-8-7-8-13v-9Z"></path>
+              <path d="M16 14H9v4c0 5 3 8 8 9M32 14h7v4c0 5-3 8-8 9"></path>
+              <path d="M24 32v7M17 39h14M14 43h20"></path>
+            </svg>
+          </div>
         </a>
       </div>
 
-      <div>
-        <p class="pc-pillars-desc">These are the three pillars that guide the tCAP experience and help students grow professionally and technically.</p>
-      </div>
-
-      <div>
-        <div class="pc-kicker">Student journey</div>
-      </div>
-      <div class="pc-journey">
-        <a class="pc-card pc-journey-step" href="stages.html#foundations">
-          <div class="wf-node">1</div>
-          <h3><span class="pc-step-title">Targeting Fundamentals</span><span class="pc-step-more">Click to find out more</span></h3>
-        </a>
-        <a class="pc-card pc-journey-step" href="stages.html#power-skills">
-          <div class="wf-node">2</div>
-          <h3><span class="pc-step-title">Core Application</span><span class="pc-step-more">Click to find out more</span></h3>
-        </a>
-        <a class="pc-card pc-journey-step" href="stages.html#connectivity">
-          <div class="wf-node">3</div>
-          <h3><span class="pc-step-title">Advanced Practice</span><span class="pc-step-more">Click to find out more</span></h3>
-        </a>
-        <a class="pc-card pc-journey-step" href="stages.html#mastery">
-          <div class="wf-node">4</div>
-          <h3><span class="pc-step-title">Professional Mastery</span><span class="pc-step-more">Click to find out more</span></h3>
-        </a>
-      </div>
-
-      <div>
-        <p class="pc-pillars-desc">Move through Foundations, build Power Skills, grow Connectivity, and finish with Mastery.</p>
-      </div>
+      <p class="tcap-journey-caption">Move through Foundations, build Power Skills, grow Connectivity, and finish with Mastery.</p>
 
       <div class="pc-grid2">
         <a class="pc-fill-box pc-card" href="experiential-learning.html">
@@ -210,8 +302,8 @@ a{color:inherit;text-decoration:none}
 <script>
 (function(){
   function sizePillarLines(){
-    document.querySelectorAll('.pc-pillar').forEach(function(pillar){
-      const word = pillar.querySelector('.pillar-word');
+    document.querySelectorAll('.tcap-pillar-lines').forEach(function(pillar){
+      const word = pillar.querySelector('.tcap-pillar-word');
       if(!word) return;
       const width = Math.ceil(word.getBoundingClientRect().width);
       pillar.style.setProperty('--word-w', width + 'px');
@@ -220,21 +312,6 @@ a{color:inherit;text-decoration:none}
   sizePillarLines();
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(sizePillarLines);
   window.addEventListener('resize', sizePillarLines);
-})();
-(function(){
-  const steps = Array.from(document.querySelectorAll('.pc-journey-step'));
-  if(!steps.length) return;
-
-  const setGold = (step, on) => step.classList.toggle('is-flip-gold', on);
-
-  steps.forEach(step => {
-    step.addEventListener('mouseenter', () => setGold(step, true));
-    step.addEventListener('mouseleave', () => setGold(step, false));
-    step.addEventListener('focus', () => setGold(step, true));
-    step.addEventListener('blur', () => setGold(step, false));
-    step.addEventListener('click', () => setGold(step, true)); // mobile
-    step.addEventListener('touchstart', () => setGold(step, true), {passive:true}); // mobile
-  });
 })();
 </script>
 </body>
