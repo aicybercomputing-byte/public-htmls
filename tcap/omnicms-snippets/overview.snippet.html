@@ -74,21 +74,6 @@
     box-sizing: border-box;
   }
 
-  #tcap-omni-overview-root .wf-node {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    border: 2px solid #006747;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    color: #006747;
-    flex: none;
-    box-sizing: border-box;
-  }
-
   #tcap-omni-overview-root .pc-slot {
     border: 0;
     background: #ffffff;
@@ -99,13 +84,6 @@
     flex-direction: column;
     gap: 14px;
     min-height: 240px;
-  }
-
-  #tcap-omni-overview-root .pc-kicker {
-    font-size: 12px;
-    color: #006747;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
   }
 
   #tcap-omni-overview-root .pc-title {
@@ -129,24 +107,24 @@
     gap: 12px;
   }
 
-  #tcap-omni-overview-root .pc-grid3 {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-  }
-
   /* Neutralize USF site's owl rule `.content * + * { margin-top: 1.5em }`.
      It adds 24px above every non-first flex/grid child, dropping the 2nd+
      items in each row and making the first item look shifted up / rows
      misaligned. jobs.html avoids this by zeroing margins on all its grid
      children; do the same here so spacing is driven only by each
      container's `gap`. (The stat bar already handles this via
-     `.jobs-stat-bar > *`.) */
+     `.jobs-stat-bar > *`.) The `.tcap-* *` entries reset at any depth since
+     the tCAP model components (pillars, journey) nest siblings more than
+     one level deep; more-specific component rules declared further below
+     override these zeros where an intentional margin-top is needed. */
   #tcap-omni-overview-root .pc-slot > *,
   #tcap-omni-overview-root .pc-grid2 > *,
-  #tcap-omni-overview-root .pc-grid3 > *,
-  #tcap-omni-overview-root .pc-journey > *,
-  #tcap-omni-overview-root .wf-nav > * {
+  #tcap-omni-overview-root .wf-nav > *,
+  #tcap-omni-overview-root .tcap-intro-grid *,
+  #tcap-omni-overview-root .tcap-model-header *,
+  #tcap-omni-overview-root .tcap-pillars-band *,
+  #tcap-omni-overview-root .tcap-journey-header *,
+  #tcap-omni-overview-root .tcap-journey-grid * {
     margin-top: 0;
   }
 
@@ -158,113 +136,224 @@
     display: block;
   }
 
-  #tcap-omni-overview-root .pc-green {
-    border-color: #8a8a82;
-    background: #fff;
+  /* Shared stylized section header (dashed rule either side of a label). */
+  #tcap-omni-overview-root .tcap-section-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: #006747;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+    font-family: inherit;
   }
 
-  #tcap-omni-overview-root .pc-card h3 {
-    font-size: 20px;
+  #tcap-omni-overview-root .tcap-section-label::before,
+  #tcap-omni-overview-root .tcap-section-label::after {
+    content: "";
+    display: block;
+    width: 96px;
+    height: 1px;
+    background: #006747;
+  }
+
+  #tcap-omni-overview-root .tcap-section-label::before {
+    clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+  }
+
+  #tcap-omni-overview-root .tcap-section-label::after {
+    clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  /* What is tCAP / Why tCAP matters intro cards */
+  #tcap-omni-overview-root .tcap-intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  #tcap-omni-overview-root .tcap-intro-card {
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+
+  #tcap-omni-overview-root .tcap-intro-card + .tcap-intro-card {
+    border-left: 1px solid #cfd8d3;
+    padding-left: 24px;
+  }
+
+  #tcap-omni-overview-root .tcap-icon-circle {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #006747;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #006747;
+  }
+
+  #tcap-omni-overview-root .tcap-icon-circle svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+  }
+
+  #tcap-omni-overview-root .tcap-intro-card h3 {
     margin: 0 0 6px;
     color: #006747;
+    font-size: 20px;
     line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     font-family: inherit;
   }
 
-  #tcap-omni-overview-root .pc-card p {
-    font-family: inherit;
+  #tcap-omni-overview-root .tcap-intro-card p {
+    margin: 0;
+    color: #3f3f3f;
     font-size: 14px;
     line-height: 1.4;
-    margin: 0;
-    color: #3f3f3f;
-    font-weight: 400;
+    font-family: inherit;
   }
 
-  #tcap-omni-overview-root .pc-pillars-desc {
+  /* "The tCAP Model" header above the pillars */
+  #tcap-omni-overview-root .tcap-model-header {
+    max-width: 640px;
+    margin: 6px auto 0;
     text-align: center;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 1.35;
-    color: #3f3f3f;
-    margin: 0;
   }
 
-  #tcap-omni-overview-root .pc-pillar {
-    --word-w: 120px;
-    min-height: 124px;
-    padding: 12px;
-    box-sizing: border-box;
+  #tcap-omni-overview-root .tcap-model-header h2 {
+    margin: 14px 0 8px;
+    color: #006747;
+    font-size: 28px;
+    line-height: 1.1;
+    font-weight: 700;
+    font-family: inherit;
+  }
+
+  #tcap-omni-overview-root .tcap-model-header p {
+    margin: 0 auto;
+    color: #3f3f3f;
+    font-size: 15px;
+    line-height: 1.4;
+    font-family: inherit;
+  }
+
+  /* Pillars */
+  #tcap-omni-overview-root .tcap-pillars-band {
+    position: relative;
+    padding: 16px 0 6px;
+  }
+
+  #tcap-omni-overview-root .tcap-pillars-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+    align-items: start;
+    width: 100%;
+  }
+
+  #tcap-omni-overview-root .tcap-pillar {
+    min-width: 0;
+    text-align: center;
+    color: #006747;
+    text-decoration: none;
+    display: block;
+    position: relative;
+  }
+
+  #tcap-omni-overview-root .tcap-pillar:not(:last-of-type)::after {
+    content: "•••";
+    position: absolute;
+    top: 44px;
+    right: -24px;
+    color: #006747;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  #tcap-omni-overview-root .tcap-pillar-lines {
+    --word-w: 0px;
+    --cap-overhang: 24px;
+    --thin-line-h: 2px;
+    --thick-line-h: 5px;
+    --gap-thick-thin: 8px;
+    --gap-thin-word: 4px;
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    color: #006747;
-    text-decoration: none;
-    background: transparent;
   }
 
-  #tcap-omni-overview-root .pc-pillar:hover,
-  #tcap-omni-overview-root .pc-pillar:focus {
-    background: transparent;
-    outline: none;
-  }
-
-  #tcap-omni-overview-root .pc-pillar:focus-visible {
-    outline: 2px solid #006747;
-    outline-offset: 4px;
-  }
-
-  /* margin-top pinned with !important: the USF site's owl rule
-     (`.content * + * { margin-top: 1.5em }`) matches these spans since each
-     has a preceding sibling, adding a large unwanted gap above the line/word
-     that the existing #tcap-omni-overview-root .pc-grid3 > * reset (direct
-     children only) doesn't reach. */
-  #tcap-omni-overview-root .pillar-cap {
+  #tcap-omni-overview-root .tcap-pillar-cap,
+  #tcap-omni-overview-root .tcap-pillar-base {
     display: block;
-    width: calc(var(--word-w) + 24px);
-    height: 5px;
+    width: calc(var(--word-w) + var(--cap-overhang));
+    max-width: 100%;
+    height: var(--thick-line-h);
     background: #006747;
-    margin-top: 0 !important;
-    margin-bottom: 8px;
   }
 
-  #tcap-omni-overview-root .pillar-thin-top {
+  #tcap-omni-overview-root .tcap-pillar-cap {
+    margin-bottom: var(--gap-thick-thin);
+  }
+
+  #tcap-omni-overview-root .tcap-pillar-thin {
     display: block;
     width: var(--word-w);
-    height: 2px;
+    max-width: 100%;
+    height: var(--thin-line-h);
     background: #006747;
-    margin-top: 0 !important;
-    margin-bottom: 4px;
   }
 
-  #tcap-omni-overview-root .pillar-word {
+  #tcap-omni-overview-root .tcap-pillar-thin.top {
+    margin-bottom: var(--gap-thin-word);
+  }
+
+  #tcap-omni-overview-root .tcap-pillar-thin.bottom {
+    margin-top: var(--gap-thin-word);
+  }
+
+  #tcap-omni-overview-root .tcap-pillar-word {
     display: inline-block;
+    max-width: 100%;
     color: #006747;
     font-size: 20px;
     line-height: 1.1;
     font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: 0.08em;
-    text-align: center;
+    text-transform: uppercase;
     white-space: nowrap;
-    margin: 0 !important;
     font-family: inherit;
   }
 
-  #tcap-omni-overview-root .pillar-thin-bottom {
-    display: block;
-    width: var(--word-w);
-    height: 2px;
-    background: #006747;
-    margin-top: 4px !important;
+  #tcap-omni-overview-root .tcap-pillar-base {
+    margin-top: var(--gap-thick-thin);
   }
 
-  #tcap-omni-overview-root .pillar-base {
-    display: block;
-    width: calc(var(--word-w) + 24px);
-    height: 5px;
-    background: #006747;
-    margin-top: 8px !important;
+  #tcap-omni-overview-root .tcap-pillar p {
+    margin: 14px auto 0;
+    max-width: 220px;
+    color: #3f3f3f;
+    font-size: 14px;
+    line-height: 1.35;
+    font-family: inherit;
   }
 
   #tcap-omni-overview-root .pc-fill-box {
@@ -341,97 +430,91 @@
     text-underline-offset: 2px;
   }
 
-  #tcap-omni-overview-root .pc-journey {
-    display: flex;
-    gap: 10px;
-    align-items: stretch;
-  }
-
-  #tcap-omni-overview-root .pc-journey-step {
-    flex: 1;
-    position: relative;
-    padding: 0 12px;
-    min-height: 96px;
-    height: 96px;
-    max-height: 96px;
-    overflow: hidden;
-    box-sizing: border-box;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-    background: #006747;
-    border-color: #006747;
-    transition: background 0.15s, border-color 0.15s;
-  }
-
   /* Fit-to-text + top anchoring (bottom-row boxes behavior) */
   #tcap-omni-overview-root .pc-grid2 > .pc-fill-box {
     min-height: 0;
     justify-content: flex-start;
   }
 
-  #tcap-omni-overview-root .pc-journey-step h3 {
+  /* Student journey */
+  #tcap-omni-overview-root .tcap-journey-header {
     margin: 0;
-    color: #fff;
-    font-size: 14px;
   }
 
-  #tcap-omni-overview-root .pc-journey-step .wf-node {
-    background: #006747;
-    border-color: #fff;
-    color: #fff;
+  #tcap-omni-overview-root .tcap-journey-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    gap: 10px;
+    align-items: center;
   }
 
-  #tcap-omni-overview-root .pc-journey-step:not(:last-child)::after {
-    content: '→';
-    position: absolute;
-    right: -12px;
-    top: 50%;
-    transform: translateY(-50%);
+  #tcap-omni-overview-root .tcap-journey-card {
+    min-height: 110px;
+    padding: 16px 14px;
+    background: linear-gradient(145deg, #006747, #004d35);
+    border-radius: 6px;
     color: #fff;
-    font-size: 18px;
+    text-decoration: none;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+    row-gap: 8px;
+    align-items: start;
+  }
+
+  #tcap-omni-overview-root .tcap-journey-num {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    font-weight: 700;
     line-height: 1;
-    display: block;
-    z-index: 1;
   }
 
-  #tcap-omni-overview-root .pc-step-title {
-    display: inline;
-  }
-
-  #tcap-omni-overview-root .pc-step-more {
-    display: none;
+  #tcap-omni-overview-root .tcap-journey-title {
+    margin: 2px 0 0;
+    color: #fff;
     font-size: 14px;
-    color: inherit;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-family: inherit;
   }
 
-  /* Hover/focus/tap flips the (permanently green) box to USF gold. */
-  #tcap-omni-overview-root .pc-journey-step.is-flip-gold {
-    background: #f9b81c;
-    border-color: #f9b81c;
+  #tcap-omni-overview-root .tcap-journey-icon {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    color: #fff;
   }
 
-  #tcap-omni-overview-root .pc-journey-step.is-flip-gold h3 {
+  #tcap-omni-overview-root .tcap-journey-icon svg {
+    width: 36px;
+    height: 36px;
+    stroke: currentColor;
+  }
+
+  #tcap-omni-overview-root .tcap-journey-dots {
     color: #006747;
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
   }
 
-  #tcap-omni-overview-root .pc-journey-step.is-flip-gold:not(:last-child)::after {
-    color: #006747;
-  }
-
-  #tcap-omni-overview-root .pc-journey-step.is-flip-gold .pc-step-title {
-    display: none;
-  }
-
-  #tcap-omni-overview-root .pc-journey-step.is-flip-gold .pc-step-more {
-    display: inline;
-  }
-
-  #tcap-omni-overview-root .pc-journey-step.is-flip-gold .wf-node {
-    background: #f9b81c;
-    border-color: #006747;
-    color: #006747;
+  #tcap-omni-overview-root .tcap-journey-caption {
+    margin: 0;
+    text-align: center;
+    color: #3f3f3f;
+    font-size: 15px;
+    line-height: 1.35;
+    font-weight: 700;
+    font-family: inherit;
   }
 
   @media (max-width: 700px) {
@@ -444,9 +527,45 @@
       min-height: 0 !important;
     }
 
-    #tcap-omni-overview-root .pc-grid2,
-    #tcap-omni-overview-root .pc-grid3 {
+    #tcap-omni-overview-root .pc-grid2 {
       grid-template-columns: 1fr;
+    }
+
+    #tcap-omni-overview-root .tcap-intro-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    #tcap-omni-overview-root .tcap-intro-card + .tcap-intro-card {
+      border-left: 0;
+      padding-left: 0;
+      border-top: 1px solid #cfd8d3;
+      padding-top: 20px;
+    }
+
+    #tcap-omni-overview-root .tcap-pillars-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    #tcap-omni-overview-root .tcap-pillar:not(:last-of-type)::after {
+      display: none;
+    }
+
+    #tcap-omni-overview-root .tcap-journey-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    #tcap-omni-overview-root .tcap-journey-dots {
+      display: none;
+    }
+
+    #tcap-omni-overview-root .tcap-section-label::before,
+    #tcap-omni-overview-root .tcap-section-label::after {
+      width: 52px;
     }
   }
 
@@ -657,85 +776,138 @@
     </div>
 
     <div class="pc-slot">
-      <div class="pc-grid2">
-        <div class="pc-card pc-green">
-          <h3>What is tCAP?</h3>
-          <p>tCAP is a structured, multiyear career development program designed exclusively for Bellini College students. Instead of waiting until their final year to focus on internships and career preparation, tCAP helps students steadily build experience, skills and professional connections throughout their academic journey.</p>
+      <div class="tcap-intro-grid">
+        <div class="tcap-intro-card">
+          <div class="tcap-icon-circle" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 18 24 9l18 9-18 9L6 18Z"></path>
+              <path d="M14 23v9c3 4 17 4 20 0v-9"></path>
+              <path d="M40 19v12"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>What is tCAP?</h3>
+            <p>tCAP is a structured, multiyear career development program designed exclusively for Bellini College students. Instead of waiting until their final year to focus on internships and career preparation, tCAP helps students steadily build experience, skills and professional connections throughout their academic journey.</p>
+          </div>
         </div>
-        <div class="pc-card">
-          <h3>Why tCAP matters</h3>
-          <p>Employers increasingly seek graduates who can communicate effectively, collaborate on teams, solve applied problems and contribute immediately in professional environments. tCAP combines career readiness, experiential learning and employer engagement to help develop those capabilities before graduation.</p>
+        <div class="tcap-intro-card">
+          <div class="tcap-icon-circle" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="24" cy="15" r="5"></circle>
+              <circle cx="12" cy="18" r="4"></circle>
+              <circle cx="36" cy="18" r="4"></circle>
+              <path d="M16 36v-3c0-5 4-9 8-9s8 4 8 9v3"></path>
+              <path d="M5 36v-3c0-4 3-7 7-7"></path>
+              <path d="M43 36v-3c0-4-3-7-7-7"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Why tCAP matters</h3>
+            <p>Employers increasingly seek graduates who can communicate effectively, collaborate on teams, solve applied problems and contribute immediately in professional environments. tCAP combines career readiness, experiential learning and employer engagement to help develop those capabilities before graduation.</p>
+          </div>
         </div>
       </div>
 
-      <div>
-        <div class="pc-kicker">tCAP Pillars</div>
+      <div class="tcap-model-header">
+        <p class="tcap-section-label">The tCAP Model</p>
+        <h2>Three Pillars. Endless Possibilities.</h2>
+        <p>The tCAP experience is built on three pillars that work together to develop your career readiness, applied skills and professional network.</p>
       </div>
-      <div class="pc-grid3">
-        <a class="pc-pillar" href="stages.html">
-          <span class="pillar-cap"></span>
-          <span class="pillar-thin-top"></span>
-          <span class="pillar-word">Readiness</span>
-          <span class="pillar-thin-bottom"></span>
-          <span class="pillar-base"></span>
+
+      <div class="tcap-pillars-band">
+        <div class="tcap-pillars-grid">
+          <a class="tcap-pillar" href="stages.html">
+            <div class="tcap-pillar-lines">
+              <span class="tcap-pillar-cap"></span>
+              <span class="tcap-pillar-thin top"></span>
+              <span class="tcap-pillar-word">Readiness</span>
+              <span class="tcap-pillar-thin bottom"></span>
+              <span class="tcap-pillar-base"></span>
+            </div>
+            <p>Build the foundation with self-awareness, goal setting and essential professional skills to launch your career with confidence.</p>
+          </a>
+          <a class="tcap-pillar" href="experiential-learning.html">
+            <div class="tcap-pillar-lines">
+              <span class="tcap-pillar-cap"></span>
+              <span class="tcap-pillar-thin top"></span>
+              <span class="tcap-pillar-word">Experience</span>
+              <span class="tcap-pillar-thin bottom"></span>
+              <span class="tcap-pillar-base"></span>
+            </div>
+            <p>Learn by doing. Apply what you know through projects, internships, externships, research and performance-based learning.</p>
+          </a>
+          <a class="tcap-pillar" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">
+            <div class="tcap-pillar-lines">
+              <span class="tcap-pillar-cap"></span>
+              <span class="tcap-pillar-thin top"></span>
+              <span class="tcap-pillar-word">Connection</span>
+              <span class="tcap-pillar-thin bottom"></span>
+              <span class="tcap-pillar-base"></span>
+            </div>
+            <p>Grow your network and collaborate with peers, mentors and employers who open doors to opportunities and long-term success.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="tcap-journey-header">
+        <p class="tcap-section-label">Student Journey</p>
+      </div>
+      <div class="tcap-journey-grid">
+        <a class="tcap-journey-card" href="stages.html#foundations">
+          <div class="tcap-journey-num">1</div>
+          <h3 class="tcap-journey-title">Targeting<br>Fundamentals</h3>
+          <div class="tcap-journey-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="24" cy="25" r="14"></circle>
+              <circle cx="24" cy="25" r="8"></circle>
+              <circle cx="24" cy="25" r="2"></circle>
+              <path d="M24 25 38 11"></path>
+              <path d="M34 11h7v7"></path>
+            </svg>
+          </div>
         </a>
-        <a class="pc-pillar" href="experiential-learning.html">
-          <span class="pillar-cap"></span>
-          <span class="pillar-thin-top"></span>
-          <span class="pillar-word">Experience</span>
-          <span class="pillar-thin-bottom"></span>
-          <span class="pillar-base"></span>
+        <div class="tcap-journey-dots" aria-hidden="true">••••</div>
+        <a class="tcap-journey-card" href="stages.html#power-skills">
+          <div class="tcap-journey-num">2</div>
+          <h3 class="tcap-journey-title">Core<br>Application</h3>
+          <div class="tcap-journey-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="12" width="30" height="28" rx="2"></rect>
+              <path d="M16 8v8M32 8v8M9 20h30"></path>
+              <path d="M16 30h9M16 35h6"></path>
+              <circle cx="33" cy="33" r="6"></circle>
+              <path d="m30 33 2 2 4-5"></path>
+            </svg>
+          </div>
         </a>
-        <a class="pc-pillar" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">
-          <span class="pillar-cap"></span>
-          <span class="pillar-thin-top"></span>
-          <span class="pillar-word">Connection</span>
-          <span class="pillar-thin-bottom"></span>
-          <span class="pillar-base"></span>
+        <div class="tcap-journey-dots" aria-hidden="true">••••</div>
+        <a class="tcap-journey-card" href="stages.html#connectivity">
+          <div class="tcap-journey-num">3</div>
+          <h3 class="tcap-journey-title">Advanced<br>Practice</h3>
+          <div class="tcap-journey-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M28 8c6 2 10 6 12 12-4 8-10 14-19 18l-9-9C16 20 20 13 28 8Z"></path>
+              <path d="M18 34 10 38l4-8"></path>
+              <circle cx="29" cy="19" r="3"></circle>
+              <path d="M19 39v4M25 37v5M12 33H7"></path>
+            </svg>
+          </div>
+        </a>
+        <div class="tcap-journey-dots" aria-hidden="true">••••</div>
+        <a class="tcap-journey-card" href="stages.html#mastery">
+          <div class="tcap-journey-num">4</div>
+          <h3 class="tcap-journey-title">Professional<br>Mastery</h3>
+          <div class="tcap-journey-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 10h16v9c0 6-3 11-8 13-5-2-8-7-8-13v-9Z"></path>
+              <path d="M16 14H9v4c0 5 3 8 8 9M32 14h7v4c0 5-3 8-8 9"></path>
+              <path d="M24 32v7M17 39h14M14 43h20"></path>
+            </svg>
+          </div>
         </a>
       </div>
 
-      <div>
-        <p class="pc-pillars-desc">These are the three pillars that guide the tCAP experience and help students grow professionally and technically.</p>
-      </div>
-
-      <div>
-        <div class="pc-kicker">Student journey</div>
-      </div>
-      <div class="pc-journey">
-        <a class="pc-card pc-journey-step" href="stages.html#foundations">
-          <div class="wf-node">1</div>
-          <h3>
-            <span class="pc-step-title">Targeting Fundamentals</span>
-            <span class="pc-step-more">Click to find out more</span>
-          </h3>
-        </a>
-        <a class="pc-card pc-journey-step" href="stages.html#power-skills">
-          <div class="wf-node">2</div>
-          <h3>
-            <span class="pc-step-title">Core Application</span>
-            <span class="pc-step-more">Click to find out more</span>
-          </h3>
-        </a>
-        <a class="pc-card pc-journey-step" href="stages.html#connectivity">
-          <div class="wf-node">3</div>
-          <h3>
-            <span class="pc-step-title">Advanced Practice</span>
-            <span class="pc-step-more">Click to find out more</span>
-          </h3>
-        </a>
-        <a class="pc-card pc-journey-step" href="stages.html#mastery">
-          <div class="wf-node">4</div>
-          <h3>
-            <span class="pc-step-title">Professional Mastery</span>
-            <span class="pc-step-more">Click to find out more</span>
-          </h3>
-        </a>
-      </div>
-
-      <div>
-        <p class="pc-pillars-desc">Move through Foundations, build Power Skills, grow Connectivity, and finish with Mastery.</p>
-      </div>
+      <p class="tcap-journey-caption">Move through Foundations, build Power Skills, grow Connectivity, and finish with Mastery.</p>
 
       <div class="pc-grid2">
         <a class="pc-fill-box pc-card" href="experiential-learning.html">
@@ -818,8 +990,8 @@
     }
 
     function sizePillarLines() {
-      root.querySelectorAll('.pc-pillar').forEach(function (pillar) {
-        const word = pillar.querySelector('.pillar-word');
+      root.querySelectorAll('.tcap-pillar-lines').forEach(function (pillar) {
+        const word = pillar.querySelector('.tcap-pillar-word');
         if (!word) return;
         const width = Math.ceil(word.getBoundingClientRect().width);
         pillar.style.setProperty('--word-w', width + 'px');
@@ -828,20 +1000,6 @@
     sizePillarLines();
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(sizePillarLines);
     window.addEventListener('resize', sizePillarLines);
-
-    const steps = Array.from(root.querySelectorAll('.pc-journey-step'));
-    if (!steps.length) return;
-
-    const setGold = (step, on) => step.classList.toggle('is-flip-gold', on);
-
-    steps.forEach((step) => {
-      step.addEventListener('mouseenter', () => setGold(step, true));
-      step.addEventListener('mouseleave', () => setGold(step, false));
-      step.addEventListener('focus', () => setGold(step, true));
-      step.addEventListener('blur', () => setGold(step, false));
-      step.addEventListener('click', () => setGold(step, true)); // mobile
-      step.addEventListener('touchstart', () => setGold(step, true), { passive: true }); // mobile
-    });
 
   })();
   //]]>
