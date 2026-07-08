@@ -43,10 +43,12 @@
     border: 0;
     background: #f4f4ef;
     padding: 10px 12px;
-    /* Full-bleed grey band: cancel the root's 24px side padding so the
-       background reaches the section edges on both sides. */
-    margin-left: -24px;
-    margin-right: -24px;
+    /* Full-bleed grey band to the viewport (screen) edges, breaking out of
+       the centered section and .u-wrapper. Works because those ancestors are
+       centered (margin: auto) and none clip overflow. */
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
   }
 
   #tcap-omni-overview-root .wf-box {
