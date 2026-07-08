@@ -43,12 +43,25 @@
     border: 0;
     background: #f4f4ef;
     padding: 10px 12px;
-    /* Full-bleed grey band to the viewport (screen) edges, breaking out of
-       the centered section and .u-wrapper. Works because those ancestors are
-       centered (margin: auto) and none clip overflow. */
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
+    /* Full-bleed grey band to the viewport (screen) edges. The exact width is
+       set by JS (using clientWidth, which excludes the scrollbar, so it never
+       triggers a horizontal scrollbar the way `100vw` would). These margins
+       are the no-JS fallback: bleed to the section edges (cancel the root's
+       24px side padding). */
+    margin-left: -24px;
+    margin-right: -24px;
+  }
+
+  #tcap-omni-overview-root .tcap-pillars-band {
+    margin-left: -18px;
+    margin-right: -18px;
+    padding: 16px 18px;
+    background: #f4f4ef;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
   }
 
   #tcap-omni-overview-root .wf-box {
@@ -231,6 +244,15 @@
     border-color: #006747;
   }
 
+  /* Info cards in the two-column rows (What is tCAP / Why tCAP matters and
+     Experiential learning / Quick links) are not interactive: no border and
+     no hover highlight. The pillars and journey steps keep theirs. */
+  #tcap-omni-overview-root .pc-grid2 > .pc-card,
+  #tcap-omni-overview-root .pc-grid2 > .pc-card:hover {
+    border: 0;
+    background: #fff;
+  }
+
   #tcap-omni-overview-root .pc-box-label {
     font-size: 20px;
     font-weight: 700;
@@ -305,6 +327,7 @@
   #tcap-omni-overview-root .pc-journey-step h3 {
     margin: 0;
     color: #006747;
+    font-size: 14px;
   }
 
   #tcap-omni-overview-root .pc-journey-step:not(:last-child)::after {
@@ -320,16 +343,67 @@
     z-index: 1;
   }
 
-  #tcap-omni-overview-root .pc-journey-step:hover .wf-node,
-  #tcap-omni-overview-root .pc-journey-step.is-active .wf-node {
+  #tcap-omni-overview-root .pc-step-title {
+    display: inline;
+  }
+
+  #tcap-omni-overview-root .pc-step-more {
+    display: none;
+    font-size: 14px;
+    color: inherit;
+  }
+
+  /* Flip states: green ↔ USF gold. */
+  #tcap-omni-overview-root .pc-journey-step.is-flip-green,
+  #tcap-omni-overview-root .pc-journey-step.is-flip-gold {
+    border-color: #006747;
+  }
+
+  #tcap-omni-overview-root .pc-journey-step.is-flip-green {
     background: #006747;
+  }
+
+  #tcap-omni-overview-root .pc-journey-step.is-flip-green h3 {
     color: #fff;
   }
 
-  #tcap-omni-overview-root .pc-journey-step:hover,
-  #tcap-omni-overview-root .pc-journey-step.is-active {
-    background: #eef4f1;
+  #tcap-omni-overview-root .pc-journey-step.is-flip-gold {
+    /* USF gold (approx). */
+    background: #f9b81c;
+  }
+
+  #tcap-omni-overview-root .pc-journey-step.is-flip-gold h3 {
+    color: #006747;
+  }
+
+  #tcap-omni-overview-root .pc-journey-step.is-flip-green:not(:last-child)::after {
+    color: #fff;
+  }
+
+  #tcap-omni-overview-root .pc-journey-step.is-flip-gold:not(:last-child)::after {
+    color: #006747;
+  }
+
+  #tcap-omni-overview-root .pc-journey-step.is-flip-green .pc-step-title,
+  #tcap-omni-overview-root .pc-journey-step.is-flip-gold .pc-step-title {
+    display: none;
+  }
+
+  #tcap-omni-overview-root .pc-journey-step.is-flip-green .pc-step-more,
+  #tcap-omni-overview-root .pc-journey-step.is-flip-gold .pc-step-more {
+    display: inline;
+  }
+
+  #tcap-omni-overview-root .pc-journey-step.is-flip-green .wf-node {
+    background: #006747;
+    border-color: #fff;
+    color: #fff;
+  }
+
+  #tcap-omni-overview-root .pc-journey-step.is-flip-gold .wf-node {
+    background: #f9b81c;
     border-color: #006747;
+    color: #006747;
   }
 
   @media (max-width: 700px) {
@@ -360,7 +434,7 @@
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1rem;
-    margin: 2rem 0;
+    margin: 1rem 0;
     align-items: start;
   }
 
@@ -550,7 +624,7 @@
       </div>
     </div>
 
-    <div class="wf-solid" style="text-align:center;padding:16px">
+    <div class="wf-box tcap-advisor-band" style="text-align:center;padding:16px;margin-left:-24px;margin-right:-24px">
       <span class="wf-btn">Talk to an advisor</span>
     </div>
 
@@ -566,16 +640,14 @@
         </div>
       </div>
 
-      <div>
+      <div class="tcap-pillars-band">
         <div class="pc-kicker">tCAP Pillars</div>
-      </div>
-      <div class="pc-grid3">
-        <a class="pc-card pc-pillar" href="stages.html"><h3>Readiness</h3></a>
-        <a class="pc-card pc-pillar" href="experiential-learning.html"><h3>Experience</h3></a>
-        <a class="pc-card pc-pillar" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer"><h3>Connection</h3></a>
-      </div>
+        <div class="pc-grid3">
+          <a class="pc-card pc-pillar" href="stages.html"><h3>Readiness</h3></a>
+          <a class="pc-card pc-pillar" href="experiential-learning.html"><h3>Experience</h3></a>
+          <a class="pc-card pc-pillar" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer"><h3>Connection</h3></a>
+        </div>
 
-      <div>
         <p class="pc-pillars-desc">These are the three pillars that guide the tCAP experience and help students grow professionally and technically.</p>
       </div>
 
@@ -585,19 +657,31 @@
       <div class="pc-journey">
         <a class="pc-card pc-journey-step" href="stages.html#foundations">
           <div class="wf-node">1</div>
-          <h3>Targeting Fundamentals</h3>
+          <h3>
+            <span class="pc-step-title">Targeting Fundamentals</span>
+            <span class="pc-step-more">Click to find out more</span>
+          </h3>
         </a>
         <a class="pc-card pc-journey-step" href="stages.html#power-skills">
           <div class="wf-node">2</div>
-          <h3>Core Application</h3>
+          <h3>
+            <span class="pc-step-title">Core Application</span>
+            <span class="pc-step-more">Click to find out more</span>
+          </h3>
         </a>
         <a class="pc-card pc-journey-step" href="stages.html#connectivity">
           <div class="wf-node">3</div>
-          <h3>Advanced Practice</h3>
+          <h3>
+            <span class="pc-step-title">Advanced Practice</span>
+            <span class="pc-step-more">Click to find out more</span>
+          </h3>
         </a>
         <a class="pc-card pc-journey-step" href="stages.html#mastery">
           <div class="wf-node">4</div>
-          <h3>Professional Mastery</h3>
+          <h3>
+            <span class="pc-step-title">Professional Mastery</span>
+            <span class="pc-step-more">Click to find out more</span>
+          </h3>
         </a>
       </div>
 
@@ -666,21 +750,67 @@
       });
     }
 
+    // Full-bleed the "Talk to an advisor" band to the true viewport (screen)
+    // edges. Measured from clientWidth (which excludes the scrollbar), so it
+    // never forces a horizontal scrollbar the way CSS `100vw` would. The band
+    // is a stretched flex item, so negative side margins make it re-stretch to
+    // the full width. Recomputed on resize.
+    const band = root.querySelector('.tcap-advisor-band');
+    if (band) {
+      const applyFullBleed = () => {
+        band.style.marginLeft = '0px';
+        band.style.marginRight = '0px';
+        const vw = document.documentElement.clientWidth;
+        const rect = band.getBoundingClientRect();
+        band.style.marginLeft = (-rect.left) + 'px';
+        band.style.marginRight = (rect.right - vw) + 'px';
+      };
+      applyFullBleed();
+      window.addEventListener('resize', applyFullBleed);
+    }
+
     const steps = Array.from(root.querySelectorAll('.pc-journey-step'));
     if (!steps.length) return;
 
     let active = null;
-    const setActive = (step) => {
-      steps.forEach((s) => s.classList.remove('is-active'));
-      active = step || null;
-      if (active) active.classList.add('is-active');
+    let flipTimer = null;
+
+    const clearActive = () => {
+      if (flipTimer) window.clearTimeout(flipTimer);
+      flipTimer = null;
+      active = null;
+      steps.forEach((s) => s.classList.remove('is-active', 'is-flip-green', 'is-flip-gold'));
+    };
+
+    const activateGreenThenGold = (step) => {
+      if (!step) return clearActive();
+      clearActive();
+
+      active = step;
+      step.classList.add('is-active', 'is-flip-green');
+      flipTimer = window.setTimeout(() => {
+        if (active !== step) return;
+        step.classList.remove('is-flip-green');
+        step.classList.add('is-flip-gold');
+      }, 220);
+    };
+
+    const activateGold = (step) => {
+      if (!step) return clearActive();
+      if (flipTimer) window.clearTimeout(flipTimer);
+      flipTimer = null;
+      active = step;
+      steps.forEach((s) => s.classList.remove('is-active', 'is-flip-green', 'is-flip-gold'));
+      step.classList.add('is-active', 'is-flip-gold');
     };
 
     steps.forEach((step) => {
-      step.addEventListener('mouseenter', () => setActive(step));
-      step.addEventListener('mouseleave', () => setActive(null));
-      step.addEventListener('click', () => setActive(step)); // mobile
-      step.addEventListener('touchstart', () => setActive(step), { passive: true }); // mobile
+      step.addEventListener('mouseenter', () => activateGreenThenGold(step));
+      step.addEventListener('mouseleave', () => clearActive());
+      step.addEventListener('focus', () => activateGreenThenGold(step));
+      step.addEventListener('blur', () => clearActive());
+      step.addEventListener('click', () => activateGold(step)); // mobile
+      step.addEventListener('touchstart', () => activateGold(step), { passive: true }); // mobile
     });
 
   })();

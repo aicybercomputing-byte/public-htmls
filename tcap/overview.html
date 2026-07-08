@@ -18,6 +18,8 @@ body{margin:0;background:#f0eee9;font-family:'Shantell Sans',system-ui,sans-seri
 .wf-s{font-size:13px;color:#77756b;line-height:1.3}
 .wf-btn{display:inline-block;background:#006747;color:#fff;font-size:14px;padding:8px 20px;border-radius:2px}
 .wf-node{width:22px;height:22px;border-radius:50%;border:2px solid #006747;background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;color:#006747;flex:none;box-sizing:border-box}
+.tcap-advisor-band{border:0;background:#fff;margin-left:-24px;margin-right:-24px}
+.tcap-pillars-band{margin-left:-18px;margin-right:-18px;padding:16px 18px;background:#f4f4ef;text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center}
 a{color:inherit;text-decoration:none}
 .pc-slot{border:2px dashed #006747;background:#f7faf8;border-radius:4px;padding:18px;text-align:left;display:flex;flex-direction:column;gap:14px}
 .pc-kicker{font-size:12px;color:#006747;text-transform:uppercase;letter-spacing:.05em}
@@ -42,7 +44,7 @@ a{color:inherit;text-decoration:none}
 .pc-quick-item{display:block;font-family:'Shantell Sans',sans-serif;font-size:14px;line-height:1.2;color:#006747;text-decoration:none;padding:0}
 .pc-quick-item:hover{color:#004d35;text-decoration:underline;text-underline-offset:2px}
 .pc-list{margin:0;padding-left:1.25em;list-style:disc;display:flex;flex-direction:column;gap:0;flex:1;justify-content:flex-start}
-.stat-bar{display:flex;gap:8px;align-items:stretch}
+.stat-bar{display:flex;gap:8px;align-items:stretch;margin:1rem 0}
 .stat-box{flex:1;background:#fff;border:1px solid rgba(0,0,0,.08);padding:12px;text-align:left;min-width:0}
 .stat-num{font-family:'Shantell Sans',sans-serif;font-size:22px;font-weight:700;color:#006747;line-height:1.1;margin:0 0 6px}
 .stat-desc{font-family:'Shantell Sans',sans-serif;font-size:13px;line-height:1.3;color:#2b2b2b;margin:0 0 6px}
@@ -54,10 +56,18 @@ a{color:inherit;text-decoration:none}
 .pc-grid2 > .pc-fill-box{min-height:0;justify-content:flex-start}
 .pc-journey-step h3{margin:0;color:#006747}
 .pc-journey-step:not(:last-child)::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:#006747;font-size:18px;z-index:1}
-.pc-journey-step:hover .wf-node{background:#006747;color:#fff}
-.pc-journey-step.is-active .wf-node{background:#006747;color:#fff}
-.pc-journey-step:hover{background:#eef4f1;border-color:#006747}
-.pc-journey-step.is-active{background:#eef4f1;border-color:#006747}
+.pc-step-title{display:inline}
+.pc-step-more{display:none;font-size:14px;color:inherit}
+
+.pc-journey-step.is-flip-green,.pc-journey-step.is-flip-gold{border-color:#006747;background:#006747}
+.pc-journey-step.is-flip-green h3{color:#fff}
+.pc-journey-step.is-flip-gold{background:#f9b81c}
+.pc-journey-step.is-flip-gold h3{color:#006747}
+.pc-journey-step.is-flip-green:not(:last-child)::after{color:#fff}
+.pc-journey-step.is-flip-green .pc-step-title,.pc-journey-step.is-flip-gold .pc-step-title{display:none}
+.pc-journey-step.is-flip-green .pc-step-more,.pc-journey-step.is-flip-gold .pc-step-more{display:inline}
+.pc-journey-step.is-flip-green .wf-node{background:#006747;border-color:#fff;color:#fff}
+.pc-journey-step.is-flip-gold .wf-node{background:#f9b81c;border-color:#006747;color:#006747}
 @media (max-width:700px){.stat-bar{flex-direction:column}.pc-grid2,.pc-grid3{grid-template-columns:1fr}}
 </style>
 </head>
@@ -94,7 +104,7 @@ a{color:inherit;text-decoration:none}
       </div>
     </div>
 
-    <div class="wf-solid" style="text-align:center;padding:16px">
+    <div class="wf-solid tcap-advisor-band" style="text-align:center;padding:16px">
       <span class="wf-btn">Talk to an advisor</span>
     </div>
 
@@ -110,16 +120,14 @@ a{color:inherit;text-decoration:none}
         </div>
       </div>
 
-      <div>
+      <div class="tcap-pillars-band">
         <div class="pc-kicker">tCAP Pillars</div>
-      </div>
-      <div class="pc-grid3">
-        <a class="pc-card pc-pillar" href="stages.html"><h3>Readiness</h3></a>
-        <a class="pc-card pc-pillar" href="experiential-learning.html"><h3>Experience</h3></a>
-        <a class="pc-card pc-pillar" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer"><h3>Connection</h3></a>
-      </div>
+        <div class="pc-grid3">
+          <a class="pc-card pc-pillar" href="stages.html"><h3>Readiness</h3></a>
+          <a class="pc-card pc-pillar" href="experiential-learning.html"><h3>Experience</h3></a>
+          <a class="pc-card pc-pillar" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer"><h3>Connection</h3></a>
+        </div>
 
-      <div>
         <p class="pc-pillars-desc">These are the three pillars that guide the tCAP experience and help students grow professionally and technically.</p>
       </div>
 
@@ -129,19 +137,19 @@ a{color:inherit;text-decoration:none}
       <div class="pc-journey">
         <a class="pc-card pc-journey-step" href="stages.html#foundations">
           <div class="wf-node">1</div>
-          <h3>Targeting Fundamentals</h3>
+          <h3><span class="pc-step-title">Targeting Fundamentals</span><span class="pc-step-more">Click to find out more</span></h3>
         </a>
         <a class="pc-card pc-journey-step" href="stages.html#power-skills">
           <div class="wf-node">2</div>
-          <h3>Core Application</h3>
+          <h3><span class="pc-step-title">Core Application</span><span class="pc-step-more">Click to find out more</span></h3>
         </a>
         <a class="pc-card pc-journey-step" href="stages.html#connectivity">
           <div class="wf-node">3</div>
-          <h3>Advanced Practice</h3>
+          <h3><span class="pc-step-title">Advanced Practice</span><span class="pc-step-more">Click to find out more</span></h3>
         </a>
         <a class="pc-card pc-journey-step" href="stages.html#mastery">
           <div class="wf-node">4</div>
-          <h3>Professional Mastery</h3>
+          <h3><span class="pc-step-title">Professional Mastery</span><span class="pc-step-more">Click to find out more</span></h3>
         </a>
       </div>
 
@@ -182,17 +190,46 @@ a{color:inherit;text-decoration:none}
 (function(){
   const steps = Array.from(document.querySelectorAll('.pc-journey-step'));
   if(!steps.length) return;
+
   let active = null;
-  const setActive = (step) => {
-    steps.forEach(s => s.classList.remove('is-active'));
-    active = step || null;
-    if(active) active.classList.add('is-active');
+  let flipTimer = null;
+  const clearActive = () => {
+    if(flipTimer) window.clearTimeout(flipTimer);
+    flipTimer = null;
+    active = null;
+    steps.forEach(s => s.classList.remove('is-active','is-flip-green','is-flip-gold'));
   };
+
+  const activateGreenThenGold = (step) => {
+    if(!step) return clearActive();
+    clearActive();
+
+    active = step;
+    step.classList.add('is-active','is-flip-green');
+    flipTimer = window.setTimeout(() => {
+      if(active !== step) return;
+      step.classList.remove('is-flip-green');
+      step.classList.add('is-flip-gold');
+    }, 220);
+  };
+
+  const activateGold = (step) => {
+    if(!step) return clearActive();
+    if(flipTimer) window.clearTimeout(flipTimer);
+    flipTimer = null;
+
+    active = step;
+    steps.forEach(s => s.classList.remove('is-active','is-flip-green','is-flip-gold'));
+    step.classList.add('is-active','is-flip-gold');
+  };
+
   steps.forEach(step => {
-    step.addEventListener('mouseenter', () => setActive(step));
-    step.addEventListener('mouseleave', () => setActive(null));
-    step.addEventListener('click', () => setActive(step)); // mobile
-    step.addEventListener('touchstart', () => setActive(step), {passive:true}); // mobile
+    step.addEventListener('mouseenter', () => activateGreenThenGold(step));
+    step.addEventListener('mouseleave', () => clearActive());
+    step.addEventListener('focus', () => activateGreenThenGold(step));
+    step.addEventListener('blur', () => clearActive());
+    step.addEventListener('click', () => activateGold(step)); // mobile
+    step.addEventListener('touchstart', () => activateGold(step), {passive:true}); // mobile
   });
 })();
 </script>
