@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "tcap-scratch",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8791", "--directory", "C:/Users/IKORAT~1.FOR/AppData/Local/Temp/claude/C--Users-ikoratsk-FOREST-Documents-GitHub-public-htmls/189bcb63-22b3-4b14-8265-e7b2be1e7784/scratchpad"],
+      "port": 8791
+    }
+  ]
+}

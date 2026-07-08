@@ -14,11 +14,11 @@
   }
 
   #tcap-omni-overview-root .wf {
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-    padding: 16px;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -40,9 +40,13 @@
   }
 
   #tcap-omni-overview-root .wf-solid {
-    border: 1.5px solid #6f6f68;
+    border: 0;
     background: #f4f4ef;
     padding: 10px 12px;
+    /* Full-bleed grey band: cancel the root's 24px side padding so the
+       background reaches the section edges on both sides. */
+    margin-left: -24px;
+    margin-right: -24px;
   }
 
   #tcap-omni-overview-root .wf-box {
@@ -126,6 +130,21 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
+  }
+
+  /* Neutralize USF site's owl rule `.content * + * { margin-top: 1.5em }`.
+     It adds 24px above every non-first flex/grid child, dropping the 2nd+
+     items in each row and making the first item look shifted up / rows
+     misaligned. jobs.html avoids this by zeroing margins on all its grid
+     children; do the same here so spacing is driven only by each
+     container's `gap`. (The stat bar already handles this via
+     `.jobs-stat-bar > *`.) */
+  #tcap-omni-overview-root .pc-slot > *,
+  #tcap-omni-overview-root .pc-grid2 > *,
+  #tcap-omni-overview-root .pc-grid3 > *,
+  #tcap-omni-overview-root .pc-journey > *,
+  #tcap-omni-overview-root .wf-nav > * {
+    margin-top: 0;
   }
 
   #tcap-omni-overview-root .pc-card {
@@ -337,16 +356,36 @@
   /* Stat bar (jobs-like classes) */
   #tcap-omni-overview-root .jobs-stat-bar {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
     margin: 2rem 0;
     align-items: start;
+  }
+
+  /* Responsive stack. Kept after the base rule above (not in the earlier
+     @media block) so it wins the specificity tie by source order. */
+  @media (max-width: 700px) {
+    #tcap-omni-overview-root .jobs-stat-bar {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
   #tcap-omni-overview-root .jobs-stat-bar > * {
     align-self: start;
     margin: 2px 0 0 0;
     padding: 0;
+  }
+
+  /* Let USF site CSS style the stat cards exactly like jobs.html.
+     This snippet's ID-scoped resets (the blanket border-box !important above
+     and padding:0 here) are strong enough to defeat the site's
+     .content .c-calloutText { padding: 1.5em } — which jobs.html deliberately
+     leaves intact by using weaker, unscoped selectors. Restore the site's
+     rendering for the stat callouts only, so the heading gets its inset and
+     the box sizes to 225px like jobs. */
+  #tcap-omni-overview-root .jobs-stat-bar > .c-calloutText {
+    box-sizing: content-box !important;
+    padding: 1.5em;
   }
 
   #tcap-omni-overview-root .all-sources {
@@ -461,7 +500,7 @@
   }
 </style>
 
-<div id="tcap-omni-overview-root" data-snippet-rev="2026-07-08-01">
+<div id="tcap-omni-overview-root">
   <div class="wf">
     <!-- Stat bar: mirror jobs component classnames for consistent styling normalization. -->
     <div
@@ -582,7 +621,7 @@
     </div>
 
     <div class="wf-box">
-      <div style="display:flex;gap:8px;margin-top:8px;font-size:13px;text-align:center">
+      <div class="wf-nav" style="display:flex;gap:8px;margin-top:8px;font-size:13px;text-align:center">
         <div style="flex:1;display:block;background:#006747;color:#fff;border:1.5px solid #006747;border-radius:3px;padding:10px 12px">Overview</div>
         <a class="wf-box" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" href="stages.html">Layers</a>
         <a class="wf-box" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" href="experiential-learning.html">Exp. Learning</a>
