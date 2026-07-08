@@ -316,6 +316,11 @@
       flex-direction: column;
     }
 
+    #tcap-omni-overview-root .stat-box {
+      height: auto !important;
+      min-height: 0 !important;
+    }
+
     #tcap-omni-overview-root .pc-grid2,
     #tcap-omni-overview-root .pc-grid3 {
       grid-template-columns: 1fr;
@@ -329,6 +334,55 @@
     align-items: stretch;
   }
 
+  /* Stat bar (jobs-like classes) */
+  #tcap-omni-overview-root .jobs-stat-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+    align-items: start;
+  }
+
+  #tcap-omni-overview-root .jobs-stat-bar > * {
+    align-self: start;
+    margin: 2px 0 0 0;
+    padding: 0;
+  }
+
+  #tcap-omni-overview-root .all-sources {
+    margin: 0;
+  }
+
+  #tcap-omni-overview-root .all-sources-heading {
+    margin: 0 0 0.35rem;
+    font-size: 8pt;
+    font-weight: 700;
+    color: var(--jobs-text, #1f1f1f);
+  }
+
+  #tcap-omni-overview-root .all-sources-list {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  #tcap-omni-overview-root .all-sources-list li {
+    margin-bottom: 0.25rem;
+  }
+
+  #tcap-omni-overview-root .all-sources-list a {
+    color: var(--jobs-text-muted, #333333);
+    text-decoration: underline;
+  }
+
+  #tcap-omni-overview-root .all-sources-text {
+    margin: 0;
+    padding: 0;
+    font-size: 8pt;
+    line-height: 1.35;
+    font-weight: 400;
+    color: var(--jobs-text-muted, #333333);
+  }
+
   #tcap-omni-overview-root .stat-box {
     flex: 1;
     background: #fff;
@@ -336,6 +390,11 @@
     padding: 12px;
     text-align: left;
     min-width: 0;
+    height: 175px !important; /* Match jobs stabilization */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
   }
 
   #tcap-omni-overview-root .stat-num {
@@ -362,30 +421,91 @@
     color: #77756b;
     margin: 0;
   }
+
+  /* No forced typography offsets for jobs-like callout classes.
+     Let site/Omni styles define c-calloutText_heading/text like `jobs.html` does. */
+
+  /* Debug: first-child vertical-shift investigation (no-op unless JS enables it). */
+  #tcap-omni-overview-root.tcap-debug .stat-box {
+    position: relative !important;
+    outline: 2px solid rgba(0, 120, 255, 0.75) !important;
+    outline-offset: -2px !important;
+  }
+
+  #tcap-omni-overview-root.tcap-debug .stat-box > :first-child {
+    outline: 2px solid rgba(255, 0, 0, 0.75) !important;
+    outline-offset: -2px !important;
+
+    /* Reset suspects: margin/position/transform/top so we can test quickly. */
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    position: static !important;
+    transform: none !important;
+    top: auto !important;
+  }
+
+  #tcap-omni-overview-root.tcap-debug .tcap-debug-overlay {
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    z-index: 9999;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 11px;
+    line-height: 1.2;
+    background: rgba(255, 255, 255, 0.92);
+    color: rgba(0, 0, 0, 0.85);
+    padding: 4px 6px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    pointer-events: none;
+  }
 </style>
 
-<div id="tcap-omni-overview-root">
+<div id="tcap-omni-overview-root" data-snippet-rev="2026-07-08-01">
   <div class="wf">
-    <div class="stat-bar">
-      <div class="stat-box">
-        <div class="stat-num">+17.9%</div>
-        <div class="stat-desc">Software developer growth 2023–2033</div>
-        <div class="stat-src">Software developer growth 2023–2033: BLS / MLR 2025.</div>
+    <!-- Stat bar: mirror jobs component classnames for consistent styling normalization. -->
+    <div
+      id="stat-bar"
+      class="jobs-stat-bar"
+    >
+      <div class="c-calloutText c-calloutText--gray" style="height: 175px !important;">
+        <h3 class="c-calloutText_heading">+17.9%</h3>
+        <div class="c-calloutText_text">
+          Software developer growth 2023&ndash;2033
+          <section class="all-sources" aria-labelledby="stat-sources-heading">
+            <p class="all-sources-text">Software developer growth 2023&ndash;2033: <span>BLS / MLR 2025.</span></p>
+          </section>
+        </div>
       </div>
-      <div class="stat-box">
-        <div class="stat-num">546K</div>
-        <div class="stat-desc">Tech workers in Florida (No. 4 nationally)</div>
-        <div class="stat-src">Florida tech workforce count: CompTIA 2025.</div>
+
+      <div class="c-calloutText c-calloutText--gray" style="height: 175px !important;">
+        <h3 class="c-calloutText_heading">546K</h3>
+        <div class="c-calloutText_text">
+          Tech workers in Florida (No. 4 nationally)
+          <section class="all-sources" aria-labelledby="stat-sources-heading">
+            <p class="all-sources-text">Florida tech workforce count: <span>CompTIA 2025.</span></p>
+          </section>
+        </div>
       </div>
-      <div class="stat-box">
-        <div class="stat-num">$102,908</div>
-        <div class="stat-desc">Florida tech wage — 122% above state median</div>
-        <div class="stat-src">Median Florida tech wage: CompTIA / Lightcast 2024.</div>
+
+      <div class="c-calloutText c-calloutText--gray" style="height: 175px !important;">
+        <h3 class="c-calloutText_heading">$102,908</h3>
+        <div class="c-calloutText_text">
+          Florida tech wage &mdash; 122% above state median
+          <section class="all-sources" aria-labelledby="stat-sources-heading">
+            <p class="all-sources-text">Median Florida tech wage: <span>CompTIA / Lightcast 2024.</span></p>
+          </section>
+        </div>
       </div>
-      <div class="stat-box">
-        <div class="stat-num">12,735</div>
-        <div class="stat-desc">Active Florida job postings requiring AI skills</div>
-        <div class="stat-src">Florida AI-skill job postings: CompTIA 2024.</div>
+
+      <div class="c-calloutText c-calloutText--gray" style="height: 175px !important;">
+        <h3 class="c-calloutText_heading">12,735</h3>
+        <div class="c-calloutText_text">
+          Active Florida job postings requiring AI skills
+          <section class="all-sources" aria-labelledby="stat-sources-heading">
+            <p class="all-sources-text">Florida AI-skill job postings: <span>CompTIA 2024.</span></p>
+          </section>
+        </div>
       </div>
     </div>
 
@@ -479,6 +599,32 @@
     const root = document.getElementById('tcap-omni-overview-root');
     if (!root) return;
 
+    const DEBUG = false; // flip to false once fixed
+    if (DEBUG) root.classList.add('tcap-debug');
+
+    // Stat-bar first-child shift debugging (vertical offset / taller first child).
+    if (DEBUG) {
+      const statBoxes = Array.from(root.querySelectorAll('.stat-box'));
+      statBoxes.forEach((box, idx) => {
+        const firstEl = box.firstElementChild;
+        if (!firstEl) return;
+
+        // Remove previous overlay if snippet re-renders.
+        const old = box.querySelector('.tcap-debug-overlay');
+        if (old) old.remove();
+
+        const boxRect = box.getBoundingClientRect();
+        const firstRect = firstEl.getBoundingClientRect();
+        const firstTopDelta = Math.round(firstRect.top - boxRect.top);
+        const firstH = Math.round(firstRect.height);
+
+        const overlay = document.createElement('div');
+        overlay.className = 'tcap-debug-overlay';
+        overlay.textContent = `#${idx + 1} firstTopΔ=${firstTopDelta}px firstH=${firstH}px`;
+        box.appendChild(overlay);
+      });
+    }
+
     const steps = Array.from(root.querySelectorAll('.pc-journey-step'));
     if (!steps.length) return;
 
@@ -495,6 +641,7 @@
       step.addEventListener('click', () => setActive(step)); // mobile
       step.addEventListener('touchstart', () => setActive(step), { passive: true }); // mobile
     });
+
   })();
   //]]>
 </script>
