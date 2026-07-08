@@ -18,8 +18,6 @@ body{margin:0;background:#f0eee9;font-family:'Shantell Sans',system-ui,sans-seri
 .wf-s{font-size:13px;color:#77756b;line-height:1.3}
 .wf-btn{display:inline-block;background:#006747;color:#fff;font-size:14px;padding:8px 20px;border-radius:2px}
 .wf-node{width:22px;height:22px;border-radius:50%;border:2px solid #006747;background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;color:#006747;flex:none;box-sizing:border-box}
-.tcap-advisor-band{border:0;background:#fff;margin-left:-24px;margin-right:-24px}
-.tcap-pillars-band{margin-left:-18px;margin-right:-18px;padding:16px 18px;background:#f4f4ef;text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center}
 a{color:inherit;text-decoration:none}
 .pc-slot{border:2px dashed #006747;background:#f7faf8;border-radius:4px;padding:18px;text-align:left;display:flex;flex-direction:column;gap:14px}
 .pc-kicker{font-size:12px;color:#006747;text-transform:uppercase;letter-spacing:.05em}
@@ -32,9 +30,14 @@ a{color:inherit;text-decoration:none}
 .pc-card p{font-family:'Shantell Sans',sans-serif;font-size:14px;line-height:1.4;margin:0;color:#3f3f3f;font-weight:400}
 .pc-green{border-color:#8a8a82;background:#fff}
 .pc-pillars-desc{text-align:center;font-weight:700;font-size:15px;line-height:1.35;color:#3f3f3f;margin:0}
-.pc-pillar{display:flex;align-items:center;justify-content:center;text-align:center;min-height:96px;height:96px;padding:0 12px;box-sizing:border-box;transition:background .15s,border-color .15s}
-.pc-pillar h3{font-size:20px;margin:0}
-.pc-pillar:hover{background:#eef4f1;border-color:#006747}
+.pc-pillar{--word-w:120px;min-height:124px;padding:12px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#006747;text-decoration:none;background:transparent}
+.pc-pillar:hover,.pc-pillar:focus{background:transparent;outline:none}
+.pc-pillar:focus-visible{outline:2px solid #006747;outline-offset:4px}
+.pillar-cap{display:block;width:calc(var(--word-w) + 24px);height:5px;background:#006747;margin-bottom:8px}
+.pillar-thin-top{display:block;width:var(--word-w);height:2px;background:#006747;margin-bottom:4px}
+.pillar-word{display:inline-block;color:#006747;font-size:20px;line-height:1.1;font-weight:700;text-transform:uppercase;letter-spacing:.08em;text-align:center;white-space:nowrap;margin:0;font-family:'Shantell Sans',sans-serif}
+.pillar-thin-bottom{display:block;width:var(--word-w);height:2px;background:#006747;margin-top:4px}
+.pillar-base{display:block;width:calc(var(--word-w) + 24px);height:5px;background:#006747;margin-top:8px}
 .pc-fill-box{padding:16px;text-align:left;display:flex;flex-direction:column;gap:10px;transition:background .15s,border-color .15s;min-height:240px;justify-content:center}
 .pc-fill-box:hover{background:#eef4f1;border-color:#006747}
 .pc-card:hover{background:#eef4f1;border-color:#006747}
@@ -104,7 +107,7 @@ a{color:inherit;text-decoration:none}
       </div>
     </div>
 
-    <div class="wf-solid tcap-advisor-band" style="text-align:center;padding:16px">
+    <div class="wf-solid" style="text-align:center;padding:16px">
       <span class="wf-btn">Talk to an advisor</span>
     </div>
 
@@ -120,14 +123,34 @@ a{color:inherit;text-decoration:none}
         </div>
       </div>
 
-      <div class="tcap-pillars-band">
+      <div>
         <div class="pc-kicker">tCAP Pillars</div>
-        <div class="pc-grid3">
-          <a class="pc-card pc-pillar" href="stages.html"><h3>Readiness</h3></a>
-          <a class="pc-card pc-pillar" href="experiential-learning.html"><h3>Experience</h3></a>
-          <a class="pc-card pc-pillar" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer"><h3>Connection</h3></a>
-        </div>
+      </div>
+      <div class="pc-grid3">
+        <a class="pc-pillar" href="stages.html">
+          <span class="pillar-cap"></span>
+          <span class="pillar-thin-top"></span>
+          <span class="pillar-word">Readiness</span>
+          <span class="pillar-thin-bottom"></span>
+          <span class="pillar-base"></span>
+        </a>
+        <a class="pc-pillar" href="experiential-learning.html">
+          <span class="pillar-cap"></span>
+          <span class="pillar-thin-top"></span>
+          <span class="pillar-word">Experience</span>
+          <span class="pillar-thin-bottom"></span>
+          <span class="pillar-base"></span>
+        </a>
+        <a class="pc-pillar" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">
+          <span class="pillar-cap"></span>
+          <span class="pillar-thin-top"></span>
+          <span class="pillar-word">Connection</span>
+          <span class="pillar-thin-bottom"></span>
+          <span class="pillar-base"></span>
+        </a>
+      </div>
 
+      <div>
         <p class="pc-pillars-desc">These are the three pillars that guide the tCAP experience and help students grow professionally and technically.</p>
       </div>
 
@@ -187,6 +210,19 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 <script>
+(function(){
+  function sizePillarLines(){
+    document.querySelectorAll('.pc-pillar').forEach(function(pillar){
+      const word = pillar.querySelector('.pillar-word');
+      if(!word) return;
+      const width = Math.ceil(word.getBoundingClientRect().width);
+      pillar.style.setProperty('--word-w', width + 'px');
+    });
+  }
+  sizePillarLines();
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(sizePillarLines);
+  window.addEventListener('resize', sizePillarLines);
+})();
 (function(){
   const steps = Array.from(document.querySelectorAll('.pc-journey-step'));
   if(!steps.length) return;

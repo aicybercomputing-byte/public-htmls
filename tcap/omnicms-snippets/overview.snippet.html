@@ -52,18 +52,6 @@
     margin-right: -24px;
   }
 
-  #tcap-omni-overview-root .tcap-pillars-band {
-    margin-left: -18px;
-    margin-right: -18px;
-    padding: 16px 18px;
-    background: #f4f4ef;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    align-items: center;
-  }
-
   #tcap-omni-overview-root .wf-box {
     border: 0;
     padding: 10px 12px;
@@ -202,25 +190,81 @@
   }
 
   #tcap-omni-overview-root .pc-pillar {
+    --word-w: 120px;
+    min-height: 124px;
+    padding: 12px;
+    box-sizing: border-box;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    min-height: 96px;
-    height: 96px;
-    padding: 0 12px;
-    box-sizing: border-box;
-    transition: background 0.15s, border-color 0.15s;
+    color: #006747;
+    text-decoration: none;
+    background: transparent;
   }
 
-  #tcap-omni-overview-root .pc-pillar h3 {
+  #tcap-omni-overview-root .pc-pillar:hover,
+  #tcap-omni-overview-root .pc-pillar:focus {
+    background: transparent;
+    outline: none;
+  }
+
+  #tcap-omni-overview-root .pc-pillar:focus-visible {
+    outline: 2px solid #006747;
+    outline-offset: 4px;
+  }
+
+  /* margin-top pinned with !important: the USF site's owl rule
+     (`.content * + * { margin-top: 1.5em }`) matches these spans since each
+     has a preceding sibling, adding a large unwanted gap above the line/word
+     that the existing #tcap-omni-overview-root .pc-grid3 > * reset (direct
+     children only) doesn't reach. */
+  #tcap-omni-overview-root .pillar-cap {
+    display: block;
+    width: calc(var(--word-w) + 24px);
+    height: 5px;
+    background: #006747;
+    margin-top: 0 !important;
+    margin-bottom: 8px;
+  }
+
+  #tcap-omni-overview-root .pillar-thin-top {
+    display: block;
+    width: var(--word-w);
+    height: 2px;
+    background: #006747;
+    margin-top: 0 !important;
+    margin-bottom: 4px;
+  }
+
+  #tcap-omni-overview-root .pillar-word {
+    display: inline-block;
+    color: #006747;
     font-size: 20px;
-    margin: 0;
+    line-height: 1.1;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+    white-space: nowrap;
+    margin: 0 !important;
+    font-family: inherit;
   }
 
-  #tcap-omni-overview-root .pc-pillar:hover {
-    background: #eef4f1;
-    border-color: #006747;
+  #tcap-omni-overview-root .pillar-thin-bottom {
+    display: block;
+    width: var(--word-w);
+    height: 2px;
+    background: #006747;
+    margin-top: 4px !important;
+  }
+
+  #tcap-omni-overview-root .pillar-base {
+    display: block;
+    width: calc(var(--word-w) + 24px);
+    height: 5px;
+    background: #006747;
+    margin-top: 8px !important;
   }
 
   #tcap-omni-overview-root .pc-fill-box {
@@ -624,7 +668,7 @@
       </div>
     </div>
 
-    <div class="wf-box tcap-advisor-band" style="text-align:center;padding:16px;margin-left:-24px;margin-right:-24px">
+    <div class="wf-solid" style="text-align:center;padding:16px">
       <span class="wf-btn">Talk to an advisor</span>
     </div>
 
@@ -640,14 +684,34 @@
         </div>
       </div>
 
-      <div class="tcap-pillars-band">
+      <div>
         <div class="pc-kicker">tCAP Pillars</div>
-        <div class="pc-grid3">
-          <a class="pc-card pc-pillar" href="stages.html"><h3>Readiness</h3></a>
-          <a class="pc-card pc-pillar" href="experiential-learning.html"><h3>Experience</h3></a>
-          <a class="pc-card pc-pillar" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer"><h3>Connection</h3></a>
-        </div>
+      </div>
+      <div class="pc-grid3">
+        <a class="pc-pillar" href="stages.html">
+          <span class="pillar-cap"></span>
+          <span class="pillar-thin-top"></span>
+          <span class="pillar-word">Readiness</span>
+          <span class="pillar-thin-bottom"></span>
+          <span class="pillar-base"></span>
+        </a>
+        <a class="pc-pillar" href="experiential-learning.html">
+          <span class="pillar-cap"></span>
+          <span class="pillar-thin-top"></span>
+          <span class="pillar-word">Experience</span>
+          <span class="pillar-thin-bottom"></span>
+          <span class="pillar-base"></span>
+        </a>
+        <a class="pc-pillar" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">
+          <span class="pillar-cap"></span>
+          <span class="pillar-thin-top"></span>
+          <span class="pillar-word">Connection</span>
+          <span class="pillar-thin-bottom"></span>
+          <span class="pillar-base"></span>
+        </a>
+      </div>
 
+      <div>
         <p class="pc-pillars-desc">These are the three pillars that guide the tCAP experience and help students grow professionally and technically.</p>
       </div>
 
@@ -755,7 +819,7 @@
     // never forces a horizontal scrollbar the way CSS `100vw` would. The band
     // is a stretched flex item, so negative side margins make it re-stretch to
     // the full width. Recomputed on resize.
-    const band = root.querySelector('.tcap-advisor-band');
+    const band = root.querySelector('.wf-solid');
     if (band) {
       const applyFullBleed = () => {
         band.style.marginLeft = '0px';
@@ -768,6 +832,18 @@
       applyFullBleed();
       window.addEventListener('resize', applyFullBleed);
     }
+
+    function sizePillarLines() {
+      root.querySelectorAll('.pc-pillar').forEach(function (pillar) {
+        const word = pillar.querySelector('.pillar-word');
+        if (!word) return;
+        const width = Math.ceil(word.getBoundingClientRect().width);
+        pillar.style.setProperty('--word-w', width + 'px');
+      });
+    }
+    sizePillarLines();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(sizePillarLines);
+    window.addEventListener('resize', sizePillarLines);
 
     const steps = Array.from(root.querySelectorAll('.pc-journey-step'));
     if (!steps.length) return;
