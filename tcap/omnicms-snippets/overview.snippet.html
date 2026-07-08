@@ -360,6 +360,9 @@
     gap: 10px;
     align-items: center;
     justify-content: center;
+    background: #006747;
+    border-color: #006747;
+    transition: background 0.15s, border-color 0.15s;
   }
 
   /* Fit-to-text + top anchoring (bottom-row boxes behavior) */
@@ -370,8 +373,14 @@
 
   #tcap-omni-overview-root .pc-journey-step h3 {
     margin: 0;
-    color: #006747;
+    color: #fff;
     font-size: 14px;
+  }
+
+  #tcap-omni-overview-root .pc-journey-step .wf-node {
+    background: #006747;
+    border-color: #fff;
+    color: #fff;
   }
 
   #tcap-omni-overview-root .pc-journey-step:not(:last-child)::after {
@@ -380,7 +389,7 @@
     right: -12px;
     top: 50%;
     transform: translateY(-50%);
-    color: #006747;
+    color: #fff;
     font-size: 18px;
     line-height: 1;
     display: block;
@@ -397,51 +406,26 @@
     color: inherit;
   }
 
-  /* Flip states: green ↔ USF gold. */
-  #tcap-omni-overview-root .pc-journey-step.is-flip-green,
+  /* Hover/focus/tap flips the (permanently green) box to USF gold. */
   #tcap-omni-overview-root .pc-journey-step.is-flip-gold {
-    border-color: #006747;
-  }
-
-  #tcap-omni-overview-root .pc-journey-step.is-flip-green {
-    background: #006747;
-  }
-
-  #tcap-omni-overview-root .pc-journey-step.is-flip-green h3 {
-    color: #fff;
-  }
-
-  #tcap-omni-overview-root .pc-journey-step.is-flip-gold {
-    /* USF gold (approx). */
     background: #f9b81c;
+    border-color: #f9b81c;
   }
 
   #tcap-omni-overview-root .pc-journey-step.is-flip-gold h3 {
     color: #006747;
   }
 
-  #tcap-omni-overview-root .pc-journey-step.is-flip-green:not(:last-child)::after {
-    color: #fff;
-  }
-
   #tcap-omni-overview-root .pc-journey-step.is-flip-gold:not(:last-child)::after {
     color: #006747;
   }
 
-  #tcap-omni-overview-root .pc-journey-step.is-flip-green .pc-step-title,
   #tcap-omni-overview-root .pc-journey-step.is-flip-gold .pc-step-title {
     display: none;
   }
 
-  #tcap-omni-overview-root .pc-journey-step.is-flip-green .pc-step-more,
   #tcap-omni-overview-root .pc-journey-step.is-flip-gold .pc-step-more {
     display: inline;
-  }
-
-  #tcap-omni-overview-root .pc-journey-step.is-flip-green .wf-node {
-    background: #006747;
-    border-color: #fff;
-    color: #fff;
   }
 
   #tcap-omni-overview-root .pc-journey-step.is-flip-gold .wf-node {
@@ -848,45 +832,15 @@
     const steps = Array.from(root.querySelectorAll('.pc-journey-step'));
     if (!steps.length) return;
 
-    let active = null;
-    let flipTimer = null;
-
-    const clearActive = () => {
-      if (flipTimer) window.clearTimeout(flipTimer);
-      flipTimer = null;
-      active = null;
-      steps.forEach((s) => s.classList.remove('is-active', 'is-flip-green', 'is-flip-gold'));
-    };
-
-    const activateGreenThenGold = (step) => {
-      if (!step) return clearActive();
-      clearActive();
-
-      active = step;
-      step.classList.add('is-active', 'is-flip-green');
-      flipTimer = window.setTimeout(() => {
-        if (active !== step) return;
-        step.classList.remove('is-flip-green');
-        step.classList.add('is-flip-gold');
-      }, 220);
-    };
-
-    const activateGold = (step) => {
-      if (!step) return clearActive();
-      if (flipTimer) window.clearTimeout(flipTimer);
-      flipTimer = null;
-      active = step;
-      steps.forEach((s) => s.classList.remove('is-active', 'is-flip-green', 'is-flip-gold'));
-      step.classList.add('is-active', 'is-flip-gold');
-    };
+    const setGold = (step, on) => step.classList.toggle('is-flip-gold', on);
 
     steps.forEach((step) => {
-      step.addEventListener('mouseenter', () => activateGreenThenGold(step));
-      step.addEventListener('mouseleave', () => clearActive());
-      step.addEventListener('focus', () => activateGreenThenGold(step));
-      step.addEventListener('blur', () => clearActive());
-      step.addEventListener('click', () => activateGold(step)); // mobile
-      step.addEventListener('touchstart', () => activateGold(step), { passive: true }); // mobile
+      step.addEventListener('mouseenter', () => setGold(step, true));
+      step.addEventListener('mouseleave', () => setGold(step, false));
+      step.addEventListener('focus', () => setGold(step, true));
+      step.addEventListener('blur', () => setGold(step, false));
+      step.addEventListener('click', () => setGold(step, true)); // mobile
+      step.addEventListener('touchstart', () => setGold(step, true), { passive: true }); // mobile
     });
 
   })();
