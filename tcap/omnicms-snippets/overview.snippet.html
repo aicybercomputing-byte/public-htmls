@@ -101,12 +101,6 @@
     max-width: 680px;
   }
 
-  #tcap-omni-overview-root .pc-grid2 {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
-
   /* Neutralize USF site's owl rule `.content * + * { margin-top: 1.5em }`.
      It adds 24px above every non-first flex/grid child, dropping the 2nd+
      items in each row and making the first item look shifted up / rows
@@ -118,7 +112,6 @@
      one level deep; more-specific component rules declared further below
      override these zeros where an intentional margin-top is needed. */
   #tcap-omni-overview-root .pc-slot > *,
-  #tcap-omni-overview-root .pc-grid2 > *,
   #tcap-omni-overview-root .wf-nav > *,
   #tcap-omni-overview-root .tcap-intro-grid *,
   #tcap-omni-overview-root .tcap-model-header *,
@@ -259,7 +252,7 @@
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 36px;
     align-items: start;
     width: 100%;
@@ -377,15 +370,6 @@
     border-color: #006747;
   }
 
-  /* Info cards in the two-column rows (What is tCAP / Why tCAP matters and
-     Experiential learning / Quick links) are not interactive: no border and
-     no hover highlight. The pillars and journey steps keep theirs. */
-  #tcap-omni-overview-root .pc-grid2 > .pc-card,
-  #tcap-omni-overview-root .pc-grid2 > .pc-card:hover {
-    border: 0;
-    background: #fff;
-  }
-
   #tcap-omni-overview-root .pc-box-label {
     font-size: 20px;
     font-weight: 700;
@@ -403,35 +387,9 @@
     color: #3f3f3f;
   }
 
-  #tcap-omni-overview-root .pc-list {
-    margin: 0;
-    padding-left: 1.25em;
-    list-style: disc;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    flex: 1;
-    justify-content: flex-start;
-  }
-
-  #tcap-omni-overview-root .pc-quick-item {
-    display: block;
-    font-family: inherit;
-    font-size: 14px;
-    line-height: 1.2;
-    color: #006747;
-    text-decoration: none;
-    padding: 0;
-  }
-
-  #tcap-omni-overview-root .pc-quick-item:hover {
-    color: #004d35;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-
-  /* Fit-to-text + top anchoring (bottom-row boxes behavior) */
-  #tcap-omni-overview-root .pc-grid2 > .pc-fill-box {
+  /* Fit-to-text + top anchoring, rather than the base .pc-fill-box's
+     centered/min-height:240px look. */
+  #tcap-omni-overview-root .pc-fill-box {
     min-height: 0;
     justify-content: flex-start;
   }
@@ -443,7 +401,11 @@
 
   #tcap-omni-overview-root .tcap-journey-grid {
     display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    /* minmax(0, 1fr), not bare 1fr: bare 1fr tracks won't shrink below their
+       content's min-content width, so a longer title (e.g. "Targeting
+       Fundamentals") forces its card wider than the others, overflowing the
+       row and bunching the cards to the left instead of spanning evenly. */
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
     gap: 10px;
     align-items: center;
   }
@@ -456,9 +418,11 @@
     color: #fff;
     text-decoration: none;
     display: grid;
-    grid-template-columns: 36px 1fr;
-    grid-template-rows: auto auto;
-    column-gap: 10px;
+    /* Number badge stacked above the title (not beside it): at this card
+       width, a side-by-side badge column leaves too little room for the
+       longest title word ("Fundamentals") to fit without breaking mid-word. */
+    justify-items: center;
+    text-align: center;
     row-gap: 8px;
     align-items: start;
   }
@@ -484,10 +448,10 @@
     letter-spacing: 0.02em;
     text-transform: uppercase;
     font-family: inherit;
+    overflow-wrap: break-word;
   }
 
   #tcap-omni-overview-root .tcap-journey-icon {
-    grid-column: 1 / -1;
     display: flex;
     justify-content: center;
     color: #fff;
@@ -525,10 +489,6 @@
     #tcap-omni-overview-root .stat-box {
       height: auto !important;
       min-height: 0 !important;
-    }
-
-    #tcap-omni-overview-root .pc-grid2 {
-      grid-template-columns: 1fr;
     }
 
     #tcap-omni-overview-root .tcap-intro-grid {
@@ -909,21 +869,10 @@
 
       <p class="tcap-journey-caption">Move through Foundations, build Power Skills, grow Connectivity, and finish with Mastery.</p>
 
-      <div class="pc-grid2">
-        <a class="pc-fill-box pc-card" href="experiential-learning.html">
-          <div class="pc-box-label">Experiential learning</div>
-          <p class="pc-box-body" style="margin:0">Every tCAP student completes applied experiential learning through internships, research, capstones, hackathons, entrepreneurship or other approved opportunities.</p>
-        </a>
-        <div class="pc-fill-box pc-card">
-          <div class="pc-box-label">Quick links</div>
-          <ul class="pc-list">
-            <li><a class="pc-quick-item" href="stages.html">Student experience layers</a></li>
-            <li><a class="pc-quick-item" href="experiential-learning.html">Experiential learning requirements</a></li>
-            <li><a class="pc-quick-item" href="faq.html">Frequently asked questions</a></li>
-            <li><a class="pc-quick-item" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Careers and internships</a></li>
-          </ul>
-        </div>
-      </div>
+      <a class="pc-fill-box pc-card" href="experiential-learning.html">
+        <div class="pc-box-label">Experiential learning</div>
+        <p class="pc-box-body" style="margin:0">Every tCAP student completes applied experiential learning through internships, research, capstones, hackathons, entrepreneurship or other approved opportunities.</p>
+      </a>
     </div>
 
     <div class="wf-box">
