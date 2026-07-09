@@ -5,7 +5,7 @@
   }
 
   #tcap-omni-expl-root {
-    max-width: 880px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 24px;
     font-family: inherit;
@@ -13,538 +13,464 @@
   }
 
   #tcap-omni-expl-root .wf {
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-    padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    font-family: inherit;
-    color: inherit;
+    gap: 28px;
   }
 
-  #tcap-omni-expl-root .wf-img {
-    border: 1.5px solid #b5b3aa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #8b897f;
+  /* Neutralize USF site's owl rule `.content * + * { margin-top: 1.5em }`.
+     It adds ~24px above every non-first child, which misaligns items in a
+     grid/flex row (the first item looks shifted up relative to the rest)
+     and stacks on top of each container's own `gap`. Zero it out on every
+     spacing-bearing container's children so spacing is driven only by
+     `gap`. */
+  #tcap-omni-expl-root .wf > *,
+  #tcap-omni-expl-root .stat-bar > *,
+  #tcap-omni-expl-root .timeline-grid > *,
+  #tcap-omni-expl-root .pathway-grid > *,
+  #tcap-omni-expl-root .pathway-card > *,
+  #tcap-omni-expl-root .wf-nav > * {
+    margin-top: 0;
+  }
+
+  #tcap-omni-expl-root .stat-bar {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+  #tcap-omni-expl-root .stat-box {
+    background: #efeff0;
+    border: 1px solid #b2b2b2;
+    padding: 24px;
+  }
+  #tcap-omni-expl-root .stat-num {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: #006747;
+    line-height: 1.1;
+    margin: 0;
+  }
+  #tcap-omni-expl-root .stat-desc {
     font-size: 13px;
-    height: auto;
-    flex-direction: column;
-    padding: 20px 16px;
+    line-height: 1.4;
+    color: #466069;
+    margin: 10px 0 0;
+  }
+
+  #tcap-omni-expl-root .cta-band {
+    background: #EFEFF0;
+    padding: 24px;
     text-align: center;
   }
-
-  #tcap-omni-expl-root .wf-solid {
-    border: 1.5px solid #6f6f68;
-    background: #f4f4ef;
-    padding: 10px 12px;
-  }
-
-  #tcap-omni-expl-root .wf-box {
-    border: 0;
-    padding: 10px 12px;
-    background: #ffffff;
-  }
-
-  #tcap-omni-expl-root .wf-btn {
+  #tcap-omni-expl-root .snippetButton {
     display: inline-block;
     background: #006747;
     color: #fff;
     border: 2px solid #006747;
     border-radius: 0;
     font-family: inherit;
-    font-size: 1rem;
-    padding: 8px 20px;
-    font-weight: 700;
-    line-height: 1.2;
-    text-align: center;
-    cursor: pointer;
-    box-sizing: border-box;
-  }
-
-  #tcap-omni-expl-root a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  #tcap-omni-expl-root .stat-bar {
-    display: flex;
-    gap: 8px;
-    align-items: stretch;
-  }
-
-  #tcap-omni-expl-root .stat-box {
-    flex: 1;
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    padding: 12px;
-    text-align: left;
-    min-width: 0;
-  }
-
-  #tcap-omni-expl-root .stat-num {
-    font-size: 22px;
-    font-weight: 700;
-    color: #006747;
-    line-height: 1.1;
-    margin: 0 0 6px;
-  }
-
-  #tcap-omni-expl-root .stat-desc {
-    font-size: 13px;
-    line-height: 1.3;
-    color: #2b2b2b;
-    margin: 0 0 6px;
-  }
-
-  #tcap-omni-expl-root .stat-src {
-    font-size: 11px;
-    line-height: 1.25;
-    color: #77756b;
-    margin: 0;
-  }
-
-  #tcap-omni-expl-root .pc-slot {
-    border: 0;
-    background: #ffffff;
-    border-radius: 4px;
-    padding: 18px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    min-height: 240px;
-  }
-
-  #tcap-omni-expl-root .pc-kicker {
-    font-size: 12px;
-    color: #006747;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  #tcap-omni-expl-root .pc-title {
-    font-size: 24px;
-    line-height: 1.1;
-    color: #006747;
-    margin: 0;
-  }
-
-  #tcap-omni-expl-root .pc-copy {
-    font-size: 14px;
-    line-height: 1.35;
-    color: #3f3f3f;
-    margin: 0;
-    max-width: 700px;
-  }
-
-  #tcap-omni-expl-root .pc-grid4 {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 8px;
-  }
-
-  #tcap-omni-expl-root .pc-card {
-    border: 1.5px solid #8a8a82;
-    background: #fff;
-    padding: 12px;
-    border-radius: 3px;
-    min-width: 0;
-  }
-
-  #tcap-omni-expl-root .pc-soft {
-    border: 1.5px dashed #8a8a82;
-    background: #fcfcfa;
-    padding: 12px;
-    border-radius: 3px;
-    font-size: 13px;
-    line-height: 1.35;
-    color: #3f3f3f;
-  }
-
-  #tcap-omni-expl-root .pc-card h3 {
-    font-size: 17px;
-    margin: 0 0 6px;
-    color: #006747;
-    line-height: 1.1;
-  }
-
-  #tcap-omni-expl-root .pc-card p {
-    font-size: 13px;
-    line-height: 1.3;
-    margin: 0;
-    color: #3f3f3f;
-  }
-
-  #tcap-omni-expl-root .pc-step {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 10px;
-    align-items: center;
-  }
-
-  #tcap-omni-expl-root .pc-num {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 2px solid #006747;
-    color: #006747;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    flex: none;
-    box-sizing: border-box;
-  }
-
-  #tcap-omni-expl-root .pc-timeline {
-    display: flex;
-    gap: 8px;
-    align-items: stretch;
-  }
-
-  #tcap-omni-expl-root .pc-timeline .pc-card {
-    flex: 1;
-    position: relative;
-  }
-
-  #tcap-omni-expl-root .pc-timeline .pc-card:not(:last-child)::after {
-    content: '→';
-    position: absolute;
-    right: -12px;
-    top: 44%;
-    color: #006747;
-    font-size: 18px;
-  }
-
-  #tcap-omni-expl-root .pc-timeline .pc-card h3 {
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     font-size: 16px;
-    line-height: 1.1;
+    font-weight: 700;
+    padding: 0.85em 1.6em;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  #tcap-omni-expl-root .snippetButton:hover,
+  #tcap-omni-expl-root .snippetButton:focus {
+    background: #004c35;
+    border-color: #004c35;
   }
 
-  #tcap-omni-expl-root .pc-table {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr 1fr;
-    gap: 0;
-    border: 1.5px solid #8a8a82;
-    background: #fff;
+  #tcap-omni-expl-root .section-header {
+    text-align: center;
   }
-
-  #tcap-omni-expl-root .pc-table div {
-    padding: 9px;
-    border-right: 1px solid #d8d6cd;
-    border-bottom: 1px solid #d8d6cd;
-    font-size: 14px;
-    line-height: 1.4;
-    font-family: inherit;
-    font-weight: 400;
-    color: #3f3f3f;
-  }
-
-  #tcap-omni-expl-root .pc-table div:nth-child(3n) {
-    border-right: none;
-  }
-
-  #tcap-omni-expl-root .pc-table .head {
-    background: #eef4f1;
+  #tcap-omni-expl-root .stylized-label {
+    display: inline-block;
     color: #006747;
+    font-family: "Barlow Condensed", sans-serif;
+    letter-spacing: 1px;
+    padding: 0.25em 1em;
+    text-transform: uppercase;
     font-size: 14px;
     font-weight: 600;
-    line-height: 1.4;
-    font-family: inherit;
+    border-left: 1px solid #9CCB3B;
+    border-right: 1px solid #9CCB3B;
+    transform: skewX(-30.25deg);
   }
-
-  #tcap-omni-expl-root .pc-info-box {
-    border: 1.5px solid #8a8a82;
-    background: #fff;
-    border-radius: 3px;
-    padding: 12px;
-    font-family: inherit;
-    font-size: 14px;
+  #tcap-omni-expl-root .stylized-label span {
+    display: inline-block;
+    transform: skewX(30.25deg);
+  }
+  #tcap-omni-expl-root .section-header h2 {
+    margin: 10px 0 8px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 36px;
+    color: #3f565e;
+    text-transform: uppercase;
+    line-height: 1.15;
+  }
+  #tcap-omni-expl-root .section-header p {
+    margin: 0 auto;
+    max-width: 640px;
+    font-size: 15px;
     line-height: 1.4;
     color: #3f3f3f;
-    width: 100%;
-    box-sizing: border-box;
   }
 
-  #tcap-omni-expl-root .pc-info-source {
+  /* 4-step timeline */
+  #tcap-omni-expl-root .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+  #tcap-omni-expl-root .timeline-card {
+    background: #efeff0;
+    border: 1px solid #b2b2b2;
+    padding: 16px;
+    text-align: center;
     cursor: pointer;
     transition: background 0.15s, border-color 0.15s;
   }
-
-  #tcap-omni-expl-root .pc-info-source:hover {
-    background: #eef4f1;
+  #tcap-omni-expl-root .timeline-card:hover,
+  #tcap-omni-expl-root .timeline-card.is-active {
+    background: #d9e8e4;
     border-color: #006747;
   }
-
-  #tcap-omni-expl-root .pc-info-source.is-active {
-    background: #eef4f1;
-    border-color: #006747;
+  #tcap-omni-expl-root .timeline-num {
+    width: 36px;
+    height: 36px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    background: #006747;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  #tcap-omni-expl-root .timeline-card h3 {
+    margin: 0;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #006747;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
   }
 
-  #tcap-omni-expl-root .pc-info-source:hover .pc-num,
-  #tcap-omni-expl-root .pc-info-source.is-active .pc-num {
+  #tcap-omni-expl-root .info-box {
+    border: 1px solid #b2b2b2;
+    background: #fff;
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #3f3f3f;
+  }
+
+  /* Pathways icon grid */
+  #tcap-omni-expl-root .pathway-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+  #tcap-omni-expl-root .pathway-card {
+    background: #efeff0;
+    border: 1px solid #b2b2b2;
+    padding: 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  #tcap-omni-expl-root .pathway-card:hover,
+  #tcap-omni-expl-root .pathway-card.is-active {
+    background: #d9e8e4;
+    border-color: #006747;
+  }
+  #tcap-omni-expl-root .pathway-badge {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    background: #006747;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  #tcap-omni-expl-root .pathway-label {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #006747;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  /* Requirements table */
+  #tcap-omni-expl-root .req-table {
+    border: 1px solid #b2b2b2;
+  }
+  #tcap-omni-expl-root .req-row {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr;
+  }
+  #tcap-omni-expl-root .req-row + .req-row {
+    border-top: 1px solid #b2b2b2;
+  }
+  #tcap-omni-expl-root .req-row > div {
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #3f3f3f;
+    border-right: 1px solid #b2b2b2;
+  }
+  #tcap-omni-expl-root .req-row > div:last-child {
+    border-right: none;
+  }
+  #tcap-omni-expl-root .req-row.head > div {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #3f3f3f;
+    text-transform: uppercase;
+  }
+  #tcap-omni-expl-root .req-row.head {
+    border-bottom: 3px solid #3f3f3f;
+  }
+
+  #tcap-omni-expl-root .soft-note {
+    border: 1px dashed #8a8a82;
+    background: #fcfcfa;
+    padding: 16px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #3f3f3f;
+  }
+
+  #tcap-omni-expl-root .wf-nav {
+    display: flex;
+    gap: 8px;
+    font-size: 13px;
+    text-align: center;
+    border-top: 1px solid #d8d6cd;
+    padding-top: 20px;
+  }
+  #tcap-omni-expl-root .wf-nav a,
+  #tcap-omni-expl-root .wf-nav div {
+    flex: 1;
+    display: block;
+    background: #fff;
+    color: #006747;
+    border: 1.5px solid #006747;
+    border-radius: 3px;
+    padding: 10px 12px;
+    text-decoration: none;
+  }
+  #tcap-omni-expl-root .wf-nav .is-active {
     background: #006747;
     color: #fff;
   }
 
-  #tcap-omni-expl-root .pc-table .is-row-hover {
-    background: #eef4f1;
-  }
-
-  #tcap-omni-expl-root .pc-highlight-card {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 12px;
-    align-items: center;
-    background: #eef4f1;
-    border: 1.5px solid #006747;
-    border-radius: 3px;
-    padding: 12px;
-  }
-
-  #tcap-omni-expl-root .pc-highlight-media {
-    height: 52px;
-    border: 1.5px dashed #8a8a82;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #006747;
-    font-family: inherit;
-    font-weight: 600;
-  }
-
   @media (max-width: 700px) {
-    #tcap-omni-expl-root .stat-bar {
-      flex-direction: column;
-    }
-
-    #tcap-omni-expl-root .pc-slot {
-      padding: 14px;
-      gap: 12px;
-    }
-
-    #tcap-omni-expl-root .pc-title {
-      font-size: 21px;
-    }
-
-    #tcap-omni-expl-root .pc-copy {
-      font-size: 13px;
-    }
-
-    #tcap-omni-expl-root .pc-grid4,
-    #tcap-omni-expl-root .pc-table {
+    #tcap-omni-expl-root .stat-bar,
+    #tcap-omni-expl-root .timeline-grid {
       grid-template-columns: 1fr;
     }
-
-    #tcap-omni-expl-root .pc-timeline {
-      flex-direction: column;
+    #tcap-omni-expl-root .pathway-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-
-    #tcap-omni-expl-root .pc-timeline .pc-card:not(:last-child)::after {
-      display: none;
+    #tcap-omni-expl-root .req-row {
+      grid-template-columns: 1fr;
     }
-
-    #tcap-omni-expl-root .pc-table div {
+    #tcap-omni-expl-root .req-row > div {
       border-right: none;
+      border-bottom: 1px solid #b2b2b2;
     }
-
-    #tcap-omni-expl-root .pc-card {
-      padding: 11px;
+    #tcap-omni-expl-root .req-row > div:last-child {
+      border-bottom: none;
+    }
+    #tcap-omni-expl-root .wf-nav {
+      flex-wrap: wrap;
+    }
+    #tcap-omni-expl-root .wf-nav a,
+    #tcap-omni-expl-root .wf-nav div {
+      flex: 1 1 45%;
     }
   }
 </style>
 
 <div id="tcap-omni-expl-root">
-  <div class="wf">
+  <div class="wf" data-screen-label="Experiential Learning">
+
     <div class="stat-bar">
       <div class="stat-box">
-        <div class="stat-num">+17.9%</div>
-        <div class="stat-desc">Software developer growth 2023–2033</div>
-        <div class="stat-src">Software developer growth 2023–2033: BLS / MLR 2025.</div>
+        <p class="stat-num">+17.9%</p>
+        <p class="stat-desc">Software developer growth 2023&ndash;2033</p>
       </div>
       <div class="stat-box">
-        <div class="stat-num">546K</div>
-        <div class="stat-desc">Tech workers in Florida (No. 4 nationally)</div>
-        <div class="stat-src">Florida tech workforce count: CompTIA 2025.</div>
+        <p class="stat-num">546K</p>
+        <p class="stat-desc">Tech workers in Florida (No. 4 nationally)</p>
       </div>
       <div class="stat-box">
-        <div class="stat-num">$102,908</div>
-        <div class="stat-desc">Florida tech wage — 122% above state median</div>
-        <div class="stat-src">Median Florida tech wage: CompTIA / Lightcast 2024.</div>
+        <p class="stat-num">$102,908</p>
+        <p class="stat-desc">Florida tech wage &mdash; 122% above state median</p>
       </div>
       <div class="stat-box">
-        <div class="stat-num">12,735</div>
-        <div class="stat-desc">Active Florida job postings requiring AI skills</div>
-        <div class="stat-src">Florida AI-skill job postings: CompTIA 2024.</div>
+        <p class="stat-num">12,735</p>
+        <p class="stat-desc">Active Florida job postings requiring AI skills</p>
       </div>
     </div>
 
-    <div class="wf-solid" style="text-align:center;padding:16px">
-      <span class="wf-btn">Talk to an advisor</span>
+    <div class="cta-band">
+      <a class="snippetButton" href="#">Talk to an advisor</a>
     </div>
 
-    <div class="pc-slot">
-      <div>
-        <p class="pc-copy">Experiential learning is a required component of tCAP and gives students the opportunity to apply classroom knowledge in real-world environments.</p>
+    <div class="section-header">
+      <span class="stylized-label"><span>Experiential Learning</span></span>
+      <h2>How It Works</h2>
+      <p>Experiential learning is a required component of tCAP and gives students the opportunity to apply classroom knowledge in real-world environments.</p>
+    </div>
+
+    <div class="timeline-grid">
+      <div class="timeline-card is-source" data-info="Select an eligible pathway such as an internship, research, capstone, hackathon or study abroad experience.">
+        <div class="timeline-num">1</div>
+        <h3>Choose an experience</h3>
       </div>
-
-      <div>
-        <h3 style="font-size:18px;line-height:1.1;color:#006747;margin:0 0 6px">How it works</h3>
+      <div class="timeline-card is-source" data-info="Pre-approval of a plan of work and faculty mentor or quality supervisor.">
+        <div class="timeline-num">2</div>
+        <h3>Get pre-approval</h3>
       </div>
-
-      <div class="pc-timeline">
-        <div class="pc-card pc-step pc-info-source" data-info="Select an eligible pathway such as an internship, research, capstone, hackathon or study abroad experience.">
-          <div class="pc-num">1</div>
-          <div><h3>Choose an experience</h3></div>
-        </div>
-        <div class="pc-card pc-step pc-info-source" data-info="Pre-approval of a plan of work and faculty mentor or quality supervisor.">
-          <div class="pc-num">2</div>
-          <div><h3>Get pre-approval</h3></div>
-        </div>
-        <div class="pc-card pc-step pc-info-source" data-info="Meet the minimum threshold of 135 verified hours and deliver a mid-point update.">
-          <div class="pc-num">3</div>
-          <div><h3>Complete the work</h3></div>
-        </div>
-        <div class="pc-card pc-step pc-info-source" data-info="Develop and deliver a final report with structured reflection, pass/fail assessment and CIS 4950 notation.">
-          <div class="pc-num">4</div>
-          <div><h3>Reflect and record</h3></div>
-        </div>
+      <div class="timeline-card is-source" data-info="Meet the minimum threshold of 135 verified hours and deliver a mid-point update.">
+        <div class="timeline-num">3</div>
+        <h3>Complete the work</h3>
       </div>
-
-      <div class="pc-info-box" id="pc-stageInfo">Hover to see more info</div>
-
-      <div class="pc-highlight-card">
-        <div class="pc-highlight-media">image</div>
-        <div>
-          <div class="pc-kicker">Approval process</div>
-          <p class="pc-copy">Students work with faculty mentors or approved supervisors to define goals, complete required documentation and track outcomes throughout the experience.</p>
-        </div>
+      <div class="timeline-card is-source" data-info="Develop and deliver a final report with structured reflection, pass/fail assessment and CIS 4950 notation.">
+        <div class="timeline-num">4</div>
+        <h3>Reflect and record</h3>
       </div>
+    </div>
 
-      <div>
-        <div class="pc-kicker">Eligible experiences</div>
-        <h3 style="font-size:18px;line-height:1.1;color:#006747;margin:0 0 6px">Approved pathways</h3>
-        <p class="pc-copy">Eligible experiences include internships, undergraduate research through USF Student Engagement in Research &amp; Innovation, capstone projects, cybersecurity support services, entrepreneurship initiatives, competitions, hackathons and study abroad experiences.</p>
+    <div class="info-box" id="expl-stageInfo">Hover to see more info</div>
+
+    <div class="section-header">
+      <span class="stylized-label"><span>Eligible Experiences</span></span>
+      <h2>Approved Pathways</h2>
+      <p>Eligible experiences include internships, undergraduate research through USF Student Engagement in Research &amp; Innovation, capstone projects, cybersecurity support services, entrepreneurship initiatives, competitions, hackathons and study abroad experiences.</p>
+    </div>
+
+    <div class="pathway-grid">
+      <div class="pathway-card is-source" data-info="Internships.">
+        <span class="pathway-badge">IN</span>
+        <div class="pathway-label">Internships</div>
       </div>
-
-      <div class="pc-grid4">
-        <div class="pc-card pc-info-source" data-info="Internships."><h3>Internships</h3></div>
-        <div class="pc-card pc-info-source" data-info="Undergraduate research through USF Student Engagement in Research &amp; Innovation."><h3>Undergraduate research</h3></div>
-        <div class="pc-card pc-info-source" data-info="Capstone projects."><h3>Capstone projects</h3></div>
-        <div class="pc-card pc-info-source" data-info="Cybersecurity support services."><h3>Cybersecurity support</h3></div>
-        <div class="pc-card pc-info-source" data-info="Entrepreneurship initiatives."><h3>Entrepreneurship</h3></div>
-        <div class="pc-card pc-info-source" data-info="Competitions."><h3>Competitions</h3></div>
-        <div class="pc-card pc-info-source" data-info="Hackathons."><h3>Hackathons</h3></div>
-        <div class="pc-card pc-info-source" data-info="Study abroad experiences."><h3>Study abroad</h3></div>
+      <div class="pathway-card is-source" data-info="Undergraduate research through USF Student Engagement in Research &amp; Innovation.">
+        <span class="pathway-badge">UR</span>
+        <div class="pathway-label">Undergrad Research</div>
       </div>
-
-      <div class="pc-info-box" id="pc-pathwayInfo">Hover to see more info</div>
-
-      <div>
-        <div class="pc-kicker">Requirements</div>
-        <h3 style="font-size:18px;line-height:1.1;color:#006747;margin:0 0 6px">What students need to complete</h3>
+      <div class="pathway-card is-source" data-info="Capstone projects.">
+        <span class="pathway-badge">CP</span>
+        <div class="pathway-label">Capstone Projects</div>
       </div>
+      <div class="pathway-card is-source" data-info="Cybersecurity support services.">
+        <span class="pathway-badge">CS</span>
+        <div class="pathway-label">Cyber Support</div>
+      </div>
+      <div class="pathway-card is-source" data-info="Entrepreneurship initiatives.">
+        <span class="pathway-badge">EN</span>
+        <div class="pathway-label">Entrepreneurship</div>
+      </div>
+      <div class="pathway-card is-source" data-info="Competitions.">
+        <span class="pathway-badge">CO</span>
+        <div class="pathway-label">Competitions</div>
+      </div>
+      <div class="pathway-card is-source" data-info="Hackathons.">
+        <span class="pathway-badge">HA</span>
+        <div class="pathway-label">Hackathons</div>
+      </div>
+      <div class="pathway-card is-source" data-info="Study abroad experiences.">
+        <span class="pathway-badge">SA</span>
+        <div class="pathway-label">Study Abroad</div>
+      </div>
+    </div>
 
-      <div class="pc-table">
-        <div class="head">Requirement</div><div class="head">What it means</div><div class="head">Student output</div>
+    <div class="info-box" id="expl-pathwayInfo">Hover to see more info</div>
+
+    <div class="section-header">
+      <span class="stylized-label"><span>Requirements</span></span>
+      <h2>What Students Need to Complete</h2>
+    </div>
+
+    <div class="req-table">
+      <div class="req-row head">
+        <div>Requirement</div><div>What it means</div><div>Student output</div>
+      </div>
+      <div class="req-row">
         <div>135 verified hours</div><div>Minimum threshold of 135 verified hours</div><div>Tracked hours</div>
+      </div>
+      <div class="req-row">
         <div>Pre-approval</div><div>Pre-approval of a plan of work and faculty mentor or quality supervisor</div><div>Approved plan of work</div>
-        <div>Documentation</div><div>Develop and deliver a plan of work, mid-point update and final report with structured reflection</div><div>Plan, midpoint update and final report</div>
-        <div>Assessment</div><div>Assessment of pass/fail using a common rubric</div><div>Pass/fail result</div>
+      </div>
+      <div class="req-row">
+        <div>Documentation</div><div>Plan of work, mid-point update and final report with structured reflection</div><div>Plan, update and final report</div>
+      </div>
+      <div class="req-row">
+        <div>Assessment</div><div>Pass/fail assessment using a common rubric</div><div>Pass/fail result</div>
+      </div>
+      <div class="req-row">
         <div>CIS 4950</div><div>Recorded as CIS 4950 (badge and transcript notation)</div><div>Badge and transcript notation</div>
       </div>
-
-      <div class="pc-soft">
-        This page will also have more details about the different classes Kurt Friday will be teaching. This is still in the planning phase but needs to be thought about in website design.
-      </div>
-
-      <script>
-      //<![CDATA[
-        (function () {
-          const root = document.getElementById('tcap-omni-expl-root');
-          if (!root) return;
-
-          const defaultText = 'Hover to see more info';
-
-          function setupInfoGroup({ sourceSelector, infoBoxId }) {
-            const infoBox = root.querySelector('#' + infoBoxId);
-            if (!infoBox) return;
-
-            const sources = Array.from(root.querySelectorAll(sourceSelector));
-            if (!sources.length) return;
-
-            const setActive = (source) => {
-              sources.forEach((s) => s.classList.remove('is-active'));
-              if (source) source.classList.add('is-active');
-              infoBox.textContent = source && source.dataset && source.dataset.info ? source.dataset.info : defaultText;
-            };
-
-            // Fix min-height to the tallest option to prevent layout bounce.
-            const original = infoBox.textContent || defaultText;
-            let maxH = 0;
-            sources.forEach((s) => {
-              const t = s.dataset && s.dataset.info ? s.dataset.info : defaultText;
-              infoBox.textContent = t;
-              const h = infoBox.getBoundingClientRect().height;
-              if (h > maxH) maxH = h;
-            });
-            infoBox.textContent = original;
-            if (maxH) infoBox.style.minHeight = maxH + 'px';
-
-            sources.forEach((s) => {
-              s.addEventListener('mouseenter', () => setActive(s));
-              s.addEventListener('mouseleave', () => setActive(null));
-              s.addEventListener('click', () => setActive(s)); // mobile
-              s.addEventListener('touchstart', () => setActive(s), { passive: true }); // mobile
-            });
-          }
-
-          setupInfoGroup({ sourceSelector: '.pc-timeline .pc-info-source', infoBoxId: 'pc-stageInfo' });
-          setupInfoGroup({ sourceSelector: '.pc-grid4 .pc-info-source', infoBoxId: 'pc-pathwayInfo' });
-
-          // Requirements table hover: highlight only the hovered row.
-          const table = root.querySelector('.pc-table');
-          if (table) {
-            const cells = Array.from(table.children);
-            const setRow = (rowIndex, on) => {
-              const start = rowIndex * 3;
-              for (let i = start; i < start + 3 && i < cells.length; i++) {
-                cells[i].classList.toggle('is-row-hover', on);
-              }
-            };
-
-            cells.forEach((cell, idx) => {
-              if (cell.classList.contains('head')) return;
-              const rowIndex = Math.floor(idx / 3);
-              cell.addEventListener('mouseenter', () => setRow(rowIndex, true));
-              cell.addEventListener('mouseleave', () => setRow(rowIndex, false));
-            });
-          }
-        })();
-      //]]>
-      </script>
     </div>
 
-    <div class="wf-box">
-      <div style="display:flex;gap:8px;margin-top:8px;font-size:13px;text-align:center">
-        <a class="wf-box" href="overview.html" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px">Overview</a>
-        <a class="wf-box" href="stages.html" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px">Layers</a>
-        <div style="flex:1;display:block;background:#006747;color:#fff;border:1.5px solid #006747;border-radius:3px;padding:10px 12px">Exp. Learning</div>
-        <a class="wf-box" href="faq.html" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px">FAQ</a>
-        <a class="wf-box" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" style="flex:1;display:block;background:#fff;color:#006747;border:1.5px solid #006747;border-radius:3px;padding:10px 12px" target="_blank" rel="noopener noreferrer">Jobs Page</a>
-      </div>
+    <div class="soft-note">
+      This page will also have more details about the different classes Kurt Friday will be teaching. This is still in the planning phase but needs to be thought about in website design.
     </div>
+
+    <div class="wf-nav">
+      <a href="overview.html">Overview</a>
+      <a href="stages.html">Layers</a>
+      <div class="is-active">Exp. Learning</div>
+      <a href="faq.html">FAQ</a>
+      <a href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a>
+    </div>
+
   </div>
 </div>
 
+<script>
+  //<![CDATA[
+  (function () {
+    const root = document.getElementById('tcap-omni-expl-root');
+    if (!root) return;
+
+    const defaultText = 'Hover to see more info';
+
+    function setupInfoGroup(cardSelector, infoBoxId) {
+      const infoBox = root.querySelector('#' + infoBoxId);
+      if (!infoBox) return;
+      const cards = Array.from(root.querySelectorAll(cardSelector));
+      if (!cards.length) return;
+
+      const setActive = (card) => {
+        cards.forEach((c) => c.classList.remove('is-active'));
+        if (card) card.classList.add('is-active');
+        infoBox.textContent = card && card.dataset.info ? card.dataset.info : defaultText;
+      };
+
+      cards.forEach((card) => {
+        card.addEventListener('mouseenter', () => setActive(card));
+        card.addEventListener('mouseleave', () => setActive(null));
+        card.addEventListener('click', () => setActive(card));
+        card.addEventListener('touchstart', () => setActive(card), { passive: true });
+      });
+    }
+
+    setupInfoGroup('.timeline-card.is-source', 'expl-stageInfo');
+    setupInfoGroup('.pathway-card.is-source', 'expl-pathwayInfo');
+  })();
+  //]]>
+</script>
