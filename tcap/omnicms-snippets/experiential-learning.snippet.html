@@ -25,7 +25,6 @@
      spacing-bearing container's children so spacing is driven only by
      `gap`. */
   #tcap-omni-expl-root .wf > *,
-  #tcap-omni-expl-root .stat-bar > *,
   #tcap-omni-expl-root .timeline-grid > *,
   #tcap-omni-expl-root .pathway-grid > *,
   #tcap-omni-expl-root .pathway-card > *,
@@ -33,45 +32,57 @@
     margin-top: 0;
   }
 
+  /* Stat bar — exact copy of jobs.html's `.jobs-stat-bar` grid plus its real
+     `c-calloutText`/`c-calloutText_heading`/`c-calloutText_text` component
+     and `.all-sources`/`.all-sources-text` citation styling, so these cards
+     render identically to the live jobs page. */
   #tcap-omni-expl-root .stat-bar {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px;
+    gap: 2rem;
+    margin: 2rem 0;
+    align-items: start;
   }
-  #tcap-omni-expl-root .stat-box {
-    background: #efeff0;
-    border: 1px solid #b2b2b2;
-    padding: 24px;
-    min-height: 175px;
+  #tcap-omni-expl-root .stat-bar > * {
+    align-self: start;
+    margin: 2px 0 0 0;
   }
-  #tcap-omni-expl-root .stat-num {
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 700;
-    font-size: 32px;
-    color: #006747;
-    line-height: 1.1;
-    margin: 0;
-  }
-  #tcap-omni-expl-root .stat-desc {
-    font-size: 13px;
-    line-height: 1.4;
-    color: #466069;
-    margin: 10px 0 0;
-  }
-  #tcap-omni-expl-root .stat-source {
-    font-size: 11px;
+  #tcap-omni-expl-root .all-sources {
+    margin-top: 1rem;
+    font-size: 8pt;
     line-height: 1.35;
-    color: #6b6b6b;
-    margin: 12px 0 0;
+    color: #333333;
+  }
+  #tcap-omni-expl-root .all-sources-text {
+    margin: 0;
+    padding: 0;
+    font-size: 8pt;
+    line-height: 1.35;
+    font-weight: 400;
+    color: #333333;
   }
 
-  #tcap-omni-expl-root .cta-band {
+  /* CTA band is extracted outside #tcap-omni-expl-root (same reason as
+     the stylized headers) so its background can bleed edge-to-edge instead
+     of being capped at the root's 900px max-width. Rules below are
+     unprefixed on purpose. `.cta-band-inner` keeps the button centered at a
+     normal readable width inside the full-bleed background. */
+  .cta-band {
     background: #EFEFF0;
     padding: 24px;
     text-align: center;
   }
-  #tcap-omni-expl-root .snippetButton {
-    display: inline-block;
+  .cta-band-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  /* `!important` on display/max-width: the real site's global CSS has
+     `a.snippetButton { display: block; max-width: 200px; }`. `display: block`
+     ignores the ancestor's `text-align: center`, which is what left-aligns
+     the button once this rule loses the specificity fight. */
+  .cta-band .snippetButton {
+    display: inline-block !important;
+    max-width: none !important;
     background: #006747;
     color: #fff;
     border: 2px solid #006747;
@@ -84,8 +95,8 @@
     text-decoration: none;
     cursor: pointer;
   }
-  #tcap-omni-expl-root .snippetButton:hover,
-  #tcap-omni-expl-root .snippetButton:focus {
+  .cta-band .snippetButton:hover,
+  .cta-band .snippetButton:focus {
     background: #004c35;
     border-color: #004c35;
   }
@@ -272,7 +283,10 @@
   }
 
   @media (max-width: 700px) {
-    #tcap-omni-expl-root .stat-bar,
+    #tcap-omni-expl-root .stat-bar {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
     #tcap-omni-expl-root .timeline-grid {
       grid-template-columns: 1fr;
     }
@@ -303,32 +317,46 @@
   <div class="wf" data-screen-label="Experiential Learning">
 
     <div class="stat-bar">
-      <div class="stat-box">
-        <p class="stat-num">+17.9%</p>
-        <p class="stat-desc">Software developer growth 2023&ndash;2033</p>
-        <p class="stat-source">Software developer growth 2023&ndash;2033: <span>BLS / MLR 2025.</span></p>
+      <div class="c-calloutText c-calloutText--gray" style="height: 175px !important;">
+        <h3 class="c-calloutText_heading">+17.9%</h3>
+        <div class="c-calloutText_text">Software developer growth 2023&ndash;2033
+          <section class="all-sources" aria-labelledby="stat-sources-heading">
+            <p class="all-sources-text">Software developer growth 2023&ndash;2033: <span>BLS / MLR 2025.</span></p>
+          </section>
+        </div>
       </div>
-      <div class="stat-box">
-        <p class="stat-num">546K</p>
-        <p class="stat-desc">Tech workers in Florida (No. 4 nationally)</p>
-        <p class="stat-source">Florida tech workforce count: <span>CompTIA 2025.</span></p>
+      <div class="c-calloutText c-calloutText--gray" style="height: 175px !important;">
+        <h3 class="c-calloutText_heading">546K</h3>
+        <div class="c-calloutText_text">Tech workers in Florida (No. 4 nationally)
+          <section class="all-sources" aria-labelledby="stat-sources-heading">
+            <p class="all-sources-text">Florida tech workforce count: <span>CompTIA 2025.</span></p>
+          </section>
+        </div>
       </div>
-      <div class="stat-box">
-        <p class="stat-num">$102,908</p>
-        <p class="stat-desc">Florida tech wage &mdash; 122% above state median</p>
-        <p class="stat-source">Median Florida tech wage: <span>CompTIA / Lightcast 2024.</span></p>
+      <div class="c-calloutText c-calloutText--gray" style="height: 175px !important;">
+        <h3 class="c-calloutText_heading">$102,908</h3>
+        <div class="c-calloutText_text">Florida tech wage &mdash; 122% above state median
+          <section class="all-sources" aria-labelledby="stat-sources-heading">
+            <p class="all-sources-text">Median Florida tech wage: <span>CompTIA / Lightcast 2024.</span></p>
+          </section>
+        </div>
       </div>
-      <div class="stat-box">
-        <p class="stat-num">12,735</p>
-        <p class="stat-desc">Active Florida job postings requiring AI skills</p>
-        <p class="stat-source">Florida AI-skill job postings: <span>CompTIA 2024.</span></p>
+      <div class="c-calloutText c-calloutText--gray" style="height: 175px !important;">
+        <h3 class="c-calloutText_heading">12,735</h3>
+        <div class="c-calloutText_text">Active Florida job postings requiring AI skills
+          <section class="all-sources" aria-labelledby="stat-sources-heading">
+            <p class="all-sources-text">Florida AI-skill job postings: <span>CompTIA 2024.</span></p>
+          </section>
+        </div>
       </div>
     </div>
 
-    <div class="cta-band">
-      <a class="snippetButton" href="#">Talk to an advisor</a>
-    </div>
+  </div>
+</div>
 
+<div class="cta-band">
+  <div class="cta-band-inner">
+    <a class="snippetButton" href="#">Talk to an advisor</a>
   </div>
 </div>
 
