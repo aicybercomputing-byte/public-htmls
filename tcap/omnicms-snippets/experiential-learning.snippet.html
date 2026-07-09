@@ -42,6 +42,7 @@
     background: #efeff0;
     border: 1px solid #b2b2b2;
     padding: 24px;
+    min-height: 175px;
   }
   #tcap-omni-expl-root .stat-num {
     font-family: "Barlow Condensed", sans-serif;
@@ -56,6 +57,12 @@
     line-height: 1.4;
     color: #466069;
     margin: 10px 0 0;
+  }
+  #tcap-omni-expl-root .stat-source {
+    font-size: 11px;
+    line-height: 1.35;
+    color: #6b6b6b;
+    margin: 12px 0 0;
   }
 
   #tcap-omni-expl-root .cta-band {
@@ -83,25 +90,13 @@
     border-color: #004c35;
   }
 
+  /* The small skewed label above each h2 uses the real USF site's own
+     `.stylized-header-container--centered` / `.stylized-header` classes
+     directly (see tmp-usf-v3-secondary.css) instead of a local reimplementation
+     — those classes are already loaded globally on every USF page, so no
+     CSS is needed here at all. */
   #tcap-omni-expl-root .section-header {
     text-align: center;
-  }
-  #tcap-omni-expl-root .stylized-label {
-    display: inline-block;
-    color: #006747;
-    font-family: "Barlow Condensed", sans-serif;
-    letter-spacing: 1px;
-    padding: 0.25em 1em;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: 600;
-    border-left: 1px solid #9CCB3B;
-    border-right: 1px solid #9CCB3B;
-    transform: skewX(-30.25deg);
-  }
-  #tcap-omni-expl-root .stylized-label span {
-    display: inline-block;
-    transform: skewX(30.25deg);
   }
   #tcap-omni-expl-root .section-header h2 {
     margin: 10px 0 8px;
@@ -311,18 +306,22 @@
       <div class="stat-box">
         <p class="stat-num">+17.9%</p>
         <p class="stat-desc">Software developer growth 2023&ndash;2033</p>
+        <p class="stat-source">Software developer growth 2023&ndash;2033: <span>BLS / MLR 2025.</span></p>
       </div>
       <div class="stat-box">
         <p class="stat-num">546K</p>
         <p class="stat-desc">Tech workers in Florida (No. 4 nationally)</p>
+        <p class="stat-source">Florida tech workforce count: <span>CompTIA 2025.</span></p>
       </div>
       <div class="stat-box">
         <p class="stat-num">$102,908</p>
         <p class="stat-desc">Florida tech wage &mdash; 122% above state median</p>
+        <p class="stat-source">Median Florida tech wage: <span>CompTIA / Lightcast 2024.</span></p>
       </div>
       <div class="stat-box">
         <p class="stat-num">12,735</p>
         <p class="stat-desc">Active Florida job postings requiring AI skills</p>
+        <p class="stat-source">Florida AI-skill job postings: <span>CompTIA 2024.</span></p>
       </div>
     </div>
 
@@ -331,7 +330,7 @@
     </div>
 
     <div class="section-header">
-      <span class="stylized-label"><span>Experiential Learning</span></span>
+      <div class="stylized-header-container--centered"><span class="stylized-header"><span>Experiential Learning</span></span></div>
       <h2>How It Works</h2>
       <p>Experiential learning is a required component of tCAP and gives students the opportunity to apply classroom knowledge in real-world environments.</p>
     </div>
@@ -358,7 +357,7 @@
     <div class="info-box" id="expl-stageInfo">Hover to see more info</div>
 
     <div class="section-header">
-      <span class="stylized-label"><span>Eligible Experiences</span></span>
+      <div class="stylized-header-container--centered"><span class="stylized-header"><span>Eligible Experiences</span></span></div>
       <h2>Approved Pathways</h2>
       <p>Eligible experiences include internships, undergraduate research through USF Student Engagement in Research &amp; Innovation, capstone projects, cybersecurity support services, entrepreneurship initiatives, competitions, hackathons and study abroad experiences.</p>
     </div>
@@ -401,7 +400,7 @@
     <div class="info-box" id="expl-pathwayInfo">Hover to see more info</div>
 
     <div class="section-header">
-      <span class="stylized-label"><span>Requirements</span></span>
+      <div class="stylized-header-container--centered"><span class="stylized-header"><span>Requirements</span></span></div>
       <h2>What Students Need to Complete</h2>
     </div>
 
@@ -431,10 +430,10 @@
     </div>
 
     <div class="wf-nav">
-      <a href="overview.html">Overview</a>
-      <a href="stages.html">Layers</a>
+      <a href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/index.aspx">Overview</a>
+      <a href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/stages.aspx">Layers</a>
       <div class="is-active">Exp. Learning</div>
-      <a href="faq.html">FAQ</a>
+      <a href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/faq.aspx">FAQ</a>
       <a href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a>
     </div>
 

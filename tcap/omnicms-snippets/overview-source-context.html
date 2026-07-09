@@ -385,8 +385,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
          <div class="mainContent fullContent">
             
             
-            <div class="u-wrapper">
-               <style>
+            <style>
   /* OmniCMS snippet root + isolation */
   #tcap-omni-overview-root,
   #tcap-omni-overview-root * {
@@ -394,7 +393,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   #tcap-omni-overview-root {
-    max-width: 880px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 24px;
     font-family: inherit;
@@ -402,557 +401,434 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   #tcap-omni-overview-root .wf {
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-    padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    font-family: inherit;
-    color: inherit;
+    gap: 28px;
   }
 
-  #tcap-omni-overview-root .wf-img {
-    border: 1.5px solid #b5b3aa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #8b897f;
+  /* Neutralize USF site's owl rule `.content * + * { margin-top: 1.5em }`.
+     It adds ~24px above every non-first child, which misaligns items in a
+     grid/flex row (the first item looks shifted up relative to the rest)
+     and stacks on top of each container's own `gap`. Zero it out on every
+     spacing-bearing container's children so spacing is driven only by
+     `gap`. */
+  #tcap-omni-overview-root .wf > *,
+  #tcap-omni-overview-root .stat-bar > *,
+  #tcap-omni-overview-root .intro-grid > *,
+  #tcap-omni-overview-root .pillars-grid > *,
+  #tcap-omni-overview-root .journey-grid > *,
+  #tcap-omni-overview-root .pathway-grid > *,
+  #tcap-omni-overview-root .pathway-card > *,
+  #tcap-omni-overview-root .wf-nav > * {
+    margin-top: 0;
+  }
+
+  /* Stat bar — matches the real jobs.html .c-calloutText--gray stat cards,
+     including the small source-citation line under the description. */
+  #tcap-omni-overview-root .stat-bar {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+  #tcap-omni-overview-root .stat-box {
+    background: #efeff0;
+    border: 1px solid #b2b2b2;
+    padding: 24px;
+    min-height: 175px;
+  }
+  #tcap-omni-overview-root .stat-num {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: #006747;
+    line-height: 1.1;
+    margin: 0;
+  }
+  #tcap-omni-overview-root .stat-desc {
     font-size: 13px;
-    height: auto;
-    padding: 24px 16px;
+    line-height: 1.4;
+    color: #466069;
+    margin: 10px 0 0;
+  }
+  #tcap-omni-overview-root .stat-source {
+    font-size: 11px;
+    line-height: 1.35;
+    color: #6b6b6b;
+    margin: 12px 0 0;
+  }
+
+  /* CTA band + real snippetButton */
+  #tcap-omni-overview-root .cta-band {
+    background: #EFEFF0;
+    padding: 24px;
     text-align: center;
-    flex-direction: column;
   }
-
-  #tcap-omni-overview-root .wf-solid {
-    border: 1.5px solid #6f6f68;
-    background: #f4f4ef;
-    padding: 10px 12px;
-  }
-
-  #tcap-omni-overview-root .wf-box {
-    border: 0;
-    padding: 10px 12px;
-    background: #ffffff;
-  }
-
-  #tcap-omni-overview-root .wf-btn {
+  #tcap-omni-overview-root .snippetButton {
     display: inline-block;
     background: #006747;
     color: #fff;
     border: 2px solid #006747;
     border-radius: 0;
     font-family: inherit;
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: 700;
-    padding: 8px 20px;
+    padding: 0.85em 1.6em;
     line-height: 1.2;
     text-align: center;
+    text-decoration: none;
     cursor: pointer;
-    box-sizing: border-box;
+  }
+  #tcap-omni-overview-root .snippetButton:hover,
+  #tcap-omni-overview-root .snippetButton:focus {
+    background: #004c35;
+    border-color: #004c35;
+    color: #fff;
   }
 
-  #tcap-omni-overview-root .wf-node {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    border: 2px solid #006747;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    color: #006747;
-    flex: none;
-    box-sizing: border-box;
-  }
-
-  #tcap-omni-overview-root .pc-slot {
-    border: 0;
-    background: #ffffff;
-    border-radius: 4px;
-    padding: 18px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    min-height: 240px;
-  }
-
-  #tcap-omni-overview-root .pc-kicker {
-    font-size: 12px;
-    color: #006747;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  #tcap-omni-overview-root .pc-title {
-    font-size: 24px;
-    line-height: 1.1;
-    color: #006747;
-    margin: 0;
-  }
-
-  #tcap-omni-overview-root .pc-copy {
-    font-size: 14px;
-    line-height: 1.35;
-    color: #3f3f3f;
-    margin: 0;
-    max-width: 680px;
-  }
-
-  #tcap-omni-overview-root .pc-grid2 {
+  /* Intro cards — c-calloutText */
+  #tcap-omni-overview-root .intro-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  #tcap-omni-overview-root .callout {
+    background: #efeff0;
+    border: 1px solid #b2b2b2;
+    padding: 24px;
+  }
+  #tcap-omni-overview-root .callout h3 {
+    margin: 0 0 8px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.2;
+    color: #006747;
+  }
+  #tcap-omni-overview-root .callout p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #3f3f3f;
   }
 
-  #tcap-omni-overview-root .pc-grid3 {
+  /* The small skewed label above each h2 uses the real USF site's own
+     `.stylized-header-container--centered` / `.stylized-header` classes
+     directly (see tmp-usf-v3-secondary.css) instead of a local reimplementation
+     — those classes are already loaded globally on every USF page, so no
+     CSS is needed here at all. */
+  #tcap-omni-overview-root .section-header {
+    text-align: center;
+  }
+  #tcap-omni-overview-root .section-header h2 {
+    margin: 10px 0 8px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 36px;
+    color: #3f565e;
+    text-transform: uppercase;
+    line-height: 1.15;
+  }
+  #tcap-omni-overview-root .section-header p {
+    margin: 0 auto;
+    max-width: 640px;
+    font-size: 15px;
+    line-height: 1.4;
+    color: #3f3f3f;
+  }
+
+  /* Pillars — c-calloutText cards */
+  #tcap-omni-overview-root .pillars-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
+    gap: 20px;
   }
-
-  #tcap-omni-overview-root .pc-card {
-    border: 1.5px solid #8a8a82;
-    background: #fff;
-    padding: 12px;
-    border-radius: 3px;
-    display: block;
+  #tcap-omni-overview-root .pillar-card {
+    background: #efeff0;
+    border: 1px solid #b2b2b2;
+    padding: 24px;
+    text-align: center;
+    text-decoration: none;
   }
-
-  #tcap-omni-overview-root .pc-green {
-    border-color: #8a8a82;
-    background: #fff;
-  }
-
-  #tcap-omni-overview-root .pc-card h3 {
-    font-size: 20px;
-    margin: 0 0 6px;
+  #tcap-omni-overview-root .pillar-card .pillar-title {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 700;
+    font-size: 22px;
     color: #006747;
-    line-height: 1.1;
-    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 10px;
   }
-
-  #tcap-omni-overview-root .pc-card p {
-    font-family: inherit;
+  #tcap-omni-overview-root .pillar-card p {
+    margin: 0;
     font-size: 14px;
     line-height: 1.4;
-    margin: 0;
     color: #3f3f3f;
-    font-weight: 400;
   }
 
-  #tcap-omni-overview-root .pc-pillars-desc {
-    text-align: center;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 1.35;
-    color: #3f3f3f;
-    margin: 0;
+  /* Student journey — 4-up green strip */
+  #tcap-omni-overview-root .journey-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    background: #006747;
   }
-
-  #tcap-omni-overview-root .pc-pillar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 96px;
-    height: 96px;
-    padding: 0 12px;
-    box-sizing: border-box;
-    transition: background 0.15s, border-color 0.15s;
-  }
-
-  #tcap-omni-overview-root .pc-pillar h3 {
-    font-size: 20px;
-    margin: 0;
-  }
-
-  #tcap-omni-overview-root .pc-pillar:hover {
-    background: #eef4f1;
-    border-color: #006747;
-  }
-
-  #tcap-omni-overview-root .pc-fill-box {
-    padding: 16px;
-    text-align: left;
+  #tcap-omni-overview-root .journey-step {
+    background: #006747;
+    color: #fff;
+    padding: 20px 12px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    transition: background 0.15s, border-color 0.15s;
-    min-height: 240px;
-    justify-content: center;
+    gap: 6px;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
   }
-
-  #tcap-omni-overview-root .pc-fill-box:hover {
-    background: #eef4f1;
-    border-color: #006747;
-  }
-
-  #tcap-omni-overview-root .pc-card:hover {
-    background: #eef4f1;
-    border-color: #006747;
-  }
-
-  #tcap-omni-overview-root .pc-box-label {
-    font-size: 20px;
+  #tcap-omni-overview-root .journey-step .journey-num {
+    font-family: "Barlow Condensed", sans-serif;
     font-weight: 700;
+    font-size: 22px;
+  }
+  #tcap-omni-overview-root .journey-step .journey-title {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  /* Experiential learning teaser + pathway grid */
+  #tcap-omni-overview-root .pathway-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+  #tcap-omni-overview-root .pathway-card {
+    background: #efeff0;
+    border: 1px solid #b2b2b2;
+    padding: 18px;
+    text-align: center;
+    text-decoration: none;
+  }
+  #tcap-omni-overview-root .pathway-badge {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    background: #006747;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  #tcap-omni-overview-root .pathway-label {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
     color: #006747;
     text-transform: uppercase;
     letter-spacing: 0.02em;
-    line-height: 1.1;
-    font-family: inherit;
   }
 
-  #tcap-omni-overview-root .pc-box-body {
-    font-family: inherit;
-    font-size: 14px;
-    line-height: 1.4;
-    color: #3f3f3f;
-  }
-
-  #tcap-omni-overview-root .pc-list {
-    margin: 0;
-    padding-left: 1.25em;
-    list-style: disc;
+  /* Bottom nav */
+  #tcap-omni-overview-root .wf-nav {
     display: flex;
-    flex-direction: column;
-    gap: 0;
-    flex: 1;
-    justify-content: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    text-align: center;
+    border-top: 1px solid #d8d6cd;
+    padding-top: 20px;
   }
-
-  #tcap-omni-overview-root .pc-quick-item {
+  #tcap-omni-overview-root .wf-nav a,
+  #tcap-omni-overview-root .wf-nav div {
+    flex: 1;
     display: block;
-    font-family: inherit;
-    font-size: 14px;
-    line-height: 1.2;
+    background: #fff;
     color: #006747;
+    border: 1.5px solid #006747;
+    border-radius: 3px;
+    padding: 10px 12px;
     text-decoration: none;
-    padding: 0;
   }
-
-  #tcap-omni-overview-root .pc-quick-item:hover {
-    color: #004d35;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-
-  #tcap-omni-overview-root .pc-journey {
-    display: flex;
-    gap: 10px;
-    align-items: stretch;
-  }
-
-  #tcap-omni-overview-root .pc-journey-step {
-    flex: 1;
-    position: relative;
-    padding: 0 12px;
-    min-height: 96px;
-    box-sizing: border-box;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Fit-to-text + top anchoring (bottom-row boxes behavior) */
-  #tcap-omni-overview-root .pc-grid2 > .pc-fill-box {
-    min-height: 0;
-    justify-content: flex-start;
-  }
-
-  #tcap-omni-overview-root .pc-journey-step h3 {
-    margin: 0;
-    color: #006747;
-  }
-
-  #tcap-omni-overview-root .pc-journey-step:not(:last-child)::after {
-    content: '→';
-    position: absolute;
-    right: -12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #006747;
-    font-size: 18px;
-    z-index: 1;
-  }
-
-  #tcap-omni-overview-root .pc-journey-step:hover .wf-node,
-  #tcap-omni-overview-root .pc-journey-step.is-active .wf-node {
+  #tcap-omni-overview-root .wf-nav .is-active {
     background: #006747;
     color: #fff;
   }
 
-  #tcap-omni-overview-root .pc-journey-step:hover,
-  #tcap-omni-overview-root .pc-journey-step.is-active {
-    background: #eef4f1;
-    border-color: #006747;
-  }
-
   @media (max-width: 700px) {
-    #tcap-omni-overview-root .stat-bar {
-      flex-direction: column;
-    }
-
-    #tcap-omni-overview-root .pc-grid2,
-    #tcap-omni-overview-root .pc-grid3 {
+    #tcap-omni-overview-root .stat-bar,
+    #tcap-omni-overview-root .intro-grid,
+    #tcap-omni-overview-root .pillars-grid {
       grid-template-columns: 1fr;
     }
-  }
-
-  /* Stat bar */
-  #tcap-omni-overview-root .stat-bar {
-    display: flex;
-    gap: 8px;
-    align-items: stretch;
-  }
-
-  #tcap-omni-overview-root .stat-box {
-    flex: 1;
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    padding: 12px;
-    text-align: left;
-    min-width: 0;
-  }
-
-  #tcap-omni-overview-root .stat-num {
-    font-family: inherit;
-    font-size: 22px;
-    font-weight: 700;
-    color: #006747;
-    line-height: 1.1;
-    margin: 0 0 6px;
-  }
-
-  #tcap-omni-overview-root .stat-desc {
-    font-family: inherit;
-    font-size: 13px;
-    line-height: 1.3;
-    color: #2b2b2b;
-    margin: 0 0 6px;
-  }
-
-  #tcap-omni-overview-root .stat-src {
-    font-family: inherit;
-    font-size: 11px;
-    line-height: 1.25;
-    color: #77756b;
-    margin: 0;
+    #tcap-omni-overview-root .journey-grid,
+    #tcap-omni-overview-root .pathway-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    #tcap-omni-overview-root .wf-nav {
+      flex-wrap: wrap;
+    }
+    #tcap-omni-overview-root .wf-nav a,
+    #tcap-omni-overview-root .wf-nav div {
+      flex: 1 1 45%;
+    }
   }
 </style>
+            
+            <div id="tcap-omni-overview-root">
                
-               <div id="tcap-omni-overview-root">
+               <div class="wf" data-screen-label="Overview">
                   
-                  <div class="wf">
+                  <div class="stat-bar">
                      
-                     <div class="stat-bar">
+                     <div class="stat-box">
                         
-                        <div class="stat-box">
-                           
-                           <div class="stat-num">+17.9%</div>
-                           
-                           <div class="stat-desc">Software developer growth 2023–2033</div>
-                           
-                           <div class="stat-src">Software developer growth 2023–2033: BLS / MLR 2025.</div>
-                           </div>
+                        <p class="stat-num">+17.9%</p>
                         
-                        <div class="stat-box">
-                           
-                           <div class="stat-num">546K</div>
-                           
-                           <div class="stat-desc">Tech workers in Florida (No. 4 nationally)</div>
-                           
-                           <div class="stat-src">Florida tech workforce count: CompTIA 2025.</div>
-                           </div>
+                        <p class="stat-desc">Software developer growth 2023–2033</p>
                         
-                        <div class="stat-box">
-                           
-                           <div class="stat-num">$102,908</div>
-                           
-                           <div class="stat-desc">Florida tech wage — 122% above state median</div>
-                           
-                           <div class="stat-src">Median Florida tech wage: CompTIA / Lightcast 2024.</div>
-                           </div>
-                        
-                        <div class="stat-box">
-                           
-                           <div class="stat-num">12,735</div>
-                           
-                           <div class="stat-desc">Active Florida job postings requiring AI skills</div>
-                           
-                           <div class="stat-src">Florida AI-skill job postings: CompTIA 2024.</div>
-                           </div>
+                        <p class="stat-source">Software developer growth 2023–2033: <span>BLS / MLR 2025.</span></p>
                         </div>
                      
-                     <div class="wf-solid" style="text-align: center; padding: 16px;"><span class="wf-btn">Talk to an advisor</span></div>
-                     
-                     <div class="pc-slot">
+                     <div class="stat-box">
                         
-                        <div class="pc-grid2">
-                           
-                           <div class="pc-card pc-green">
-                              
-                              <h3>What is tCAP?</h3>
-                              
-                              <p>tCAP is a structured, multiyear career development program designed exclusively for
-                                 Bellini College students. Instead of waiting until their final year to focus on internships
-                                 and career preparation, tCAP helps students steadily build experience, skills and
-                                 professional connections throughout their academic journey.</p>
-                              </div>
-                           
-                           <div class="pc-card">
-                              
-                              <h3>Why tCAP matters</h3>
-                              
-                              <p>Employers increasingly seek graduates who can communicate effectively, collaborate
-                                 on teams, solve applied problems and contribute immediately in professional environments.
-                                 tCAP combines career readiness, experiential learning and employer engagement to help
-                                 develop those capabilities before graduation.</p>
-                              </div>
-                           </div>
+                        <p class="stat-num">546K</p>
                         
-                        <div>
-                           
-                           <div class="pc-kicker">tCAP Pillars</div>
-                           </div>
+                        <p class="stat-desc">Tech workers in Florida (No. 4 nationally)</p>
                         
-                        <div class="pc-grid3"><a class="pc-card pc-pillar" href="https://www.usf.edu/stages.html">
-                              
-                              <h3>Readiness</h3>
-                              </a> <a class="pc-card pc-pillar" href="https://www.usf.edu/experiential-learning.html">
-                              
-                              <h3>Experience</h3>
-                              </a> <a class="pc-card pc-pillar" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">
-                              
-                              <h3>Connection</h3>
-                              </a></div>
-                        
-                        <div>
-                           
-                           <p class="pc-pillars-desc">These are the three pillars that guide the tCAP experience and help students grow
-                              professionally and technically.</p>
-                           </div>
-                        
-                        <div>
-                           
-                           <div class="pc-kicker">Student journey</div>
-                           </div>
-                        
-                        <div class="pc-journey"><a class="pc-card pc-journey-step" href="https://www.usf.edu/stages.html#foundations">
-                              
-                              <div class="wf-node">1</div>
-                              
-                              <h3>Targeting Fundamentals</h3>
-                              </a> <a class="pc-card pc-journey-step" href="https://www.usf.edu/stages.html#power-skills">
-                              
-                              <div class="wf-node">2</div>
-                              
-                              <h3>Core Application</h3>
-                              </a> <a class="pc-card pc-journey-step" href="https://www.usf.edu/stages.html#connectivity">
-                              
-                              <div class="wf-node">3</div>
-                              
-                              <h3>Advanced Practice</h3>
-                              </a> <a class="pc-card pc-journey-step" href="https://www.usf.edu/stages.html#mastery">
-                              
-                              <div class="wf-node">4</div>
-                              
-                              <h3>Professional Mastery</h3>
-                              </a></div>
-                        
-                        <div>
-                           
-                           <p class="pc-pillars-desc">Move through Foundations, build Power Skills, grow Connectivity, and finish with Mastery.</p>
-                           </div>
-                        
-                        <div class="pc-grid2"><a class="pc-fill-box pc-card" href="https://www.usf.edu/experiential-learning.html">
-                              
-                              <div class="pc-box-label">Experiential learning</div>
-                              
-                              <p class="pc-box-body" style="margin: 0;">Every tCAP student completes applied experiential learning through internships, research,
-                                 capstones, hackathons, entrepreneurship or other approved opportunities.</p>
-                              </a>
-                           
-                           <div class="pc-fill-box pc-card">
-                              
-                              <div class="pc-box-label">Quick links</div>
-                              
-                              <ul class="pc-list">
-                                 
-                                 <li><a class="pc-quick-item" href="https://www.usf.edu/stages.html">Student experience layers</a></li>
-                                 
-                                 <li><a class="pc-quick-item" href="https://www.usf.edu/experiential-learning.html">Experiential learning requirements</a></li>
-                                 
-                                 <li><a class="pc-quick-item" href="https://www.usf.edu/faq.html">Frequently asked questions</a></li>
-                                 
-                                 <li><a class="pc-quick-item" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Careers and internships</a></li>
-                                 </ul>
-                              </div>
-                           </div>
+                        <p class="stat-source">Florida tech workforce count: <span>CompTIA 2025.</span></p>
                         </div>
                      
-                     <div class="wf-box">
+                     <div class="stat-box">
                         
-                        <div style="display: flex; gap: 8px; margin-top: 8px; font-size: 13px; text-align: center;">
-                           
-                           <div style="flex: 1; display: block; background: #006747; color: #fff; border: 1.5px solid #006747; border-radius: 3px; padding: 10px 12px;">Overview</div>
-                           <a class="wf-box" style="flex: 1; display: block; background: #fff; color: #006747; border: 1.5px solid #006747; border-radius: 3px; padding: 10px 12px;" href="https://www.usf.edu/stages.html">Layers</a> <a class="wf-box" style="flex: 1; display: block; background: #fff; color: #006747; border: 1.5px solid #006747; border-radius: 3px; padding: 10px 12px;" href="https://www.usf.edu/experiential-learning.html">Exp. Learning</a> <a class="wf-box" style="flex: 1; display: block; background: #fff; color: #006747; border: 1.5px solid #006747; border-radius: 3px; padding: 10px 12px;" href="https://www.usf.edu/faq.html">FAQ</a> <a class="wf-box" style="flex: 1; display: block; background: #fff; color: #006747; border: 1.5px solid #006747; border-radius: 3px; padding: 10px 12px;" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a></div>
+                        <p class="stat-num">$102,908</p>
+                        
+                        <p class="stat-desc">Florida tech wage — 122% above state median</p>
+                        
+                        <p class="stat-source">Median Florida tech wage: <span>CompTIA / Lightcast 2024.</span></p>
+                        </div>
+                     
+                     <div class="stat-box">
+                        
+                        <p class="stat-num">12,735</p>
+                        
+                        <p class="stat-desc">Active Florida job postings requiring AI skills</p>
+                        
+                        <p class="stat-source">Florida AI-skill job postings: <span>CompTIA 2024.</span></p>
                         </div>
                      </div>
+                  
+                  <div class="cta-band"><a class="snippetButton" href="#">Talk to an advisor</a></div>
+                  
+                  <div class="intro-grid">
+                     
+                     <div class="callout">
+                        
+                        <h3>What is tCAP?</h3>
+                        
+                        <p>tCAP is a structured, multiyear career development program designed exclusively for
+                           Bellini College students. Instead of waiting until their final year to focus on internships
+                           and career preparation, tCAP helps students steadily build experience, skills and
+                           professional connections throughout their academic journey.</p>
+                        </div>
+                     
+                     <div class="callout">
+                        
+                        <h3>Why tCAP matters</h3>
+                        
+                        <p>Employers increasingly seek graduates who can communicate effectively, collaborate
+                           on teams, solve applied problems and contribute immediately in professional environments.
+                           tCAP combines career readiness, experiential learning and employer engagement to help
+                           develop those capabilities before graduation.</p>
+                        </div>
+                     </div>
+                  
+                  <div class="section-header">
+                     
+                     <div class="stylized-header-container--centered"><span class="stylized-header"><span>The tCAP Model</span></span></div>
+                     
+                     <h2>Three Pillars. Endless Possibilities.</h2>
+                     
+                     <p>The tCAP experience is built on three pillars that work together to develop your career
+                        readiness, applied skills and professional network.</p>
+                     </div>
+                  
+                  <div class="pillars-grid"><a class="pillar-card" href="https://www.usf.edu/stages.html">
+                        
+                        <p class="pillar-title">Readiness</p>
+                        
+                        <p>Build the foundation with self-awareness, goal setting and essential professional
+                           skills to launch your career with confidence.</p>
+                        </a> <a class="pillar-card" href="https://www.usf.edu/experiential-learning.html">
+                        
+                        <p class="pillar-title">Experience</p>
+                        
+                        <p>Learn by doing. Apply what you know through projects, internships, externships, research
+                           and performance-based learning.</p>
+                        </a> <a class="pillar-card" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">
+                        
+                        <p class="pillar-title">Connection</p>
+                        
+                        <p>Grow your network and collaborate with peers, mentors and employers who open doors
+                           to opportunities and long-term success.</p>
+                        </a></div>
+                  
+                  <div class="section-header">
+                     
+                     <div class="stylized-header-container--centered"><span class="stylized-header"><span>Student Journey</span></span></div>
+                     
+                     <h2>A Four-Stage Path to Career Readiness</h2>
+                     
+                     <p>Each stage builds on the last, so students keep developing career readiness, technical
+                        confidence and professional experience all the way to graduation.</p>
+                     </div>
+                  
+                  <div class="journey-grid"><a class="journey-step" href="https://www.usf.edu/stages.html#foundations"> <span class="journey-num">01</span> <span class="journey-title">Targeting<br>Fundamentals</span> </a> <a class="journey-step" href="https://www.usf.edu/stages.html#power-skills"> <span class="journey-num">02</span> <span class="journey-title">Core<br>Application</span> </a> <a class="journey-step" href="https://www.usf.edu/stages.html#connectivity"> <span class="journey-num">03</span> <span class="journey-title">Advanced<br>Practice</span> </a> <a class="journey-step" href="https://www.usf.edu/stages.html#mastery"> <span class="journey-num">04</span> <span class="journey-title">Professional<br>Mastery</span> </a></div>
+                  
+                  <div class="section-header">
+                     
+                     <div class="stylized-header-container--centered"><span class="stylized-header"><span>Experiential Learning</span></span></div>
+                     
+                     <h2>Learn by Doing, on Real Deliverables</h2>
+                     
+                     <p>Every tCAP student completes applied experiential learning through internships, research,
+                        capstones, hackathons, entrepreneurship or other approved opportunities.</p>
+                     </div>
+                  
+                  <div class="pathway-grid"><a class="pathway-card" href="https://www.usf.edu/experiential-learning.html"> <span class="pathway-badge">IN</span>
+                        
+                        <div class="pathway-label">Internships</div>
+                        </a> <a class="pathway-card" href="https://www.usf.edu/experiential-learning.html"> <span class="pathway-badge">UR</span>
+                        
+                        <div class="pathway-label">Undergrad Research</div>
+                        </a> <a class="pathway-card" href="https://www.usf.edu/experiential-learning.html"> <span class="pathway-badge">CP</span>
+                        
+                        <div class="pathway-label">Capstone Projects</div>
+                        </a> <a class="pathway-card" href="https://www.usf.edu/experiential-learning.html"> <span class="pathway-badge">CS</span>
+                        
+                        <div class="pathway-label">Cyber Support</div>
+                        </a> <a class="pathway-card" href="https://www.usf.edu/experiential-learning.html"> <span class="pathway-badge">EN</span>
+                        
+                        <div class="pathway-label">Entrepreneurship</div>
+                        </a> <a class="pathway-card" href="https://www.usf.edu/experiential-learning.html"> <span class="pathway-badge">CO</span>
+                        
+                        <div class="pathway-label">Competitions</div>
+                        </a> <a class="pathway-card" href="https://www.usf.edu/experiential-learning.html"> <span class="pathway-badge">HA</span>
+                        
+                        <div class="pathway-label">Hackathons</div>
+                        </a> <a class="pathway-card" href="https://www.usf.edu/experiential-learning.html"> <span class="pathway-badge">SA</span>
+                        
+                        <div class="pathway-label">Study Abroad</div>
+                        </a></div>
+                  
+                  <div class="wf-nav">
+                     
+                     <div class="is-active">Overview</div>
+                     <a href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/stages.aspx">Layers</a> <a href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/experiential-learning.aspx">Exp. Learning</a> <a href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/faq.aspx">FAQ</a> <a href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a></div>
                   </div>
-               <script>
-  //
-  (function () {
-    const root = document.getElementById('tcap-omni-overview-root');
-    if (!root) return;
-
-    const steps = Array.from(root.querySelectorAll('.pc-journey-step'));
-    if (!steps.length) return;
-
-    let active = null;
-    const setActive = (step) => {
-      steps.forEach((s) => s.classList.remove('is-active'));
-      active = step || null;
-      if (active) active.classList.add('is-active');
-    };
-
-    steps.forEach((step) => {
-      step.addEventListener('mouseenter', () => setActive(step));
-      step.addEventListener('mouseleave', () => setActive(null));
-      step.addEventListener('click', () => setActive(step)); // mobile
-      step.addEventListener('touchstart', () => setActive(step), { passive: true }); // mobile
-    });
-
-    // Equalize journey-step heights after first render.
-    // Prevents first tile visual offset when rendering/wrapping differs.
-    const syncJourneyStepHeights = () => {
-      steps.forEach((s) => {
-        s.style.minHeight = '';
-      });
-
-      let maxH = 0;
-      steps.forEach((s) => {
-        const h = s.getBoundingClientRect().height;
-        if (h > maxH) maxH = h;
-      });
-      if (!maxH) return;
-
-      steps.forEach((s) => {
-        s.style.minHeight = maxH + 'px';
-      });
-    };
-
-    syncJourneyStepHeights();
-    window.addEventListener('resize', () => syncJourneyStepHeights());
-  })();
-  //
-</script></div>
+               </div>
             
             </div>
       </div>

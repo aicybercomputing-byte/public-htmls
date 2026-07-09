@@ -25,28 +25,32 @@
      and stacks on top of each container's own `gap`. Zero it out on every
      spacing-bearing container's children so spacing is driven only by
      `gap`. */
-  #tcap-omni-overview-root .wf > *,
-  #tcap-omni-overview-root .stat-bar > *,
-  #tcap-omni-overview-root .intro-grid > *,
-  #tcap-omni-overview-root .pillars-grid > *,
-  #tcap-omni-overview-root .journey-grid > *,
-  #tcap-omni-overview-root .pathway-grid > *,
-  #tcap-omni-overview-root .pathway-card > *,
-  #tcap-omni-overview-root .wf-nav > * {
+  #tcap-omni-overview-root .wf>*,
+  #tcap-omni-overview-root .stat-bar>*,
+  #tcap-omni-overview-root .intro-grid>*,
+  #tcap-omni-overview-root .pillars-grid>*,
+  #tcap-omni-overview-root .journey-grid>*,
+  #tcap-omni-overview-root .pathway-grid>*,
+  #tcap-omni-overview-root .pathway-card>*,
+  #tcap-omni-overview-root .wf-nav>* {
     margin-top: 0;
   }
 
-  /* Stat bar — real USF .c-calloutText--green treatment */
+  /* Stat bar — matches the real jobs.html .c-calloutText--gray stat cards,
+     including the small source-citation line under the description. */
   #tcap-omni-overview-root .stat-bar {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 16px;
   }
+
   #tcap-omni-overview-root .stat-box {
     background: #efeff0;
     border: 1px solid #b2b2b2;
     padding: 24px;
+    min-height: 175px;
   }
+
   #tcap-omni-overview-root .stat-num {
     font-family: "Barlow Condensed", sans-serif;
     font-weight: 700;
@@ -55,11 +59,19 @@
     line-height: 1.1;
     margin: 0;
   }
+
   #tcap-omni-overview-root .stat-desc {
     font-size: 13px;
     line-height: 1.4;
     color: #466069;
     margin: 10px 0 0;
+  }
+
+  #tcap-omni-overview-root .stat-source {
+    font-size: 11px;
+    line-height: 1.35;
+    color: #6b6b6b;
+    margin: 12px 0 0;
   }
 
   /* CTA band + real snippetButton */
@@ -68,6 +80,7 @@
     padding: 24px;
     text-align: center;
   }
+
   #tcap-omni-overview-root .snippetButton {
     display: inline-block;
     background: #006747;
@@ -83,6 +96,7 @@
     text-decoration: none;
     cursor: pointer;
   }
+
   #tcap-omni-overview-root .snippetButton:hover,
   #tcap-omni-overview-root .snippetButton:focus {
     background: #004c35;
@@ -96,11 +110,13 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
+
   #tcap-omni-overview-root .callout {
     background: #efeff0;
     border: 1px solid #b2b2b2;
     padding: 24px;
   }
+
   #tcap-omni-overview-root .callout h3 {
     margin: 0 0 8px;
     font-family: "Barlow Condensed", sans-serif;
@@ -109,6 +125,7 @@
     line-height: 1.2;
     color: #006747;
   }
+
   #tcap-omni-overview-root .callout p {
     margin: 0;
     font-size: 14px;
@@ -116,27 +133,15 @@
     color: #3f3f3f;
   }
 
-  /* Stylized skewed section label, matching the real USF .stylized-header component */
+  /* The small skewed label above each h2 uses the real USF site's own
+     `.stylized-header-container--centered` / `.stylized-header` classes
+     directly (see tmp-usf-v3-secondary.css) instead of a local reimplementation
+     — those classes are already loaded globally on every USF page, so no
+     CSS is needed here at all. */
   #tcap-omni-overview-root .section-header {
     text-align: center;
   }
-  #tcap-omni-overview-root .stylized-label {
-    display: inline-block;
-    color: #006747;
-    font-family: "Barlow Condensed", sans-serif;
-    letter-spacing: 1px;
-    padding: 0.25em 1em;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: 600;
-    border-left: 1px solid #9CCB3B;
-    border-right: 1px solid #9CCB3B;
-    transform: skewX(-30.25deg);
-  }
-  #tcap-omni-overview-root .stylized-label span {
-    display: inline-block;
-    transform: skewX(30.25deg);
-  }
+
   #tcap-omni-overview-root .section-header h2 {
     margin: 10px 0 8px;
     font-family: "Barlow Condensed", sans-serif;
@@ -146,6 +151,7 @@
     text-transform: uppercase;
     line-height: 1.15;
   }
+
   #tcap-omni-overview-root .section-header p {
     margin: 0 auto;
     max-width: 640px;
@@ -160,6 +166,7 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
   }
+
   #tcap-omni-overview-root .pillar-card {
     background: #efeff0;
     border: 1px solid #b2b2b2;
@@ -167,6 +174,7 @@
     text-align: center;
     text-decoration: none;
   }
+
   #tcap-omni-overview-root .pillar-card .pillar-title {
     font-family: "Barlow Condensed", sans-serif;
     font-weight: 700;
@@ -176,6 +184,7 @@
     letter-spacing: 0.04em;
     margin: 0 0 10px;
   }
+
   #tcap-omni-overview-root .pillar-card p {
     margin: 0;
     font-size: 14px;
@@ -190,6 +199,7 @@
     gap: 1px;
     background: #006747;
   }
+
   #tcap-omni-overview-root .journey-step {
     background: #006747;
     color: #fff;
@@ -201,11 +211,13 @@
     text-align: center;
     text-decoration: none;
   }
+
   #tcap-omni-overview-root .journey-step .journey-num {
     font-family: "Barlow Condensed", sans-serif;
     font-weight: 700;
     font-size: 22px;
   }
+
   #tcap-omni-overview-root .journey-step .journey-title {
     font-family: "Barlow Condensed", sans-serif;
     font-weight: 600;
@@ -221,6 +233,7 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 16px;
   }
+
   #tcap-omni-overview-root .pathway-card {
     background: #efeff0;
     border: 1px solid #b2b2b2;
@@ -228,6 +241,7 @@
     text-align: center;
     text-decoration: none;
   }
+
   #tcap-omni-overview-root .pathway-badge {
     width: 44px;
     height: 44px;
@@ -241,6 +255,7 @@
     font-weight: 700;
     font-size: 15px;
   }
+
   #tcap-omni-overview-root .pathway-label {
     font-family: "Barlow Condensed", sans-serif;
     font-weight: 600;
@@ -259,6 +274,7 @@
     border-top: 1px solid #d8d6cd;
     padding-top: 20px;
   }
+
   #tcap-omni-overview-root .wf-nav a,
   #tcap-omni-overview-root .wf-nav div {
     flex: 1;
@@ -270,24 +286,29 @@
     padding: 10px 12px;
     text-decoration: none;
   }
+
   #tcap-omni-overview-root .wf-nav .is-active {
     background: #006747;
     color: #fff;
   }
 
   @media (max-width: 700px) {
+
     #tcap-omni-overview-root .stat-bar,
     #tcap-omni-overview-root .intro-grid,
     #tcap-omni-overview-root .pillars-grid {
       grid-template-columns: 1fr;
     }
+
     #tcap-omni-overview-root .journey-grid,
     #tcap-omni-overview-root .pathway-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
     #tcap-omni-overview-root .wf-nav {
       flex-wrap: wrap;
     }
+
     #tcap-omni-overview-root .wf-nav a,
     #tcap-omni-overview-root .wf-nav div {
       flex: 1 1 45%;
@@ -302,18 +323,22 @@
       <div class="stat-box">
         <p class="stat-num">+17.9%</p>
         <p class="stat-desc">Software developer growth 2023&ndash;2033</p>
+        <p class="stat-source">Software developer growth 2023&ndash;2033: <span>BLS / MLR 2025.</span></p>
       </div>
       <div class="stat-box">
         <p class="stat-num">546K</p>
         <p class="stat-desc">Tech workers in Florida (No. 4 nationally)</p>
+        <p class="stat-source">Florida tech workforce count: <span>CompTIA 2025.</span></p>
       </div>
       <div class="stat-box">
         <p class="stat-num">$102,908</p>
         <p class="stat-desc">Florida tech wage &mdash; 122% above state median</p>
+        <p class="stat-source">Median Florida tech wage: <span>CompTIA / Lightcast 2024.</span></p>
       </div>
       <div class="stat-box">
         <p class="stat-num">12,735</p>
         <p class="stat-desc">Active Florida job postings requiring AI skills</p>
+        <p class="stat-source">Florida AI-skill job postings: <span>CompTIA 2024.</span></p>
       </div>
     </div>
 
@@ -324,39 +349,51 @@
     <div class="intro-grid">
       <div class="callout">
         <h3>What is tCAP?</h3>
-        <p>tCAP is a structured, multiyear career development program designed exclusively for Bellini College students. Instead of waiting until their final year to focus on internships and career preparation, tCAP helps students steadily build experience, skills and professional connections throughout their academic journey.</p>
+        <p>tCAP is a structured, multiyear career development program designed exclusively for Bellini College students.
+          Instead of waiting until their final year to focus on internships and career preparation, tCAP helps students
+          steadily build experience, skills and professional connections throughout their academic journey.</p>
       </div>
       <div class="callout">
         <h3>Why tCAP matters</h3>
-        <p>Employers increasingly seek graduates who can communicate effectively, collaborate on teams, solve applied problems and contribute immediately in professional environments. tCAP combines career readiness, experiential learning and employer engagement to help develop those capabilities before graduation.</p>
+        <p>Employers increasingly seek graduates who can communicate effectively, collaborate on teams, solve applied
+          problems and contribute immediately in professional environments. tCAP combines career readiness, experiential
+          learning and employer engagement to help develop those capabilities before graduation.</p>
       </div>
     </div>
 
     <div class="section-header">
-      <span class="stylized-label"><span>The tCAP Model</span></span>
+      <div class="stylized-header-container--centered"><span class="stylized-header"><span>The tCAP Model</span></span>
+      </div>
       <h2>Three Pillars. Endless Possibilities.</h2>
-      <p>The tCAP experience is built on three pillars that work together to develop your career readiness, applied skills and professional network.</p>
+      <p>The tCAP experience is built on three pillars that work together to develop your career readiness, applied
+        skills and professional network.</p>
     </div>
 
     <div class="pillars-grid">
       <a class="pillar-card" href="stages.html">
         <p class="pillar-title">Readiness</p>
-        <p>Build the foundation with self-awareness, goal setting and essential professional skills to launch your career with confidence.</p>
+        <p>Build the foundation with self-awareness, goal setting and essential professional skills to launch your
+          career with confidence.</p>
       </a>
       <a class="pillar-card" href="experiential-learning.html">
         <p class="pillar-title">Experience</p>
-        <p>Learn by doing. Apply what you know through projects, internships, externships, research and performance-based learning.</p>
+        <p>Learn by doing. Apply what you know through projects, internships, externships, research and
+          performance-based learning.</p>
       </a>
-      <a class="pillar-card" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">
+      <a class="pillar-card" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx"
+        target="_blank" rel="noopener noreferrer">
         <p class="pillar-title">Connection</p>
-        <p>Grow your network and collaborate with peers, mentors and employers who open doors to opportunities and long-term success.</p>
+        <p>Grow your network and collaborate with peers, mentors and employers who open doors to opportunities and
+          long-term success.</p>
       </a>
     </div>
 
     <div class="section-header">
-      <span class="stylized-label"><span>Student Journey</span></span>
+      <div class="stylized-header-container--centered"><span class="stylized-header"><span>Student Journey</span></span>
+      </div>
       <h2>A Four-Stage Path to Career Readiness</h2>
-      <p>Each stage builds on the last, so students keep developing career readiness, technical confidence and professional experience all the way to graduation.</p>
+      <p>Each stage builds on the last, so students keep developing career readiness, technical confidence and
+        professional experience all the way to graduation.</p>
     </div>
 
     <div class="journey-grid">
@@ -377,11 +414,20 @@
         <span class="journey-title">Professional<br>Mastery</span>
       </a>
     </div>
+  </div>
+</div>
 
+<div class="stylized-header-container--centered">
+  <h2 class="stylized-header"><span>Experiential Learning</span></h2>
+</div>
+
+
+<div id="tcap-omni-overview-root">
+  <div class="wf" data-screen-label="Experiential Learning">
     <div class="section-header">
-      <span class="stylized-label"><span>Experiential Learning</span></span>
       <h2>Learn by Doing, on Real Deliverables</h2>
-      <p>Every tCAP student completes applied experiential learning through internships, research, capstones, hackathons, entrepreneurship or other approved opportunities.</p>
+      <p>Every tCAP student completes applied experiential learning through internships, research, capstones,
+        hackathons, entrepreneurship or other approved opportunities.</p>
     </div>
 
     <div class="pathway-grid">
@@ -421,10 +467,14 @@
 
     <div class="wf-nav">
       <div class="is-active">Overview</div>
-      <a href="stages.html">Layers</a>
-      <a href="experiential-learning.html">Exp. Learning</a>
-      <a href="faq.html">FAQ</a>
-      <a href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a>
+      <a
+        href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/stages.aspx">Layers</a>
+      <a
+        href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/experiential-learning.aspx">Exp.
+        Learning</a>
+      <a href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/faq.aspx">FAQ</a>
+      <a href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank"
+        rel="noopener noreferrer">Jobs Page</a>
     </div>
 
   </div>
