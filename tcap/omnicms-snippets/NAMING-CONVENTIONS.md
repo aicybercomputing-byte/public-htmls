@@ -122,7 +122,8 @@ span layout) that doesn't yet have a matching generic `snip-grid` variant
 | Card title | `.snip-card__title` | `.pillar-title`, `.pathway-label`, `.journey-title` |
 | Card body text | `.snip-card__body` | (bare `<p>` in callout/stage cards) |
 | Stat bar | `.snip-stat-bar` | `.stat-bar` (wraps the CMS's own `c-calloutText`) |
-| Source citation | `.snip-source`, `__text` | `.all-sources`, `.all-sources-text` |
+| Source citation (inline, per-stat) | `.snip-source`, `__text` | `.all-sources`, `.all-sources-text` |
+| Sources & disclaimers panel (end-of-page, aggregated) | `.snip-sources`, `__title`, `__list`, `__text` | `.all-sources` (heading+list+text variant) |
 | CTA band | `.snip-cta`, `__inner` | `.cta-band`, `.cta-band-inner` |
 | Bottom pill nav | `.snip-nav`, `__link` | `.wf-nav` |
 | FAQ group | `.snip-faq`, `__title`, `__list` | `.faq-category`, `.faq-list` |
@@ -210,6 +211,16 @@ from the source widget, not just a rename.
    `style-guide.html` rather than writing new CSS.
 4. Only reach for a one-off class when nothing above fits — and if you do,
    consider whether it should become a new `.snip-*` component instead.
+5. **Every page ends with a `.snip-sources` panel, placed after `.snip-nav`,
+   even if it has nothing to cite yet.** This is the one place a reader
+   looks for "where did these numbers/claims come from" — don't scatter
+   `<ol class="snip-sources__list">`/`__text` citations or disclaimers
+   mid-page instead. If a page cites the same stat-bar numbers as another
+   page, list them there too (each `.snip-sources` panel should cover
+   everything displayed on *that* page, not just what's unique to it). An
+   empty panel (heading only, no `__list`/`__text`) is fine for a page with
+   nothing to disclose yet — keep the section so the page shape stays
+   consistent and there's an obvious place to add a citation later.
 
 ### OmniCMS XML-parsing gotchas (read before touching any inlined `<style>`/`<script>`)
 

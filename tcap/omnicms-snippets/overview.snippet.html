@@ -307,6 +307,75 @@
 }
 
 /* -------------------------------------------------------------------------
+   Sources & disclaimers panel — an aggregated end-of-page block (all
+   citations/disclaimers for the whole page in one place), distinct from
+   `.snip-source` above (the small per-card citation inside a stat/callout).
+   Place it as the LAST item in `.snip-stack`, after `.snip-nav`. Every page
+   should have one, even with an empty `__list`/no `__text` paragraphs, for
+   structural consistency across pages.
+   ------------------------------------------------------------------------- */
+.snip-sources {
+  margin-top: 1rem;
+  font-size: 8pt;
+  line-height: 1.35;
+  color: var(--snip-text-muted);
+}
+
+.snip-sources__title {
+  margin: 0 0 0.35rem;
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--snip-text);
+}
+
+.snip-sources__list {
+  margin: 0 0 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.snip-sources__list li {
+  margin-bottom: 0.25rem;
+}
+
+.snip-sources__list a,
+.snip-sources__text a {
+  color: var(--snip-text-muted);
+  text-decoration: underline;
+}
+
+.snip-sources__list a:hover,
+.snip-sources__list a:focus,
+.snip-sources__text a:hover,
+.snip-sources__text a:focus {
+  color: var(--snip-brand);
+  text-decoration-thickness: 2px;
+}
+
+.snip-sources__list a:focus-visible,
+.snip-sources__text a:focus-visible {
+  outline: 3px solid var(--snip-border);
+  outline-offset: 3px;
+}
+
+.snip-sources__list a[href$=".pdf"],
+.snip-sources__text a[href$=".pdf"] {
+  color: var(--snip-brand);
+}
+
+.snip-sources__text {
+  margin: 0 0 0.5rem;
+  padding: 0;
+  font-size: 8pt;
+  line-height: 1.35;
+  font-weight: 400;
+  color: var(--snip-text-muted);
+}
+
+.snip-sources__text:last-child {
+  margin-bottom: 0;
+}
+
+/* -------------------------------------------------------------------------
    CTA band — full-bleed background band. Deliberately placed *outside*
    `.snip-shell` (in the markup) so its background can bleed edge-to-edge
    instead of being capped at the shell's max-width; `__inner` re-centers
@@ -1242,6 +1311,16 @@
       <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank"
         rel="noopener noreferrer">Jobs Page</a>
     </div>
+
+    <section class="snip-sources" aria-labelledby="overview-sources-heading">
+      <h4 id="overview-sources-heading" class="snip-sources__title">Sources</h4>
+      <ol class="snip-sources__list">
+        <li>Software developer growth 2023&ndash;2033: BLS / MLR 2025.</li>
+        <li>Florida tech workforce count: CompTIA 2025.</li>
+        <li>Median Florida tech wage: CompTIA / Lightcast 2024.</li>
+        <li>Florida AI-skill job postings: CompTIA 2024.</li>
+      </ol>
+    </section>
 
   </div>
 </div>

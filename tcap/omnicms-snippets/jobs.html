@@ -307,6 +307,75 @@
 }
 
 /* -------------------------------------------------------------------------
+   Sources & disclaimers panel — an aggregated end-of-page block (all
+   citations/disclaimers for the whole page in one place), distinct from
+   `.snip-source` above (the small per-card citation inside a stat/callout).
+   Place it as the LAST item in `.snip-stack`, after `.snip-nav`. Every page
+   should have one, even with an empty `__list`/no `__text` paragraphs, for
+   structural consistency across pages.
+   ------------------------------------------------------------------------- */
+.snip-sources {
+  margin-top: 1rem;
+  font-size: 8pt;
+  line-height: 1.35;
+  color: var(--snip-text-muted);
+}
+
+.snip-sources__title {
+  margin: 0 0 0.35rem;
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--snip-text);
+}
+
+.snip-sources__list {
+  margin: 0 0 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.snip-sources__list li {
+  margin-bottom: 0.25rem;
+}
+
+.snip-sources__list a,
+.snip-sources__text a {
+  color: var(--snip-text-muted);
+  text-decoration: underline;
+}
+
+.snip-sources__list a:hover,
+.snip-sources__list a:focus,
+.snip-sources__text a:hover,
+.snip-sources__text a:focus {
+  color: var(--snip-brand);
+  text-decoration-thickness: 2px;
+}
+
+.snip-sources__list a:focus-visible,
+.snip-sources__text a:focus-visible {
+  outline: 3px solid var(--snip-border);
+  outline-offset: 3px;
+}
+
+.snip-sources__list a[href$=".pdf"],
+.snip-sources__text a[href$=".pdf"] {
+  color: var(--snip-brand);
+}
+
+.snip-sources__text {
+  margin: 0 0 0.5rem;
+  padding: 0;
+  font-size: 8pt;
+  line-height: 1.35;
+  font-weight: 400;
+  color: var(--snip-text-muted);
+}
+
+.snip-sources__text:last-child {
+  margin-bottom: 0;
+}
+
+/* -------------------------------------------------------------------------
    CTA band — full-bleed background band. Deliberately placed *outside*
    `.snip-shell` (in the markup) so its background can bleed edge-to-edge
    instead of being capped at the shell's max-width; `__inner` re-centers
@@ -1668,12 +1737,15 @@
 
     .jobs-tabs {
       grid-auto-flow: row;
-      gap: 0.25rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.4rem 0.5rem;
     }
 
     .jobs-tabs button {
-      padding: 0.6rem;
-      font-size: 1.2rem;
+      padding: 0.5rem 0.4rem;
+      font-size: 0.75rem;
+      white-space: normal;
+      line-height: 1.25;
     }
 
     .jobs-form-row {
@@ -1810,8 +1882,8 @@
     }
 
     .jobs-tabs button {
-      padding: 0.5rem;
-      font-size: 1.2rem;
+      padding: 0.4rem;
+      font-size: 0.7rem;
     }
 
     .jobs-table tr {
@@ -2100,17 +2172,6 @@
 </div>
 </div>
 </div>
-<section class="all-sources" aria-labelledby="ai-careers-sources-heading">
-<h4 id="ai-careers-sources-heading" class="all-sources-heading">Sources</h4>
-<ol class="all-sources-list">
-<li>BLS Monthly Labor Review Feb. 2025</li>
-<li>CompTIA State of the Tech Workforce 2025</li>
-<li>AIMaps / LinkUp.</li>
-<li>Maintained by Bellini College Career Services.</li>
-</ol>
-<p class="all-sources-text">Updated quarterly.</p>
-<p class="all-sources-text">Wage and workforce figures are aggregate regional estimates. Individual earnings vary by role, employer, experience, and location. Employment projections are national estimates from the U.S. Bureau of Labor Statistics and Lightcast, based on historical trends and modeling. They are not guarantees of job availability, salary, or outcomes for any individual or program.</p>
-</section>
 </div>
 <div id="current" class="jobs-panel">
 <h3>Resources for Current Students</h3>
@@ -2195,16 +2256,6 @@
 </div>
 </div>
 </div>
-<section class="all-sources" aria-labelledby="all-sources-heading">
-<h4 id="all-sources-heading" class="all-sources-heading">Sources</h4>
-<ol class="all-sources-list">
-<li>Tampa Bay: <a tabindex="0" href="https://tampabayedc.com/why-tampa-bay/work-tampa/"> Tampa Bay Economic Development Council </a></li>
-<li>St. Petersburg: <a tabindex="0" href="https://becomestpete.com/industries-and-businesses/data-analytics-and-technology/"> St. Petersburg Area Economic Development Corporation </a></li>
-<li>Orlando: <a tabindex="0" href="https://business.orlando.org/l/technology/"> Orlando Economic Partnership </a></li>
-<li>Miami: <a tabindex="0" href="https://www.beaconcouncil.com/technology/"> Miami-Dade Beacon Council </a></li>
-<li>Jacksonville: <a tabindex="0" href="https://jaxusa.org/wp-content/uploads/2026/Technology-Services-Business-Case.pdf"> JAXUSA Partnership </a></li>
-</ol>
-</section>
 </div>
 <!-- FIND MY JOB: Left column (degree+grad) | Right column (location+auth) | Full-width skills -->
 <div id="matchme" class="jobs-panel">
@@ -2226,9 +2277,6 @@
 <div class="jobs-form-group"><label for="jm-skills">Your Skills (comma-separated):</label> <input id="jm-skills" type="text" placeholder="e.g. Python, React, SQL, AWS" /></div>
 </div>
 <button id="jm-btn" class="snippetButton" tabindex="0" type="button" onclick="runJobMatch()">Find My Job Matches &rarr;</button></form>
-<div class="all-sources">
-<p class="all-sources-text">Listings are aggregated from third-party sources (including USAJOBS) and are not verified or endorsed by the University of South Florida. Match scores are automated estimates and do not guarantee eligibility, fit, or employment. Results may be incomplete or inaccurate and should not be your only source for career decisions. Confirm all details on the original posting before applying.</p>
-</div>
 <div id="jm-loading" class="jobs-loading" aria-live="polite" aria-busy="true"><span class="jobs-spinner" aria-hidden="true"></span> <span>Loading job matches...</span></div>
 <div id="jm-results" class="jobs-results"></div>
 </div>
@@ -2252,7 +2300,6 @@
 <div class="jobs-form-group"><label for="ji-skills">Your Skills (comma-separated):</label> <input id="ji-skills" type="text" placeholder="e.g. Python, React, SQL, AWS" /></div>
 </div>
 <button id="ji-btn" class="snippetButton" tabindex="0" type="button" onclick="runInternshipMatch()">Find My Internship Matches &rarr;</button></form>
-<p class="all-sources-text">Listings are aggregated from third-party sources (including USAJOBS) and are not verified or endorsed by the University of South Florida. Match scores are automated estimates and do not guarantee eligibility, fit, or employment. Results may be incomplete or inaccurate and should not be your only source for career decisions. Confirm all details on the original posting before applying.</p>
 <div id="ji-loading" class="jobs-loading" aria-live="polite" aria-busy="true"><span class="jobs-spinner" aria-hidden="true"></span> <span>Loading internship matches...</span></div>
 <div id="ji-results" class="jobs-results"></div>
 </div>
@@ -2319,7 +2366,6 @@
 <div class="jobs-form-group"><label for="recruit-email">Contact Email:</label> <input id="recruit-email" name="email" required="" type="email" /></div>
 <div class="jobs-form-group"><label for="recruit-positions">Open Positions:</label> <textarea id="recruit-positions" style="min-height: 100px;" name="message" required=""></textarea></div>
 <!-- Honeypot anti-spam field. Keep hidden from real users. --> <input id="recruit-website" style="position: absolute; left: -9999px;" tabindex="-1" autocomplete="off" name="website" type="text" /> <button class="snippetButton" tabindex="0" type="submit">Submit Your Interest</button>
-<p class="all-sources-text">Information submitted through this form is used only to respond to your recruiting interest. Submitting it does not create a hiring agreement or partnership with USF.</p>
 </form></div>
 <div class="snip-nav">
 <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/index.aspx">Overview</a>
@@ -2328,6 +2374,24 @@
 <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/faq.aspx">FAQ</a>
 <div class="snip-nav__link is-active">Jobs Page</div>
 </div>
+<section class="all-sources" aria-labelledby="all-sources-heading">
+<h4 id="all-sources-heading" class="all-sources-heading">Sources &amp; Disclaimers</h4>
+<ol class="all-sources-list">
+<li>BLS Monthly Labor Review Feb. 2025</li>
+<li>CompTIA State of the Tech Workforce 2025</li>
+<li>AIMaps / LinkUp.</li>
+<li>Maintained by Bellini College Career Services.</li>
+<li>Tampa Bay: <a tabindex="0" href="https://tampabayedc.com/why-tampa-bay/work-tampa/"> Tampa Bay Economic Development Council </a></li>
+<li>St. Petersburg: <a tabindex="0" href="https://becomestpete.com/industries-and-businesses/data-analytics-and-technology/"> St. Petersburg Area Economic Development Corporation </a></li>
+<li>Orlando: <a tabindex="0" href="https://business.orlando.org/l/technology/"> Orlando Economic Partnership </a></li>
+<li>Miami: <a tabindex="0" href="https://www.beaconcouncil.com/technology/"> Miami-Dade Beacon Council </a></li>
+<li>Jacksonville: <a tabindex="0" href="https://jaxusa.org/wp-content/uploads/2026/Technology-Services-Business-Case.pdf"> JAXUSA Partnership </a></li>
+</ol>
+<p class="all-sources-text">Updated quarterly.</p>
+<p class="all-sources-text">Wage and workforce figures are aggregate regional estimates. Individual earnings vary by role, employer, experience, and location. Employment projections are national estimates from the U.S. Bureau of Labor Statistics and Lightcast, based on historical trends and modeling. They are not guarantees of job availability, salary, or outcomes for any individual or program.</p>
+<p class="all-sources-text">Listings are aggregated from third-party sources (including USAJOBS) and are not verified or endorsed by the University of South Florida. Match scores are automated estimates and do not guarantee eligibility, fit, or employment. Results may be incomplete or inaccurate and should not be your only source for career decisions. Confirm all details on the original posting before applying.</p>
+<p class="all-sources-text">Information submitted through this form is used only to respond to your recruiting interest. Submitting it does not create a hiring agreement or partnership with USF.</p>
+</section>
 </div>
 <script>
   function isSafariBrowser() {

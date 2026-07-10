@@ -229,6 +229,23 @@ Always-on solid variant (no group/JS needed, just a link strip):
 </div>
 ```
 
+## Sources & disclaimers panel — end-of-page aggregate, always placed AFTER `.snip-nav`
+Every page gets one, even if empty. It must list every citation/disclaimer
+for whatever the page actually displays — not just what's unique to that
+page (e.g. two pages sharing the same stat bar both list the same sources).
+`__list`/`__text` are each optional (omit whichever doesn't apply); leave
+both out entirely for a page with nothing to disclose yet.
+```html
+<section class="snip-sources" aria-labelledby="page-sources-heading">
+  <h4 id="page-sources-heading" class="snip-sources__title">Sources</h4>
+  <ol class="snip-sources__list">
+    <li>Citation one.</li>
+    <li>Citation two.</li>
+  </ol>
+  <p class="snip-sources__text">Disclaimer paragraph.</p>
+</section>
+```
+
 ## FAQ group — labeled category of native `<details>`
 ```html
 <div class="snip-faq">
