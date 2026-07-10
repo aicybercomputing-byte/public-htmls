@@ -407,6 +407,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     --jobs-border-strong: #2f2f2f;
     --jobs-surface-muted: #f2f2f2;
     --jobs-surface-subtle: #f7f7f7;
+
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+
+  /* Full-bleed bars — same technique the other tCAP pages (overview.snippet.html,
+     etc.) use for their `.cta-band`: close `#jobs-asset-root`, drop a
+     `.jobs-full-bleed` div in as its sibling, then reopen a new
+     `#jobs-asset-root` div (the id is safe to repeat — every rule above is
+     scoped by descendant selector, not `getElementById`) to resume the
+     centered 900px column. `.jobs-full-bleed` itself is deliberately
+     unprefixed so its background can bleed out to the surrounding page
+     wrapper's width instead of being capped at 900px. Not used yet — jobs.html
+     has no full-width sections today — but the page is ready for one without
+     restructuring later. */
+  .jobs-full-bleed {
+    background: var(--jobs-surface-muted, #f2f2f2);
+    padding: 24px;
+  }
+
+  .jobs-full-bleed-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
   }
 
   .snippetButton {
@@ -446,23 +472,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: max-content;
-    justify-content: center;
+    /* `safe center`: center the tab group when it fits, but fall back to
+       start-alignment instead of overflowing symmetrically past both edges
+       when the 900px-capped column isn't wide enough for all six tabs. */
+    justify-content: safe center;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.25rem;
     margin: 2rem 0;
     border-bottom: 1px solid var(--jobs-border);
     width: 100%;
+    overflow-x: auto;
   }
 
   .jobs-tabs button {
     display: grid;
     place-items: center;
-    padding: 0.75rem;
+    padding: 0.5rem 0.4rem;
     border: none;
     background: transparent;
     color: var(--jobs-text-muted);
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.78rem;
     font-family: inherit;
     white-space: nowrap;
     opacity: 1;
@@ -498,19 +528,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     display: block;
   }
 
-  .jobs-stat-bar {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-    align-items: start;
-  }
-
-  .jobs-stat-bar > * {
-    align-self: start;
-    margin: 2px 0 0 0;
-    padding: 0;
-  }
+  /* .jobs-wf-nav and .jobs-stat-bar rules removed — migrated to the
+     shared .snip-nav / .snip-stat-bar components (snippet-template.css).
+     See NAMING-CONVENTIONS.md. */
 
   .jobs-form {
     width: 100%;
@@ -984,7 +1004,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   @media (max-width: 768px) {
     #jobs-asset-root {
-      padding: 0 1rem;
+      padding: 24px 1rem;
     }
 
     h2,
@@ -1001,11 +1021,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .jobs-tabs button {
       padding: 0.6rem;
       font-size: 1.2rem;
-    }
-
-    .jobs-stat-bar {
-      grid-template-columns: 1fr;
-      gap: 1rem;
     }
 
     .jobs-form-row {
@@ -1040,7 +1055,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     .jobs-table tr {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      /* 3 columns so 2023 Jobs / 2033 Est. / Growth (cells 2-4) land in a
+         single row together instead of splitting 2-then-1. Occupation and
+         Trend (cells 1 and 5) still span the full row via `1 / -1` below,
+         so this only affects how the three stat cells lay out. */
+      grid-template-columns: repeat(3, 1fr);
       gap: 0.5rem;
       padding: 1rem;
       margin-bottom: 1rem;
@@ -1129,7 +1148,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   @media (max-width: 480px) {
     #jobs-asset-root {
-      padding: 0 0.75rem;
+      padding: 24px 0.75rem;
     }
 
     h2,
@@ -1143,7 +1162,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 
     .jobs-table tr {
-      grid-template-columns: 1fr;
+      gap: 0.35rem;
     }
 
     .jobs-table td {
@@ -1156,8 +1175,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       padding-top: 0.5rem;
     }
 
-    .jobs-table td:nth-child(1) {
-      grid-column: 1;
+    /* 2023 Jobs / 2033 Est. / Growth stay 3-across even at this width —
+       shrink their value and label text so figures like "1,995,900" don't
+       wrap inside a ~100px-wide column. */
+    .jobs-table td:nth-child(2),
+    .jobs-table td:nth-child(3),
+    .jobs-table td:nth-child(4) {
+      font-size: 0.85rem;
+    }
+
+    .jobs-table td:nth-child(2)::before,
+    .jobs-table td:nth-child(3)::before,
+    .jobs-table td:nth-child(4)::before {
+      font-size: 0.65rem;
     }
 
     .jobs-form-group input,
@@ -1183,12 +1213,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   }
 
-  .employer-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2rem;
-    margin: 1.5rem 0 2rem 0;
-  }
+  /* .employer-grid wrapper removed — migrated to .snip-grid.snip-grid--2.
+     .employer-card/.employer-tag stay local: page-specific tweaks layered
+     on top of the CMS theme's own c-calloutText component. */
 
   .employer-card {
     min-height: 150px;
@@ -1219,12 +1246,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     margin: 0;
   }
 
-  .recruiting-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 2rem;
-    margin: 1.5rem 0 2rem 0;
-  }
+  /* .recruiting-grid wrapper removed — migrated to .snip-grid.snip-grid--3.
+     .recruiting-card/.recruiting-link stay local (see note above
+     .employer-card). */
 
   .recruiting-card {
     min-height: 255px;
@@ -1268,71 +1292,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     outline-offset: 3px;
   }
 
-  @media (max-width: 768px) {
-    .employer-grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    .recruiting-grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-  }
+  /* .employer-grid/.recruiting-grid mobile overrides removed — the shared
+     .snip-grid--2/--3 components collapse to a single column below 700px
+     on their own (snippet-template.css). */
 </style>
                
                <div id="jobs-asset-root">
                   
-                  <div id="stat-bar" class="jobs-stat-bar">
+                  <div id="stat-bar" class="snip-stat-bar" style="--snip-stat-height: 175px;">
                      
-                     <div class="c-calloutText c-calloutText--gray" style="height: 175px !important;">
+                     <div class="c-calloutText c-calloutText--gray">
                         
                         <h3 class="c-calloutText_heading">+17.9%</h3>
                         
                         <div class="c-calloutText_text">Software developer growth 2023–2033
                            
-                           <section class="all-sources" aria-labelledby="stat-sources-heading">
+                           <section class="snip-source" aria-labelledby="stat-sources-heading">
                               
-                              <p class="all-sources-text">Software developer growth 2023–2033: <span>BLS / MLR 2025.</span></p>
+                              <p class="snip-source__text">Software developer growth 2023–2033: <span>BLS / MLR 2025.</span></p>
                               </section>
                            </div>
                         </div>
                      
-                     <div class="c-calloutText c-calloutText--gray" style="height: 175px !important;">
+                     <div class="c-calloutText c-calloutText--gray">
                         
                         <h3 class="c-calloutText_heading">546K</h3>
                         
                         <div class="c-calloutText_text">Tech workers in Florida (No. 4 nationally)
                            
-                           <section class="all-sources" aria-labelledby="stat-sources-heading">
+                           <section class="snip-source" aria-labelledby="stat-sources-heading">
                               
-                              <p class="all-sources-text">Florida tech workforce count: <span>CompTIA 2025.</span></p>
+                              <p class="snip-source__text">Florida tech workforce count: <span>CompTIA 2025.</span></p>
                               </section>
                            </div>
                         </div>
                      
-                     <div class="c-calloutText c-calloutText--gray" style="height: 175px !important;">
+                     <div class="c-calloutText c-calloutText--gray">
                         
                         <h3 class="c-calloutText_heading">$102,908</h3>
                         
                         <div class="c-calloutText_text">Florida tech wage — 122% above state median
                            
-                           <section class="all-sources" aria-labelledby="stat-sources-heading">
+                           <section class="snip-source" aria-labelledby="stat-sources-heading">
                               
-                              <p class="all-sources-text">Median Florida tech wage: <span>CompTIA / Lightcast 2024.</span></p>
+                              <p class="snip-source__text">Median Florida tech wage: <span>CompTIA / Lightcast 2024.</span></p>
                               </section>
                            </div>
                         </div>
                      
-                     <div class="c-calloutText c-calloutText--gray" style="height: 175px !important;">
+                     <div class="c-calloutText c-calloutText--gray">
                         
                         <h3 class="c-calloutText_heading">12,735</h3>
                         
                         <div class="c-calloutText_text">Active Florida job postings requiring AI skills
                            
-                           <section class="all-sources" aria-labelledby="stat-sources-heading">
+                           <section class="snip-source" aria-labelledby="stat-sources-heading">
                               
-                              <p class="all-sources-text">Florida AI-skill job postings: <span>CompTIA 2024.</span></p>
+                              <p class="snip-source__text">Florida AI-skill job postings: <span>CompTIA 2024.</span></p>
                               </section>
                            </div>
                         </div>
@@ -1832,7 +1848,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                      
                      <h3>Why Recruit from Bellini College</h3>
                      
-                     <div class="employer-grid">
+                     <div class="snip-grid snip-grid--2">
                         
                         <div class="c-calloutText c-calloutText--grey employer-card"><span class="employer-tag">Talent pipeline</span>
                            
@@ -1882,7 +1898,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                      
                      <h3>Recruiting Options</h3>
                      
-                     <div class="recruiting-grid">
+                     <div class="snip-grid snip-grid--3">
                         
                         <div class="c-calloutText c-calloutText--grey recruiting-card">
                            
@@ -1938,6 +1954,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                            interest. Submitting it does not create a hiring agreement or partnership with USF.</p>
                         </form>
                   </div>
+                  
+                  <div class="snip-nav"><a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/index.aspx">Overview</a> <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/stages.aspx">Layers</a> <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/experiential-learning.aspx">Exp. Learning</a> <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/faq.aspx">FAQ</a>
+                     
+                     <div class="snip-nav__link is-active">Jobs Page</div>
+                     </div>
                   </div>
                <script>
   function isSafariBrowser() {

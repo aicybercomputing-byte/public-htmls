@@ -12,12 +12,32 @@ authoritative than this file if the two ever disagree).
 
 ## Quick start
 
-Include once, anywhere in the page:
+**Never use `<link rel="stylesheet">`/`<script src>` to pull in
+`snippet-template.css`/`.js` on a page that gets pasted into OmniCMS** — the
+CMS strips external `<link>`/`<script src>` tags on save, silently leaving
+every `.snip-*` class unstyled and every `data-snip-*` behavior dead. Copy
+the full contents of `snippet-template.css` (and `snippet-template.js`, if
+you use any `data-snip-*` behavior) inline instead, once each, near the top
+of the page, each wrapped in a CDATA section (required — see
+`NAMING-CONVENTIONS.md` → "OmniCMS XML-parsing gotchas" for why):
 
 ```html
-<link rel="stylesheet" href="snippet-template.css">
-<script src="snippet-template.js" defer></script>
+<style>
+/*<![CDATA[*/
+...paste the full contents of snippet-template.css here...
+/*]]>*/
+</style>
+<script>
+//<![CDATA[
+...paste the full contents of snippet-template.js here, only if this page uses data-snip-* behaviors...
+//]]>
+</script>
 ```
+
+When you copy an example from `style-guide.html` or this file into a new
+page's inlined comment block, never leave a bare `<tagname>` in a comment
+(e.g. `` `<input>` ``) — OmniCMS's parser reads it as unclosed markup. Use
+backticks without angle brackets instead (`` `input` ``).
 
 Then compose a page from the blocks below inside a shell:
 

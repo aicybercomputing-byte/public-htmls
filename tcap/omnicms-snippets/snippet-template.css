@@ -380,7 +380,7 @@
 }
 
 /* -------------------------------------------------------------------------
-   FAQ group — a labeled category of native <details>/<summary> items
+   FAQ group — a labeled category of native `details`/`summary` items
    ------------------------------------------------------------------------- */
 .snip-faq__title {
   margin: 0 0 12px;
@@ -425,7 +425,7 @@
 }
 
 /* -------------------------------------------------------------------------
-   Comparison table — CSS-grid rows, no <table> markup required
+   Comparison table — CSS-grid rows, no `table` markup required
    ------------------------------------------------------------------------- */
 .snip-table {
   border: 1px solid var(--snip-border);
@@ -630,7 +630,7 @@
 /* -------------------------------------------------------------------------
    Form fields — explicit classes rather than bare tag/attribute selectors
    (`label`, `input[type=...]`) so this stays portable: a page that already
-   styles its own `<label>`/`<input>` won't have those rules clobbered.
+   styles its own `label`/`input` elements won't have those rules clobbered.
    ------------------------------------------------------------------------- */
 .snip-field {
   margin-bottom: 20px;

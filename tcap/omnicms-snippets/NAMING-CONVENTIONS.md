@@ -196,12 +196,61 @@ from the source widget, not just a rename.
 
 ## Adopting this in a new snippet
 
-1. Link or inline `snippet-template.css`.
+1. **Inline `snippet-template.css` (and `snippet-template.js` if you use any
+   `data-snip-*` behaviors) in a `<style>`/`<script>` block — do not use
+   `<link>`/`<script src>`.** OmniCMS strips external `<link>` and
+   `<script src>` tags on save, so a linked stylesheet works in local/GitHub
+   Pages preview but silently disappears once pasted into the CMS, leaving
+   every `.snip-*` class unstyled. `jobs.html` and the four `*.snippet.html`
+   files each carry their own inlined copy for exactly this reason — when you
+   change `snippet-template.css`/`.js`, copy the change into each file's
+   inlined block too, using the exact template below.
 2. Wrap your content in `<div class="snip-shell"><div class="snip-stack">…</div></div>`.
 3. Build sections out of the table above. Copy markup straight from
    `style-guide.html` rather than writing new CSS.
 4. Only reach for a one-off class when nothing above fits — and if you do,
    consider whether it should become a new `.snip-*` component instead.
+
+### OmniCMS XML-parsing gotchas (read before touching any inlined `<style>`/`<script>`)
+
+OmniCMS runs pasted page content through a strict SAX/XML transform, **not**
+an HTML5 parser. It does not treat `<style>`/`<script>` content as CDATA the
+way browsers do, so it re-parses whatever text is inside them as if it were
+markup. Two consequences, both of which have caused real
+`TRANSFORM_ERROR: The element type "…" must be terminated by the matching
+end-tag` failures on save:
+
+- **Any bare `<word>` inside a CSS/JS comment is read as an unclosed tag.**
+  A doc comment like `` /* styles its own <label>/<input> */ `` breaks the
+  parser exactly like real unclosed markup would. Don't write bare
+  `<tagname>` in comments inside an inlined `<style>`/`<script>` block — use
+  backticks without angle brackets instead (`` `label`/`input` ``, not
+  `` `<label>`/`<input>` ``), or a placeholder like `{fieldName}` instead of
+  `<name>`.
+- **Always wrap the whole inlined block in a CDATA section**, hidden from
+  the CSS/JS engine behind a comment so it doesn't affect actual styling or
+  behavior:
+  ```html
+  <style>
+  /*<![CDATA[*/
+  ...css...
+  /*]]>*/
+  </style>
+  <script>
+  //<![CDATA[
+  ...js...
+  //]]>
+  </script>
+  ```
+  This is the standard XHTML trick for embedding code containing `<`/`&`
+  inside a strict XML document — it tells the parser to stop looking for
+  markup until the matching `]]>`, so future edits that introduce a stray
+  `<`/`&` (in an example, a comment, a `[data-foo="<bar>"]` selector, etc.)
+  fail safe instead of breaking the next CMS save. `jobs.html`'s own
+  pre-existing script was already using this pattern before the four
+  snippet files were — that's independent confirmation OmniCMS needs it.
+  Every inlined block in this folder must have it; don't remove it "to
+  simplify."
 
 ## Migrating the existing four snippets
 

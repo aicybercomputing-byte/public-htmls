@@ -96,7 +96,7 @@
      still get focused, but no `.snip-field__error` text or `snip:validated`
      event happens — checkValidity() below is what surfaces the same rules
      through this library's own error UI instead). Errors
-     render into `.snip-field__error[data-snip-error-for="<name>"]` (falls
+     render into `.snip-field__error[data-snip-error-for="{fieldName}"]` (falls
      back to the nearest following `.snip-field__error` if none is tagged)
      and `.snip-input--invalid` is added to the offending field.
 
