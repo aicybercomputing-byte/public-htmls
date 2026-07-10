@@ -1,350 +1,39 @@
-<style>
-  #tcap-omni-expl-root,
-  #tcap-omni-expl-root * {
-    box-sizing: border-box !important;
-  }
+<link rel="stylesheet" href="https://aicybercomputing-byte.github.io/public-htmls/tcap/omnicms-snippets/snippet-template.css">
+<script src="https://aicybercomputing-byte.github.io/public-htmls/tcap/omnicms-snippets/snippet-template.js" defer></script>
 
-  #tcap-omni-expl-root {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 24px;
-    font-family: inherit;
-    color: inherit;
-  }
+<div class="snip-shell">
+  <div class="snip-stack" data-screen-label="Experiential Learning">
 
-  #tcap-omni-expl-root .wf {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-
-  /* Neutralize USF site's owl rule `.content * + * { margin-top: 1.5em }`.
-     It adds ~24px above every non-first child, which misaligns items in a
-     grid/flex row (the first item looks shifted up relative to the rest)
-     and stacks on top of each container's own `gap`. Zero it out on every
-     spacing-bearing container's children so spacing is driven only by
-     `gap`. */
-  #tcap-omni-expl-root .wf > *,
-  #tcap-omni-expl-root .timeline-grid > *,
-  #tcap-omni-expl-root .pathway-grid > *,
-  #tcap-omni-expl-root .pathway-card > *,
-  #tcap-omni-expl-root .wf-nav > * {
-    margin-top: 0;
-  }
-
-  /* Stat bar — exact copy of jobs.html's `.jobs-stat-bar` grid plus its real
-     `c-calloutText`/`c-calloutText_heading`/`c-calloutText_text` component
-     and `.all-sources`/`.all-sources-text` citation styling, so these cards
-     render identically to the live jobs page. */
-  #tcap-omni-expl-root .stat-bar {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 2rem;
-    align-items: start;
-  }
-  #tcap-omni-expl-root .stat-bar > * {
-    align-self: start;
-    margin: 2px 0 0 0;
-  }
-  #tcap-omni-expl-root .all-sources {
-    margin-top: 1rem;
-    font-size: 8pt;
-    line-height: 1.35;
-    color: #333333;
-  }
-  #tcap-omni-expl-root .all-sources-text {
-    margin: 0;
-    padding: 0;
-    font-size: 8pt;
-    line-height: 1.35;
-    font-weight: 400;
-    color: #333333;
-  }
-
-  /* CTA band is extracted outside #tcap-omni-expl-root (same reason as
-     the stylized headers) so its background can bleed edge-to-edge instead
-     of being capped at the root's 900px max-width. Rules below are
-     unprefixed on purpose. `.cta-band-inner` keeps the button centered at a
-     normal readable width inside the full-bleed background. */
-  .cta-band {
-    background: #EFEFF0;
-    padding: 24px;
-    text-align: center;
-  }
-  .cta-band-inner {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  /* `!important` on display/max-width: the real site's global CSS has
-     `a.snippetButton { display: block; max-width: 200px; }`. `display: block`
-     ignores the ancestor's `text-align: center`, which is what left-aligns
-     the button once this rule loses the specificity fight. */
-  .cta-band .snippetButton {
-    display: inline-block !important;
-    max-width: none !important;
-    background: #006747;
-    color: #fff;
-    border: 2px solid #006747;
-    border-radius: 0;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 700;
-    padding: 0.85em 1.6em;
-    line-height: 1.2;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  .cta-band .snippetButton:hover,
-  .cta-band .snippetButton:focus {
-    background: #004c35;
-    border-color: #004c35;
-  }
-
-  /* The small skewed label above each h2 uses the real USF site's own
-     `.stylized-header-container--centered` / `.stylized-header` classes
-     directly (see tmp-usf-v3-secondary.css) instead of a local reimplementation
-     — those classes are already loaded globally on every USF page, so no
-     CSS is needed here at all. */
-  #tcap-omni-expl-root .section-header {
-    text-align: center;
-  }
-  #tcap-omni-expl-root .section-header h2 {
-    margin: 10px 0 8px;
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 600;
-    font-size: 36px;
-    color: #3f565e;
-    text-transform: uppercase;
-    line-height: 1.15;
-  }
-  #tcap-omni-expl-root .section-header p {
-    margin: 0 auto;
-    max-width: 640px;
-    font-size: 15px;
-    line-height: 1.4;
-    color: #3f3f3f;
-  }
-
-  /* 4-step timeline */
-  #tcap-omni-expl-root .timeline-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
-  }
-  #tcap-omni-expl-root .timeline-card {
-    background: #efeff0;
-    border: 1px solid #b2b2b2;
-    padding: 16px;
-    text-align: center;
-    cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
-  }
-  #tcap-omni-expl-root .timeline-card:hover,
-  #tcap-omni-expl-root .timeline-card.is-active {
-    background: #d9e8e4;
-    border-color: #006747;
-  }
-  #tcap-omni-expl-root .timeline-num {
-    width: 36px;
-    height: 36px;
-    margin: 0 auto 10px;
-    border-radius: 50%;
-    background: #006747;
-    color: #fff;
-    display: grid;
-    place-items: center;
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-  }
-  #tcap-omni-expl-root .timeline-card h3 {
-    margin: 0;
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    color: #006747;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-  }
-
-  #tcap-omni-expl-root .info-box {
-    border: 1px solid #b2b2b2;
-    background: #fff;
-    padding: 16px;
-    font-size: 14px;
-    line-height: 1.4;
-    color: #3f3f3f;
-  }
-
-  /* Pathways icon grid */
-  #tcap-omni-expl-root .pathway-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px;
-  }
-  #tcap-omni-expl-root .pathway-card {
-    background: #efeff0;
-    border: 1px solid #b2b2b2;
-    padding: 18px;
-    text-align: center;
-    cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
-  }
-  #tcap-omni-expl-root .pathway-card:hover,
-  #tcap-omni-expl-root .pathway-card.is-active {
-    background: #d9e8e4;
-    border-color: #006747;
-  }
-  #tcap-omni-expl-root .pathway-badge {
-    width: 44px;
-    height: 44px;
-    margin: 0 auto 10px;
-    border-radius: 50%;
-    background: #006747;
-    color: #fff;
-    display: grid;
-    place-items: center;
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-  }
-  #tcap-omni-expl-root .pathway-label {
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    color: #006747;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-  }
-
-  /* Requirements table */
-  #tcap-omni-expl-root .req-table {
-    border: 1px solid #b2b2b2;
-  }
-  #tcap-omni-expl-root .req-row {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr 1fr;
-  }
-  #tcap-omni-expl-root .req-row + .req-row {
-    border-top: 1px solid #b2b2b2;
-  }
-  #tcap-omni-expl-root .req-row > div {
-    padding: 12px 14px;
-    font-size: 13px;
-    color: #3f3f3f;
-    border-right: 1px solid #b2b2b2;
-  }
-  #tcap-omni-expl-root .req-row > div:last-child {
-    border-right: none;
-  }
-  #tcap-omni-expl-root .req-row.head > div {
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    color: #3f3f3f;
-    text-transform: uppercase;
-  }
-  #tcap-omni-expl-root .req-row.head {
-    border-bottom: 3px solid #3f3f3f;
-  }
-
-  #tcap-omni-expl-root .soft-note {
-    border: 1px dashed #8a8a82;
-    background: #fcfcfa;
-    padding: 16px;
-    font-size: 13px;
-    line-height: 1.4;
-    color: #3f3f3f;
-  }
-
-  #tcap-omni-expl-root .wf-nav {
-    display: flex;
-    gap: 8px;
-    font-size: 13px;
-    text-align: center;
-    border-top: 1px solid #d8d6cd;
-    padding-top: 20px;
-  }
-  #tcap-omni-expl-root .wf-nav a,
-  #tcap-omni-expl-root .wf-nav div {
-    flex: 1;
-    display: block;
-    background: #fff;
-    color: #006747;
-    border: 1.5px solid #006747;
-    border-radius: 3px;
-    padding: 10px 12px;
-    text-decoration: none;
-  }
-  #tcap-omni-expl-root .wf-nav .is-active {
-    background: #006747;
-    color: #fff;
-  }
-
-  @media (max-width: 700px) {
-    #tcap-omni-expl-root .stat-bar {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-    #tcap-omni-expl-root .timeline-grid {
-      grid-template-columns: 1fr;
-    }
-    #tcap-omni-expl-root .pathway-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    #tcap-omni-expl-root .req-row {
-      grid-template-columns: 1fr;
-    }
-    #tcap-omni-expl-root .req-row > div {
-      border-right: none;
-      border-bottom: 1px solid #b2b2b2;
-    }
-    #tcap-omni-expl-root .req-row > div:last-child {
-      border-bottom: none;
-    }
-    #tcap-omni-expl-root .wf-nav {
-      flex-wrap: wrap;
-    }
-    #tcap-omni-expl-root .wf-nav a,
-    #tcap-omni-expl-root .wf-nav div {
-      flex: 1 1 45%;
-    }
-  }
-</style>
-
-<div id="tcap-omni-expl-root">
-  <div class="wf" data-screen-label="Experiential Learning">
-
-    <div class="stat-bar">
-      <div class="c-calloutText c-calloutText--gray" style="height: 225px !important;">
+    <div class="snip-stat-bar">
+      <div class="c-calloutText c-calloutText--gray">
         <h3 class="c-calloutText_heading">+17.9%</h3>
         <div class="c-calloutText_text">Software developer growth 2023&ndash;2033
-          <section class="all-sources" aria-labelledby="stat-sources-heading">
-            <p class="all-sources-text">Software developer growth 2023&ndash;2033: <span>BLS / MLR 2025.</span></p>
+          <section class="snip-source" aria-labelledby="stat-sources-heading">
+            <p class="snip-source__text">Software developer growth 2023&ndash;2033: <span>BLS / MLR 2025.</span></p>
           </section>
         </div>
       </div>
-      <div class="c-calloutText c-calloutText--gray" style="height: 225px !important;">
+      <div class="c-calloutText c-calloutText--gray">
         <h3 class="c-calloutText_heading">546K</h3>
         <div class="c-calloutText_text">Tech workers in Florida (No. 4 nationally)
-          <section class="all-sources" aria-labelledby="stat-sources-heading">
-            <p class="all-sources-text">Florida tech workforce count: <span>CompTIA 2025.</span></p>
+          <section class="snip-source" aria-labelledby="stat-sources-heading">
+            <p class="snip-source__text">Florida tech workforce count: <span>CompTIA 2025.</span></p>
           </section>
         </div>
       </div>
-      <div class="c-calloutText c-calloutText--gray" style="height: 225px !important;">
+      <div class="c-calloutText c-calloutText--gray">
         <h3 class="c-calloutText_heading">$102,908</h3>
         <div class="c-calloutText_text">Florida tech wage &mdash; 122% above state median
-          <section class="all-sources" aria-labelledby="stat-sources-heading">
-            <p class="all-sources-text">Median Florida tech wage: <span>CompTIA / Lightcast 2024.</span></p>
+          <section class="snip-source" aria-labelledby="stat-sources-heading">
+            <p class="snip-source__text">Median Florida tech wage: <span>CompTIA / Lightcast 2024.</span></p>
           </section>
         </div>
       </div>
-      <div class="c-calloutText c-calloutText--gray" style="height: 225px !important;">
+      <div class="c-calloutText c-calloutText--gray">
         <h3 class="c-calloutText_heading">12,735</h3>
         <div class="c-calloutText_text">Active Florida job postings requiring AI skills
-          <section class="all-sources" aria-labelledby="stat-sources-heading">
-            <p class="all-sources-text">Florida AI-skill job postings: <span>CompTIA 2024.</span></p>
+          <section class="snip-source" aria-labelledby="stat-sources-heading">
+            <p class="snip-source__text">Florida AI-skill job postings: <span>CompTIA 2024.</span></p>
           </section>
         </div>
       </div>
@@ -353,8 +42,8 @@
   </div>
 </div>
 
-<div class="cta-band">
-  <div class="cta-band-inner">
+<div class="snip-cta">
+  <div class="snip-cta__inner">
     <a class="snippetButton" href="#">Talk to an advisor</a>
   </div>
 </div>
@@ -363,34 +52,34 @@
   <h2 class="stylized-header"><span>Experiential Learning</span></h2>
 </div>
 
-<div id="tcap-omni-expl-root">
-  <div class="wf" data-screen-label="Experiential Learning">
+<div class="snip-shell">
+  <div class="snip-stack" data-screen-label="Experiential Learning">
 
-    <div class="section-header">
-      <h2>How It Works</h2>
-      <p>Experiential learning is a required component of tCAP and gives students the opportunity to apply classroom knowledge in real-world environments.</p>
+    <div class="snip-heading">
+      <h2 class="snip-heading__title">How It Works</h2>
+      <p class="snip-heading__text">Experiential learning is a required component of tCAP and gives students the opportunity to apply classroom knowledge in real-world environments.</p>
     </div>
 
-    <div class="timeline-grid">
-      <div class="timeline-card is-source" data-info="Select an eligible pathway such as an internship, research, capstone, hackathon or study abroad experience.">
-        <div class="timeline-num">1</div>
-        <h3>Choose an experience</h3>
+    <div class="snip-grid snip-grid--4" data-snip-active-group data-snip-info-target="#expl-stageInfo">
+      <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item data-info="Select an eligible pathway such as an internship, research, capstone, hackathon or study abroad experience.">
+        <div class="snip-card__badge">1</div>
+        <h3 class="snip-card__title">Choose an experience</h3>
       </div>
-      <div class="timeline-card is-source" data-info="Pre-approval of a plan of work and faculty mentor or quality supervisor.">
-        <div class="timeline-num">2</div>
-        <h3>Get pre-approval</h3>
+      <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item data-info="Pre-approval of a plan of work and faculty mentor or quality supervisor.">
+        <div class="snip-card__badge">2</div>
+        <h3 class="snip-card__title">Get pre-approval</h3>
       </div>
-      <div class="timeline-card is-source" data-info="Meet the minimum threshold of 135 verified hours and deliver a mid-point update.">
-        <div class="timeline-num">3</div>
-        <h3>Complete the work</h3>
+      <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item data-info="Meet the minimum threshold of 135 verified hours and deliver a mid-point update.">
+        <div class="snip-card__badge">3</div>
+        <h3 class="snip-card__title">Complete the work</h3>
       </div>
-      <div class="timeline-card is-source" data-info="Develop and deliver a final report with structured reflection, pass/fail assessment and CIS 4950 notation.">
-        <div class="timeline-num">4</div>
-        <h3>Reflect and record</h3>
+      <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item data-info="Develop and deliver a final report with structured reflection, pass/fail assessment and CIS 4950 notation.">
+        <div class="snip-card__badge">4</div>
+        <h3 class="snip-card__title">Reflect and record</h3>
       </div>
     </div>
 
-    <div class="info-box" id="expl-stageInfo">Hover to see more info</div>
+    <p class="snip-note" id="expl-stageInfo">Hover to see more info</p>
 
   </div>
 </div>
@@ -399,50 +88,50 @@
   <h2 class="stylized-header"><span>Eligible Experiences</span></h2>
 </div>
 
-<div id="tcap-omni-expl-root">
-  <div class="wf" data-screen-label="Eligible Experiences">
+<div class="snip-shell">
+  <div class="snip-stack" data-screen-label="Eligible Experiences">
 
-    <div class="section-header">
-      <h2>Approved Pathways</h2>
-      <p>Eligible experiences include internships, undergraduate research through USF Student Engagement in Research &amp; Innovation, capstone projects, cybersecurity support services, entrepreneurship initiatives, competitions, hackathons and study abroad experiences.</p>
+    <div class="snip-heading">
+      <h2 class="snip-heading__title">Approved Pathways</h2>
+      <p class="snip-heading__text">Eligible experiences include internships, undergraduate research through USF Student Engagement in Research &amp; Innovation, capstone projects, cybersecurity support services, entrepreneurship initiatives, competitions, hackathons and study abroad experiences.</p>
     </div>
 
-    <div class="pathway-grid">
-      <div class="pathway-card is-source" data-info="Internships.">
-        <span class="pathway-badge">IN</span>
-        <div class="pathway-label">Internships</div>
+    <div class="snip-grid snip-grid--4" data-snip-active-group data-snip-info-target="#expl-pathwayInfo">
+      <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item data-info="Internships.">
+        <span class="snip-card__badge">IN</span>
+        <div class="snip-card__title">Internships</div>
       </div>
-      <div class="pathway-card is-source" data-info="Undergraduate research through USF Student Engagement in Research &amp; Innovation.">
-        <span class="pathway-badge">UR</span>
-        <div class="pathway-label">Undergrad Research</div>
+      <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item data-info="Undergraduate research through USF Student Engagement in Research &amp; Innovation.">
+        <span class="snip-card__badge">UR</span>
+        <div class="snip-card__title">Undergrad Research</div>
       </div>
-      <div class="pathway-card is-source" data-info="Capstone projects.">
-        <span class="pathway-badge">CP</span>
-        <div class="pathway-label">Capstone Projects</div>
+      <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item data-info="Capstone projects.">
+        <span class="snip-card__badge">CP</span>
+        <div class="snip-card__title">Capstone Projects</div>
       </div>
-      <div class="pathway-card is-source" data-info="Cybersecurity support services.">
-        <span class="pathway-badge">CS</span>
-        <div class="pathway-label">Cyber Support</div>
+      <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item data-info="Cybersecurity support services.">
+        <span class="snip-card__badge">CS</span>
+        <div class="snip-card__title">Cyber Support</div>
       </div>
-      <div class="pathway-card is-source" data-info="Entrepreneurship initiatives.">
-        <span class="pathway-badge">EN</span>
-        <div class="pathway-label">Entrepreneurship</div>
+      <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item data-info="Entrepreneurship initiatives.">
+        <span class="snip-card__badge">EN</span>
+        <div class="snip-card__title">Entrepreneurship</div>
       </div>
-      <div class="pathway-card is-source" data-info="Competitions.">
-        <span class="pathway-badge">CO</span>
-        <div class="pathway-label">Competitions</div>
+      <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item data-info="Competitions.">
+        <span class="snip-card__badge">CO</span>
+        <div class="snip-card__title">Competitions</div>
       </div>
-      <div class="pathway-card is-source" data-info="Hackathons.">
-        <span class="pathway-badge">HA</span>
-        <div class="pathway-label">Hackathons</div>
+      <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item data-info="Hackathons.">
+        <span class="snip-card__badge">HA</span>
+        <div class="snip-card__title">Hackathons</div>
       </div>
-      <div class="pathway-card is-source" data-info="Study abroad experiences.">
-        <span class="pathway-badge">SA</span>
-        <div class="pathway-label">Study Abroad</div>
+      <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item data-info="Study abroad experiences.">
+        <span class="snip-card__badge">SA</span>
+        <div class="snip-card__title">Study Abroad</div>
       </div>
     </div>
 
-    <div class="info-box" id="expl-pathwayInfo">Hover to see more info</div>
+    <p class="snip-note" id="expl-pathwayInfo">Hover to see more info</p>
 
   </div>
 </div>
@@ -451,79 +140,45 @@
   <h2 class="stylized-header"><span>Requirements</span></h2>
 </div>
 
-<div id="tcap-omni-expl-root">
-  <div class="wf" data-screen-label="Requirements">
+<div class="snip-shell">
+  <div class="snip-stack" data-screen-label="Requirements">
 
-    <div class="section-header">
-      <h2>What Students Need to Complete</h2>
+    <div class="snip-heading">
+      <h2 class="snip-heading__title">What Students Need to Complete</h2>
     </div>
 
-    <div class="req-table">
-      <div class="req-row head">
-        <div>Requirement</div><div>What it means</div><div>Student output</div>
+    <div class="snip-table">
+      <div class="snip-table__row snip-table__row--head">
+        <div class="snip-table__cell">Requirement</div><div class="snip-table__cell">What it means</div><div class="snip-table__cell">Student output</div>
       </div>
-      <div class="req-row">
-        <div>135 verified hours</div><div>Minimum threshold of 135 verified hours</div><div>Tracked hours</div>
+      <div class="snip-table__row">
+        <div class="snip-table__cell">135 verified hours</div><div class="snip-table__cell">Minimum threshold of 135 verified hours</div><div class="snip-table__cell">Tracked hours</div>
       </div>
-      <div class="req-row">
-        <div>Pre-approval</div><div>Pre-approval of a plan of work and faculty mentor or quality supervisor</div><div>Approved plan of work</div>
+      <div class="snip-table__row">
+        <div class="snip-table__cell">Pre-approval</div><div class="snip-table__cell">Pre-approval of a plan of work and faculty mentor or quality supervisor</div><div class="snip-table__cell">Approved plan of work</div>
       </div>
-      <div class="req-row">
-        <div>Documentation</div><div>Plan of work, mid-point update and final report with structured reflection</div><div>Plan, update and final report</div>
+      <div class="snip-table__row">
+        <div class="snip-table__cell">Documentation</div><div class="snip-table__cell">Plan of work, mid-point update and final report with structured reflection</div><div class="snip-table__cell">Plan, update and final report</div>
       </div>
-      <div class="req-row">
-        <div>Assessment</div><div>Pass/fail assessment using a common rubric</div><div>Pass/fail result</div>
+      <div class="snip-table__row">
+        <div class="snip-table__cell">Assessment</div><div class="snip-table__cell">Pass/fail assessment using a common rubric</div><div class="snip-table__cell">Pass/fail result</div>
       </div>
-      <div class="req-row">
-        <div>CIS 4950</div><div>Recorded as CIS 4950 (badge and transcript notation)</div><div>Badge and transcript notation</div>
+      <div class="snip-table__row">
+        <div class="snip-table__cell">CIS 4950</div><div class="snip-table__cell">Recorded as CIS 4950 (badge and transcript notation)</div><div class="snip-table__cell">Badge and transcript notation</div>
       </div>
     </div>
 
-    <div class="soft-note">
+    <div class="snip-note snip-note--soft">
       This page will also have more details about the different classes Kurt Friday will be teaching. This is still in the planning phase but needs to be thought about in website design.
     </div>
 
-    <div class="wf-nav">
-      <a href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/index.aspx">Overview</a>
-      <a href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/stages.aspx">Layers</a>
-      <div class="is-active">Exp. Learning</div>
-      <a href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/faq.aspx">FAQ</a>
-      <a href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a>
+    <div class="snip-nav">
+      <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/index.aspx">Overview</a>
+      <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/stages.aspx">Layers</a>
+      <div class="snip-nav__link is-active">Exp. Learning</div>
+      <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/faq.aspx">FAQ</a>
+      <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a>
     </div>
 
   </div>
 </div>
-
-<script>
-  //<![CDATA[
-  (function () {
-    const root = document.getElementById('tcap-omni-expl-root');
-    if (!root) return;
-
-    const defaultText = 'Hover to see more info';
-
-    function setupInfoGroup(cardSelector, infoBoxId) {
-      const infoBox = root.querySelector('#' + infoBoxId);
-      if (!infoBox) return;
-      const cards = Array.from(root.querySelectorAll(cardSelector));
-      if (!cards.length) return;
-
-      const setActive = (card) => {
-        cards.forEach((c) => c.classList.remove('is-active'));
-        if (card) card.classList.add('is-active');
-        infoBox.textContent = card && card.dataset.info ? card.dataset.info : defaultText;
-      };
-
-      cards.forEach((card) => {
-        card.addEventListener('mouseenter', () => setActive(card));
-        card.addEventListener('mouseleave', () => setActive(null));
-        card.addEventListener('click', () => setActive(card));
-        card.addEventListener('touchstart', () => setActive(card), { passive: true });
-      });
-    }
-
-    setupInfoGroup('.timeline-card.is-source', 'expl-stageInfo');
-    setupInfoGroup('.pathway-card.is-source', 'expl-pathwayInfo');
-  })();
-  //]]>
-</script>

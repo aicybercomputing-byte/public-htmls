@@ -1,365 +1,38 @@
-<style>
-  /* OmniCMS snippet root + isolation */
-  #tcap-omni-overview-root,
-  #tcap-omni-overview-root * {
-    box-sizing: border-box !important;
-  }
+<link rel="stylesheet" href="https://aicybercomputing-byte.github.io/public-htmls/tcap/omnicms-snippets/snippet-template.css">
 
-  #tcap-omni-overview-root {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 24px;
-    font-family: inherit;
-    color: inherit;
-  }
+<div class="snip-shell">
+  <div class="snip-stack" data-screen-label="Overview">
 
-  #tcap-omni-overview-root .wf {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-
-  /* Neutralize USF site's owl rule `.content * + * { margin-top: 1.5em }`.
-     It adds ~24px above every non-first child, which misaligns items in a
-     grid/flex row (the first item looks shifted up relative to the rest)
-     and stacks on top of each container's own `gap`. Zero it out on every
-     spacing-bearing container's children so spacing is driven only by
-     `gap`. */
-  #tcap-omni-overview-root .wf>*,
-  #tcap-omni-overview-root .intro-grid>*,
-  #tcap-omni-overview-root .pillars-grid>*,
-  #tcap-omni-overview-root .journey-grid>*,
-  #tcap-omni-overview-root .pathway-grid>*,
-  #tcap-omni-overview-root .pathway-card>*,
-  #tcap-omni-overview-root .wf-nav>* {
-    margin-top: 0;
-  }
-
-  /* Stat bar — exact copy of jobs.html's `.jobs-stat-bar` grid plus its real
-     `c-calloutText`/`c-calloutText_heading`/`c-calloutText_text` component
-     and `.all-sources`/`.all-sources-text` citation styling, so these cards
-     render identically to the live jobs page. */
-  #tcap-omni-overview-root .stat-bar {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 2rem;
-    align-items: start;
-  }
-
-  #tcap-omni-overview-root .stat-bar > * {
-    align-self: start;
-    margin: 2px 0 0 0;
-  }
-
-  #tcap-omni-overview-root .all-sources {
-    margin-top: 1rem;
-    font-size: 8pt;
-    line-height: 1.35;
-    color: #333333;
-  }
-
-  #tcap-omni-overview-root .all-sources-text {
-    margin: 0;
-    padding: 0;
-    font-size: 8pt;
-    line-height: 1.35;
-    font-weight: 400;
-    color: #333333;
-  }
-
-  /* CTA band is extracted outside #tcap-omni-overview-root (same reason as
-     the stylized headers) so its background can bleed edge-to-edge instead
-     of being capped at the root's 900px max-width. Rules below are
-     unprefixed on purpose. `.cta-band-inner` keeps the button centered at a
-     normal readable width inside the full-bleed background. */
-  .cta-band {
-    background: #EFEFF0;
-    padding: 24px;
-    text-align: center;
-  }
-
-  .cta-band-inner {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  /* `!important` on display/max-width: the real site's global CSS has
-     `a.snippetButton { display: block; max-width: 200px; }`. `display: block`
-     ignores the ancestor's `text-align: center`, which is what left-aligns
-     the button once this rule loses the specificity fight. */
-  .cta-band .snippetButton {
-    display: inline-block !important;
-    max-width: none !important;
-    background: #006747;
-    color: #fff;
-    border: 2px solid #006747;
-    border-radius: 0;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 700;
-    padding: 0.85em 1.6em;
-    line-height: 1.2;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  .cta-band .snippetButton:hover,
-  .cta-band .snippetButton:focus {
-    background: #004c35;
-    border-color: #004c35;
-    color: #fff;
-  }
-
-  /* Intro cards — c-calloutText */
-  #tcap-omni-overview-root .intro-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-
-  #tcap-omni-overview-root .callout {
-    background: #efeff0;
-    border: 1px solid #b2b2b2;
-    padding: 24px;
-  }
-
-  #tcap-omni-overview-root .callout h3 {
-    margin: 0 0 8px;
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 600;
-    font-size: 28px;
-    line-height: 1.2;
-    color: #006747;
-  }
-
-  #tcap-omni-overview-root .callout p {
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #3f3f3f;
-  }
-
-  /* The small skewed label above each h2 uses the real USF site's own
-     `.stylized-header-container--centered` / `.stylized-header` classes
-     directly (see tmp-usf-v3-secondary.css) instead of a local reimplementation
-     — those classes are already loaded globally on every USF page, so no
-     CSS is needed here at all. */
-  #tcap-omni-overview-root .section-header {
-    text-align: center;
-  }
-
-  #tcap-omni-overview-root .section-header h2 {
-    margin: 10px 0 8px;
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 600;
-    font-size: 36px;
-    color: #3f565e;
-    text-transform: uppercase;
-    line-height: 1.15;
-  }
-
-  #tcap-omni-overview-root .section-header p {
-    margin: 0 auto;
-    max-width: 640px;
-    font-size: 15px;
-    line-height: 1.4;
-    color: #3f3f3f;
-  }
-
-  /* Pillars — c-calloutText cards */
-  #tcap-omni-overview-root .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px;
-  }
-
-  #tcap-omni-overview-root .pillar-card {
-    background: #efeff0;
-    border: 1px solid #b2b2b2;
-    padding: 24px;
-    text-align: center;
-    text-decoration: none;
-  }
-
-  #tcap-omni-overview-root .pillar-card .pillar-title {
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 700;
-    font-size: 22px;
-    color: #006747;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    margin: 0 0 10px;
-  }
-
-  #tcap-omni-overview-root .pillar-card p {
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.4;
-    color: #3f3f3f;
-  }
-
-  /* Student journey — 4-up green strip */
-  #tcap-omni-overview-root .journey-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1px;
-    background: #006747;
-  }
-
-  #tcap-omni-overview-root .journey-step {
-    background: #006747;
-    color: #fff;
-    padding: 20px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    align-items: center;
-    text-align: center;
-    text-decoration: none;
-  }
-
-  #tcap-omni-overview-root .journey-step .journey-num {
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 700;
-    font-size: 22px;
-  }
-
-  #tcap-omni-overview-root .journey-step .journey-title {
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    margin: 0;
-  }
-
-  /* Experiential learning teaser + pathway grid */
-  #tcap-omni-overview-root .pathway-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px;
-  }
-
-  #tcap-omni-overview-root .pathway-card {
-    background: #efeff0;
-    border: 1px solid #b2b2b2;
-    padding: 18px;
-    text-align: center;
-    text-decoration: none;
-  }
-
-  #tcap-omni-overview-root .pathway-badge {
-    width: 44px;
-    height: 44px;
-    margin: 0 auto 10px;
-    border-radius: 50%;
-    background: #006747;
-    color: #fff;
-    display: grid;
-    place-items: center;
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-  }
-
-  #tcap-omni-overview-root .pathway-label {
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    color: #006747;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-  }
-
-  /* Bottom nav */
-  #tcap-omni-overview-root .wf-nav {
-    display: flex;
-    gap: 8px;
-    font-size: 13px;
-    text-align: center;
-    border-top: 1px solid #d8d6cd;
-    padding-top: 20px;
-  }
-
-  #tcap-omni-overview-root .wf-nav a,
-  #tcap-omni-overview-root .wf-nav div {
-    flex: 1;
-    display: block;
-    background: #fff;
-    color: #006747;
-    border: 1.5px solid #006747;
-    border-radius: 3px;
-    padding: 10px 12px;
-    text-decoration: none;
-  }
-
-  #tcap-omni-overview-root .wf-nav .is-active {
-    background: #006747;
-    color: #fff;
-  }
-
-  @media (max-width: 700px) {
-
-    #tcap-omni-overview-root .stat-bar {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    #tcap-omni-overview-root .intro-grid,
-    #tcap-omni-overview-root .pillars-grid {
-      grid-template-columns: 1fr;
-    }
-
-    #tcap-omni-overview-root .journey-grid,
-    #tcap-omni-overview-root .pathway-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    #tcap-omni-overview-root .wf-nav {
-      flex-wrap: wrap;
-    }
-
-    #tcap-omni-overview-root .wf-nav a,
-    #tcap-omni-overview-root .wf-nav div {
-      flex: 1 1 45%;
-    }
-  }
-</style>
-
-<div id="tcap-omni-overview-root">
-  <div class="wf" data-screen-label="Overview">
-
-    <div class="stat-bar">
-      <div class="c-calloutText c-calloutText--gray" style="height: 225px !important;">
+    <div class="snip-stat-bar">
+      <div class="c-calloutText c-calloutText--gray">
         <h3 class="c-calloutText_heading">+17.9%</h3>
         <div class="c-calloutText_text">Software developer growth 2023&ndash;2033
-          <section class="all-sources" aria-labelledby="stat-sources-heading">
-            <p class="all-sources-text">Software developer growth 2023&ndash;2033: <span>BLS / MLR 2025.</span></p>
+          <section class="snip-source" aria-labelledby="stat-sources-heading">
+            <p class="snip-source__text">Software developer growth 2023&ndash;2033: <span>BLS / MLR 2025.</span></p>
           </section>
         </div>
       </div>
-      <div class="c-calloutText c-calloutText--gray" style="height: 225px !important;">
+      <div class="c-calloutText c-calloutText--gray">
         <h3 class="c-calloutText_heading">546K</h3>
         <div class="c-calloutText_text">Tech workers in Florida (No. 4 nationally)
-          <section class="all-sources" aria-labelledby="stat-sources-heading">
-            <p class="all-sources-text">Florida tech workforce count: <span>CompTIA 2025.</span></p>
+          <section class="snip-source" aria-labelledby="stat-sources-heading">
+            <p class="snip-source__text">Florida tech workforce count: <span>CompTIA 2025.</span></p>
           </section>
         </div>
       </div>
-      <div class="c-calloutText c-calloutText--gray" style="height: 225px !important;">
+      <div class="c-calloutText c-calloutText--gray">
         <h3 class="c-calloutText_heading">$102,908</h3>
         <div class="c-calloutText_text">Florida tech wage &mdash; 122% above state median
-          <section class="all-sources" aria-labelledby="stat-sources-heading">
-            <p class="all-sources-text">Median Florida tech wage: <span>CompTIA / Lightcast 2024.</span></p>
+          <section class="snip-source" aria-labelledby="stat-sources-heading">
+            <p class="snip-source__text">Median Florida tech wage: <span>CompTIA / Lightcast 2024.</span></p>
           </section>
         </div>
       </div>
-      <div class="c-calloutText c-calloutText--gray" style="height: 225px !important;">
+      <div class="c-calloutText c-calloutText--gray">
         <h3 class="c-calloutText_heading">12,735</h3>
         <div class="c-calloutText_text">Active Florida job postings requiring AI skills
-          <section class="all-sources" aria-labelledby="stat-sources-heading">
-            <p class="all-sources-text">Florida AI-skill job postings: <span>CompTIA 2024.</span></p>
+          <section class="snip-source" aria-labelledby="stat-sources-heading">
+            <p class="snip-source__text">Florida AI-skill job postings: <span>CompTIA 2024.</span></p>
           </section>
         </div>
       </div>
@@ -368,25 +41,25 @@
   </div>
 </div>
 
-<div class="cta-band">
-  <div class="cta-band-inner">
+<div class="snip-cta">
+  <div class="snip-cta__inner">
     <a class="snippetButton" href="#">Talk to an advisor</a>
   </div>
 </div>
 
-<div id="tcap-omni-overview-root">
-  <div class="wf" data-screen-label="Overview">
+<div class="snip-shell">
+  <div class="snip-stack" data-screen-label="Overview">
 
-    <div class="intro-grid">
-      <div class="callout">
-        <h3>What is tCAP?</h3>
-        <p>tCAP is a structured, multiyear career development program designed exclusively for Bellini College students.
+    <div class="snip-grid snip-grid--2">
+      <div class="snip-card snip-card--callout">
+        <h3 class="snip-card__title">What is tCAP?</h3>
+        <p class="snip-card__body">tCAP is a structured, multiyear career development program designed exclusively for Bellini College students.
           Instead of waiting until their final year to focus on internships and career preparation, tCAP helps students
           steadily build experience, skills and professional connections throughout their academic journey.</p>
       </div>
-      <div class="callout">
-        <h3>Why tCAP matters</h3>
-        <p>Employers increasingly seek graduates who can communicate effectively, collaborate on teams, solve applied
+      <div class="snip-card snip-card--callout">
+        <h3 class="snip-card__title">Why tCAP matters</h3>
+        <p class="snip-card__body">Employers increasingly seek graduates who can communicate effectively, collaborate on teams, solve applied
           problems and contribute immediately in professional environments. tCAP combines career readiness, experiential
           learning and employer engagement to help develop those capabilities before graduation.</p>
       </div>
@@ -399,30 +72,30 @@
   <h2 class="stylized-header"><span>The tCAP Model</span></h2>
 </div>
 
-<div id="tcap-omni-overview-root">
-  <div class="wf" data-screen-label="The tCAP Model">
+<div class="snip-shell">
+  <div class="snip-stack" data-screen-label="The tCAP Model">
 
-    <div class="section-header">
-      <h2>Three Pillars. Endless Possibilities.</h2>
-      <p>The tCAP experience is built on three pillars that work together to develop your career readiness, applied
+    <div class="snip-heading">
+      <h2 class="snip-heading__title">Three Pillars. Endless Possibilities.</h2>
+      <p class="snip-heading__text">The tCAP experience is built on three pillars that work together to develop your career readiness, applied
         skills and professional network.</p>
     </div>
 
-    <div class="pillars-grid">
-      <a class="pillar-card" href="stages.html">
-        <p class="pillar-title">Readiness</p>
-        <p>Build the foundation with self-awareness, goal setting and essential professional skills to launch your
+    <div class="snip-grid snip-grid--3">
+      <a class="snip-card snip-card--callout snip-card--center" href="stages.html">
+        <p class="snip-card__title">Readiness</p>
+        <p class="snip-card__body">Build the foundation with self-awareness, goal setting and essential professional skills to launch your
           career with confidence.</p>
       </a>
-      <a class="pillar-card" href="experiential-learning.html">
-        <p class="pillar-title">Experience</p>
-        <p>Learn by doing. Apply what you know through projects, internships, externships, research and
+      <a class="snip-card snip-card--callout snip-card--center" href="experiential-learning.html">
+        <p class="snip-card__title">Experience</p>
+        <p class="snip-card__body">Learn by doing. Apply what you know through projects, internships, externships, research and
           performance-based learning.</p>
       </a>
-      <a class="pillar-card" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx"
+      <a class="snip-card snip-card--callout snip-card--center" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx"
         target="_blank" rel="noopener noreferrer">
-        <p class="pillar-title">Connection</p>
-        <p>Grow your network and collaborate with peers, mentors and employers who open doors to opportunities and
+        <p class="snip-card__title">Connection</p>
+        <p class="snip-card__body">Grow your network and collaborate with peers, mentors and employers who open doors to opportunities and
           long-term success.</p>
       </a>
     </div>
@@ -434,31 +107,31 @@
   <h2 class="stylized-header"><span>Student Journey</span></h2>
 </div>
 
-<div id="tcap-omni-overview-root">
-  <div class="wf" data-screen-label="Student Journey">
+<div class="snip-shell">
+  <div class="snip-stack" data-screen-label="Student Journey">
 
-    <div class="section-header">
-      <h2>A Four-Stage Path to Career Readiness</h2>
-      <p>Each stage builds on the last, so students keep developing career readiness, technical confidence and
+    <div class="snip-heading">
+      <h2 class="snip-heading__title">A Four-Stage Path to Career Readiness</h2>
+      <p class="snip-heading__text">Each stage builds on the last, so students keep developing career readiness, technical confidence and
         professional experience all the way to graduation.</p>
     </div>
 
-    <div class="journey-grid">
-      <a class="journey-step" href="stages.html#foundations">
-        <span class="journey-num">01</span>
-        <span class="journey-title">Targeting<br>Fundamentals</span>
+    <div class="snip-grid snip-grid--4 snip-grid--tight">
+      <a class="snip-card snip-card--icon snip-card--solid" href="stages.html#foundations">
+        <span class="snip-card__num">01</span>
+        <span class="snip-card__title">Targeting<br>Fundamentals</span>
       </a>
-      <a class="journey-step" href="stages.html#power-skills">
-        <span class="journey-num">02</span>
-        <span class="journey-title">Core<br>Application</span>
+      <a class="snip-card snip-card--icon snip-card--solid" href="stages.html#power-skills">
+        <span class="snip-card__num">02</span>
+        <span class="snip-card__title">Core<br>Application</span>
       </a>
-      <a class="journey-step" href="stages.html#connectivity">
-        <span class="journey-num">03</span>
-        <span class="journey-title">Advanced<br>Practice</span>
+      <a class="snip-card snip-card--icon snip-card--solid" href="stages.html#connectivity">
+        <span class="snip-card__num">03</span>
+        <span class="snip-card__title">Advanced<br>Practice</span>
       </a>
-      <a class="journey-step" href="stages.html#mastery">
-        <span class="journey-num">04</span>
-        <span class="journey-title">Professional<br>Mastery</span>
+      <a class="snip-card snip-card--icon snip-card--solid" href="stages.html#mastery">
+        <span class="snip-card__num">04</span>
+        <span class="snip-card__title">Professional<br>Mastery</span>
       </a>
     </div>
   </div>
@@ -469,58 +142,58 @@
 </div>
 
 
-<div id="tcap-omni-overview-root">
-  <div class="wf" data-screen-label="Experiential Learning">
-    <div class="section-header">
-      <h2>Learn by Doing, on Real Deliverables</h2>
-      <p>Every tCAP student completes applied experiential learning through internships, research, capstones,
+<div class="snip-shell">
+  <div class="snip-stack" data-screen-label="Experiential Learning">
+    <div class="snip-heading">
+      <h2 class="snip-heading__title">Learn by Doing, on Real Deliverables</h2>
+      <p class="snip-heading__text">Every tCAP student completes applied experiential learning through internships, research, capstones,
         hackathons, entrepreneurship or other approved opportunities.</p>
     </div>
 
-    <div class="pathway-grid">
-      <a class="pathway-card" href="experiential-learning.html">
-        <span class="pathway-badge">IN</span>
-        <div class="pathway-label">Internships</div>
+    <div class="snip-grid snip-grid--4">
+      <a class="snip-card snip-card--icon" href="experiential-learning.html">
+        <span class="snip-card__badge">IN</span>
+        <div class="snip-card__title">Internships</div>
       </a>
-      <a class="pathway-card" href="experiential-learning.html">
-        <span class="pathway-badge">UR</span>
-        <div class="pathway-label">Undergrad Research</div>
+      <a class="snip-card snip-card--icon" href="experiential-learning.html">
+        <span class="snip-card__badge">UR</span>
+        <div class="snip-card__title">Undergrad Research</div>
       </a>
-      <a class="pathway-card" href="experiential-learning.html">
-        <span class="pathway-badge">CP</span>
-        <div class="pathway-label">Capstone Projects</div>
+      <a class="snip-card snip-card--icon" href="experiential-learning.html">
+        <span class="snip-card__badge">CP</span>
+        <div class="snip-card__title">Capstone Projects</div>
       </a>
-      <a class="pathway-card" href="experiential-learning.html">
-        <span class="pathway-badge">CS</span>
-        <div class="pathway-label">Cyber Support</div>
+      <a class="snip-card snip-card--icon" href="experiential-learning.html">
+        <span class="snip-card__badge">CS</span>
+        <div class="snip-card__title">Cyber Support</div>
       </a>
-      <a class="pathway-card" href="experiential-learning.html">
-        <span class="pathway-badge">EN</span>
-        <div class="pathway-label">Entrepreneurship</div>
+      <a class="snip-card snip-card--icon" href="experiential-learning.html">
+        <span class="snip-card__badge">EN</span>
+        <div class="snip-card__title">Entrepreneurship</div>
       </a>
-      <a class="pathway-card" href="experiential-learning.html">
-        <span class="pathway-badge">CO</span>
-        <div class="pathway-label">Competitions</div>
+      <a class="snip-card snip-card--icon" href="experiential-learning.html">
+        <span class="snip-card__badge">CO</span>
+        <div class="snip-card__title">Competitions</div>
       </a>
-      <a class="pathway-card" href="experiential-learning.html">
-        <span class="pathway-badge">HA</span>
-        <div class="pathway-label">Hackathons</div>
+      <a class="snip-card snip-card--icon" href="experiential-learning.html">
+        <span class="snip-card__badge">HA</span>
+        <div class="snip-card__title">Hackathons</div>
       </a>
-      <a class="pathway-card" href="experiential-learning.html">
-        <span class="pathway-badge">SA</span>
-        <div class="pathway-label">Study Abroad</div>
+      <a class="snip-card snip-card--icon" href="experiential-learning.html">
+        <span class="snip-card__badge">SA</span>
+        <div class="snip-card__title">Study Abroad</div>
       </a>
     </div>
 
-    <div class="wf-nav">
-      <div class="is-active">Overview</div>
-      <a
+    <div class="snip-nav">
+      <div class="snip-nav__link is-active">Overview</div>
+      <a class="snip-nav__link"
         href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/stages.aspx">Layers</a>
-      <a
+      <a class="snip-nav__link"
         href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/experiential-learning.aspx">Exp.
         Learning</a>
-      <a href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/faq.aspx">FAQ</a>
-      <a href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank"
+      <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/faq.aspx">FAQ</a>
+      <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank"
         rel="noopener noreferrer">Jobs Page</a>
     </div>
 

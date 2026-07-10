@@ -15,12 +15,30 @@ overriding a handful of CSS custom properties.
 
 See [style-guide.html](style-guide.html) for a live, visual reference of
 every component below, with copy-pasteable markup. [snippet-template.css](snippet-template.css)
-is the stylesheet that drives it.
+is the stylesheet that drives it, [snippet-template.js](snippet-template.js)
+the behaviors. [CATALOG.md](CATALOG.md) is the dense, copy-paste-first
+version of this same system — point an LLM at that file to generate a new
+snippet quickly.
 
-**Scope note:** `jobs.html` / `jobs-source-context.html` have their own,
-more bespoke interactive components (filters, results list, tabs, spinner,
-bar chart, comparison table). Those aren't folded into this system yet —
-they're a reasonable phase 2 once this base layer is adopted.
+**Scope note:** `jobs.html` has been partially migrated — its stat bar,
+employer grid, recruiting grid and bottom nav now use `.snip-stat-bar`,
+`.snip-grid--2`/`--3` and `.snip-nav` (with `--snip-stat-height: 175px` set
+inline on that page's stat bar, since its cards are shorter than the
+225px default used elsewhere). `.employer-card`/`.employer-tag` and
+`.recruiting-card`/`.recruiting-link` stay local/unprefixed on purpose —
+they're page-specific styling layered on the CMS theme's own
+`c-calloutText`, not generic components.
+
+Everything else in `jobs.html` / `jobs-source-context.html` is
+deliberately untouched: filters, tabs, the results list, the spinner, the
+live projections table with its bar chart, the events calendar, and the
+job/internship match forms are all tightly coupled to page-specific JS
+(`switchPanel`, `filterEvents`, `renderResults`, `updateProjections`,
+`renderEventCards`, etc.) reading exact class/id names. `spotlight-grid`,
+`career-grid` and `metro-grid` are static content but use bespoke
+per-breakpoint responsive tuning (auto-fit columns, an asymmetric 3-over-2
+span layout) that doesn't yet have a matching generic `snip-grid` variant
+— folding those in is a reasonable phase 2, not attempted here.
 
 **Sources this system is drawn from**, beyond the four original snippets:
 
@@ -51,12 +69,15 @@ they're a reasonable phase 2 once this base layer is adopted.
 2. **BEM.** `snip-block`, `snip-block__element`, `snip-block--modifier`.
    One underscore-pair for elements, one double-dash for modifiers. No
    nesting past one level (`snip-card__title`, not `snip-card__body__title`).
-3. **State classes are unprefixed and shared.** `is-active`, `is-source`
-   toggle behavior/appearance and are added by JS or by the "current page"
-   markup. They're intentionally outside the `snip-` namespace because
-   they're a generic state hook, not a component — this matches the
-   convention the CMS theme itself already uses (`is-active` is standard
-   BEM-adjacent state naming).
+3. **State classes are unprefixed and shared.** `is-active`, `is-hidden`,
+   `is-loading` toggle behavior/appearance and are added by JS or by the
+   "current page" markup. They're intentionally outside the `snip-`
+   namespace because they're a generic state hook, not a component — this
+   matches the convention the CMS theme itself already uses (`is-active` is
+   standard BEM-adjacent state naming). `is-source` was the pre-migration
+   marker the old bespoke per-page scripts used to find hoverable cards;
+   `snippet-template.js` uses `data-snip-active-item` for that instead, so
+   `is-source` no longer appears in migrated markup.
 4. **Root scoping uses a class, not an ID.** Old snippets scoped every rule
    under a unique `#tcap-omni-{page}-root` ID, which meant the CSS had to be
    hand-edited (every selector re-prefixed) for each new page. The new
@@ -123,7 +144,8 @@ they're a reasonable phase 2 once this base layer is adopted.
 | Event row w/ flip badge | `.snip-event`, `__badge`, `__badge-inner`, `__face--front/back`, `__title` | `.ce-event`, `.ce-flip`, `.ce-flip-inner`, `.ce-face-front/back`, `.ce-title` |
 | Flip button | `.snip-flip-btn`, `__inner`, `__face--front/back` | `.ce-btn`, `.ce-btn-inner`, `.ce-btn-face-front/back` |
 
-State classes (unprefixed, unchanged): `is-active`, `is-source`, `is-hidden`, `is-loading`.
+State classes (unprefixed, unchanged): `is-active`, `is-hidden`, `is-loading`.
+(`is-source` is legacy — see rule 3 above.)
 
 ## Behaviors (snippet-template.js)
 

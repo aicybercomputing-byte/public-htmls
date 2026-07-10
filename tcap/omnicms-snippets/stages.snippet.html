@@ -1,248 +1,39 @@
-<style>
-  #tcap-omni-stages-root,
-  #tcap-omni-stages-root * {
-    box-sizing: border-box !important;
-  }
+<link rel="stylesheet" href="https://aicybercomputing-byte.github.io/public-htmls/tcap/omnicms-snippets/snippet-template.css">
+<script src="https://aicybercomputing-byte.github.io/public-htmls/tcap/omnicms-snippets/snippet-template.js" defer></script>
 
-  #tcap-omni-stages-root {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 24px;
-    font-family: inherit;
-    color: inherit;
-  }
+<div class="snip-shell">
+  <div class="snip-stack" data-screen-label="Layers">
 
-  #tcap-omni-stages-root .wf {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-
-  /* Neutralize USF site's owl rule `.content * + * { margin-top: 1.5em }`.
-     It adds ~24px above every non-first child, which misaligns items in a
-     grid/flex row (the first item looks shifted up relative to the rest)
-     and stacks on top of each container's own `gap`. Zero it out on every
-     spacing-bearing container's children so spacing is driven only by
-     `gap`. */
-  #tcap-omni-stages-root .wf > *,
-  #tcap-omni-stages-root .stage-list > *,
-  #tcap-omni-stages-root .stage-card > *,
-  #tcap-omni-stages-root .wf-nav > * {
-    margin-top: 0;
-  }
-
-  /* Stat bar — exact copy of jobs.html's `.jobs-stat-bar` grid plus its real
-     `c-calloutText`/`c-calloutText_heading`/`c-calloutText_text` component
-     and `.all-sources`/`.all-sources-text` citation styling, so these cards
-     render identically to the live jobs page. */
-  #tcap-omni-stages-root .stat-bar {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 2rem;
-    align-items: start;
-  }
-  #tcap-omni-stages-root .stat-bar > * {
-    align-self: start;
-    margin: 2px 0 0 0;
-  }
-  #tcap-omni-stages-root .all-sources {
-    margin-top: 1rem;
-    font-size: 8pt;
-    line-height: 1.35;
-    color: #333333;
-  }
-  #tcap-omni-stages-root .all-sources-text {
-    margin: 0;
-    padding: 0;
-    font-size: 8pt;
-    line-height: 1.35;
-    font-weight: 400;
-    color: #333333;
-  }
-
-  /* CTA band is extracted outside #tcap-omni-stages-root (same reason as
-     the stylized headers) so its background can bleed edge-to-edge instead
-     of being capped at the root's 900px max-width. Rules below are
-     unprefixed on purpose. `.cta-band-inner` keeps the button centered at a
-     normal readable width inside the full-bleed background. */
-  .cta-band {
-    background: #EFEFF0;
-    padding: 24px;
-    text-align: center;
-  }
-  .cta-band-inner {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  /* `!important` on display/max-width: the real site's global CSS has
-     `a.snippetButton { display: block; max-width: 200px; }`. `display: block`
-     ignores the ancestor's `text-align: center`, which is what left-aligns
-     the button once this rule loses the specificity fight. */
-  .cta-band .snippetButton {
-    display: inline-block !important;
-    max-width: none !important;
-    background: #006747;
-    color: #fff;
-    border: 2px solid #006747;
-    border-radius: 0;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 700;
-    padding: 0.85em 1.6em;
-    line-height: 1.2;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  .cta-band .snippetButton:hover,
-  .cta-band .snippetButton:focus {
-    background: #004c35;
-    border-color: #004c35;
-  }
-
-  /* The small skewed label above each h2 uses the real USF site's own
-     `.stylized-header-container--centered` / `.stylized-header` classes
-     directly (see tmp-usf-v3-secondary.css) instead of a local reimplementation
-     — those classes are already loaded globally on every USF page, so no
-     CSS is needed here at all. */
-  #tcap-omni-stages-root .section-header {
-    text-align: center;
-  }
-  #tcap-omni-stages-root .section-header h2 {
-    margin: 10px 0 8px;
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 600;
-    font-size: 36px;
-    color: #3f565e;
-    text-transform: uppercase;
-    line-height: 1.15;
-  }
-  #tcap-omni-stages-root .section-header p {
-    margin: 0 auto;
-    max-width: 640px;
-    font-size: 15px;
-    line-height: 1.4;
-    color: #3f3f3f;
-  }
-
-  #tcap-omni-stages-root .stage-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  #tcap-omni-stages-root .stage-card {
-    background: #efeff0;
-    border: 1px solid #b2b2b2;
-    padding: 22px;
-    display: grid;
-    grid-template-columns: 48px 1fr;
-    gap: 16px;
-    align-items: start;
-    transition: background 0.15s, border-color 0.15s;
-  }
-  #tcap-omni-stages-root .stage-card:hover,
-  #tcap-omni-stages-root .stage-card.is-active {
-    background: #d9e8e4;
-    border-color: #006747;
-  }
-  #tcap-omni-stages-root .stage-num {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #006747;
-    color: #fff;
-    display: grid;
-    place-items: center;
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-  }
-  #tcap-omni-stages-root .stage-card h3 {
-    margin: 0 0 6px;
-    font-family: "Barlow Condensed", sans-serif;
-    font-weight: 600;
-    font-size: 22px;
-    color: #006747;
-    text-transform: uppercase;
-  }
-  #tcap-omni-stages-root .stage-card p {
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #3f3f3f;
-  }
-
-  #tcap-omni-stages-root .wf-nav {
-    display: flex;
-    gap: 8px;
-    font-size: 13px;
-    text-align: center;
-    border-top: 1px solid #d8d6cd;
-    padding-top: 20px;
-  }
-  #tcap-omni-stages-root .wf-nav a,
-  #tcap-omni-stages-root .wf-nav div {
-    flex: 1;
-    display: block;
-    background: #fff;
-    color: #006747;
-    border: 1.5px solid #006747;
-    border-radius: 3px;
-    padding: 10px 12px;
-    text-decoration: none;
-  }
-  #tcap-omni-stages-root .wf-nav .is-active {
-    background: #006747;
-    color: #fff;
-  }
-
-  @media (max-width: 700px) {
-    #tcap-omni-stages-root .stat-bar {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-    #tcap-omni-stages-root .wf-nav {
-      flex-wrap: wrap;
-    }
-    #tcap-omni-stages-root .wf-nav a,
-    #tcap-omni-stages-root .wf-nav div {
-      flex: 1 1 45%;
-    }
-  }
-</style>
-
-<div id="tcap-omni-stages-root">
-  <div class="wf" data-screen-label="Layers">
-
-    <div class="stat-bar">
-      <div class="c-calloutText c-calloutText--gray" style="height: 225px !important;">
+    <div class="snip-stat-bar">
+      <div class="c-calloutText c-calloutText--gray">
         <h3 class="c-calloutText_heading">+17.9%</h3>
         <div class="c-calloutText_text">Software developer growth 2023&ndash;2033
-          <section class="all-sources" aria-labelledby="stat-sources-heading">
-            <p class="all-sources-text">Software developer growth 2023&ndash;2033: <span>BLS / MLR 2025.</span></p>
+          <section class="snip-source" aria-labelledby="stat-sources-heading">
+            <p class="snip-source__text">Software developer growth 2023&ndash;2033: <span>BLS / MLR 2025.</span></p>
           </section>
         </div>
       </div>
-      <div class="c-calloutText c-calloutText--gray" style="height: 225px !important;">
+      <div class="c-calloutText c-calloutText--gray">
         <h3 class="c-calloutText_heading">546K</h3>
         <div class="c-calloutText_text">Tech workers in Florida (No. 4 nationally)
-          <section class="all-sources" aria-labelledby="stat-sources-heading">
-            <p class="all-sources-text">Florida tech workforce count: <span>CompTIA 2025.</span></p>
+          <section class="snip-source" aria-labelledby="stat-sources-heading">
+            <p class="snip-source__text">Florida tech workforce count: <span>CompTIA 2025.</span></p>
           </section>
         </div>
       </div>
-      <div class="c-calloutText c-calloutText--gray" style="height: 225px !important;">
+      <div class="c-calloutText c-calloutText--gray">
         <h3 class="c-calloutText_heading">$102,908</h3>
         <div class="c-calloutText_text">Florida tech wage &mdash; 122% above state median
-          <section class="all-sources" aria-labelledby="stat-sources-heading">
-            <p class="all-sources-text">Median Florida tech wage: <span>CompTIA / Lightcast 2024.</span></p>
+          <section class="snip-source" aria-labelledby="stat-sources-heading">
+            <p class="snip-source__text">Median Florida tech wage: <span>CompTIA / Lightcast 2024.</span></p>
           </section>
         </div>
       </div>
-      <div class="c-calloutText c-calloutText--gray" style="height: 225px !important;">
+      <div class="c-calloutText c-calloutText--gray">
         <h3 class="c-calloutText_heading">12,735</h3>
         <div class="c-calloutText_text">Active Florida job postings requiring AI skills
-          <section class="all-sources" aria-labelledby="stat-sources-heading">
-            <p class="all-sources-text">Florida AI-skill job postings: <span>CompTIA 2024.</span></p>
+          <section class="snip-source" aria-labelledby="stat-sources-heading">
+            <p class="snip-source__text">Florida AI-skill job postings: <span>CompTIA 2024.</span></p>
           </section>
         </div>
       </div>
@@ -251,8 +42,8 @@
   </div>
 </div>
 
-<div class="cta-band">
-  <div class="cta-band-inner">
+<div class="snip-cta">
+  <div class="snip-cta__inner">
     <a class="snippetButton" href="#">Talk to an advisor</a>
   </div>
 </div>
@@ -261,76 +52,52 @@
   <h2 class="stylized-header"><span>The Student Experience</span></h2>
 </div>
 
-<div id="tcap-omni-stages-root">
-  <div class="wf" data-screen-label="The Student Experience">
+<div class="snip-shell">
+  <div class="snip-stack" data-screen-label="The Student Experience">
 
-    <div class="section-header">
-      <h2>Growth Throughout Your Academic Journey</h2>
-      <p>Each step builds on the last so you continue developing career readiness, technical confidence and professional experience.</p>
+    <div class="snip-heading">
+      <h2 class="snip-heading__title">Growth Throughout Your Academic Journey</h2>
+      <p class="snip-heading__text">Each step builds on the last so you continue developing career readiness, technical confidence and professional experience.</p>
     </div>
 
-    <div class="stage-list">
-      <div class="stage-card" id="foundations">
-        <div class="stage-num">1</div>
+    <div class="snip-grid snip-grid--1" data-snip-active-group>
+      <div class="snip-card snip-card--step snip-card--interactive" data-snip-active-item id="foundations">
+        <div class="snip-card__badge">1</div>
         <div>
-          <h3>Targeting Fundamentals</h3>
-          <p>Students begin with onboarding, communication development, resume building, LinkedIn setup, GitHub development and goal setting.</p>
+          <h3 class="snip-card__title">Targeting Fundamentals</h3>
+          <p class="snip-card__body">Students begin with onboarding, communication development, resume building, LinkedIn setup, GitHub development and goal setting.</p>
         </div>
       </div>
-      <div class="stage-card" id="power-skills">
-        <div class="stage-num">2</div>
+      <div class="snip-card snip-card--step snip-card--interactive" data-snip-active-item id="power-skills">
+        <div class="snip-card__badge">2</div>
         <div>
-          <h3>Core Application</h3>
-          <p>Students participate in mentorship opportunities, leadership development and networking experiences that strengthen professional confidence.</p>
+          <h3 class="snip-card__title">Core Application</h3>
+          <p class="snip-card__body">Students participate in mentorship opportunities, leadership development and networking experiences that strengthen professional confidence.</p>
         </div>
       </div>
-      <div class="stage-card" id="connectivity">
-        <div class="stage-num">3</div>
+      <div class="snip-card snip-card--step snip-card--interactive" data-snip-active-item id="connectivity">
+        <div class="snip-card__badge">3</div>
         <div>
-          <h3>Advanced Practice</h3>
-          <p>Career readiness becomes more hands-on through internship preparation, employer and alumni engagement, experiential learning pathways, career fair preparation, interview coaching and applied team-based projects.</p>
+          <h3 class="snip-card__title">Advanced Practice</h3>
+          <p class="snip-card__body">Career readiness becomes more hands-on through internship preparation, employer and alumni engagement, experiential learning pathways, career fair preparation, interview coaching and applied team-based projects.</p>
         </div>
       </div>
-      <div class="stage-card" id="mastery">
-        <div class="stage-num">4</div>
+      <div class="snip-card snip-card--step snip-card--interactive" data-snip-active-item id="mastery">
+        <div class="snip-card__badge">4</div>
         <div>
-          <h3>Professional Mastery</h3>
-          <p>Students demonstrate mastery through capstones, advanced coursework, certifications and internship or career placement opportunities.</p>
+          <h3 class="snip-card__title">Professional Mastery</h3>
+          <p class="snip-card__body">Students demonstrate mastery through capstones, advanced coursework, certifications and internship or career placement opportunities.</p>
         </div>
       </div>
     </div>
 
-    <div class="wf-nav">
-      <a href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/index.aspx">Overview</a>
-      <div class="is-active">Layers</div>
-      <a href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/experiential-learning.aspx">Exp. Learning</a>
-      <a href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/faq.aspx">FAQ</a>
-      <a href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a>
+    <div class="snip-nav">
+      <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/index.aspx">Overview</a>
+      <div class="snip-nav__link is-active">Layers</div>
+      <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/experiential-learning.aspx">Exp. Learning</a>
+      <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/faq.aspx">FAQ</a>
+      <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a>
     </div>
 
   </div>
 </div>
-
-<script>
-  //<![CDATA[
-  (function () {
-    const root = document.getElementById('tcap-omni-stages-root');
-    if (!root) return;
-
-    const cards = Array.from(root.querySelectorAll('.stage-card'));
-    if (!cards.length) return;
-
-    const setActive = (card) => {
-      cards.forEach((c) => c.classList.remove('is-active'));
-      if (card) card.classList.add('is-active');
-    };
-
-    cards.forEach((card) => {
-      card.addEventListener('mouseenter', () => setActive(card));
-      card.addEventListener('mouseleave', () => setActive(null));
-      card.addEventListener('click', () => setActive(card));
-      card.addEventListener('touchstart', () => setActive(card), { passive: true });
-    });
-  })();
-  //]]>
-</script>
