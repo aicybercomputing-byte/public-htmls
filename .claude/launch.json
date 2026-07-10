@@ -6,6 +6,12 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8792", "--directory", "C:/Users/IKORAT~1.FOR/AppData/Local/Temp/claude/C--Users-ikoratsk-FOREST-Documents-GitHub-public-htmls/ab77bc08-cc04-4da6-9471-25bfb69c0096/scratchpad"],
       "port": 8792
+    },
+    {
+      "name": "tcap-snippets-static",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8532", "--directory", "tcap/omnicms-snippets"],
+      "port": 8532
     }
   ]
 }
