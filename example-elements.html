@@ -84,6 +84,11 @@
   .demo-block__label code { font-weight: 400; background: #f0f0ee; padding: 1px 5px; border-radius: 3px; }
   .demo-block__stage { padding: 16px; }
   .demo-block__stage.is-dark { background: #1f2a28; }
+  /* USF hero needs a positioned `.page` ancestor (its content wrapper) or
+     .hero__video (position:absolute; inset:0) escapes to fill the whole page.
+     The hero demo's stage carries `page` to contain it; cap the height here
+     (real hero is min-height ~100vh) so the catalog stays compact. */
+  .demo-block__stage.page .hero { min-height: 300px; padding-top: 44px; padding-bottom: 44px; }
   .demo-block details { border-top: 1px solid #eee; }
   .demo-block summary {
     cursor: pointer; font-size: 12px; font-weight: 600; color: #555;
@@ -331,8 +336,8 @@
 <section class="guide-section" id="hero-section">
   <h2>Hero banner</h2>
   <div class="demo-block">
-    <div class="demo-block__label">#hero .hero__video / .hero__content — full-bleed video background, heading, arrow-link CTA</div>
-    <div class="demo-block__stage" style="padding:0;">
+    <div class="demo-block__label">#hero .hero__video / .hero__content — full-bleed video background, heading, arrow-link CTA. Needs a positioned <code>.page</code> ancestor (usf.edu's <code>#content.page</code> wrapper): without it <code>.hero__video</code> (position:absolute; inset:0) escapes to fill the whole document. The stage below carries <code>page</code> to contain it; real hero is min-height ~100vh, capped here for the catalog.</div>
+    <div class="demo-block__stage page" style="padding:0;">
       <div id="hero" class="hero demo-example">
         <video id="hero-video" class="hero__video" poster="https://www.usf.edu/media/images/hero/usf70-homepage-notext-1920x1080.jpg" muted loop playsinline>
           <source id="hero-video-source" src="https://www.usf.edu/media/videos/70th-homepage-hero.mp4" type="video/mp4">
