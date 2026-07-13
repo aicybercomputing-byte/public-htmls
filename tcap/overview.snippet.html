@@ -734,6 +734,18 @@
   padding: var(--space-4);
 }
 
+.section--sand .snip-card--icon.snip-card--solid .snip-card__num,
+.section--sand .snip-card--icon.snip-card--solid .snip-card__title {
+  transition: color 0.15s;
+}
+
+.section--sand .snip-card--icon.snip-card--solid:hover .snip-card__num,
+.section--sand .snip-card--icon.snip-card--solid:hover .snip-card__title,
+.section--sand .snip-card--icon.snip-card--solid:focus-visible .snip-card__num,
+.section--sand .snip-card--icon.snip-card--solid:focus-visible .snip-card__title {
+  color: var(--snip-gold);
+}
+
 .section--sand .snip-card--icon.snip-card--solid .snip-card__num {
   flex: 0 0 auto;
   font-size: clamp(2.5rem, 4vw, 4rem);
@@ -1863,12 +1875,20 @@
 
       wrapper.classList.add('tcap-animate-ready');
 
+      var CARD_STAGGER_MS = 75;
+
       function revealVisibleCards() {
         var viewportBottom = window.pageYOffset + window.innerHeight;
-        cards.forEach(function (card) {
+        cards.forEach(function (card, index) {
+          if (card.classList.contains('animate-trigger') || card.dataset.tcapQueued) {
+            return;
+          }
           var triggerPoint = card.getBoundingClientRect().top + window.pageYOffset - 100;
           if (viewportBottom > triggerPoint) {
-            card.classList.add('animate-trigger');
+            card.dataset.tcapQueued = 'true';
+            setTimeout(function () {
+              card.classList.add('animate-trigger');
+            }, index * CARD_STAGGER_MS);
           }
         });
       }
