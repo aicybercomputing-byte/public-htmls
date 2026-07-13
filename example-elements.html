@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>USF.edu element library</title>
+<title>OmniCMS element library</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Standalone reference page — open directly (double-click, or
      file:///…/public-htmls/example-elements.html), no server required,
@@ -13,8 +13,8 @@
      tcap/omnicms-snippets/CATALOG.md → "Quick start" for that inlining
      pattern instead.
 
-     Every class used below (.button, .card, .section--*, .hero__*, …) is
-     usf.edu's OWN production class. CSS is vendored locally in
+     USF production classes used below (.button, .card, .section--*, .hero__*, ...)
+     are usf.edu's OWN production classes. CSS is vendored locally in
      reference/usf-cms/css/v4/ (downloaded from https://www.usf.edu/ on
      2026-07-13 — the four files usf.edu itself links on its homepage;
      root-relative url(/_resources/…) background-image references inside
@@ -33,18 +33,15 @@
 <link rel="stylesheet" href="reference/usf-cms/css/v4/base-utilities.css">
 <link rel="stylesheet" href="reference/usf-cms/css/v4/ui-components.css">
 <link rel="stylesheet" href="reference/usf-cms/css/v4/styles.css">
-<!-- Below the USF v4 CSS: this repo's own OmniCMS snippet component system
-     (.snip-* classes), used by the appended "snippet component system" group
-     at the bottom of this page. Linked, not inlined — same as
-     tcap/omnicms-snippets/style-guide.html. Loaded AFTER the USF CSS so the
-     .snip-* rules win on equal specificity; the snip system is built to drop
-     onto host pages that carry their own global CSS. -->
+<!-- Also load this repo's own OmniCMS snippet component system (.snip-* classes).
+     Linked, not inlined - same as tcap/omnicms-snippets/style-guide.html.
+     Loaded AFTER the USF CSS so the snip system can layer on host pages that
+     carry their own global CSS. -->
 <link rel="stylesheet" href="tcap/omnicms-snippets/snippet-template.css">
 <script src="tcap/omnicms-snippets/snippet-template.js" defer></script>
 <style>
-  /* Page chrome for this reference document only — none of this is usf.edu's
-     own CSS. Everything inside a .demo-block__stage is styled purely by the
-     four linked usf.edu stylesheets above. */
+  /* Page chrome for this reference document only. Demo elements use either the
+     four linked usf.edu stylesheets or the linked snip-* component stylesheet. */
   .guide-shell * { box-sizing: border-box; }
   .guide-header {
     background: #1f2a28;
@@ -108,49 +105,125 @@
 <body class="guide-shell">
 
 <header class="guide-header">
-  <h1>USF.edu element library</h1>
+  <h1>OmniCMS element library</h1>
   <p>
-    Real, on-brand elements copied verbatim from <a href="https://www.usf.edu/">usf.edu</a>'s homepage
-    (captured 2026-07-13) — a library to hand to future agents building new pages, so they can copy real
-    usf.edu markup instead of guessing at class names or reinventing components. "View markup" under each
-    example is auto-extracted from the live DOM, so it always matches exactly what's rendered.
+    Real, on-brand elements for future agents building OmniCMS pages: usf.edu production patterns captured
+    from <a href="https://www.usf.edu/">usf.edu</a>'s homepage on 2026-07-13, plus this repo's own reusable
+    <code>snip-*</code> component system. "View markup" under each example is auto-extracted from the live DOM,
+    so it always matches exactly what's rendered.
   </p>
   <p>
-    Every class below (<code>.button</code>, <code>.card</code>, <code>.section--*</code>, <code>.hero__*</code>,
-    <code>.stat</code>, …) is <strong>usf.edu's own production class</strong>, part of their v4 design system
+    USF classes below (<code>.button</code>, <code>.card</code>, <code>.section--*</code>, <code>.hero__*</code>,
+    <code>.stat</code>, ...) are <strong>usf.edu's own production classes</strong>, part of their v4 design system
     (<code>tokens.css</code>, <code>base-utilities.css</code>, <code>ui-components.css</code>, <code>styles.css</code>
-    — all four vendored locally at <code>reference/usf-cms/css/v4/</code>). Copy these classes as-is into a real page; never rename or
-    restyle them, the same rule this repo already applies to CMS theme classes like <code>c-calloutText</code>
+    - all four vendored locally at <code>reference/usf-cms/css/v4/</code>). Copy USF and CMS theme classes as-is
+    into a real page; never rename or restyle them, the same rule this repo already applies to CMS theme classes like <code>c-calloutText</code>
     (see <a href="tcap/omnicms-snippets/NAMING-CONVENTIONS.md">tcap/omnicms-snippets/NAMING-CONVENTIONS.md</a>,
     rule 2). Some interactivity (dropdown toggles, the video dialog, mobile drawer) needs usf.edu's own JS,
-    which isn't loaded here — dropdowns below are shown pre-expanded for reference instead.
+    which isn't loaded here - dropdowns below are shown pre-expanded for reference instead.
   </p>
   <p>
-    The raw, unedited page source this was distilled from is saved at
-    <a href="reference/usf-cms/tmp-usf-homepage.html">reference/usf-cms/tmp-usf-homepage.html</a> — re-extract
+    The raw, unedited USF page source is saved at
+    <a href="reference/usf-cms/tmp-usf-homepage.html">reference/usf-cms/tmp-usf-homepage.html</a> - re-extract
     from the live site (not from that stale copy) if usf.edu has since redesigned.
   </p>
   <p>
-    This page holds <strong>two</strong> libraries: the usf.edu homepage elements above, and this repo's own
-    <strong>OmniCMS snippet component system</strong> (the <code>snip-*</code> classes) appended
-    <a href="#snip-library">at the bottom&nbsp;↓</a>.
+    This merged catalog includes both usf.edu production elements and this repo's own
+    <strong>OmniCMS snippet component system</strong> (the <code>snip-*</code> classes), sorted by element type
+    so agents can scan from page structure to actions, content blocks, data displays, and interactive widgets.
   </p>
 </header>
-
-<nav class="guide-toc">
+<nav class="guide-toc" aria-label="Element type index">
+  <a href="#hero-section">Hero</a>
+  <a href="#sections">Section color system</a>
   <a href="#snip-shell">Shell &amp; stack</a>
   <a href="#snip-heading">Heading</a>
+  <a href="#gateway">Audience gateway</a>
+  <a href="#buttons">Buttons</a>
+  <a href="#links">Links &amp; link lists</a>
+  <a href="#snip-cta">CTA band</a>
+  <a href="#snip-nav">Bottom nav</a>
+  <a href="#cards">Cards</a>
   <a href="#snip-cards">Cards &amp; grids</a>
+  <a href="#stats">Stat group</a>
   <a href="#snip-stat-bar">Stat bar</a>
   <a href="#snip-table">Table</a>
   <a href="#snip-faq">FAQ</a>
-  <a href="#snip-note">Note</a>
-  <a href="#snip-cta">CTA band</a>
-  <a href="#snip-nav">Bottom nav</a>
+  <a href="#events">Events feed</a>
+  <a href="#media-grid">Image grid</a>
+  <a href="#video">Video dialog grid</a>
   <a href="#snip-panel">Panel &amp; form</a>
   <a href="#snip-flip">Flip card</a>
   <a href="#snip-external">Third-party / generated</a>
 </nav>
+<section class="guide-section" id="hero-section">
+  <h2>Hero banner</h2>
+  <div class="demo-block">
+    <div class="demo-block__label">#hero .hero__video / .hero__content — full-bleed video background, heading, arrow-link CTA. Needs a positioned <code>.page</code> ancestor (usf.edu's <code>#content.page</code> wrapper): without it <code>.hero__video</code> (position:absolute; inset:0) escapes to fill the whole document. The stage below carries <code>page</code> to contain it; real hero is min-height ~100vh, capped here for the catalog.</div>
+    <div class="demo-block__stage page" style="padding:0;">
+      <div id="hero" class="hero demo-example">
+        <video id="hero-video" class="hero__video" poster="https://www.usf.edu/media/images/hero/usf70-homepage-notext-1920x1080.jpg" muted loop playsinline>
+          <source id="hero-video-source" src="https://www.usf.edu/media/videos/70th-homepage-hero.mp4" type="video/mp4">
+        </video>
+        <div id="hero-content" class="hero__content container px-4">
+          <h1 class="hero__heading">70 Years of Bold</h1>
+          <p class="hero__text">Celebrating how far we've come while building a bolder future</p>
+          <div class="hero__links">
+            <div>
+              <a class="arrow-link" href="#">
+                <span class="arrow-link__content">
+                  <span class="arrow-link__text">Explore our story</span>
+                  <span class="arrow-link__icon u-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true"><path fill="currentColor" d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z"></path></svg></span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="sections">
+  <h2>Section color system</h2>
+  <p class="lede">
+    Every homepage content block is a <code>.section</code> with a background modifier
+    (<code>--white</code>, <code>--sand</code>, <code>--usfgreen</code>, <code>--evergreen</code>) plus
+    <code>--dark</code> for light-on-dark text, laid out with <code>.section__inner.grid.grid-col-12-sm</code>
+    and populated with <code>.section__media</code> / <code>.section__text</code> / <code>.section__cta</code>.
+    Other modifiers seen on the real homepage: <code>section--connected-lines-left</code>,
+    <code>section--gradient-left</code>, <code>section--top-desc-tint</code>, <code>section--top/bottom-desc-solid</code>,
+    <code>section--image</code> with <code>section--image-contain-bl</code> / <code>-cover-cc</code> / <code>-overlay</code>.
+  </p>
+  <div class="demo-block">
+    <div class="demo-block__label">.section.section--usfgreen.section--dark — media + text + CTA list (was "Built for Your Future")</div>
+    <div class="demo-block__stage" style="padding:0;">
+      <div class="section section--usfgreen section--dark demo-example">
+        <div class="section__inner grid grid-col-12-sm align-ai-center-sm gap-6 gap-7-sm container">
+          <div class="section__media grid-col-span-8-sm"><img loading="lazy" class="section__media-image" src="https://www.usf.edu/media/images/built-for-your-future/student.jpeg" alt="USF student smiles while sitting at a table and writing on paper."></div>
+          <div class="section__text grid-col-span-4-sm">
+            <h2 class="section__heading">Built for Your Future</h2>
+            <div class="section__description"><p>At the University of South Florida, your goals fuel everything we do. Explore a community driven by innovation, and the power to shape what comes next.</p></div>
+            <div class="section__cta">
+              <ul class="link-list link-list--alt chevrons-list chevrons-list_apple" role="list">
+                <li><a href="#">Find Your Major</a></li>
+                <li><a href="#">Calculate Your Cost of Attendance</a></li>
+                <li><a href="#">Plan Your Visit</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="swatch-row">
+    <span style="background:#fff;color:#333;">section--white</span>
+    <span style="background:#f4efe4;color:#333;">section--sand</span>
+    <span style="background:#005432;color:#fff;">section--usfgreen.--dark</span>
+    <span style="background:#00312b;color:#fff;">section--evergreen.--dark</span>
+  </div>
+</section>
+
 <section class="guide-section" id="snip-shell">
   <h2>Shell &amp; stack</h2>
   <div class="demo-block">
@@ -175,6 +248,170 @@
         <div class="snip-heading demo-example">
           <h2 class="snip-heading__title">Three Pillars. Endless Possibilities.</h2>
           <p class="snip-heading__text">A one- or two-line description of the section that follows, centered and capped at a readable width.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="gateway">
+  <h2>Audience gateway</h2>
+  <p class="lede">The "choose your next step" chooser — a <code>&lt;select&gt;</code> + button pair that updates its own href/label on change (real behavior needs usf.edu's JS; shown static here).</p>
+  <div class="demo-block">
+    <div class="demo-block__label">.audience-gateway / .audience-gateway__select / .audience-gateway__button</div>
+    <div class="demo-block__stage">
+      <div class="audience-gateway demo-example">
+        <div class="audience-gateway--js">
+          <div class="audience-gateway__inner">
+            <div class="audience-gateway__label"><label for="demo-audience-select">Start your journey:</label></div>
+            <div class="audience-gateway__select">
+              <select name="audience" id="demo-audience-select">
+                <option value="#" disabled selected>Choose your next step</option>
+                <option value="#">Undergraduate Majors</option>
+                <option value="#">Graduate Programs</option>
+                <option value="#">Future Freshman Students</option>
+              </select>
+            </div>
+            <div>
+              <a href="#" class="audience-gateway__button button" aria-live="polite">
+                <span class="button__content"><span>Get Info<span class="u-hidden"> for </span><span class="u-hidden">About USF</span></span><span class="chevron-right u-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true"><path fill="currentColor" d="M471.1 297.4C483.6 309.9 483.6 330.2 471.1 342.7L279.1 534.7C266.6 547.2 246.3 547.2 233.8 534.7C221.3 522.2 221.3 501.9 233.8 489.4L403.2 320L233.9 150.6C221.4 138.1 221.4 117.8 233.9 105.3C246.4 92.8 266.7 92.8 279.2 105.3L471.2 297.3z"></path></svg></span></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="buttons">
+  <h2>Buttons</h2>
+  <div class="demo-block">
+    <div class="demo-block__label"><code>.button.button--primary</code> / <code>.button--secondary</code></div>
+    <div class="demo-block__stage">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;" class="demo-example">
+        <a class="button button--primary" href="#"><span class="button__content"><span>Primary Button</span></span></a>
+        <a class="button button--secondary" href="#"><span class="button__content"><span>Secondary Button</span></span></a>
+      </div>
+    </div>
+  </div>
+  <div class="demo-block">
+    <div class="demo-block__label">Button with trailing icon (<code>u-icon</code> span + inline SVG) — was the real "Apply" button</div>
+    <div class="demo-block__stage">
+      <a class="button button--primary demo-example" href="#">
+        <span class="button__content">
+          <span>Apply</span>
+          <span class="chevron-right u-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true"><path fill="currentColor" d="M471.1 297.4C483.6 309.9 483.6 330.2 471.1 342.7L279.1 534.7C266.6 547.2 246.3 547.2 233.8 534.7C221.3 522.2 221.3 501.9 233.8 489.4L403.2 320L233.9 150.6C221.4 138.1 221.4 117.8 233.9 105.3C246.4 92.8 266.7 92.8 279.2 105.3L471.2 297.3z"></path></svg></span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="links">
+  <h2>Links &amp; link lists</h2>
+  <div class="demo-block">
+    <div class="demo-block__label"><code>.arrow-link</code> — inline text link with a trailing chevron</div>
+    <div class="demo-block__stage">
+      <a class="arrow-link demo-example" href="#">
+        <span class="arrow-link__content">
+          <span class="arrow-link__text">Explore our story</span>
+          <span class="arrow-link__icon u-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true"><path fill="currentColor" d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z"></path></svg></span>
+        </span>
+      </a>
+    </div>
+  </div>
+  <div class="demo-block">
+    <div class="demo-block__label"><code>.link-list--alt.chevrons-list.chevrons-list_apple</code> — used inside dark/colored sections for a CTA list</div>
+    <div class="demo-block__stage" style="background:#005432;">
+      <ul class="link-list link-list--alt chevrons-list chevrons-list_apple demo-example" role="list">
+        <li><a href="#">Find Your Major</a></li>
+        <li><a href="#">Calculate Your Cost of Attendance</a></li>
+        <li><a href="#">Plan Your Visit</a></li>
+        <li><a href="#">Request More Information</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="demo-block">
+    <div class="demo-block__label"><code>.link-list--inline.square-arrow-list.square-arrow-list_apple</code> — the no-JS fallback list behind the audience-gateway dropdown below</div>
+    <div class="demo-block__stage">
+      <ul class="link-list link-list--inline square-arrow-list square-arrow-list_apple demo-example" role="list">
+        <li><a href="#">Undergraduate Majors</a></li>
+        <li><a href="#">Cost Calculator</a></li>
+        <li><a href="#">Financial Aid</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="snip-cta">
+  <h2>CTA band</h2>
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-cta / .snip-cta__inner — full-bleed, not scoped to .snip-shell's max-width</div>
+    <div class="demo-block__stage">
+      <div class="snip-cta demo-example">
+        <div class="snip-cta__inner">
+          <a class="snippetButton" href="#">Talk to an advisor</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="snip-nav">
+  <h2>Bottom pill nav</h2>
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-nav / .snip-nav__link — one non-link .is-active pill marks the current page</div>
+    <div class="demo-block__stage">
+      <div class="snip-shell">
+        <div class="snip-nav demo-example">
+          <a class="snip-nav__link" href="#">Overview</a>
+          <span class="snip-nav__link is-active">Layers</span>
+          <a class="snip-nav__link" href="#">Exp. Learning</a>
+          <a class="snip-nav__link" href="#">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="cards">
+  <h2>Cards</h2>
+  <div class="demo-block">
+    <div class="demo-block__label">Trending at USF: <code>.section .card-group.animate-group</code> + three <code>.card.card--usfgreen.animate.animate--stagger.animate--slide-in</code>. USF CSS makes this 3-across at 768px+; hover/focus scales the card image to <code>1.05</code>.</div>
+    <div class="demo-block__stage" style="padding:0;">
+      <div class="section section--white demo-example">
+        <div class="section__inner grid grid-col-12-sm gap-5 container">
+          <div class="section__text grid-col-span-8-sm">
+            <h2 class="section__heading">Trending at USF</h2>
+          </div>
+          <div class="section__columns grid-col-span-12-sm">
+            <div class="section__column">
+              <div class="card-group animate-group">
+                <div class="card card--usfgreen animate animate--stagger animate--slide-in">
+                  <div class="card__image"><img loading="lazy" src="https://www.usf.edu/media/images/trending/tour.jpeg" alt="Group of people taking a tour of campus"></div>
+                  <div class="card__content">
+                    <h3 class="card__heading"><a href="https://www.usf.edu/admissions/visit/index.aspx" target="_self" class="card__link">Visit USF</a></h3>
+                    <div class="card__description"><p>Take a guided tour for an up-close look at each USF campus.</p></div>
+                  </div>
+                </div>
+                <div class="card card--usfgreen animate animate--stagger animate--slide-in">
+                  <div class="card__image"><img loading="lazy" src="https://www.usf.edu/media/images/trending/700x525-student-go-bulls.jpeg" alt="Student smiling and doing a Go Bulls hand gesture."></div>
+                  <div class="card__content">
+                    <h3 class="card__heading"><a href="https://www.usf.edu/admissions/index.aspx" target="_self" class="card__link">Applications Open Soon</a></h3>
+                    <div class="card__description"><p>Get ready to find your place in the Herd.</p></div>
+                  </div>
+                </div>
+                <div class="card card--usfgreen animate animate--stagger animate--slide-in">
+                  <div class="card__image"><img loading="lazy" src="https://www.usf.edu/media/images/trending/onboarding.jpg" alt="Students on computer"></div>
+                  <div class="card__content">
+                    <h3 class="card__heading"><a href="https://discover.usf.edu/apply/status" target="_self" class="card__link">Incoming Students: Finish Your Onboarding Checklist</a></h3>
+                    <div class="card__description"><p>It's time to become a Bull! Finish up your next steps.</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -249,7 +486,7 @@
   </div>
 
   <div class="demo-block">
-    <div class="demo-block__label">.snip-grid--4 + .snip-card--icon — hover/tap a tile to flip its .is-active state and update the linked .snip-note via data-snip-info-target</div>
+    <div class="demo-block__label">.snip-grid--4 + .snip-card--icon — hover/tap a tile to flip its .is-active state and update linked status text via data-snip-info-target</div>
     <div class="demo-block__stage">
       <div class="snip-shell">
         <div class="snip-grid snip-grid--4 demo-example" data-snip-active-group data-snip-info-target="#demo-pathway-info">
@@ -270,7 +507,7 @@
             <div class="snip-card__title">Cyber Support</div>
           </div>
         </div>
-        <p class="snip-note" id="demo-pathway-info" style="margin-top:16px;">Hover to see more info</p>
+        <p id="demo-pathway-info" style="margin-top:16px;font-size:14px;font-weight:600;color:#005432;">Hover to see more info</p>
       </div>
     </div>
   </div>
@@ -297,6 +534,21 @@
             <span class="snip-card__title">Professional Mastery</span>
           </a>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="stats">
+  <h2>Stat group</h2>
+  <div class="demo-block">
+    <div class="demo-block__label">.stat-group.stat-group--4 + .stat / .stat__value / .stat__text</div>
+    <div class="demo-block__stage">
+      <div class="stat-group stat-group--4 demo-example">
+        <div class="stat"><span class="stat__value">#43</span><span class="stat__text">Among all Public Universities</span></div>
+        <div class="stat"><span class="stat__value">Top 16</span><span class="stat__text">Medical School in the Nation</span></div>
+        <div class="stat"><span class="stat__value">#12</span><span class="stat__text">Best Value Among all Public Universities</span></div>
+        <div class="stat"><span class="stat__value">$750M</span><span class="stat__text">in Research Funding (2025)</span></div>
       </div>
     </div>
   </div>
@@ -383,51 +635,69 @@
   </div>
 </section>
 
-<section class="guide-section" id="snip-note">
-  <h2>Note / aside</h2>
+<section class="guide-section" id="events">
+  <h2>Events feed</h2>
   <div class="demo-block">
-    <div class="demo-block__label">.snip-note</div>
-    <div class="demo-block__stage">
-      <div class="snip-shell">
-        <div class="snip-note demo-example">This page has more details coming later — still in the planning phase.</div>
-      </div>
+    <div class="demo-block__label">.calendar-feed / __item / __date / __details / __title</div>
+    <div class="demo-block__stage" style="background:#00312b;">
+      <ol class="calendar-feed demo-example" role="list" style="max-width:360px;">
+        <li class="calendar-feed__item">
+          <a class="calendar-feed__link" href="#">
+            <div class="calendar-feed__date">Aug 8</div>
+            <p class="calendar-feed__details"><span class="calendar-feed__title">Summer Commencement</span></p>
+          </a>
+        </li>
+        <li class="calendar-feed__item">
+          <a class="calendar-feed__link" href="#">
+            <div class="calendar-feed__date">Aug 20</div>
+            <p class="calendar-feed__details"><span class="calendar-feed__title">Week of Welcome</span><br><span class="calendar-feed__date-span">Aug. 20 - Aug. 30</span></p>
+          </a>
+        </li>
+      </ol>
     </div>
   </div>
+</section>
+
+<section class="guide-section" id="media-grid">
+  <h2>Image grid</h2>
   <div class="demo-block">
-    <div class="demo-block__label">.snip-note--soft — dashed border, for provisional/in-progress notes</div>
+    <div class="demo-block__label">.image-grid.grid + .image-grid__item — was "We Are One USF"</div>
     <div class="demo-block__stage">
-      <div class="snip-shell">
-        <div class="snip-note snip-note--soft demo-example">Draft content — still being reviewed, subject to change.</div>
+      <div class="image-grid grid demo-example" style="max-width:520px;">
+        <div class="image-grid__item"><img loading="lazy" src="https://www.usf.edu/media/images/one-usf/usftpa.jpeg" alt="University of South Florida Tampa campus."></div>
+        <div class="image-grid__item"><img loading="lazy" src="https://www.usf.edu/media/images/one-usf/usfsp-campus.jpeg" alt="University of South Florida St. Petersburg campus."></div>
+        <div class="image-grid__item"><img loading="lazy" src="https://www.usf.edu/media/images/one-usf/one-usf-3.jpg" alt="University of South Florida sign with palm trees"></div>
+        <div class="image-grid__item"><img loading="lazy" src="https://www.usf.edu/media/images/one-usf/one-usf-health.jpg" alt="USF Health"></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="guide-section" id="snip-cta">
-  <h2>CTA band</h2>
+<section class="guide-section" id="video">
+  <h2>Video dialog grid</h2>
+  <p class="lede">
+    <code>.video-grid__item</code> opens an <code>a11y-dialog</code>-powered modal with a YouTube embed on click —
+    that library isn't loaded on this page, so the button below is inert (real markup/classes still shown, and
+    the dialog's own markup is nested inside for reference).
+  </p>
   <div class="demo-block">
-    <div class="demo-block__label">.snip-cta / .snip-cta__inner — full-bleed, not scoped to .snip-shell's max-width</div>
+    <div class="demo-block__label">.video-grid / .video-grid__item / .dialog</div>
     <div class="demo-block__stage">
-      <div class="snip-cta demo-example">
-        <div class="snip-cta__inner">
-          <a class="snippetButton" href="#">Talk to an advisor</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="guide-section" id="snip-nav">
-  <h2>Bottom pill nav</h2>
-  <div class="demo-block">
-    <div class="demo-block__label">.snip-nav / .snip-nav__link — one non-link .is-active pill marks the current page</div>
-    <div class="demo-block__stage">
-      <div class="snip-shell">
-        <div class="snip-nav demo-example">
-          <a class="snip-nav__link" href="#">Overview</a>
-          <span class="snip-nav__link is-active">Layers</span>
-          <a class="snip-nav__link" href="#">Exp. Learning</a>
-          <a class="snip-nav__link" href="#">FAQ</a>
+      <div class="video-grid demo-example" style="max-width:220px;">
+        <div class="video-grid__item">
+          <button type="button" class="dialog-button" data-a11y-dialog-show="demo-video-1">
+            <img loading="lazy" src="https://www.usf.edu/media/images/live-the-bulls-life/bullslife-homecoming.jpg" alt="Watch Homecoming at USF">
+            <span class="video-grid-icon u-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true"><path fill="currentColor" d="M187.2 100.9C174.8 94.1 159.8 94.4 147.6 101.6C135.4 108.8 128 121.9 128 136L128 504C128 518.1 135.5 531.2 147.6 538.4C159.7 545.6 174.8 545.9 187.2 539.1L523.2 355.1C536 348.1 544 334.6 544 320C544 305.4 536 291.9 523.2 284.9L187.2 100.9z"></path></svg></span>
+          </button>
+          <div class="dialog" data-a11y-dialog="demo-video-1" aria-label="Homecoming at USF" aria-hidden="true" aria-modal="true" tabindex="-1" role="dialog">
+            <div class="dialog__overlay" data-a11y-dialog-hide></div>
+            <div class="dialog__container" role="document">
+              <button type="button" class="dialog-button-close" data-a11y-dialog-hide aria-label="Close overlay"><span class="dialog-button-close-icon u-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true"><path fill="currentColor" d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z"></path></svg></span></button>
+              <div class="dialog__content">
+                <div class="dialog__embed--yt-shorts"><iframe src="https://www.youtube.com/embed/sm09sdAIeFc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="yes"></iframe></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -577,33 +847,6 @@
   </div>
 </section>
 
-<section class="guide-section" id="snip-external">
-  <h2>Third-party &amp; generated (documented, not templated)</h2>
-  <p class="lede">
-    These exist in the CMS today but aren't part of the <code>snip-</code> system — either the markup belongs to a
-    third-party library, or it's built entirely by JS with no CSS class API to standardize against. Same rule as
-    never renaming the CMS theme's own classes.
-  </p>
-  <div class="demo-block">
-    <div class="demo-block__label" style="padding-bottom:12px;">
-      carosels/news/2026/website_story.html — a Bootstrap 3 image carousel embed. Every class (<code>carousel</code>,
-      <code>item</code>, <code>carousel-control</code>) is Bootstrap's own; used as-is via the Bootstrap CDN.
-    </div>
-  </div>
-  <div class="demo-block">
-    <div class="demo-block__label" style="padding-bottom:12px;">
-      ai-x/all-events.html &amp; ai-x/ai-x-past-events.html — self-contained JS widgets that build their DOM with
-      inline <code>style.cssText</code> rather than CSS classes (year/month/event archive tree from a CSV). No class
-      API exists to fold into this system.
-    </div>
-  </div>
-</section>
-
-<p class="guide-footer">
-  snip-* components generated from <a href="tcap/omnicms-snippets/snippet-template.css">snippet-template.css</a>;
-  mirror of <a href="tcap/omnicms-snippets/style-guide.html">tcap/omnicms-snippets/style-guide.html</a>.
-  "View markup" panels are auto-extracted from the live DOM, so they always match what's rendered.
-</p>
 
 <script>
 //<![CDATA[

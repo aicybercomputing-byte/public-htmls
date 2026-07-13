@@ -542,11 +542,11 @@
   display: flex;
   flex-direction: column;
   gap: 1px;
-  background: var(--snip-border);
+  background: transparent;
 }
 
 .snip-faq__list details {
-  background: var(--snip-surface);
+  background: transparent;
   padding: 14px 16px;
 }
 
