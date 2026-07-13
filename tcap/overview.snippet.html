@@ -46,6 +46,14 @@
   --snip-danger-text: #8c1d18;
   --snip-success: #1e7a52;
   --snip-success-bg: #e8f5ee;
+
+  /* Inline USF v4 tokens required by stats-stat-group. */
+  --color-secondary-evergreen: #005432;
+  --color-accent-teal: #009374;
+  --font-family-secondary: "Barlow Condensed", sans-serif;
+  --line-height-snug: 1.35;
+  --space-4: 1.5rem;
+  --space-7: 4rem;
 }
 
 .snip-shell,
@@ -265,45 +273,85 @@
 }
 
 /* -------------------------------------------------------------------------
-   Stat bar — 4-up grid of stat callouts. Intentionally left as its own
-   component (not a bare .snip-grid) because its children are the CMS
-   theme's own `c-calloutText` component, not a `.snip-card`.
+   USF v4 stat group — copied from the approved `stats-stat-group` element.
+   These are the component's required inline tokens and UI rules; OmniCMS
+   cannot depend on an external stylesheet.
    ------------------------------------------------------------------------- */
-.snip-stat-bar {
+.stat-group {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 2rem;
-  align-items: start;
+  gap: var(--space-7);
+  color: var(--color-secondary-evergreen);
+  text-align: center;
 }
 
-.snip-stat-bar > * {
-  align-self: start;
-  margin: 2px 0 0 0;
+.stat {
+  font-weight: 600;
+  position: relative;
 }
 
-/* Height lives here (not inline) so the mobile breakpoint below can shrink
-   it — an inline `!important` can't be overridden by any stylesheet rule,
-   important or not. Override --snip-stat-height per instance if a page's
-   stat-card copy needs a taller/shorter fixed height (e.g. jobs.html uses
-   175px instead of the 225px default). */
-.snip-stat-bar > .c-calloutText {
-  height: var(--snip-stat-height, 225px);
+.stat + .stat:before {
+  position: absolute;
+  content: "";
+  width: var(--space-7);
+  height: 65px;
+  top: calc(-65px + 0.75rem);
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to top left, transparent calc(50% - 2px), var(--color-accent-teal), transparent calc(50% + 2px));
 }
 
-.snip-source {
-  margin-top: 1rem;
-  font-size: 8pt;
-  line-height: 1.35;
-  color: var(--snip-text-muted);
+.stat__value,
+.stat__text {
+  display: inline-block;
+  width: 100%;
 }
 
-.snip-source__text {
-  margin: 0;
-  padding: 0;
-  font-size: 8pt;
-  line-height: 1.35;
-  font-weight: 400;
-  color: var(--snip-text-muted);
+.stat__value {
+  font-family: var(--font-family-secondary);
+  font-size: clamp(5rem, 5vw, 6.5rem);
+  line-height: var(--line-height-snug);
+}
+
+.stat__text {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 767px) {
+  .stat + .stat {
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+  }
+}
+
+@media (min-width: 768px) {
+  .stat-group {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  .stat + .stat:before {
+    top: 50%;
+    left: calc(-1 * var(--space-7));
+    transform: translateY(-50%);
+  }
+
+  .stat-group--4 .stat:nth-child(odd):before {
+    display: none;
+  }
+}
+
+@media (min-width: 1280px) {
+  .stat-group--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .stat-group--4 .stat:nth-child(odd):before {
+    display: block;
+  }
 }
 
 /* -------------------------------------------------------------------------
