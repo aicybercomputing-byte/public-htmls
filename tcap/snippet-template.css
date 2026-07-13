@@ -240,6 +240,15 @@
   font-size: 22px;
 }
 
+/* Explicit (not inherited) color: the host page's global `.content
+   a:visited` rule (specificity 0,2,1) otherwise wins over the plain
+   `.snip-card--icon.snip-card--solid` anchor color (0,2,0) for any stage
+   link already in the visitor's browser history, tinting the number the
+   same dark green as the card background and making it disappear. */
+.snip-card--icon.snip-card--solid .snip-card__num {
+  color: #fff;
+}
+
 /* Badge — circular number/letter, used by --step and --icon cards */
 .snip-card__badge {
   width: 40px;
