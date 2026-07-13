@@ -91,6 +91,7 @@
   max-width: var(--container-max-width);
   margin-left: auto;
   margin-right: auto;
+  padding-top: var(--space-2) !important;
 }
 
 /* Vertical stack — drives spacing via `gap` only. Also neutralizes host-page
@@ -100,6 +101,7 @@
   display: flex;
   flex-direction: column;
   gap: 28px;
+  margin-top: 0 !important;
 }
 
 .snip-stack > *,
@@ -369,8 +371,63 @@
   background-color: #ffffff;
 }
 
+.section--white .section__inner {
+  padding-top: var(--space-3) !important;
+  padding-bottom: var(--space-5);
+}
+
+.section--white .section__columns,
+.section--white .section__column,
+.section--white .card-group {
+  margin-top: 0 !important;
+}
+
+.snip-shell,
+.snip-nav-band,
+.section,
+.stylized-header-container--centered,
+.snip-cta {
+  margin-top: 0 !important;
+}
+
+.stylized-header-container--centered {
+  margin-top: var(--space-2) !important;
+  margin-bottom: var(--space-2) !important;
+}
+
+.section--white .card.animate--slide-in {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.section--white.tcap-animate-ready .card.animate--slide-in {
+  opacity: 0 !important;
+  transform: translateY(120px) !important;
+  transition: transform 0.75s, opacity 0.5s;
+}
+
+.section--white.tcap-animate-ready .card.animate--slide-in.animate-trigger {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.section--white .card__heading {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+}
+
+.section--white .card__link,
+.section--white .card__link:visited {
+  font-size: inherit;
+}
+
 .section--sand {
   background-color: var(--color-secondary-sand);
+}
+
+.section--sand .snip-heading__title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
 }
 
 .section__inner {
@@ -428,7 +485,6 @@
 
 .link-list li {
   margin: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 .link-list a {
@@ -442,12 +498,37 @@
   font-weight: 600;
 }
 
-.chevrons-list a::after {
+.section--experiential .link-list {
+  width: 100%;
+}
+
+.section--experiential .link-list a {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.section--experiential .chevrons-list a::after {
   content: "»";
   flex: 0 0 auto;
   color: var(--color-accent-apple);
   font-size: 1.75rem;
   line-height: 1;
+}
+
+.section--experiential .link-list li {
+  margin: 0;
+  padding-left: 0;
+  border: 0;
+}
+
+.section--experiential .link-list li + li {
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  padding-top: 0;
+}
+
+.section--experiential .chevrons-list a::before {
+  content: none !important;
+  display: none !important;
 }
 
 .link-list a:hover,
@@ -666,6 +747,18 @@
 
   .align-ai-center-sm {
     align-items: center;
+  }
+
+  .section--experiential .section__inner {
+    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  }
+
+  .section--experiential .section__media {
+    grid-column: 1 / span 8 !important;
+  }
+
+  .section--experiential .section__text {
+    grid-column: 9 / span 4 !important;
   }
 
   .gap-7-sm {
@@ -1642,19 +1735,13 @@
   </div>
 </div>
 
-<div class="stylized-header-container--centered">
-  <h2 class="stylized-header"><span>Student Journey</span></h2>
-</div>
-
 <div class="section section--sand">
   <div class="section__inner container">
-    <div class="snip-stack" data-screen-label="Student Journey">
-
-    <div class="snip-heading">
-      <h2 class="snip-heading__title">A Four-Stage Path to Career Readiness</h2>
-      <p class="snip-heading__text">Each stage builds on the last, so students keep developing career readiness, technical confidence and
-        professional experience all the way to graduation.</p>
+    <div class="stylized-header-container--centered">
+      <h2 class="stylized-header"><span>Student Journey</span></h2>
     </div>
+
+    <div class="snip-stack" data-screen-label="Student Journey">
 
       <div class="snip-grid snip-grid--4 snip-grid--tight">
         <a class="snip-card snip-card--icon snip-card--solid" href="stages.html#foundations">
@@ -1673,6 +1760,12 @@
           <span class="snip-card__num">4</span>
           <span class="snip-card__title">Professional<br>Mastery</span>
         </a>
+      </div>
+
+      <div class="snip-heading">
+        <h2 class="snip-heading__title">A Four-Stage Path to Career Readiness</h2>
+        <p class="snip-heading__text">Each stage builds on the last, so students keep developing career readiness, technical confidence and
+          professional experience all the way to graduation.</p>
       </div>
     </div>
   </div>
@@ -1723,3 +1816,41 @@
     </ol>
   </section>
 </div>
+
+<script>
+  (function () {
+    function initTcapCardAnimations() {
+      var section = document.querySelector('.section--white .card-group.animate-group');
+      if (!section || !window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      var cards = Array.prototype.slice.call(section.querySelectorAll('.animate--slide-in'));
+      var wrapper = section.closest('.section--white');
+      if (!cards.length || !wrapper) {
+        return;
+      }
+
+      wrapper.classList.add('tcap-animate-ready');
+
+      function revealVisibleCards() {
+        var viewportBottom = window.pageYOffset + window.innerHeight;
+        cards.forEach(function (card) {
+          var triggerPoint = card.getBoundingClientRect().top + window.pageYOffset - 100;
+          if (viewportBottom > triggerPoint) {
+            card.classList.add('animate-trigger');
+          }
+        });
+      }
+
+      revealVisibleCards();
+      window.addEventListener('scroll', revealVisibleCards, { passive: true });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTcapCardAnimations);
+    } else {
+      initTcapCardAnimations();
+    }
+  }());
+</script>

@@ -11,3 +11,11 @@ When a task mentions OmniCMS, the element library, USF homepage elements, `snip-
 5. For deeper `snip-*` behavior, read `tcap/omnicms-snippets/CATALOG.md` and `tcap/omnicms-snippets/NAMING-CONVENTIONS.md`.
 
 Default workflow: inspect target HTML, propose a concise replacement plan, then patch in small batches after clarification. Preserve all USF/CMS/snippet class names exactly unless the user explicitly asks for a new local component.
+
+CMS preview hardening:
+
+- Neutralize host “owl” margins on stack children, section wrappers, and grid/card children; use `gap` and intentional padding for component spacing.
+- Keep USF/CMS classes in the markup, but use narrow section-scoped compatibility overrides when host CSS collapses approved grid spans, alignment, or section layouts.
+- Prevent duplicate host/fallback pseudo-elements in chevron link lists; keep one right-aligned arrow and one divider per link.
+- If using USF animation classes, keep a visible no-JS/reduced-motion baseline and use only self-contained, CDATA-wrapped vanilla JS for progressive enhancement.
+- In CMS preview, check breadcrumb-to-stats, nav-to-section, stylized-header-to-section, header-to-card, and CTA-to-sources spacing, plus anchors and inline dependency counts.

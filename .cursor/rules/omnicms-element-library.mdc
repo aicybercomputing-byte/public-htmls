@@ -25,3 +25,11 @@ Use this rule when the user asks to modify, redesign, prototype, replace, or ite
 5. Validate anchors, component dependencies, `data-snip-*` behavior requirements, and OmniCMS inline CSS/JS constraints after each batch.
 
 Default to plan-then-iterate. Create a mock/reference copy only for large redesigns or when requested.
+
+## CMS hardening
+
+- Neutralize host “owl” margins on stacks, section wrappers, and grid/card children; use `gap` and intentional padding for spacing.
+- Preserve approved USF/CMS classes, but add narrow section-scoped overrides when host CSS breaks responsive grid spans, alignment, or section spacing.
+- Do not stack host and fallback chevron pseudo-elements; keep one right-aligned arrow and one divider per link.
+- USF animation classes must have a visible no-JS/reduced-motion baseline. If animation is needed, use self-contained CDATA-wrapped vanilla JS with no jQuery or external runtime.
+- After each batch, check breadcrumb/nav/header/card/CTA boundary spacing, anchors, repeated component counts, inline CSS/JS, and `data-snip-*` dependencies.

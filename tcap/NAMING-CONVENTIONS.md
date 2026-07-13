@@ -108,6 +108,18 @@ span layout) that doesn't yet have a matching generic `snip-grid` variant
    so don't move them back to `.snip-shell` only, or every component that
    isn't nested inside one will silently lose its colors.
 
+8. **CMS host CSS is an integration boundary.** Broad owl selectors can add
+   unintended top margins to the first child of a grid or flex row; reset
+   those margins on the wrapper/children and use `gap` for intentional space.
+   Keep approved CMS/USF classes in the markup, but narrow compatibility CSS to
+   a page or section modifier when host grid, spacing, or pseudo-element rules
+   win. Never let host and fallback chevrons render twice.
+9. **Animation is progressive enhancement.** USF `animate--slide-in` content
+   may be hidden under `.js` until `animate-trigger` is added. Keep a visible
+   baseline when JS is absent or motion is reduced; any optional trigger must
+   be self-contained, vanilla JS, CDATA-wrapped, and free of external runtime
+   dependencies.
+
 ## Component inventory
 
 | Component | Class(es) | Replaces (old ad-hoc names) |

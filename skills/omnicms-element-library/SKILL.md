@@ -31,6 +31,7 @@ Use this skill to turn user intent into safe OmniCMS HTML edits using the local 
    - OmniCMS inline CSS/JS rules are followed
    - `data-snip-*` behavior has required JS
    - forms using `data-snip-validate` also use `novalidate`
+   - CMS host-CSS collisions are neutralized without changing approved markup
 
 ## Edit Policy
 
@@ -40,6 +41,41 @@ Use this skill to turn user intent into safe OmniCMS HTML edits using the local 
 - Use `snip-*` components for portable reusable content.
 - Use USF v4 classes for faithful usf.edu homepage patterns.
 - Treat third-party/generated widgets as documented patterns, not editable component APIs.
+
+## CMS hardening checklist
+
+OmniCMS pages run inside a host stylesheet that may add broad margins, responsive
+grid rules, pseudo-elements, and animation states. Treat the first CMS preview as
+an integration test, not proof that the snippet is standalone-safe.
+
+- **Neutralize owl spacing at component boundaries.** Host selectors such as
+  `.content * + *` can move the first child of a grid or flex row. Reset top
+  margins on snippet stacks, direct section wrappers, and grid/card children;
+  use `gap` and component padding as the spacing source.
+- **Scope compatibility CSS.** Preserve USF/CMS class names and semantics, but
+  add a page or section modifier when a host rule wins. Keep overrides narrow
+  (`.section--experiential .section__media`, for example) rather than globally
+  restyling `.section__*`, `.card`, or `.link-list`.
+- **Treat USF utility classes as host-owned.** Verify responsive grid spans and
+  alignment utilities in the CMS preview. If the host changes them, use a
+  scoped media-query override with the approved classes still in the markup.
+- **Avoid duplicate pseudo-elements.** Approved chevron/link-list classes may
+  already render an arrow. Do not add a second `::before`/`::after`; if a
+  fallback is needed, explicitly disable the host pseudo-element in the same
+  scoped rule and render exactly one arrow and one divider.
+- **Make animation progressive.** `animate`/`animate--slide-in` classes are
+  hidden by the USF stylesheet until `animate-trigger` is added. If using them
+  in a pasted snippet, keep content visible by default, add a self-contained
+  inline vanilla-JS trigger on load/scroll, and honor `prefers-reduced-motion`.
+  Do not depend on jQuery or an external script. A stripped or blocked script
+  must leave the content visible.
+- **Use inline dependency checks.** OmniCMS strips external stylesheet/script
+  references. Inline CSS/JS must be CDATA-wrapped; custom JS should be scoped,
+  DOM-ready safe, and independent of page-global selectors. Only add
+  `snippet-template.js` when the page actually uses `data-snip-*` behavior.
+- **Check spacing at all boundaries.** Review breadcrumb-to-stats, nav-to-section,
+  stylized-header-to-section, header-to-card, and CTA-to-sources transitions.
+  Reset host margins first, then tune intentional section padding.
 
 ## Regenerating The Catalog
 

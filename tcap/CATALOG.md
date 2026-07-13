@@ -74,6 +74,22 @@ Then compose a page from the blocks below inside a shell:
    fine, but name it with the `snip-` prefix and BEM (`snip-thing__part`),
    and consider whether it should be proposed back into this catalog.
 
+## CMS preview hardening
+
+The OmniCMS host page may add broad owl margins, override USF responsive grid
+utilities, or render link-list pseudo-elements and animation states of its own.
+Keep the approved classes and markup, but use narrow section-scoped compatibility
+rules when needed:
+
+- reset wrapper/child top margins and use `gap` for intentional spacing;
+- verify media/text grid spans at the actual CMS breakpoint;
+- keep one right-aligned chevron and one divider per link;
+- keep animated content visible without JS or when reduced motion is requested;
+- use only self-contained, CDATA-wrapped vanilla JS for optional progressive
+  enhancement; never depend on jQuery or external script URLs;
+- recheck breadcrumb/stats, nav/section, stylized-header/card, and CTA/sources
+  boundaries after each CMS preview.
+
 ## Theme tokens (`:root`, override to reskin)
 
 | Token | Default | Use |
