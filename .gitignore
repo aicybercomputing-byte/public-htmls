@@ -2,7 +2,9 @@
 .claude/worktrees/optimistic-joliot-e95f7e/
 .claude/worktrees/trusting-easley-c5b159/
 .env
-.cursor/
+.cursor/*
+!.cursor/rules/
+!.cursor/rules/**
 venv/
 __pycache__/
 *.pyc

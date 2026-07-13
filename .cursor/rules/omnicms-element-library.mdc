@@ -1,0 +1,27 @@
+---
+description: Use the OmniCMS element library to plan and update Bellini/USF HTML pages with approved components.
+globs: **/*.html,**/*.htm,**/*.pcf,tcap/omnicms-snippets/**,example-elements.html
+alwaysApply: false
+---
+
+# OmniCMS Element Library
+
+Use this rule when the user asks to modify, redesign, prototype, replace, or iterate on OmniCMS/page HTML with the element library, USF homepage elements, or `snip-*` components.
+
+## Sources
+
+- Start with `docs/omnicms-element-library/components.generated.md`.
+- Use `docs/omnicms-element-library/components.generated.json` for exact ids/dependencies.
+- For `snip-*` behavior details, read `tcap/omnicms-snippets/CATALOG.md` and `tcap/omnicms-snippets/NAMING-CONVENTIONS.md` only as needed.
+- Use `example-elements.html` for visual/source-of-truth context and “View markup” behavior.
+- Use `skills/omnicms-element-library/references/omnicms-rules.md` for global replacement rules.
+
+## Workflow
+
+1. Inspect the target HTML first.
+2. Propose a short replacement plan before editing: target block, selected component id, reason, dependencies, and open content questions.
+3. Patch in small batches after clarification.
+4. Preserve all approved USF/CMS/snippet classes exactly; do not rename `button`, `card`, `section__*`, `hero__*`, `c-calloutText`, `snippetButton`, `carousel`, `u-*`, or third-party classes.
+5. Validate anchors, component dependencies, `data-snip-*` behavior requirements, and OmniCMS inline CSS/JS constraints after each batch.
+
+Default to plan-then-iterate. Create a mock/reference copy only for large redesigns or when requested.

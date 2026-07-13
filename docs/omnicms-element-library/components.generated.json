@@ -1,0 +1,652 @@
+{
+  "source": "example-elements.html",
+  "count": 28,
+  "components": [
+    {
+      "id": "hero-section-hero-banner",
+      "section_id": "hero-section",
+      "title": "#hero .hero__video / .hero__content — full-bleed video background, heading, arrow-link CTA. Needs a positioned .page ancestor (usf.edu's #content.page wrapper): without it .hero__video (position:absolute; inset:0) escapes to fill the whole document. The stage below carries page to contain it; real hero is min-height ~100vh, capped here for the catalog.",
+      "type": "Hero banner",
+      "aliases": [
+        "banner",
+        "hero",
+        "hero__content",
+        "hero__video",
+        "page",
+        "video hero"
+      ],
+      "source_family": "usf-v4",
+      "dependencies": [
+        "reference/usf-cms/css/v4/tokens.css",
+        "reference/usf-cms/css/v4/base-utilities.css",
+        "reference/usf-cms/css/v4/ui-components.css",
+        "reference/usf-cms/css/v4/styles.css"
+      ],
+      "notes": "",
+      "markup": "<div id=\"hero\" class=\"hero\">\n<video id=\"hero-video\" class=\"hero__video\" poster=\"https://www.usf.edu/media/images/hero/usf70-homepage-notext-1920x1080.jpg\" muted loop playsinline>\n<source id=\"hero-video-source\" src=\"https://www.usf.edu/media/videos/70th-homepage-hero.mp4\" type=\"video/mp4\">\n</video>\n<div id=\"hero-content\" class=\"hero__content container px-4\">\n<h1 class=\"hero__heading\">70 Years of Bold</h1>\n<p class=\"hero__text\">Celebrating how far we've come while building a bolder future</p>\n<div class=\"hero__links\">\n<div>\n<a class=\"arrow-link\" href=\"#\">\n<span class=\"arrow-link__content\">\n<span class=\"arrow-link__text\">Explore our story</span>\n<span class=\"arrow-link__icon u-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 640\" aria-hidden=\"true\">\n<path fill=\"currentColor\" d=\"M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z\">\n</path>\n</svg>\n</span>\n</span>\n</a>\n</div>\n</div>\n</div>\n</div>"
+    },
+    {
+      "id": "sections-section-color-system",
+      "section_id": "sections",
+      "title": ".section.section--usfgreen.section--dark — media + text + CTA list (was \"Built for Your Future\")",
+      "type": "Section color system",
+      "aliases": [
+        "color system",
+        "dark section",
+        "media text",
+        "section"
+      ],
+      "source_family": "usf-v4",
+      "dependencies": [
+        "reference/usf-cms/css/v4/tokens.css",
+        "reference/usf-cms/css/v4/base-utilities.css",
+        "reference/usf-cms/css/v4/ui-components.css",
+        "reference/usf-cms/css/v4/styles.css"
+      ],
+      "notes": "Every homepage content block is a .section with a background modifier (--white, --sand, --usfgreen, --evergreen) plus --dark for light-on-dark text, laid out with .section__inner.grid.grid-col-12-sm and populated with .section__media / .section__text / .section__cta. Other modifiers seen on the real homepage: section--connected-lines-left, section--gradient-left, section--top-desc-tint, section--top/bottom-desc-solid, section--image with section--image-contain-bl / -cover-cc / -overlay.",
+      "markup": "<div class=\"section section--usfgreen section--dark\">\n<div class=\"section__inner grid grid-col-12-sm align-ai-center-sm gap-6 gap-7-sm container\">\n<div class=\"section__media grid-col-span-8-sm\">\n<img loading=\"lazy\" class=\"section__media-image\" src=\"https://www.usf.edu/media/images/built-for-your-future/student.jpeg\" alt=\"USF student smiles while sitting at a table and writing on paper.\">\n</div>\n<div class=\"section__text grid-col-span-4-sm\">\n<h2 class=\"section__heading\">Built for Your Future</h2>\n<div class=\"section__description\">\n<p>At the University of South Florida, your goals fuel everything we do. Explore a community driven by innovation, and the power to shape what comes next.</p>\n</div>\n<div class=\"section__cta\">\n<ul class=\"link-list link-list--alt chevrons-list chevrons-list_apple\" role=\"list\">\n<li>\n<a href=\"#\">Find Your Major</a>\n</li>\n<li>\n<a href=\"#\">Calculate Your Cost of Attendance</a>\n</li>\n<li>\n<a href=\"#\">Plan Your Visit</a>\n</li>\n</ul>\n</div>\n</div>\n</div>\n</div>"
+    },
+    {
+      "id": "snip-shell-shell-stack",
+      "section_id": "snip-shell",
+      "title": ".snip-shell / .snip-stack — the outer wrapper every snippet starts with",
+      "type": "Shell & stack",
+      "aliases": [
+        "shell",
+        "snip-shell",
+        "snip-stack",
+        "stack",
+        "wrapper"
+      ],
+      "source_family": "snip",
+      "dependencies": [
+        "tcap/omnicms-snippets/snippet-template.css"
+      ],
+      "notes": "",
+      "markup": "<div class=\"snip-shell\">\n<div class=\"snip-stack\">\n<p style=\"margin:0;padding:12px;background:#fff;border:1px dashed #b2b2b2;font-size:13px;\">Section A content</p>\n<p style=\"margin:0;padding:12px;background:#fff;border:1px dashed #b2b2b2;font-size:13px;\">Section B content — spacing between A and B comes from .snip-stack's `gap`, not margin.</p>\n</div>\n</div>"
+    },
+    {
+      "id": "snip-heading-section-heading",
+      "section_id": "snip-heading",
+      "title": ".snip-heading",
+      "type": "Section heading",
+      "aliases": [
+        "heading",
+        "section intro",
+        "snip-heading",
+        "snip-heading__text",
+        "snip-heading__title"
+      ],
+      "source_family": "snip",
+      "dependencies": [
+        "tcap/omnicms-snippets/snippet-template.css"
+      ],
+      "notes": "",
+      "markup": "<div class=\"snip-heading\">\n<h2 class=\"snip-heading__title\">Three Pillars. Endless Possibilities.</h2>\n<p class=\"snip-heading__text\">A one- or two-line description of the section that follows, centered and capped at a readable width.</p>\n</div>"
+    },
+    {
+      "id": "gateway-audience-gateway",
+      "section_id": "gateway",
+      "title": ".audience-gateway / .audience-gateway__select / .audience-gateway__button",
+      "type": "Audience gateway",
+      "aliases": [
+        "audience gateway",
+        "audience-gateway",
+        "audience-gateway__button",
+        "audience-gateway__select",
+        "chooser",
+        "select cta"
+      ],
+      "source_family": "usf-v4",
+      "dependencies": [
+        "reference/usf-cms/css/v4/tokens.css",
+        "reference/usf-cms/css/v4/base-utilities.css",
+        "reference/usf-cms/css/v4/ui-components.css",
+        "reference/usf-cms/css/v4/styles.css"
+      ],
+      "notes": "The \"choose your next step\" chooser — a <select> + button pair that updates its own href/label on change (real behavior needs usf.edu's JS; shown static here).",
+      "markup": "<div class=\"audience-gateway\">\n<div class=\"audience-gateway--js\">\n<div class=\"audience-gateway__inner\">\n<div class=\"audience-gateway__label\">\n<label for=\"demo-audience-select\">Start your journey:</label>\n</div>\n<div class=\"audience-gateway__select\">\n<select name=\"audience\" id=\"demo-audience-select\">\n<option value=\"#\" disabled selected>Choose your next step</option>\n<option value=\"#\">Undergraduate Majors</option>\n<option value=\"#\">Graduate Programs</option>\n<option value=\"#\">Future Freshman Students</option>\n</select>\n</div>\n<div>\n<a href=\"#\" class=\"audience-gateway__button button\" aria-live=\"polite\">\n<span class=\"button__content\">\n<span>Get Info<span class=\"u-hidden\"> for </span>\n<span class=\"u-hidden\">About USF</span>\n</span>\n<span class=\"chevron-right u-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 640\" aria-hidden=\"true\">\n<path fill=\"currentColor\" d=\"M471.1 297.4C483.6 309.9 483.6 330.2 471.1 342.7L279.1 534.7C266.6 547.2 246.3 547.2 233.8 534.7C221.3 522.2 221.3 501.9 233.8 489.4L403.2 320L233.9 150.6C221.4 138.1 221.4 117.8 233.9 105.3C246.4 92.8 266.7 92.8 279.2 105.3L471.2 297.3z\">\n</path>\n</svg>\n</span>\n</span>\n</a>\n</div>\n</div>\n</div>\n</div>"
+    },
+    {
+      "id": "buttons-button-button-primary-button-secondary",
+      "section_id": "buttons",
+      "title": ".button.button--primary / .button--secondary",
+      "type": "Buttons",
+      "aliases": [
+        "apply",
+        "button",
+        "button--secondary",
+        "primary button",
+        "secondary button"
+      ],
+      "source_family": "usf-v4",
+      "dependencies": [
+        "reference/usf-cms/css/v4/tokens.css",
+        "reference/usf-cms/css/v4/base-utilities.css",
+        "reference/usf-cms/css/v4/ui-components.css",
+        "reference/usf-cms/css/v4/styles.css"
+      ],
+      "notes": "",
+      "markup": "<div style=\"display:flex;gap:12px;flex-wrap:wrap;\">\n<a class=\"button button--primary\" href=\"#\">\n<span class=\"button__content\">\n<span>Primary Button</span>\n</span>\n</a>\n<a class=\"button button--secondary\" href=\"#\">\n<span class=\"button__content\">\n<span>Secondary Button</span>\n</span>\n</a>\n</div>"
+    },
+    {
+      "id": "buttons-button-with-trailing-icon-u-icon-span-inline-svg-was-the-real",
+      "section_id": "buttons",
+      "title": "Button with trailing icon (u-icon span + inline SVG) — was the real \"Apply\" button",
+      "type": "Buttons",
+      "aliases": [
+        "apply",
+        "button",
+        "primary button",
+        "secondary button"
+      ],
+      "source_family": "usf-v4",
+      "dependencies": [
+        "reference/usf-cms/css/v4/tokens.css",
+        "reference/usf-cms/css/v4/base-utilities.css",
+        "reference/usf-cms/css/v4/ui-components.css",
+        "reference/usf-cms/css/v4/styles.css"
+      ],
+      "notes": "",
+      "markup": "<a class=\"button button--primary\" href=\"#\">\n<span class=\"button__content\">\n<span>Apply</span>\n<span class=\"chevron-right u-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 640\" aria-hidden=\"true\">\n<path fill=\"currentColor\" d=\"M471.1 297.4C483.6 309.9 483.6 330.2 471.1 342.7L279.1 534.7C266.6 547.2 246.3 547.2 233.8 534.7C221.3 522.2 221.3 501.9 233.8 489.4L403.2 320L233.9 150.6C221.4 138.1 221.4 117.8 233.9 105.3C246.4 92.8 266.7 92.8 279.2 105.3L471.2 297.3z\">\n</path>\n</svg>\n</span>\n</span>\n</a>"
+    },
+    {
+      "id": "links-arrow-link-inline-text-link-with-a-trailing-chevron",
+      "section_id": "links",
+      "title": ".arrow-link — inline text link with a trailing chevron",
+      "type": "Links & link lists",
+      "aliases": [
+        "arrow link",
+        "arrow-link",
+        "chevron list",
+        "link list"
+      ],
+      "source_family": "usf-v4",
+      "dependencies": [
+        "reference/usf-cms/css/v4/tokens.css",
+        "reference/usf-cms/css/v4/base-utilities.css",
+        "reference/usf-cms/css/v4/ui-components.css",
+        "reference/usf-cms/css/v4/styles.css"
+      ],
+      "notes": "",
+      "markup": "<a class=\"arrow-link\" href=\"#\">\n<span class=\"arrow-link__content\">\n<span class=\"arrow-link__text\">Explore our story</span>\n<span class=\"arrow-link__icon u-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 640\" aria-hidden=\"true\">\n<path fill=\"currentColor\" d=\"M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z\">\n</path>\n</svg>\n</span>\n</span>\n</a>"
+    },
+    {
+      "id": "links-link-list-alt-chevrons-list-chevrons-list-apple-used-inside-dark",
+      "section_id": "links",
+      "title": ".link-list--alt.chevrons-list.chevrons-list_apple — used inside dark/colored sections for a CTA list",
+      "type": "Links & link lists",
+      "aliases": [
+        "arrow link",
+        "chevron list",
+        "link list",
+        "link-list--alt"
+      ],
+      "source_family": "usf-v4",
+      "dependencies": [
+        "reference/usf-cms/css/v4/tokens.css",
+        "reference/usf-cms/css/v4/base-utilities.css",
+        "reference/usf-cms/css/v4/ui-components.css",
+        "reference/usf-cms/css/v4/styles.css"
+      ],
+      "notes": "",
+      "markup": "<ul class=\"link-list link-list--alt chevrons-list chevrons-list_apple\" role=\"list\">\n<li>\n<a href=\"#\">Find Your Major</a>\n</li>\n<li>\n<a href=\"#\">Calculate Your Cost of Attendance</a>\n</li>\n<li>\n<a href=\"#\">Plan Your Visit</a>\n</li>\n<li>\n<a href=\"#\">Request More Information</a>\n</li>\n</ul>"
+    },
+    {
+      "id": "links-link-list-inline-square-arrow-list-square-arrow-list-apple-the-n",
+      "section_id": "links",
+      "title": ".link-list--inline.square-arrow-list.square-arrow-list_apple — the no-JS fallback list behind the audience-gateway dropdown below",
+      "type": "Links & link lists",
+      "aliases": [
+        "arrow link",
+        "chevron list",
+        "link list",
+        "link-list--inline"
+      ],
+      "source_family": "usf-v4",
+      "dependencies": [
+        "reference/usf-cms/css/v4/tokens.css",
+        "reference/usf-cms/css/v4/base-utilities.css",
+        "reference/usf-cms/css/v4/ui-components.css",
+        "reference/usf-cms/css/v4/styles.css"
+      ],
+      "notes": "",
+      "markup": "<ul class=\"link-list link-list--inline square-arrow-list square-arrow-list_apple\" role=\"list\">\n<li>\n<a href=\"#\">Undergraduate Majors</a>\n</li>\n<li>\n<a href=\"#\">Cost Calculator</a>\n</li>\n<li>\n<a href=\"#\">Financial Aid</a>\n</li>\n</ul>"
+    },
+    {
+      "id": "snip-cta-cta-band",
+      "section_id": "snip-cta",
+      "title": ".snip-cta / .snip-cta__inner — full-bleed, not scoped to .snip-shell's max-width",
+      "type": "CTA band",
+      "aliases": [
+        "call to action",
+        "cta",
+        "snip-cta",
+        "snip-cta__inner",
+        "snip-shell",
+        "snippet button"
+      ],
+      "source_family": "snip",
+      "dependencies": [
+        "tcap/omnicms-snippets/snippet-template.css"
+      ],
+      "notes": "",
+      "markup": "<div class=\"snip-cta\">\n<div class=\"snip-cta__inner\">\n<a class=\"snippetButton\" href=\"#\">Talk to an advisor</a>\n</div>\n</div>"
+    },
+    {
+      "id": "snip-nav-bottom-pill-nav",
+      "section_id": "snip-nav",
+      "title": ".snip-nav / .snip-nav__link — one non-link .is-active pill marks the current page",
+      "type": "Bottom pill nav",
+      "aliases": [
+        "bottom nav",
+        "is-active",
+        "nav",
+        "pill nav",
+        "snip-nav",
+        "snip-nav__link"
+      ],
+      "source_family": "snip",
+      "dependencies": [
+        "tcap/omnicms-snippets/snippet-template.css"
+      ],
+      "notes": "",
+      "markup": "<div class=\"snip-nav\">\n<a class=\"snip-nav__link\" href=\"#\">Overview</a>\n<span class=\"snip-nav__link is-active\">Layers</span>\n<a class=\"snip-nav__link\" href=\"#\">Exp. Learning</a>\n<a class=\"snip-nav__link\" href=\"#\">FAQ</a>\n</div>"
+    },
+    {
+      "id": "cards-cards",
+      "section_id": "cards",
+      "title": "Trending at USF: .section .card-group.animate-group + three .card.card--usfgreen.animate.animate--stagger.animate--slide-in. USF CSS makes this 3-across at 768px+; hover/focus scales the card image to 1.05.",
+      "type": "Cards",
+      "aliases": [
+        "card",
+        "card-group",
+        "cards",
+        "section",
+        "trending",
+        "trending at usf"
+      ],
+      "source_family": "usf-v4",
+      "dependencies": [
+        "reference/usf-cms/css/v4/tokens.css",
+        "reference/usf-cms/css/v4/base-utilities.css",
+        "reference/usf-cms/css/v4/ui-components.css",
+        "reference/usf-cms/css/v4/styles.css"
+      ],
+      "notes": "",
+      "markup": "<div class=\"section section--white\">\n<div class=\"section__inner grid grid-col-12-sm gap-5 container\">\n<div class=\"section__text grid-col-span-8-sm\">\n<h2 class=\"section__heading\">Trending at USF</h2>\n</div>\n<div class=\"section__columns grid-col-span-12-sm\">\n<div class=\"section__column\">\n<div class=\"card-group animate-group\">\n<div class=\"card card--usfgreen animate animate--stagger animate--slide-in\">\n<div class=\"card__image\">\n<img loading=\"lazy\" src=\"https://www.usf.edu/media/images/trending/tour.jpeg\" alt=\"Group of people taking a tour of campus\">\n</div>\n<div class=\"card__content\">\n<h3 class=\"card__heading\">\n<a href=\"https://www.usf.edu/admissions/visit/index.aspx\" target=\"_self\" class=\"card__link\">Visit USF</a>\n</h3>\n<div class=\"card__description\">\n<p>Take a guided tour for an up-close look at each USF campus.</p>\n</div>\n</div>\n</div>\n<div class=\"card card--usfgreen animate animate--stagger animate--slide-in\">\n<div class=\"card__image\">\n<img loading=\"lazy\" src=\"https://www.usf.edu/media/images/trending/700x525-student-go-bulls.jpeg\" alt=\"Student smiling and doing a Go Bulls hand gesture.\">\n</div>\n<div class=\"card__content\">\n<h3 class=\"card__heading\">\n<a href=\"https://www.usf.edu/admissions/index.aspx\" target=\"_self\" class=\"card__link\">Applications Open Soon</a>\n</h3>\n<div class=\"card__description\">\n<p>Get ready to find your place in the Herd.</p>\n</div>\n</div>\n</div>\n<div class=\"card card--usfgreen animate animate--stagger animate--slide-in\">\n<div class=\"card__image\">\n<img loading=\"lazy\" src=\"https://www.usf.edu/media/images/trending/onboarding.jpg\" alt=\"Students on computer\">\n</div>\n<div class=\"card__content\">\n<h3 class=\"card__heading\">\n<a href=\"https://discover.usf.edu/apply/status\" target=\"_self\" class=\"card__link\">Incoming Students: Finish Your Onboarding Checklist</a>\n</h3>\n<div class=\"card__description\">\n<p>It's time to become a Bull! Finish up your next steps.</p>\n</div>\n</div>\n</div>\n</div>\n</div>\n</div>\n</div>\n</div>"
+    },
+    {
+      "id": "snip-cards-snip-grid-2-snip-card-callout",
+      "section_id": "snip-cards",
+      "title": ".snip-grid--2 + .snip-card--callout",
+      "type": "Cards & grids",
+      "aliases": [
+        "callout",
+        "icon card",
+        "snip cards",
+        "snip-card",
+        "snip-card--callout",
+        "snip-card__body",
+        "snip-card__title",
+        "snip-grid",
+        "snip-grid--2",
+        "step card"
+      ],
+      "source_family": "snip",
+      "dependencies": [
+        "tcap/omnicms-snippets/snippet-template.css"
+      ],
+      "notes": "",
+      "markup": "<div class=\"snip-grid snip-grid--2\">\n<div class=\"snip-card snip-card--callout\">\n<h3 class=\"snip-card__title\">What is tCAP?</h3>\n<p class=\"snip-card__body\">A structured, multiyear career development program.</p>\n</div>\n<div class=\"snip-card snip-card--callout\">\n<h3 class=\"snip-card__title\">Why tCAP matters</h3>\n<p class=\"snip-card__body\">Employers want graduates who can contribute immediately.</p>\n</div>\n</div>"
+    },
+    {
+      "id": "snip-cards-snip-grid-3-snip-card-callout-snip-card-center-link-card",
+      "section_id": "snip-cards",
+      "title": ".snip-grid--3 + .snip-card--callout.snip-card--center (link card)",
+      "type": "Cards & grids",
+      "aliases": [
+        "callout",
+        "icon card",
+        "snip cards",
+        "snip-card",
+        "snip-card--callout",
+        "snip-card--center",
+        "snip-card__body",
+        "snip-card__title",
+        "snip-grid",
+        "snip-grid--3",
+        "step card"
+      ],
+      "source_family": "snip",
+      "dependencies": [
+        "tcap/omnicms-snippets/snippet-template.css"
+      ],
+      "notes": "",
+      "markup": "<div class=\"snip-grid snip-grid--3\">\n<a class=\"snip-card snip-card--callout snip-card--center\" href=\"#\">\n<p class=\"snip-card__title\">Readiness</p>\n<p class=\"snip-card__body\">Build the foundation with self-awareness and goal setting.</p>\n</a>\n<a class=\"snip-card snip-card--callout snip-card--center\" href=\"#\">\n<p class=\"snip-card__title\">Experience</p>\n<p class=\"snip-card__body\">Learn by doing through applied projects.</p>\n</a>\n<a class=\"snip-card snip-card--callout snip-card--center\" href=\"#\">\n<p class=\"snip-card__title\">Connection</p>\n<p class=\"snip-card__body\">Grow your network with mentors and employers.</p>\n</a>\n</div>"
+    },
+    {
+      "id": "snip-cards-snip-grid-1-snip-card-step-numbered-process-e-g-program-sta",
+      "section_id": "snip-cards",
+      "title": ".snip-grid--1 + .snip-card--step (numbered process, e.g. program stages) — hover a card, it's driven by data-snip-active-group",
+      "type": "Cards & grids",
+      "aliases": [
+        "callout",
+        "icon card",
+        "snip cards",
+        "snip-card",
+        "snip-card--interactive",
+        "snip-card--step",
+        "snip-card__badge",
+        "snip-card__body",
+        "snip-card__title",
+        "snip-grid",
+        "snip-grid--1",
+        "step card"
+      ],
+      "source_family": "snip",
+      "dependencies": [
+        "tcap/omnicms-snippets/snippet-template.css",
+        "tcap/omnicms-snippets/snippet-template.js"
+      ],
+      "notes": "",
+      "markup": "<div class=\"snip-grid snip-grid--1\" data-snip-active-group>\n<div class=\"snip-card snip-card--step snip-card--interactive\" data-snip-active-item>\n<div class=\"snip-card__badge\">1</div>\n<div>\n<h3 class=\"snip-card__title\">Targeting Fundamentals</h3>\n<p class=\"snip-card__body\">Onboarding, resume building, GitHub setup and goal setting.</p>\n</div>\n</div>\n<div class=\"snip-card snip-card--step snip-card--interactive\" data-snip-active-item>\n<div class=\"snip-card__badge\">2</div>\n<div>\n<h3 class=\"snip-card__title\">Core Application</h3>\n<p class=\"snip-card__body\">Mentorship, leadership development and networking.</p>\n</div>\n</div>\n</div>"
+    },
+    {
+      "id": "snip-cards-snip-grid-4-snip-card-icon-hover-tap-a-tile-to-flip-its-is",
+      "section_id": "snip-cards",
+      "title": ".snip-grid--4 + .snip-card--icon — hover/tap a tile to flip its .is-active state and update linked status text via data-snip-info-target",
+      "type": "Cards & grids",
+      "aliases": [
+        "callout",
+        "icon card",
+        "is-active",
+        "snip cards",
+        "snip-card",
+        "snip-card--icon",
+        "snip-card--interactive",
+        "snip-card__badge",
+        "snip-card__title",
+        "snip-grid",
+        "snip-grid--4",
+        "step card"
+      ],
+      "source_family": "snip",
+      "dependencies": [
+        "tcap/omnicms-snippets/snippet-template.css",
+        "tcap/omnicms-snippets/snippet-template.js"
+      ],
+      "notes": "",
+      "markup": "<div class=\"snip-grid snip-grid--4\" data-snip-active-group data-snip-info-target=\"#demo-pathway-info\">\n<div class=\"snip-card snip-card--icon snip-card--interactive\" data-snip-active-item data-info=\"Internships.\">\n<span class=\"snip-card__badge\">IN</span>\n<div class=\"snip-card__title\">Internships</div>\n</div>\n<div class=\"snip-card snip-card--icon snip-card--interactive\" data-snip-active-item data-info=\"Undergraduate research.\">\n<span class=\"snip-card__badge\">UR</span>\n<div class=\"snip-card__title\">Undergrad Research</div>\n</div>\n<div class=\"snip-card snip-card--icon snip-card--interactive\" data-snip-active-item data-info=\"Capstone projects.\">\n<span class=\"snip-card__badge\">CP</span>\n<div class=\"snip-card__title\">Capstone Projects</div>\n</div>\n<div class=\"snip-card snip-card--icon snip-card--interactive\" data-snip-active-item data-info=\"Cybersecurity support services.\">\n<span class=\"snip-card__badge\">CS</span>\n<div class=\"snip-card__title\">Cyber Support</div>\n</div>\n</div>"
+    },
+    {
+      "id": "snip-cards-snip-grid-4-snip-grid-tight-snip-card-icon-snip-card-solid",
+      "section_id": "snip-cards",
+      "title": ".snip-grid--4.snip-grid--tight + .snip-card--icon.snip-card--solid (always-on link strip)",
+      "type": "Cards & grids",
+      "aliases": [
+        "callout",
+        "icon card",
+        "snip cards",
+        "snip-card",
+        "snip-card--icon",
+        "snip-card--solid",
+        "snip-card__num",
+        "snip-card__title",
+        "snip-grid",
+        "snip-grid--4",
+        "snip-grid--tight",
+        "step card"
+      ],
+      "source_family": "snip",
+      "dependencies": [
+        "tcap/omnicms-snippets/snippet-template.css"
+      ],
+      "notes": "",
+      "markup": "<div class=\"snip-grid snip-grid--4 snip-grid--tight\">\n<a class=\"snip-card snip-card--icon snip-card--solid\" href=\"#\">\n<span class=\"snip-card__num\">01</span>\n<span class=\"snip-card__title\">Targeting Fundamentals</span>\n</a>\n<a class=\"snip-card snip-card--icon snip-card--solid\" href=\"#\">\n<span class=\"snip-card__num\">02</span>\n<span class=\"snip-card__title\">Core Application</span>\n</a>\n<a class=\"snip-card snip-card--icon snip-card--solid\" href=\"#\">\n<span class=\"snip-card__num\">03</span>\n<span class=\"snip-card__title\">Advanced Practice</span>\n</a>\n<a class=\"snip-card snip-card--icon snip-card--solid\" href=\"#\">\n<span class=\"snip-card__num\">04</span>\n<span class=\"snip-card__title\">Professional Mastery</span>\n</a>\n</div>"
+    },
+    {
+      "id": "stats-stat-group",
+      "section_id": "stats",
+      "title": ".stat-group.stat-group--4 + .stat / .stat__value / .stat__text",
+      "type": "Stat group",
+      "aliases": [
+        "rankings",
+        "stat",
+        "stat group",
+        "stat-group",
+        "stat__text",
+        "stat__value",
+        "stats"
+      ],
+      "source_family": "usf-v4",
+      "dependencies": [
+        "reference/usf-cms/css/v4/tokens.css",
+        "reference/usf-cms/css/v4/base-utilities.css",
+        "reference/usf-cms/css/v4/ui-components.css",
+        "reference/usf-cms/css/v4/styles.css"
+      ],
+      "notes": "",
+      "markup": "<div class=\"stat-group stat-group--4\">\n<div class=\"stat\">\n<span class=\"stat__value\">#43</span>\n<span class=\"stat__text\">Among all Public Universities</span>\n</div>\n<div class=\"stat\">\n<span class=\"stat__value\">Top 16</span>\n<span class=\"stat__text\">Medical School in the Nation</span>\n</div>\n<div class=\"stat\">\n<span class=\"stat__value\">#12</span>\n<span class=\"stat__text\">Best Value Among all Public Universities</span>\n</div>\n<div class=\"stat\">\n<span class=\"stat__value\">$750M</span>\n<span class=\"stat__text\">in Research Funding (2025)</span>\n</div>\n</div>"
+    },
+    {
+      "id": "snip-stat-bar-stat-bar",
+      "section_id": "snip-stat-bar",
+      "title": ".snip-stat-bar — wraps the CMS theme's own c-calloutText component",
+      "type": "Stat bar",
+      "aliases": [
+        "callout text",
+        "snip-source",
+        "snip-source__text",
+        "snip-stat-bar",
+        "stat bar"
+      ],
+      "source_family": "snip",
+      "dependencies": [
+        "tcap/omnicms-snippets/snippet-template.css"
+      ],
+      "notes": "",
+      "markup": "<div class=\"snip-stat-bar\">\n<div class=\"c-calloutText c-calloutText--gray\" style=\"height: 200px !important;\">\n<h3 class=\"c-calloutText_heading\">+17.9%</h3>\n<div class=\"c-calloutText_text\">Software developer growth 2023&ndash;2033\n<section class=\"snip-source\">\n<p class=\"snip-source__text\">BLS / MLR 2025.</p>\n</section>\n</div>\n</div>\n<div class=\"c-calloutText c-calloutText--gray\" style=\"height: 200px !important;\">\n<h3 class=\"c-calloutText_heading\">546K</h3>\n<div class=\"c-calloutText_text\">Tech workers in Florida\n<section class=\"snip-source\">\n<p class=\"snip-source__text\">CompTIA 2025.</p>\n</section>\n</div>\n</div>\n</div>"
+    },
+    {
+      "id": "snip-table-comparison-table",
+      "section_id": "snip-table",
+      "title": ".snip-table / .snip-table__row / .snip-table__cell",
+      "type": "Comparison table",
+      "aliases": [
+        "comparison",
+        "snip-table",
+        "snip-table__cell",
+        "snip-table__row",
+        "snip-table__row--head",
+        "table"
+      ],
+      "source_family": "snip",
+      "dependencies": [
+        "tcap/omnicms-snippets/snippet-template.css"
+      ],
+      "notes": "",
+      "markup": "<div class=\"snip-table\">\n<div class=\"snip-table__row snip-table__row--head\">\n<div class=\"snip-table__cell\">Requirement</div>\n<div class=\"snip-table__cell\">What it means</div>\n<div class=\"snip-table__cell\">Student output</div>\n</div>\n<div class=\"snip-table__row\">\n<div class=\"snip-table__cell\">135 verified hours</div>\n<div class=\"snip-table__cell\">Minimum threshold of verified hours</div>\n<div class=\"snip-table__cell\">Tracked hours</div>\n</div>\n<div class=\"snip-table__row\">\n<div class=\"snip-table__cell\">Pre-approval</div>\n<div class=\"snip-table__cell\">Plan of work approved by a mentor</div>\n<div class=\"snip-table__cell\">Approved plan</div>\n</div>\n</div>"
+    },
+    {
+      "id": "snip-faq-faq-group",
+      "section_id": "snip-faq",
+      "title": ".snip-faq / .snip-faq__title / .snip-faq__list",
+      "type": "FAQ group",
+      "aliases": [
+        "accordion",
+        "details",
+        "faq",
+        "snip-faq",
+        "snip-faq__list",
+        "snip-faq__title"
+      ],
+      "source_family": "snip",
+      "dependencies": [
+        "tcap/omnicms-snippets/snippet-template.css"
+      ],
+      "notes": "",
+      "markup": "<div class=\"snip-faq\">\n<h3 class=\"snip-faq__title\">Program basics</h3>\n<div class=\"snip-faq__list\">\n<details>\n<summary>What is tCAP?</summary>\n<p>A structured, multiyear career development program integrated into the college experience.</p>\n</details>\n<details>\n<summary>When do students start?</summary>\n<p>Students begin during their first semester.</p>\n</details>\n</div>\n</div>"
+    },
+    {
+      "id": "events-events-feed",
+      "section_id": "events",
+      "title": ".calendar-feed / __item / __date / __details / __title",
+      "type": "Events feed",
+      "aliases": [
+        "calendar feed",
+        "calendar-feed",
+        "events"
+      ],
+      "source_family": "usf-v4",
+      "dependencies": [
+        "reference/usf-cms/css/v4/tokens.css",
+        "reference/usf-cms/css/v4/base-utilities.css",
+        "reference/usf-cms/css/v4/ui-components.css",
+        "reference/usf-cms/css/v4/styles.css"
+      ],
+      "notes": "",
+      "markup": "<ol class=\"calendar-feed\" role=\"list\" style=\"max-width:360px;\">\n<li class=\"calendar-feed__item\">\n<a class=\"calendar-feed__link\" href=\"#\">\n<div class=\"calendar-feed__date\">Aug 8</div>\n<p class=\"calendar-feed__details\">\n<span class=\"calendar-feed__title\">Summer Commencement</span>\n</p>\n</a>\n</li>\n<li class=\"calendar-feed__item\">\n<a class=\"calendar-feed__link\" href=\"#\">\n<div class=\"calendar-feed__date\">Aug 20</div>\n<p class=\"calendar-feed__details\">\n<span class=\"calendar-feed__title\">Week of Welcome</span>\n<br>\n<span class=\"calendar-feed__date-span\">Aug. 20 - Aug. 30</span>\n</p>\n</a>\n</li>\n</ol>"
+    },
+    {
+      "id": "media-grid-image-grid",
+      "section_id": "media-grid",
+      "title": ".image-grid.grid + .image-grid__item — was \"We Are One USF\"",
+      "type": "Image grid",
+      "aliases": [
+        "campus grid",
+        "image grid",
+        "image-grid",
+        "image-grid__item"
+      ],
+      "source_family": "usf-v4",
+      "dependencies": [
+        "reference/usf-cms/css/v4/tokens.css",
+        "reference/usf-cms/css/v4/base-utilities.css",
+        "reference/usf-cms/css/v4/ui-components.css",
+        "reference/usf-cms/css/v4/styles.css"
+      ],
+      "notes": "",
+      "markup": "<div class=\"image-grid grid\" style=\"max-width:520px;\">\n<div class=\"image-grid__item\">\n<img loading=\"lazy\" src=\"https://www.usf.edu/media/images/one-usf/usftpa.jpeg\" alt=\"University of South Florida Tampa campus.\">\n</div>\n<div class=\"image-grid__item\">\n<img loading=\"lazy\" src=\"https://www.usf.edu/media/images/one-usf/usfsp-campus.jpeg\" alt=\"University of South Florida St. Petersburg campus.\">\n</div>\n<div class=\"image-grid__item\">\n<img loading=\"lazy\" src=\"https://www.usf.edu/media/images/one-usf/one-usf-3.jpg\" alt=\"University of South Florida sign with palm trees\">\n</div>\n<div class=\"image-grid__item\">\n<img loading=\"lazy\" src=\"https://www.usf.edu/media/images/one-usf/one-usf-health.jpg\" alt=\"USF Health\">\n</div>\n</div>"
+    },
+    {
+      "id": "video-video-dialog-grid",
+      "section_id": "video",
+      "title": ".video-grid / .video-grid__item / .dialog",
+      "type": "Video dialog grid",
+      "aliases": [
+        "dialog",
+        "video",
+        "video-grid",
+        "video-grid__item",
+        "youtube"
+      ],
+      "source_family": "usf-v4",
+      "dependencies": [
+        "reference/usf-cms/css/v4/tokens.css",
+        "reference/usf-cms/css/v4/base-utilities.css",
+        "reference/usf-cms/css/v4/ui-components.css",
+        "reference/usf-cms/css/v4/styles.css",
+        "a11y-dialog runtime on real usf.edu pages"
+      ],
+      "notes": ".video-grid__item opens an a11y-dialog-powered modal with a YouTube embed on click — that library isn't loaded on this page, so the button below is inert (real markup/classes still shown, and the dialog's own markup is nested inside for reference).",
+      "markup": "<div class=\"video-grid\" style=\"max-width:220px;\">\n<div class=\"video-grid__item\">\n<button type=\"button\" class=\"dialog-button\" data-a11y-dialog-show=\"demo-video-1\">\n<img loading=\"lazy\" src=\"https://www.usf.edu/media/images/live-the-bulls-life/bullslife-homecoming.jpg\" alt=\"Watch Homecoming at USF\">\n<span class=\"video-grid-icon u-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 640\" aria-hidden=\"true\">\n<path fill=\"currentColor\" d=\"M187.2 100.9C174.8 94.1 159.8 94.4 147.6 101.6C135.4 108.8 128 121.9 128 136L128 504C128 518.1 135.5 531.2 147.6 538.4C159.7 545.6 174.8 545.9 187.2 539.1L523.2 355.1C536 348.1 544 334.6 544 320C544 305.4 536 291.9 523.2 284.9L187.2 100.9z\">\n</path>\n</svg>\n</span>\n</button>\n<div class=\"dialog\" data-a11y-dialog=\"demo-video-1\" aria-label=\"Homecoming at USF\" aria-hidden=\"true\" aria-modal=\"true\" tabindex=\"-1\" role=\"dialog\">\n<div class=\"dialog__overlay\" data-a11y-dialog-hide>\n</div>\n<div class=\"dialog__container\" role=\"document\">\n<button type=\"button\" class=\"dialog-button-close\" data-a11y-dialog-hide aria-label=\"Close overlay\">\n<span class=\"dialog-button-close-icon u-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 640\" aria-hidden=\"true\">\n<path fill=\"currentColor\" d=\"M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z\">\n</path>\n</svg>\n</span>\n</button>\n<div class=\"dialog__content\">\n<div class=\"dialog__embed--yt-shorts\">\n<iframe src=\"https://www.youtube.com/embed/sm09sdAIeFc\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"yes\">\n</iframe>\n</div>\n</div>\n</div>\n</div>\n</div>\n</div>"
+    },
+    {
+      "id": "snip-panel-panel-form",
+      "section_id": "snip-panel",
+      "title": "data-snip-panel + data-snip-screen + data-snip-go + data-snip-validate + data-snip-reset — live flow",
+      "type": "Panel & form",
+      "aliases": [
+        "form",
+        "panel",
+        "request info",
+        "snip-back",
+        "snip-banner--error",
+        "snip-btn",
+        "snip-btn--primary",
+        "snip-btn--secondary",
+        "snip-choice",
+        "snip-choice-stack",
+        "snip-choice__arrow",
+        "snip-choice__desc",
+        "snip-choice__title",
+        "snip-consent-row",
+        "snip-field",
+        "snip-field__error",
+        "snip-grid",
+        "snip-grid--2",
+        "snip-input",
+        "snip-kicker",
+        "snip-label",
+        "snip-panel",
+        "snip-panel__band",
+        "snip-panel__body",
+        "snip-panel__pad",
+        "snip-panel__subtitle",
+        "snip-panel__title",
+        "snip-required",
+        "snip-required-note",
+        "snip-section-label",
+        "snip-success",
+        "snip-success__icon",
+        "snip-success__text",
+        "snip-success__title",
+        "snip-visually-hidden"
+      ],
+      "source_family": "snip",
+      "dependencies": [
+        "tcap/omnicms-snippets/snippet-template.css",
+        "tcap/omnicms-snippets/snippet-template.js"
+      ],
+      "notes": "From the Bellini \"request info\" widget — a self-contained panel with its own screens, not scoped to .snip-shell. This one is fully wired to snippet-template.js: click a choice, try submitting empty, then fill it in. The submission itself (the network call) isn't this library's job — see the demo-only glue script below the panel and CATALOG.md for the contract.",
+      "markup": "<div class=\"snip-panel\" data-snip-panel data-snip-initial=\"choose\">\n<section data-snip-screen=\"choose\">\n<div class=\"snip-panel__band snip-panel__pad\">\n<p class=\"snip-kicker\">Bellini College of Artificial Intelligence, Cybersecurity and Computing</p>\n<h2 class=\"snip-panel__title\">Request program information</h2>\n<p class=\"snip-panel__subtitle\">Tell us a little about you and which program you're exploring.</p>\n</div>\n<div class=\"snip-panel__body snip-panel__pad\">\n<p class=\"snip-section-label\">Who is filling this out?</p>\n<div class=\"snip-choice-stack\">\n<button class=\"snip-choice\" type=\"button\" data-snip-go=\"student\">\n<span>\n<span class=\"snip-choice__title\">I'm a future student</span>\n<span class=\"snip-choice__desc\">Exploring a program for yourself</span>\n</span>\n<span class=\"snip-choice__arrow\" aria-hidden=\"true\">&rarr;</span>\n</button>\n</div>\n</div>\n</section>\n<section data-snip-screen=\"student\" class=\"is-hidden\">\n<form data-snip-validate novalidate id=\"demo-student-form\">\n<div class=\"snip-panel__band snip-panel__pad\">\n<button class=\"snip-back\" type=\"button\" data-snip-go=\"choose\">&larr; Back</button>\n<p class=\"snip-kicker\">Future student</p>\n<h2 class=\"snip-panel__title\">Tell us about you</h2>\n</div>\n<div class=\"snip-panel__body snip-panel__pad\">\n<div class=\"snip-banner--error\" style=\"display:none;\">\n</div>\n<div class=\"snip-grid snip-grid--2\">\n<div class=\"snip-field\">\n<label class=\"snip-label\" for=\"demo-first\">First name<span class=\"snip-required\"> *</span>\n</label>\n<input class=\"snip-input\" id=\"demo-first\" name=\"first_name\" type=\"text\" required>\n<div class=\"snip-field__error\" data-snip-error-for=\"first_name\">\n</div>\n</div>\n<div class=\"snip-field\">\n<label class=\"snip-label\" for=\"demo-last\">Last name<span class=\"snip-required\"> *</span>\n</label>\n<input class=\"snip-input\" id=\"demo-last\" name=\"last_name\" type=\"text\" required>\n<div class=\"snip-field__error\" data-snip-error-for=\"last_name\">\n</div>\n</div>\n</div>\n<div class=\"snip-field\">\n<label class=\"snip-label\" for=\"demo-email\">Email<span class=\"snip-required\"> *</span>\n</label>\n<input class=\"snip-input\" id=\"demo-email\" name=\"email\" type=\"email\" required>\n<div class=\"snip-field__error\" data-snip-error-for=\"email\">\n</div>\n</div>\n<div class=\"snip-visually-hidden\">\n<label for=\"demo-website\">Website</label>\n<input id=\"demo-website\" name=\"website\" type=\"text\" tabindex=\"-1\" autocomplete=\"off\" data-snip-honeypot>\n</div>\n<div class=\"snip-consent-row\">\n<input id=\"demo-consent\" name=\"consent\" type=\"checkbox\" required>\n<label for=\"demo-consent\">I agree to receive communications about this program.*</label>\n</div>\n<button class=\"snip-btn snip-btn--primary\" type=\"submit\">Request information</button>\n<p class=\"snip-required-note\">Fields marked * are required — try submitting empty first.</p>\n</div>\n</form>\n</section>\n<section data-snip-screen=\"thanks\" class=\"is-hidden\">\n<div class=\"snip-panel__band snip-panel__pad\">\n<p class=\"snip-kicker\">Bellini College of AI, Cybersecurity and Computing</p>\n</div>\n<div class=\"snip-success snip-panel__pad\">\n<div class=\"snip-success__icon\" aria-hidden=\"true\">\n<span>&#10003;</span>\n</div>\n<h2 class=\"snip-success__title\">Thank you!</h2>\n<p class=\"snip-success__text\">Your request is in. Someone from the team will reach out soon.</p>\n<button class=\"snip-btn snip-btn--secondary\" type=\"button\" data-snip-reset>Submit another request</button>\n</div>\n</section>\n</div>"
+    },
+    {
+      "id": "snip-flip-snip-event-hover-the-row-to-flip-the-date-badge",
+      "section_id": "snip-flip",
+      "title": ".snip-event — hover the row to flip the date badge",
+      "type": "Flip card",
+      "aliases": [
+        "event badge",
+        "flip",
+        "flip button",
+        "snip-event",
+        "snip-event__badge",
+        "snip-event__badge-inner",
+        "snip-event__face",
+        "snip-event__face--back",
+        "snip-event__face--front",
+        "snip-event__title"
+      ],
+      "source_family": "snip",
+      "dependencies": [
+        "tcap/omnicms-snippets/snippet-template.css"
+      ],
+      "notes": "From the AI+X community events widget — a 3D flip on hover. .snip-event flips its badge when you hover anywhere in the row; .snip-flip-btn flips itself.",
+      "markup": "<a class=\"snip-event\" href=\"#\" style=\"max-width:360px;\">\n<div class=\"snip-event__badge\">\n<div class=\"snip-event__badge-inner\">\n<div class=\"snip-event__face snip-event__face--front\">\n<span style=\"font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;\">Mar</span>\n<span style=\"font-size:27px;font-weight:600;line-height:1;\">14</span>\n</div>\n<div class=\"snip-event__face snip-event__face--back\">\n<span style=\"font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;\">Mar</span>\n<span style=\"font-size:27px;font-weight:600;line-height:1;\">14</span>\n</div>\n</div>\n</div>\n<div>\n<p class=\"snip-event__title\">AI+X Speaker Series: Applied Robotics</p>\n</div>\n</a>"
+    },
+    {
+      "id": "snip-flip-snip-flip-btn-hover-the-button-itself-to-flip",
+      "section_id": "snip-flip",
+      "title": ".snip-flip-btn — hover the button itself to flip",
+      "type": "Flip card",
+      "aliases": [
+        "event badge",
+        "flip",
+        "flip button",
+        "snip-flip-btn",
+        "snip-flip-btn__face",
+        "snip-flip-btn__face--back",
+        "snip-flip-btn__face--front",
+        "snip-flip-btn__inner"
+      ],
+      "source_family": "snip",
+      "dependencies": [
+        "tcap/omnicms-snippets/snippet-template.css"
+      ],
+      "notes": "From the AI+X community events widget — a 3D flip on hover. .snip-event flips its badge when you hover anywhere in the row; .snip-flip-btn flips itself.",
+      "markup": "<a class=\"snip-flip-btn\" href=\"#\">\n<div class=\"snip-flip-btn__inner\">\n<div class=\"snip-flip-btn__face snip-flip-btn__face--front\">All Events</div>\n<div class=\"snip-flip-btn__face snip-flip-btn__face--back\">All Events</div>\n</div>\n</a>"
+    }
+  ]
+}

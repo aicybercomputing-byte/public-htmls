@@ -1,0 +1,7 @@
+interface:
+  display_name: "OmniCMS Element Library"
+  short_description: "Plan OmniCMS pages with approved components."
+  default_prompt: "Use $omnicms-element-library to plan updates for this OmniCMS HTML page before editing."
+
+policy:
+  allow_implicit_invocation: true
