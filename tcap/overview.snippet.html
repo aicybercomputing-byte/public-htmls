@@ -373,7 +373,9 @@
 
 .section--white .section__inner {
   padding-top: var(--space-3) !important;
-  padding-bottom: var(--space-5);
+  /* ~33% less than the header's own top gap (--space-6) — the cards sat
+     too far from the sand section below at the full amount. */
+  padding-bottom: var(--space-5) !important;
 }
 
 .section--white .section__columns,
@@ -393,6 +395,35 @@
 .stylized-header-container--centered {
   margin-top: var(--space-2) !important;
   margin-bottom: var(--space-2) !important;
+}
+
+/* "The tCAP Model" header sits right under the dark green stat band above
+   it; give it extra breathing room so it doesn't feel glued to that block. */
+.stylized-header-container--tcap-model {
+  margin-top: var(--space-6) !important;
+}
+
+/* "Student Journey" header: match the breathing room used on "The tCAP
+   Model" header above it and below it. Space is applied as *padding* on
+   the sand section itself (not margin on the header) because the header
+   is the section's first child — a top margin there collapses through to
+   the parent and escapes the sand background entirely, showing up as
+   extra white space above the section instead of a gap inside it. */
+.stylized-header-container--student-journey {
+  margin-top: 0 !important;
+  margin-bottom: var(--space-3) !important;
+}
+
+.section--sand {
+  padding-top: var(--space-5) !important;
+}
+
+/* The sand section's default top padding (--space-7) was piling on top of
+   the header's own margin-bottom, producing a much bigger gap before the
+   step cards than the equivalent gap on "The tCAP Model" section. Trim it
+   to match. */
+.section--sand .section__inner {
+  padding-top: var(--space-2) !important;
 }
 
 .section--white .card.animate--slide-in {
@@ -1681,7 +1712,7 @@
   </div>
 </div>
 
-<div class="stylized-header-container--centered">
+<div class="stylized-header-container--centered stylized-header-container--tcap-model">
   <h2 class="stylized-header"><span>The tCAP Model</span></h2>
 </div>
 
@@ -1736,11 +1767,10 @@
 </div>
 
 <div class="section section--sand">
+  <div class="stylized-header-container--centered stylized-header-container--student-journey">
+    <h2 class="stylized-header"><span>Student Journey</span></h2>
+  </div>
   <div class="section__inner container">
-    <div class="stylized-header-container--centered">
-      <h2 class="stylized-header"><span>Student Journey</span></h2>
-    </div>
-
     <div class="snip-stack" data-screen-label="Student Journey">
 
       <div class="snip-grid snip-grid--4 snip-grid--tight">
