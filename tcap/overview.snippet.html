@@ -49,11 +49,28 @@
 
   /* Inline USF v4 tokens required by stats-stat-group. */
   --color-secondary-evergreen: #005432;
+  --color-primary-usfgreen: #006747;
+  --color-secondary-sand: #edebd1;
+  --color-text-light: #ffffff;
+  --color-accent-apple: #9ccb3b;
   --color-accent-teal: #009374;
+  --color-accent-seaglass: #80b0a6;
+  --color-neutral-slate: #466069;
+  --color-transparent: rgba(255, 0, 0, 0);
   --font-family-secondary: "Barlow Condensed", sans-serif;
+  --font-size-h1: 3rem;
+  --font-size-h5: 1.25rem;
+  --line-height-tight: 1.2;
   --line-height-snug: 1.35;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.65;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
   --space-4: 1.5rem;
+  --space-6: 3rem;
   --space-7: 4rem;
+  --space-5: 2rem;
+  --container-max-width: 1280px;
 }
 
 .snip-shell,
@@ -67,6 +84,13 @@
   padding: 24px;
   font-family: inherit;
   color: inherit;
+}
+
+.snip-shell--stats {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Vertical stack — drives spacing via `gap` only. Also neutralizes host-page
@@ -284,6 +308,10 @@
   text-align: center;
 }
 
+.stat-group > * {
+  margin-top: 0;
+}
+
 .stat {
   font-weight: 600;
   position: relative;
@@ -316,7 +344,354 @@
   font-size: 1.1rem;
 }
 
+/* USF v4 section color system, paired with the stat-group divider. */
+.section {
+  position: relative;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+.section--usfgreen {
+  background-color: var(--color-primary-usfgreen);
+}
+
+.section--usfgreen .stat__text {
+  font-weight: 400;
+}
+
+.section--usfgreen .section__inner {
+  display: grid;
+  align-items: center;
+  min-height: 20rem;
+}
+
+.section--white {
+  background-color: #ffffff;
+}
+
+.section--sand {
+  background-color: var(--color-secondary-sand);
+}
+
+.section__inner {
+  position: relative;
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-7);
+}
+
+.section__heading {
+  position: relative;
+  color: var(--color-secondary-evergreen);
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-h1);
+  font-weight: 600;
+  line-height: var(--line-height-tight);
+  text-transform: uppercase;
+  padding-top: var(--space-3);
+}
+
+.section__heading:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  height: 0.5rem;
+  width: 3.5rem;
+  background: repeating-linear-gradient(-45deg, var(--color-primary-usfgreen), var(--color-primary-usfgreen) 1px, var(--color-transparent) 2px, var(--color-transparent) 5px);
+}
+
+.section__description {
+  line-height: var(--line-height-relaxed);
+  margin-top: var(--space-2);
+}
+
+.section__media,
+.section__text {
+  min-width: 0;
+}
+
+.section__media-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.section__cta {
+  margin-top: var(--space-4);
+}
+
+.link-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link-list li {
+  margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.link-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: 0.9rem 0;
+  color: var(--color-text-light);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.chevrons-list a::after {
+  content: "»";
+  flex: 0 0 auto;
+  color: var(--color-accent-apple);
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.link-list a:hover,
+.link-list a:focus {
+  color: var(--color-accent-apple);
+}
+
+.section__description > *,
+.card__content > *,
+.card__description > * {
+  margin-top: 0;
+}
+
+.section--dark,
+.section--dark .section__heading {
+  color: var(--color-text-light);
+}
+
+.section--dark .snip-heading__title,
+.section--dark .snip-heading__text {
+  color: var(--color-text-light);
+}
+
+.section--experiential .section__inner {
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-5);
+}
+
+.section--experiential .section__cta {
+  margin-top: var(--space-3);
+}
+
+.section--experiential .link-list a {
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+}
+
+.section--dark .stat-group {
+  color: var(--color-text-light);
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+
+.section--dark .stat {
+  display: flex;
+  min-height: 13rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.section--dark .stat__value {
+  font-size: clamp(3rem, 4vw, 4.5rem);
+}
+
+.section--dark .stat + .stat:before {
+  background: linear-gradient(to top left, transparent calc(50% - 2px), var(--color-accent-apple), transparent calc(50% + 2px));
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-col-12-sm {
+  grid-template-columns: 1fr;
+}
+
+.grid-col-span-12-sm {
+  grid-column: 1 / -1;
+}
+
+.gap-6 {
+  gap: var(--space-6);
+}
+
+.gap-5 {
+  gap: var(--space-5);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section .card-group {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.section .card-group > * {
+  margin-top: 0;
+}
+
+.card {
+  background-color: #f3f7f8;
+  box-shadow: 3px 3px 15px #d3e1e4;
+  position: relative;
+}
+
+.card__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.card__image img {
+  display: block;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.card__content {
+  padding: var(--space-4);
+}
+
+.card__heading {
+  color: var(--color-neutral-slate);
+  font-size: var(--font-size-h5);
+  font-weight: 600;
+  line-height: var(--line-height-normal);
+}
+
+.card__link,
+.card__link:visited {
+  color: var(--color-neutral-slate);
+  font-weight: 600;
+  text-decoration-color: transparent;
+}
+
+.card__link:before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.card__description {
+  border-top: 1px solid var(--color-neutral-slate);
+  line-height: var(--line-height-relaxed);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+}
+
+.card--usfgreen {
+  background-color: var(--color-primary-usfgreen);
+  box-shadow: 3px 3px 15px var(--color-accent-seaglass);
+  color: var(--color-text-light);
+}
+
+.card--usfgreen .card__description {
+  border-top-color: var(--color-accent-teal);
+}
+
+.card--usfgreen .card__link,
+.card--usfgreen .card__link:visited {
+  color: var(--color-text-light);
+}
+
+.section--sand .snip-card--icon.snip-card--solid {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  min-height: 8rem;
+  text-align: left;
+  padding: var(--space-4);
+}
+
+.section--sand .snip-card--icon.snip-card--solid .snip-card__num {
+  flex: 0 0 auto;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 1;
+}
+
+.section--sand .snip-card--icon.snip-card--solid .snip-card__title {
+  flex: 0 1 9rem;
+  font-size: 18px;
+  line-height: 1.15;
+  text-align: left;
+}
+
+@media (max-width: 700px) {
+  .section--sand .snip-card--icon.snip-card--solid {
+    gap: 0.5rem;
+    padding: 12px;
+  }
+
+  .section--sand .snip-card--icon.snip-card--solid .snip-card__num {
+    font-size: 2.5rem;
+  }
+
+  .section--sand .snip-card--icon.snip-card--solid .snip-card__title {
+    flex-basis: auto;
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-col-12-sm {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .grid-col-span-8-sm {
+    grid-column-end: span 8;
+  }
+
+  .grid-col-span-4-sm {
+    grid-column-end: span 4;
+  }
+
+  .align-ai-center-sm {
+    align-items: center;
+  }
+
+  .gap-7-sm {
+    gap: var(--space-7);
+  }
+
+  .section--dark .stat-group {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .section .card-group {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section--dark .stat__value {
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 767px) {
+  .section--dark .stat__value {
+    font-size: clamp(2.75rem, 12vw, 4rem);
+  }
+
   .stat + .stat {
     margin-top: var(--space-4);
     padding-top: var(--space-4);
@@ -475,6 +850,24 @@
    Bottom pill nav — equal-width link row with a non-link "current page"
    pill. `.is-active` marks whichever one is current.
    ------------------------------------------------------------------------- */
+.snip-nav-band {
+  width: 100%;
+  background: var(--snip-surface, #efeff0);
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.snip-nav-band__inner {
+  width: 100%;
+  max-width: var(--container-max-width, 1280px);
+  margin: 0 auto;
+}
+
+.snip-nav-band .snip-nav {
+  border-top: 0;
+  padding-top: 0;
+}
+
 .snip-nav {
   display: flex;
   gap: 8px;
@@ -1093,34 +1486,6 @@
    Responsive
    ------------------------------------------------------------------------- */
 @media (max-width: 700px) {
-  .snip-stat-bar {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
-  }
-
-  .snip-stat-bar > .c-calloutText {
-    height: auto;
-    padding: 14px !important;
-  }
-
-  .snip-stat-bar .c-calloutText_heading {
-    font-size: 1.15rem;
-    margin-top: 0;
-  }
-
-  .snip-stat-bar .c-calloutText_text {
-    font-size: 0.8rem;
-    line-height: 1.3;
-  }
-
-  .snip-stat-bar .snip-source {
-    margin-top: 0.5rem;
-  }
-
-  .snip-stat-bar .snip-source__text {
-    font-size: 7pt;
-  }
-
   .snip-grid--2,
   .snip-grid--3 {
     grid-template-columns: 1fr;
@@ -1163,191 +1528,33 @@
 /*]]>*/
 </style>
 
-<div class="snip-shell">
+<div class="snip-shell snip-shell--stats">
   <div class="snip-stack" data-screen-label="Overview">
 
-    <div class="snip-stat-bar">
-      <div class="c-calloutText c-calloutText--gray">
-        <h3 class="c-calloutText_heading">+17.9%</h3>
-        <div class="c-calloutText_text">Software developer growth 2023&ndash;2033
-          <section class="snip-source" aria-labelledby="stat-sources-heading">
-            <p class="snip-source__text">Software developer growth 2023&ndash;2033: <span>BLS / MLR 2025.</span></p>
-          </section>
-        </div>
+    <div class="stat-group stat-group--4">
+      <div class="stat">
+        <span class="stat__value">+17.9%</span>
+        <span class="stat__text">Software developer growth 2023&ndash;2033</span>
       </div>
-      <div class="c-calloutText c-calloutText--gray">
-        <h3 class="c-calloutText_heading">546K</h3>
-        <div class="c-calloutText_text">Tech workers in Florida (No. 4 nationally)
-          <section class="snip-source" aria-labelledby="stat-sources-heading">
-            <p class="snip-source__text">Florida tech workforce count: <span>CompTIA 2025.</span></p>
-          </section>
-        </div>
+      <div class="stat">
+        <span class="stat__value">546K</span>
+        <span class="stat__text">Tech workers in Florida (No. 4 nationally)</span>
       </div>
-      <div class="c-calloutText c-calloutText--gray">
-        <h3 class="c-calloutText_heading">$102,908</h3>
-        <div class="c-calloutText_text">Florida tech wage &mdash; 122% above state median
-          <section class="snip-source" aria-labelledby="stat-sources-heading">
-            <p class="snip-source__text">Median Florida tech wage: <span>CompTIA / Lightcast 2024.</span></p>
-          </section>
-        </div>
+      <div class="stat">
+        <span class="stat__value">$102,908</span>
+        <span class="stat__text">Florida tech wage &mdash; 122% above state median</span>
       </div>
-      <div class="c-calloutText c-calloutText--gray">
-        <h3 class="c-calloutText_heading">12,735</h3>
-        <div class="c-calloutText_text">Active Florida job postings requiring AI skills
-          <section class="snip-source" aria-labelledby="stat-sources-heading">
-            <p class="snip-source__text">Florida AI-skill job postings: <span>CompTIA 2024.</span></p>
-          </section>
-        </div>
+      <div class="stat">
+        <span class="stat__value">12,735</span>
+        <span class="stat__text">Active Florida job postings requiring AI skills</span>
       </div>
     </div>
 
   </div>
 </div>
 
-<div class="snip-cta">
-  <div class="snip-cta__inner">
-    <a class="snippetButton" href="#">Talk to an advisor</a>
-  </div>
-</div>
-
-<div class="snip-shell">
-  <div class="snip-stack" data-screen-label="Overview">
-
-    <div class="snip-grid snip-grid--2">
-      <div class="snip-card snip-card--callout">
-        <h3 class="snip-card__title">What is tCAP?</h3>
-        <p class="snip-card__body">tCAP is a structured, multiyear career development program designed exclusively for Bellini College students.
-          Instead of waiting until their final year to focus on internships and career preparation, tCAP helps students
-          steadily build experience, skills and professional connections throughout their academic journey.</p>
-      </div>
-      <div class="snip-card snip-card--callout">
-        <h3 class="snip-card__title">Why tCAP matters</h3>
-        <p class="snip-card__body">Employers increasingly seek graduates who can communicate effectively, collaborate on teams, solve applied
-          problems and contribute immediately in professional environments. tCAP combines career readiness, experiential
-          learning and employer engagement to help develop those capabilities before graduation.</p>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div class="stylized-header-container--centered">
-  <h2 class="stylized-header"><span>The tCAP Model</span></h2>
-</div>
-
-<div class="snip-shell">
-  <div class="snip-stack" data-screen-label="The tCAP Model">
-
-    <div class="snip-heading">
-      <h2 class="snip-heading__title">Three Pillars. Endless Possibilities.</h2>
-      <p class="snip-heading__text">The tCAP experience is built on three pillars that work together to develop your career readiness, applied
-        skills and professional network.</p>
-    </div>
-
-    <div class="snip-grid snip-grid--3">
-      <a class="snip-card snip-card--callout snip-card--center" href="stages.html">
-        <p class="snip-card__title">Readiness</p>
-        <p class="snip-card__body">Build the foundation with self-awareness, goal setting and essential professional skills to launch your
-          career with confidence.</p>
-      </a>
-      <a class="snip-card snip-card--callout snip-card--center" href="experiential-learning.html">
-        <p class="snip-card__title">Experience</p>
-        <p class="snip-card__body">Learn by doing. Apply what you know through projects, internships, externships, research and
-          performance-based learning.</p>
-      </a>
-      <a class="snip-card snip-card--callout snip-card--center" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx"
-        target="_blank" rel="noopener noreferrer">
-        <p class="snip-card__title">Connection</p>
-        <p class="snip-card__body">Grow your network and collaborate with peers, mentors and employers who open doors to opportunities and
-          long-term success.</p>
-      </a>
-    </div>
-
-  </div>
-</div>
-
-<div class="stylized-header-container--centered">
-  <h2 class="stylized-header"><span>Student Journey</span></h2>
-</div>
-
-<div class="snip-shell">
-  <div class="snip-stack" data-screen-label="Student Journey">
-
-    <div class="snip-heading">
-      <h2 class="snip-heading__title">A Four-Stage Path to Career Readiness</h2>
-      <p class="snip-heading__text">Each stage builds on the last, so students keep developing career readiness, technical confidence and
-        professional experience all the way to graduation.</p>
-    </div>
-
-    <div class="snip-grid snip-grid--4 snip-grid--tight">
-      <a class="snip-card snip-card--icon snip-card--solid" href="stages.html#foundations">
-        <span class="snip-card__num">01</span>
-        <span class="snip-card__title">Targeting<br>Fundamentals</span>
-      </a>
-      <a class="snip-card snip-card--icon snip-card--solid" href="stages.html#power-skills">
-        <span class="snip-card__num">02</span>
-        <span class="snip-card__title">Core<br>Application</span>
-      </a>
-      <a class="snip-card snip-card--icon snip-card--solid" href="stages.html#connectivity">
-        <span class="snip-card__num">03</span>
-        <span class="snip-card__title">Advanced<br>Practice</span>
-      </a>
-      <a class="snip-card snip-card--icon snip-card--solid" href="stages.html#mastery">
-        <span class="snip-card__num">04</span>
-        <span class="snip-card__title">Professional<br>Mastery</span>
-      </a>
-    </div>
-  </div>
-</div>
-
-<div class="stylized-header-container--centered">
-  <h2 class="stylized-header"><span>Experiential Learning</span></h2>
-</div>
-
-
-<div class="snip-shell">
-  <div class="snip-stack" data-screen-label="Experiential Learning">
-    <div class="snip-heading">
-      <h2 class="snip-heading__title">Learn by Doing, on Real Deliverables</h2>
-      <p class="snip-heading__text">Every tCAP student completes applied experiential learning through internships, research, capstones,
-        hackathons, entrepreneurship or other approved opportunities.</p>
-    </div>
-
-    <div class="snip-grid snip-grid--4">
-      <a class="snip-card snip-card--icon" href="experiential-learning.html">
-        <span class="snip-card__badge">IN</span>
-        <div class="snip-card__title">Internships</div>
-      </a>
-      <a class="snip-card snip-card--icon" href="experiential-learning.html">
-        <span class="snip-card__badge">UR</span>
-        <div class="snip-card__title">Undergrad Research</div>
-      </a>
-      <a class="snip-card snip-card--icon" href="experiential-learning.html">
-        <span class="snip-card__badge">CP</span>
-        <div class="snip-card__title">Capstone Projects</div>
-      </a>
-      <a class="snip-card snip-card--icon" href="experiential-learning.html">
-        <span class="snip-card__badge">CS</span>
-        <div class="snip-card__title">Cyber Support</div>
-      </a>
-      <a class="snip-card snip-card--icon" href="experiential-learning.html">
-        <span class="snip-card__badge">EN</span>
-        <div class="snip-card__title">Entrepreneurship</div>
-      </a>
-      <a class="snip-card snip-card--icon" href="experiential-learning.html">
-        <span class="snip-card__badge">CO</span>
-        <div class="snip-card__title">Competitions</div>
-      </a>
-      <a class="snip-card snip-card--icon" href="experiential-learning.html">
-        <span class="snip-card__badge">HA</span>
-        <div class="snip-card__title">Hackathons</div>
-      </a>
-      <a class="snip-card snip-card--icon" href="experiential-learning.html">
-        <span class="snip-card__badge">SA</span>
-        <div class="snip-card__title">Study Abroad</div>
-      </a>
-    </div>
-
+<div class="snip-nav-band">
+  <div class="snip-nav-band__inner">
     <div class="snip-nav">
       <div class="snip-nav__link is-active">Overview</div>
       <a class="snip-nav__link"
@@ -1359,16 +1566,160 @@
       <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank"
         rel="noopener noreferrer">Jobs Page</a>
     </div>
-
-    <section class="snip-sources" aria-labelledby="overview-sources-heading">
-      <h4 id="overview-sources-heading" class="snip-sources__title">Sources</h4>
-      <ol class="snip-sources__list">
-        <li>Software developer growth 2023&ndash;2033: BLS / MLR 2025.</li>
-        <li>Florida tech workforce count: CompTIA 2025.</li>
-        <li>Median Florida tech wage: CompTIA / Lightcast 2024.</li>
-        <li>Florida AI-skill job postings: CompTIA 2024.</li>
-      </ol>
-    </section>
-
   </div>
+</div>
+
+<div class="section section--usfgreen section--dark">
+  <div class="section__inner grid grid-col-12-sm gap-6 gap-7-sm container">
+    <div class="stat-group grid-col-span-12-sm">
+      <div class="stat">
+        <span class="stat__value">What is tCAP?</span>
+        <span class="stat__text">tCAP is a structured, multiyear career development program designed exclusively for Bellini College students.
+          Instead of waiting until their final year to focus on internships and career preparation, tCAP helps students
+          steadily build experience, skills and professional connections throughout their academic journey.</span>
+      </div>
+      <div class="stat">
+        <span class="stat__value">Why tCAP matters</span>
+        <span class="stat__text">Employers increasingly seek graduates who can communicate effectively, collaborate on teams, solve applied
+          problems and contribute immediately in professional environments. tCAP combines career readiness, experiential
+          learning and employer engagement to help develop those capabilities before graduation.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="stylized-header-container--centered">
+  <h2 class="stylized-header"><span>The tCAP Model</span></h2>
+</div>
+
+<div class="section section--white">
+  <div class="section__inner grid grid-col-12-sm gap-5 container">
+    <div class="section__columns grid-col-span-12-sm">
+      <div class="section__column">
+        <div class="card-group animate-group">
+          <div class="card card--usfgreen animate animate--stagger animate--slide-in">
+            <div class="card__image">
+              <img loading="lazy" src="https://www.usf.edu/media/images/trending/onboarding.jpg" alt="Students working together on a computer">
+            </div>
+            <div class="card__content">
+              <h3 class="card__heading">
+                <a href="stages.html" target="_self" class="card__link">Readiness</a>
+              </h3>
+              <div class="card__description">
+                <p>Build the foundation with self-awareness, goal setting and essential professional skills to launch your career with confidence.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card card--usfgreen animate animate--stagger animate--slide-in">
+            <div class="card__image">
+              <img loading="lazy" src="https://www.usf.edu/media/images/trending/700x525-student-go-bulls.jpeg" alt="Student celebrating with a Go Bulls hand gesture">
+            </div>
+            <div class="card__content">
+              <h3 class="card__heading">
+                <a href="experiential-learning.html" target="_self" class="card__link">Experience</a>
+              </h3>
+              <div class="card__description">
+                <p>Learn by doing. Apply what you know through projects, internships, externships, research and performance-based learning.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card card--usfgreen animate animate--stagger animate--slide-in">
+            <div class="card__image">
+              <img loading="lazy" src="https://www.usf.edu/media/images/trending/tour.jpeg" alt="Students walking together on a campus tour">
+            </div>
+            <div class="card__content">
+              <h3 class="card__heading">
+                <a href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer" class="card__link">Connection</a>
+              </h3>
+              <div class="card__description">
+                <p>Grow your network and collaborate with peers, mentors and employers who open doors to opportunities and long-term success.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="stylized-header-container--centered">
+  <h2 class="stylized-header"><span>Student Journey</span></h2>
+</div>
+
+<div class="section section--sand">
+  <div class="section__inner container">
+    <div class="snip-stack" data-screen-label="Student Journey">
+
+    <div class="snip-heading">
+      <h2 class="snip-heading__title">A Four-Stage Path to Career Readiness</h2>
+      <p class="snip-heading__text">Each stage builds on the last, so students keep developing career readiness, technical confidence and
+        professional experience all the way to graduation.</p>
+    </div>
+
+      <div class="snip-grid snip-grid--4 snip-grid--tight">
+        <a class="snip-card snip-card--icon snip-card--solid" href="stages.html#foundations">
+          <span class="snip-card__num">1</span>
+          <span class="snip-card__title">Targeting<br>Fundamentals</span>
+        </a>
+        <a class="snip-card snip-card--icon snip-card--solid" href="stages.html#power-skills">
+          <span class="snip-card__num">2</span>
+          <span class="snip-card__title">Core<br>Application</span>
+        </a>
+        <a class="snip-card snip-card--icon snip-card--solid" href="stages.html#connectivity">
+          <span class="snip-card__num">3</span>
+          <span class="snip-card__title">Advanced<br>Practice</span>
+        </a>
+        <a class="snip-card snip-card--icon snip-card--solid" href="stages.html#mastery">
+          <span class="snip-card__num">4</span>
+          <span class="snip-card__title">Professional<br>Mastery</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section section--usfgreen section--dark section--experiential">
+  <div class="section__inner grid grid-col-12-sm align-ai-center-sm gap-6 gap-7-sm container">
+    <div class="section__media grid-col-span-8-sm">
+      <img loading="lazy" class="section__media-image" src="https://www.usf.edu/media/images/built-for-your-future/student.jpeg"
+        alt="USF student gaining hands-on experience in a technology setting.">
+    </div>
+    <div class="section__text grid-col-span-4-sm">
+      <h2 class="section__heading">Experiential Learning</h2>
+      <div class="section__description">
+        <p>Every tCAP student completes applied experiential learning through internships, research, capstones, hackathons,
+          entrepreneurship or other approved opportunities.</p>
+      </div>
+      <div class="section__cta">
+        <ul class="link-list link-list--alt chevrons-list chevrons-list_apple" role="list">
+          <li><a href="experiential-learning.html">Internships</a></li>
+          <li><a href="experiential-learning.html">Undergrad Research</a></li>
+          <li><a href="experiential-learning.html">Capstone Projects</a></li>
+          <li><a href="experiential-learning.html">Cyber Support</a></li>
+          <li><a href="experiential-learning.html">Entrepreneurship</a></li>
+          <li><a href="experiential-learning.html">Competitions</a></li>
+          <li><a href="experiential-learning.html">Hackathons</a></li>
+          <li><a href="experiential-learning.html">Study Abroad</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="snip-cta">
+  <div class="snip-cta__inner">
+    <a class="snippetButton" href="#">Talk to an advisor</a>
+  </div>
+</div>
+
+<div class="snip-shell">
+  <section class="snip-sources" aria-labelledby="overview-sources-heading">
+    <h4 id="overview-sources-heading" class="snip-sources__title">Sources</h4>
+    <ol class="snip-sources__list">
+      <li>Software developer growth 2023&ndash;2033: BLS / MLR 2025.</li>
+      <li>Florida tech workforce count: CompTIA 2025.</li>
+      <li>Median Florida tech wage: CompTIA / Lightcast 2024.</li>
+      <li>Florida AI-skill job postings: CompTIA 2024.</li>
+    </ol>
+  </section>
 </div>
