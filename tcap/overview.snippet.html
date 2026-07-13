@@ -433,6 +433,9 @@
    to match. */
 .section--sand .section__inner {
   padding-top: var(--space-2) !important;
+  /* 33% less than the default --space-7 bottom padding -- the gap before
+     the next (green) section felt oversized relative to the content above. */
+  padding-bottom: calc(var(--space-7) * 0.67) !important;
 }
 
 .section--white .card.animate--slide-in {
@@ -623,6 +626,10 @@
 
 .section--dark .stat__value {
   font-size: clamp(3rem, 4vw, 4.5rem);
+}
+
+.section--dark .stat__text {
+  text-align: justify;
 }
 
 .section--dark .stat + .stat:before {
@@ -845,7 +852,7 @@
 
 @media (min-width: 768px) {
   .stat-group {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .stat {
@@ -866,7 +873,7 @@
 
 @media (min-width: 1280px) {
   .stat-group--4 {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .stat-group--4 .stat:nth-child(odd):before {
