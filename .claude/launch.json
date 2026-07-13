@@ -12,6 +12,12 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8532", "--directory", "tcap/omnicms-snippets"],
       "port": 8532
+    },
+    {
+      "name": "repo-root-static",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8533"],
+      "port": 8533
     }
   ]
 }

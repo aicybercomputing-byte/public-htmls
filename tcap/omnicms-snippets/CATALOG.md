@@ -194,6 +194,29 @@ Always-on solid variant (no group/JS needed, just a link strip):
 </div>
 ```
 
+### Media card — image-topped article/news card, in a `.snip-grid--3`
+```html
+<div class="snip-grid snip-grid--3">
+  <article class="snip-card snip-card--media">
+    <a class="snip-card__media" href="#" aria-label="Headline">
+      <img src="photo.jpg" alt="">
+    </a>
+    <h3 class="snip-card__title"><a href="#">Headline goes here</a></h3>
+    <p class="snip-card__body">One or two sentences of summary copy.</p>
+    <p class="snip-card__meta">
+      <span class="snip-card__meta-date">July 9, 2026</span>
+      <a class="snip-link" href="#">Category</a>, <a class="snip-link" href="#">Second category</a>
+    </p>
+  </article>
+  <!-- repeat -->
+</div>
+```
+
+### Text link — inline brand-colored link, underlines on hover/focus only
+```html
+<a class="snip-link" href="#">Link text</a>
+```
+
 ---
 
 ## Stat bar — 4-up stat callouts (wraps the CMS theme's own `c-calloutText`)
@@ -433,3 +456,6 @@ section: wrap in `.snip-divider` with a `.snip-section-label` heading.
 - **CMS theme classes** (`c-calloutText`, `stylized-header*`, `header__*`,
   `footer__*`, `snippetButton`, `u-*`) — used *inside* several components
   above (stat bar, CTA), but owned by the CMS theme. Never restyle them.
+- **`main-page/news-feed.html`'s data-driven templating itself** — the page
+  is regenerated from a news feed by another process; only its rendered
+  card/grid *shape* was folded in as `.snip-card--media`, not the page.

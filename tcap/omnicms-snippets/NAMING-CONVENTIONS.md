@@ -59,6 +59,9 @@ span layout) that doesn't yet have a matching generic `snip-grid` variant
   owned by Bootstrap, not us — same "don't rename the CMS theme's classes"
   rule applies. Documented in the style guide as a recognized embed
   pattern, not part of the `snip-` system.
+- [main-page/news-feed.html](../../main-page/news-feed.html) — the Bellini
+  news widget (`.news-*`/`.bellini-*` classes). Contributed the media-card
+  (image + title + summary + byline) and text-link component families.
 
 ## Rules
 
@@ -117,10 +120,12 @@ span layout) that doesn't yet have a matching generic `snip-grid` variant
 | Card — text callout | `.snip-card--callout` | `.callout`, `.pillar-card` |
 | Card — numbered step | `.snip-card--step` | `.stage-card` |
 | Card — icon tile | `.snip-card--icon`, `--solid`, `--interactive` | `.timeline-card`, `.pathway-card`, `.journey-step` |
+| Card — media tile | `.snip-card--media`, `__media`, `__meta`, `__meta-date` | `.news-card`, `.news-image*`, `.bellini_newsItem_*` |
 | Card badge (circle) | `.snip-card__badge` | `.stage-num`, `.pathway-badge`, `.journey-num`, `.timeline-num` |
 | Card bare number | `.snip-card__num` | (journey-step's inline number) |
-| Card title | `.snip-card__title` | `.pillar-title`, `.pathway-label`, `.journey-title` |
-| Card body text | `.snip-card__body` | (bare `<p>` in callout/stage cards) |
+| Card title | `.snip-card__title` | `.pillar-title`, `.pathway-label`, `.journey-title`, `.news-title` |
+| Card body text | `.snip-card__body` | (bare `<p>` in callout/stage cards), `.news-summary` |
+| Text link | `.snip-link` | `.bellini-news-link` |
 | Stat bar | `.snip-stat-bar` | `.stat-bar` (wraps the CMS's own `c-calloutText`) |
 | Source citation (inline, per-stat) | `.snip-source`, `__text` | `.all-sources`, `.all-sources-text` |
 | Sources & disclaimers panel (end-of-page, aggregated) | `.snip-sources`, `__title`, `__list`, `__text` | `.all-sources` (heading+list+text variant) |

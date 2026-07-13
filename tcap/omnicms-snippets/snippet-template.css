@@ -260,6 +260,84 @@
   font-size: 15px;
 }
 
+/* --media: image-topped article card (news/press item), edge-to-edge image,
+   no border/background (was .news-card from main-page/news-feed.html) */
+.snip-card--media {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.snip-card__media {
+  display: block;
+  aspect-ratio: 16 / 10;
+  background: var(--snip-surface);
+  overflow: hidden;
+}
+
+.snip-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.snip-card--media .snip-card__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--snip-brand);
+  line-height: 1.2;
+}
+
+.snip-card--media .snip-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.snip-card--media .snip-card__title a:hover {
+  text-decoration: underline;
+  text-underline-offset: .12em;
+}
+
+.snip-card--media .snip-card__body {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Byline — date + category line under a media card (was
+   .bellini_newsItem_details / .newsItem_date / .bellini_newsItem_category) */
+.snip-card__meta {
+  margin: 0;
+  font-family: var(--snip-font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--snip-heading);
+  text-transform: uppercase;
+}
+
+.snip-card__meta-date {
+  margin-right: 0.75rem;
+}
+
+/* -------------------------------------------------------------------------
+   Link — inline brand-colored text link (was .bellini-news-link and similar
+   ad-hoc link colors repeated across pages). Underlines only on hover/focus,
+   so it reads as plain text until interacted with.
+   ------------------------------------------------------------------------- */
+.snip-link {
+  color: var(--snip-brand);
+  text-decoration: none;
+}
+
+.snip-link:hover,
+.snip-link:focus-visible {
+  text-decoration: underline;
+}
+
 /* -------------------------------------------------------------------------
    Stat bar — 4-up grid of stat callouts. Intentionally left as its own
    component (not a bare .snip-grid) because its children are the CMS
