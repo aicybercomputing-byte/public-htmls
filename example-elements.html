@@ -33,6 +33,14 @@
 <link rel="stylesheet" href="reference/usf-cms/css/v4/base-utilities.css">
 <link rel="stylesheet" href="reference/usf-cms/css/v4/ui-components.css">
 <link rel="stylesheet" href="reference/usf-cms/css/v4/styles.css">
+<!-- Below the USF v4 CSS: this repo's own OmniCMS snippet component system
+     (.snip-* classes), used by the appended "snippet component system" group
+     at the bottom of this page. Linked, not inlined — same as
+     tcap/omnicms-snippets/style-guide.html. Loaded AFTER the USF CSS so the
+     .snip-* rules win on equal specificity; the snip system is built to drop
+     onto host pages that carry their own global CSS. -->
+<link rel="stylesheet" href="tcap/omnicms-snippets/snippet-template.css">
+<script src="tcap/omnicms-snippets/snippet-template.js" defer></script>
 <style>
   /* Page chrome for this reference document only — none of this is usf.edu's
      own CSS. Everything inside a .demo-block__stage is styled purely by the
@@ -62,7 +70,10 @@
     max-width: 1000px; margin: 0 auto; padding: 40px 24px 8px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   }
-  .guide-section h2 {
+  /* Direct child only — a bare `.guide-section h2` also clobbers demo headings
+     (.snip-heading__title, USF .section__heading, .snip-panel__title, …), which
+     are also <h2> but nested; the section LABEL is always the direct child. */
+  .guide-section > h2 {
     font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #666;
     border-bottom: 1px solid #ddd; padding-bottom: 10px; margin: 0 0 20px;
   }
@@ -72,6 +83,7 @@
   .demo-block__label { font-size: 13px; font-weight: 600; color: #1f1f1f; padding: 12px 16px 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
   .demo-block__label code { font-weight: 400; background: #f0f0ee; padding: 1px 5px; border-radius: 3px; }
   .demo-block__stage { padding: 16px; }
+  .demo-block__stage.is-dark { background: #1f2a28; }
   .demo-block details { border-top: 1px solid #eee; }
   .demo-block summary {
     cursor: pointer; font-size: 12px; font-weight: 600; color: #555;
@@ -113,13 +125,18 @@
     <a href="reference/usf-cms/tmp-usf-homepage.html">reference/usf-cms/tmp-usf-homepage.html</a> — re-extract
     from the live site (not from that stale copy) if usf.edu has since redesigned.
   </p>
+  <p>
+    This page holds <strong>two</strong> libraries: the usf.edu homepage elements above, and this repo's own
+    <strong>OmniCMS snippet component system</strong> (the <code>snip-*</code> classes) appended
+    <a href="#snip-library">at the bottom&nbsp;↓</a>.
+  </p>
 </header>
 
 <nav class="guide-toc">
   <a href="#buttons">Buttons</a>
   <a href="#links">Links &amp; link lists</a>
   <a href="#header">Header</a>
-  <a href="#hero">Hero</a>
+  <a href="#hero-section">Hero</a>
   <a href="#gateway">Audience gateway</a>
   <a href="#cards">Cards</a>
   <a href="#stats">Stat group</a>
@@ -128,6 +145,7 @@
   <a href="#video">Video dialog grid</a>
   <a href="#events">Events feed</a>
   <a href="#footer">Footer</a>
+  <a href="#snip-library" style="font-weight:600;">snip-* components&nbsp;↓</a>
 </nav>
 
 <section class="guide-section" id="buttons">
@@ -310,7 +328,7 @@
   </div>
 </section>
 
-<section class="guide-section" id="hero">
+<section class="guide-section" id="hero-section">
   <h2>Hero banner</h2>
   <div class="demo-block">
     <div class="demo-block__label">#hero .hero__video / .hero__content — full-bleed video background, heading, arrow-link CTA</div>
@@ -588,6 +606,524 @@
   dependency for its layout, and will drift if usf.edu redesigns without a re-extraction. "View markup" panels
   are auto-extracted from the live DOM. Raw source: <a href="reference/usf-cms/tmp-usf-homepage.html">reference/usf-cms/tmp-usf-homepage.html</a>.
 </p>
+
+<!-- ============================================================================
+     APPENDED GROUP 2 — this repo's own OmniCMS snippet component system.
+     Mirror of tcap/omnicms-snippets/style-guide.html, appended here so this
+     one page catalogs both libraries. These `.snip-*` components are OURS
+     (portable, re-themeable via CSS custom properties) — distinct from the
+     usf.edu production classes above. Styling: tcap/omnicms-snippets/
+     snippet-template.css; behavior: snippet-template.js (both linked in
+     <head>). Section ids are prefixed `snip-` so their anchors don't collide
+     with the usf.edu group above (both have a "cards" section, for instance).
+     ============================================================================ -->
+<header class="guide-header" id="snip-library">
+  <h1>OmniCMS snippet component system <code>(.snip-*)</code></h1>
+  <p>
+    The second library on this page: this repo's own namespaced, re-themeable component
+    system for OmniCMS content snippets — every reusable pattern the four <code>*.snippet.html</code>
+    files share, under one <code>.snip-*</code> name each. Unlike the usf.edu elements above (which
+    are usf.edu's live production classes), these are <strong>ours</strong>: copy the markup from any
+    "View markup" panel, and re-skin by overriding a handful of CSS custom properties.
+    Styling comes from <a href="tcap/omnicms-snippets/snippet-template.css">snippet-template.css</a>,
+    behavior from <a href="tcap/omnicms-snippets/snippet-template.js">snippet-template.js</a>.
+  </p>
+  <p>
+    Full rules in <a href="tcap/omnicms-snippets/NAMING-CONVENTIONS.md">NAMING-CONVENTIONS.md</a>;
+    a dense, copy-paste-first version for generating new snippets in
+    <a href="tcap/omnicms-snippets/CATALOG.md">CATALOG.md</a>. <strong>When building a page that gets
+    pasted into OmniCMS</strong>, don't link these files the way this reference page does — the CMS
+    strips external <code>&lt;link&gt;</code>/<code>&lt;script src&gt;</code> tags on save; inline the
+    CSS/JS instead (see CATALOG.md → "Quick start").
+  </p>
+</header>
+
+<nav class="guide-toc">
+  <a href="#snip-shell">Shell &amp; stack</a>
+  <a href="#snip-heading">Heading</a>
+  <a href="#snip-stat-bar">Stat bar</a>
+  <a href="#snip-cards">Cards &amp; grids</a>
+  <a href="#snip-cta">CTA band</a>
+  <a href="#snip-nav">Bottom nav</a>
+  <a href="#snip-faq">FAQ</a>
+  <a href="#snip-table">Table</a>
+  <a href="#snip-note">Note</a>
+  <a href="#snip-panel">Panel &amp; form</a>
+  <a href="#snip-flip">Flip card</a>
+  <a href="#snip-external">Third-party / generated</a>
+</nav>
+
+<section class="guide-section" id="snip-shell">
+  <h2>Shell &amp; stack</h2>
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-shell / .snip-stack — the outer wrapper every snippet starts with</div>
+    <div class="demo-block__stage">
+      <div class="snip-shell demo-example">
+        <div class="snip-stack">
+          <p style="margin:0;padding:12px;background:#fff;border:1px dashed #b2b2b2;font-size:13px;">Section A content</p>
+          <p style="margin:0;padding:12px;background:#fff;border:1px dashed #b2b2b2;font-size:13px;">Section B content — spacing between A and B comes from .snip-stack's `gap`, not margin.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="snip-heading">
+  <h2>Section heading</h2>
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-heading</div>
+    <div class="demo-block__stage">
+      <div class="snip-shell">
+        <div class="snip-heading demo-example">
+          <h2 class="snip-heading__title">Three Pillars. Endless Possibilities.</h2>
+          <p class="snip-heading__text">A one- or two-line description of the section that follows, centered and capped at a readable width.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="snip-stat-bar">
+  <h2>Stat bar</h2>
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-stat-bar — wraps the CMS theme's own c-calloutText component</div>
+    <div class="demo-block__stage">
+      <div class="snip-shell">
+        <div class="snip-stat-bar demo-example">
+          <div class="c-calloutText c-calloutText--gray" style="height: 200px !important;">
+            <h3 class="c-calloutText_heading">+17.9%</h3>
+            <div class="c-calloutText_text">Software developer growth 2023&ndash;2033
+              <section class="snip-source">
+                <p class="snip-source__text">BLS / MLR 2025.</p>
+              </section>
+            </div>
+          </div>
+          <div class="c-calloutText c-calloutText--gray" style="height: 200px !important;">
+            <h3 class="c-calloutText_heading">546K</h3>
+            <div class="c-calloutText_text">Tech workers in Florida
+              <section class="snip-source">
+                <p class="snip-source__text">CompTIA 2025.</p>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="snip-cards">
+  <h2>Cards &amp; grids</h2>
+
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-grid--2 + .snip-card--callout</div>
+    <div class="demo-block__stage">
+      <div class="snip-shell">
+        <div class="snip-grid snip-grid--2 demo-example">
+          <div class="snip-card snip-card--callout">
+            <h3 class="snip-card__title">What is tCAP?</h3>
+            <p class="snip-card__body">A structured, multiyear career development program.</p>
+          </div>
+          <div class="snip-card snip-card--callout">
+            <h3 class="snip-card__title">Why tCAP matters</h3>
+            <p class="snip-card__body">Employers want graduates who can contribute immediately.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-grid--3 + .snip-card--callout.snip-card--center (link card)</div>
+    <div class="demo-block__stage">
+      <div class="snip-shell">
+        <div class="snip-grid snip-grid--3 demo-example">
+          <a class="snip-card snip-card--callout snip-card--center" href="#">
+            <p class="snip-card__title">Readiness</p>
+            <p class="snip-card__body">Build the foundation with self-awareness and goal setting.</p>
+          </a>
+          <a class="snip-card snip-card--callout snip-card--center" href="#">
+            <p class="snip-card__title">Experience</p>
+            <p class="snip-card__body">Learn by doing through applied projects.</p>
+          </a>
+          <a class="snip-card snip-card--callout snip-card--center" href="#">
+            <p class="snip-card__title">Connection</p>
+            <p class="snip-card__body">Grow your network with mentors and employers.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-grid--1 + .snip-card--step (numbered process, e.g. program stages) — hover a card, it's driven by data-snip-active-group</div>
+    <div class="demo-block__stage">
+      <div class="snip-shell">
+        <div class="snip-grid snip-grid--1 demo-example" data-snip-active-group>
+          <div class="snip-card snip-card--step snip-card--interactive" data-snip-active-item>
+            <div class="snip-card__badge">1</div>
+            <div>
+              <h3 class="snip-card__title">Targeting Fundamentals</h3>
+              <p class="snip-card__body">Onboarding, resume building, GitHub setup and goal setting.</p>
+            </div>
+          </div>
+          <div class="snip-card snip-card--step snip-card--interactive" data-snip-active-item>
+            <div class="snip-card__badge">2</div>
+            <div>
+              <h3 class="snip-card__title">Core Application</h3>
+              <p class="snip-card__body">Mentorship, leadership development and networking.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-grid--4 + .snip-card--icon — hover/tap a tile to flip its .is-active state and update the linked .snip-note via data-snip-info-target</div>
+    <div class="demo-block__stage">
+      <div class="snip-shell">
+        <div class="snip-grid snip-grid--4 demo-example" data-snip-active-group data-snip-info-target="#demo-pathway-info">
+          <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item data-info="Internships.">
+            <span class="snip-card__badge">IN</span>
+            <div class="snip-card__title">Internships</div>
+          </div>
+          <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item data-info="Undergraduate research.">
+            <span class="snip-card__badge">UR</span>
+            <div class="snip-card__title">Undergrad Research</div>
+          </div>
+          <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item data-info="Capstone projects.">
+            <span class="snip-card__badge">CP</span>
+            <div class="snip-card__title">Capstone Projects</div>
+          </div>
+          <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item data-info="Cybersecurity support services.">
+            <span class="snip-card__badge">CS</span>
+            <div class="snip-card__title">Cyber Support</div>
+          </div>
+        </div>
+        <p class="snip-note" id="demo-pathway-info" style="margin-top:16px;">Hover to see more info</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-grid--4.snip-grid--tight + .snip-card--icon.snip-card--solid (always-on link strip)</div>
+    <div class="demo-block__stage">
+      <div class="snip-shell">
+        <div class="snip-grid snip-grid--4 snip-grid--tight demo-example">
+          <a class="snip-card snip-card--icon snip-card--solid" href="#">
+            <span class="snip-card__num">01</span>
+            <span class="snip-card__title">Targeting Fundamentals</span>
+          </a>
+          <a class="snip-card snip-card--icon snip-card--solid" href="#">
+            <span class="snip-card__num">02</span>
+            <span class="snip-card__title">Core Application</span>
+          </a>
+          <a class="snip-card snip-card--icon snip-card--solid" href="#">
+            <span class="snip-card__num">03</span>
+            <span class="snip-card__title">Advanced Practice</span>
+          </a>
+          <a class="snip-card snip-card--icon snip-card--solid" href="#">
+            <span class="snip-card__num">04</span>
+            <span class="snip-card__title">Professional Mastery</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="snip-cta">
+  <h2>CTA band</h2>
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-cta / .snip-cta__inner — full-bleed, not scoped to .snip-shell's max-width</div>
+    <div class="demo-block__stage">
+      <div class="snip-cta demo-example">
+        <div class="snip-cta__inner">
+          <a class="snippetButton" href="#">Talk to an advisor</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="snip-nav">
+  <h2>Bottom pill nav</h2>
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-nav / .snip-nav__link — one non-link .is-active pill marks the current page</div>
+    <div class="demo-block__stage">
+      <div class="snip-shell">
+        <div class="snip-nav demo-example">
+          <a class="snip-nav__link" href="#">Overview</a>
+          <span class="snip-nav__link is-active">Layers</span>
+          <a class="snip-nav__link" href="#">Exp. Learning</a>
+          <a class="snip-nav__link" href="#">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="snip-faq">
+  <h2>FAQ group</h2>
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-faq / .snip-faq__title / .snip-faq__list</div>
+    <div class="demo-block__stage">
+      <div class="snip-shell">
+        <div class="snip-faq demo-example">
+          <h3 class="snip-faq__title">Program basics</h3>
+          <div class="snip-faq__list">
+            <details>
+              <summary>What is tCAP?</summary>
+              <p>A structured, multiyear career development program integrated into the college experience.</p>
+            </details>
+            <details>
+              <summary>When do students start?</summary>
+              <p>Students begin during their first semester.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="snip-table">
+  <h2>Comparison table</h2>
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-table / .snip-table__row / .snip-table__cell</div>
+    <div class="demo-block__stage">
+      <div class="snip-shell">
+        <div class="snip-table demo-example">
+          <div class="snip-table__row snip-table__row--head">
+            <div class="snip-table__cell">Requirement</div>
+            <div class="snip-table__cell">What it means</div>
+            <div class="snip-table__cell">Student output</div>
+          </div>
+          <div class="snip-table__row">
+            <div class="snip-table__cell">135 verified hours</div>
+            <div class="snip-table__cell">Minimum threshold of verified hours</div>
+            <div class="snip-table__cell">Tracked hours</div>
+          </div>
+          <div class="snip-table__row">
+            <div class="snip-table__cell">Pre-approval</div>
+            <div class="snip-table__cell">Plan of work approved by a mentor</div>
+            <div class="snip-table__cell">Approved plan</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="snip-note">
+  <h2>Note / aside</h2>
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-note</div>
+    <div class="demo-block__stage">
+      <div class="snip-shell">
+        <div class="snip-note demo-example">This page has more details coming later — still in the planning phase.</div>
+      </div>
+    </div>
+  </div>
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-note--soft — dashed border, for provisional/in-progress notes</div>
+    <div class="demo-block__stage">
+      <div class="snip-shell">
+        <div class="snip-note snip-note--soft demo-example">Draft content — still being reviewed, subject to change.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="snip-panel">
+  <h2>Panel &amp; form</h2>
+  <p class="lede">
+    From the Bellini "request info" widget — a self-contained panel with its own screens, not scoped to
+    <code>.snip-shell</code>. This one is fully wired to <code>snippet-template.js</code>: click a choice, try
+    submitting empty, then fill it in. The submission itself (the network call) isn't this library's job — see
+    the demo-only glue script below the panel and <code>CATALOG.md</code> for the contract.
+  </p>
+
+  <div class="demo-block">
+    <div class="demo-block__label">data-snip-panel + data-snip-screen + data-snip-go + data-snip-validate + data-snip-reset — live flow</div>
+    <div class="demo-block__stage">
+      <div class="snip-panel demo-example" data-snip-panel data-snip-initial="choose">
+
+        <section data-snip-screen="choose">
+          <div class="snip-panel__band snip-panel__pad">
+            <p class="snip-kicker">Bellini College of Artificial Intelligence, Cybersecurity and Computing</p>
+            <h2 class="snip-panel__title">Request program information</h2>
+            <p class="snip-panel__subtitle">Tell us a little about you and which program you're exploring.</p>
+          </div>
+          <div class="snip-panel__body snip-panel__pad">
+            <p class="snip-section-label">Who is filling this out?</p>
+            <div class="snip-choice-stack">
+              <button class="snip-choice" type="button" data-snip-go="student">
+                <span>
+                  <span class="snip-choice__title">I'm a future student</span>
+                  <span class="snip-choice__desc">Exploring a program for yourself</span>
+                </span>
+                <span class="snip-choice__arrow" aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section data-snip-screen="student" class="is-hidden">
+          <form data-snip-validate novalidate id="demo-student-form">
+            <div class="snip-panel__band snip-panel__pad">
+              <button class="snip-back" type="button" data-snip-go="choose">&larr; Back</button>
+              <p class="snip-kicker">Future student</p>
+              <h2 class="snip-panel__title">Tell us about you</h2>
+            </div>
+            <div class="snip-panel__body snip-panel__pad">
+              <div class="snip-banner--error" style="display:none;"></div>
+              <div class="snip-grid snip-grid--2">
+                <div class="snip-field">
+                  <label class="snip-label" for="demo-first">First name<span class="snip-required"> *</span></label>
+                  <input class="snip-input" id="demo-first" name="first_name" type="text" required>
+                  <div class="snip-field__error" data-snip-error-for="first_name"></div>
+                </div>
+                <div class="snip-field">
+                  <label class="snip-label" for="demo-last">Last name<span class="snip-required"> *</span></label>
+                  <input class="snip-input" id="demo-last" name="last_name" type="text" required>
+                  <div class="snip-field__error" data-snip-error-for="last_name"></div>
+                </div>
+              </div>
+              <div class="snip-field">
+                <label class="snip-label" for="demo-email">Email<span class="snip-required"> *</span></label>
+                <input class="snip-input" id="demo-email" name="email" type="email" required>
+                <div class="snip-field__error" data-snip-error-for="email"></div>
+              </div>
+              <div class="snip-visually-hidden">
+                <label for="demo-website">Website</label>
+                <input id="demo-website" name="website" type="text" tabindex="-1" autocomplete="off" data-snip-honeypot>
+              </div>
+              <div class="snip-consent-row">
+                <input id="demo-consent" name="consent" type="checkbox" required>
+                <label for="demo-consent">I agree to receive communications about this program.*</label>
+              </div>
+              <button class="snip-btn snip-btn--primary" type="submit">Request information</button>
+              <p class="snip-required-note">Fields marked * are required — try submitting empty first.</p>
+            </div>
+          </form>
+        </section>
+
+        <section data-snip-screen="thanks" class="is-hidden">
+          <div class="snip-panel__band snip-panel__pad">
+            <p class="snip-kicker">Bellini College of AI, Cybersecurity and Computing</p>
+          </div>
+          <div class="snip-success snip-panel__pad">
+            <div class="snip-success__icon" aria-hidden="true"><span>&#10003;</span></div>
+            <h2 class="snip-success__title">Thank you!</h2>
+            <p class="snip-success__text">Your request is in. Someone from the team will reach out soon.</p>
+            <button class="snip-btn snip-btn--secondary" type="button" data-snip-reset>Submit another request</button>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="snip-flip">
+  <h2>Flip card</h2>
+  <p class="lede">From the AI+X community events widget — a 3D flip on hover. <code>.snip-event</code> flips its badge when you hover anywhere in the row; <code>.snip-flip-btn</code> flips itself.</p>
+
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-event — hover the row to flip the date badge</div>
+    <div class="demo-block__stage">
+      <a class="snip-event demo-example" href="#" style="max-width:360px;">
+        <div class="snip-event__badge">
+          <div class="snip-event__badge-inner">
+            <div class="snip-event__face snip-event__face--front">
+              <span style="font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;">Mar</span>
+              <span style="font-size:27px;font-weight:600;line-height:1;">14</span>
+            </div>
+            <div class="snip-event__face snip-event__face--back">
+              <span style="font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;">Mar</span>
+              <span style="font-size:27px;font-weight:600;line-height:1;">14</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="snip-event__title">AI+X Speaker Series: Applied Robotics</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="demo-block">
+    <div class="demo-block__label">.snip-flip-btn — hover the button itself to flip</div>
+    <div class="demo-block__stage">
+      <ul style="list-style:none;margin:0;padding:0;display:flex;gap:9px;max-width:360px;">
+        <li style="flex:1 1 0;">
+          <a class="snip-flip-btn demo-example" href="#">
+            <div class="snip-flip-btn__inner">
+              <div class="snip-flip-btn__face snip-flip-btn__face--front">All Events</div>
+              <div class="snip-flip-btn__face snip-flip-btn__face--back">All Events</div>
+            </div>
+          </a>
+        </li>
+        <li style="flex:1 1 0;">
+          <a class="snip-flip-btn" href="#">
+            <div class="snip-flip-btn__inner">
+              <div class="snip-flip-btn__face snip-flip-btn__face--front">Subscribe</div>
+              <div class="snip-flip-btn__face snip-flip-btn__face--back">Subscribe</div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="snip-external">
+  <h2>Third-party &amp; generated (documented, not templated)</h2>
+  <p class="lede">
+    These exist in the CMS today but aren't part of the <code>snip-</code> system — either the markup belongs to a
+    third-party library, or it's built entirely by JS with no CSS class API to standardize against. Same rule as
+    never renaming the CMS theme's own classes.
+  </p>
+  <div class="demo-block">
+    <div class="demo-block__label" style="padding-bottom:12px;">
+      carosels/news/2026/website_story.html — a Bootstrap 3 image carousel embed. Every class (<code>carousel</code>,
+      <code>item</code>, <code>carousel-control</code>) is Bootstrap's own; used as-is via the Bootstrap CDN.
+    </div>
+  </div>
+  <div class="demo-block">
+    <div class="demo-block__label" style="padding-bottom:12px;">
+      ai-x/all-events.html &amp; ai-x/ai-x-past-events.html — self-contained JS widgets that build their DOM with
+      inline <code>style.cssText</code> rather than CSS classes (year/month/event archive tree from a CSV). No class
+      API exists to fold into this system.
+    </div>
+  </div>
+</section>
+
+<p class="guide-footer">
+  snip-* components generated from <a href="tcap/omnicms-snippets/snippet-template.css">snippet-template.css</a>;
+  mirror of <a href="tcap/omnicms-snippets/style-guide.html">tcap/omnicms-snippets/style-guide.html</a>.
+  "View markup" panels are auto-extracted from the live DOM, so they always match what's rendered.
+</p>
+
+<script>
+//<![CDATA[
+// Demo-only glue for the snip Panel &amp; form demo — NOT part of snippet-template.js.
+// A real page would fetch its own endpoint inside this listener instead of just
+// switching screens. (Copied from tcap/omnicms-snippets/style-guide.html.)
+document.addEventListener('DOMContentLoaded', function () {
+  var form = document.getElementById('demo-student-form');
+  if (!form) return;
+  form.addEventListener('snip:validated', function (e) {
+    var panel = form.closest('[data-snip-panel]');
+    panel.querySelectorAll('[data-snip-screen]').forEach(function (s) {
+      s.classList.toggle('is-hidden', s.getAttribute('data-snip-screen') !== 'thanks');
+    });
+  });
+});
+//]]>
+</script>
 
 <script>
 //<![CDATA[
