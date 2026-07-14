@@ -28,7 +28,7 @@
   --snip-text-muted: #333333;
   --snip-surface: #efeff0;
   --snip-surface-alt: #ffffff;
-  --snip-surface-hover: #d9e8e4;
+  --snip-surface-hover: #dcece3;
   --snip-border: #b2b2b2;
   --snip-border-soft: #d8d6cd;
   --snip-border-dashed: #8a8a82;
@@ -46,6 +46,31 @@
   --snip-danger-text: #8c1d18;
   --snip-success: #1e7a52;
   --snip-success-bg: #e8f5ee;
+
+  /* Inline USF v4 tokens required by stats-stat-group. */
+  --color-secondary-evergreen: #005432;
+  --color-primary-usfgreen: #006747;
+  --color-secondary-sand: #edebd1;
+  --color-text-light: #ffffff;
+  --color-accent-apple: #9ccb3b;
+  --color-accent-teal: #009374;
+  --color-accent-seaglass: #80b0a6;
+  --color-neutral-slate: #466069;
+  --color-transparent: rgba(255, 0, 0, 0);
+  --font-family-secondary: "Barlow Condensed", sans-serif;
+  --font-size-h1: 3rem;
+  --font-size-h5: 1.25rem;
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.35;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.65;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-6: 3rem;
+  --space-7: 4rem;
+  --space-5: 2rem;
+  --container-max-width: 1280px;
 }
 
 .snip-shell,
@@ -61,6 +86,14 @@
   color: inherit;
 }
 
+.snip-shell--stats {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: var(--space-2) !important;
+}
+
 /* Vertical stack — drives spacing via `gap` only. Also neutralizes host-page
    "owl" selectors (e.g. `.content * + * { margin-top: 1.5em }`) that would
    otherwise misalign the first child of any grid/flex row inside it. */
@@ -68,6 +101,7 @@
   display: flex;
   flex-direction: column;
   gap: 28px;
+  margin-top: 0 !important;
 }
 
 .snip-stack > *,
@@ -244,6 +278,15 @@
   font-size: 22px;
 }
 
+/* Explicit (not inherited) color: the host page's global `.content
+   a:visited` rule (specificity 0,2,1) otherwise wins over the plain
+   `.snip-card--icon.snip-card--solid` anchor color (0,2,0) for any stage
+   link already in the visitor's browser history, tinting the number the
+   same dark green as the card background and making it disappear. */
+.snip-card--icon.snip-card--solid .snip-card__num {
+  color: #fff;
+}
+
 /* Badge — circular number/letter, used by --step and --icon cards */
 .snip-card__badge {
   width: 40px;
@@ -265,45 +308,589 @@
 }
 
 /* -------------------------------------------------------------------------
-   Stat bar — 4-up grid of stat callouts. Intentionally left as its own
-   component (not a bare .snip-grid) because its children are the CMS
-   theme's own `c-calloutText` component, not a `.snip-card`.
+   USF v4 stat group — copied from the approved `stats-stat-group` element.
+   These are the component's required inline tokens and UI rules; OmniCMS
+   cannot depend on an external stylesheet.
    ------------------------------------------------------------------------- */
-.snip-stat-bar {
+.stat-group {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 2rem;
-  align-items: start;
+  gap: var(--space-7);
+  color: var(--color-secondary-evergreen);
+  text-align: center;
 }
 
-.snip-stat-bar > * {
-  align-self: start;
-  margin: 2px 0 0 0;
+.stat-group > * {
+  margin-top: 0;
 }
 
-/* Height lives here (not inline) so the mobile breakpoint below can shrink
-   it — an inline `!important` can't be overridden by any stylesheet rule,
-   important or not. Override --snip-stat-height per instance if a page's
-   stat-card copy needs a taller/shorter fixed height (e.g. jobs.html uses
-   175px instead of the 225px default). */
-.snip-stat-bar > .c-calloutText {
-  height: var(--snip-stat-height, 225px);
+.stat {
+  font-weight: 600;
+  position: relative;
 }
 
-.snip-source {
-  margin-top: 1rem;
-  font-size: 8pt;
-  line-height: 1.35;
-  color: var(--snip-text-muted);
+/* 60deg from horizontal: rotating a vertical bar 30deg (clockwise) off
+   vertical leaves it at 90 - 30 = 60deg from horizontal. */
+.stat + .stat:before {
+  position: absolute;
+  content: "";
+  width: 2px;
+  height: 56px;
+  top: calc(-65px + 0.75rem);
+  left: 50%;
+  background: var(--color-accent-teal);
+  transform: translateX(-50%) rotate(30deg);
 }
 
-.snip-source__text {
+.stat__value,
+.stat__text {
+  display: inline-block;
+  width: 100%;
+}
+
+.stat__value {
+  font-family: var(--font-family-secondary);
+  font-size: clamp(5rem, 5vw, 6.5rem);
+  line-height: var(--line-height-snug);
+}
+
+.stat__text {
+  font-size: 1.1rem;
+}
+
+/* USF v4 section color system, paired with the stat-group divider. */
+.section {
+  position: relative;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+.section--usfgreen {
+  background-color: var(--color-primary-usfgreen);
+}
+
+.section--usfgreen .stat__text {
+  font-weight: 400;
+}
+
+.section--usfgreen .section__inner {
+  display: grid;
+  align-items: center;
+  min-height: 20rem;
+}
+
+.section--white {
+  background-color: #ffffff;
+}
+
+.section--white .section__inner {
+  padding-top: var(--space-3) !important;
+  /* ~33% less than the header's own top gap (--space-6) — the cards sat
+     too far from the sand section below at the full amount. */
+  padding-bottom: var(--space-5) !important;
+}
+
+.section--white .section__columns,
+.section--white .section__column,
+.section--white .card-group {
+  margin-top: 0 !important;
+}
+
+.snip-shell,
+.snip-nav-band,
+.section,
+.stylized-header-container--centered,
+.snip-cta {
+  margin-top: 0 !important;
+}
+
+.stylized-header-container--centered {
+  margin-top: var(--space-2) !important;
+  margin-bottom: var(--space-2) !important;
+}
+
+/* "The tCAP Model" header sits right under the dark green stat band above
+   it; give it extra breathing room so it doesn't feel glued to that block. */
+.stylized-header-container--tcap-model {
+  margin-top: var(--space-6) !important;
+}
+
+/* "Student Journey" header: match the breathing room used on "The tCAP
+   Model" header above it and below it. Space is applied as *padding* on
+   the sand section itself (not margin on the header) because the header
+   is the section's first child — a top margin there collapses through to
+   the parent and escapes the sand background entirely, showing up as
+   extra white space above the section instead of a gap inside it. */
+.stylized-header-container--student-journey {
+  margin-top: 0 !important;
+  margin-bottom: var(--space-3) !important;
+}
+
+.section--sand {
+  padding-top: var(--space-5) !important;
+}
+
+/* The sand section's default top padding (--space-7) was piling on top of
+   the header's own margin-bottom, producing a much bigger gap before the
+   step cards than the equivalent gap on "The tCAP Model" section. Trim it
+   to match. */
+.section--sand .section__inner {
+  padding-top: var(--space-2) !important;
+  /* 33% less than the default --space-7 bottom padding -- the gap before
+     the next (green) section felt oversized relative to the content above. */
+  padding-bottom: calc(var(--space-7) * 0.67) !important;
+}
+
+.section--white .card.animate--slide-in {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.section--white.tcap-animate-ready .card.animate--slide-in {
+  opacity: 0 !important;
+  transform: translateY(120px) !important;
+  transition: transform 0.75s, opacity 0.5s;
+}
+
+.section--white.tcap-animate-ready .card.animate--slide-in.animate-trigger {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.section--white .card__heading {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+}
+
+.section--white .card__link,
+.section--white .card__link:visited {
+  font-size: inherit;
+}
+
+.section--sand {
+  background-color: var(--color-secondary-sand);
+}
+
+.section--sand .snip-heading__title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.section__inner {
+  position: relative;
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-7);
+}
+
+.section__heading {
+  position: relative;
+  color: var(--color-secondary-evergreen);
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-h1);
+  font-weight: 600;
+  line-height: var(--line-height-tight);
+  text-transform: uppercase;
+  padding-top: var(--space-3);
+}
+
+.section__heading:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  height: 0.5rem;
+  width: 3.5rem;
+  background: repeating-linear-gradient(-45deg, var(--color-primary-usfgreen), var(--color-primary-usfgreen) 1px, var(--color-transparent) 2px, var(--color-transparent) 5px);
+}
+
+.section__description {
+  line-height: var(--line-height-relaxed);
+  margin-top: var(--space-2);
+}
+
+.section__media,
+.section__text {
+  min-width: 0;
+}
+
+.section__media-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.section__cta {
+  margin-top: var(--space-4);
+}
+
+.link-list {
+  list-style: none;
   margin: 0;
   padding: 0;
-  font-size: 8pt;
-  line-height: 1.35;
-  font-weight: 400;
-  color: var(--snip-text-muted);
+}
+
+.link-list li {
+  margin: 0;
+}
+
+.link-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: 0.9rem 0;
+  color: var(--color-text-light);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.section--experiential .link-list {
+  width: 100%;
+}
+
+.section--experiential .link-list a {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.section--experiential .chevrons-list a::after {
+  content: "»";
+  flex: 0 0 auto;
+  color: var(--color-accent-apple);
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.section--experiential .link-list li {
+  margin: 0;
+  padding-left: 0;
+  border: 0;
+}
+
+.section--experiential .link-list li + li {
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  padding-top: 0;
+}
+
+.section--experiential .chevrons-list a::before {
+  content: none !important;
+  display: none !important;
+}
+
+.link-list a:hover,
+.link-list a:focus {
+  color: var(--color-accent-apple);
+}
+
+.section__description > *,
+.card__content > *,
+.card__description > * {
+  margin-top: 0;
+}
+
+.section--dark,
+.section--dark .section__heading {
+  color: var(--color-text-light);
+}
+
+.section--dark .snip-heading__title,
+.section--dark .snip-heading__text {
+  color: var(--color-text-light);
+}
+
+.section--experiential .section__inner {
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-5);
+}
+
+.section--experiential .section__cta {
+  margin-top: var(--space-3);
+}
+
+.section--experiential .link-list a {
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+}
+
+.section--dark .stat-group {
+  color: var(--color-text-light);
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+
+.section--dark .stat {
+  display: flex;
+  min-height: 13rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.section--dark .stat__value {
+  font-size: clamp(3rem, 4vw, 4.5rem);
+}
+
+.section--dark .stat__text {
+  text-align: justify;
+}
+
+.section--dark .stat + .stat:before {
+  background: var(--color-accent-apple);
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-col-12-sm {
+  grid-template-columns: 1fr;
+}
+
+.grid-col-span-12-sm {
+  grid-column: 1 / -1;
+}
+
+.gap-6 {
+  gap: var(--space-6);
+}
+
+.gap-5 {
+  gap: var(--space-5);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section .card-group {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.section .card-group > * {
+  margin-top: 0;
+}
+
+.card {
+  background-color: #f3f7f8;
+  box-shadow: 3px 3px 15px #d3e1e4;
+  position: relative;
+}
+
+.card__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.card__image img {
+  display: block;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.card__content {
+  padding: var(--space-4);
+}
+
+.card__heading {
+  color: var(--color-neutral-slate);
+  font-size: var(--font-size-h5);
+  font-weight: 600;
+  line-height: var(--line-height-normal);
+}
+
+.card__link,
+.card__link:visited {
+  color: var(--color-neutral-slate);
+  font-weight: 600;
+  text-decoration-color: transparent;
+}
+
+.card__link:before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.card__description {
+  border-top: 1px solid var(--color-neutral-slate);
+  line-height: var(--line-height-relaxed);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+}
+
+.card--usfgreen {
+  background-color: var(--color-primary-usfgreen);
+  box-shadow: 3px 3px 15px var(--color-accent-seaglass);
+  color: var(--color-text-light);
+}
+
+.card--usfgreen .card__description {
+  border-top-color: var(--color-accent-teal);
+}
+
+.card--usfgreen .card__link,
+.card--usfgreen .card__link:visited {
+  color: var(--color-text-light);
+}
+
+.section--sand .snip-card--icon.snip-card--solid {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  min-height: 8rem;
+  text-align: left;
+  padding: var(--space-4);
+}
+
+.section--sand .snip-card--icon.snip-card--solid .snip-card__num,
+.section--sand .snip-card--icon.snip-card--solid .snip-card__title {
+  transition: color 0.15s;
+}
+
+.section--sand .snip-card--icon.snip-card--solid:hover .snip-card__num,
+.section--sand .snip-card--icon.snip-card--solid:hover .snip-card__title,
+.section--sand .snip-card--icon.snip-card--solid:focus-visible .snip-card__num,
+.section--sand .snip-card--icon.snip-card--solid:focus-visible .snip-card__title {
+  color: var(--snip-gold);
+}
+
+.section--sand .snip-card--icon.snip-card--solid .snip-card__num {
+  flex: 0 0 auto;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 1;
+}
+
+.section--sand .snip-card--icon.snip-card--solid .snip-card__title {
+  flex: 0 1 9rem;
+  font-size: 18px;
+  line-height: 1.15;
+  text-align: left;
+}
+
+@media (max-width: 700px) {
+  .section--sand .snip-card--icon.snip-card--solid {
+    gap: 0.5rem;
+    padding: 12px;
+  }
+
+  .section--sand .snip-card--icon.snip-card--solid .snip-card__num {
+    font-size: 2.5rem;
+  }
+
+  .section--sand .snip-card--icon.snip-card--solid .snip-card__title {
+    flex-basis: auto;
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-col-12-sm {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .grid-col-span-8-sm {
+    grid-column-end: span 8;
+  }
+
+  .grid-col-span-4-sm {
+    grid-column-end: span 4;
+  }
+
+  .align-ai-center-sm {
+    align-items: center;
+  }
+
+  .section--experiential .section__inner {
+    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  }
+
+  .section--experiential .section__media {
+    grid-column: 1 / span 8 !important;
+  }
+
+  .section--experiential .section__text {
+    grid-column: 9 / span 4 !important;
+  }
+
+  .gap-7-sm {
+    gap: var(--space-7);
+  }
+
+  .section--dark .stat-group {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .section .card-group {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section--dark .stat__value {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 767px) {
+  .section--dark .stat__value {
+    font-size: clamp(2.75rem, 12vw, 4rem);
+  }
+
+  .stat + .stat {
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+  }
+}
+
+@media (min-width: 768px) {
+  .stat-group {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  .stat + .stat:before {
+    top: 50%;
+    left: calc(-1 * var(--space-7) / 2);
+    transform: translate(-50%, -50%) rotate(30deg);
+  }
+
+  .stat-group--4 .stat:nth-child(odd):before {
+    display: none;
+  }
+}
+
+@media (min-width: 1280px) {
+  .stat-group--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .stat-group--4 .stat:nth-child(odd):before {
+    display: block;
+  }
+
+  /* The base .stat__value clamp scales with viewport width (vw) with no
+     upper bound tied to it, but this row's container is capped at
+     --container-max-width (1280px) -- so its 4 columns stop growing past
+     that point while the font keeps scaling, eventually overflowing a
+     column's text into its neighbor (e.g. "$102,908" running into "12,735").
+     Use a smaller clamp with a hard max that always fits a 4-up column. */
+  .stat-group--4 .stat__value {
+    font-size: clamp(2rem, 2.4vw, 2.75rem);
+  }
 }
 
 /* -------------------------------------------------------------------------
@@ -394,6 +981,26 @@
   margin: 0 auto;
 }
 
+/* Page-specific: the tCAP overview folds its Sources block into this grey
+   band (rather than a separate white section below) so the grey runs
+   uninterrupted down to the host page's footer. .snip-cta itself is
+   center-aligned for the button; reset that here for the left-aligned
+   citation list. */
+.snip-cta__sources {
+  margin-top: var(--space-6, 3rem);
+  text-align: left;
+}
+
+/* Page-specific: a larger, all-caps treatment of the shared .snippetButton
+   for this page's CTA -- padding is set in em on the shared rule above, so
+   doubling font-size doubles it too; border-width is fixed px, so it's
+   doubled explicitly here to keep it visually proportional. */
+.snip-cta.snip-cta--lg .snippetButton {
+  font-size: 32px;
+  border-width: 4px;
+  text-transform: uppercase;
+}
+
 /* The CMS theme's own `.snippetButton` only contributes `display: block` and
    a `max-width` cap — everything else is redefined here so the button looks
    right regardless of what the host page's global CSS does with it.
@@ -427,6 +1034,24 @@
    Bottom pill nav — equal-width link row with a non-link "current page"
    pill. `.is-active` marks whichever one is current.
    ------------------------------------------------------------------------- */
+.snip-nav-band {
+  width: 100%;
+  background: var(--snip-surface, #efeff0);
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.snip-nav-band__inner {
+  width: 100%;
+  max-width: var(--container-max-width, 1280px);
+  margin: 0 auto;
+}
+
+.snip-nav-band .snip-nav {
+  border-top: 0;
+  padding-top: 0;
+}
+
 .snip-nav {
   display: flex;
   gap: 8px;
@@ -1045,34 +1670,6 @@
    Responsive
    ------------------------------------------------------------------------- */
 @media (max-width: 700px) {
-  .snip-stat-bar {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
-  }
-
-  .snip-stat-bar > .c-calloutText {
-    height: auto;
-    padding: 14px !important;
-  }
-
-  .snip-stat-bar .c-calloutText_heading {
-    font-size: 1.15rem;
-    margin-top: 0;
-  }
-
-  .snip-stat-bar .c-calloutText_text {
-    font-size: 0.8rem;
-    line-height: 1.3;
-  }
-
-  .snip-stat-bar .snip-source {
-    margin-top: 0.5rem;
-  }
-
-  .snip-stat-bar .snip-source__text {
-    font-size: 7pt;
-  }
-
   .snip-grid--2,
   .snip-grid--3 {
     grid-template-columns: 1fr;
@@ -1113,153 +1710,62 @@
   }
 }
 /*]]>*/
+
+/* ---- Page-specific addition: .stylized-header (diagonal-stripe accent
+   header). Not defined in the shared snippet-template.css master above
+   (overview.snippet.html relies on a differently-styled .section__heading
+   instead) -- added here per the design handoff so this page is fully
+   self-contained. ---- */
+.stylized-header {
+  display: inline-block;
+  position: relative;
+  padding-top: 1rem;
+  margin: 0;
+  font-family: var(--font-family-secondary);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--color-secondary-evergreen);
+}
+.stylized-header:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 0.4rem;
+  width: 3.5rem;
+  background: repeating-linear-gradient(-45deg, var(--color-primary-usfgreen), var(--color-primary-usfgreen) 1px, var(--color-transparent) 2px, var(--color-transparent) 5px);
+}
+.section--dark .stylized-header:before {
+  background: repeating-linear-gradient(-45deg, #fff, #fff 1px, var(--color-transparent) 2px, var(--color-transparent) 5px);
+}
+
+/* ---- Page-specific override: explicit grey CTA band (distinct from the
+   --snip-surface token used elsewhere), per design review feedback. ---- */
+.snip-cta {
+  background: #e8e8e8;
+}
+
+/* ---- Page-specific override: solid white (not grey) accordion panels,
+   per design review feedback. ---- */
+.snip-faq__list details {
+  background: #fff;
+}
 </style>
-
-<div class="snip-shell">
+<div class="snip-shell snip-shell--stats">
   <div class="snip-stack" data-screen-label="FAQ">
-
-    <div class="snip-stat-bar">
-      <div class="c-calloutText c-calloutText--gray">
-        <h3 class="c-calloutText_heading">+17.9%</h3>
-        <div class="c-calloutText_text">Software developer growth 2023&ndash;2033
-          <section class="snip-source" aria-labelledby="stat-sources-heading">
-            <p class="snip-source__text">Software developer growth 2023&ndash;2033: <span>BLS / MLR 2025.</span></p>
-          </section>
-        </div>
-      </div>
-      <div class="c-calloutText c-calloutText--gray">
-        <h3 class="c-calloutText_heading">546K</h3>
-        <div class="c-calloutText_text">Tech workers in Florida (No. 4 nationally)
-          <section class="snip-source" aria-labelledby="stat-sources-heading">
-            <p class="snip-source__text">Florida tech workforce count: <span>CompTIA 2025.</span></p>
-          </section>
-        </div>
-      </div>
-      <div class="c-calloutText c-calloutText--gray">
-        <h3 class="c-calloutText_heading">$102,908</h3>
-        <div class="c-calloutText_text">Florida tech wage &mdash; 122% above state median
-          <section class="snip-source" aria-labelledby="stat-sources-heading">
-            <p class="snip-source__text">Median Florida tech wage: <span>CompTIA / Lightcast 2024.</span></p>
-          </section>
-        </div>
-      </div>
-      <div class="c-calloutText c-calloutText--gray">
-        <h3 class="c-calloutText_heading">12,735</h3>
-        <div class="c-calloutText_text">Active Florida job postings requiring AI skills
-          <section class="snip-source" aria-labelledby="stat-sources-heading">
-            <p class="snip-source__text">Florida AI-skill job postings: <span>CompTIA 2024.</span></p>
-          </section>
-        </div>
-      </div>
+    <div class="stat-group stat-group--4">
+      <div class="stat"><span class="stat__value">+17.9%</span><span class="stat__text">Software developer growth 2023&ndash;2033</span></div>
+      <div class="stat"><span class="stat__value">546K</span><span class="stat__text">Tech workers in Florida (No. 4 nationally)</span></div>
+      <div class="stat"><span class="stat__value">$102,908</span><span class="stat__text">Florida tech wage &mdash; 122% above state median</span></div>
+      <div class="stat"><span class="stat__value">12,735</span><span class="stat__text">Active Florida job postings requiring AI skills</span></div>
     </div>
-
   </div>
 </div>
 
-<div class="snip-cta">
-  <div class="snip-cta__inner">
-    <a class="snippetButton" href="#">Talk to an advisor</a>
-  </div>
-</div>
-
-<div class="stylized-header-container--centered">
-  <h2 class="stylized-header"><span>Frequently Asked Questions</span></h2>
-</div>
-
-<div class="snip-shell">
-  <div class="snip-stack" data-screen-label="Frequently Asked Questions">
-
-    <div class="snip-heading">
-      <h2 class="snip-heading__title">Answers for Every Stage</h2>
-      <p class="snip-heading__text">Common questions about the program, experiential learning requirements and career support.</p>
-    </div>
-
-    <div class="snip-faq" id="basics">
-      <h3 class="snip-faq__title">Program basics</h3>
-      <div class="snip-faq__list">
-        <details>
-          <summary>What is the Tech Career Advancement Program (tCAP)?</summary>
-          <p>The Tech Career Advancement Program is a structured, multiyear career development program integrated into the Bellini College experience. It combines career readiness, experiential learning and industry engagement to help students prepare for careers in AI, cybersecurity and computing.</p>
-        </details>
-        <details>
-          <summary>How does tCAP help students prepare for careers in AI and cybersecurity?</summary>
-          <p>tCAP helps students prepare for careers by integrating professional development, experiential learning and employer engagement throughout the student journey. Students build technical skills, professional competencies and real-world experience before graduation.</p>
-        </details>
-        <details>
-          <summary>Is tCAP required for students at Bellini College?</summary>
-          <p>tCAP is integrated into the student experience and includes required experiential learning components that support career readiness and professional development.</p>
-        </details>
-        <details>
-          <summary>When do students start participating in tCAP?</summary>
-          <p>Students begin participating in tCAP during their first semester, with programming that continues throughout their academic journey.</p>
-        </details>
-        <details>
-          <summary>What does tCAP look like year by year?</summary>
-          <p>tCAP follows a structured progression. Students build foundational skills early, develop professional experience in middle years and demonstrate mastery through applied projects and career preparation in later stages.</p>
-        </details>
-      </div>
-    </div>
-
-    <div class="snip-faq" id="experience">
-      <h3 class="snip-faq__title">Experiential learning</h3>
-      <div class="snip-faq__list">
-        <details>
-          <summary>What is experiential learning in tCAP?</summary>
-          <p>Experiential learning is structured, hands-on experience that allows students to apply classroom knowledge in real-world settings. It is a core component of tCAP and supports skill development and career preparation.</p>
-        </details>
-        <details>
-          <summary>How many hours of experience are required in tCAP?</summary>
-          <p>Students are required to complete at least 135 verified hours of experiential learning through approved and supervised experiences.</p>
-        </details>
-        <details>
-          <summary>What types of internships or experiences count for tCAP?</summary>
-          <p>Eligible experiences include internships, undergraduate research, capstone projects, cybersecurity or IT support roles, entrepreneurship programs, hackathons, competitions and study abroad opportunities.</p>
-        </details>
-        <details>
-          <summary>Can students complete more than one experiential learning activity?</summary>
-          <p>Yes. Students may complete multiple experiential learning activities as long as they meet program requirements and contribute to their professional development.</p>
-        </details>
-        <details>
-          <summary>What if I already have a job in tech? Does it count for tCAP?</summary>
-          <p>Existing roles may qualify if they meet program requirements, include defined learning objectives and are approved by a faculty mentor or qualified supervisor.</p>
-        </details>
-      </div>
-    </div>
-
-    <div class="snip-faq" id="career">
-      <h3 class="snip-faq__title">Career support</h3>
-      <div class="snip-faq__list">
-        <details>
-          <summary>Does tCAP help students get internships?</summary>
-          <p>tCAP helps students prepare for internships through career coaching, resume and LinkedIn development, interview preparation and employer engagement. Students build relevant experience that makes them more competitive for internship opportunities.</p>
-        </details>
-        <details>
-          <summary>What will I graduate with after completing tCAP?</summary>
-          <p>Students graduate with a portfolio of applied work, professional and technical skills, industry connections and real-world experience that supports career readiness in technology fields.</p>
-        </details>
-        <details>
-          <summary>Do students receive career support during tCAP?</summary>
-          <p>Students receive ongoing support through career advisors, mentorship opportunities, networking events and employer engagement activities.</p>
-        </details>
-        <details>
-          <summary>How do students connect with employers through tCAP?</summary>
-          <p>Students connect with employers through networking events, mentorship programs, recruiting opportunities and applied project experiences.</p>
-        </details>
-        <details>
-          <summary>How is tCAP different from just completing an internship?</summary>
-          <p>tCAP provides a structured, multiyear framework that combines skill development, experiential learning and industry engagement. While internships are one component, tCAP ensures consistent career preparation across the entire student experience.</p>
-        </details>
-        <details>
-          <summary>How does tCAP help students build a professional portfolio?</summary>
-          <p>tCAP incorporates applied projects and experiential learning that allow students to document their work and demonstrate skills through a professional portfolio.</p>
-        </details>
-        <details>
-          <summary>What skills do employers look for in AI and cybersecurity graduates?</summary>
-          <p>Employers look for technical knowledge, communication skills, teamwork, problem-solving ability and the capacity to apply knowledge in real-world environments. tCAP is designed to help students develop these competencies.</p>
-        </details>
-      </div>
-    </div>
-
+<div class="snip-nav-band">
+  <div class="snip-nav-band__inner">
     <div class="snip-nav">
       <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/index.aspx">Overview</a>
       <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/stages.aspx">Layers</a>
@@ -1267,9 +1773,61 @@
       <div class="snip-nav__link is-active">FAQ</div>
       <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a>
     </div>
+  </div>
+</div>
 
-    <section class="snip-sources" aria-labelledby="faq-sources-heading">
-      <h4 id="faq-sources-heading" class="snip-sources__title">Sources</h4>
+<div class="section section--usfgreen section--dark">
+  <div class="section__inner container">
+    <div class="snip-heading">
+      <h2 class="stylized-header" style="color: #fff;"><span>Frequently Asked Questions</span></h2>
+      <h3 class="snip-heading__title" style="font-size: 22px; margin-top: 14px;">Answers for Every Stage</h3>
+      <p class="snip-heading__text">Common questions about the program, experiential learning requirements and career support.</p>
+    </div>
+  </div>
+</div>
+
+<div class="snip-shell">
+  <div class="snip-stack">
+    <div class="snip-faq" id="basics">
+      <h3 class="snip-faq__title">Program basics</h3>
+      <div class="snip-faq__list">
+        <details><summary>What is the Tech Career Advancement Program (tCAP)?</summary><p>The Tech Career Advancement Program is a structured, multiyear career development program integrated into the Bellini College experience. It combines career readiness, experiential learning and industry engagement to help students prepare for careers in AI, cybersecurity and computing.</p></details>
+        <details><summary>How does tCAP help students prepare for careers in AI and cybersecurity?</summary><p>tCAP helps students prepare for careers by integrating professional development, experiential learning and employer engagement throughout the student journey. Students build technical skills, professional competencies and real-world experience before graduation.</p></details>
+        <details><summary>Is tCAP required for students at Bellini College?</summary><p>tCAP is integrated into the student experience and includes required experiential learning components that support career readiness and professional development.</p></details>
+        <details><summary>When do students start participating in tCAP?</summary><p>Students begin participating in tCAP during their first semester, with programming that continues throughout their academic journey.</p></details>
+        <details><summary>What does tCAP look like year by year?</summary><p>tCAP follows a structured progression. Students build foundational skills early, develop professional experience in middle years and demonstrate mastery through applied projects and career preparation in later stages.</p></details>
+      </div>
+    </div>
+    <div class="snip-faq" id="experience">
+      <h3 class="snip-faq__title">Experiential learning</h3>
+      <div class="snip-faq__list">
+        <details><summary>What is experiential learning in tCAP?</summary><p>Experiential learning is structured, hands-on experience that allows students to apply classroom knowledge in real-world settings. It is a core component of tCAP and supports skill development and career preparation.</p></details>
+        <details><summary>How many hours of experience are required in tCAP?</summary><p>Students are required to complete at least 135 verified hours of experiential learning through approved and supervised experiences.</p></details>
+        <details><summary>What types of internships or experiences count for tCAP?</summary><p>Eligible experiences include internships, undergraduate research, capstone projects, cybersecurity or IT support roles, entrepreneurship programs, hackathons, competitions and study abroad opportunities.</p></details>
+        <details><summary>Can students complete more than one experiential learning activity?</summary><p>Yes. Students may complete multiple experiential learning activities as long as they meet program requirements and contribute to their professional development.</p></details>
+        <details><summary>What if I already have a job in tech? Does it count for tCAP?</summary><p>Existing roles may qualify if they meet program requirements, include defined learning objectives and are approved by a faculty mentor or qualified supervisor.</p></details>
+      </div>
+    </div>
+    <div class="snip-faq" id="career">
+      <h3 class="snip-faq__title">Career support</h3>
+      <div class="snip-faq__list">
+        <details><summary>Does tCAP help students get internships?</summary><p>tCAP helps students prepare for internships through career coaching, resume and LinkedIn development, interview preparation and employer engagement. Students build relevant experience that makes them more competitive for internship opportunities.</p></details>
+        <details><summary>What will I graduate with after completing tCAP?</summary><p>Students graduate with a portfolio of applied work, professional and technical skills, industry connections and real-world experience that supports career readiness in technology fields.</p></details>
+        <details><summary>Do students receive career support during tCAP?</summary><p>Students receive ongoing support through career advisors, mentorship opportunities, networking events and employer engagement activities.</p></details>
+        <details><summary>How do students connect with employers through tCAP?</summary><p>Students connect with employers through networking events, mentorship programs, recruiting opportunities and applied project experiences.</p></details>
+        <details><summary>How is tCAP different from just completing an internship?</summary><p>tCAP provides a structured, multiyear framework that combines skill development, experiential learning and industry engagement. While internships are one component, tCAP ensures consistent career preparation across the entire student experience.</p></details>
+        <details><summary>How does tCAP help students build a professional portfolio?</summary><p>tCAP incorporates applied projects and experiential learning that allow students to document their work and demonstrate skills through a professional portfolio.</p></details>
+        <details><summary>What skills do employers look for in AI and cybersecurity graduates?</summary><p>Employers look for technical knowledge, communication skills, teamwork, problem-solving ability and the capacity to apply knowledge in real-world environments. tCAP is designed to help students develop these competencies.</p></details>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="snip-cta snip-cta--lg">
+  <div class="snip-cta__inner"><a class="snippetButton" href="#">Talk to an advisor</a></div>
+  <div class="snip-cta__inner snip-cta__sources">
+    <section class="snip-sources">
+      <h4 class="snip-sources__title">Sources</h4>
       <ol class="snip-sources__list">
         <li>Software developer growth 2023&ndash;2033: BLS / MLR 2025.</li>
         <li>Florida tech workforce count: CompTIA 2025.</li>
@@ -1277,6 +1835,5 @@
         <li>Florida AI-skill job postings: CompTIA 2024.</li>
       </ol>
     </section>
-
   </div>
 </div>
