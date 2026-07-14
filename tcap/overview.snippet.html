@@ -328,15 +328,17 @@
   position: relative;
 }
 
+/* 60deg from horizontal: rotating a vertical bar 30deg (clockwise) off
+   vertical leaves it at 90 - 30 = 60deg from horizontal. */
 .stat + .stat:before {
   position: absolute;
   content: "";
-  width: var(--space-7);
-  height: 65px;
+  width: 2px;
+  height: 56px;
   top: calc(-65px + 0.75rem);
   left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(to top left, transparent calc(50% - 2px), var(--color-accent-teal), transparent calc(50% + 2px));
+  background: var(--color-accent-teal);
+  transform: translateX(-50%) rotate(30deg);
 }
 
 .stat__value,
@@ -633,7 +635,7 @@
 }
 
 .section--dark .stat + .stat:before {
-  background: linear-gradient(to top left, transparent calc(50% - 2px), var(--color-accent-apple), transparent calc(50% + 2px));
+  background: var(--color-accent-apple);
 }
 
 .grid {
@@ -862,8 +864,8 @@
 
   .stat + .stat:before {
     top: 50%;
-    left: calc(-1 * var(--space-7));
-    transform: translateY(-50%);
+    left: calc(-1 * var(--space-7) / 2);
+    transform: translate(-50%, -50%) rotate(30deg);
   }
 
   .stat-group--4 .stat:nth-child(odd):before {
@@ -878,6 +880,16 @@
 
   .stat-group--4 .stat:nth-child(odd):before {
     display: block;
+  }
+
+  /* The base .stat__value clamp scales with viewport width (vw) with no
+     upper bound tied to it, but this row's container is capped at
+     --container-max-width (1280px) -- so its 4 columns stop growing past
+     that point while the font keeps scaling, eventually overflowing a
+     column's text into its neighbor (e.g. "$102,908" running into "12,735").
+     Use a smaller clamp with a hard max that always fits a 4-up column. */
+  .stat-group--4 .stat__value {
+    font-size: clamp(2rem, 2.4vw, 2.75rem);
   }
 }
 
@@ -967,6 +979,26 @@
 .snip-cta__inner {
   max-width: var(--snip-max-width, 900px);
   margin: 0 auto;
+}
+
+/* Page-specific: the tCAP overview folds its Sources block into this grey
+   band (rather than a separate white section below) so the grey runs
+   uninterrupted down to the host page's footer. .snip-cta itself is
+   center-aligned for the button; reset that here for the left-aligned
+   citation list. */
+.snip-cta__sources {
+  margin-top: var(--space-6, 3rem);
+  text-align: left;
+}
+
+/* Page-specific: a larger, all-caps treatment of the shared .snippetButton
+   for this page's CTA -- padding is set in em on the shared rule above, so
+   doubling font-size doubles it too; border-width is fixed px, so it's
+   doubled explicitly here to keep it visually proportional. */
+.snip-cta.snip-cta--lg .snippetButton {
+  font-size: 32px;
+  border-width: 4px;
+  text-transform: uppercase;
 }
 
 /* The CMS theme's own `.snippetButton` only contributes `display: block` and
@@ -1857,22 +1889,21 @@
   </div>
 </div>
 
-<div class="snip-cta">
+<div class="snip-cta snip-cta--lg">
   <div class="snip-cta__inner">
     <a class="snippetButton" href="#">Talk to an advisor</a>
   </div>
-</div>
-
-<div class="snip-shell">
-  <section class="snip-sources" aria-labelledby="overview-sources-heading">
-    <h4 id="overview-sources-heading" class="snip-sources__title">Sources</h4>
-    <ol class="snip-sources__list">
-      <li>Software developer growth 2023&ndash;2033: BLS / MLR 2025.</li>
-      <li>Florida tech workforce count: CompTIA 2025.</li>
-      <li>Median Florida tech wage: CompTIA / Lightcast 2024.</li>
-      <li>Florida AI-skill job postings: CompTIA 2024.</li>
-    </ol>
-  </section>
+  <div class="snip-cta__inner snip-cta__sources">
+    <section class="snip-sources" aria-labelledby="overview-sources-heading">
+      <h4 id="overview-sources-heading" class="snip-sources__title">Sources</h4>
+      <ol class="snip-sources__list">
+        <li>Software developer growth 2023&ndash;2033: BLS / MLR 2025.</li>
+        <li>Florida tech workforce count: CompTIA 2025.</li>
+        <li>Median Florida tech wage: CompTIA / Lightcast 2024.</li>
+        <li>Florida AI-skill job postings: CompTIA 2024.</li>
+      </ol>
+    </section>
+  </div>
 </div>
 
 <script>
