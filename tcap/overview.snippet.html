@@ -1042,16 +1042,27 @@
   }
   
   @media (max-width: 767px) {
+    .stat__value,
     .section--dark .stat__value {
       font-size: clamp(2.75rem, 12vw, 4rem);
     }
-  
+
     .stat + .stat {
       margin-top: var(--space-4);
       padding-top: var(--space-4);
     }
   }
-  
+
+  /* Narrow phones fall back to a single stacked column (see the
+     min-width:768px .stat-group rule below); the 767px clamp above still
+     tops out near its 4rem ceiling at these widths, so cut it further. */
+  @media (max-width: 480px) {
+    .stat__value,
+    .section--dark .stat__value {
+      font-size: clamp(1.75rem, 11vw, 2.5rem);
+    }
+  }
+
   @media (min-width: 768px) {
     .stat-group {
       grid-template-columns: repeat(2, minmax(0, 1fr));
