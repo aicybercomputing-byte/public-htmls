@@ -1785,11 +1785,16 @@
   }
   
   /* ---- Page-specific override: plain-text layer list (no boxes/images),
-     replacing the boxed step cards, per design review feedback. ---- */
+     replacing the boxed step cards, per design review feedback. Narrowed
+     to half the section width on larger screens since full-width lines
+     were stretching too far to read comfortably; left at full width on
+     mobile (see max-width:700px below) where there's no room to spare. ---- */
   .snip-layers {
     display: flex;
     flex-direction: column;
     gap: 28px;
+    max-width: 50%;
+    margin: 0 auto;
   }
 
   .snip-layer__title {
@@ -1806,6 +1811,12 @@
     font-size: 15px;
     line-height: 1.5;
     color: var(--snip-text);
+  }
+
+  @media (max-width: 700px) {
+    .snip-layers {
+      max-width: none;
+    }
   }
 
   /* ---- Page-specific override: the shared .section--usfgreen min-height

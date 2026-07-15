@@ -1820,13 +1820,14 @@
 
   /* ---- Page-specific override: "How It Works" steps as a borderless,
      numbered table (big number left, title/text right) instead of a
-     hover-to-reveal card grid, per design review feedback. Moved onto a
-     white section and narrowed/centered so it doesn't stretch the full
-     section width and sit flush against the left edge. ---- */
+     hover-to-reveal card grid, per design review feedback. Narrowed to
+     half the section width and centered on larger screens (full-width
+     rows stretched too far); reset to full width on mobile (see
+     max-width:700px below) where there's no room to spare. ---- */
   .snip-steps {
     display: grid;
     gap: 32px;
-    max-width: 760px;
+    max-width: 50%;
     margin: 0 auto;
   }
 
@@ -1874,6 +1875,10 @@
   }
 
   @media (max-width: 700px) {
+    .snip-steps {
+      max-width: none;
+    }
+
     .snip-step {
       grid-template-columns: 56px 1fr;
       gap: 16px;
