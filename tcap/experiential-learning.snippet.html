@@ -1799,10 +1799,14 @@
 
   /* ---- Page-specific override: "How It Works" steps as a borderless,
      numbered table (big number left, title/text right) instead of a
-     hover-to-reveal card grid, per design review feedback. ---- */
+     hover-to-reveal card grid, per design review feedback. Moved onto a
+     white section and narrowed/centered so it doesn't stretch the full
+     section width and sit flush against the left edge. ---- */
   .snip-steps {
     display: grid;
     gap: 32px;
+    max-width: 760px;
+    margin: 0 auto;
   }
 
   .snip-step {
@@ -1817,7 +1821,7 @@
     font-weight: 700;
     font-size: clamp(3rem, 6vw, 4.5rem);
     line-height: 1;
-    color: var(--color-accent-apple);
+    color: var(--snip-brand);
   }
 
   .snip-step__title {
@@ -1825,15 +1829,16 @@
     font-family: var(--snip-font-display);
     font-weight: 600;
     font-size: 20px;
-    color: #fff;
+    color: var(--snip-brand);
     text-transform: uppercase;
   }
 
   .snip-step__body {
     margin: 0;
     font-size: 14px;
+    font-weight: 400;
     line-height: 1.5;
-    color: #fff;
+    color: var(--snip-text);
   }
 
   @media (max-width: 700px) {
@@ -2092,6 +2097,12 @@
   <h3 class="snip-heading__title" style="font-size: 22px; margin-top: 14px;">How It Works</h3>
   <p class="snip-heading__text">Experiential learning is a required component of tCAP and gives students the opportunity to apply classroom knowledge in real-world environments.</p>
   </div>
+  </div>
+  </div>
+  </div>
+  <div class="section section--white">
+  <div class="section__inner container">
+  <div class="snip-stack" data-screen-label="Experiential Learning">
   <div class="snip-steps">
   <div class="snip-step">
   <span class="snip-step__num">1</span>
