@@ -928,7 +928,16 @@
       display: none;
     }
   }
-  
+
+  /* This 2-column layout had no reduced .stat__value size of its own, so
+     it fell back to the unreduced base clamp (5rem-6.5rem) -- larger than
+     both the phone sizes above and the 4-column size below. */
+  @media (min-width: 768px) and (max-width: 1279px) {
+    .stat__value {
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+    }
+  }
+
   @media (min-width: 1280px) {
     .stat-group--4 {
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1776,11 +1785,16 @@
   }
   
   /* ---- Page-specific override: plain-text layer list (no boxes/images),
-     replacing the boxed step cards, per design review feedback. ---- */
+     replacing the boxed step cards, per design review feedback. Narrowed
+     to half the section width on larger screens since full-width lines
+     were stretching too far to read comfortably; left at full width on
+     mobile (see max-width:700px below) where there's no room to spare. ---- */
   .snip-layers {
     display: flex;
     flex-direction: column;
     gap: 28px;
+    max-width: 50%;
+    margin: 0 auto;
   }
 
   .snip-layer__title {
@@ -1799,14 +1813,20 @@
     color: var(--snip-text);
   }
 
+  @media (max-width: 700px) {
+    .snip-layers {
+      max-width: none;
+    }
+  }
+
   /* ---- Page-specific override: the shared .section--usfgreen min-height
      (sized for the wider stat/two-column bands) left far too much empty
      space around this short heading + one-paragraph intro, per design
      review feedback. ---- */
   .section--overview-intro .section__inner {
     min-height: 0 !important;
-    padding-top: var(--space-4) !important;
-    padding-bottom: var(--space-4) !important;
+    padding-top: var(--space-3) !important;
+    padding-bottom: var(--space-3) !important;
   }
   </style>
   <script>
@@ -2044,14 +2064,11 @@
   <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/experiential-learning.aspx">Exp. Learning</a> <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/faq.aspx">FAQ</a> <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a></div>
   </div>
   </div>
-  <div class="section section--usfgreen section--dark tcap-section--stylized-header section--overview-intro">
-  <div class="stylized-header-container--centered">
-  <h2 class="stylized-header" style="color: #fff;"><span>The Student Experience</span></h2>
-  </div>
+  <div class="section section--usfgreen section--dark section--overview-intro">
   <div class="section__inner container">
   <div class="snip-stack" data-screen-label="Layers">
   <div class="snip-heading">
-  <h3 class="snip-heading__title" style="font-size: 22px; margin-top: 14px;">Overview</h3>
+  <h3 class="snip-heading__title" style="font-size: 22px;">The Student Experience</h3>
   <p class="snip-heading__text">The student experience within tCAP is designed to support your growth throughout your academic journey. Each step builds on the last so you continue developing career readiness, technical confidence and professional experience.</p>
   </div>
   </div>

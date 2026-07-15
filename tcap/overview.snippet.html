@@ -1083,7 +1083,16 @@
       display: none;
     }
   }
-  
+
+  /* This 2-column layout had no reduced .stat__value size of its own, so
+     it fell back to the unreduced base clamp (5rem-6.5rem) -- larger than
+     both the phone sizes above and the 4-column size below. */
+  @media (min-width: 768px) and (max-width: 1279px) {
+    .stat__value {
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+    }
+  }
+
   @media (min-width: 1280px) {
     .stat-group--4 {
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1923,6 +1932,18 @@
     }
   }
   /*]]>*/
+
+  /* ---- Page-specific override: Student Journey band changed from the
+     sand/gold background to plain white, per design review feedback --
+     also whiten the chevron grid's hairline gap so it doesn't leave a
+     leftover gold tint between the cards. ---- */
+  .section--sand {
+    background-color: #fff;
+  }
+
+  .section--sand .snip-grid--journey {
+    background: #fff;
+  }
   </style>
   <div class="snip-shell snip-shell--stats">
   <div class="snip-stack" data-screen-label="Overview">
