@@ -1764,27 +1764,28 @@
     background: #e8e8e8;
   }
   
-  /* ---- Page-specific override: 84x84 rounded photo slot replacing the
-     numbered circle badge, per design handoff. Real photography still to be
-     sourced -- placeholder shows the pending subject label. ---- */
-  .snip-card--step {
-    grid-template-columns: 84px 1fr;
-  }
-  .snip-card__photo {
-    width: 84px;
-    height: 84px;
-    border-radius: 12px;
-    background: var(--snip-surface);
-    border: 1px dashed var(--snip-border-dashed);
+  /* ---- Page-specific override: plain-text layer list (no boxes/images),
+     replacing the boxed step cards, per design review feedback. ---- */
+  .snip-layers {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 4px;
-    font-size: 10px;
-    line-height: 1.3;
-    color: var(--snip-text-muted);
-    flex-shrink: 0;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .snip-layer__title {
+    margin: 0 0 8px;
+    font-family: var(--snip-font-display);
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--snip-brand);
+    text-transform: uppercase;
+  }
+
+  .snip-layer__body {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--snip-text);
   }
   </style>
   <script>
@@ -2029,37 +2030,31 @@
   <div class="section__inner container">
   <div class="snip-stack" data-screen-label="Layers">
   <div class="snip-heading">
-  <h3 class="snip-heading__title" style="font-size: 22px; margin-top: 14px;">Growth Throughout Your Academic Journey</h3>
-  <p class="snip-heading__text">Each step builds on the last so you continue developing career readiness, technical confidence and professional experience.</p>
-  </div>
-  <div class="snip-grid snip-grid--1" data-snip-active-group="">
-  <div id="foundations" class="snip-card snip-card--step snip-card--interactive" data-snip-active-item="">
-  <div class="snip-card__photo">Photo:<br />onboarding</div>
-  <div>
-  <h3 class="snip-card__title">Targeting Fundamentals</h3>
-  <p class="snip-card__body">Students begin with onboarding, communication development, resume building, LinkedIn setup, GitHub development and goal setting.</p>
+  <h3 class="snip-heading__title" style="font-size: 22px; margin-top: 14px;">Overview</h3>
+  <p class="snip-heading__text">The student experience within tCAP is designed to support your growth throughout your academic journey. Each step builds on the last so you continue developing career readiness, technical confidence and professional experience.</p>
   </div>
   </div>
-  <div id="power-skills" class="snip-card snip-card--step snip-card--interactive" data-snip-active-item="">
-  <div class="snip-card__photo">Photo:<br />mentorship</div>
-  <div>
-  <h3 class="snip-card__title">Core Application</h3>
-  <p class="snip-card__body">Students participate in mentorship opportunities, leadership development and networking experiences that strengthen professional confidence.</p>
   </div>
   </div>
-  <div id="connectivity" class="snip-card snip-card--step snip-card--interactive" data-snip-active-item="">
-  <div class="snip-card__photo">Photo:<br />internship / networking</div>
-  <div>
-  <h3 class="snip-card__title">Advanced Practice</h3>
-  <p class="snip-card__body">Career readiness becomes more hands-on through internship preparation, employer and alumni engagement, experiential learning pathways, career fair preparation, interview coaching and applied team-based projects.</p>
+  <div class="section section--white">
+  <div class="section__inner container">
+  <div class="snip-stack" data-screen-label="Layers">
+  <div class="snip-layers">
+  <div id="foundations" class="snip-layer">
+  <h3 class="snip-layer__title">Layer 1: Targeting Fundamentals</h3>
+  <p class="snip-layer__body">Students begin with onboarding, communication development, resume building, LinkedIn setup, GitHub development and goal setting.</p>
   </div>
+  <div id="power-skills" class="snip-layer">
+  <h3 class="snip-layer__title">Layer 2: Core Application</h3>
+  <p class="snip-layer__body">Students participate in mentorship opportunities, leadership development and networking experiences that strengthen professional confidence.</p>
   </div>
-  <div id="mastery" class="snip-card snip-card--step snip-card--interactive" data-snip-active-item="">
-  <div class="snip-card__photo">Photo:<br />graduation</div>
-  <div>
-  <h3 class="snip-card__title">Professional Mastery</h3>
-  <p class="snip-card__body">Students demonstrate mastery through capstones, advanced coursework, certifications and internship or career placement opportunities.</p>
+  <div id="connectivity" class="snip-layer">
+  <h3 class="snip-layer__title">Layer 3: Advanced Practice</h3>
+  <p class="snip-layer__body">Career readiness becomes more hands-on through internship preparation, employer and alumni engagement, experiential learning pathways, career fair preparation, interview coaching and applied team-based projects.</p>
   </div>
+  <div id="mastery" class="snip-layer">
+  <h3 class="snip-layer__title">Layer 4: Professional Mastery</h3>
+  <p class="snip-layer__body">Students demonstrate mastery through capstones, advanced coursework, certifications and internship or career placement opportunities.</p>
   </div>
   </div>
   </div>
