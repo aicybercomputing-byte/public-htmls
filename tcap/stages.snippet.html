@@ -1798,6 +1798,16 @@
     line-height: 1.5;
     color: var(--snip-text);
   }
+
+  /* ---- Page-specific override: the shared .section--usfgreen min-height
+     (sized for the wider stat/two-column bands) left far too much empty
+     space around this short heading + one-paragraph intro, per design
+     review feedback. ---- */
+  .section--overview-intro .section__inner {
+    min-height: 0 !important;
+    padding-top: var(--space-4) !important;
+    padding-bottom: var(--space-4) !important;
+  }
   </style>
   <script>
   //<![CDATA[
@@ -2034,7 +2044,7 @@
   <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/experiential-learning.aspx">Exp. Learning</a> <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/faq.aspx">FAQ</a> <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a></div>
   </div>
   </div>
-  <div class="section section--usfgreen section--dark tcap-section--stylized-header">
+  <div class="section section--usfgreen section--dark tcap-section--stylized-header section--overview-intro">
   <div class="stylized-header-container--centered">
   <h2 class="stylized-header" style="color: #fff;"><span>The Student Experience</span></h2>
   </div>
