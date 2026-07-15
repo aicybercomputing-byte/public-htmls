@@ -891,16 +891,27 @@
   }
   
   @media (max-width: 767px) {
+    .stat__value,
     .section--dark .stat__value {
       font-size: clamp(2.75rem, 12vw, 4rem);
     }
-  
+
     .stat + .stat {
       margin-top: var(--space-4);
       padding-top: var(--space-4);
     }
   }
-  
+
+  /* Narrow phones fall back to a single stacked column (see the
+     min-width:768px .stat-group rule below); the 767px clamp above still
+     tops out near its 4rem ceiling at these widths, so cut it further. */
+  @media (max-width: 480px) {
+    .stat__value,
+    .section--dark .stat__value {
+      font-size: clamp(1.75rem, 11vw, 2.5rem);
+    }
+  }
+
   @media (min-width: 768px) {
     .stat-group {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1785,6 +1796,56 @@
   .section--requirements .snip-heading__title {
     color: var(--snip-brand) !important;
   }
+
+  /* ---- Page-specific override: "How It Works" steps as a borderless,
+     numbered table (big number left, title/text right) instead of a
+     hover-to-reveal card grid, per design review feedback. ---- */
+  .snip-steps {
+    display: grid;
+    gap: 32px;
+  }
+
+  .snip-step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .snip-step__num {
+    font-family: var(--snip-font-display);
+    font-weight: 700;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    line-height: 1;
+    color: var(--color-accent-apple);
+  }
+
+  .snip-step__title {
+    margin: 0 0 6px;
+    font-family: var(--snip-font-display);
+    font-weight: 600;
+    font-size: 20px;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .snip-step__body {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #fff;
+  }
+
+  @media (max-width: 700px) {
+    .snip-step {
+      grid-template-columns: 56px 1fr;
+      gap: 16px;
+    }
+
+    .snip-step__num {
+      font-size: clamp(2.25rem, 12vw, 3rem);
+    }
+  }
   </style>
   <script>
   //<![CDATA[
@@ -2031,25 +2092,36 @@
   <h3 class="snip-heading__title" style="font-size: 22px; margin-top: 14px;">How It Works</h3>
   <p class="snip-heading__text">Experiential learning is a required component of tCAP and gives students the opportunity to apply classroom knowledge in real-world environments.</p>
   </div>
-  <div class="snip-grid snip-grid--4" data-snip-active-group="" data-snip-info-target="#expl-stageInfo">
-  <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item="" data-info="Select an eligible pathway such as an internship, research, capstone, hackathon or study abroad experience.">
-  <div class="snip-card__badge">1</div>
-  <h3 class="snip-card__title">Choose an experience</h3>
-  </div>
-  <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item="" data-info="Pre-approval of a plan of work and faculty mentor or quality supervisor.">
-  <div class="snip-card__badge">2</div>
-  <h3 class="snip-card__title">Get pre-approval</h3>
-  </div>
-  <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item="" data-info="Meet the minimum threshold of 135 verified hours and deliver a mid-point update.">
-  <div class="snip-card__badge">3</div>
-  <h3 class="snip-card__title">Complete the work</h3>
-  </div>
-  <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item="" data-info="Develop and deliver a final report with structured reflection, pass/fail assessment and CIS 4950 notation.">
-  <div class="snip-card__badge">4</div>
-  <h3 class="snip-card__title">Reflect and record</h3>
+  <div class="snip-steps">
+  <div class="snip-step">
+  <span class="snip-step__num">1</span>
+  <div class="snip-step__content">
+  <h3 class="snip-step__title">Choose an experience</h3>
+  <p class="snip-step__body">Select an eligible pathway such as an internship, research, capstone, hackathon or study abroad experience.</p>
   </div>
   </div>
-  <p id="expl-stageInfo" class="snip-note">Hover to see more info</p>
+  <div class="snip-step">
+  <span class="snip-step__num">2</span>
+  <div class="snip-step__content">
+  <h3 class="snip-step__title">Get pre-approval</h3>
+  <p class="snip-step__body">Pre-approval of a plan of work and faculty mentor or quality supervisor.</p>
+  </div>
+  </div>
+  <div class="snip-step">
+  <span class="snip-step__num">3</span>
+  <div class="snip-step__content">
+  <h3 class="snip-step__title">Complete the work</h3>
+  <p class="snip-step__body">Meet the minimum threshold of 135 verified hours and deliver a mid-point update.</p>
+  </div>
+  </div>
+  <div class="snip-step">
+  <span class="snip-step__num">4</span>
+  <div class="snip-step__content">
+  <h3 class="snip-step__title">Reflect and record</h3>
+  <p class="snip-step__body">Develop and deliver a final report with structured reflection, pass/fail assessment and CIS 4950 notation.</p>
+  </div>
+  </div>
+  </div>
   </div>
   </div>
   </div>
