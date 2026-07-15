@@ -1778,6 +1778,13 @@
   .snip-table {
     background: #fff;
   }
+
+  /* ---- Page-specific override: Requirements section moved from a green to
+     a white background, per design review feedback -- its titles stay
+     brand-green instead of the section--white default. ---- */
+  .section--requirements .snip-heading__title {
+    color: var(--snip-brand) !important;
+  }
   </style>
   <script>
   //<![CDATA[
@@ -2056,39 +2063,46 @@
   <h3 class="snip-heading__title" style="font-size: 22px; margin-top: 14px;">Approved Pathways</h3>
   <p class="snip-heading__text">Eligible experiences include internships, undergraduate research through USF Student Engagement in Research &amp; Innovation, capstone projects, cybersecurity support services, entrepreneurship initiatives, competitions, hackathons and study abroad experiences.</p>
   </div>
-  <div class="snip-grid snip-grid--4" data-snip-active-group="" data-snip-info-target="#expl-pathwayInfo">
-  <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item="" data-info="Internships."><span class="snip-card__badge">IN</span>
+  <div class="snip-grid snip-grid--4">
+  <div class="snip-card snip-card--icon">
   <div class="snip-card__title">Internships</div>
+  <p class="snip-card__body">Internships.</p>
   </div>
-  <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item="" data-info="Undergraduate research through USF Student Engagement in Research &amp; Innovation."><span class="snip-card__badge">UR</span>
+  <div class="snip-card snip-card--icon">
   <div class="snip-card__title">Undergrad Research</div>
+  <p class="snip-card__body">Undergraduate research through USF Student Engagement in Research &amp; Innovation.</p>
   </div>
-  <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item="" data-info="Capstone projects."><span class="snip-card__badge">CP</span>
+  <div class="snip-card snip-card--icon">
   <div class="snip-card__title">Capstone Projects</div>
+  <p class="snip-card__body">Capstone projects.</p>
   </div>
-  <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item="" data-info="Cybersecurity support services."><span class="snip-card__badge">CS</span>
+  <div class="snip-card snip-card--icon">
   <div class="snip-card__title">Cyber Support</div>
+  <p class="snip-card__body">Cybersecurity support services.</p>
   </div>
-  <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item="" data-info="Entrepreneurship initiatives."><span class="snip-card__badge">EN</span>
+  <div class="snip-card snip-card--icon">
   <div class="snip-card__title">Entrepreneurship</div>
+  <p class="snip-card__body">Entrepreneurship initiatives.</p>
   </div>
-  <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item="" data-info="Competitions."><span class="snip-card__badge">CO</span>
+  <div class="snip-card snip-card--icon">
   <div class="snip-card__title">Competitions</div>
+  <p class="snip-card__body">Competitions.</p>
   </div>
-  <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item="" data-info="Hackathons."><span class="snip-card__badge">HA</span>
+  <div class="snip-card snip-card--icon">
   <div class="snip-card__title">Hackathons</div>
+  <p class="snip-card__body">Hackathons.</p>
   </div>
-  <div class="snip-card snip-card--icon snip-card--interactive" data-snip-active-item="" data-info="Study abroad experiences."><span class="snip-card__badge">SA</span>
+  <div class="snip-card snip-card--icon">
   <div class="snip-card__title">Study Abroad</div>
+  <p class="snip-card__body">Study abroad experiences.</p>
   </div>
   </div>
-  <p id="expl-pathwayInfo" class="snip-note">Hover to see more info</p>
   </div>
   </div>
   </div>
-  <div class="section section--usfgreen section--dark tcap-section--stylized-header">
+  <div class="section section--white section--requirements tcap-section--stylized-header">
   <div class="stylized-header-container--centered">
-  <h2 class="stylized-header" style="color: #fff;"><span>Requirements</span></h2>
+  <h2 class="stylized-header"><span>Requirements</span></h2>
   </div>
   <div class="section__inner container">
   <div class="snip-stack" data-screen-label="Requirements">
