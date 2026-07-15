@@ -932,7 +932,16 @@
       display: none;
     }
   }
-  
+
+  /* This 2-column layout had no reduced .stat__value size of its own, so
+     it fell back to the unreduced base clamp (5rem-6.5rem) -- larger than
+     both the phone sizes above and the 4-column size below. */
+  @media (min-width: 768px) and (max-width: 1279px) {
+    .stat__value {
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+    }
+  }
+
   @media (min-width: 1280px) {
     .stat-group--4 {
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1797,6 +1806,18 @@
     color: var(--snip-brand) !important;
   }
 
+  /* ---- Page-specific override: removed the "Experiential Learning"
+     stylized header from this section (redundant with the nav/page title),
+     which also drops the .section__inner padding-top that rule normally
+     gets from following a header -- and the shared .section--usfgreen
+     min-height (sized for wider stat/two-column bands) left far too much
+     empty space around this short heading + one-paragraph intro. ---- */
+  .section--how-it-works-intro .section__inner {
+    min-height: 0 !important;
+    padding-top: var(--space-4) !important;
+    padding-bottom: var(--space-4) !important;
+  }
+
   /* ---- Page-specific override: "How It Works" steps as a borderless,
      numbered table (big number left, title/text right) instead of a
      hover-to-reveal card grid, per design review feedback. Moved onto a
@@ -2098,7 +2119,7 @@
   <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/faq.aspx">FAQ</a> <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a></div>
   </div>
   </div>
-  <div class="section section--usfgreen section--dark">
+  <div class="section section--usfgreen section--dark section--how-it-works-intro">
   <div class="section__inner container">
   <div class="snip-stack" data-screen-label="Experiential Learning">
   <div class="snip-heading">

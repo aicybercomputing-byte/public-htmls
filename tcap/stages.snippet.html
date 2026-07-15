@@ -928,7 +928,16 @@
       display: none;
     }
   }
-  
+
+  /* This 2-column layout had no reduced .stat__value size of its own, so
+     it fell back to the unreduced base clamp (5rem-6.5rem) -- larger than
+     both the phone sizes above and the 4-column size below. */
+  @media (min-width: 768px) and (max-width: 1279px) {
+    .stat__value {
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+    }
+  }
+
   @media (min-width: 1280px) {
     .stat-group--4 {
       grid-template-columns: repeat(4, minmax(0, 1fr));
