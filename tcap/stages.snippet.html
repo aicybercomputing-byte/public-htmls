@@ -1,2070 +1,2081 @@
 <style>
-/*<![CDATA[*/
-/* Inlined (not linked) because OmniCMS strips external <link> tags on save.
-     Master copy: snippet-template.css -- keep this block in sync by hand. */
-/* ==========================================================================
-   Snippet component template
-   Namespaced (.snip-*) BEM component library for OmniCMS content snippets.
-   See NAMING-CONVENTIONS.md for the rules and style-guide.html for a live,
-   copy-pasteable reference of every component this file styles.
-
-   Reuse across projects: copy this file as-is (no find/replace needed —
-   scoping is done with the `.snip-shell` class, not a per-page ID) and
-   re-theme by overriding the custom properties in `.snip-shell` below.
-   ========================================================================== */
-
-/* Theme knobs — global on :root (not just `.snip-shell`) so every
-   component works regardless of whether it's nested inside a `.snip-shell`
-   or standalone (e.g. `.snip-cta`, `.snip-panel`, `.snip-event` are all
-   deliberately rendered outside `.snip-shell`). Override by redeclaring
-   these on `:root`, or scope an override to one section by redeclaring
-   them on a `.snip-shell` (or any ancestor) — custom properties cascade
-   normally either way. */
-:root {
-  --snip-brand: #006747;
-  --snip-brand-dark: #004c35;
-  --snip-heading: #3f565e;
-  --snip-text: #3f3f3f;
-  --snip-text-muted: #333333;
-  --snip-surface: #efeff0;
-  --snip-surface-alt: #ffffff;
-  --snip-surface-hover: #dcece3;
-  --snip-border: #b2b2b2;
-  --snip-border-soft: #d8d6cd;
-  --snip-border-dashed: #8a8a82;
-  --snip-font-display: "Barlow Condensed", sans-serif;
-  --snip-max-width: 900px;
-
-  /* Form / panel tokens (from the Bellini info-request widget) */
-  --snip-gold: #cfc493;
-  --snip-ink: #1c211f;
-  --snip-muted: #5b6661;
-  --snip-focus: #005432;
-  --snip-danger: #b3261e;
-  --snip-danger-bg: #fdeceb;
-  --snip-danger-border: #f3c4c0;
-  --snip-danger-text: #8c1d18;
-  --snip-success: #1e7a52;
-  --snip-success-bg: #e8f5ee;
-
-  /* Inline USF v4 tokens required by stats-stat-group. */
-  --color-secondary-evergreen: #005432;
-  --color-primary-usfgreen: #006747;
-  --color-secondary-sand: #edebd1;
-  --color-text-light: #ffffff;
-  --color-accent-apple: #9ccb3b;
-  --color-accent-teal: #009374;
-  --color-accent-seaglass: #80b0a6;
-  --color-neutral-slate: #466069;
-  --color-transparent: rgba(255, 0, 0, 0);
-  --font-family-secondary: "Barlow Condensed", sans-serif;
-  --font-size-h1: 3rem;
-  --font-size-h5: 1.25rem;
-  --line-height-tight: 1.2;
-  --line-height-snug: 1.35;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.65;
-  --space-2: 0.5rem;
-  --space-3: 1rem;
-  --space-4: 1.5rem;
-  --space-6: 3rem;
-  --space-7: 4rem;
-  --space-5: 2rem;
-  --container-max-width: 1280px;
-}
-
-.snip-shell,
-.snip-shell * {
-  box-sizing: border-box !important;
-}
-
-.snip-shell {
-  max-width: var(--snip-max-width);
-  margin: 0 auto;
-  padding: 24px;
-  font-family: inherit;
-  color: inherit;
-}
-
-.snip-shell--stats {
-  width: 100%;
-  max-width: var(--container-max-width);
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: var(--space-2) !important;
-}
-
-/* Vertical stack — drives spacing via `gap` only. Also neutralizes host-page
-   "owl" selectors (e.g. `.content * + * { margin-top: 1.5em }`) that would
-   otherwise misalign the first child of any grid/flex row inside it. */
-.snip-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  margin-top: 0 !important;
-}
-
-.snip-stack > *,
-.snip-grid > *,
-.snip-card > *,
-.snip-nav > *,
-.snip-table__row > * {
-  margin-top: 0;
-}
-
-/* State utilities (unprefixed by convention — see rule 3 in
-   NAMING-CONVENTIONS.md). Driven by snippet-template.js. */
-.is-hidden {
-  display: none !important;
-}
-
-.is-loading {
-  opacity: .7;
-  pointer-events: none;
-}
-
-/* -------------------------------------------------------------------------
-   Heading — centered section intro
-   ------------------------------------------------------------------------- */
-.snip-heading {
-  text-align: center;
-}
-
-.snip-heading__title {
-  margin: 10px 0 8px;
-  font-family: var(--snip-font-display);
-  font-weight: 600;
-  font-size: 36px;
-  color: var(--snip-heading);
-  text-transform: uppercase;
-  line-height: 1.15;
-}
-
-.snip-heading__text {
-  margin: 0 auto;
-  max-width: 640px;
-  font-size: 15px;
-  line-height: 1.4;
-  color: var(--snip-text);
-}
-
-/* -------------------------------------------------------------------------
-   Grid — column layouts. Pick a column-count modifier; add `--tight` for
-   a hairline-gap variant (1px gap on brand-colored background), used by
-   solid icon-card strips like a "journey" row.
-   ------------------------------------------------------------------------- */
-.snip-grid {
-  display: grid;
-  gap: 20px;
-}
-
-.snip-grid--1 { grid-template-columns: 1fr; }
-.snip-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.snip-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.snip-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-
-.snip-grid--tight {
-  gap: 1px;
-  background: var(--snip-brand);
-}
-
-/* -------------------------------------------------------------------------
-   Card — base surface with three visual variants:
-     --callout      bordered box, left-aligned title + body text
-     --step         numbered badge beside stacked content (process steps)
-     --icon         centered badge/number + short title (icon tile)
-   Add --interactive to any variant for a hover/active background swap
-   (used when the card is a hover target driving an info panel, or a link).
-   ------------------------------------------------------------------------- */
-.snip-card {
-  background: var(--snip-surface);
-  border: 1px solid var(--snip-border);
-  padding: 20px;
-  color: inherit;
-  text-decoration: none;
-  display: block;
-}
-
-.snip-card--interactive {
-  transition: background 0.15s, border-color 0.15s;
-  cursor: pointer;
-}
-
-.snip-card--interactive:hover,
-.snip-card--interactive:focus-visible,
-.snip-card--interactive.is-active {
-  background: var(--snip-surface-hover);
-  border-color: var(--snip-brand);
-}
-
-/* --callout: text-forward card (was .callout / .pillar-card) */
-.snip-card--callout .snip-card__title {
-  margin: 0 0 8px;
-  font-family: var(--snip-font-display);
-  font-weight: 600;
-  font-size: 28px;
-  color: var(--snip-brand);
-}
-
-.snip-card--callout.snip-card--center {
-  text-align: center;
-}
-
-.snip-card--callout.snip-card--center .snip-card__title {
-  font-weight: 700;
-  font-size: 22px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.snip-card__body {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--snip-text);
-}
-
-/* --step: badge + stacked content, side by side (was .stage-card) */
-.snip-card--step {
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 16px;
-  align-items: start;
-}
-
-.snip-card--step .snip-card__title {
-  margin: 0 0 6px;
-  font-family: var(--snip-font-display);
-  font-weight: 600;
-  font-size: 22px;
-  color: var(--snip-brand);
-  text-transform: uppercase;
-}
-
-/* --icon: centered badge + short title (was .timeline-card / .pathway-card) */
-.snip-card--icon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  text-align: center;
-  padding: 18px;
-}
-
-.snip-card--icon .snip-card__title {
-  font-family: var(--snip-font-display);
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--snip-brand);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  margin: 0;
-}
-
-/* --icon solid: brand-filled tile, e.g. an always-visible link strip
-   (was .journey-step). Uses a bare .snip-card__num instead of a badge. */
-.snip-card--icon.snip-card--solid {
-  background: var(--snip-brand);
-  color: #fff;
-}
-
-.snip-card--icon.snip-card--solid .snip-card__title {
-  color: #fff;
-}
-
-.snip-card__num {
-  font-family: var(--snip-font-display);
-  font-weight: 700;
-  font-size: 22px;
-}
-
-/* Explicit (not inherited) color: the host page's global `.content
-   a:visited` rule (specificity 0,2,1) otherwise wins over the plain
-   `.snip-card--icon.snip-card--solid` anchor color (0,2,0) for any stage
-   link already in the visitor's browser history, tinting the number the
-   same dark green as the card background and making it disappear. */
-.snip-card--icon.snip-card--solid .snip-card__num {
-  color: #fff;
-}
-
-/* Badge — circular number/letter, used by --step and --icon cards */
-.snip-card__badge {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--snip-brand);
-  color: #fff;
-  display: grid;
-  place-items: center;
-  font-family: var(--snip-font-display);
-  font-weight: 700;
-  font-size: 16px;
-}
-
-.snip-card__badge--lg {
-  width: 44px;
-  height: 44px;
-  font-size: 15px;
-}
-
-/* -------------------------------------------------------------------------
-   USF v4 stat group — copied from the approved `stats-stat-group` element.
-   These are the component's required inline tokens and UI rules; OmniCMS
-   cannot depend on an external stylesheet.
-   ------------------------------------------------------------------------- */
-.stat-group {
-  display: grid;
-  gap: var(--space-7);
-  color: var(--color-secondary-evergreen);
-  text-align: center;
-}
-
-.stat-group > * {
-  margin-top: 0;
-}
-
-.stat {
-  font-weight: 600;
-  position: relative;
-}
-
-/* 60deg from horizontal: rotating a vertical bar 30deg (clockwise) off
-   vertical leaves it at 90 - 30 = 60deg from horizontal. */
-.stat + .stat:before {
-  position: absolute;
-  content: "";
-  width: 2px;
-  height: 56px;
-  top: calc(-65px + 0.75rem);
-  left: 50%;
-  background: var(--color-accent-teal);
-  transform: translateX(-50%) rotate(30deg);
-}
-
-.stat__value,
-.stat__text {
-  display: inline-block;
-  width: 100%;
-}
-
-.stat__value {
-  font-family: var(--font-family-secondary);
-  font-size: clamp(5rem, 5vw, 6.5rem);
-  line-height: var(--line-height-snug);
-}
-
-.stat__text {
-  font-size: 1.1rem;
-}
-
-/* USF v4 section color system, paired with the stat-group divider. */
-.section {
-  position: relative;
-  padding-left: var(--space-4);
-  padding-right: var(--space-4);
-}
-
-.section--usfgreen {
-  background-color: var(--color-primary-usfgreen);
-}
-
-.section--usfgreen .stat__text {
-  font-weight: 400;
-}
-
-.section--usfgreen .section__inner {
-  display: grid;
-  align-items: center;
-  min-height: 20rem;
-}
-
-.section--white {
-  background-color: #ffffff;
-}
-
-.section--white .section__inner {
-  padding-top: var(--space-3) !important;
-  /* ~33% less than the header's own top gap (--space-6) — the cards sat
-     too far from the sand section below at the full amount. */
-  padding-bottom: var(--space-5) !important;
-}
-
-.section--white .section__columns,
-.section--white .section__column,
-.section--white .card-group {
-  margin-top: 0 !important;
-}
-
-.snip-shell,
-.snip-nav-band,
-.section,
-.stylized-header-container--centered,
-.snip-cta {
-  margin-top: 0 !important;
-}
-
-.stylized-header-container--centered {
-  margin-top: var(--space-2) !important;
-  margin-bottom: var(--space-2) !important;
-}
-
-/* "The tCAP Model" header sits right under the dark green stat band above
-   it; give it extra breathing room so it doesn't feel glued to that block. */
-.stylized-header-container--tcap-model {
-  margin-top: var(--space-6) !important;
-}
-
-/* "Student Journey" header: match the breathing room used on "The tCAP
-   Model" header above it and below it. Space is applied as *padding* on
-   the sand section itself (not margin on the header) because the header
-   is the section's first child — a top margin there collapses through to
-   the parent and escapes the sand background entirely, showing up as
-   extra white space above the section instead of a gap inside it. */
-.stylized-header-container--student-journey {
-  margin-top: 0 !important;
-  margin-bottom: var(--space-3) !important;
-}
-
-.section--sand {
-  padding-top: var(--space-5) !important;
-}
-
-/* The sand section's default top padding (--space-7) was piling on top of
-   the header's own margin-bottom, producing a much bigger gap before the
-   step cards than the equivalent gap on "The tCAP Model" section. Trim it
-   to match. */
-.section--sand .section__inner {
-  padding-top: var(--space-2) !important;
-  /* 33% less than the default --space-7 bottom padding -- the gap before
-     the next (green) section felt oversized relative to the content above. */
-  padding-bottom: calc(var(--space-7) * 0.67) !important;
-}
-
-.section--white .card.animate--slide-in {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-.section--white.tcap-animate-ready .card.animate--slide-in {
-  opacity: 0 !important;
-  transform: translateY(120px) !important;
-  transition: transform 0.75s, opacity 0.5s;
-}
-
-.section--white.tcap-animate-ready .card.animate--slide-in.animate-trigger {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-.section--white .card__heading {
-  margin: 0;
-  text-align: center;
-  font-size: clamp(1.35rem, 2.2vw, 2rem);
-}
-
-.section--white .card__link,
-.section--white .card__link:visited {
-  font-size: inherit;
-}
-
-.section--sand {
-  background-color: var(--color-secondary-sand);
-}
-
-.section--sand .snip-heading__title {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-}
-
-.section__inner {
-  position: relative;
-  padding-top: var(--space-7);
-  padding-bottom: var(--space-7);
-}
-
-.section__heading {
-  position: relative;
-  color: var(--color-secondary-evergreen);
-  font-family: var(--font-family-secondary);
-  font-size: var(--font-size-h1);
-  font-weight: 600;
-  line-height: var(--line-height-tight);
-  text-transform: uppercase;
-  padding-top: var(--space-3);
-}
-
-.section__heading:before {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  height: 0.5rem;
-  width: 3.5rem;
-  background: repeating-linear-gradient(-45deg, var(--color-primary-usfgreen), var(--color-primary-usfgreen) 1px, var(--color-transparent) 2px, var(--color-transparent) 5px);
-}
-
-.section__description {
-  line-height: var(--line-height-relaxed);
-  margin-top: var(--space-2);
-}
-
-.section__media,
-.section__text {
-  min-width: 0;
-}
-
-.section__media-image {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.section__cta {
-  margin-top: var(--space-4);
-}
-
-.link-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.link-list li {
-  margin: 0;
-}
-
-.link-list a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  padding: 0.9rem 0;
-  color: var(--color-text-light);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.section--experiential .link-list {
-  width: 100%;
-}
-
-.section--experiential .link-list a {
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.section--experiential .chevrons-list a::after {
-  content: "»";
-  flex: 0 0 auto;
-  color: var(--color-accent-apple);
-  font-size: 1.75rem;
-  line-height: 1;
-}
-
-.section--experiential .link-list li {
-  margin: 0;
-  padding-left: 0;
-  border: 0;
-}
-
-.section--experiential .link-list li + li {
-  border-top: 1px solid rgba(255, 255, 255, 0.35);
-  padding-top: 0;
-}
-
-.section--experiential .chevrons-list a::before {
-  content: none !important;
-  display: none !important;
-}
-
-.link-list a:hover,
-.link-list a:focus {
-  color: var(--color-accent-apple);
-}
-
-.section__description > *,
-.card__content > *,
-.card__description > * {
-  margin-top: 0;
-}
-
-.section--dark,
-.section--dark .section__heading {
-  color: var(--color-text-light);
-}
-
-.section--dark .snip-heading__title,
-.section--dark .snip-heading__text {
-  color: var(--color-text-light);
-}
-
-.section--experiential .section__inner {
-  padding-top: var(--space-5);
-  padding-bottom: var(--space-5);
-}
-
-.section--experiential .section__cta {
-  margin-top: var(--space-3);
-}
-
-.section--experiential .link-list a {
-  padding-top: 0.65rem;
-  padding-bottom: 0.65rem;
-}
-
-.section--dark .stat-group {
-  color: var(--color-text-light);
-  grid-template-columns: 1fr;
-  align-items: stretch;
-}
-
-.section--dark .stat {
-  display: flex;
-  min-height: 13rem;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.section--dark .stat__value {
-  font-size: clamp(3rem, 4vw, 4.5rem);
-}
-
-.section--dark .stat__text {
-  text-align: justify;
-}
-
-.section--dark .stat + .stat:before {
-  background: var(--color-accent-apple);
-}
-
-.grid {
-  display: grid;
-}
-
-.grid-col-12-sm {
-  grid-template-columns: 1fr;
-}
-
-.grid-col-span-12-sm {
-  grid-column: 1 / -1;
-}
-
-.gap-6 {
-  gap: var(--space-6);
-}
-
-.gap-5 {
-  gap: var(--space-5);
-}
-
-.container {
-  width: 100%;
-  max-width: var(--container-max-width);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.section .card-group {
-  display: grid;
-  gap: var(--space-5);
-}
-
-.section .card-group > * {
-  margin-top: 0;
-}
-
-.card {
-  background-color: #f3f7f8;
-  box-shadow: 3px 3px 15px #d3e1e4;
-  position: relative;
-}
-
-.card__image {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-}
-
-.card__image img {
-  display: block;
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
-}
-
-.card__content {
-  padding: var(--space-4);
-}
-
-.card__heading {
-  color: var(--color-neutral-slate);
-  font-size: var(--font-size-h5);
-  font-weight: 600;
-  line-height: var(--line-height-normal);
-}
-
-.card__link,
-.card__link:visited {
-  color: var(--color-neutral-slate);
-  font-weight: 600;
-  text-decoration-color: transparent;
-}
-
-.card__link:before {
-  position: absolute;
-  content: "";
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-}
-
-.card__description {
-  border-top: 1px solid var(--color-neutral-slate);
-  line-height: var(--line-height-relaxed);
-  margin-top: var(--space-3);
-  padding-top: var(--space-3);
-}
-
-.card--usfgreen {
-  background-color: var(--color-primary-usfgreen);
-  box-shadow: 3px 3px 15px var(--color-accent-seaglass);
-  color: var(--color-text-light);
-}
-
-.card--usfgreen .card__description {
-  border-top-color: var(--color-accent-teal);
-}
-
-.card--usfgreen .card__link,
-.card--usfgreen .card__link:visited {
-  color: var(--color-text-light);
-}
-
-.section--sand .snip-card--icon.snip-card--solid {
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-3);
-  min-height: 8rem;
-  text-align: left;
-  padding: var(--space-4);
-}
-
-.section--sand .snip-card--icon.snip-card--solid .snip-card__num,
-.section--sand .snip-card--icon.snip-card--solid .snip-card__title {
-  transition: color 0.15s;
-}
-
-.section--sand .snip-card--icon.snip-card--solid:hover .snip-card__num,
-.section--sand .snip-card--icon.snip-card--solid:hover .snip-card__title,
-.section--sand .snip-card--icon.snip-card--solid:focus-visible .snip-card__num,
-.section--sand .snip-card--icon.snip-card--solid:focus-visible .snip-card__title {
-  color: var(--snip-gold);
-}
-
-.section--sand .snip-card--icon.snip-card--solid .snip-card__num {
-  flex: 0 0 auto;
-  font-size: clamp(2.5rem, 4vw, 4rem);
-  line-height: 1;
-}
-
-.section--sand .snip-card--icon.snip-card--solid .snip-card__title {
-  flex: 0 1 9rem;
-  font-size: 18px;
-  line-height: 1.15;
-  text-align: left;
-}
-
-@media (max-width: 700px) {
-  .section--sand .snip-card--icon.snip-card--solid {
-    gap: 0.5rem;
-    padding: 12px;
+  /*<![CDATA[*/
+  /* Inlined (not linked) because OmniCMS strips external <link> tags on save.
+       Master copy: snippet-template.css -- keep this block in sync by hand. */
+  /* ==========================================================================
+     Snippet component template
+     Namespaced (.snip-*) BEM component library for OmniCMS content snippets.
+     See NAMING-CONVENTIONS.md for the rules and style-guide.html for a live,
+     copy-pasteable reference of every component this file styles.
+  
+     Reuse across projects: copy this file as-is (no find/replace needed —
+     scoping is done with the `.snip-shell` class, not a per-page ID) and
+     re-theme by overriding the custom properties in `.snip-shell` below.
+     ========================================================================== */
+  
+  /* Theme knobs — global on :root (not just `.snip-shell`) so every
+     component works regardless of whether it's nested inside a `.snip-shell`
+     or standalone (e.g. `.snip-cta`, `.snip-panel`, `.snip-event` are all
+     deliberately rendered outside `.snip-shell`). Override by redeclaring
+     these on `:root`, or scope an override to one section by redeclaring
+     them on a `.snip-shell` (or any ancestor) — custom properties cascade
+     normally either way. */
+  :root {
+    --snip-brand: #006747;
+    --snip-brand-dark: #004c35;
+    --snip-heading: #3f565e;
+    --snip-text: #3f3f3f;
+    --snip-text-muted: #333333;
+    --snip-surface: #efeff0;
+    --snip-surface-alt: #ffffff;
+    --snip-surface-hover: #dcece3;
+    --snip-border: #b2b2b2;
+    --snip-border-soft: #d8d6cd;
+    --snip-border-dashed: #8a8a82;
+    --snip-font-display: "Barlow Condensed", sans-serif;
+    --snip-max-width: 900px;
+  
+    /* Form / panel tokens (from the Bellini info-request widget) */
+    --snip-gold: #cfc493;
+    --snip-ink: #1c211f;
+    --snip-muted: #5b6661;
+    --snip-focus: #005432;
+    --snip-danger: #b3261e;
+    --snip-danger-bg: #fdeceb;
+    --snip-danger-border: #f3c4c0;
+    --snip-danger-text: #8c1d18;
+    --snip-success: #1e7a52;
+    --snip-success-bg: #e8f5ee;
+  
+    /* Inline USF v4 tokens required by stats-stat-group. */
+    --color-secondary-evergreen: #005432;
+    --color-primary-usfgreen: #006747;
+    --color-secondary-sand: #edebd1;
+    --color-text-light: #ffffff;
+    --color-accent-apple: #9ccb3b;
+    --color-accent-teal: #009374;
+    --color-accent-seaglass: #80b0a6;
+    --color-neutral-slate: #466069;
+    --color-transparent: rgba(255, 0, 0, 0);
+    --font-family-secondary: "Barlow Condensed", sans-serif;
+    --font-size-h1: 3rem;
+    --font-size-h5: 1.25rem;
+    --line-height-tight: 1.2;
+    --line-height-snug: 1.35;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.65;
+    --space-2: 0.5rem;
+    --space-3: 1rem;
+    --space-4: 1.5rem;
+    --space-6: 3rem;
+    --space-7: 4rem;
+    --space-5: 2rem;
+    --container-max-width: 1280px;
   }
-
-  .section--sand .snip-card--icon.snip-card--solid .snip-card__num {
-    font-size: 2.5rem;
+  
+  .snip-shell,
+  .snip-shell * {
+    box-sizing: border-box !important;
   }
-
-  .section--sand .snip-card--icon.snip-card--solid .snip-card__title {
-    flex-basis: auto;
+  
+  .snip-shell {
+    max-width: var(--snip-max-width);
+    margin: 0 auto;
+    padding: 24px;
+    font-family: inherit;
+    color: inherit;
+  }
+  
+  .snip-shell--stats {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: var(--space-2) !important;
+  }
+  
+  /* Vertical stack — drives spacing via `gap` only. Also neutralizes host-page
+     "owl" selectors (e.g. `.content * + * { margin-top: 1.5em }`) that would
+     otherwise misalign the first child of any grid/flex row inside it. */
+  .snip-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 0 !important;
+  }
+  
+  .snip-stack > *,
+  .snip-grid > *,
+  .snip-card > *,
+  .snip-nav > *,
+  .snip-table__row > * {
+    margin-top: 0;
+  }
+  
+  /* State utilities (unprefixed by convention — see rule 3 in
+     NAMING-CONVENTIONS.md). Driven by snippet-template.js. */
+  .is-hidden {
+    display: none !important;
+  }
+  
+  .is-loading {
+    opacity: .7;
+    pointer-events: none;
+  }
+  
+  /* -------------------------------------------------------------------------
+     Heading — centered section intro
+     ------------------------------------------------------------------------- */
+  .snip-heading {
+    text-align: center;
+  }
+  
+  .snip-heading__title {
+    margin: 10px 0 8px;
+    font-family: var(--snip-font-display);
+    font-weight: 600;
+    font-size: 36px;
+    color: var(--snip-heading);
+    text-transform: uppercase;
+    line-height: 1.15;
+  }
+  
+  .snip-heading__text {
+    margin: 0 auto;
+    max-width: 640px;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--snip-text);
+  }
+  
+  /* -------------------------------------------------------------------------
+     Grid — column layouts. Pick a column-count modifier; add `--tight` for
+     a hairline-gap variant (1px gap on brand-colored background), used by
+     solid icon-card strips like a "journey" row.
+     ------------------------------------------------------------------------- */
+  .snip-grid {
+    display: grid;
+    gap: 20px;
+  }
+  
+  .snip-grid--1 { grid-template-columns: 1fr; }
+  .snip-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .snip-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .snip-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  
+  .snip-grid--tight {
+    gap: 1px;
+    background: var(--snip-brand);
+  }
+  
+  /* -------------------------------------------------------------------------
+     Card — base surface with three visual variants:
+       --callout      bordered box, left-aligned title + body text
+       --step         numbered badge beside stacked content (process steps)
+       --icon         centered badge/number + short title (icon tile)
+     Add --interactive to any variant for a hover/active background swap
+     (used when the card is a hover target driving an info panel, or a link).
+     ------------------------------------------------------------------------- */
+  .snip-card {
+    background: var(--snip-surface);
+    border: 1px solid var(--snip-border);
+    padding: 20px;
+    color: inherit;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .snip-card--interactive {
+    transition: background 0.15s, border-color 0.15s;
+    cursor: pointer;
+  }
+  
+  .snip-card--interactive:hover,
+  .snip-card--interactive:focus-visible,
+  .snip-card--interactive.is-active {
+    background: var(--snip-surface-hover);
+    border-color: var(--snip-brand);
+  }
+  
+  /* --callout: text-forward card (was .callout / .pillar-card) */
+  .snip-card--callout .snip-card__title {
+    margin: 0 0 8px;
+    font-family: var(--snip-font-display);
+    font-weight: 600;
+    font-size: 28px;
+    color: var(--snip-brand);
+  }
+  
+  .snip-card--callout.snip-card--center {
+    text-align: center;
+  }
+  
+  .snip-card--callout.snip-card--center .snip-card__title {
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  
+  .snip-card__body {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--snip-text);
+  }
+  
+  /* --step: badge + stacked content, side by side (was .stage-card) */
+  .snip-card--step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  
+  .snip-card--step .snip-card__title {
+    margin: 0 0 6px;
+    font-family: var(--snip-font-display);
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--snip-brand);
+    text-transform: uppercase;
+  }
+  
+  /* --icon: centered badge + short title (was .timeline-card / .pathway-card) */
+  .snip-card--icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    padding: 18px;
+  }
+  
+  .snip-card--icon .snip-card__title {
+    font-family: var(--snip-font-display);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--snip-brand);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+  
+  /* --icon solid: brand-filled tile, e.g. an always-visible link strip
+     (was .journey-step). Uses a bare .snip-card__num instead of a badge. */
+  .snip-card--icon.snip-card--solid {
+    background: var(--snip-brand);
+    color: #fff;
+  }
+  
+  .snip-card--icon.snip-card--solid .snip-card__title {
+    color: #fff;
+  }
+  
+  .snip-card__num {
+    font-family: var(--snip-font-display);
+    font-weight: 700;
+    font-size: 22px;
+  }
+  
+  /* Explicit (not inherited) color: the host page's global `.content
+     a:visited` rule (specificity 0,2,1) otherwise wins over the plain
+     `.snip-card--icon.snip-card--solid` anchor color (0,2,0) for any stage
+     link already in the visitor's browser history, tinting the number the
+     same dark green as the card background and making it disappear. */
+  .snip-card--icon.snip-card--solid .snip-card__num {
+    color: #fff;
+  }
+  
+  /* Badge — circular number/letter, used by --step and --icon cards */
+  .snip-card__badge {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--snip-brand);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-family: var(--snip-font-display);
+    font-weight: 700;
+    font-size: 16px;
+  }
+  
+  .snip-card__badge--lg {
+    width: 44px;
+    height: 44px;
     font-size: 15px;
   }
-}
-
-@media (min-width: 768px) {
-  .grid-col-12-sm {
-    grid-template-columns: repeat(12, 1fr);
-  }
-
-  .grid-col-span-8-sm {
-    grid-column-end: span 8;
-  }
-
-  .grid-col-span-4-sm {
-    grid-column-end: span 4;
-  }
-
-  .align-ai-center-sm {
-    align-items: center;
-  }
-
-  .section--experiential .section__inner {
-    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
-  }
-
-  .section--experiential .section__media {
-    grid-column: 1 / span 8 !important;
-  }
-
-  .section--experiential .section__text {
-    grid-column: 9 / span 4 !important;
-  }
-
-  .gap-7-sm {
-    gap: var(--space-7);
-  }
-
-  .section--dark .stat-group {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .section .card-group {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .section--dark .stat__value {
-    white-space: nowrap;
-  }
-}
-
-@media (max-width: 767px) {
-  .section--dark .stat__value {
-    font-size: clamp(2.75rem, 12vw, 4rem);
-  }
-
-  .stat + .stat {
-    margin-top: var(--space-4);
-    padding-top: var(--space-4);
-  }
-}
-
-@media (min-width: 768px) {
+  
+  /* -------------------------------------------------------------------------
+     USF v4 stat group — copied from the approved `stats-stat-group` element.
+     These are the component's required inline tokens and UI rules; OmniCMS
+     cannot depend on an external stylesheet.
+     ------------------------------------------------------------------------- */
   .stat-group {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: grid;
+    gap: var(--space-7);
+    color: var(--color-secondary-evergreen);
+    text-align: center;
   }
-
+  
+  .stat-group > * {
+    margin-top: 0;
+  }
+  
   .stat {
+    font-weight: 600;
+    position: relative;
+  }
+  
+  /* 60deg from horizontal: rotating a vertical bar 30deg (clockwise) off
+     vertical leaves it at 90 - 30 = 60deg from horizontal. */
+  .stat + .stat:before {
+    position: absolute;
+    content: "";
+    width: 2px;
+    height: 56px;
+    top: calc(-65px + 0.75rem);
+    left: 50%;
+    background: var(--color-accent-teal);
+    transform: translateX(-50%) rotate(30deg);
+  }
+  
+  .stat__value,
+  .stat__text {
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .stat__value {
+    font-family: var(--font-family-secondary);
+    font-size: clamp(5rem, 5vw, 6.5rem);
+    line-height: var(--line-height-snug);
+  }
+  
+  .stat__text {
+    font-size: 1.1rem;
+  }
+  
+  /* USF v4 section color system, paired with the stat-group divider. */
+  .section {
+    position: relative;
     padding-left: var(--space-4);
     padding-right: var(--space-4);
   }
-
-  .stat + .stat:before {
-    top: 50%;
-    left: calc(-1 * var(--space-7) / 2);
-    transform: translate(-50%, -50%) rotate(30deg);
+  
+  .section--usfgreen {
+    background-color: var(--color-primary-usfgreen);
   }
-
-  .stat-group--4 .stat:nth-child(odd):before {
-    display: none;
+  
+  .section--usfgreen .stat__text {
+    font-weight: 400;
   }
-}
-
-@media (min-width: 1280px) {
-  .stat-group--4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  
+  .section--usfgreen .section__inner {
+    display: grid;
+    align-items: center;
+    min-height: 20rem;
   }
-
-  .stat-group--4 .stat:nth-child(odd):before {
+  
+  .section--white {
+    background-color: #ffffff;
+  }
+  
+  .section--white .section__inner {
+    padding-top: var(--space-3) !important;
+    /* ~33% less than the header's own top gap (--space-6) — the cards sat
+       too far from the sand section below at the full amount. */
+    padding-bottom: var(--space-5) !important;
+  }
+  
+  .section--white .section__columns,
+  .section--white .section__column,
+  .section--white .card-group {
+    margin-top: 0 !important;
+  }
+  
+  .snip-shell,
+  .snip-nav-band,
+  .section,
+  .stylized-header-container--centered,
+  .snip-cta {
+    margin-top: 0 !important;
+  }
+  
+  /* The host legacy stylesheet adds 5rem between `.content` and the footer.
+     A tCAP CTA already provides the intended final-page spacing, so remove that
+     extra white band only on pages containing this CTA. */
+  .content:has(.snip-cta) ~ footer {
+    margin-top: 0 !important;
+  }
+  
+  .stylized-header-container--centered {
+    margin-top: var(--space-2) !important;
+    margin-bottom: var(--space-2) !important;
+  }
+  
+  /* Keep the stylized header inside the colored section so its top spacing
+     cannot collapse into a white band above the section. The header is full
+     bleed, matching the overview page's edge-to-edge divider treatment. */
+  .tcap-section--stylized-header {
+    padding-top: var(--space-4) !important;
+  }
+  
+  .tcap-section--stylized-header > .stylized-header-container--centered {
+    margin-top: 0 !important;
+    margin-right: calc(-1 * var(--space-4)) !important;
+    margin-bottom: 0.25rem !important;
+    margin-left: calc(-1 * var(--space-4)) !important;
+  }
+  
+  .tcap-section--stylized-header > .stylized-header-container--centered + .section__inner {
+    margin-top: 0 !important;
+    padding-top: var(--space-2) !important;
+  }
+  
+  /* "The tCAP Model" header sits right under the dark green stat band above
+     it; give it extra breathing room so it doesn't feel glued to that block. */
+  .stylized-header-container--tcap-model {
+    margin-top: var(--space-6) !important;
+  }
+  
+  /* "Student Journey" header: match the breathing room used on "The tCAP
+     Model" header above it and below it. Space is applied as *padding* on
+     the sand section itself (not margin on the header) because the header
+     is the section's first child — a top margin there collapses through to
+     the parent and escapes the sand background entirely, showing up as
+     extra white space above the section instead of a gap inside it. */
+  .stylized-header-container--student-journey {
+    margin-top: 0 !important;
+    margin-bottom: var(--space-3) !important;
+  }
+  
+  .section--sand {
+    padding-top: var(--space-5) !important;
+  }
+  
+  /* The sand section's default top padding (--space-7) was piling on top of
+     the header's own margin-bottom, producing a much bigger gap before the
+     step cards than the equivalent gap on "The tCAP Model" section. Trim it
+     to match. */
+  .section--sand .section__inner {
+    padding-top: var(--space-2) !important;
+    /* 33% less than the default --space-7 bottom padding -- the gap before
+       the next (green) section felt oversized relative to the content above. */
+    padding-bottom: calc(var(--space-7) * 0.67) !important;
+  }
+  
+  .section--white .card.animate--slide-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  .section--white.tcap-animate-ready .card.animate--slide-in {
+    opacity: 0 !important;
+    transform: translateY(120px) !important;
+    transition: transform 0.75s, opacity 0.5s;
+  }
+  
+  .section--white.tcap-animate-ready .card.animate--slide-in.animate-trigger {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  .section--white .card__heading {
+    margin: 0;
+    text-align: center;
+    font-size: clamp(1.35rem, 2.2vw, 2rem);
+  }
+  
+  .section--white .card__link,
+  .section--white .card__link:visited {
+    font-size: inherit;
+  }
+  
+  .section--sand {
+    background-color: var(--color-secondary-sand);
+  }
+  
+  .section--sand .snip-heading__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+  
+  .section__inner {
+    position: relative;
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-7);
+  }
+  
+  .section__heading {
+    position: relative;
+    color: var(--color-secondary-evergreen);
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-h1);
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+    text-transform: uppercase;
+    padding-top: var(--space-3);
+  }
+  
+  .section__heading:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 0.5rem;
+    width: 3.5rem;
+    background: repeating-linear-gradient(-45deg, var(--color-primary-usfgreen), var(--color-primary-usfgreen) 1px, var(--color-transparent) 2px, var(--color-transparent) 5px);
+  }
+  
+  .section__description {
+    line-height: var(--line-height-relaxed);
+    margin-top: var(--space-2);
+  }
+  
+  .section__media,
+  .section__text {
+    min-width: 0;
+  }
+  
+  .section__media-image {
     display: block;
+    width: 100%;
+    height: auto;
   }
-
-  /* The base .stat__value clamp scales with viewport width (vw) with no
-     upper bound tied to it, but this row's container is capped at
-     --container-max-width (1280px) -- so its 4 columns stop growing past
-     that point while the font keeps scaling, eventually overflowing a
-     column's text into its neighbor (e.g. "$102,908" running into "12,735").
-     Use a smaller clamp with a hard max that always fits a 4-up column. */
-  .stat-group--4 .stat__value {
-    font-size: clamp(2rem, 2.4vw, 2.75rem);
+  
+  .section__cta {
+    margin-top: var(--space-4);
   }
-}
-
-/* -------------------------------------------------------------------------
-   Sources & disclaimers panel — an aggregated end-of-page block (all
-   citations/disclaimers for the whole page in one place), distinct from
-   `.snip-source` above (the small per-card citation inside a stat/callout).
-   Place it as the LAST item in `.snip-stack`, after `.snip-nav`. Every page
-   should have one, even with an empty `__list`/no `__text` paragraphs, for
-   structural consistency across pages.
-   ------------------------------------------------------------------------- */
-.snip-sources {
-  margin-top: 1rem;
-  font-size: 8pt;
-  line-height: 1.35;
-  color: var(--snip-text-muted);
-}
-
-.snip-sources__title {
-  margin: 0 0 0.35rem;
-  font-size: 8pt;
-  font-weight: 700;
-  color: var(--snip-text);
-}
-
-.snip-sources__list {
-  margin: 0 0 0.75rem;
-  padding-left: 1.25rem;
-}
-
-.snip-sources__list li {
-  margin-bottom: 0.25rem;
-}
-
-.snip-sources__list a,
-.snip-sources__text a {
-  color: var(--snip-text-muted);
-  text-decoration: underline;
-}
-
-.snip-sources__list a:hover,
-.snip-sources__list a:focus,
-.snip-sources__text a:hover,
-.snip-sources__text a:focus {
-  color: var(--snip-brand);
-  text-decoration-thickness: 2px;
-}
-
-.snip-sources__list a:focus-visible,
-.snip-sources__text a:focus-visible {
-  outline: 3px solid var(--snip-border);
-  outline-offset: 3px;
-}
-
-.snip-sources__list a[href$=".pdf"],
-.snip-sources__text a[href$=".pdf"] {
-  color: var(--snip-brand);
-}
-
-.snip-sources__text {
-  margin: 0 0 0.5rem;
-  padding: 0;
-  font-size: 8pt;
-  line-height: 1.35;
-  font-weight: 400;
-  color: var(--snip-text-muted);
-}
-
-.snip-sources__text:last-child {
-  margin-bottom: 0;
-}
-
-/* -------------------------------------------------------------------------
-   CTA band — full-bleed background band. Deliberately placed *outside*
-   `.snip-shell` (in the markup) so its background can bleed edge-to-edge
-   instead of being capped at the shell's max-width; `__inner` re-centers
-   the content to match. Because it sits outside `.snip-shell`, the theme
-   custom properties aren't in scope here — every var() below carries an
-   explicit fallback so this still renders correctly on its own.
-   ------------------------------------------------------------------------- */
-.snip-cta {
-  background: var(--snip-surface, #efeff0);
-  padding: 24px;
-  text-align: center;
-}
-
-.snip-cta__inner {
-  max-width: var(--snip-max-width, 900px);
-  margin: 0 auto;
-}
-
-/* Page-specific: the tCAP overview folds its Sources block into this grey
-   band (rather than a separate white section below) so the grey runs
-   uninterrupted down to the host page's footer. .snip-cta itself is
-   center-aligned for the button; reset that here for the left-aligned
-   citation list. */
-.snip-cta__sources {
-  margin-top: var(--space-6, 3rem);
-  text-align: left;
-}
-
-/* Page-specific: a larger, all-caps treatment of the shared .snippetButton
-   for this page's CTA -- padding is set in em on the shared rule above, so
-   doubling font-size doubles it too; border-width is fixed px, so it's
-   doubled explicitly here to keep it visually proportional. */
-.snip-cta.snip-cta--lg .snippetButton {
-  font-size: 32px;
-  border-width: 4px;
-  text-transform: uppercase;
-}
-
-/* The CMS theme's own `.snippetButton` only contributes `display: block` and
-   a `max-width` cap — everything else is redefined here so the button looks
-   right regardless of what the host page's global CSS does with it.
-   `!important` on display/max-width: `display: block` ignores the ancestor's
-   `text-align: center`, which is what centers the button inside .snip-cta. */
-.snip-cta .snippetButton {
-  display: inline-block !important;
-  max-width: none !important;
-  background: var(--snip-brand, #006747);
-  color: #fff;
-  border: 2px solid var(--snip-brand, #006747);
-  border-radius: 0;
-  font-family: inherit;
-  font-size: 16px;
-  font-weight: 700;
-  padding: 0.85em 1.6em;
-  line-height: 1.2;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.snip-cta .snippetButton:hover,
-.snip-cta .snippetButton:focus {
-  background: var(--snip-brand-dark, #004c35);
-  border-color: var(--snip-brand-dark, #004c35);
-  color: #fff;
-}
-
-/* -------------------------------------------------------------------------
-   Bottom pill nav — equal-width link row with a non-link "current page"
-   pill. `.is-active` marks whichever one is current.
-   ------------------------------------------------------------------------- */
-.snip-nav-band {
-  width: 100%;
-  background: var(--snip-surface, #efeff0);
-  padding: 24px;
-  box-sizing: border-box;
-}
-
-.snip-nav-band__inner {
-  width: 100%;
-  max-width: var(--container-max-width, 1280px);
-  margin: 0 auto;
-}
-
-.snip-nav-band .snip-nav {
-  border-top: 0;
-  padding-top: 0;
-}
-
-.snip-nav {
-  display: flex;
-  gap: 8px;
-  font-size: 13px;
-  text-align: center;
-  border-top: 1px solid var(--snip-border-soft);
-  padding-top: 20px;
-}
-
-.snip-nav__link {
-  flex: 1;
-  display: block;
-  background: var(--snip-surface-alt);
-  color: var(--snip-brand);
-  border: 1.5px solid var(--snip-brand);
-  border-radius: 3px;
-  padding: 10px 12px;
-  text-decoration: none;
-}
-
-.snip-nav__link.is-active {
-  background: var(--snip-brand);
-  color: #fff;
-}
-
-/* -------------------------------------------------------------------------
-   FAQ group — a labeled category of native `details`/`summary` items
-   ------------------------------------------------------------------------- */
-.snip-faq__title {
-  margin: 0 0 12px;
-  font-family: var(--snip-font-display);
-  font-weight: 600;
-  font-size: 24px;
-  color: var(--snip-brand);
-  text-transform: uppercase;
-}
-
-.snip-faq__list {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  background: var(--snip-border);
-}
-
-.snip-faq__list details {
-  background: var(--snip-surface);
-  padding: 14px 16px;
-}
-
-.snip-faq__list summary {
-  cursor: pointer;
-  font-family: inherit;
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--snip-brand);
-  list-style-position: outside;
-}
-
-.snip-faq__list summary:hover,
-.snip-faq__list summary:focus {
-  color: var(--snip-brand-dark);
-}
-
-.snip-faq__list p {
-  margin: 10px 0 0;
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--snip-text);
-}
-
-/* -------------------------------------------------------------------------
-   Comparison table — CSS-grid rows, no `table` markup required
-   ------------------------------------------------------------------------- */
-.snip-table {
-  border: 1px solid var(--snip-border);
-}
-
-.snip-table__row {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr 1fr;
-}
-
-.snip-table__row + .snip-table__row {
-  border-top: 1px solid var(--snip-border);
-}
-
-.snip-table__cell {
-  padding: 12px 14px;
-  font-size: 13px;
-  color: var(--snip-text);
-  border-right: 1px solid var(--snip-border);
-}
-
-.snip-table__cell:last-child {
-  border-right: none;
-}
-
-.snip-table__row--head {
-  border-bottom: 3px solid var(--snip-text);
-}
-
-.snip-table__row--head .snip-table__cell {
-  font-family: var(--snip-font-display);
-  font-weight: 700;
-  font-size: 15px;
-  color: var(--snip-text);
-  text-transform: uppercase;
-}
-
-/* -------------------------------------------------------------------------
-   Note / aside — plain info box, or dashed "soft" variant for
-   provisional/in-progress content notes
-   ------------------------------------------------------------------------- */
-.snip-note {
-  border: 1px solid var(--snip-border);
-  background: var(--snip-surface-alt);
-  padding: 16px;
-  font-size: 14px;
-  line-height: 1.4;
-  color: var(--snip-text);
-}
-
-.snip-note--soft {
-  border: 1px dashed var(--snip-border-dashed);
-  background: #fcfcfa;
-  font-size: 13px;
-}
-
-/* -------------------------------------------------------------------------
-   Panel — standalone bordered widget shell (was #bellini-info-request
-   .bi-shell), for multi-step forms, request-info widgets, etc. Independent
-   of .snip-shell — a panel is a self-contained widget, not page content, so
-   it carries its own max-width.
-   ------------------------------------------------------------------------- */
-.snip-panel {
-  max-width: 680px;
-  margin: 0 auto;
-  background: var(--snip-surface-alt);
-  border: 1px solid var(--snip-border);
-  overflow: hidden;
-  font-family: inherit;
-  color: var(--snip-ink);
-}
-
-.snip-panel__pad {
-  padding-left: 32px;
-  padding-right: 32px;
-}
-
-.snip-panel__band {
-  background: var(--snip-brand);
-  color: #fff;
-  padding-top: 28px;
-  padding-bottom: 24px;
-  border-bottom: 4px solid var(--snip-gold);
-}
-
-.snip-panel__body {
-  padding-top: 28px;
-  padding-bottom: 32px;
-}
-
-.snip-panel__title {
-  margin: 0;
-  font-size: 26px;
-  line-height: 1.2;
-  font-weight: 700;
-  color: #fff;
-}
-
-.snip-panel__subtitle {
-  margin: 10px 0 0;
-  color: #dfeae5;
-  font-size: 15px;
-}
-
-/* Eyebrow label — light-on-dark, for use inside .snip-panel__band */
-.snip-kicker {
-  font-size: 13px;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  font-weight: 700;
-  margin: 0 0 6px;
-  color: #edebd1;
-}
-
-/* Section label — dark-on-light, for use inside .snip-panel__body */
-.snip-section-label {
-  margin: 0 0 16px;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  color: var(--snip-muted);
-}
-
-.snip-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: transparent;
-  border: 0;
-  color: #edebd1;
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  padding: 0;
-  margin-bottom: 14px;
-}
-
-.snip-back:hover,
-.snip-back:focus {
-  text-decoration: underline;
-  outline: 3px solid #edebd1;
-  outline-offset: 3px;
-}
-
-/* -------------------------------------------------------------------------
-   Choice — a large clickable option row (e.g. "which of these are you?"),
-   stacked with .snip-choice-stack. Not the same as .snip-card--icon: a
-   choice is a full-width row driving navigation, not a grid tile.
-   ------------------------------------------------------------------------- */
-.snip-choice-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.snip-choice {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  width: 100%;
-  text-align: left;
-  padding: 20px 22px;
-  background: var(--snip-surface-alt);
-  border: 1px solid var(--snip-border);
-  border-radius: 0;
-  cursor: pointer;
-  font-family: inherit;
-}
-
-.snip-choice:hover,
-.snip-choice:focus {
-  border-color: var(--snip-brand);
-  background: #f7faf9;
-  outline: 3px solid var(--snip-focus);
-  outline-offset: 2px;
-}
-
-.snip-choice__title {
-  display: block;
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--snip-ink);
-}
-
-.snip-choice__desc {
-  display: block;
-  font-size: 14px;
-  color: var(--snip-muted);
-  margin-top: 3px;
-}
-
-.snip-choice__arrow {
-  font-size: 22px;
-  color: var(--snip-brand);
-  font-weight: 700;
-  line-height: 1;
-}
-
-/* -------------------------------------------------------------------------
-   Form fields — explicit classes rather than bare tag/attribute selectors
-   (`label`, `input[type=...]`) so this stays portable: a page that already
-   styles its own `label`/`input` elements won't have those rules clobbered.
-   ------------------------------------------------------------------------- */
-.snip-field {
-  margin-bottom: 20px;
-}
-
-.snip-field--tight {
-  margin-bottom: 18px;
-}
-
-.snip-label {
-  display: block;
-  font-weight: 700;
-  font-size: 14px;
-  margin-bottom: 6px;
-  color: var(--snip-ink);
-}
-
-.snip-required {
-  color: var(--snip-danger);
-}
-
-.snip-input {
-  display: block;
-  width: 100%;
-  height: 48px;
-  padding: 0 12px;
-  font-size: 16px;
-  color: var(--snip-ink);
-  border: 1px solid var(--snip-border);
-  border-radius: 0;
-  background: var(--snip-surface-alt);
-  font-family: inherit;
-}
-
-.snip-input:focus {
-  outline: 3px solid var(--snip-focus);
-  outline-offset: 2px;
-}
-
-.snip-input--invalid {
-  border-color: var(--snip-danger) !important;
-}
-
-.snip-field__error {
-  color: var(--snip-danger);
-  font-size: 13px;
-  margin-top: 5px;
-}
-
-.snip-banner--error {
-  padding: 14px 16px;
-  font-size: 15px;
-  margin-bottom: 20px;
-  background: var(--snip-danger-bg);
-  color: var(--snip-danger-text);
-  border: 1px solid var(--snip-danger-border);
-}
-
-.snip-divider {
-  border-top: 1px solid #e2e2e2;
-  margin-bottom: 20px;
-  padding-top: 22px;
-}
-
-.snip-visually-hidden {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
-.snip-consent-row {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  font-size: 14px;
-  margin-bottom: 6px;
-}
-
-.snip-consent-row input {
-  width: auto;
-  margin-top: 3px;
-  flex: 0 0 auto;
-}
-
-.snip-consent-row label {
-  font-weight: 400;
-  margin: 0;
-  color: var(--snip-muted);
-}
-
-.snip-consent-row a {
-  color: var(--snip-brand);
-}
-
-/* 3-column address row (2fr 1fr 1fr) — a specific-purpose grid modifier
-   alongside the general .snip-grid--2/3/4 column-count modifiers. */
-.snip-grid--address {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 14px;
-  align-items: start;
-  margin-bottom: 18px;
-}
-
-/* -------------------------------------------------------------------------
-   Button — a form-context button (submit/reset/retry). Distinct from the
-   CMS theme's own `.snippetButton` (see .snip-cta above): this is fully
-   ours, meant for use inside panels/forms, and supports a disabled state.
-   ------------------------------------------------------------------------- */
-.snip-btn {
-  display: inline-block;
-  padding: 14px 22px;
-  font-size: 16px;
-  font-weight: 700;
-  border-radius: 0;
-  border: 2px solid var(--snip-brand);
-  cursor: pointer;
-  font-family: inherit;
-  text-align: center;
-}
-
-.snip-btn:focus {
-  outline: 3px solid var(--snip-focus);
-  outline-offset: 2px;
-}
-
-.snip-btn--primary {
-  width: 100%;
-  color: #fff;
-  background: var(--snip-brand);
-}
-
-.snip-btn--primary:hover,
-.snip-btn--primary:focus {
-  background: var(--snip-brand-dark);
-  border-color: var(--snip-brand-dark);
-}
-
-.snip-btn--secondary {
-  color: var(--snip-brand);
-  background: var(--snip-surface-alt);
-}
-
-.snip-btn--secondary:hover,
-.snip-btn--secondary:focus {
-  background: var(--snip-brand);
-  color: #fff;
-}
-
-.snip-btn:disabled {
-  opacity: .65;
-  cursor: not-allowed;
-}
-
-.snip-required-note {
-  font-size: 13px;
-  color: var(--snip-muted);
-  margin-top: 14px;
-  text-align: center;
-}
-
-/* -------------------------------------------------------------------------
-   Success state — e.g. a post-submit "thank you" screen
-   ------------------------------------------------------------------------- */
-.snip-success {
-  padding-top: 44px;
-  padding-bottom: 48px;
-  text-align: center;
-}
-
-.snip-success__icon {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: var(--snip-success-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 20px;
-  animation: snip-pop .3s ease both;
-}
-
-.snip-success__icon span {
-  color: var(--snip-success);
-  font-size: 34px;
-  line-height: 1;
-}
-
-.snip-success__title {
-  margin: 0 0 10px;
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--snip-ink);
-}
-
-.snip-success__text {
-  margin: 0 auto;
-  max-width: 420px;
-  font-size: 16px;
-  color: var(--snip-muted);
-}
-
-@keyframes snip-pop {
-  from {
-    transform: scale(.7);
-    opacity: 0;
+  
+  .link-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
-
-  to {
-    transform: scale(1);
-    opacity: 1;
+  
+  .link-list li {
+    margin: 0;
   }
-}
-
-/* -------------------------------------------------------------------------
-   Flip — a two-face 3D flip on hover, e.g. an event date badge that flips
-   to a "starts" label, or a link styled as a physical flip-button (was the
-   AI+X events widget's `.ce-*` classes). Two shapes share the mechanic:
-     .snip-event        row link; hovering anywhere in the row flips its
-                         circular badge (badge and trigger are different
-                         elements, so the hover has to target the row)
-     .snip-flip-btn      a standalone rectangular button that flips itself
-   ------------------------------------------------------------------------- */
-.snip-event {
-  display: flex;
-  gap: 18px;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-}
-
-.snip-event__badge {
-  flex: none;
-  width: 64px;
-  height: 64px;
-  perspective: 600px;
-}
-
-.snip-event__badge-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform .55s cubic-bezier(.4, .2, .2, 1);
-  transform-style: preserve-3d;
-}
-
-.snip-event:hover .snip-event__badge-inner {
-  transform: rotateY(180deg);
-}
-
-.snip-event__face {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  line-height: 1.12;
-  font-family: var(--snip-font-display);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.snip-event__face--front {
-  background: var(--snip-brand);
-  color: #fff;
-}
-
-.snip-event__face--back {
-  background: var(--snip-gold);
-  color: var(--snip-brand);
-  box-sizing: border-box;
-  transform: rotateY(180deg);
-}
-
-.snip-event__title {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.3;
-  color: var(--snip-brand);
-  transition: color .3s ease;
-}
-
-.snip-event:hover .snip-event__title {
-  color: var(--snip-gold-dark, #a5904a);
-}
-
-.snip-flip-btn {
-  display: block;
-  height: 46px;
-  text-decoration: none;
-  perspective: 700px;
-}
-
-.snip-flip-btn__inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform .5s cubic-bezier(.4, .2, .2, 1);
-  transform-style: preserve-3d;
-}
-
-.snip-flip-btn:hover .snip-flip-btn__inner {
-  transform: rotateX(180deg);
-}
-
-.snip-flip-btn__face {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 1px;
-  font-family: var(--snip-font-display);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.snip-flip-btn__face--front {
-  background: var(--snip-brand);
-  color: #fff;
-}
-
-.snip-flip-btn__face--back {
-  background: var(--snip-gold);
-  color: var(--snip-brand);
-  transform: rotateX(180deg);
-}
-
-/* -------------------------------------------------------------------------
-   Responsive
-   ------------------------------------------------------------------------- */
-@media (max-width: 700px) {
-  .snip-grid--2,
-  .snip-grid--3 {
+  
+  .link-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: 0.9rem 0;
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .section--experiential .link-list {
+    width: 100%;
+  }
+  
+  .section--experiential .link-list a {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .section--experiential .chevrons-list a::after {
+    content: "»";
+    flex: 0 0 auto;
+    color: var(--color-accent-apple);
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+  
+  .section--experiential .link-list li {
+    margin: 0;
+    padding-left: 0;
+    border: 0;
+  }
+  
+  .section--experiential .link-list li + li {
+    border-top: 1px solid rgba(255, 255, 255, 0.35);
+    padding-top: 0;
+  }
+  
+  .section--experiential .chevrons-list a::before {
+    content: none !important;
+    display: none !important;
+  }
+  
+  .link-list a:hover,
+  .link-list a:focus {
+    color: var(--color-accent-apple);
+  }
+  
+  .section__description > *,
+  .card__content > *,
+  .card__description > * {
+    margin-top: 0;
+  }
+  
+  .section--dark,
+  .section--dark .section__heading {
+    color: var(--color-text-light);
+  }
+  
+  .section--dark .snip-heading__title,
+  .section--dark .snip-heading__text {
+    color: var(--color-text-light) !important;
+  }
+  
+  .section--white .snip-heading__title {
+    color: var(--snip-heading) !important;
+  }
+  
+  .section--white .snip-heading__text {
+    color: var(--snip-text) !important;
+  }
+  
+  /* Keep dark-section tables on a light surface so their ink cannot blend into
+     the green section background. */
+  .section--dark .snip-table {
+    background: var(--snip-surface-alt);
+  }
+  
+  .section--dark .snip-table__cell,
+  .section--dark .snip-table__row--head .snip-table__cell {
+    color: var(--snip-text) !important;
+  }
+  
+  .section--experiential .section__inner {
+    padding-top: var(--space-5);
+    padding-bottom: var(--space-5);
+  }
+  
+  .section--experiential .section__cta {
+    margin-top: var(--space-3);
+  }
+  
+  .section--experiential .link-list a {
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+  }
+  
+  .section--dark .stat-group {
+    color: var(--color-text-light);
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+  
+  .section--dark .stat {
+    display: flex;
+    min-height: 13rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .section--dark .stat__value {
+    font-size: clamp(3rem, 4vw, 4.5rem);
+  }
+  
+  .section--dark .stat__text {
+    text-align: justify;
+  }
+  
+  .section--dark .stat + .stat:before {
+    background: var(--color-accent-apple);
+  }
+  
+  .grid {
+    display: grid;
+  }
+  
+  .grid-col-12-sm {
     grid-template-columns: 1fr;
   }
-
-  .snip-grid--4 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  
+  .grid-col-span-12-sm {
+    grid-column: 1 / -1;
   }
-
-  .snip-grid--address {
-    grid-template-columns: 1fr;
+  
+  .gap-6 {
+    gap: var(--space-6);
   }
-
-  .snip-panel__pad {
-    padding-left: 18px;
-    padding-right: 18px;
+  
+  .gap-5 {
+    gap: var(--space-5);
   }
-
-  .snip-table__row {
-    grid-template-columns: 1fr;
+  
+  .container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin-left: auto;
+    margin-right: auto;
   }
-
-  .snip-table__cell {
-    border-right: none;
-    border-bottom: 1px solid var(--snip-border);
+  
+  .section .card-group {
+    display: grid;
+    gap: var(--space-5);
   }
-
-  .snip-table__cell:last-child {
-    border-bottom: none;
+  
+  .section .card-group > * {
+    margin-top: 0;
   }
-
+  
+  .card {
+    background-color: #f3f7f8;
+    box-shadow: 3px 3px 15px #d3e1e4;
+    position: relative;
+  }
+  
+  .card__image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  
+  .card__image img {
+    display: block;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .card__content {
+    padding: var(--space-4);
+  }
+  
+  .card__heading {
+    color: var(--color-neutral-slate);
+    font-size: var(--font-size-h5);
+    font-weight: 600;
+    line-height: var(--line-height-normal);
+  }
+  
+  .card__link,
+  .card__link:visited {
+    color: var(--color-neutral-slate);
+    font-weight: 600;
+    text-decoration-color: transparent;
+  }
+  
+  .card__link:before {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  
+  .card__description {
+    border-top: 1px solid var(--color-neutral-slate);
+    line-height: var(--line-height-relaxed);
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+  }
+  
+  .card--usfgreen {
+    background-color: var(--color-primary-usfgreen);
+    box-shadow: 3px 3px 15px var(--color-accent-seaglass);
+    color: var(--color-text-light);
+  }
+  
+  .card--usfgreen .card__description {
+    border-top-color: var(--color-accent-teal);
+  }
+  
+  .card--usfgreen .card__link,
+  .card--usfgreen .card__link:visited {
+    color: var(--color-text-light);
+  }
+  
+  .section--sand .snip-card--icon.snip-card--solid {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    min-height: 8rem;
+    text-align: left;
+    padding: var(--space-4);
+  }
+  
+  .section--sand .snip-card--icon.snip-card--solid .snip-card__num,
+  .section--sand .snip-card--icon.snip-card--solid .snip-card__title {
+    transition: color 0.15s;
+  }
+  
+  .section--sand .snip-card--icon.snip-card--solid:hover .snip-card__num,
+  .section--sand .snip-card--icon.snip-card--solid:hover .snip-card__title,
+  .section--sand .snip-card--icon.snip-card--solid:focus-visible .snip-card__num,
+  .section--sand .snip-card--icon.snip-card--solid:focus-visible .snip-card__title {
+    color: var(--snip-gold);
+  }
+  
+  .section--sand .snip-card--icon.snip-card--solid .snip-card__num {
+    flex: 0 0 auto;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    line-height: 1;
+  }
+  
+  .section--sand .snip-card--icon.snip-card--solid .snip-card__title {
+    flex: 0 1 9rem;
+    font-size: 18px;
+    line-height: 1.15;
+    text-align: left;
+  }
+  
+  @media (max-width: 700px) {
+    .section--sand .snip-card--icon.snip-card--solid {
+      gap: 0.5rem;
+      padding: 12px;
+    }
+  
+    .section--sand .snip-card--icon.snip-card--solid .snip-card__num {
+      font-size: 2.5rem;
+    }
+  
+    .section--sand .snip-card--icon.snip-card--solid .snip-card__title {
+      flex-basis: auto;
+      font-size: 15px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .grid-col-12-sm {
+      grid-template-columns: repeat(12, 1fr);
+    }
+  
+    .grid-col-span-8-sm {
+      grid-column-end: span 8;
+    }
+  
+    .grid-col-span-4-sm {
+      grid-column-end: span 4;
+    }
+  
+    .align-ai-center-sm {
+      align-items: center;
+    }
+  
+    .section--experiential .section__inner {
+      grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+    }
+  
+    .section--experiential .section__media {
+      grid-column: 1 / span 8 !important;
+    }
+  
+    .section--experiential .section__text {
+      grid-column: 9 / span 4 !important;
+    }
+  
+    .gap-7-sm {
+      gap: var(--space-7);
+    }
+  
+    .section--dark .stat-group {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  
+    .section .card-group {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .section--dark .stat__value {
+      white-space: nowrap;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .section--dark .stat__value {
+      font-size: clamp(2.75rem, 12vw, 4rem);
+    }
+  
+    .stat + .stat {
+      margin-top: var(--space-4);
+      padding-top: var(--space-4);
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .stat-group {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  
+    .stat {
+      padding-left: var(--space-4);
+      padding-right: var(--space-4);
+    }
+  
+    .stat + .stat:before {
+      top: 50%;
+      left: calc(-1 * var(--space-7) / 2);
+      transform: translate(-50%, -50%) rotate(30deg);
+    }
+  
+    .stat-group--4 .stat:nth-child(odd):before {
+      display: none;
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .stat-group--4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  
+    .stat-group--4 .stat:nth-child(odd):before {
+      display: block;
+    }
+  
+    /* The base .stat__value clamp scales with viewport width (vw) with no
+       upper bound tied to it, but this row's container is capped at
+       --container-max-width (1280px) -- so its 4 columns stop growing past
+       that point while the font keeps scaling, eventually overflowing a
+       column's text into its neighbor (e.g. "$102,908" running into "12,735").
+       Use a smaller clamp with a hard max that always fits a 4-up column. */
+    .stat-group--4 .stat__value {
+      font-size: clamp(2rem, 2.4vw, 2.75rem);
+    }
+  }
+  
+  /* -------------------------------------------------------------------------
+     Sources & disclaimers panel — an aggregated end-of-page block (all
+     citations/disclaimers for the whole page in one place), distinct from
+     `.snip-source` above (the small per-card citation inside a stat/callout).
+     Place it as the LAST item in `.snip-stack`, after `.snip-nav`. Every page
+     should have one, even with an empty `__list`/no `__text` paragraphs, for
+     structural consistency across pages.
+     ------------------------------------------------------------------------- */
+  .snip-sources {
+    margin-top: 1rem;
+    font-size: 8pt;
+    line-height: 1.35;
+    color: var(--snip-text-muted);
+  }
+  
+  .snip-sources__title {
+    margin: 0 0 0.35rem;
+    font-size: 8pt;
+    font-weight: 700;
+    color: var(--snip-text);
+  }
+  
+  .snip-sources__list {
+    margin: 0 0 0.75rem;
+    padding-left: 1.25rem;
+  }
+  
+  .snip-sources__list li {
+    margin-bottom: 0.25rem;
+  }
+  
+  .snip-sources__list a,
+  .snip-sources__text a {
+    color: var(--snip-text-muted);
+    text-decoration: underline;
+  }
+  
+  .snip-sources__list a:hover,
+  .snip-sources__list a:focus,
+  .snip-sources__text a:hover,
+  .snip-sources__text a:focus {
+    color: var(--snip-brand);
+    text-decoration-thickness: 2px;
+  }
+  
+  .snip-sources__list a:focus-visible,
+  .snip-sources__text a:focus-visible {
+    outline: 3px solid var(--snip-border);
+    outline-offset: 3px;
+  }
+  
+  .snip-sources__list a[href$=".pdf"],
+  .snip-sources__text a[href$=".pdf"] {
+    color: var(--snip-brand);
+  }
+  
+  .snip-sources__text {
+    margin: 0 0 0.5rem;
+    padding: 0;
+    font-size: 8pt;
+    line-height: 1.35;
+    font-weight: 400;
+    color: var(--snip-text-muted);
+  }
+  
+  .snip-sources__text:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* -------------------------------------------------------------------------
+     CTA band — full-bleed background band. Deliberately placed *outside*
+     `.snip-shell` (in the markup) so its background can bleed edge-to-edge
+     instead of being capped at the shell's max-width; `__inner` re-centers
+     the content to match. Because it sits outside `.snip-shell`, the theme
+     custom properties aren't in scope here — every var() below carries an
+     explicit fallback so this still renders correctly on its own.
+     ------------------------------------------------------------------------- */
+  .snip-cta {
+    background: var(--snip-surface, #efeff0);
+    padding: 24px;
+    text-align: center;
+  }
+  
+  .snip-cta__inner {
+    max-width: var(--snip-max-width, 900px);
+    margin: 0 auto;
+  }
+  
+  /* Page-specific: the tCAP overview folds its Sources block into this grey
+     band (rather than a separate white section below) so the grey runs
+     uninterrupted down to the host page's footer. .snip-cta itself is
+     center-aligned for the button; reset that here for the left-aligned
+     citation list. */
+  .snip-cta__sources {
+    margin-top: var(--space-6, 3rem);
+    text-align: left;
+  }
+  
+  /* Page-specific: compact, fixed-width all-caps treatment of the shared
+     .snippetButton for this page's CTA. */
+  .snip-cta.snip-cta--lg .snippetButton {
+    width: 390px;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-size: 24px;
+    border-width: 3px;
+    padding: 0.65em 1.2em;
+    text-transform: uppercase;
+  }
+  
+  /* The CMS theme's own `.snippetButton` only contributes `display: block` and
+     a `max-width` cap — everything else is redefined here so the button looks
+     right regardless of what the host page's global CSS does with it.
+     `!important` on display/max-width: `display: block` ignores the ancestor's
+     `text-align: center`, which is what centers the button inside .snip-cta. */
+  .snip-cta .snippetButton {
+    display: inline-block !important;
+    max-width: none !important;
+    background: var(--snip-brand, #006747);
+    color: #fff;
+    border: 2px solid var(--snip-brand, #006747);
+    border-radius: 0;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 0.85em 1.6em;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .snip-cta .snippetButton:hover,
+  .snip-cta .snippetButton:focus {
+    background: var(--snip-brand-dark, #004c35);
+    border-color: var(--snip-brand-dark, #004c35);
+    color: #fff;
+  }
+  
+  /* -------------------------------------------------------------------------
+     Bottom pill nav — equal-width link row with a non-link "current page"
+     pill. `.is-active` marks whichever one is current.
+     ------------------------------------------------------------------------- */
+  .snip-nav-band {
+    width: 100%;
+    background: var(--snip-surface, #efeff0);
+    padding: 24px;
+    box-sizing: border-box;
+  }
+  
+  .snip-nav-band__inner {
+    width: 100%;
+    max-width: var(--container-max-width, 1280px);
+    margin: 0 auto;
+  }
+  
+  .snip-nav-band .snip-nav {
+    border-top: 0;
+    padding-top: 0;
+  }
+  
   .snip-nav {
-    flex-wrap: wrap;
+    display: flex;
+    gap: 8px;
+    font-size: 13px;
+    text-align: center;
+    border-top: 1px solid var(--snip-border-soft);
+    padding-top: 20px;
   }
-
+  
   .snip-nav__link {
-    flex: 1 1 45%;
+    flex: 1;
+    display: block;
+    background: var(--snip-surface-alt);
+    color: var(--snip-brand);
+    border: 1.5px solid var(--snip-brand);
+    border-radius: 3px;
+    padding: 10px 12px;
+    text-decoration: none;
   }
-}
-/*]]>*/
-
-/* ---- Page-specific addition: .stylized-header (diagonal-stripe accent
-   header). Not defined in the shared snippet-template.css master above
-   (overview.snippet.html relies on a differently-styled .section__heading
-   instead) -- added here per the design handoff so this page is fully
-   self-contained. ---- */
-.stylized-header {
-  display: inline-block;
-  position: relative;
-  padding-top: 1rem;
-  margin: 0;
-  font-family: var(--font-family-secondary);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  color: var(--color-secondary-evergreen);
-}
-.stylized-header:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 0.4rem;
-  width: 3.5rem;
-  background: repeating-linear-gradient(-45deg, var(--color-primary-usfgreen), var(--color-primary-usfgreen) 1px, var(--color-transparent) 2px, var(--color-transparent) 5px);
-}
-.section--dark .stylized-header:before {
-  background: repeating-linear-gradient(-45deg, #fff, #fff 1px, var(--color-transparent) 2px, var(--color-transparent) 5px);
-}
-
-/* ---- Page-specific override: explicit grey CTA band (distinct from the
-   --snip-surface token used elsewhere), per design review feedback. ---- */
-.snip-cta {
-  background: #e8e8e8;
-}
-
-/* ---- Page-specific override: 84x84 rounded photo slot replacing the
-   numbered circle badge, per design handoff. Real photography still to be
-   sourced -- placeholder shows the pending subject label. ---- */
-.snip-card--step {
-  grid-template-columns: 84px 1fr;
-}
-.snip-card__photo {
-  width: 84px;
-  height: 84px;
-  border-radius: 12px;
-  background: var(--snip-surface);
-  border: 1px dashed var(--snip-border-dashed);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 4px;
-  font-size: 10px;
-  line-height: 1.3;
-  color: var(--snip-text-muted);
-  flex-shrink: 0;
-}
-</style>
-<script>
-//<![CDATA[
-// Inlined (not <script src>) because OmniCMS strips external <script src> tags on save.
-  // Master copy: snippet-template.js -- keep this block in sync by hand.
-/* ==========================================================================
-   Snippet component template — behaviors
-   Generic, data-attribute-driven interactions for snippet-template.css
-   components. See NAMING-CONVENTIONS.md for the full behavior contract and
-   CATALOG.md for copy-pasteable markup that already wires these up.
-
-   Everything here auto-initializes on DOMContentLoaded by scanning for its
-   own data-attributes, so including this file is enough — no per-page JS
-   authoring needed for the common cases (roving hover/active state, an
-   info panel driven by hover, a multi-screen panel flow, inline form
-   validation). Submission itself (the network call) is deliberately left
-   to the page author — see initForms() below.
-   ========================================================================== */
-(function () {
-  "use strict";
-
-  /* -------------------------------------------------------------------
-     Active groups — [data-snip-active-group] wraps [data-snip-active-item]
-     children. Hovering (or tapping, on touch) an item marks it `.is-active`
-     and clears any other item in the group; hovering away clears it.
-     If the group also carries [data-snip-info-target="#id"], each item's
-     `data-info` text is written into that target element on activate, and
-     the target's original text is restored when nothing is active.
-     Powers both the stage-card "which step am I on" pattern and the
-     timeline/pathway "hover for details" pattern from one code path.
-     ------------------------------------------------------------------- */
-  function initActiveGroups() {
-    document.querySelectorAll("[data-snip-active-group]").forEach(function (group) {
-      var items = Array.from(group.querySelectorAll("[data-snip-active-item]"));
-      if (!items.length) return;
-
-      var targetSelector = group.getAttribute("data-snip-info-target");
-      var target = targetSelector ? document.querySelector(targetSelector) : null;
-      var defaultText = target ? target.textContent : "";
-
-      function setActive(item) {
-        items.forEach(function (i) { i.classList.remove("is-active"); });
-        if (item) item.classList.add("is-active");
-        if (target) target.textContent = item && item.dataset.info ? item.dataset.info : defaultText;
-      }
-
-      items.forEach(function (item) {
-        item.addEventListener("mouseenter", function () { setActive(item); });
-        item.addEventListener("mouseleave", function () { setActive(null); });
-        item.addEventListener("click", function () { setActive(item); });
-        item.addEventListener("touchstart", function () { setActive(item); }, { passive: true });
-      });
-    });
+  
+  .snip-nav__link.is-active {
+    background: var(--snip-brand);
+    color: #fff;
   }
-
-  /* -------------------------------------------------------------------
-     Panel flow — [data-snip-panel] wraps one or more [data-snip-screen="x"]
-     sections. [data-snip-go="x"] buttons switch to screen "x" (`.is-hidden`
-     toggles on every other screen); [data-snip-reset] buttons reset every
-     form in the panel and return to the initial screen (the first screen
-     present, or [data-snip-initial="x"] on the panel root if set).
-     Powers the choose → form → success flow from the info-request panel.
-     ------------------------------------------------------------------- */
-  function initPanels() {
-    document.querySelectorAll("[data-snip-panel]").forEach(function (panel) {
-      var screens = Array.from(panel.querySelectorAll("[data-snip-screen]"));
-      if (!screens.length) return;
-      var initial = panel.getAttribute("data-snip-initial") || screens[0].getAttribute("data-snip-screen");
-
-      function show(name) {
-        screens.forEach(function (screen) {
-          screen.classList.toggle("is-hidden", screen.getAttribute("data-snip-screen") !== name);
-        });
-      }
-
-      panel.querySelectorAll("[data-snip-go]").forEach(function (btn) {
-        btn.addEventListener("click", function () { show(btn.getAttribute("data-snip-go")); });
-      });
-
-      panel.querySelectorAll("[data-snip-reset]").forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          panel.querySelectorAll("form").forEach(function (form) {
-            form.reset();
-            clearFormErrors(form);
-          });
-          show(initial);
-        });
-      });
-
-      show(initial);
-    });
+  
+  /* -------------------------------------------------------------------------
+     FAQ group — a labeled category of native `details`/`summary` items
+     ------------------------------------------------------------------------- */
+  .snip-faq__title {
+    margin: 0 0 12px;
+    font-family: var(--snip-font-display);
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--snip-brand);
+    text-transform: uppercase;
   }
-
-  /* -------------------------------------------------------------------
-     Form validation — <form data-snip-validate novalidate> uses the
-     browser's own constraint validation (`required`, `type="email"`,
-     `pattern`, etc. on each .snip-input) instead of reimplementing field
-     rules in JS. The `novalidate` attribute is REQUIRED alongside
-     data-snip-validate: without it, the browser's native validation UI
-     intercepts the submit event before this script ever sees it (fields
-     still get focused, but no `.snip-field__error` text or `snip:validated`
-     event happens — checkValidity() below is what surfaces the same rules
-     through this library's own error UI instead). Errors
-     render into `.snip-field__error[data-snip-error-for="{fieldName}"]` (falls
-     back to the nearest following `.snip-field__error` if none is tagged)
-     and `.snip-input--invalid` is added to the offending field.
-
-     A field named via [data-snip-honeypot] is a bot trap: if it has any
-     value, the form is treated as valid but flagged `honeypot: true` in
-     the emitted event so the caller can no-op instead of actually
-     submitting.
-
-     This module does NOT perform the network submission — that's
-     business-specific (endpoint, payload shape, redirect). On a valid
-     submit it dispatches a `snip:validated` CustomEvent on the form with
-     `detail = { data, honeypot }`; listen for that to send the request:
-
-       form.addEventListener('snip:validated', function (e) {
-         if (e.detail.honeypot) return; // silently treat as success
-         fetch(url, { method: 'POST', body: JSON.stringify(e.detail.data) })
-           .then(...).catch(function () { Snip.setBanner(form, 'message'); });
-       });
-     ------------------------------------------------------------------- */
-  function clearFormErrors(form) {
-    form.querySelectorAll(".snip-input--invalid").forEach(function (el) {
-      el.classList.remove("snip-input--invalid");
-    });
-    form.querySelectorAll(".snip-field__error").forEach(function (el) {
-      el.textContent = "";
-    });
-    setBanner(form, "");
+  
+  .snip-faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--snip-border);
   }
-
-  function errorElFor(field) {
-    var name = field.getAttribute("name");
-    var tagged = name && field.closest("form").querySelector('.snip-field__error[data-snip-error-for="' + name + '"]');
-    if (tagged) return tagged;
-    var wrap = field.closest(".snip-field, .snip-field--tight");
-    return wrap ? wrap.querySelector(".snip-field__error") : null;
+  
+  .snip-faq__list details {
+    background: var(--snip-surface);
+    padding: 14px 16px;
   }
-
-  function setBanner(form, message) {
-    var banner = form.querySelector(".snip-banner--error");
-    if (!banner) return;
-    banner.textContent = message || "";
-    banner.style.display = message ? "" : "none";
+  
+  .snip-faq__list summary {
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--snip-brand);
+    list-style-position: outside;
   }
-
-  function setSubmitting(form, isSubmitting) {
-    var btn = form.querySelector('.snip-btn--primary, [type="submit"]');
-    if (btn) btn.disabled = !!isSubmitting;
-    form.classList.toggle("is-loading", !!isSubmitting);
+  
+  .snip-faq__list summary:hover,
+  .snip-faq__list summary:focus {
+    color: var(--snip-brand-dark);
   }
-
-  function initForms() {
-    document.querySelectorAll("form[data-snip-validate]").forEach(function (form) {
-      form.addEventListener("input", function (e) {
-        if (e.target && e.target.classList.contains("snip-input")) {
-          e.target.classList.remove("snip-input--invalid");
-          var errEl = errorElFor(e.target);
-          if (errEl) errEl.textContent = "";
+  
+  .snip-faq__list p {
+    margin: 10px 0 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--snip-text);
+  }
+  
+  /* -------------------------------------------------------------------------
+     Comparison table — CSS-grid rows, no `table` markup required
+     ------------------------------------------------------------------------- */
+  .snip-table {
+    border: 1px solid var(--snip-border);
+  }
+  
+  .snip-table__row {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr;
+  }
+  
+  .snip-table__row + .snip-table__row {
+    border-top: 1px solid var(--snip-border);
+  }
+  
+  .snip-table__cell {
+    padding: 12px 14px;
+    font-size: 13px;
+    color: var(--snip-text);
+    border-right: 1px solid var(--snip-border);
+  }
+  
+  .snip-table__cell:last-child {
+    border-right: none;
+  }
+  
+  .snip-table__row--head {
+    border-bottom: 3px solid var(--snip-text);
+  }
+  
+  .snip-table__row--head .snip-table__cell {
+    font-family: var(--snip-font-display);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--snip-text);
+    text-transform: uppercase;
+  }
+  
+  /* -------------------------------------------------------------------------
+     Note / aside — plain info box, or dashed "soft" variant for
+     provisional/in-progress content notes
+     ------------------------------------------------------------------------- */
+  .snip-note {
+    border: 1px solid var(--snip-border);
+    background: var(--snip-surface-alt);
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--snip-text);
+  }
+  
+  .snip-note--soft {
+    border: 1px dashed var(--snip-border-dashed);
+    background: #fcfcfa;
+    font-size: 13px;
+  }
+  
+  /* -------------------------------------------------------------------------
+     Panel — standalone bordered widget shell (was #bellini-info-request
+     .bi-shell), for multi-step forms, request-info widgets, etc. Independent
+     of .snip-shell — a panel is a self-contained widget, not page content, so
+     it carries its own max-width.
+     ------------------------------------------------------------------------- */
+  .snip-panel {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--snip-surface-alt);
+    border: 1px solid var(--snip-border);
+    overflow: hidden;
+    font-family: inherit;
+    color: var(--snip-ink);
+  }
+  
+  .snip-panel__pad {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  
+  .snip-panel__band {
+    background: var(--snip-brand);
+    color: #fff;
+    padding-top: 28px;
+    padding-bottom: 24px;
+    border-bottom: 4px solid var(--snip-gold);
+  }
+  
+  .snip-panel__body {
+    padding-top: 28px;
+    padding-bottom: 32px;
+  }
+  
+  .snip-panel__title {
+    margin: 0;
+    font-size: 26px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #fff;
+  }
+  
+  .snip-panel__subtitle {
+    margin: 10px 0 0;
+    color: #dfeae5;
+    font-size: 15px;
+  }
+  
+  /* Eyebrow label — light-on-dark, for use inside .snip-panel__band */
+  .snip-kicker {
+    font-size: 13px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0 0 6px;
+    color: #edebd1;
+  }
+  
+  /* Section label — dark-on-light, for use inside .snip-panel__body */
+  .snip-section-label {
+    margin: 0 0 16px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--snip-muted);
+  }
+  
+  .snip-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 0;
+    color: #edebd1;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 14px;
+  }
+  
+  .snip-back:hover,
+  .snip-back:focus {
+    text-decoration: underline;
+    outline: 3px solid #edebd1;
+    outline-offset: 3px;
+  }
+  
+  /* -------------------------------------------------------------------------
+     Choice — a large clickable option row (e.g. "which of these are you?"),
+     stacked with .snip-choice-stack. Not the same as .snip-card--icon: a
+     choice is a full-width row driving navigation, not a grid tile.
+     ------------------------------------------------------------------------- */
+  .snip-choice-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  
+  .snip-choice {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    text-align: left;
+    padding: 20px 22px;
+    background: var(--snip-surface-alt);
+    border: 1px solid var(--snip-border);
+    border-radius: 0;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  
+  .snip-choice:hover,
+  .snip-choice:focus {
+    border-color: var(--snip-brand);
+    background: #f7faf9;
+    outline: 3px solid var(--snip-focus);
+    outline-offset: 2px;
+  }
+  
+  .snip-choice__title {
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--snip-ink);
+  }
+  
+  .snip-choice__desc {
+    display: block;
+    font-size: 14px;
+    color: var(--snip-muted);
+    margin-top: 3px;
+  }
+  
+  .snip-choice__arrow {
+    font-size: 22px;
+    color: var(--snip-brand);
+    font-weight: 700;
+    line-height: 1;
+  }
+  
+  /* -------------------------------------------------------------------------
+     Form fields — explicit classes rather than bare tag/attribute selectors
+     (`label`, `input[type=...]`) so this stays portable: a page that already
+     styles its own `label`/`input` elements won't have those rules clobbered.
+     ------------------------------------------------------------------------- */
+  .snip-field {
+    margin-bottom: 20px;
+  }
+  
+  .snip-field--tight {
+    margin-bottom: 18px;
+  }
+  
+  .snip-label {
+    display: block;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: var(--snip-ink);
+  }
+  
+  .snip-required {
+    color: var(--snip-danger);
+  }
+  
+  .snip-input {
+    display: block;
+    width: 100%;
+    height: 48px;
+    padding: 0 12px;
+    font-size: 16px;
+    color: var(--snip-ink);
+    border: 1px solid var(--snip-border);
+    border-radius: 0;
+    background: var(--snip-surface-alt);
+    font-family: inherit;
+  }
+  
+  .snip-input:focus {
+    outline: 3px solid var(--snip-focus);
+    outline-offset: 2px;
+  }
+  
+  .snip-input--invalid {
+    border-color: var(--snip-danger) !important;
+  }
+  
+  .snip-field__error {
+    color: var(--snip-danger);
+    font-size: 13px;
+    margin-top: 5px;
+  }
+  
+  .snip-banner--error {
+    padding: 14px 16px;
+    font-size: 15px;
+    margin-bottom: 20px;
+    background: var(--snip-danger-bg);
+    color: var(--snip-danger-text);
+    border: 1px solid var(--snip-danger-border);
+  }
+  
+  .snip-divider {
+    border-top: 1px solid #e2e2e2;
+    margin-bottom: 20px;
+    padding-top: 22px;
+  }
+  
+  .snip-visually-hidden {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  
+  .snip-consent-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  
+  .snip-consent-row input {
+    width: auto;
+    margin-top: 3px;
+    flex: 0 0 auto;
+  }
+  
+  .snip-consent-row label {
+    font-weight: 400;
+    margin: 0;
+    color: var(--snip-muted);
+  }
+  
+  .snip-consent-row a {
+    color: var(--snip-brand);
+  }
+  
+  /* 3-column address row (2fr 1fr 1fr) — a specific-purpose grid modifier
+     alongside the general .snip-grid--2/3/4 column-count modifiers. */
+  .snip-grid--address {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 14px;
+    align-items: start;
+    margin-bottom: 18px;
+  }
+  
+  /* -------------------------------------------------------------------------
+     Button — a form-context button (submit/reset/retry). Distinct from the
+     CMS theme's own `.snippetButton` (see .snip-cta above): this is fully
+     ours, meant for use inside panels/forms, and supports a disabled state.
+     ------------------------------------------------------------------------- */
+  .snip-btn {
+    display: inline-block;
+    padding: 14px 22px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 0;
+    border: 2px solid var(--snip-brand);
+    cursor: pointer;
+    font-family: inherit;
+    text-align: center;
+  }
+  
+  .snip-btn:focus {
+    outline: 3px solid var(--snip-focus);
+    outline-offset: 2px;
+  }
+  
+  .snip-btn--primary {
+    width: 100%;
+    color: #fff;
+    background: var(--snip-brand);
+  }
+  
+  .snip-btn--primary:hover,
+  .snip-btn--primary:focus {
+    background: var(--snip-brand-dark);
+    border-color: var(--snip-brand-dark);
+  }
+  
+  .snip-btn--secondary {
+    color: var(--snip-brand);
+    background: var(--snip-surface-alt);
+  }
+  
+  .snip-btn--secondary:hover,
+  .snip-btn--secondary:focus {
+    background: var(--snip-brand);
+    color: #fff;
+  }
+  
+  .snip-btn:disabled {
+    opacity: .65;
+    cursor: not-allowed;
+  }
+  
+  .snip-required-note {
+    font-size: 13px;
+    color: var(--snip-muted);
+    margin-top: 14px;
+    text-align: center;
+  }
+  
+  /* -------------------------------------------------------------------------
+     Success state — e.g. a post-submit "thank you" screen
+     ------------------------------------------------------------------------- */
+  .snip-success {
+    padding-top: 44px;
+    padding-bottom: 48px;
+    text-align: center;
+  }
+  
+  .snip-success__icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--snip-success-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    animation: snip-pop .3s ease both;
+  }
+  
+  .snip-success__icon span {
+    color: var(--snip-success);
+    font-size: 34px;
+    line-height: 1;
+  }
+  
+  .snip-success__title {
+    margin: 0 0 10px;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--snip-ink);
+  }
+  
+  .snip-success__text {
+    margin: 0 auto;
+    max-width: 420px;
+    font-size: 16px;
+    color: var(--snip-muted);
+  }
+  
+  @keyframes snip-pop {
+    from {
+      transform: scale(.7);
+      opacity: 0;
+    }
+  
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* -------------------------------------------------------------------------
+     Flip — a two-face 3D flip on hover, e.g. an event date badge that flips
+     to a "starts" label, or a link styled as a physical flip-button (was the
+     AI+X events widget's `.ce-*` classes). Two shapes share the mechanic:
+       .snip-event        row link; hovering anywhere in the row flips its
+                           circular badge (badge and trigger are different
+                           elements, so the hover has to target the row)
+       .snip-flip-btn      a standalone rectangular button that flips itself
+     ------------------------------------------------------------------------- */
+  .snip-event {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .snip-event__badge {
+    flex: none;
+    width: 64px;
+    height: 64px;
+    perspective: 600px;
+  }
+  
+  .snip-event__badge-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform .55s cubic-bezier(.4, .2, .2, 1);
+    transform-style: preserve-3d;
+  }
+  
+  .snip-event:hover .snip-event__badge-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .snip-event__face {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.12;
+    font-family: var(--snip-font-display);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .snip-event__face--front {
+    background: var(--snip-brand);
+    color: #fff;
+  }
+  
+  .snip-event__face--back {
+    background: var(--snip-gold);
+    color: var(--snip-brand);
+    box-sizing: border-box;
+    transform: rotateY(180deg);
+  }
+  
+  .snip-event__title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--snip-brand);
+    transition: color .3s ease;
+  }
+  
+  .snip-event:hover .snip-event__title {
+    color: var(--snip-gold-dark, #a5904a);
+  }
+  
+  .snip-flip-btn {
+    display: block;
+    height: 46px;
+    text-decoration: none;
+    perspective: 700px;
+  }
+  
+  .snip-flip-btn__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform .5s cubic-bezier(.4, .2, .2, 1);
+    transform-style: preserve-3d;
+  }
+  
+  .snip-flip-btn:hover .snip-flip-btn__inner {
+    transform: rotateX(180deg);
+  }
+  
+  .snip-flip-btn__face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-family: var(--snip-font-display);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .snip-flip-btn__face--front {
+    background: var(--snip-brand);
+    color: #fff;
+  }
+  
+  .snip-flip-btn__face--back {
+    background: var(--snip-gold);
+    color: var(--snip-brand);
+    transform: rotateX(180deg);
+  }
+  
+  /* -------------------------------------------------------------------------
+     Responsive
+     ------------------------------------------------------------------------- */
+  @media (max-width: 700px) {
+    .snip-grid--2,
+    .snip-grid--3 {
+      grid-template-columns: 1fr;
+    }
+  
+    .snip-grid--4 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  
+    .snip-grid--address {
+      grid-template-columns: 1fr;
+    }
+  
+    .snip-panel__pad {
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+  
+    .snip-table__row {
+      grid-template-columns: 1fr;
+    }
+  
+    .snip-table__cell {
+      border-right: none;
+      border-bottom: 1px solid var(--snip-border);
+    }
+  
+    .snip-table__cell:last-child {
+      border-bottom: none;
+    }
+  
+    .snip-nav {
+      flex-wrap: wrap;
+    }
+  
+    .snip-nav__link {
+      flex: 1 1 45%;
+    }
+  }
+  /*]]>*/
+  
+  /* ---- Page-specific override: explicit grey CTA band (distinct from the
+     --snip-surface token used elsewhere), per design review feedback. ---- */
+  .snip-cta {
+    background: #e8e8e8;
+  }
+  
+  /* ---- Page-specific override: 84x84 rounded photo slot replacing the
+     numbered circle badge, per design handoff. Real photography still to be
+     sourced -- placeholder shows the pending subject label. ---- */
+  .snip-card--step {
+    grid-template-columns: 84px 1fr;
+  }
+  .snip-card__photo {
+    width: 84px;
+    height: 84px;
+    border-radius: 12px;
+    background: var(--snip-surface);
+    border: 1px dashed var(--snip-border-dashed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4px;
+    font-size: 10px;
+    line-height: 1.3;
+    color: var(--snip-text-muted);
+    flex-shrink: 0;
+  }
+  </style>
+  <script>
+  //<![CDATA[
+  // Inlined (not <script src>) because OmniCMS strips external <script src> tags on save.
+    // Master copy: snippet-template.js -- keep this block in sync by hand.
+  /* ==========================================================================
+     Snippet component template — behaviors
+     Generic, data-attribute-driven interactions for snippet-template.css
+     components. See NAMING-CONVENTIONS.md for the full behavior contract and
+     CATALOG.md for copy-pasteable markup that already wires these up.
+  
+     Everything here auto-initializes on DOMContentLoaded by scanning for its
+     own data-attributes, so including this file is enough — no per-page JS
+     authoring needed for the common cases (roving hover/active state, an
+     info panel driven by hover, a multi-screen panel flow, inline form
+     validation). Submission itself (the network call) is deliberately left
+     to the page author — see initForms() below.
+     ========================================================================== */
+  (function () {
+    "use strict";
+  
+    /* -------------------------------------------------------------------
+       Active groups — [data-snip-active-group] wraps [data-snip-active-item]
+       children. Hovering (or tapping, on touch) an item marks it `.is-active`
+       and clears any other item in the group; hovering away clears it.
+       If the group also carries [data-snip-info-target="#id"], each item's
+       `data-info` text is written into that target element on activate, and
+       the target's original text is restored when nothing is active.
+       Powers both the stage-card "which step am I on" pattern and the
+       timeline/pathway "hover for details" pattern from one code path.
+       ------------------------------------------------------------------- */
+    function initActiveGroups() {
+      document.querySelectorAll("[data-snip-active-group]").forEach(function (group) {
+        var items = Array.from(group.querySelectorAll("[data-snip-active-item]"));
+        if (!items.length) return;
+  
+        var targetSelector = group.getAttribute("data-snip-info-target");
+        var target = targetSelector ? document.querySelector(targetSelector) : null;
+        var defaultText = target ? target.textContent : "";
+  
+        function setActive(item) {
+          items.forEach(function (i) { i.classList.remove("is-active"); });
+          if (item) item.classList.add("is-active");
+          if (target) target.textContent = item && item.dataset.info ? item.dataset.info : defaultText;
         }
+  
+        items.forEach(function (item) {
+          item.addEventListener("mouseenter", function () { setActive(item); });
+          item.addEventListener("mouseleave", function () { setActive(null); });
+          item.addEventListener("click", function () { setActive(item); });
+          item.addEventListener("touchstart", function () { setActive(item); }, { passive: true });
+        });
       });
-
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        clearFormErrors(form);
-
-        var honeypotField = form.querySelector("[data-snip-honeypot]");
-        var isHoneypot = !!(honeypotField && honeypotField.value.trim());
-
-        var fields = Array.from(form.querySelectorAll(".snip-input"));
-        var firstInvalid = null;
-        var valid = true;
-
-        if (!isHoneypot) {
+    }
+  
+    /* -------------------------------------------------------------------
+       Panel flow — [data-snip-panel] wraps one or more [data-snip-screen="x"]
+       sections. [data-snip-go="x"] buttons switch to screen "x" (`.is-hidden`
+       toggles on every other screen); [data-snip-reset] buttons reset every
+       form in the panel and return to the initial screen (the first screen
+       present, or [data-snip-initial="x"] on the panel root if set).
+       Powers the choose → form → success flow from the info-request panel.
+       ------------------------------------------------------------------- */
+    function initPanels() {
+      document.querySelectorAll("[data-snip-panel]").forEach(function (panel) {
+        var screens = Array.from(panel.querySelectorAll("[data-snip-screen]"));
+        if (!screens.length) return;
+        var initial = panel.getAttribute("data-snip-initial") || screens[0].getAttribute("data-snip-screen");
+  
+        function show(name) {
+          screens.forEach(function (screen) {
+            screen.classList.toggle("is-hidden", screen.getAttribute("data-snip-screen") !== name);
+          });
+        }
+  
+        panel.querySelectorAll("[data-snip-go]").forEach(function (btn) {
+          btn.addEventListener("click", function () { show(btn.getAttribute("data-snip-go")); });
+        });
+  
+        panel.querySelectorAll("[data-snip-reset]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            panel.querySelectorAll("form").forEach(function (form) {
+              form.reset();
+              clearFormErrors(form);
+            });
+            show(initial);
+          });
+        });
+  
+        show(initial);
+      });
+    }
+  
+    /* -------------------------------------------------------------------
+       Form validation — <form data-snip-validate novalidate> uses the
+       browser's own constraint validation (`required`, `type="email"`,
+       `pattern`, etc. on each .snip-input) instead of reimplementing field
+       rules in JS. The `novalidate` attribute is REQUIRED alongside
+       data-snip-validate: without it, the browser's native validation UI
+       intercepts the submit event before this script ever sees it (fields
+       still get focused, but no `.snip-field__error` text or `snip:validated`
+       event happens — checkValidity() below is what surfaces the same rules
+       through this library's own error UI instead). Errors
+       render into `.snip-field__error[data-snip-error-for="{fieldName}"]` (falls
+       back to the nearest following `.snip-field__error` if none is tagged)
+       and `.snip-input--invalid` is added to the offending field.
+  
+       A field named via [data-snip-honeypot] is a bot trap: if it has any
+       value, the form is treated as valid but flagged `honeypot: true` in
+       the emitted event so the caller can no-op instead of actually
+       submitting.
+  
+       This module does NOT perform the network submission — that's
+       business-specific (endpoint, payload shape, redirect). On a valid
+       submit it dispatches a `snip:validated` CustomEvent on the form with
+       `detail = { data, honeypot }`; listen for that to send the request:
+  
+         form.addEventListener('snip:validated', function (e) {
+           if (e.detail.honeypot) return; // silently treat as success
+           fetch(url, { method: 'POST', body: JSON.stringify(e.detail.data) })
+             .then(...).catch(function () { Snip.setBanner(form, 'message'); });
+         });
+       ------------------------------------------------------------------- */
+    function clearFormErrors(form) {
+      form.querySelectorAll(".snip-input--invalid").forEach(function (el) {
+        el.classList.remove("snip-input--invalid");
+      });
+      form.querySelectorAll(".snip-field__error").forEach(function (el) {
+        el.textContent = "";
+      });
+      setBanner(form, "");
+    }
+  
+    function errorElFor(field) {
+      var name = field.getAttribute("name");
+      var tagged = name && field.closest("form").querySelector('.snip-field__error[data-snip-error-for="' + name + '"]');
+      if (tagged) return tagged;
+      var wrap = field.closest(".snip-field, .snip-field--tight");
+      return wrap ? wrap.querySelector(".snip-field__error") : null;
+    }
+  
+    function setBanner(form, message) {
+      var banner = form.querySelector(".snip-banner--error");
+      if (!banner) return;
+      banner.textContent = message || "";
+      banner.style.display = message ? "" : "none";
+    }
+  
+    function setSubmitting(form, isSubmitting) {
+      var btn = form.querySelector('.snip-btn--primary, [type="submit"]');
+      if (btn) btn.disabled = !!isSubmitting;
+      form.classList.toggle("is-loading", !!isSubmitting);
+    }
+  
+    function initForms() {
+      document.querySelectorAll("form[data-snip-validate]").forEach(function (form) {
+        form.addEventListener("input", function (e) {
+          if (e.target && e.target.classList.contains("snip-input")) {
+            e.target.classList.remove("snip-input--invalid");
+            var errEl = errorElFor(e.target);
+            if (errEl) errEl.textContent = "";
+          }
+        });
+  
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          clearFormErrors(form);
+  
+          var honeypotField = form.querySelector("[data-snip-honeypot]");
+          var isHoneypot = !!(honeypotField && honeypotField.value.trim());
+  
+          var fields = Array.from(form.querySelectorAll(".snip-input"));
+          var firstInvalid = null;
+          var valid = true;
+  
+          if (!isHoneypot) {
+            fields.forEach(function (field) {
+              if (field.checkValidity()) return;
+              valid = false;
+              field.classList.add("snip-input--invalid");
+              var errEl = errorElFor(field);
+              if (errEl) errEl.textContent = field.validationMessage;
+              if (!firstInvalid) firstInvalid = field;
+            });
+          }
+  
+          if (!valid) {
+            if (firstInvalid) firstInvalid.focus();
+            return;
+          }
+  
+          var data = {};
           fields.forEach(function (field) {
-            if (field.checkValidity()) return;
-            valid = false;
-            field.classList.add("snip-input--invalid");
-            var errEl = errorElFor(field);
-            if (errEl) errEl.textContent = field.validationMessage;
-            if (!firstInvalid) firstInvalid = field;
+            if (field.name) data[field.name] = field.value;
           });
-        }
-
-        if (!valid) {
-          if (firstInvalid) firstInvalid.focus();
-          return;
-        }
-
-        var data = {};
-        fields.forEach(function (field) {
-          if (field.name) data[field.name] = field.value;
+  
+          form.dispatchEvent(new CustomEvent("snip:validated", {
+            detail: { data: data, honeypot: isHoneypot }
+          }));
         });
-
-        form.dispatchEvent(new CustomEvent("snip:validated", {
-          detail: { data: data, honeypot: isHoneypot }
-        }));
       });
-    });
-  }
-
-  function init() {
-    initActiveGroups();
-    initPanels();
-    initForms();
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
-
-  window.Snip = { setBanner: setBanner, setSubmitting: setSubmitting };
-})();
-//]]>
-</script>
-
-<div class="snip-shell snip-shell--stats">
+    }
+  
+    function init() {
+      initActiveGroups();
+      initPanels();
+      initForms();
+    }
+  
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+  
+    window.Snip = { setBanner: setBanner, setSubmitting: setSubmitting };
+  })();
+  //]]>
+  </script>
+  <div class="snip-shell snip-shell--stats">
   <div class="snip-stack" data-screen-label="Layers">
-    <div class="stat-group stat-group--4">
-      <div class="stat"><span class="stat__value">+17.9%</span><span class="stat__text">Software developer growth 2023&ndash;2033</span></div>
-      <div class="stat"><span class="stat__value">546K</span><span class="stat__text">Tech workers in Florida (No. 4 nationally)</span></div>
-      <div class="stat"><span class="stat__value">$102,908</span><span class="stat__text">Florida tech wage &mdash; 122% above state median</span></div>
-      <div class="stat"><span class="stat__value">12,735</span><span class="stat__text">Active Florida job postings requiring AI skills</span></div>
-    </div>
+  <div class="stat-group stat-group--4">
+  <div class="stat"><span class="stat__value">+17.9%</span><span class="stat__text">Software developer growth 2023&ndash;2033</span></div>
+  <div class="stat"><span class="stat__value">546K</span><span class="stat__text">Tech workers in Florida (No. 4 nationally)</span></div>
+  <div class="stat"><span class="stat__value">$102,908</span><span class="stat__text">Florida tech wage &mdash; 122% above state median</span></div>
+  <div class="stat"><span class="stat__value">12,735</span><span class="stat__text">Active Florida job postings requiring AI skills</span></div>
   </div>
-</div>
-
-<div class="snip-nav-band">
+  </div>
+  </div>
+  <div class="snip-nav-band">
   <div class="snip-nav-band__inner">
-    <div class="snip-nav">
-      <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/index.aspx">Overview</a>
-      <div class="snip-nav__link is-active">Layers</div>
-      <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/experiential-learning.aspx">Exp. Learning</a>
-      <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/faq.aspx">FAQ</a>
-      <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a>
-    </div>
+  <div class="snip-nav"><a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/index.aspx">Overview</a>
+  <div class="snip-nav__link is-active">Layers</div>
+  <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/experiential-learning.aspx">Exp. Learning</a> <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/faq.aspx">FAQ</a> <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a></div>
   </div>
-</div>
-
-<div class="section section--usfgreen section--dark">
+  </div>
+  <div class="section section--usfgreen section--dark tcap-section--stylized-header">
+  <div class="stylized-header-container--centered">
+  <h2 class="stylized-header" style="color: #fff;"><span>The Student Experience</span></h2>
+  </div>
   <div class="section__inner container">
-    <div class="snip-stack" data-screen-label="Layers">
-      <div class="snip-heading">
-        <h2 class="stylized-header" style="color: #fff;"><span>The Student Experience</span></h2>
-        <h3 class="snip-heading__title" style="font-size: 22px; margin-top: 14px;">Growth Throughout Your Academic Journey</h3>
-        <p class="snip-heading__text">Each step builds on the last so you continue developing career readiness, technical confidence and professional experience.</p>
-      </div>
-      <div class="snip-grid snip-grid--1" data-snip-active-group>
-        <div class="snip-card snip-card--step snip-card--interactive" id="foundations" data-snip-active-item>
-          <div class="snip-card__photo">Photo:<br>onboarding</div>
-          <div>
-            <h3 class="snip-card__title">Targeting Fundamentals</h3>
-            <p class="snip-card__body">Students begin with onboarding, communication development, resume building, LinkedIn setup, GitHub development and goal setting.</p>
-          </div>
-        </div>
-        <div class="snip-card snip-card--step snip-card--interactive" id="power-skills" data-snip-active-item>
-          <div class="snip-card__photo">Photo:<br>mentorship</div>
-          <div>
-            <h3 class="snip-card__title">Core Application</h3>
-            <p class="snip-card__body">Students participate in mentorship opportunities, leadership development and networking experiences that strengthen professional confidence.</p>
-          </div>
-        </div>
-        <div class="snip-card snip-card--step snip-card--interactive" id="connectivity" data-snip-active-item>
-          <div class="snip-card__photo">Photo:<br>internship / networking</div>
-          <div>
-            <h3 class="snip-card__title">Advanced Practice</h3>
-            <p class="snip-card__body">Career readiness becomes more hands-on through internship preparation, employer and alumni engagement, experiential learning pathways, career fair preparation, interview coaching and applied team-based projects.</p>
-          </div>
-        </div>
-        <div class="snip-card snip-card--step snip-card--interactive" id="mastery" data-snip-active-item>
-          <div class="snip-card__photo">Photo:<br>graduation</div>
-          <div>
-            <h3 class="snip-card__title">Professional Mastery</h3>
-            <p class="snip-card__body">Students demonstrate mastery through capstones, advanced coursework, certifications and internship or career placement opportunities.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="snip-stack" data-screen-label="Layers">
+  <div class="snip-heading">
+  <h3 class="snip-heading__title" style="font-size: 22px; margin-top: 14px;">Growth Throughout Your Academic Journey</h3>
+  <p class="snip-heading__text">Each step builds on the last so you continue developing career readiness, technical confidence and professional experience.</p>
   </div>
-</div>
-
-<div class="snip-cta snip-cta--lg">
+  <div class="snip-grid snip-grid--1" data-snip-active-group="">
+  <div id="foundations" class="snip-card snip-card--step snip-card--interactive" data-snip-active-item="">
+  <div class="snip-card__photo">Photo:<br />onboarding</div>
+  <div>
+  <h3 class="snip-card__title">Targeting Fundamentals</h3>
+  <p class="snip-card__body">Students begin with onboarding, communication development, resume building, LinkedIn setup, GitHub development and goal setting.</p>
+  </div>
+  </div>
+  <div id="power-skills" class="snip-card snip-card--step snip-card--interactive" data-snip-active-item="">
+  <div class="snip-card__photo">Photo:<br />mentorship</div>
+  <div>
+  <h3 class="snip-card__title">Core Application</h3>
+  <p class="snip-card__body">Students participate in mentorship opportunities, leadership development and networking experiences that strengthen professional confidence.</p>
+  </div>
+  </div>
+  <div id="connectivity" class="snip-card snip-card--step snip-card--interactive" data-snip-active-item="">
+  <div class="snip-card__photo">Photo:<br />internship / networking</div>
+  <div>
+  <h3 class="snip-card__title">Advanced Practice</h3>
+  <p class="snip-card__body">Career readiness becomes more hands-on through internship preparation, employer and alumni engagement, experiential learning pathways, career fair preparation, interview coaching and applied team-based projects.</p>
+  </div>
+  </div>
+  <div id="mastery" class="snip-card snip-card--step snip-card--interactive" data-snip-active-item="">
+  <div class="snip-card__photo">Photo:<br />graduation</div>
+  <div>
+  <h3 class="snip-card__title">Professional Mastery</h3>
+  <p class="snip-card__body">Students demonstrate mastery through capstones, advanced coursework, certifications and internship or career placement opportunities.</p>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  <div class="snip-cta snip-cta--lg">
   <div class="snip-cta__inner"><a class="snippetButton" href="#">Talk to an advisor</a></div>
   <div class="snip-cta__inner snip-cta__sources">
-    <section class="snip-sources">
-      <h4 class="snip-sources__title">Sources</h4>
-      <ol class="snip-sources__list">
-        <li>Software developer growth 2023&ndash;2033: BLS / MLR 2025.</li>
-        <li>Florida tech workforce count: CompTIA 2025.</li>
-        <li>Median Florida tech wage: CompTIA / Lightcast 2024.</li>
-        <li>Florida AI-skill job postings: CompTIA 2024.</li>
-      </ol>
-    </section>
+  <section class="snip-sources">
+  <h4 class="snip-sources__title">Sources</h4>
+  <ol class="snip-sources__list">
+  <li>Software developer growth 2023&ndash;2033: BLS / MLR 2025.</li>
+  <li>Florida tech workforce count: CompTIA 2025.</li>
+  <li>Median Florida tech wage: CompTIA / Lightcast 2024.</li>
+  <li>Florida AI-skill job postings: CompTIA 2024.</li>
+  </ol>
+  </section>
   </div>
-</div>
+  </div>
