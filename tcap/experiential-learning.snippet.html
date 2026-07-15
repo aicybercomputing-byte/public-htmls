@@ -1809,6 +1809,17 @@
     margin: 0 auto;
   }
 
+  /* Neutralize the host page's "owl" selector (e.g. `.content * + *`),
+     same as .snip-stack/.snip-grid/.snip-card above -- otherwise it adds
+     margin-top to .snip-step__content (misaligning it against the number)
+     and to .snip-step__body (adding an extra gap under the title), on top
+     of the spacing this component already drives via `gap`. */
+  .snip-steps > *,
+  .snip-step > *,
+  .snip-step__content > * {
+    margin-top: 0;
+  }
+
   .snip-step {
     display: grid;
     grid-template-columns: 80px 1fr;
@@ -2087,10 +2098,7 @@
   <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/tech-career-accelerator-program/faq.aspx">FAQ</a> <a class="snip-nav__link" href="https://testsite.usf.edu/ai-cybersecurity-computing/industry/jobs-page.aspx" target="_blank" rel="noopener noreferrer">Jobs Page</a></div>
   </div>
   </div>
-  <div class="section section--usfgreen section--dark tcap-section--stylized-header">
-  <div class="stylized-header-container--centered">
-  <h2 class="stylized-header" style="color: #fff;"><span>Experiential Learning</span></h2>
-  </div>
+  <div class="section section--usfgreen section--dark">
   <div class="section__inner container">
   <div class="snip-stack" data-screen-label="Experiential Learning">
   <div class="snip-heading">
