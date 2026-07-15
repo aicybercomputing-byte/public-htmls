@@ -1945,6 +1945,25 @@
     background: #fff;
   }
   </style>
+<style>
+/*<![CDATA[*/
+/* ---- Owl hardening for this asset (see NAMING-CONVENTIONS.md rule 8).
+   The base stylesheet's `.stat-group > * { margin-top: 0; }` guard is a
+   single class selector -- exactly the same specificity as the host CMS's
+   `.content * + * { margin-top: 1.5em }` owl rule, so it only wins by
+   source order, which isn't guaranteed once this is pasted into the CMS.
+   Verified against a simulated `.content` + owl rule: without this, the
+   second stat ("Why tCAP matters") and each stat's own .stat__text (2nd
+   child after .stat__value) picked up ~1.5em of unwanted top margin.
+   Re-declaring with the section's own modifier class as an ancestor bumps
+   specificity to two classes, safely beating the owl regardless of load
+   order. ---- */
+.section--overview-intro .stat-group > *,
+.section--overview-intro .stat > * {
+  margin-top: 0;
+}
+/*]]>*/
+</style>
 <div class="section section--usfgreen section--dark section--overview-intro">
 <div class="section__inner grid grid-col-12-sm gap-6 gap-7-sm container">
 <div class="stat-group grid-col-span-12-sm">

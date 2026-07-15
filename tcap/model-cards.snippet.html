@@ -1945,9 +1945,26 @@
     background: #fff;
   }
   </style>
-<div class="stylized-header-container--centered stylized-header-container--tcap-model">
-<h2 class="stylized-header"><span>The tCAP Model</span></h2>
-</div>
+<style>
+/*<![CDATA[*/
+/* ---- Owl hardening for this asset (see NAMING-CONVENTIONS.md rule 8).
+   The base stylesheet's `.card__content > * { margin-top: 0; }` guard is
+   a single class selector -- exactly the same specificity as the host
+   CMS's `.content * + * { margin-top: 1.5em }` owl rule, so it only wins
+   by source order, which isn't guaranteed once this is pasted into the
+   CMS. Verified against a simulated `.content` + owl rule: without this,
+   every card's .card__description (2nd child of .card__content, after
+   .card__heading) picked up ~1.5em of unwanted top margin on top of its
+   own intentional spacing. Re-declaring with .section--white as an
+   ancestor bumps specificity to two classes, safely beating the owl
+   regardless of load order -- the .card-group itself is already safe this
+   way (`.section .card-group > *` in the base stylesheet already carries
+   two classes). ---- */
+.section--white .card__content > * {
+  margin-top: 0;
+}
+/*]]>*/
+</style>
 <div class="section section--white">
 <div class="section__inner grid grid-col-12-sm gap-5 container">
 <div class="section__columns grid-col-span-12-sm">

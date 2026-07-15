@@ -1956,14 +1956,45 @@
    directly, not its parent grid, so they keep working unchanged here. ---- */
 .snip-journey-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  /* auto-fit + a real minimum column width, instead of hard breakpoints
+     that force 4/2/1 columns at fixed viewport widths regardless of how
+     much room a column actually has -- this drops a column on its own
+     once 220px can't be maintained, rather than letting one keep
+     shrinking indefinitely. */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 28px;
+  /* Owl guard (see NAMING-CONVENTIONS.md rule 8): the base stylesheet
+     already neutralizes the host CMS's broad `.content * + * { margin-top:
+     1.5em }` rule for its own container classes (.snip-stack, .snip-grid,
+     .section, .card-group, etc.), but .snip-journey-grid/.snip-journey-item
+     are new to this asset and aren't on that list. Without this, the 2nd,
+     3rd and 4th .snip-journey-item (each has a preceding sibling, so the
+     owl rule matches) would get ~1.5em of unwanted top margin once pasted
+     into the CMS, pushing those columns down and misaligning them against
+     the first -- same failure mode .snip-grid > * already guards against,
+     just not covered because this class didn't exist when that list was
+     written. Spacing here is deliberately gap-only, same as every other
+     snip-* container. */
+  margin-top: 0 !important;
+}
+
+/* Two-class selector (.section--sand + .snip-journey-*), matching the
+   existing `.section .card-group > *` pattern elsewhere in this
+   stylesheet: the owl rule is a single class (`.content * + *`), so a
+   same-specificity `.snip-journey-grid > *` would only win by source
+   order, which isn't guaranteed once this is pasted into the CMS (the
+   host theme's stylesheet may load after this inline block). The extra
+   class guarantees this always outranks it. */
+.section--sand .snip-journey-grid > *,
+.section--sand .snip-journey-item > * {
+  margin-top: 0;
 }
 
 .snip-journey-item {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  min-width: 0;
 }
 
 .snip-journey-item__text {
@@ -1974,25 +2005,32 @@
   color: var(--snip-text);
 }
 
-@media (max-width: 700px) {
-  .snip-journey-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+/* Fix: the chevron's clip-path cuts an inward notch on the left edge that
+   reaches its deepest point (24px, or 18px under the base stylesheet's own
+   700px override) exactly at vertical center -- right where the centered
+   num+title row sits. The base stylesheet's own padding-left
+   (var(--space-3), 16px) is narrower than that notch, so at some column
+   widths the "1"/"2"/etc. render partway inside the clipped-away triangle
+   and go invisible. 28px clears the notch at every width this asset uses,
+   so the number is never at the mercy of how much the row's flex content
+   happens to be centered. Also let the title shrink continuously with
+   viewport width (instead of one fixed size until a hard breakpoint swaps
+   in a smaller fixed size) so long stage names have less pressure to push
+   the num toward that same notch. Same specificity as the base rules for
+   these selectors, and declared after them, so this wins at every width
+   without needing !important. */
+.section--sand .snip-card--icon.snip-card--solid.snip-card--chevron {
+  padding-left: 28px;
+  padding-right: 28px;
 }
 
-@media (max-width: 480px) {
-  .snip-journey-grid {
-    grid-template-columns: 1fr;
-  }
+.section--sand .snip-card--icon.snip-card--solid .snip-card__title {
+  font-size: clamp(13px, 1.6vw, 18px);
 }
 /*]]>*/
 </style>
 <div class="section section--sand">
 <div class="section__inner container">
-<div class="snip-stack" data-screen-label="Student Journey">
-<div class="snip-heading snip-heading--journey-title">
-<h2 class="snip-heading__title">Student Journey</h2>
-</div>
 <div class="snip-journey-grid">
 <div class="snip-journey-item">
 <a class="snip-card snip-card--icon snip-card--solid snip-card--chevron" href="https://www.usf.edu/stages.html#foundations"> <span class="snip-card__num">1</span> <span class="snip-card__title">Targeting<br />Fundamentals</span> </a>
@@ -2009,11 +2047,6 @@
 <div class="snip-journey-item">
 <a class="snip-card snip-card--icon snip-card--solid snip-card--chevron" href="https://www.usf.edu/stages.html#mastery"> <span class="snip-card__num">4</span> <span class="snip-card__title">Professional<br />Mastery</span> </a>
 <p class="snip-journey-item__text">Students demonstrate mastery through capstones, advanced coursework, certifications and internship or career placement opportunities.</p>
-</div>
-</div>
-<div class="snip-heading">
-<h2 class="snip-heading__title">A Four-Stage Path to Career Readiness</h2>
-<p class="snip-heading__text">Each stage builds on the last, so students keep developing career readiness, technical confidence and professional experience all the way to graduation.</p>
 </div>
 </div>
 </div>
