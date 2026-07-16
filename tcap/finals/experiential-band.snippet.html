@@ -1963,6 +1963,20 @@
 .section--experiential .section__inner > * {
   margin-top: 0 !important;
 }
+
+/* Owl audit for the CTA + Sources block folded into this asset (see below):
+   verified against a simulated `body * + * { margin-top: 1.5em }` owl rule
+   that `.snip-sources__list li` items 2-4 (each has a preceding <li>
+   sibling) picked up ~16px of unwanted top margin -- the base stylesheet
+   only ever declared `margin-bottom` on these, nothing that resets
+   margin-top, so nothing was there to out-specificity the owl rule.
+   `.snip-cta__sources` itself doesn't need this treatment: its own
+   `margin-top: var(--space-6)` is a single class, which already
+   out-specificities the owl rule's tag+universal selector regardless of
+   source order. */
+.snip-sources__list li {
+  margin-top: 0 !important;
+}
 /*]]>*/
 </style>
 <div class="section section--usfgreen section--dark section--experiential">
@@ -1986,5 +2000,19 @@
 </ul>
 </div>
 </div>
+</div>
+</div>
+<div class="snip-cta snip-cta--lg">
+<div class="snip-cta__inner"><a class="snippetButton" href="#">Talk to an advisor</a></div>
+<div class="snip-cta__inner snip-cta__sources">
+<section class="snip-sources" aria-labelledby="overview-sources-heading">
+<h4 id="overview-sources-heading" class="snip-sources__title">Sources</h4>
+<ol class="snip-sources__list">
+<li>Software developer growth 2023&ndash;2033: BLS / MLR 2025.</li>
+<li>Florida tech workforce count: CompTIA 2025.</li>
+<li>Median Florida tech wage: CompTIA / Lightcast 2024.</li>
+<li>Florida AI-skill job postings: CompTIA 2024.</li>
+</ol>
+</section>
 </div>
 </div>
