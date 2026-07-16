@@ -80,10 +80,7 @@
 
 <maincontent>
 
-<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- com.omniupdate.editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000" -->
-<!-- EDITABLE SECTION -->
-
-<table class="toggle-section">
+<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- ouc:editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000"/ --><table class="toggle-section" style="color: #000000;">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -99,7 +96,8 @@
 </td>
 </tr>
 </tbody>
-</table><table class="toggle-section">
+</table>
+<table class="toggle-section">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -115,7 +113,8 @@
 </td>
 </tr>
 </tbody>
-</table><table class="toggle-section">
+</table>
+<table class="toggle-section">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -131,7 +130,8 @@
 </td>
 </tr>
 </tbody>
-</table><table class="toggle-section">
+</table>
+<table class="toggle-section">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -147,7 +147,8 @@
 </td>
 </tr>
 </tbody>
-</table><table class="toggle-section">
+</table>
+<table class="toggle-section">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -163,7 +164,8 @@
 </td>
 </tr>
 </tbody>
-</table><table class="toggle-section">
+</table>
+<table class="toggle-section">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -179,7 +181,8 @@
 </td>
 </tr>
 </tbody>
-</table><table class="toggle-section">
+</table>
+<table class="toggle-section">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -195,7 +198,8 @@
 </td>
 </tr>
 </tbody>
-</table><table class="toggle-section">
+</table>
+<table class="toggle-section">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -211,7 +215,8 @@
 </td>
 </tr>
 </tbody>
-</table><table class="toggle-section">
+</table>
+<table class="toggle-section">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -227,7 +232,8 @@
 </td>
 </tr>
 </tbody>
-</table><table class="toggle-section">
+</table>
+<table class="toggle-section">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -243,7 +249,8 @@
 </td>
 </tr>
 </tbody>
-</table><table class="toggle-section">
+</table>
+<table class="toggle-section">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -259,7 +266,8 @@
 </td>
 </tr>
 </tbody>
-</table><table class="toggle-section">
+</table>
+<table class="toggle-section">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -275,7 +283,8 @@
 </td>
 </tr>
 </tbody>
-</table><table class="toggle-section">
+</table>
+<table class="toggle-section">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -291,7 +300,8 @@
 </td>
 </tr>
 </tbody>
-</table><table class="toggle-section">
+</table>
+<table class="toggle-section">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -307,7 +317,8 @@
 </td>
 </tr>
 </tbody>
-</table><table class="toggle-section">
+</table>
+<table class="toggle-section">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -323,7 +334,8 @@
 </td>
 </tr>
 </tbody>
-</table><table class="toggle-section">
+</table>
+<table class="toggle-section">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -339,7 +351,8 @@
 </td>
 </tr>
 </tbody>
-</table><table class="toggle-section">
+</table>
+<table class="toggle-section">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -355,15 +368,7 @@
 </td>
 </tr>
 </tbody>
-</table> 
-
-
-
-
-
-
-<!-- END EDITABLE SECTION -->
-<!-- /com.omniupdate.div -->
+</table><!-- /com.omniupdate.div -->
 </maincontent>
 
 <additional-content>

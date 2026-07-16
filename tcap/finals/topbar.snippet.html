@@ -1960,14 +1960,17 @@
    single class selector -- exactly the same specificity as the host CMS's
    `.content * + * { margin-top: 1.5em }` owl rule, so it only wins by
    source order, which isn't guaranteed once this is pasted into the CMS.
-   Verified against a simulated `.content` + owl rule: without this,
-   stats 2-4 and every stat's own .stat__text (2nd child after
-   .stat__value) picked up ~1.5em of unwanted top margin. Re-declaring
-   with an ancestor class bumps specificity to two classes, safely
-   beating the owl regardless of load order. ---- */
+   Re-declaring with an ancestor class bumps specificity to two classes,
+   which is enough against a simulated `.content * + *` owl rule -- but
+   the live CMS theme's actual selector turned out to still win on the
+   real page (2nd-column stats visibly sitting lower than the 1st),
+   meaning its real specificity/weight is higher than the simulation
+   assumed. `!important` makes this unconditional instead of a
+   specificity bet -- nothing legitimately needs .stat/.stat__value/
+   .stat__text to carry their own top margin, so this is safe to force. */
   .snip-shell--stats .stat-group>*,
   .snip-shell--stats .stat>* {
-    margin-top: 0;
+    margin-top: 0 !important;
   }
 
   /* The pill nav that used to sit directly under the stats (and its own
@@ -1995,18 +1998,57 @@
     line-height: 1.35;
   }
 
-  /* Jobs-page variant: this asset gets pasted into OmniCMS as its own
-     content region, separate from the rest of the jobs page -- the CMS
-     inserts its own spacing between separately-pasted regions (default
-     region/paragraph margins), which lives outside this snippet's markup
-     and can't be targeted directly. Pulling this asset's own bottom edge
-     up with a negative margin is the same compensation technique already
-     used on this page for an unrelated gap (see .jobs-tabs button.active's
-     inline `margin-top: -10px` in jobs.html). -3rem is a starting point,
-     not a measured value -- tune it against the actual gap once pasted,
-     since the CMS's region spacing isn't visible from here. */
+  /* Below 768px the base stylesheet has no column count of its own for
+     .stat-group (2-up only starts at the 768px breakpoint, 4-up at 1280px)
+     -- so on mobile it falls back to a single implicit column, stacking
+     all 4 stats and rendering each at the base mobile clamp
+     (2.75rem-4rem), which reads far too large for a phone screen (see
+     screenshot: "+17.9%" alone nearly fills the viewport width). Force a
+     2x2 grid and shrink both lines of text so all four stats fit
+     comfortably without scrolling. Two classes (.stat-group--jobs
+     .stat__value) outrank the base single-class `.stat__value` mobile
+     rule regardless of which is declared later. */
+  @media (max-width: 767px) {
+    .stat-group--jobs {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      /* row-gap column-gap: rows tightened up further per feedback that
+         1.5rem still read as too much air between the two rows. */
+      gap: 0.75rem 0.75rem;
+    }
+
+    .stat-group--jobs .stat {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .stat-group--jobs .stat__value {
+      font-size: clamp(1.75rem, 8vw, 2.25rem);
+    }
+
+    .stat-group--jobs .stat__text {
+      font-size: 0.7rem;
+      line-height: 1.3;
+    }
+
+    /* The diagonal divider is positioned (via a negative top offset) to
+       sit between vertically-stacked rows -- in a 2-column grid it would
+       float in the wrong place relative to each stat's actual neighbor,
+       so drop it here rather than have it look broken. */
+    .stat-group--jobs .stat+.stat:before {
+      display: none;
+    }
+  }
+
+  /* Whatever follows this asset (a CTA button, another region, etc.) was
+     sitting flush against the stats with no breathing room -- give it a
+     small positive gap instead. (Earlier this was a negative margin meant
+     to compensate for CMS-inserted spacing between separately-pasted
+     regions; on the actual page that assumption ran the other way, so
+     replaced with plain positive spacing per feedback. Tune further if
+     needed -- the CMS's own region spacing still isn't visible from
+     here.) */
   .snip-shell--stats {
-    margin-bottom: -3rem !important;
+    margin-bottom: 2rem !important;
   }
 
   /*]]>*/

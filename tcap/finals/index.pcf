@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pcf-stylesheet path="/_resources/xsl/v3/brand.xsl" extension="aspx"?>
+<!DOCTYPE document SYSTEM "http://commons.omniupdate.com/dtd/standard.dtd">
+<document>
+<headcode></headcode>
+<bodycode></bodycode>
+<!-- com.omniupdate.properties -->
+<title>Tech Career Accelerator Program (tCAP)</title>
+<!-- /com.omniupdate.properties -->
+
+<config>
+<parameter name="pagetype" prompt="pagetype" alt="Pagetype" group="None">secondary</parameter>
+<!-- com.omniupdate.properties -->
+<!-- CANONICALIZATION -->
+<parameter name="canonical-display" prompt="Set canonical URL?" alt="" section="Canonical URL" type="select" group="none">
+<option value="true" selected="false">Yes</option>
+<option value="false" selected="true">No</option>
+</parameter>
+
+<parameter name="canonical-url" prompt="Canonical URL" alt="Enter the URL people should see in search results." type="text" group="none"></parameter>
+
+<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">Tech Career Accelerator Program (tCAP)</parameter>
+<parameter name="hero-display" prompt="Display Hero?" alt="Select if you would like to display the hero." group="none" type="select">
+<option value="Yes" selected="true">Yes</option>
+<option value="No" selected="false">No</option>
+</parameter>
+<parameter name="breadcrumb-display" prompt="Display Breadcrumbs?" alt="Select if you would like to display breadcrumbs." group="Everyone" type="select">
+<option value="Yes" selected="true">Yes</option>
+<option value="No" selected="false">No</option>
+</parameter>
+<parameter name="include-file" prompt="Include File" alt="Do you want to include a file from the server below the maincontent." group="none" type="radio">
+<option value="true" selected="false">True</option>
+<option value="false" selected="true">False</option>
+</parameter>
+<parameter name="include-file-path" prompt="Choose File." alt="Choose a file to include below the maincontent." type="filechooser" group="none" path="/_resources/includes/" lockout="no">/_resources/includes/included-content.html</parameter>
+<parameter name="additional-content" prompt="Additional Content" alt="Add another editable region below the maincontent. This is typically used if you have included a file." group="none" type="radio">
+<option value="true" selected="false">Show</option>
+<option value="false" selected="true">Hide</option>
+</parameter>
+<parameter name="code-behind" type="select" prompt="ASPX web page model" alt=" Choose code model for you ASPX. NET page" group="none" section="ASPX web page model">
+<option value="" selected="false"></option>
+<option value="single-page" selected="true">Single-page</option>
+<option value="code-behind" selected="false">Code-behind</option>
+</parameter>
+<parameter name="code-behind-source" type="filechooser" group="none" prompt="Code-behind Source file" alt="Choose the code model source of the page.">/_resources/c-sharp/code-behind.cs</parameter>
+<parameter name="inherits-from" prompt="Inherits from " group="none" alt="">_Default</parameter>
+<!-- /com.omniupdate.properties -->
+<parameter name="galleryType" type="select" prompt="Gallery Type" alt="Please select the type of gallery you would like this page to use." section="GALLERY">
+<option value="FlexSlider" selected="true">Flex Slider</option>
+</parameter>
+<!-- com.omniupdate.properties -->
+<parameter name="slideshow" type="select" prompt="Animate Slideshow" alt="Specify if the slideshow will be animated automatically or by user interaction only." section="Gallery">
+<option value="true" selected="true">Animate</option>
+<option value="false" selected="false">Don't Animate</option>
+</parameter>
+<!-- /com.omniupdate.properties -->
+</config>
+<metadata>
+<!-- com.omniupdate.properties -->
+<meta name="Description" content="University of South Florida" />
+<meta name="Keywords" content="University of South Florida" />
+<meta name="Author" content="University of South Florida" />
+<!-- /com.omniupdate.properties -->
+</metadata>
+
+<brand-hero>
+<display>
+<!-- com.omniupdate.div label="brand-content-display" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="select" prompt="Display Content" alt="Select if the Gallery Hero content (heading and text) should display. If 'No' is selected, the Content Title and Image - Large alt text will still be present on the page, but visually hidden." options="Yes:Yes;No:No" section="Gallery Hero"/ -->Yes<!-- /com.omniupdate.div -->
+</display>
+<text-display>
+<!-- com.omniupdate.div label="brand-text-display" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="select" prompt="Display Text" alt="Would you like to display the Gallery Hero text?" options="Yes:Yes;No:No;"/ -->No<!-- /com.omniupdate.div -->
+</text-display>
+<text>
+<!-- com.omniupdate.div label="brand-text" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="textarea" prompt="Text" alt="Enter the text to display in the Gallery Hero, beneath the Content Title."/ --><!-- /com.omniupdate.div -->
+</text>
+<image-small>
+<!-- com.omniupdate.div label="brand-image-small" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="image" prompt="Image - Small" alt="Select a JPG image for the small version of the Gallery Hero image to be displayed on mobile (650px by 450px)."/ --><img src="{{f:82739161}}" alt="woman with glasses and lots of tech graphics imposed on her face" /><!-- /com.omniupdate.div -->
+</image-small>
+<image-large>
+<!-- com.omniupdate.div label="brand-image-large" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="image" prompt="Image - Large" alt="Select a JPG image for the large version of the Gallery Hero image to be displayed on larger screens (1400px by 650px)."/ --><img src="{{f:82739161}}" alt="business analytics" /><!-- /com.omniupdate.div -->
+</image-large>
+</brand-hero>
+
+<maincontent>
+
+<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- ouc:editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000"/ -->{{a:445477}}
+<table class="gallery-band-bg-color" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Band with Background Color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<table class="gallery-text">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<table class="button-link-row-snippet">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Button(s) - Centered<br /><em>To add more buttons to this set, insert a row for each button in the table below.</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#">tCAP Program</a></td>
+</tr>
+<tr>
+<td><a style="text-underline-offset: 4px; font-size: 16px;" href="{{f:82756862}}">Experiential Learning</a></td>
+</tr>
+<tr>
+<td><a style="text-underline-offset: 4px; font-size: 16px; text-decoration: underline; background-color: #ffffff;" href="{{f:82758179}}">tCAP FAQs</a></td>
+</tr>
+<tr>
+<td><a style="text-underline-offset: 4px; font-size: 16px; text-decoration: underline; background-color: #ffffff;" href="{{f:81628827}}">Jobs</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+{{a:445476}}
+~[com[27194 2 5{ "version": 5, "data": {"010c737f4f75cc888e7baa7feb60beb7":"No","e50e2b7b4162e86d86238d99470b3595":"","b97dfec6f8c76272a9e018ebb5f0e71d":"","677ee82b0548c66745888954018b7016":"centered","4f8e1b0b612e42aa1ff2655078463bcc":"No","5660fa1787542d62758bea4d92b583c9":"No","ce9444d0b080bdf2a3392ffffac92ec7":"the tcap model"}}]]~
+{{a:445474}}
+~[com[27194 1 5{ "version": 5, "data": {"010c737f4f75cc888e7baa7feb60beb7":"No","e50e2b7b4162e86d86238d99470b3595":"","b97dfec6f8c76272a9e018ebb5f0e71d":"","677ee82b0548c66745888954018b7016":"centered","4f8e1b0b612e42aa1ff2655078463bcc":"No","5660fa1787542d62758bea4d92b583c9":"No","ce9444d0b080bdf2a3392ffffac92ec7":"Student Journey"}}]]~
+
+<table class="gallery-text" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<h3>A Four-Stage Path to Career Readiness</h3>
+<p>Each stage builds on the last, so students keep developing career readiness, technical confidence and professional experience all the way to graduation.</p>
+</td>
+</tr>
+</tbody>
+</table>
+{{a:445472}}
+<table class="gallery-band-bg-color" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Band with Background Color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<table class="gallery-text-image" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" colspan="2">Gallery Item - Text and Image <br />Image Dimensions - Width: 460 px, Height: 300 px* <br />* Recommended height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading Display. Accepted values: yes, no</p>
+</td>
+<td class="gallery-item-heading-display" style="width: 50%;" data-select-list="yes, no">yes</td>
+</tr>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading</p>
+</td>
+<td class="gallery-item-heading" style="width: 50%;">Experiential Learning</td>
+</tr>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Text</p>
+</td>
+<td class="gallery-item-text" style="width: 50%;">
+<p>Every tCAP student completes applied experiential learning through internships, research, capstones, hackathons, entrepreneurship or other approved opportunities.</p>
+
+~[com[31423 3 2{ "version": 2, "data": {"149ceff49b330d0b4434c46c19ce623e":[{"2d112ed19fed39c395d4530634b1c698":"#","79acd35720242a8be246b66800a51440":"_blank","5143616b90cc867fb6f40ee659a4c5fe":"Internships"},{"2d112ed19fed39c395d4530634b1c698":"#","79acd35720242a8be246b66800a51440":"_self","5143616b90cc867fb6f40ee659a4c5fe":"Undergrad Research"},{"2d112ed19fed39c395d4530634b1c698":"#","79acd35720242a8be246b66800a51440":"_self","5143616b90cc867fb6f40ee659a4c5fe":"Capstone Projects"},{"2d112ed19fed39c395d4530634b1c698":"#","79acd35720242a8be246b66800a51440":"_self","5143616b90cc867fb6f40ee659a4c5fe":"Cyber Support"},{"2d112ed19fed39c395d4530634b1c698":"#","79acd35720242a8be246b66800a51440":"_self","5143616b90cc867fb6f40ee659a4c5fe":"Entrepreneurship"},{"2d112ed19fed39c395d4530634b1c698":"#","79acd35720242a8be246b66800a51440":"_self","5143616b90cc867fb6f40ee659a4c5fe":"Competitions"},{"2d112ed19fed39c395d4530634b1c698":"#","79acd35720242a8be246b66800a51440":"_self","5143616b90cc867fb6f40ee659a4c5fe":"Hackathons"},{"2d112ed19fed39c395d4530634b1c698":"#","79acd35720242a8be246b66800a51440":"_self","5143616b90cc867fb6f40ee659a4c5fe":"Study Abroad"}],"4de45f0243cd8938d1c6b54a9fb03ca0":"chevrons-list chevrons-list_apple"}}]]~
+</td>
+</tr>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image</p>
+</td>
+<td class="gallery-item-image" style="width: 50%;"><img src="/ai-cybersecurity-computing/images/00_promophotos/t-cap-web-experiential-learning.jpg" alt="Alt Text" width="1133" height="800" /></td>
+</tr>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image Alignment. Accepted values: left, right</p>
+</td>
+<td class="gallery-item-alignment" style="width: 50%;" data-select-list="left, right">left</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="button-link-row-snippet" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Button(s) - Centered<br /><em>To add more buttons to this set, insert a row for each button in the table below.</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#">TALK TO AN ADVISOR</a></td>
+</tr>
+</tbody>
+</table>
+<table class="gallery-text" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<h6><strong>Sources</strong></h6>
+<ol>
+<li>
+<h6>Software developer growth 2023&ndash;2033: BLS / MLR 2025.</h6>
+</li>
+<li>
+<h6>Florida tech workforce count: CompTIA 2025.</h6>
+</li>
+<li>
+<h6>Median Florida tech wage: CompTIA / Lightcast 2024.</h6>
+</li>
+<li>
+<h6>Florida AI-skill job postings: CompTIA 2024.</h6>
+</li>
+</ol>
+<p>&nbsp; &nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table><!-- /com.omniupdate.div -->
+</maincontent>
+
+<additional-content>
+<!-- com.omniupdate.div label="additional-content" group="Everyone" button="707" -->
+<!-- com.omniupdate.editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000" -->
+<h2> Additional Content</h2>
+<p> This area is used typically if you have included a file below the main content.</p>
+<!-- /com.omniupdate.div -->
+</additional-content>
+
+</document>
