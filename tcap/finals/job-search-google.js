@@ -2795,43 +2795,6 @@ function getGetQueryStringLength_(e) {
     });
     return out;
   }
-  /*
-  function rankAndCapResults(results, limitPerProvider) {
-    limitPerProvider = limitPerProvider || 20;
-    var byProv = {};
-    for (var i = 0; i < results.length; i++) {
-      var r = results[i];
-      var p = r.provider;
-      if (!byProv[p]) byProv[p] = [];
-      byProv[p].push(r);
-    }
-    var providers = Object.keys(byProv);
-    for (var j = 0; j < providers.length; j++) {
-      byProv[providers[j]].sort(function (a, b) {
-        return b.match_score - a.match_score;
-      });
-    }
-    var capped = [];
-    for (var k = 0; k < providers.length; k++) {
-      capped.push([providers[k], byProv[providers[k]].slice(0, limitPerProvider)]);
-    }
-    var interleaved = [];
-    var idx = 0;
-    var remaining = true;
-    while (remaining) {
-      remaining = false;
-      for (var m = 0; m < capped.length; m++) {
-        var list = capped[m][1];
-        if (idx < list.length) {
-          interleaved.push(list[idx]);
-          remaining = true;
-        }
-      }
-      idx++;
-    }
-    return interleaved;
-  }*/
-  
   var MIN_MATCH_SCORE_PERCENT = 30;
   
   function rankAndCapResults(results, limitPerProvider) {
