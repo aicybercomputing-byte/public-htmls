@@ -1,1120 +1,4 @@
 <style>
-  /*<![CDATA[*/
-  /* Inlined (not linked) because OmniCMS strips external <link> tags on save.
-       Master copy: snippet-template.css -- keep this block in sync by hand. */
-  /* ==========================================================================
-     Snippet component template
-     Namespaced (.snip-*) BEM component library for OmniCMS content snippets.
-     See NAMING-CONVENTIONS.md for the rules and style-guide.html for a live,
-     copy-pasteable reference of every component this file styles.
-  
-     Reuse across projects: copy this file as-is (no find/replace needed —
-     scoping is done with the `.snip-shell` class, not a per-page ID) and
-     re-theme by overriding the custom properties in `.snip-shell` below.
-     ========================================================================== */
-  
-  /* Theme knobs — global on :root (not just `.snip-shell`) so every
-     component works regardless of whether it's nested inside a `.snip-shell`
-     or standalone (e.g. `.snip-cta`, `.snip-panel`, `.snip-event` are all
-     deliberately rendered outside `.snip-shell`). Override by redeclaring
-     these on `:root`, or scope an override to one section by redeclaring
-     them on a `.snip-shell` (or any ancestor) — custom properties cascade
-     normally either way. */
-  :root {
-    --snip-brand: #006747;
-    --snip-brand-dark: #004c35;
-    --snip-heading: #3f565e;
-    --snip-text: #3f3f3f;
-    --snip-text-muted: #333333;
-    --snip-surface: #efeff0;
-    --snip-surface-alt: #ffffff;
-    --snip-surface-hover: #d9e8e4;
-    --snip-border: #b2b2b2;
-    --snip-border-soft: #d8d6cd;
-    --snip-border-dashed: #8a8a82;
-    --snip-font-display: "Barlow Condensed", sans-serif;
-    --snip-max-width: 900px;
-  
-    /* Form / panel tokens (from the Bellini info-request widget) */
-    --snip-gold: #cfc493;
-    --snip-ink: #1c211f;
-    --snip-muted: #5b6661;
-    --snip-focus: #005432;
-    --snip-danger: #b3261e;
-    --snip-danger-bg: #fdeceb;
-    --snip-danger-border: #f3c4c0;
-    --snip-danger-text: #8c1d18;
-    --snip-success: #1e7a52;
-    --snip-success-bg: #e8f5ee;
-  }
-  
-  .snip-shell,
-  .snip-shell * {
-    box-sizing: border-box !important;
-  }
-  
-  .snip-shell {
-    max-width: var(--snip-max-width);
-    margin: 0 auto;
-    padding: 24px;
-    font-family: inherit;
-    color: inherit;
-  }
-  
-  /* Vertical stack — drives spacing via `gap` only. Also neutralizes host-page
-     "owl" selectors (e.g. `.content * + * { margin-top: 1.5em }`) that would
-     otherwise misalign the first child of any grid/flex row inside it. */
-  .snip-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-  
-  .snip-stack > *,
-  .snip-grid > *,
-  .snip-card > *,
-  .snip-nav > *,
-  .snip-table__row > * {
-    margin-top: 0;
-  }
-  
-  /* State utilities (unprefixed by convention — see rule 3 in
-     NAMING-CONVENTIONS.md). Driven by snippet-template.js. */
-  .is-hidden {
-    display: none !important;
-  }
-  
-  .is-loading {
-    opacity: .7;
-    pointer-events: none;
-  }
-  
-  /* -------------------------------------------------------------------------
-     Heading — centered section intro
-     ------------------------------------------------------------------------- */
-  .snip-heading {
-    text-align: center;
-  }
-  
-  .snip-heading__title {
-    margin: 10px 0 8px;
-    font-family: var(--snip-font-display);
-    font-weight: 600;
-    font-size: 36px;
-    color: var(--snip-heading);
-    text-transform: uppercase;
-    line-height: 1.15;
-  }
-  
-  .snip-heading__text {
-    margin: 0 auto;
-    max-width: 640px;
-    font-size: 15px;
-    line-height: 1.4;
-    color: var(--snip-text);
-  }
-  
-  /* -------------------------------------------------------------------------
-     Grid — column layouts. Pick a column-count modifier; add `--tight` for
-     a hairline-gap variant (1px gap on brand-colored background), used by
-     solid icon-card strips like a "journey" row.
-     ------------------------------------------------------------------------- */
-  .snip-grid {
-    display: grid;
-    gap: 20px;
-  }
-  
-  .snip-grid--1 { grid-template-columns: 1fr; }
-  .snip-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .snip-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .snip-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  
-  .snip-grid--tight {
-    gap: 1px;
-    background: var(--snip-brand);
-  }
-  
-  /* -------------------------------------------------------------------------
-     Card — base surface with three visual variants:
-       --callout      bordered box, left-aligned title + body text
-       --step         numbered badge beside stacked content (process steps)
-       --icon         centered badge/number + short title (icon tile)
-     Add --interactive to any variant for a hover/active background swap
-     (used when the card is a hover target driving an info panel, or a link).
-     ------------------------------------------------------------------------- */
-  .snip-card {
-    background: var(--snip-surface);
-    border: 1px solid var(--snip-border);
-    padding: 20px;
-    color: inherit;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .snip-card--interactive {
-    transition: background 0.15s, border-color 0.15s;
-    cursor: pointer;
-  }
-  
-  .snip-card--interactive:hover,
-  .snip-card--interactive:focus-visible,
-  .snip-card--interactive.is-active {
-    background: var(--snip-surface-hover);
-    border-color: var(--snip-brand);
-  }
-  
-  /* --callout: text-forward card (was .callout / .pillar-card) */
-  .snip-card--callout .snip-card__title {
-    margin: 0 0 8px;
-    font-family: var(--snip-font-display);
-    font-weight: 600;
-    font-size: 28px;
-    color: var(--snip-brand);
-  }
-  
-  .snip-card--callout.snip-card--center {
-    text-align: center;
-  }
-  
-  .snip-card--callout.snip-card--center .snip-card__title {
-    font-weight: 700;
-    font-size: 22px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  
-  .snip-card__body {
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.5;
-    color: var(--snip-text);
-  }
-  
-  /* --step: badge + stacked content, side by side (was .stage-card) */
-  .snip-card--step {
-    display: grid;
-    grid-template-columns: 48px 1fr;
-    gap: 16px;
-    align-items: start;
-  }
-  
-  .snip-card--step .snip-card__title {
-    margin: 0 0 6px;
-    font-family: var(--snip-font-display);
-    font-weight: 600;
-    font-size: 22px;
-    color: var(--snip-brand);
-    text-transform: uppercase;
-  }
-  
-  /* --icon: centered badge + short title (was .timeline-card / .pathway-card) */
-  .snip-card--icon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    text-align: center;
-    padding: 18px;
-  }
-  
-  .snip-card--icon .snip-card__title {
-    font-family: var(--snip-font-display);
-    font-weight: 600;
-    font-size: 15px;
-    color: var(--snip-brand);
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    margin: 0;
-  }
-  
-  /* --icon solid: brand-filled tile, e.g. an always-visible link strip
-     (was .journey-step). Uses a bare .snip-card__num instead of a badge. */
-  .snip-card--icon.snip-card--solid {
-    background: var(--snip-brand);
-    color: #fff;
-  }
-  
-  .snip-card--icon.snip-card--solid .snip-card__title {
-    color: #fff;
-  }
-  
-  .snip-card__num {
-    font-family: var(--snip-font-display);
-    font-weight: 700;
-    font-size: 22px;
-  }
-  
-  /* Badge — circular number/letter, used by --step and --icon cards */
-  .snip-card__badge {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--snip-brand);
-    color: #fff;
-    display: grid;
-    place-items: center;
-    font-family: var(--snip-font-display);
-    font-weight: 700;
-    font-size: 16px;
-  }
-  
-  .snip-card__badge--lg {
-    width: 44px;
-    height: 44px;
-    font-size: 15px;
-  }
-  
-  /* -------------------------------------------------------------------------
-     Stat bar — 4-up grid of stat callouts. Intentionally left as its own
-     component (not a bare .snip-grid) because its children are the CMS
-     theme's own `c-calloutText` component, not a `.snip-card`.
-     ------------------------------------------------------------------------- */
-  .snip-stat-bar {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 2rem;
-    align-items: start;
-  }
-  
-  .snip-stat-bar > * {
-    align-self: start;
-    margin: 2px 0 0 0;
-  }
-  
-  /* Height lives here (not inline) so the mobile breakpoint below can shrink
-     it — an inline `!important` can't be overridden by any stylesheet rule,
-     important or not. Override --snip-stat-height per instance if a page's
-     stat-card copy needs a taller/shorter fixed height (e.g. jobs.html uses
-     175px instead of the 225px default). */
-  .snip-stat-bar > .c-calloutText {
-    height: var(--snip-stat-height, 225px);
-  }
-  
-  .snip-source {
-    margin-top: 1rem;
-    font-size: 8pt;
-    line-height: 1.35;
-    color: var(--snip-text-muted);
-  }
-  
-  .snip-source__text {
-    margin: 0;
-    padding: 0;
-    font-size: 8pt;
-    line-height: 1.35;
-    font-weight: 400;
-    color: var(--snip-text-muted);
-  }
-  
-  /* -------------------------------------------------------------------------
-     Sources & disclaimers panel — an aggregated end-of-page block (all
-     citations/disclaimers for the whole page in one place), distinct from
-     `.snip-source` above (the small per-card citation inside a stat/callout).
-     Place it as the LAST item in `.snip-stack`, after `.snip-nav`. Every page
-     should have one, even with an empty `__list`/no `__text` paragraphs, for
-     structural consistency across pages.
-     ------------------------------------------------------------------------- */
-  .snip-sources {
-    margin-top: 1rem;
-    font-size: 8pt;
-    line-height: 1.35;
-    color: var(--snip-text-muted);
-  }
-  
-  .snip-sources__title {
-    margin: 0 0 0.35rem;
-    font-size: 8pt;
-    font-weight: 700;
-    color: var(--snip-text);
-  }
-  
-  .snip-sources__list {
-    margin: 0 0 0.75rem;
-    padding-left: 1.25rem;
-  }
-  
-  .snip-sources__list li {
-    margin-bottom: 0.25rem;
-  }
-  
-  .snip-sources__list a,
-  .snip-sources__text a {
-    color: var(--snip-text-muted);
-    text-decoration: underline;
-  }
-  
-  .snip-sources__list a:hover,
-  .snip-sources__list a:focus,
-  .snip-sources__text a:hover,
-  .snip-sources__text a:focus {
-    color: var(--snip-brand);
-    text-decoration-thickness: 2px;
-  }
-  
-  .snip-sources__list a:focus-visible,
-  .snip-sources__text a:focus-visible {
-    outline: 3px solid var(--snip-border);
-    outline-offset: 3px;
-  }
-  
-  .snip-sources__list a[href$=".pdf"],
-  .snip-sources__text a[href$=".pdf"] {
-    color: var(--snip-brand);
-  }
-  
-  .snip-sources__text {
-    margin: 0 0 0.5rem;
-    padding: 0;
-    font-size: 8pt;
-    line-height: 1.35;
-    font-weight: 400;
-    color: var(--snip-text-muted);
-  }
-  
-  .snip-sources__text:last-child {
-    margin-bottom: 0;
-  }
-  
-  /* -------------------------------------------------------------------------
-     CTA band — full-bleed background band. Deliberately placed *outside*
-     `.snip-shell` (in the markup) so its background can bleed edge-to-edge
-     instead of being capped at the shell's max-width; `__inner` re-centers
-     the content to match. Because it sits outside `.snip-shell`, the theme
-     custom properties aren't in scope here — every var() below carries an
-     explicit fallback so this still renders correctly on its own.
-     ------------------------------------------------------------------------- */
-  .snip-cta {
-    background: var(--snip-surface, #efeff0);
-    padding: 24px;
-    text-align: center;
-  }
-  
-  .snip-cta__inner {
-    max-width: var(--snip-max-width, 900px);
-    margin: 0 auto;
-  }
-  
-  /* The CMS theme's own `.snippetButton` only contributes `display: block` and
-     a `max-width` cap — everything else is redefined here so the button looks
-     right regardless of what the host page's global CSS does with it.
-     `!important` on display/max-width: `display: block` ignores the ancestor's
-     `text-align: center`, which is what centers the button inside .snip-cta. */
-  .snip-cta .snippetButton {
-    display: inline-block !important;
-    max-width: none !important;
-    background: var(--snip-brand, #006747);
-    color: #fff;
-    border: 2px solid var(--snip-brand, #006747);
-    border-radius: 0;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 700;
-    padding: 0.85em 1.6em;
-    line-height: 1.2;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  .snip-cta .snippetButton:hover,
-  .snip-cta .snippetButton:focus {
-    background: var(--snip-brand-dark, #004c35);
-    border-color: var(--snip-brand-dark, #004c35);
-    color: #fff;
-  }
-  
-  /* -------------------------------------------------------------------------
-     Bottom pill nav — equal-width link row with a non-link "current page"
-     pill. `.is-active` marks whichever one is current.
-     ------------------------------------------------------------------------- */
-  .snip-nav {
-    display: flex;
-    gap: 8px;
-    font-size: 13px;
-    text-align: center;
-    border-top: 1px solid var(--snip-border-soft);
-    padding-top: 20px;
-  }
-  
-  .snip-nav__link {
-    flex: 1;
-    display: block;
-    background: var(--snip-surface-alt);
-    color: var(--snip-brand);
-    border: 1.5px solid var(--snip-brand);
-    border-radius: 3px;
-    padding: 10px 12px;
-    text-decoration: none;
-  }
-  
-  .snip-nav__link.is-active {
-    background: var(--snip-brand);
-    color: #fff;
-  }
-  
-  /* -------------------------------------------------------------------------
-     FAQ group — a labeled category of native `details`/`summary` items
-     ------------------------------------------------------------------------- */
-  .snip-faq__title {
-    margin: 0 0 12px;
-    font-family: var(--snip-font-display);
-    font-weight: 600;
-    font-size: 24px;
-    color: var(--snip-brand);
-    text-transform: uppercase;
-  }
-  
-  .snip-faq__list {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    background: var(--snip-border);
-  }
-  
-  .snip-faq__list details {
-    background: var(--snip-surface);
-    padding: 14px 16px;
-  }
-  
-  .snip-faq__list summary {
-    cursor: pointer;
-    font-family: inherit;
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--snip-brand);
-    list-style-position: outside;
-  }
-  
-  .snip-faq__list summary:hover,
-  .snip-faq__list summary:focus {
-    color: var(--snip-brand-dark);
-  }
-  
-  .snip-faq__list p {
-    margin: 10px 0 0;
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--snip-text);
-  }
-  
-  /* -------------------------------------------------------------------------
-     Comparison table — CSS-grid rows, no `table` markup required
-     ------------------------------------------------------------------------- */
-  .snip-table {
-    border: 1px solid var(--snip-border);
-  }
-  
-  .snip-table__row {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr 1fr;
-  }
-  
-  .snip-table__row + .snip-table__row {
-    border-top: 1px solid var(--snip-border);
-  }
-  
-  .snip-table__cell {
-    padding: 12px 14px;
-    font-size: 13px;
-    color: var(--snip-text);
-    border-right: 1px solid var(--snip-border);
-  }
-  
-  .snip-table__cell:last-child {
-    border-right: none;
-  }
-  
-  .snip-table__row--head {
-    border-bottom: 3px solid var(--snip-text);
-  }
-  
-  .snip-table__row--head .snip-table__cell {
-    font-family: var(--snip-font-display);
-    font-weight: 700;
-    font-size: 15px;
-    color: var(--snip-text);
-    text-transform: uppercase;
-  }
-  
-  /* -------------------------------------------------------------------------
-     Note / aside — plain info box, or dashed "soft" variant for
-     provisional/in-progress content notes
-     ------------------------------------------------------------------------- */
-  .snip-note {
-    border: 1px solid var(--snip-border);
-    background: var(--snip-surface-alt);
-    padding: 16px;
-    font-size: 14px;
-    line-height: 1.4;
-    color: var(--snip-text);
-  }
-  
-  .snip-note--soft {
-    border: 1px dashed var(--snip-border-dashed);
-    background: #fcfcfa;
-    font-size: 13px;
-  }
-  
-  /* -------------------------------------------------------------------------
-     Panel — standalone bordered widget shell (was #bellini-info-request
-     .bi-shell), for multi-step forms, request-info widgets, etc. Independent
-     of .snip-shell — a panel is a self-contained widget, not page content, so
-     it carries its own max-width.
-     ------------------------------------------------------------------------- */
-  .snip-panel {
-    max-width: 680px;
-    margin: 0 auto;
-    background: var(--snip-surface-alt);
-    border: 1px solid var(--snip-border);
-    overflow: hidden;
-    font-family: inherit;
-    color: var(--snip-ink);
-  }
-  
-  .snip-panel__pad {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-  
-  .snip-panel__band {
-    background: var(--snip-brand);
-    color: #fff;
-    padding-top: 28px;
-    padding-bottom: 24px;
-    border-bottom: 4px solid var(--snip-gold);
-  }
-  
-  .snip-panel__body {
-    padding-top: 28px;
-    padding-bottom: 32px;
-  }
-  
-  .snip-panel__title {
-    margin: 0;
-    font-size: 26px;
-    line-height: 1.2;
-    font-weight: 700;
-    color: #fff;
-  }
-  
-  .snip-panel__subtitle {
-    margin: 10px 0 0;
-    color: #dfeae5;
-    font-size: 15px;
-  }
-  
-  /* Eyebrow label — light-on-dark, for use inside .snip-panel__band */
-  .snip-kicker {
-    font-size: 13px;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin: 0 0 6px;
-    color: #edebd1;
-  }
-  
-  /* Section label — dark-on-light, for use inside .snip-panel__body */
-  .snip-section-label {
-    margin: 0 0 16px;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    color: var(--snip-muted);
-  }
-  
-  .snip-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: transparent;
-    border: 0;
-    color: #edebd1;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    padding: 0;
-    margin-bottom: 14px;
-  }
-  
-  .snip-back:hover,
-  .snip-back:focus {
-    text-decoration: underline;
-    outline: 3px solid #edebd1;
-    outline-offset: 3px;
-  }
-  
-  /* -------------------------------------------------------------------------
-     Choice — a large clickable option row (e.g. "which of these are you?"),
-     stacked with .snip-choice-stack. Not the same as .snip-card--icon: a
-     choice is a full-width row driving navigation, not a grid tile.
-     ------------------------------------------------------------------------- */
-  .snip-choice-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  
-  .snip-choice {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    width: 100%;
-    text-align: left;
-    padding: 20px 22px;
-    background: var(--snip-surface-alt);
-    border: 1px solid var(--snip-border);
-    border-radius: 0;
-    cursor: pointer;
-    font-family: inherit;
-  }
-  
-  .snip-choice:hover,
-  .snip-choice:focus {
-    border-color: var(--snip-brand);
-    background: #f7faf9;
-    outline: 3px solid var(--snip-focus);
-    outline-offset: 2px;
-  }
-  
-  .snip-choice__title {
-    display: block;
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--snip-ink);
-  }
-  
-  .snip-choice__desc {
-    display: block;
-    font-size: 14px;
-    color: var(--snip-muted);
-    margin-top: 3px;
-  }
-  
-  .snip-choice__arrow {
-    font-size: 22px;
-    color: var(--snip-brand);
-    font-weight: 700;
-    line-height: 1;
-  }
-  
-  /* -------------------------------------------------------------------------
-     Form fields — explicit classes rather than bare tag/attribute selectors
-     (`label`, `input[type=...]`) so this stays portable: a page that already
-     styles its own `label`/`input` elements won't have those rules clobbered.
-     ------------------------------------------------------------------------- */
-  .snip-field {
-    margin-bottom: 20px;
-  }
-  
-  .snip-field--tight {
-    margin-bottom: 18px;
-  }
-  
-  .snip-label {
-    display: block;
-    font-weight: 700;
-    font-size: 14px;
-    margin-bottom: 6px;
-    color: var(--snip-ink);
-  }
-  
-  .snip-required {
-    color: var(--snip-danger);
-  }
-  
-  .snip-input {
-    display: block;
-    width: 100%;
-    height: 48px;
-    padding: 0 12px;
-    font-size: 16px;
-    color: var(--snip-ink);
-    border: 1px solid var(--snip-border);
-    border-radius: 0;
-    background: var(--snip-surface-alt);
-    font-family: inherit;
-  }
-  
-  .snip-input:focus {
-    outline: 3px solid var(--snip-focus);
-    outline-offset: 2px;
-  }
-  
-  .snip-input--invalid {
-    border-color: var(--snip-danger) !important;
-  }
-  
-  .snip-field__error {
-    color: var(--snip-danger);
-    font-size: 13px;
-    margin-top: 5px;
-  }
-  
-  .snip-banner--error {
-    padding: 14px 16px;
-    font-size: 15px;
-    margin-bottom: 20px;
-    background: var(--snip-danger-bg);
-    color: var(--snip-danger-text);
-    border: 1px solid var(--snip-danger-border);
-  }
-  
-  .snip-divider {
-    border-top: 1px solid #e2e2e2;
-    margin-bottom: 20px;
-    padding-top: 22px;
-  }
-  
-  .snip-visually-hidden {
-    position: absolute;
-    left: -9999px;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-  }
-  
-  .snip-consent-row {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    font-size: 14px;
-    margin-bottom: 6px;
-  }
-  
-  .snip-consent-row input {
-    width: auto;
-    margin-top: 3px;
-    flex: 0 0 auto;
-  }
-  
-  .snip-consent-row label {
-    font-weight: 400;
-    margin: 0;
-    color: var(--snip-muted);
-  }
-  
-  .snip-consent-row a {
-    color: var(--snip-brand);
-  }
-  
-  /* 3-column address row (2fr 1fr 1fr) — a specific-purpose grid modifier
-     alongside the general .snip-grid--2/3/4 column-count modifiers. */
-  .snip-grid--address {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 14px;
-    align-items: start;
-    margin-bottom: 18px;
-  }
-  
-  /* -------------------------------------------------------------------------
-     Button — a form-context button (submit/reset/retry). Distinct from the
-     CMS theme's own `.snippetButton` (see .snip-cta above): this is fully
-     ours, meant for use inside panels/forms, and supports a disabled state.
-     ------------------------------------------------------------------------- */
-  .snip-btn {
-    display: inline-block;
-    padding: 14px 22px;
-    font-size: 16px;
-    font-weight: 700;
-    border-radius: 0;
-    border: 2px solid var(--snip-brand);
-    cursor: pointer;
-    font-family: inherit;
-    text-align: center;
-  }
-  
-  .snip-btn:focus {
-    outline: 3px solid var(--snip-focus);
-    outline-offset: 2px;
-  }
-  
-  .snip-btn--primary {
-    width: 100%;
-    color: #fff;
-    background: var(--snip-brand);
-  }
-  
-  .snip-btn--primary:hover,
-  .snip-btn--primary:focus {
-    background: var(--snip-brand-dark);
-    border-color: var(--snip-brand-dark);
-  }
-  
-  .snip-btn--secondary {
-    color: var(--snip-brand);
-    background: var(--snip-surface-alt);
-  }
-  
-  .snip-btn--secondary:hover,
-  .snip-btn--secondary:focus {
-    background: var(--snip-brand);
-    color: #fff;
-  }
-  
-  .snip-btn:disabled {
-    opacity: .65;
-    cursor: not-allowed;
-  }
-  
-  .snip-required-note {
-    font-size: 13px;
-    color: var(--snip-muted);
-    margin-top: 14px;
-    text-align: center;
-  }
-  
-  /* -------------------------------------------------------------------------
-     Success state — e.g. a post-submit "thank you" screen
-     ------------------------------------------------------------------------- */
-  .snip-success {
-    padding-top: 44px;
-    padding-bottom: 48px;
-    text-align: center;
-  }
-  
-  .snip-success__icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: var(--snip-success-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    animation: snip-pop .3s ease both;
-  }
-  
-  .snip-success__icon span {
-    color: var(--snip-success);
-    font-size: 34px;
-    line-height: 1;
-  }
-  
-  .snip-success__title {
-    margin: 0 0 10px;
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--snip-ink);
-  }
-  
-  .snip-success__text {
-    margin: 0 auto;
-    max-width: 420px;
-    font-size: 16px;
-    color: var(--snip-muted);
-  }
-  
-  @keyframes snip-pop {
-    from {
-      transform: scale(.7);
-      opacity: 0;
-    }
-  
-    to {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-  
-  /* -------------------------------------------------------------------------
-     Flip — a two-face 3D flip on hover, e.g. an event date badge that flips
-     to a "starts" label, or a link styled as a physical flip-button (was the
-     AI+X events widget's `.ce-*` classes). Two shapes share the mechanic:
-       .snip-event        row link; hovering anywhere in the row flips its
-                           circular badge (badge and trigger are different
-                           elements, so the hover has to target the row)
-       .snip-flip-btn      a standalone rectangular button that flips itself
-     ------------------------------------------------------------------------- */
-  .snip-event {
-    display: flex;
-    gap: 18px;
-    align-items: center;
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .snip-event__badge {
-    flex: none;
-    width: 64px;
-    height: 64px;
-    perspective: 600px;
-  }
-  
-  .snip-event__badge-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform .55s cubic-bezier(.4, .2, .2, 1);
-    transform-style: preserve-3d;
-  }
-  
-  .snip-event:hover .snip-event__badge-inner {
-    transform: rotateY(180deg);
-  }
-  
-  .snip-event__face {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    line-height: 1.12;
-    font-family: var(--snip-font-display);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-  
-  .snip-event__face--front {
-    background: var(--snip-brand);
-    color: #fff;
-  }
-  
-  .snip-event__face--back {
-    background: var(--snip-gold);
-    color: var(--snip-brand);
-    box-sizing: border-box;
-    transform: rotateY(180deg);
-  }
-  
-  .snip-event__title {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.3;
-    color: var(--snip-brand);
-    transition: color .3s ease;
-  }
-  
-  .snip-event:hover .snip-event__title {
-    color: var(--snip-gold-dark, #a5904a);
-  }
-  
-  .snip-flip-btn {
-    display: block;
-    height: 46px;
-    text-decoration: none;
-    perspective: 700px;
-  }
-  
-  .snip-flip-btn__inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform .5s cubic-bezier(.4, .2, .2, 1);
-    transform-style: preserve-3d;
-  }
-  
-  .snip-flip-btn:hover .snip-flip-btn__inner {
-    transform: rotateX(180deg);
-  }
-  
-  .snip-flip-btn__face {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 12px;
-    letter-spacing: 1px;
-    font-family: var(--snip-font-display);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-  
-  .snip-flip-btn__face--front {
-    background: var(--snip-brand);
-    color: #fff;
-  }
-  
-  .snip-flip-btn__face--back {
-    background: var(--snip-gold);
-    color: var(--snip-brand);
-    transform: rotateX(180deg);
-  }
-  
-  /* -------------------------------------------------------------------------
-     Responsive
-     ------------------------------------------------------------------------- */
-  @media (max-width: 700px) {
-    .snip-stat-bar {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.75rem;
-    }
-  
-    .snip-stat-bar > .c-calloutText {
-      height: auto;
-      padding: 14px !important;
-    }
-  
-    .snip-stat-bar .c-calloutText_heading {
-      font-size: 1.15rem;
-      margin-top: 0;
-    }
-  
-    .snip-stat-bar .c-calloutText_text {
-      font-size: 0.8rem;
-      line-height: 1.3;
-    }
-  
-    .snip-stat-bar .snip-source {
-      margin-top: 0.5rem;
-    }
-  
-    .snip-stat-bar .snip-source__text {
-      font-size: 7pt;
-    }
-  
-    .snip-grid--2,
-    .snip-grid--3 {
-      grid-template-columns: 1fr;
-    }
-  
-    .snip-grid--4 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  
-    .snip-grid--address {
-      grid-template-columns: 1fr;
-    }
-  
-    .snip-panel__pad {
-      padding-left: 18px;
-      padding-right: 18px;
-    }
-  
-    .snip-table__row {
-      grid-template-columns: 1fr;
-    }
-  
-    .snip-table__cell {
-      border-right: none;
-      border-bottom: 1px solid var(--snip-border);
-    }
-  
-    .snip-table__cell:last-child {
-      border-bottom: none;
-    }
-  
-    .snip-nav {
-      flex-wrap: wrap;
-    }
-  
-    .snip-nav__link {
-      flex: 1 1 45%;
-    }
-  }
-  /*]]>*/
-  </style>
-  <style>
     #jobs-asset-root {
       font-family: inherit;
       color: inherit;
@@ -1186,17 +70,13 @@
       outline-offset: 3px;
     }
   
-    .dateItems-list .dateItem.hidden {
-      display: none;
-    }
-  
     .jobs-tabs {
       display: grid;
       grid-auto-flow: column;
       grid-auto-columns: max-content;
       /* `safe center`: center the tab group when it fits, but fall back to
          start-alignment instead of overflowing symmetrically past both edges
-         when the 900px-capped column isn't wide enough for all six tabs. */
+         when the 900px-capped column isn't wide enough for all four tabs. */
       justify-content: safe center;
       align-items: center;
       gap: 0.25rem;
@@ -1209,6 +89,7 @@
     .jobs-tabs button {
       display: grid;
       place-items: center;
+      margin: 0;
       padding: 0.5rem 0.4rem;
       border: none;
       background: transparent;
@@ -1248,6 +129,21 @@
   
     .jobs-panel.active {
       display: block;
+    }
+
+    .jobs-employers-link {
+      display: block;
+      margin: 0.75rem 0 0;
+      text-align: center;
+      color: var(--jobs-green);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .jobs-employers-link:hover,
+    .jobs-employers-link:focus {
+      text-decoration: underline;
     }
   
     /* .jobs-wf-nav and .jobs-stat-bar rules removed — migrated to the
@@ -1382,72 +278,6 @@
   
     .jobs-table tbody tr:hover {
       background-color: var(--jobs-surface-subtle);
-    }
-  
-    .jobs-filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin: 1.5rem 0;
-      align-items: center;
-    }
-  
-    .jobs-filter-button {
-      display: inline-block;
-      padding: 0.65rem 1.1rem;
-      border: 2px solid #006747;
-      background: #ffffff;
-      color: #006747;
-      font-family: inherit;
-      font-size: 0.95rem;
-      font-weight: 700;
-      line-height: 1.2;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      cursor: pointer;
-      box-sizing: border-box;
-      transition:
-        background-color 160ms ease,
-        color 160ms ease,
-        border-color 160ms ease,
-        box-shadow 160ms ease,
-        transform 120ms ease;
-    }
-  
-    .jobs-filters > button:first-child,
-    .jobs-filters > button:first-of-type {
-      margin-top: 24px !important;
-    }
-  
-    .jobs-filter-button:hover {
-      background: #006747;
-      color: #ffffff;
-      border-color: #006747;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
-    }
-  
-    .jobs-filter-button:focus-visible {
-      outline: 3px solid var(--jobs-border-strong);
-      outline-offset: 3px;
-    }
-  
-    .jobs-filter-button.active,
-    .jobs-filter-button[aria-pressed="true"] {
-      background: #006747;
-      color: #ffffff;
-      border-color: #006747;
-      box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.25);
-    }
-  
-    .jobs-filter-button.active:hover,
-    .jobs-filter-button[aria-pressed="true"]:hover {
-      background: #004c35;
-      border-color: #004c35;
-      color: #ffffff;
-    }
-  
-    .jobs-filter-button:active {
-      transform: translateY(1px);
     }
   
     .jobs-loading {
@@ -1759,11 +589,6 @@
         min-height: 52px !important;
       }
   
-      .jobs-filter-button {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.8rem;
-      }
-  
       .jobs-table {
         display: grid;
         grid-template-columns: 1fr;
@@ -1921,11 +746,6 @@
         font-size: 16px;
       }
   
-      .jobs-filter-button {
-        padding: 0.4rem 0.6rem;
-        font-size: 0.75rem;
-      }
-  
       .spotlight-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -1938,420 +758,275 @@
       }
     }
   
-    /* .employer-grid wrapper removed — migrated to .snip-grid.snip-grid--2.
-       .employer-card/.employer-tag stay local: page-specific tweaks layered
-       on top of the CMS theme's own c-calloutText component. */
-  
-    .employer-card {
-      min-height: 150px;
-      height: auto;
-      margin: 0 !important;
-      box-sizing: border-box;
-    }
-  
-    .employer-card .employer-tag {
-      display: inline-block;
-      margin-bottom: 0.75rem;
-      padding: 0.2rem 0.55rem;
-      border-radius: 2px;
-      background: #e6f1ed;
-      color: #004c35;
-      font-size: 0.75rem;
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: 0.03em;
-    }
-  
-    .employer-card .c-calloutText_heading {
-      margin-top: 0;
-      margin-bottom: 0.5rem;
-    }
-  
-    .employer-card .c-calloutText_text p {
-      margin: 0;
-    }
-  
-    /* .recruiting-grid wrapper removed — migrated to .snip-grid.snip-grid--3.
-       .recruiting-card/.recruiting-link stay local (see note above
-       .employer-card). */
-  
-    .recruiting-card {
-      min-height: 255px;
-      height: auto;
-      margin: 0 !important;
-      box-sizing: border-box;
-  
-      display: flex;
-      flex-direction: column;
-    }
-  
-    .recruiting-card .c-calloutText_heading {
-      margin-top: 0;
-      margin-bottom: 1.25rem;
-    }
-  
-    .recruiting-card .c-calloutText_text {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-  
-    .recruiting-card .c-calloutText_text p {
-      margin: 0 0 1rem 0;
-    }
-  
-    .recruiting-card .recruiting-link {
-      margin-top: auto;
-      color: #006747;
-      font-weight: 700;
-      text-decoration: none;
-    }
-  
-    .recruiting-card .recruiting-link:hover,
-    .recruiting-card .recruiting-link:focus {
-      text-decoration: underline;
-    }
-  
-    .recruiting-card .recruiting-link:focus-visible {
-      outline: 3px solid var(--jobs-border-strong);
-      outline-offset: 3px;
-    }
-  
-    /* .employer-grid/.recruiting-grid mobile overrides removed — the shared
-       .snip-grid--2/--3 components collapse to a single column below 700px
-       on their own (snippet-template.css). */
   </style>
-  <div id="jobs-asset-root">
-  <div class="jobs-tabs"><button class="active" style="font-weight: 600; margin-top: -10px; align-self: end;" tabindex="0" data-panel="prospective" onclick="switchPanel('prospective', this)">Prospective Students</button> <button tabindex="0" data-panel="current" onclick="switchPanel('current', this)">Current Students</button> <button tabindex="0" data-panel="matchme" onclick="switchPanel('matchme', this)">Find My Job ✨</button> <button tabindex="0" data-panel="internships" onclick="switchPanel('internships', this)">Find My Internship ✨</button> <button tabindex="0" data-panel="events" onclick="switchPanel('events', this)">Events Calendar</button> <button tabindex="0" data-panel="employers" onclick="switchPanel('employers', this)">Employers</button></div>
-  <div id="prospective" class="jobs-panel active">
-  <h3>National Occupation Projections &mdash; 2023 to 2033</h3>
-  <div style="margin: 1.5rem 0;">
-  <div class="jobs-form-group"><label for="prospective-degree">Select Degree Program:</label><select id="prospective-degree" style="max-width: 400px;" onchange="updateProjections()">
-  <option value="bscs">BS Computer Science</option>
-  <option value="bscp">BS Computer Engineering</option>
-  <option value="bscse">BS Computer Science and Engineering</option>
-  <option value="bsai">BS Artificial Intelligence</option>
-  <option value="bscys">BS Cybersecurity</option>
-  <option value="bsit">BS Information Technology</option>
-  <option value="bscsb">BS Computer Science &amp; Business</option>
-  <option value="bscsc">BS Computer Science &amp; Criminology</option>
-  <option value="bscsiss">BS Computer Science &amp; Interdisciplinary Social Sciences</option>
-  <option value="mscs">MS Computer Science</option>
-  <option value="mscpe">MS Computer Engineering</option>
-  <option value="msai">MS Artificial Intelligence</option>
-  <option value="mscys">MS Cybersecurity</option>
-  <option value="phdcse">PhD Computer Science and Engineering</option>
-  <option value="phdds">PhD Data Science</option>
-  </select></div>
-  <div id="projection-status" style="margin-top: 0.5rem; font-size: 0.9rem;"></div>
-  </div>
-  <table class="jobs-table">
-  <thead>
-  <tr>
-  <th style="width: 50%;">Occupation</th>
-  <th style="width: 10%;">2023 Jobs</th>
-  <th style="width: 10%;">2033 Est.</th>
-  <th style="width: 5%;">Growth</th>
-  <th style="width: 25%;">Trend</th>
-  </tr>
-  </thead>
-  <tbody id="projection-body">
-  <tr>
-  <td>Software developers</td>
-  <td>1,692,100</td>
-  <td>1,995,900</td>
-  <td>+17.9%</td>
-  <td class="bar-cell">
-  <div class="bar-wrap">
-  <div class="bar" style="width: 100%;">&nbsp;</div>
-  </div>
-  </td>
-  </tr>
-  <tr>
-  <td>Computer occupations (all)</td>
-  <td>5,021,800</td>
-  <td>5,610,700</td>
-  <td>+11.7%</td>
-  <td class="bar-cell">
-  <div class="bar-wrap">
-  <div class="bar" style="width: 100%;">&nbsp;</div>
-  </div>
-  </td>
-  </tr>
-  <tr>
-  <td>Database architects</td>
-  <td>61,400</td>
-  <td>68,000</td>
-  <td>+10.8%</td>
-  <td class="bar-cell">
-  <div class="bar-wrap">
-  <div class="bar" style="width: 100%;">&nbsp;</div>
-  </div>
-  </td>
-  </tr>
-  <tr>
-  <td>Financial &amp; investment analysts</td>
-  <td>347,400</td>
-  <td>380,300</td>
-  <td>+9.5%</td>
-  <td class="bar-cell">
-  <div class="bar-wrap">
-  <div class="bar" style="width: 100%;">&nbsp;</div>
-  </div>
-  </td>
-  </tr>
-  </tbody>
-  </table>
-  <h3>Florida Spotlight</h3>
-  <div class="spotlight-grid">
-  <div class="c-calloutText c-calloutText--grey">
-  <h3 class="c-calloutText_heading">107,404</h3>
-  <div class="c-calloutText_text">
-  <p class="p1">Software development jobs in Florida &mdash; +5% projected 2025 (3.2&times; benchmark)</p>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey">
-  <h3 class="c-calloutText_heading">16,973</h3>
-  <div class="c-calloutText_text">
-  <p class="p1">Data science and Machine Learning jobs &mdash; +5.6% projected, fastest-growing Florida category</p>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey">
-  <h3 class="c-calloutText_heading">No. 3</h3>
-  <div class="c-calloutText_text">
-  <p class="p1">Florida&rsquo;s aggregate CompTIA ranking among all 50 states</p>
-  </div>
-  </div>
-  </div>
-  <h3>Why the AI Era Boosts &mdash; Not Replaces &mdash; Computing Careers</h3>
-  <div class="spotlight-grid">
-  <div class="c-calloutText c-calloutText--grey">
-  <h3 class="c-calloutText_heading">Productivity Creates Demand</h3>
-  <div class="c-calloutText_text">
-  <p class="p1"><strong>Bureau of Labor Statistics finding:</strong> AI-assisted productivity lowers software costs, expands the market and boosts demand for developers who build AI tools.</p>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey">
-  <h3 class="c-calloutText_heading">Data &amp; AI: Fastest-Growing Segment</h3>
-  <div class="c-calloutText_text">
-  <p class="p1"><strong>CompTIA 2025:</strong> Data science, Machine Learning, and database roles are Florida&rsquo;s fastest-growing tech category at 5.6% annually &mdash; 3.6&times; the national benchmark, which directly aligns with Bellini College programs.</p>
-  </div>
-  </div>
-  </div>
-  </div>
-  <div id="current" class="jobs-panel">
-  <h3>Resources for Current Students</h3>
-  <h2>Career Development</h2>
-  <div class="career-grid">
-  <div class="c-calloutText c-calloutText--grey">
-  <div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/reliaquest-labs.png" alt="USF Logo" />
-  <h4 class="c-calloutText_heading"><a tabindex="0" href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/reliaquest-labs.aspx"> ReliaQuest Labs</a></h4>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey">
-  <div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/internships.png" alt="USF Logo" />
-  <h4 class="c-calloutText_heading"><a tabindex="0" href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/internships.aspx"> Internships</a></h4>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey">
-  <div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/assistantships.png" alt="USF Logo" />
-  <h4 class="c-calloutText_heading"><a tabindex="0" href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/assistantships.aspx"> Assistantships</a></h4>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey">
-  <div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/career-services.png" alt="USF Logo" />
-  <h4 class="c-calloutText_heading"><a tabindex="0" href="https://www.usf.edu/career-services/"> Career Services </a></h4>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey">
-  <div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/international-study.png" alt="USF Logo" />
-  <h4 class="c-calloutText_heading"><a tabindex="0" href="https://educationabroad.global.usf.edu/_portal/program-discovery?search=%5B%7B%22filterType%22:%22programDiscoveryKeyword%22,%22filterValues%22:%5B%7B%22value%22:%22cyber%22%7D%5D%7D%5D"> International Study</a></h4>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey">
-  <div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/student-orgs.png" alt="USF Logo" />
-  <h4 class="c-calloutText_heading"><a tabindex="0" href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/student-organizations.aspx"> Student Organizations</a></h4>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey">
-  <div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/scholarships.png" alt="USF Logo" />
-  <h4 class="c-calloutText_heading"><a tabindex="0" href="https://www.usf.edu/financial-aid/scholarships/index.aspx"> Scholarships</a></h4>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey">
-  <div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/peer-tutoring.png" alt="USF Logo" />
-  <h4 class="c-calloutText_heading"><a tabindex="0" href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/peer_tut.aspx"> Peer Tutoring</a></h4>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey">
-  <div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/cyberherd.png" alt="USF Logo" />
-  <h4 class="c-calloutText_heading"><a tabindex="0" href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/cyberherd.aspx"> Cyberherd</a></h4>
-  </div>
-  </div>
-  </div>
-  <h2>Growing Metro Areas</h2>
-  <div class="metro-grid">
-  <div class="c-calloutText c-calloutText--grey metro-card metro-card--top">
-  <h3 class="c-calloutText_heading"><a tabindex="0" href="https://tampabayedc.com/why-tampa-bay/work-tampa/">Tampa Bay</a></h3>
-  <div class="c-calloutText_text">
-  <p class="p1">#1 year-over-year job growth among all Florida counties</p>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey metro-card metro-card--top">
-  <h3 class="c-calloutText_heading"><a tabindex="0" href="https://becomestpete.com/industries-and-businesses/data-analytics-and-technology/">St. Petersburg</a></h3>
-  <div class="c-calloutText_text">
-  <p class="p1">#2 place in Florida for tech jobs in 2024</p>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey metro-card metro-card--top">
-  <h3 class="c-calloutText_heading"><a tabindex="0" href="https://business.orlando.org/l/technology/">Orlando</a></h3>
-  <div class="c-calloutText_text">
-  <p class="p1">Almost 25,000 Industry Professionals</p>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey metro-card metro-card--bottom-left">
-  <h3 class="c-calloutText_heading"><a tabindex="0" href="https://www.beaconcouncil.com/technology/">Miami</a></h3>
-  <div class="c-calloutText_text">
-  <p class="p1">More than 2,000 startups supporting roughly 90,000 jobs</p>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey metro-card metro-card--bottom-right">
-  <h3 class="c-calloutText_heading"><a tabindex="0" href="https://jaxusa.org/industry/technology-services/">Jacksonville</a></h3>
-  <div class="c-calloutText_text">
-  <p class="p1">28,000 professionals employed in the technology services industry.</p>
-  </div>
-  </div>
-  </div>
-  </div>
-  <!-- FIND MY JOB: Left column (degree+grad) | Right column (location+auth) | Full-width skills -->
-  <div id="matchme" class="jobs-panel">
-  <h3>Find My Job Match</h3>
-  <form class="jobs-form">
-  <div class="jobs-form-row">
-  <div class="jobs-form-group"><label for="jm-program">Your Degree Program:</label><select id="jm-program" data-option-set="degreePrograms"></select></div>
-  <div class="jobs-form-group"><label for="jm-grad">Graduation Year:</label><select id="jm-grad" data-option-set="graduationTerms"></select></div>
-  </div>
-  <div class="jobs-form-row">
-  <div class="jobs-form-group"><label for="jm-location">Preferred Location:</label><select id="jm-location" data-option-set="locations"></select></div>
-  <div class="jobs-form-group"><label for="jm-auth">Work Authorization:</label><select id="jm-auth">
-  <option>US citizen / permanent resident</option>
-  <option>F-1 OPT / STEM OPT eligible</option>
-  <option>H-1B sponsorship needed</option>
-  </select></div>
-  </div>
-  <div class="jobs-form-row full">
-  <div class="jobs-form-group"><label for="jm-skills">Your Skills (comma-separated):</label> <input id="jm-skills" type="text" placeholder="e.g. Python, React, SQL, AWS" /></div>
-  </div>
-  <button id="jm-btn" class="snippetButton" tabindex="0" type="button" onclick="runJobMatch()">Find My Job Matches &rarr;</button></form>
-  <div id="jm-loading" class="jobs-loading" aria-live="polite" aria-busy="true"><span class="jobs-spinner" aria-hidden="true"></span> <span>Loading job matches...</span></div>
-  <div id="jm-results" class="jobs-results"></div>
-  </div>
-  <!-- FIND MY INTERNSHIP: Two columns with program+grad on left, skills on right -->
-  <div id="internships" class="jobs-panel">
-  <h3>Find My Internship Match</h3>
-  <form class="jobs-form">
-  <div class="jobs-form-row">
-  <div class="jobs-form-group"><label for="ji-program">Your Degree Program:</label><select id="ji-program" data-option-set="degreePrograms"></select></div>
-  <div class="jobs-form-group"><label for="ji-grad">Graduation Year:</label><select id="ji-grad" data-option-set="graduationTerms"></select></div>
-  </div>
-  <div class="jobs-form-row">
-  <div class="jobs-form-group"><label for="ji-location">Preferred Location:</label><select id="ji-location" data-option-set="locations"></select></div>
-  <div class="jobs-form-group"><label for="ji-auth">Work Authorization:</label><select id="ji-auth">
-  <option>US citizen / permanent resident</option>
-  <option>F-1 OPT / STEM OPT eligible</option>
-  <option>H-1B sponsorship needed</option>
-  </select></div>
-  </div>
-  <div class="jobs-form-row full">
-  <div class="jobs-form-group"><label for="ji-skills">Your Skills (comma-separated):</label> <input id="ji-skills" type="text" placeholder="e.g. Python, React, SQL, AWS" /></div>
-  </div>
-  <button id="ji-btn" class="snippetButton" tabindex="0" type="button" onclick="runInternshipMatch()">Find My Internship Matches &rarr;</button></form>
-  <div id="ji-loading" class="jobs-loading" aria-live="polite" aria-busy="true"><span class="jobs-spinner" aria-hidden="true"></span> <span>Loading internship matches...</span></div>
-  <div id="ji-results" class="jobs-results"></div>
-  </div>
-  <div id="events" class="jobs-panel">
-  <h3>Events Calendar</h3>
-  <div class="jobs-filters" role="group" aria-label="Event filters"><button class="jobs-filter-button active" tabindex="0" type="button" aria-pressed="true" onclick="filterEvents('all', this)"> All Events </button> <button class="jobs-filter-button" tabindex="0" type="button" aria-pressed="false" onclick="filterEvents('workshops', this)"> Workshops </button> <button class="jobs-filter-button" tabindex="0" type="button" aria-pressed="false" onclick="filterEvents('panels', this)"> Panels </button> <button class="jobs-filter-button" tabindex="0" type="button" aria-pressed="false" onclick="filterEvents('networking', this)"> Networking </button> <button class="jobs-filter-button" tabindex="0" type="button" aria-pressed="false" onclick="filterEvents('student-orgs', this)"> Student Org Events </button></div>
-  <div id="events-loading" class="jobs-loading" aria-live="polite" aria-busy="true"><span class="jobs-spinner" aria-hidden="true"></span> <span>Loading events...</span></div>
-  <div id="events-list" class="dateItems-list"><!-- Events will be generated here by JavaScript --></div>
-  </div>
-  <div id="employers" class="jobs-panel">
-  <h3>Why Recruit from Bellini College</h3>
-  <div class="snip-grid snip-grid--2">
-  <div class="c-calloutText c-calloutText--grey employer-card"><span class="employer-tag">Talent pipeline</span>
-  <h3 class="c-calloutText_heading">Programs aligned to market demand</h3>
-  <div class="c-calloutText_text">
-  <p>We offer degree programs in high-demand fields such as computer science, AI, data intelligence, cybersecurity and computer engineering, preparing talent for some of the fastest-growing roles in Florida and across the U.S.</p>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey employer-card"><span class="employer-tag">AI-ready graduates</span>
-  <h3 class="c-calloutText_heading">Curriculum built for the AI era</h3>
-  <div class="c-calloutText_text">
-  <p>Graduates trained in machine learning, deep learning, natural language processing and applied AI systems &mdash; directly address the 12,735 Florida postings requiring AI skills identified in 2024.</p>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey employer-card"><span class="employer-tag">Scale</span>
-  <h3 class="c-calloutText_heading">One of Florida&rsquo;s largest computing colleges</h3>
-  <div class="c-calloutText_text">
-  <p>More than 70 faculty across AI, cybersecurity, computer science and computer engineering. USF is Florida&rsquo;s fastest-growing research university.</p>
-  </div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey employer-card"><span class="employer-tag">Location</span>
-  <h3 class="c-calloutText_heading">Tampa Bay &mdash; a rising tech market</h3>
-  <div class="c-calloutText_text">
-  <p>Florida is No. 4 nationally in net tech employment and No. 3 for projected job gains.</p>
-  </div>
-  </div>
-  </div>
-  <h3>Recruiting Options</h3>
-  <div class="snip-grid snip-grid--3">
-  <div class="c-calloutText c-calloutText--grey recruiting-card">
-  <h3 class="c-calloutText_heading">On-campus recruiting</h3>
-  <div class="c-calloutText_text">
-  <p>Info sessions, tech talks and interview suites. Spring and fall career fairs with targeted computing tracks.</p>
-  <a class="recruiting-link" tabindex="0" href="mailto:ecouillard@usf.edu">Schedule a visit &rarr;</a></div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey recruiting-card">
-  <h3 class="c-calloutText_heading">Internship partnerships</h3>
-  <div class="c-calloutText_text">
-  <p>Post internship and co-op positions directly to Bellini College students via our career portal.</p>
-  <a class="recruiting-link" tabindex="0" href="mailto:ecouillard@usf.edu">Post a position &rarr;</a></div>
-  </div>
-  <div class="c-calloutText c-calloutText--grey recruiting-card">
-  <h3 class="c-calloutText_heading">Capstone sponsorship</h3>
-  <div class="c-calloutText_text">
-  <p>Sponsor a senior or graduate capstone. Your real-world problem, our students&rsquo; solutions &mdash; with faculty oversight.</p>
-  <a class="recruiting-link" tabindex="0" href="#">Explore capstones &rarr;</a></div>
-  </div>
-  </div>
-  <h3>Recruit Bellini College Talent</h3>
-  <p>Connect with our top computer science and technology students. Fill out the form below to express your hiring interest.</p>
-  <form id="recruit-form" class="jobs-form" onsubmit="submitRecruitment(event)">
-  <div class="jobs-form-group"><label for="recruit-company">Company Name:</label> <input id="recruit-company" name="company" required="" type="text" /></div>
-  <div class="jobs-form-group"><label for="recruit-name">Contact Name:</label> <input id="recruit-name" name="contactName" required="" type="text" /></div>
-  <div class="jobs-form-group"><label for="recruit-email">Contact Email:</label> <input id="recruit-email" name="email" required="" type="email" /></div>
-  <div class="jobs-form-group"><label for="recruit-positions">Open Positions:</label> <textarea id="recruit-positions" style="min-height: 100px;" name="message" required=""></textarea></div>
-  <!-- Honeypot anti-spam field. Keep hidden from real users. --> <input id="recruit-website" style="position: absolute; left: -9999px;" tabindex="-1" autocomplete="off" name="website" type="text" /> <button class="snippetButton" tabindex="0" type="submit">Submit Your Interest</button></form></div>
-  <section class="all-sources" aria-labelledby="all-sources-heading">
-  <h4 id="all-sources-heading" class="all-sources-heading">Sources &amp; Disclaimers</h4>
-  <ol class="all-sources-list">
-  <li>BLS Monthly Labor Review Feb. 2025</li>
-  <li>CompTIA State of the Tech Workforce 2025</li>
-  <li>AIMaps / LinkUp.</li>
-  <li>Maintained by Bellini College Career Services.</li>
-  <li>Tampa Bay: <a tabindex="0" href="https://tampabayedc.com/why-tampa-bay/work-tampa/"> Tampa Bay Economic Development Council </a></li>
-  <li>St. Petersburg: <a tabindex="0" href="https://becomestpete.com/industries-and-businesses/data-analytics-and-technology/"> St. Petersburg Area Economic Development Corporation </a></li>
-  <li>Orlando: <a tabindex="0" href="https://business.orlando.org/l/technology/"> Orlando Economic Partnership </a></li>
-  <li>Miami: <a tabindex="0" href="https://www.beaconcouncil.com/technology/"> Miami-Dade Beacon Council </a></li>
-  <li>Jacksonville: <a tabindex="0" href="https://jaxusa.org/wp-content/uploads/2026/Technology-Services-Business-Case.pdf"> JAXUSA Partnership </a></li>
-  </ol>
-  <p class="all-sources-text">Updated quarterly.</p>
-  <p class="all-sources-text">Wage and workforce figures are aggregate regional estimates. Individual earnings vary by role, employer, experience, and location. Employment projections are national estimates from the U.S. Bureau of Labor Statistics and Lightcast, based on historical trends and modeling. They are not guarantees of job availability, salary, or outcomes for any individual or program.</p>
-  <p class="all-sources-text">Listings are aggregated from third-party sources (including USAJOBS) and are not verified or endorsed by the University of South Florida. Match scores are automated estimates and do not guarantee eligibility, fit, or employment. Results may be incomplete or inaccurate and should not be your only source for career decisions. Confirm all details on the original posting before applying.</p>
-  <p class="all-sources-text">Information submitted through this form is used only to respond to your recruiting interest. Submitting it does not create a hiring agreement or partnership with USF.</p>
-  </section>
-  </div>
-  <script>
+<div id="jobs-asset-root">
+<div class="jobs-tabs"><button class="active" style="font-weight: 600;" tabindex="0" data-panel="prospective" onclick="switchPanel('prospective', this)">Prospective Students</button> <button tabindex="0" data-panel="current" onclick="switchPanel('current', this)">Current Students</button> <button tabindex="0" data-panel="matchme" onclick="switchPanel('matchme', this)">Find My Job ✨</button> <button tabindex="0" data-panel="internships" onclick="switchPanel('internships', this)">Find My Internship ✨</button></div>
+<a class="jobs-employers-link" href="employers.html">Recruiting talent? Visit our Employers page &rarr;</a>
+<div id="prospective" class="jobs-panel active">
+<h3>National Occupation Projections &mdash; 2023 to 2033</h3>
+<div style="margin: 1.5rem 0;">
+<div class="jobs-form-group"><label for="prospective-degree">Select Degree Program:</label><select id="prospective-degree" style="max-width: 400px;" onchange="updateProjections()">
+<option value="bscs">BS Computer Science</option>
+<option value="bscp">BS Computer Engineering</option>
+<option value="bscse">BS Computer Science and Engineering</option>
+<option value="bsai">BS Artificial Intelligence</option>
+<option value="bscys">BS Cybersecurity</option>
+<option value="bsit">BS Information Technology</option>
+<option value="bscsb">BS Computer Science &amp; Business</option>
+<option value="bscsc">BS Computer Science &amp; Criminology</option>
+<option value="bscsiss">BS Computer Science &amp; Interdisciplinary Social Sciences</option>
+<option value="mscs">MS Computer Science</option>
+<option value="mscpe">MS Computer Engineering</option>
+<option value="msai">MS Artificial Intelligence</option>
+<option value="mscys">MS Cybersecurity</option>
+<option value="phdcse">PhD Computer Science and Engineering</option>
+<option value="phdds">PhD Data Science</option>
+</select></div>
+<div id="projection-status" style="margin-top: 0.5rem; font-size: 0.9rem;"></div>
+</div>
+<table class="jobs-table">
+<thead>
+<tr>
+<th style="width: 50%;">Occupation</th>
+<th style="width: 10%;">2023 Jobs</th>
+<th style="width: 10%;">2033 Est.</th>
+<th style="width: 5%;">Growth</th>
+<th style="width: 25%;">Trend</th>
+</tr>
+</thead>
+<tbody id="projection-body">
+<tr>
+<td>Software developers</td>
+<td>1,692,100</td>
+<td>1,995,900</td>
+<td>+17.9%</td>
+<td class="bar-cell">
+<div class="bar-wrap">
+<div class="bar" style="width: 100%;">&nbsp;</div>
+</div>
+</td>
+</tr>
+<tr>
+<td>Computer occupations (all)</td>
+<td>5,021,800</td>
+<td>5,610,700</td>
+<td>+11.7%</td>
+<td class="bar-cell">
+<div class="bar-wrap">
+<div class="bar" style="width: 100%;">&nbsp;</div>
+</div>
+</td>
+</tr>
+<tr>
+<td>Database architects</td>
+<td>61,400</td>
+<td>68,000</td>
+<td>+10.8%</td>
+<td class="bar-cell">
+<div class="bar-wrap">
+<div class="bar" style="width: 100%;">&nbsp;</div>
+</div>
+</td>
+</tr>
+<tr>
+<td>Financial &amp; investment analysts</td>
+<td>347,400</td>
+<td>380,300</td>
+<td>+9.5%</td>
+<td class="bar-cell">
+<div class="bar-wrap">
+<div class="bar" style="width: 100%;">&nbsp;</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Florida Spotlight</h3>
+<div class="spotlight-grid">
+<div class="c-calloutText c-calloutText--grey">
+<h3 class="c-calloutText_heading">107,404</h3>
+<div class="c-calloutText_text">
+<p class="p1">Software development jobs in Florida &mdash; +5% projected 2025 (3.2&times; benchmark)</p>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey">
+<h3 class="c-calloutText_heading">16,973</h3>
+<div class="c-calloutText_text">
+<p class="p1">Data science and Machine Learning jobs &mdash; +5.6% projected, fastest-growing Florida category</p>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey">
+<h3 class="c-calloutText_heading">No. 3</h3>
+<div class="c-calloutText_text">
+<p class="p1">Florida&rsquo;s aggregate CompTIA ranking among all 50 states</p>
+</div>
+</div>
+</div>
+<h3>Why the AI Era Boosts &mdash; Not Replaces &mdash; Computing Careers</h3>
+<div class="spotlight-grid">
+<div class="c-calloutText c-calloutText--grey">
+<h3 class="c-calloutText_heading">Productivity Creates Demand</h3>
+<div class="c-calloutText_text">
+<p class="p1"><strong>Bureau of Labor Statistics finding:</strong> AI-assisted productivity lowers software costs, expands the market and boosts demand for developers who build AI tools.</p>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey">
+<h3 class="c-calloutText_heading">Data &amp; AI: Fastest-Growing Segment</h3>
+<div class="c-calloutText_text">
+<p class="p1"><strong>CompTIA 2025:</strong> Data science, Machine Learning, and database roles are Florida&rsquo;s fastest-growing tech category at 5.6% annually &mdash; 3.6&times; the national benchmark, which directly aligns with Bellini College programs.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="current" class="jobs-panel">
+<h3>Resources for Current Students</h3>
+<h2>Career Development</h2>
+<div class="career-grid">
+<div class="c-calloutText c-calloutText--grey">
+<div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/reliaquest-labs.png" alt="USF Logo" />
+<h4 class="c-calloutText_heading"><a tabindex="0" href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/reliaquest-labs.aspx"> ReliaQuest Labs</a></h4>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey">
+<div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/internships.png" alt="USF Logo" />
+<h4 class="c-calloutText_heading"><a tabindex="0" href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/internships.aspx"> Internships</a></h4>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey">
+<div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/assistantships.png" alt="USF Logo" />
+<h4 class="c-calloutText_heading"><a tabindex="0" href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/assistantships.aspx"> Assistantships</a></h4>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey">
+<div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/career-services.png" alt="USF Logo" />
+<h4 class="c-calloutText_heading"><a tabindex="0" href="https://www.usf.edu/career-services/"> Career Services </a></h4>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey">
+<div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/international-study.png" alt="USF Logo" />
+<h4 class="c-calloutText_heading"><a tabindex="0" href="https://educationabroad.global.usf.edu/_portal/program-discovery?search=%5B%7B%22filterType%22:%22programDiscoveryKeyword%22,%22filterValues%22:%5B%7B%22value%22:%22cyber%22%7D%5D%7D%5D"> International Study</a></h4>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey">
+<div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/student-orgs.png" alt="USF Logo" />
+<h4 class="c-calloutText_heading"><a tabindex="0" href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/student-organizations.aspx"> Student Organizations</a></h4>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey">
+<div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/scholarships.png" alt="USF Logo" />
+<h4 class="c-calloutText_heading"><a tabindex="0" href="https://www.usf.edu/financial-aid/scholarships/index.aspx"> Scholarships</a></h4>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey">
+<div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/peer-tutoring.png" alt="USF Logo" />
+<h4 class="c-calloutText_heading"><a tabindex="0" href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/peer_tut.aspx"> Peer Tutoring</a></h4>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey">
+<div class="c-calloutText_text"><img class="career-dev-img" src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/cyberherd.png" alt="USF Logo" />
+<h4 class="c-calloutText_heading"><a tabindex="0" href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/cyberherd.aspx"> Cyberherd</a></h4>
+</div>
+</div>
+</div>
+<h2>Growing Metro Areas</h2>
+<div class="metro-grid">
+<div class="c-calloutText c-calloutText--grey metro-card metro-card--top">
+<h3 class="c-calloutText_heading"><a tabindex="0" href="https://tampabayedc.com/why-tampa-bay/work-tampa/">Tampa Bay</a></h3>
+<div class="c-calloutText_text">
+<p class="p1">#1 year-over-year job growth among all Florida counties</p>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey metro-card metro-card--top">
+<h3 class="c-calloutText_heading"><a tabindex="0" href="https://becomestpete.com/industries-and-businesses/data-analytics-and-technology/">St. Petersburg</a></h3>
+<div class="c-calloutText_text">
+<p class="p1">#2 place in Florida for tech jobs in 2024</p>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey metro-card metro-card--top">
+<h3 class="c-calloutText_heading"><a tabindex="0" href="https://business.orlando.org/l/technology/">Orlando</a></h3>
+<div class="c-calloutText_text">
+<p class="p1">Almost 25,000 Industry Professionals</p>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey metro-card metro-card--bottom-left">
+<h3 class="c-calloutText_heading"><a tabindex="0" href="https://www.beaconcouncil.com/technology/">Miami</a></h3>
+<div class="c-calloutText_text">
+<p class="p1">More than 2,000 startups supporting roughly 90,000 jobs</p>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey metro-card metro-card--bottom-right">
+<h3 class="c-calloutText_heading"><a tabindex="0" href="https://jaxusa.org/industry/technology-services/">Jacksonville</a></h3>
+<div class="c-calloutText_text">
+<p class="p1">28,000 professionals employed in the technology services industry.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- FIND MY JOB: Left column (degree+grad) | Right column (location+auth) | Full-width skills -->
+<div id="matchme" class="jobs-panel">
+<h3>Find My Job Match</h3>
+<form class="jobs-form">
+<div class="jobs-form-row">
+<div class="jobs-form-group"><label for="jm-program">Your Degree Program:</label><select id="jm-program" data-option-set="degreePrograms"></select></div>
+<div class="jobs-form-group"><label for="jm-grad">Graduation Year:</label><select id="jm-grad" data-option-set="graduationTerms"></select></div>
+</div>
+<div class="jobs-form-row">
+<div class="jobs-form-group"><label for="jm-location">Preferred Location:</label><select id="jm-location" data-option-set="locations"></select></div>
+<div class="jobs-form-group"><label for="jm-auth">Work Authorization:</label><select id="jm-auth">
+<option>US citizen / permanent resident</option>
+<option>F-1 OPT / STEM OPT eligible</option>
+<option>H-1B sponsorship needed</option>
+</select></div>
+</div>
+<div class="jobs-form-row full">
+<div class="jobs-form-group"><label for="jm-skills">Your Skills (comma-separated):</label> <input id="jm-skills" type="text" placeholder="e.g. Python, React, SQL, AWS" /></div>
+</div>
+<button id="jm-btn" class="snippetButton" tabindex="0" type="button" onclick="runJobMatch()">Find My Job Matches &rarr;</button></form>
+<div id="jm-loading" class="jobs-loading" aria-live="polite" aria-busy="true"><span class="jobs-spinner" aria-hidden="true"></span> <span>Loading job matches...</span></div>
+<div id="jm-results" class="jobs-results"></div>
+</div>
+<!-- FIND MY INTERNSHIP: Two columns with program+grad on left, skills on right -->
+<div id="internships" class="jobs-panel">
+<h3>Find My Internship Match</h3>
+<form class="jobs-form">
+<div class="jobs-form-row">
+<div class="jobs-form-group"><label for="ji-program">Your Degree Program:</label><select id="ji-program" data-option-set="degreePrograms"></select></div>
+<div class="jobs-form-group"><label for="ji-grad">Graduation Year:</label><select id="ji-grad" data-option-set="graduationTerms"></select></div>
+</div>
+<div class="jobs-form-row">
+<div class="jobs-form-group"><label for="ji-location">Preferred Location:</label><select id="ji-location" data-option-set="locations"></select></div>
+<div class="jobs-form-group"><label for="ji-auth">Work Authorization:</label><select id="ji-auth">
+<option>US citizen / permanent resident</option>
+<option>F-1 OPT / STEM OPT eligible</option>
+<option>H-1B sponsorship needed</option>
+</select></div>
+</div>
+<div class="jobs-form-row full">
+<div class="jobs-form-group"><label for="ji-skills">Your Skills (comma-separated):</label> <input id="ji-skills" type="text" placeholder="e.g. Python, React, SQL, AWS" /></div>
+</div>
+<button id="ji-btn" class="snippetButton" tabindex="0" type="button" onclick="runInternshipMatch()">Find My Internship Matches &rarr;</button></form>
+<div id="ji-loading" class="jobs-loading" aria-live="polite" aria-busy="true"><span class="jobs-spinner" aria-hidden="true"></span> <span>Loading internship matches...</span></div>
+<div id="ji-results" class="jobs-results"></div>
+</div>
+<section class="all-sources" aria-labelledby="all-sources-heading">
+<h4 id="all-sources-heading" class="all-sources-heading">Sources &amp; Disclaimers</h4>
+<ol class="all-sources-list">
+<li>BLS Monthly Labor Review Feb. 2025</li>
+<li>CompTIA State of the Tech Workforce 2025</li>
+<li>AIMaps / LinkUp.</li>
+<li>Maintained by Bellini College Career Services.</li>
+<li>Tampa Bay: <a tabindex="0" href="https://tampabayedc.com/why-tampa-bay/work-tampa/"> Tampa Bay Economic Development Council </a></li>
+<li>St. Petersburg: <a tabindex="0" href="https://becomestpete.com/industries-and-businesses/data-analytics-and-technology/"> St. Petersburg Area Economic Development Corporation </a></li>
+<li>Orlando: <a tabindex="0" href="https://business.orlando.org/l/technology/"> Orlando Economic Partnership </a></li>
+<li>Miami: <a tabindex="0" href="https://www.beaconcouncil.com/technology/"> Miami-Dade Beacon Council </a></li>
+<li>Jacksonville: <a tabindex="0" href="https://jaxusa.org/wp-content/uploads/2026/Technology-Services-Business-Case.pdf"> JAXUSA Partnership </a></li>
+</ol>
+<p class="all-sources-text">Updated quarterly.</p>
+<p class="all-sources-text">Wage and workforce figures are aggregate regional estimates. Individual earnings vary by role, employer, experience, and location. Employment projections are national estimates from the U.S. Bureau of Labor Statistics and Lightcast, based on historical trends and modeling. They are not guarantees of job availability, salary, or outcomes for any individual or program.</p>
+<p class="all-sources-text">Listings are aggregated from third-party sources (including USAJOBS) and are not verified or endorsed by the University of South Florida. Match scores are automated estimates and do not guarantee eligibility, fit, or employment. Results may be incomplete or inaccurate and should not be your only source for career decisions. Confirm all details on the original posting before applying.</p>
+</section>
+</div>
+<script>
     function isSafariBrowser() {
       return /^((?!chrome|android|crios|fxios|edgios).)*safari/i.test(navigator.userAgent);
     }
@@ -2367,26 +1042,6 @@
       if (panel) panel.classList.add('active');
       document.querySelectorAll('.jobs-tabs button').forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
-    }
-  
-    function filterEvents(category, button) {
-      const events = document.querySelectorAll('[data-category]');
-  
-      events.forEach(event => {
-        if (category === 'all' || event.dataset.category === category) {
-          event.classList.remove('hidden');
-        } else {
-          event.classList.add('hidden');
-        }
-      });
-  
-      document.querySelectorAll('.jobs-filters button').forEach(btn => {
-        btn.classList.remove('active');
-        btn.setAttribute('aria-pressed', 'false');
-      });
-  
-      button.classList.add('active');
-      button.setAttribute('aria-pressed', 'true');
     }
   
     // ═══ LIGHTCAST API CONFIGURATION ═══
@@ -2414,13 +1069,6 @@
   
   };
   // 
-    // ═══ CALENDAR API CONFIGURATION ═══
-    const CALENDAR_FEED_API_KEY = "";
-    const EVENTS_FEED_URL =
-      typeof window.EVENTS_FEED_URL !== "undefined" && window.EVENTS_FEED_URL
-        ? window.EVENTS_FEED_URL
-        : "https://script.google.com/macros/s/AKfycbzb9t1LqPA7HjmHP-8tqYYsvZv771zIzp9n70Ij5eDI0_A-rMKXsg1br-A2JS9i6qZy/exec";
-  
     // Utility functions
     function parseNum(v) {
       if (typeof v === "number") return Number.isFinite(v) ? v : null;
@@ -2586,7 +1234,7 @@
     }
   
     // ═══ GOOGLE APPS SCRIPT API ═══
-    const JOB_SEARCH_API_URL = "https://script.google.com/macros/s/AKfycbxhPUHkE0KwRhQgokgZt2nn7fN9-w5VZ1syj8aeMgN8LntrDKfk4m7wpcrxn920Lvo/exec";
+    const JOB_SEARCH_API_URL = "https://script.google.com/macros/s/AKfycby_UnVBnXTt9hol70MzN_SRCpcydVtl18WdkaAme5ZgnQn4L9CBzKFlObO_3XpZmw/exec";
     const JOB_SEARCH_API_KEY = "";
     const JOB_SEARCH_JSONP_MAX_URL = 7500;
     const JOB_SEARCH_JSONP_TIMEOUT_MS = 40000;
@@ -2707,6 +1355,10 @@
   
         const params = {
           action: 'job-search',
+          // The backend's degree-profile matcher (normalizeProgramQueryForProviders_
+          // in full_google_code.js) recognizes short codes like "bscs"/"mscys"/"bscsc"
+          // as profile labels, not the human-readable LIGHTCAST_DEGREE_CONFIGS label —
+          // sending the descriptive label here silently skips all profile expansion.
           query_text: [program, (skills || '').trim()]
             .filter(Boolean)
             .join(' ')
@@ -2764,7 +1416,11 @@
       }
       let html = '<h3 style="margin-bottom:0.75rem;">' + jobSearchEscapeHtml(headingText) + '</h3>';
       jobs.forEach(j => {
-        const score = Math.round(+(j.match_score || j.score)) || 85;
+        const rawScore = Number(j.match_score);
+        const score = Number.isFinite(rawScore) ? Math.round(rawScore) : null;
+        const scoreBadge = score !== null
+          ? `<span style="float:right;font-size:0.85rem;opacity:0.7;">${score}% match</span>`
+          : '';
         const title = jobSearchEscapeHtml(j.title || '');
         const meta = [j.location || '', j.pay || j.salary || '', j.source || '', j.provider ? 'Provider: ' + j.provider : '']
           .filter(Boolean).map(jobSearchEscapeHtml).join(' • ');
@@ -2773,7 +1429,7 @@
         const linkedinLink = j.linkedin ? `<a tabindex="0"  href="${jobSearchEscapeHtml(j.linkedin)}" target="_blank" rel="noopener">LinkedIn →</a>` : '';
         const indeedLink = j.indeed ? `<a tabindex="0"  href="${jobSearchEscapeHtml(j.indeed)}" target="_blank" rel="noopener">Indeed →</a>` : '';
         html += `<div class="jobs-result-item">
-          <h4>${title} <span style="float:right;font-size:0.85rem;opacity:0.7;">${score}% match</span></h4>
+          <h4>${title} ${scoreBadge}</h4>
           <p style="font-size:0.9rem;opacity:0.8;">${meta}</p>
           <p>${why}</p>
           <p style="display:flex;gap:1rem;flex-wrap:wrap;font-size:0.9rem;">${applyLink} ${linkedinLink} ${indeedLink}</p>
@@ -2781,110 +1437,6 @@
       });
       html += '<div style="font-size:0.8rem;opacity:0.6;margin-top:0.75rem;">Live search uses federal listings (USAJOBS) — confirm details on the agency posting.</div>';
       el.innerHTML = html;
-    }
-  
-    const RECRUITMENT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbw7GNyKmBm1y1ImFrSZuJ3gd9C5c7A0a21ciCrHwL7W6A_Y5oqXkWlso57mMTYHQShH/exec';
-  
-    const recruitmentFormLoadedAt = Date.now();
-  
-    function cleanClientValue(value, maxLength) {
-      return String(value || '')
-        .replace(/[\u0000-\u001F\u007F]/g, ' ')
-        .replace(/\s+/g, ' ')
-        .trim()
-        .slice(0, maxLength);
-    }
-  
-    function getRecruitmentPayload() {
-      return {
-        company: cleanClientValue(document.getElementById('recruit-company').value, 150),
-        contactName: cleanClientValue(document.getElementById('recruit-name').value, 150),
-        email: cleanClientValue(document.getElementById('recruit-email').value, 254),
-        message: cleanClientValue(document.getElementById('recruit-positions').value, 2000),
-        website: cleanClientValue(document.getElementById('recruit-website').value, 200),
-        pageUrl: window.location.href,
-        formElapsedMs: Date.now() - recruitmentFormLoadedAt
-      };
-    }
-  
-    function validateRecruitmentPayload(payload) {
-      if (!payload.company) return 'Please enter the company name.';
-      if (!payload.contactName) return 'Please enter the contact name.';
-      if (!payload.email) return 'Please enter the contact email.';
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) return 'Please enter a valid email address.';
-      if (!payload.message) return 'Please enter the open positions.';
-  
-      return '';
-    }
-  
-    async function submitRecruitment(event) {
-      event.preventDefault();
-  
-      const form = document.getElementById('recruit-form');
-      const submitButton = form.querySelector('button[type="submit"]');
-      const payload = getRecruitmentPayload();
-      const validationError = validateRecruitmentPayload(payload);
-  
-      if (validationError) {
-        alert(validationError);
-        return;
-      }
-  
-      submitButton.disabled = true;
-      submitButton.textContent = 'Submitting...';
-  
-      try {
-        const response = await fetch(RECRUITMENT_WEB_APP_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'text/plain;charset=utf-8'
-          },
-          body: JSON.stringify(payload)
-        });
-  
-        if (!response.ok) {
-          throw new Error('Submission failed.');
-        }
-  
-        alert(`Thank you! We've received your recruitment interest for ${payload.company}. We'll be in touch soon.`);
-        form.reset();
-      } catch (error) {
-        console.error(error);
-        alert('Something went wrong while submitting the form. Please try again.');
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = 'Submit Your Interest';
-      }
-    }
-  
-  
-    function normalizeAppsScriptExecUrl(url) {
-      var value = String(url || "").trim();
-      if (!value) return "";
-      var marker = "/exec";
-      var firstExecIdx = value.indexOf(marker);
-      if (firstExecIdx === -1) return value;
-      var secondSchemeIdx = value.indexOf("https://", firstExecIdx + marker.length);
-      if (secondSchemeIdx !== -1) {
-        return value.slice(secondSchemeIdx);
-      }
-      return value;
-    }
-  
-    function evMdParts(iso) {
-      const d = new Date(iso);
-      const month = d.toLocaleString("en-US", { month: "short", timeZone: "America/New_York" });
-      const day = d.toLocaleString("en-US", { day: "numeric", timeZone: "America/New_York" });
-      return { month, day };
-    }
-  
-    function googleCalendarTemplateUrl(ev) {
-      const q = new URLSearchParams();
-      q.set("action", "TEMPLATE");
-      q.set("text", ev.title || "");
-      q.set("details", ev.meta_line || "");
-      q.set("dates", (ev.start_iso || "").replace(/-|:/g, "") + "/" + (ev.end_iso || "").replace(/-|:/g, ""));
-      return "https://calendar.google.com/calendar/render?" + q.toString();
     }
   
     function setLoadingState(loadingId, isLoading) {
@@ -2898,65 +1450,6 @@
         loading.classList.remove('active');
         loading.setAttribute('aria-busy', 'false');
       }
-    }
-  
-    async function loadCareerEvents() {
-  
-      const el = document.getElementById("events-list");
-      if (!el) return;
-      setLoadingState('events-loading', true);
-      el.innerHTML = '';
-      const base = normalizeAppsScriptExecUrl(EVENTS_FEED_URL);
-      if (!base) {
-        el.innerHTML = '<div style="color:#666;padding:1rem;">Calendar feed URL is not configured.</div>';
-        return;
-      }
-      try {
-        const params = { action: "events" };
-        const ak = CALENDAR_FEED_API_KEY || JOB_SEARCH_API_KEY;
-        if (ak) params.api_key = ak;
-        const data = await jobSearchJsonp(base, params);
-        if (!data || typeof data !== "object") throw new Error("Bad response");
-        if (data.error) {
-          el.innerHTML = '<div style="color:#666;padding:1rem;">Events feed unavailable.</div>';
-          return;
-        }
-        const events = Array.isArray(data.events) ? data.events : [];
-        renderEventCards(events);
-      } catch (err) {
-        el.innerHTML = '<div style="color:#666;padding:1rem;">Could not load events — network error.</div>';
-      }
-      finally {
-        setLoadingState('events-loading', false);
-      }
-    }
-  
-    function renderEventCards(events) {
-      const el = document.getElementById("events-list");
-      if (events.length == 0) {
-        el.innerHTML = '<div style="color:#666;padding:1rem;">No upcoming events.</div>';
-        return;
-      }
-      let html = "";
-      events.forEach((ev) => {
-        const { month, day } = evMdParts(ev.start_iso);
-        const title = jobSearchEscapeHtml(ev.title || "");
-        const meta = jobSearchEscapeHtml(ev.meta_line || "");
-        const calHref = googleCalendarTemplateUrl(ev);
-        const category = ev.category || ev.type || "other";
-        html += `<div class="dateItem" data-category="${jobSearchEscapeHtml(category)}">
-        <a tabindex="0"  class="dateItem_link u-clearfix u-more" href="${calHref}" target="_blank">
-          <h3 class="dateItem_heading">${title}</h3>
-          <div class="dateItem_block">
-            <p class="dateItem_month">${month}</p>
-            <p class="dateItem_day">${day}</p>
-          </div>
-          <p class="dateItem_summary">${meta}</p>
-          <p class="dateItem_action">Add to calendar&nbsp;<span class="u-more_icon u-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg></span></p>
-        </a>
-      </div>`;
-      });
-      el.innerHTML = html;
     }
   
     function buildGraduationTermOptions(options = {}) {
@@ -3054,7 +1547,6 @@
     document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('prospective-degree').value = 'bscs';
       updateProjections();
-      loadCareerEvents();
       populateConfiguredSelects();
     });
     //]]>

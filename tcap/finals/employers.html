@@ -1,0 +1,928 @@
+<style>
+  /*<![CDATA[*/
+  /* Inlined (not linked) because OmniCMS strips external <link> tags on save.
+       Master copy: snippet-template.css -- keep this block in sync by hand. */
+  /* ==========================================================================
+     Snippet component template
+     Namespaced (.snip-*) BEM component library for OmniCMS content snippets.
+     See NAMING-CONVENTIONS.md for the rules and style-guide.html for a live,
+     copy-pasteable reference of every component this file styles.
+
+     Reuse across projects: copy this file as-is (no find/replace needed —
+     scoping is done with the `.snip-shell` class, not a per-page ID) and
+     re-theme by overriding the custom properties in `.snip-shell` below.
+     ========================================================================== */
+
+  /* Theme knobs — global on :root (not just `.snip-shell`) so every
+     component works regardless of whether it's nested inside a `.snip-shell`
+     or standalone (e.g. `.snip-cta`, `.snip-panel`, `.snip-event` are all
+     deliberately rendered outside `.snip-shell`). Override by redeclaring
+     these on `:root`, or scope an override to one section by redeclaring
+     them on a `.snip-shell` (or any ancestor) — custom properties cascade
+     normally either way. */
+  :root {
+    --snip-brand: #006747;
+    --snip-brand-dark: #004c35;
+    --snip-heading: #3f565e;
+    --snip-text: #3f3f3f;
+    --snip-text-muted: #333333;
+    --snip-surface: #efeff0;
+    --snip-surface-alt: #ffffff;
+    --snip-surface-hover: #d9e8e4;
+    --snip-border: #b2b2b2;
+    --snip-border-soft: #d8d6cd;
+    --snip-border-dashed: #8a8a82;
+    --snip-font-display: "Barlow Condensed", sans-serif;
+    --snip-max-width: 900px;
+
+    /* Form / panel tokens (from the Bellini info-request widget) */
+    --snip-gold: #cfc493;
+    --snip-ink: #1c211f;
+    --snip-muted: #5b6661;
+    --snip-focus: #005432;
+    --snip-danger: #b3261e;
+    --snip-danger-bg: #fdeceb;
+    --snip-danger-border: #f3c4c0;
+    --snip-danger-text: #8c1d18;
+    --snip-success: #1e7a52;
+    --snip-success-bg: #e8f5ee;
+  }
+
+  .snip-shell,
+  .snip-shell * {
+    box-sizing: border-box !important;
+  }
+
+  .snip-shell {
+    max-width: var(--snip-max-width);
+    margin: 0 auto;
+    padding: 24px;
+    font-family: inherit;
+    color: inherit;
+  }
+
+  /* Vertical stack — drives spacing via `gap` only. Also neutralizes host-page
+     "owl" selectors (e.g. `.content * + * { margin-top: 1.5em }`) that would
+     otherwise misalign the first child of any grid/flex row inside it. */
+  .snip-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .snip-stack > *,
+  .snip-grid > *,
+  .snip-card > *,
+  .snip-nav > *,
+  .snip-table__row > * {
+    margin-top: 0;
+  }
+
+  /* State utilities (unprefixed by convention — see rule 3 in
+     NAMING-CONVENTIONS.md). Driven by snippet-template.js. */
+  .is-hidden {
+    display: none !important;
+  }
+
+  .is-loading {
+    opacity: .7;
+    pointer-events: none;
+  }
+
+  /* -------------------------------------------------------------------------
+     Heading — centered section intro
+     ------------------------------------------------------------------------- */
+  .snip-heading {
+    text-align: center;
+  }
+
+  .snip-heading__title {
+    margin: 10px 0 8px;
+    font-family: var(--snip-font-display);
+    font-weight: 600;
+    font-size: 36px;
+    color: var(--snip-heading);
+    text-transform: uppercase;
+    line-height: 1.15;
+  }
+
+  .snip-heading__text {
+    margin: 0 auto;
+    max-width: 640px;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--snip-text);
+  }
+
+  /* -------------------------------------------------------------------------
+     Grid — column layouts. Pick a column-count modifier; add `--tight` for
+     a hairline-gap variant (1px gap on brand-colored background), used by
+     solid icon-card strips like a "journey" row.
+     ------------------------------------------------------------------------- */
+  .snip-grid {
+    display: grid;
+    gap: 20px;
+  }
+
+  .snip-grid--1 { grid-template-columns: 1fr; }
+  .snip-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .snip-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .snip-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+  .snip-grid--tight {
+    gap: 1px;
+    background: var(--snip-brand);
+  }
+
+  /* -------------------------------------------------------------------------
+     Card — base surface with three visual variants:
+       --callout      bordered box, left-aligned title + body text
+       --step         numbered badge beside stacked content (process steps)
+       --icon         centered badge/number + short title (icon tile)
+     Add --interactive to any variant for a hover/active background swap
+     (used when the card is a hover target driving an info panel, or a link).
+     ------------------------------------------------------------------------- */
+  .snip-card {
+    background: var(--snip-surface);
+    border: 1px solid var(--snip-border);
+    padding: 20px;
+    color: inherit;
+    text-decoration: none;
+    display: block;
+  }
+
+  .snip-card--interactive {
+    transition: background 0.15s, border-color 0.15s;
+    cursor: pointer;
+  }
+
+  .snip-card--interactive:hover,
+  .snip-card--interactive:focus-visible,
+  .snip-card--interactive.is-active {
+    background: var(--snip-surface-hover);
+    border-color: var(--snip-brand);
+  }
+
+  /* --callout: text-forward card (was .callout / .pillar-card) */
+  .snip-card--callout .snip-card__title {
+    margin: 0 0 8px;
+    font-family: var(--snip-font-display);
+    font-weight: 600;
+    font-size: 28px;
+    color: var(--snip-brand);
+  }
+
+  .snip-card--callout.snip-card--center {
+    text-align: center;
+  }
+
+  .snip-card--callout.snip-card--center .snip-card__title {
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .snip-card__body {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--snip-text);
+  }
+
+  /* --step: badge + stacked content, side by side (was .stage-card) */
+  .snip-card--step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .snip-card--step .snip-card__title {
+    margin: 0 0 6px;
+    font-family: var(--snip-font-display);
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--snip-brand);
+    text-transform: uppercase;
+  }
+
+  /* --icon: centered badge + short title (was .timeline-card / .pathway-card) */
+  .snip-card--icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    padding: 18px;
+  }
+
+  .snip-card--icon .snip-card__title {
+    font-family: var(--snip-font-display);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--snip-brand);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  /* --icon solid: brand-filled tile, e.g. an always-visible link strip
+     (was .journey-step). Uses a bare .snip-card__num instead of a badge. */
+  .snip-card--icon.snip-card--solid {
+    background: var(--snip-brand);
+    color: #fff;
+  }
+
+  .snip-card--icon.snip-card--solid .snip-card__title {
+    color: #fff;
+  }
+
+  .snip-card__num {
+    font-family: var(--snip-font-display);
+    font-weight: 700;
+    font-size: 22px;
+  }
+
+  /* Badge — circular number/letter, used by --step and --icon cards */
+  .snip-card__badge {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--snip-brand);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-family: var(--snip-font-display);
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .snip-card__badge--lg {
+    width: 44px;
+    height: 44px;
+    font-size: 15px;
+  }
+
+  /* -------------------------------------------------------------------------
+     Stat bar — 4-up grid of stat callouts. Intentionally left as its own
+     component (not a bare .snip-grid) because its children are the CMS
+     theme's own `c-calloutText` component, not a `.snip-card`.
+     ------------------------------------------------------------------------- */
+  .snip-stat-bar {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .snip-stat-bar > * {
+    align-self: start;
+    margin: 2px 0 0 0;
+  }
+
+  /* Height lives here (not inline) so the mobile breakpoint below can shrink
+     it — an inline `!important` can't be overridden by any stylesheet rule,
+     important or not. Override --snip-stat-height per instance if a page's
+     stat-card copy needs a taller/shorter fixed height (e.g. jobs.html uses
+     175px instead of the 225px default). */
+  .snip-stat-bar > .c-calloutText {
+    height: var(--snip-stat-height, 225px);
+  }
+
+  .snip-source {
+    margin-top: 1rem;
+    font-size: 8pt;
+    line-height: 1.35;
+    color: var(--snip-text-muted);
+  }
+
+  .snip-source__text {
+    margin: 0;
+    padding: 0;
+    font-size: 8pt;
+    line-height: 1.35;
+    font-weight: 400;
+    color: var(--snip-text-muted);
+  }
+
+  /* -------------------------------------------------------------------------
+     Sources & disclaimers panel — an aggregated end-of-page block (all
+     citations/disclaimers for the whole page in one place), distinct from
+     `.snip-source` above (the small per-card citation inside a stat/callout).
+     Place it as the LAST item in `.snip-stack`, after `.snip-nav`. Every page
+     should have one, even with an empty `__list`/no `__text` paragraphs, for
+     structural consistency across pages.
+     ------------------------------------------------------------------------- */
+  .snip-sources {
+    margin-top: 1rem;
+    font-size: 8pt;
+    line-height: 1.35;
+    color: var(--snip-text-muted);
+  }
+
+  .snip-sources__title {
+    margin: 0 0 0.35rem;
+    font-size: 8pt;
+    font-weight: 700;
+    color: var(--snip-text);
+  }
+
+  .snip-sources__list {
+    margin: 0 0 0.75rem;
+    padding-left: 1.25rem;
+  }
+
+  .snip-sources__list li {
+    margin-bottom: 0.25rem;
+  }
+
+  .snip-sources__list a,
+  .snip-sources__text a {
+    color: var(--snip-text-muted);
+    text-decoration: underline;
+  }
+
+  .snip-sources__list a:hover,
+  .snip-sources__list a:focus,
+  .snip-sources__text a:hover,
+  .snip-sources__text a:focus {
+    color: var(--snip-brand);
+    text-decoration-thickness: 2px;
+  }
+
+  .snip-sources__list a:focus-visible,
+  .snip-sources__text a:focus-visible {
+    outline: 3px solid var(--snip-border);
+    outline-offset: 3px;
+  }
+
+  .snip-sources__list a[href$=".pdf"],
+  .snip-sources__text a[href$=".pdf"] {
+    color: var(--snip-brand);
+  }
+
+  .snip-sources__text {
+    margin: 0 0 0.5rem;
+    padding: 0;
+    font-size: 8pt;
+    line-height: 1.35;
+    font-weight: 400;
+    color: var(--snip-text-muted);
+  }
+
+  .snip-sources__text:last-child {
+    margin-bottom: 0;
+  }
+
+  /* -------------------------------------------------------------------------
+     CTA band — full-bleed background band. Deliberately placed *outside*
+     `.snip-shell` (in the markup) so its background can bleed edge-to-edge
+     instead of being capped at the shell's max-width; `__inner` re-centers
+     the content to match. Because it sits outside `.snip-shell`, the theme
+     custom properties aren't in scope here — every var() below carries an
+     explicit fallback so this still renders correctly on its own.
+     ------------------------------------------------------------------------- */
+  .snip-cta {
+    background: var(--snip-surface, #efeff0);
+    padding: 24px;
+    text-align: center;
+  }
+
+  .snip-cta__inner {
+    max-width: var(--snip-max-width, 900px);
+    margin: 0 auto;
+  }
+
+  /* The CMS theme's own `.snippetButton` only contributes `display: block` and
+     a `max-width` cap — everything else is redefined here so the button looks
+     right regardless of what the host page's global CSS does with it.
+     `!important` on display/max-width: `display: block` ignores the ancestor's
+     `text-align: center`, which is what centers the button inside .snip-cta. */
+  .snip-cta .snippetButton {
+    display: inline-block !important;
+    max-width: none !important;
+    background: var(--snip-brand, #006747);
+    color: #fff;
+    border: 2px solid var(--snip-brand, #006747);
+    border-radius: 0;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 0.85em 1.6em;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .snip-cta .snippetButton:hover,
+  .snip-cta .snippetButton:focus {
+    background: var(--snip-brand-dark, #004c35);
+    border-color: var(--snip-brand-dark, #004c35);
+    color: #fff;
+  }
+
+  /* -------------------------------------------------------------------------
+     Bottom pill nav — equal-width link row with a non-link "current page"
+     pill. `.is-active` marks whichever one is current.
+     ------------------------------------------------------------------------- */
+  .snip-nav {
+    display: flex;
+    gap: 8px;
+    font-size: 13px;
+    text-align: center;
+    border-top: 1px solid var(--snip-border-soft);
+    padding-top: 20px;
+  }
+
+  .snip-nav__link {
+    flex: 1;
+    display: block;
+    background: var(--snip-surface-alt);
+    color: var(--snip-brand);
+    border: 1.5px solid var(--snip-brand);
+    border-radius: 3px;
+    padding: 10px 12px;
+    text-decoration: none;
+  }
+
+  .snip-nav__link.is-active {
+    background: var(--snip-brand);
+    color: #fff;
+  }
+
+  /* -------------------------------------------------------------------------
+     Responsive
+     ------------------------------------------------------------------------- */
+  @media (max-width: 700px) {
+    .snip-grid--2,
+    .snip-grid--3 {
+      grid-template-columns: 1fr;
+    }
+
+    .snip-grid--4 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .snip-nav {
+      flex-wrap: wrap;
+    }
+
+    .snip-nav__link {
+      flex: 1 1 45%;
+    }
+  }
+  /*]]>*/
+  </style>
+<style>
+    #employers-asset-root {
+      font-family: inherit;
+      color: inherit;
+
+      --jobs-green: #006747;
+      --jobs-green-dark: #004c35;
+
+      /* Higher-contrast neutral palette for ADA/WCAG readability, matching jobs.html */
+      --jobs-text: #1f1f1f;
+      --jobs-text-muted: #333333;
+      --jobs-border: #4a4a4a;
+      --jobs-border-strong: #2f2f2f;
+      --jobs-surface-muted: #f2f2f2;
+      --jobs-surface-subtle: #f7f7f7;
+
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px;
+      box-sizing: border-box;
+    }
+
+    .snippetButton {
+      display: inline-block !important;
+      width: auto !important;
+      min-width: 220px;
+      margin: 0.5rem 0 1rem 0 !important;
+      padding: 0.85rem 1.35rem !important;
+
+      border: 2px solid #006747 !important;
+      border-radius: 0 !important;
+
+      background-color: #006747 !important;
+      color: #ffffff !important;
+
+      font-family: inherit !important;
+      font-size: 1rem !important;
+      font-weight: 700 !important;
+      line-height: 1.2 !important;
+      text-align: center !important;
+      text-decoration: none !important;
+
+      cursor: pointer !important;
+      box-sizing: border-box !important;
+    }
+
+    .snippetButton:focus-visible {
+      outline: 3px solid var(--jobs-border-strong);
+      outline-offset: 3px;
+    }
+
+    .jobs-form {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .jobs-form-group {
+      margin-bottom: 20px;
+    }
+
+    .jobs-form-group label {
+      display: block;
+      min-height: 20px;
+      margin: 0 0 8px 0 !important;
+      padding: 0 !important;
+
+      color: var(--jobs-text);
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    .jobs-form-group select,
+    .jobs-form-group input,
+    .jobs-form-group textarea {
+      display: block;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box;
+
+      margin: 0 !important;
+
+      font-family: inherit;
+      font-size: 16px;
+      line-height: normal;
+
+      border: 1px solid #000000;
+      border-radius: 0;
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .jobs-form-group select:focus-visible,
+    .jobs-form-group input:focus-visible,
+    .jobs-form-group textarea:focus-visible {
+      outline: 3px solid var(--jobs-border-strong);
+      outline-offset: 2px;
+    }
+
+    .jobs-form-group select,
+    .jobs-form-group input {
+      height: 54px !important;
+      min-height: 54px !important;
+      padding: 0 12px !important;
+    }
+
+    .jobs-form-group textarea {
+      height: auto !important;
+      min-height: 120px !important;
+      padding: 12px !important;
+      resize: vertical;
+    }
+
+    /* .employer-grid wrapper removed — migrated to .snip-grid.snip-grid--2.
+       .employer-card/.employer-tag stay local: page-specific tweaks layered
+       on top of the CMS theme's own c-calloutText component. */
+
+    .employer-card {
+      min-height: 150px;
+      height: auto;
+      margin: 0 !important;
+      box-sizing: border-box;
+    }
+
+    .employer-card .employer-tag {
+      display: inline-block;
+      margin-bottom: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 2px;
+      background: #e6f1ed;
+      color: #004c35;
+      font-size: 0.75rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.03em;
+    }
+
+    .employer-card .c-calloutText_heading {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .employer-card .c-calloutText_text p {
+      margin: 0;
+    }
+
+    /* .recruiting-grid wrapper removed — migrated to .snip-grid.snip-grid--3.
+       .recruiting-card/.recruiting-link stay local (see note above
+       .employer-card). */
+
+    .recruiting-card {
+      min-height: 255px;
+      height: auto;
+      margin: 0 !important;
+      box-sizing: border-box;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    .recruiting-card .c-calloutText_heading {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    .recruiting-card .c-calloutText_text {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .recruiting-card .c-calloutText_text p {
+      margin: 0 0 1rem 0;
+    }
+
+    .recruiting-card .recruiting-link {
+      margin-top: auto;
+      color: #006747;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .recruiting-card .recruiting-link:hover,
+    .recruiting-card .recruiting-link:focus {
+      text-decoration: underline;
+    }
+
+    .recruiting-card .recruiting-link:focus-visible {
+      outline: 3px solid var(--jobs-border-strong);
+      outline-offset: 3px;
+    }
+
+    .all-sources {
+      margin-top: 1rem;
+      font-size: 8pt;
+      line-height: 1.35;
+      color: var(--jobs-text-muted);
+    }
+
+    .all-sources-heading {
+      margin: 0 0 0.35rem;
+      font-size: 8pt;
+      font-weight: 700;
+      color: var(--jobs-text);
+    }
+
+    .all-sources-list {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    .all-sources-list li {
+      margin-bottom: 0.25rem;
+    }
+
+    .all-sources-list a {
+      color: var(--jobs-text-muted);
+      text-decoration: underline;
+    }
+
+    .all-sources-list a:hover,
+    .all-sources-list a:focus {
+      color: #006747;
+      text-decoration-thickness: 2px;
+    }
+
+    .all-sources-list a:focus-visible {
+      outline: 3px solid var(--jobs-border-strong);
+      outline-offset: 3px;
+    }
+
+    .all-sources-list a[href$=".pdf"],
+    .all-sources-list a[href$=".pdf"]:visited {
+      color: #006747;
+    }
+
+    .all-sources-text {
+      margin: 0;
+      padding: 0;
+      font-size: 8pt;
+      line-height: 1.35;
+      font-weight: 400;
+      color: var(--jobs-text-muted);
+    }
+
+    .all-sources-text a,
+    .all-sources-text a:visited {
+      color: var(--jobs-text-muted);
+      text-decoration: underline;
+    }
+
+    .all-sources-text a:hover,
+    .all-sources-text a:focus {
+      color: #006747;
+      text-decoration-thickness: 2px;
+    }
+
+    .all-sources-text a:focus-visible {
+      outline: 3px solid var(--jobs-border-strong);
+      outline-offset: 3px;
+    }
+
+    .all-sources-text a[href$=".pdf"],
+    .all-sources-text a[href$=".pdf"]:visited {
+      color: #006747;
+    }
+
+    .employers-back-link {
+      display: inline-block;
+      margin-bottom: 1.25rem;
+      color: var(--jobs-green);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .employers-back-link:hover,
+    .employers-back-link:focus {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      #employers-asset-root {
+        padding: 24px 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #employers-asset-root {
+        padding: 24px 0.75rem;
+      }
+
+      .jobs-form-group input,
+      .jobs-form-group select,
+      .jobs-form-group textarea {
+        font-size: 16px;
+      }
+    }
+  </style>
+<div id="employers-asset-root">
+<a class="employers-back-link" href="jobs.html">&larr; Back to Jobs &amp; Careers</a>
+<h3>Why Recruit from Bellini College</h3>
+<div class="snip-grid snip-grid--2">
+<div class="c-calloutText c-calloutText--grey employer-card"><span class="employer-tag">Talent pipeline</span>
+<h3 class="c-calloutText_heading">Programs aligned to market demand</h3>
+<div class="c-calloutText_text">
+<p>We offer degree programs in high-demand fields such as computer science, AI, data intelligence, cybersecurity and computer science and engineering, preparing talent for some of the fastest-growing roles in Florida and across the U.S.</p>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey employer-card"><span class="employer-tag">AI-ready graduates</span>
+<h3 class="c-calloutText_heading">Curriculum built for the AI era</h3>
+<div class="c-calloutText_text">
+<p>Graduates trained in machine learning, deep learning, natural language processing and applied AI systems &mdash; directly address the 12,735 Florida postings requiring AI skills identified in 2024.</p>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey employer-card"><span class="employer-tag">Scale</span>
+<h3 class="c-calloutText_heading">One of Florida&rsquo;s largest computing colleges</h3>
+<div class="c-calloutText_text">
+<p>More than 70 faculty across AI, cybersecurity, computer science and computer engineering. USF is Florida&rsquo;s fastest-growing research university.</p>
+</div>
+</div>
+<div class="c-calloutText c-calloutText--grey employer-card"><span class="employer-tag">Location</span>
+<h3 class="c-calloutText_heading">Tampa Bay &mdash; a rising tech market</h3>
+<div class="c-calloutText_text">
+<p>Florida is No. 4 nationally in net tech employment and No. 3 for projected job gains.</p>
+</div>
+</div>
+</div>
+<h3>Recruiting Options</h3>
+<div class="snip-grid snip-grid--3">
+<div class="c-calloutText c-calloutText--grey recruiting-card">
+<h3 class="c-calloutText_heading">On-campus recruiting</h3>
+<div class="c-calloutText_text">
+<p>Info sessions, tech talks and interview suites. Spring and fall career fairs with targeted computing tracks.</p>
+<a class="recruiting-link" tabindex="0" href="mailto:Bellini-TCAP@usf.edu">Schedule a visit &rarr;</a></div>
+</div>
+<div class="c-calloutText c-calloutText--grey recruiting-card">
+<h3 class="c-calloutText_heading">Internship partnerships</h3>
+<div class="c-calloutText_text">
+<p>Post internship and co-op positions directly to Bellini College students via our career portal.</p>
+<a class="recruiting-link" tabindex="0" href="mailto:Bellini-TCAP@usf.edu">Post a position &rarr;</a></div>
+</div>
+<div class="c-calloutText c-calloutText--grey recruiting-card">
+<h3 class="c-calloutText_heading">Capstone sponsorship</h3>
+<div class="c-calloutText_text">
+<p>Sponsor a senior or graduate capstone. Your real-world problem, our students&rsquo; solutions &mdash; with faculty oversight.</p>
+<a class="recruiting-link" tabindex="0" href="#">Explore capstones &rarr;</a></div>
+</div>
+</div>
+<h3>Recruit Bellini College Talent</h3>
+<p>Connect with our top computer science and technology students. Fill out the form below to express your hiring interest.</p>
+<form id="recruit-form" class="jobs-form" onsubmit="submitRecruitment(event)">
+<div class="jobs-form-group"><label for="recruit-company">Company Name:</label> <input id="recruit-company" name="company" required="" type="text" /></div>
+<div class="jobs-form-group"><label for="recruit-name">Contact Name:</label> <input id="recruit-name" name="contactName" required="" type="text" /></div>
+<div class="jobs-form-group"><label for="recruit-email">Contact Email:</label> <input id="recruit-email" name="email" required="" type="email" /></div>
+<div class="jobs-form-group"><label for="recruit-positions">Open Positions:</label> <textarea id="recruit-positions" style="min-height: 100px;" name="message" required=""></textarea></div>
+<!-- Honeypot anti-spam field. Keep hidden from real users. --> <input id="recruit-website" style="position: absolute; left: -9999px;" tabindex="-1" autocomplete="off" name="website" type="text" /> <button class="snippetButton" tabindex="0" type="submit">Submit Your Interest</button></form>
+<section class="all-sources" aria-labelledby="all-sources-heading">
+<h4 id="all-sources-heading" class="all-sources-heading">Sources &amp; Disclaimers</h4>
+<ol class="all-sources-list">
+<li>BLS Monthly Labor Review Feb. 2025</li>
+<li>CompTIA State of the Tech Workforce 2025</li>
+<li>Maintained by Bellini College Career Services.</li>
+<li>Tampa Bay: <a tabindex="0" href="https://tampabayedc.com/why-tampa-bay/work-tampa/"> Tampa Bay Economic Development Council </a></li>
+<li>St. Petersburg: <a tabindex="0" href="https://becomestpete.com/industries-and-businesses/data-analytics-and-technology/"> St. Petersburg Area Economic Development Corporation </a></li>
+<li>Orlando: <a tabindex="0" href="https://business.orlando.org/l/technology/"> Orlando Economic Partnership </a></li>
+<li>Miami: <a tabindex="0" href="https://www.beaconcouncil.com/technology/"> Miami-Dade Beacon Council </a></li>
+<li>Jacksonville: <a tabindex="0" href="https://jaxusa.org/wp-content/uploads/2026/Technology-Services-Business-Case.pdf"> JAXUSA Partnership </a></li>
+</ol>
+<p class="all-sources-text">Updated quarterly.</p>
+<p class="all-sources-text">Wage and workforce figures are aggregate regional estimates. Individual earnings vary by role, employer, experience, and location.</p>
+<p class="all-sources-text">Information submitted through this form is used only to respond to your recruiting interest. Submitting it does not create a hiring agreement or partnership with USF.</p>
+</section>
+</div>
+<script>
+    //<![CDATA[
+    const RECRUITMENT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbw7GNyKmBm1y1ImFrSZuJ3gd9C5c7A0a21ciCrHwL7W6A_Y5oqXkWlso57mMTYHQShH/exec';
+
+    const recruitmentFormLoadedAt = Date.now();
+
+    function cleanClientValue(value, maxLength) {
+      return String(value || '')
+        .replace(/[\u0000-\u001F\u007F]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .slice(0, maxLength);
+    }
+
+    function getRecruitmentPayload() {
+      return {
+        company: cleanClientValue(document.getElementById('recruit-company').value, 150),
+        contactName: cleanClientValue(document.getElementById('recruit-name').value, 150),
+        email: cleanClientValue(document.getElementById('recruit-email').value, 254),
+        message: cleanClientValue(document.getElementById('recruit-positions').value, 2000),
+        website: cleanClientValue(document.getElementById('recruit-website').value, 200),
+        pageUrl: window.location.href,
+        formElapsedMs: Date.now() - recruitmentFormLoadedAt
+      };
+    }
+
+    function validateRecruitmentPayload(payload) {
+      if (!payload.company) return 'Please enter the company name.';
+      if (!payload.contactName) return 'Please enter the contact name.';
+      if (!payload.email) return 'Please enter the contact email.';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) return 'Please enter a valid email address.';
+      if (!payload.message) return 'Please enter the open positions.';
+
+      return '';
+    }
+
+    async function submitRecruitment(event) {
+      event.preventDefault();
+
+      const form = document.getElementById('recruit-form');
+      const submitButton = form.querySelector('button[type="submit"]');
+      const payload = getRecruitmentPayload();
+      const validationError = validateRecruitmentPayload(payload);
+
+      if (validationError) {
+        alert(validationError);
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = 'Submitting...';
+
+      try {
+        const response = await fetch(RECRUITMENT_WEB_APP_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          throw new Error('Submission failed.');
+        }
+
+        alert(`Thank you! We've received your recruitment interest for ${payload.company}. We'll be in touch soon.`);
+        form.reset();
+      } catch (error) {
+        console.error(error);
+        alert('Something went wrong while submitting the form. Please try again.');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit Your Interest';
+      }
+    }
+    //]]>
+  </script>
