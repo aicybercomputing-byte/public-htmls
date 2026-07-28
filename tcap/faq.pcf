@@ -83,7 +83,57 @@
 
 <maincontent>
 
-<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- ouc:editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000"/ --><table class="gallery-text" style="width: 100%;">
+<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- ouc:editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000"/ -->
+
+<table class="gallery-band-bg-color" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Band with Background Color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<table class="gallery-text">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<table class="button-link-row-snippet">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Button(s) - Centered<br /><em>To add more buttons to this set, insert a row for each button in the table below.</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#">tCAP Program</a></td>
+</tr>
+<tr>
+<td><a style="text-underline-offset: 4px; font-size: 16px;" href="{{f:82808588}}">Experiential Learning</a></td>
+</tr>
+<tr>
+<td><a href="{{f:82808589}}">tCAP FAQs</a></td>
+</tr>
+<tr>
+<td><a href="{{f:82808590}}">Internship/Jobs Finder</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+
+<table class="gallery-text" style="width: 100%;">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Gallery Item - Text</th>
