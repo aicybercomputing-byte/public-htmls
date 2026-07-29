@@ -347,7 +347,8 @@
   
   .stat__value,
   .stat__text {
-    display: inline-block;
+    display: flex;
+    align-items: flex-start;
     width: 100%;
   }
   
@@ -692,7 +693,7 @@
   }
   
   .section--dark .stat__text {
-    text-align: justify;
+    text-align: left;
   }
   
   .section--dark .stat + .stat:before {
@@ -1932,6 +1933,18 @@
     }
   }
   /*]]>*/
+
+  /* ---- Page-specific override: Student Journey band changed from the
+     sand/gold background to plain white, per design review feedback --
+     also whiten the chevron grid's hairline gap so it doesn't leave a
+     leftover gold tint between the cards. ---- */
+  .section--sand {
+    background-color: #fff;
+  }
+
+  .section--sand .snip-grid--journey {
+    background: #fff;
+  }
   </style>
 <style>
 /*<![CDATA[*/
@@ -1945,32 +1958,18 @@
    child after .stat__value) picked up ~1.5em of unwanted top margin.
    Re-declaring with the section's own modifier class as an ancestor bumps
    specificity to two classes, safely beating the owl regardless of load
-   order.
-
-   `.stat-group > *` is scoped to the >=768px breakpoint only: below that,
-   this same two-class specificity was ALSO beating the base stylesheet's
-   own `.stat + .stat { margin-top: var(--space-4); ... }` mobile-stacking
-   rule (same two-class specificity, but this block loads later), silently
-   zeroing the intentional gap between stacked stats and throwing off the
-   `.stat + .stat:before` divider bar's tuned position. `.stat > *` has no
-   such conflict (nothing else sets margin-top on a stat's own children),
-   so it stays unconditional. ---- */
+   order. ---- */
+.section--overview-intro .stat-group > *,
 .section--overview-intro .stat > * {
   margin-top: 0;
-}
-
-@media (min-width: 768px) {
-  .section--overview-intro .stat-group > * {
-    margin-top: 0;
-  }
 }
 /*]]>*/
 </style>
 <div class="section section--usfgreen section--dark section--overview-intro">
 <div class="section__inner grid grid-col-12-sm gap-6 gap-7-sm container">
 <div class="stat-group grid-col-span-12-sm">
-<div class="stat"><span class="stat__value">What is tCAP?</span> <span class="stat__text">tCAP is a structured, multiyear career development program designed exclusively for Bellini College students. Instead of waiting until their final year to focus on internships and career preparation, tCAP helps students steadily build experience, skills and professional connections throughout their academic journey.</span></div>
-<div class="stat"><span class="stat__value">Why tCAP matters</span> <span class="stat__text">Employers increasingly seek graduates who can communicate effectively, collaborate on teams, solve applied problems and contribute immediately in professional environments. tCAP combines career readiness, experiential learning and employer engagement to help develop those capabilities before graduation.</span></div>
+<div class="stat"><span class="stat__value">What is tCAP?</span> <span class="stat__text">tCAP is a structured, multiyear career development program designed exclusively for undergraduate students in the Bellini College. Instead of waiting until their final year to focus on internships and career preparation, tCAP helps students steadily build experience, skills and professional connections throughout their academic journey.</span></div>
+<div class="stat"><span class="stat__value">Why tCAP matters?</span> <span class="stat__text">Employers increasingly seek graduates who can communicate effectively, collaborate on teams, use critical thinking skills to solve problems and contribute immediately in professional environments. tCAP combines career readiness, experiential learning and employer engagement to help develop those capabilities before graduation.</span></div>
 </div>
 </div>
 </div>
