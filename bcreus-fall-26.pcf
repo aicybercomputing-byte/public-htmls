@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pcf-stylesheet path="/_resources/xsl/secondary.xsl" extension="aspx"?>
+<!DOCTYPE document SYSTEM "http://commons.omniupdate.com/dtd/standard.dtd">
+<document>
+<headcode></headcode>
+<bodycode></bodycode>
+
+<!-- com.omniupdate.properties -->
+<title>2nd Bellini College REU Symposium – Spring 2026</title>
+<!-- /com.omniupdate.properties -->
+<config>
+<parameter name="pagetype" prompt="pagetype" alt="Pagetype" group="None">secondary</parameter>
+<!-- com.omniupdate.properties -->
+<!-- CANONICALIZATION -->
+<parameter name="canonical-display" prompt="Set canonical URL?" alt="" section="Canonical URL" type="select" group="none">
+<option value="true" selected="false">Yes</option>
+<option value="false" selected="true">No</option>
+</parameter>
+<parameter name="canonical-url" prompt="Canonical URL" alt="Enter the URL people should see in search results." type="text" group="none"></parameter>
+<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">2nd Bellini College REU Symposium – Spring 2026</parameter>
+<!-- SOCIAL SHARING - OPEN GRAPH -->
+<parameter name="social-sharing-display" type="select" prompt="Enable Sharing Content?"
+alt="When enabled, the page's Title, Description, and selected image (below) will be used when the page is shared on social media." group="Everyone" section="Social Sharing Content (Open Graph)">
+<option value="enable" selected="false">Enable</option>
+<option value="disable" selected="true">Disable</option>
+</parameter>
+<parameter name="social-sharing-image" prompt="Image" type="filechooser" dependency="yes"
+path="/ai-cybersecurity-computing/events" alt="Select the image that appears when the page is shared on social media. 1200px width by 630px height." group="Everyone"></parameter>
+<parameter name="social-sharing-image-alt" prompt="Alt Text" alt="A text description of the image conveying the essential nature of an image to users who are visually impaired." group="Everyone" ></parameter>
+<parameter name="include-file" prompt="Include File" alt="Do you want to include a file from the server below the maincontent." group="none" type="radio">
+<option value="true" selected="false">True</option>
+<option value="false" selected="true">False</option>
+</parameter>
+<parameter name="include-file-path" prompt="Choose File." alt="Choose a file to include below the maincontent." type="filechooser" group="none" path="/_resources/includes/"
+lockout="no">/_resources/includes/included-content.html</parameter>
+<parameter name="additional-content" prompt="Additional Content" alt="Add another editable region below the maincontent. This is typically used if you have included a file." group="continuing-education" type="radio">
+<option value="true" selected="false">Show</option>
+<option value="false" selected="true">Hide</option>
+</parameter>
+<parameter name="code-behind" type="select" prompt="ASPX web page model" alt="Choose code model for you ASPX. NET page" group="none" section="ASPX web page model">
+<option value="" selected="false"></option>
+<option value="single-page" selected="true">Single-page</option>
+<option value="code-behind" selected="false">Code-behind</option>
+</parameter>
+<parameter name="code-behind-source" type="filechooser" group="none" prompt="Code-behind Source file" alt="Choose the code model source of the page.">/_resources/c-sharp/code-behind.cs</parameter>
+<parameter name="inherits-from" prompt="Inherits from" group="none" alt="">_Default</parameter>
+<!-- /com.omniupdate.properties -->
+<parameter name="galleryType" type="select" prompt="Gallery Type" alt="Please select the type of gallery you would like this page to use." section="GALLERY">
+<option value="FlexSlider" selected="true">Flex Slider</option>
+</parameter>
+<!-- com.omniupdate.properties -->
+<parameter name="slideshow" type="select" prompt="Animate Slideshow" alt="Specify if the slideshow will be animated automatically or by user interaction only." section="Gallery">
+<option value="true" selected="true">Animate</option>
+<option value="false" selected="false">Don't Animate</option>
+</parameter>
+<!-- SIDE CONTENT LOCATION -->
+<parameter name="side-content-location" type="select" group="none" prompt="Change side content location?" alt="Select if the side content should keep its default location, or change to the left or right of the main content. Note: side content displaying on the right will appear after the main content on mobile." section="Side Content">
+<option value="false" selected="true">No</option>
+<option value="left" selected="false">Yes, display on the left</option>
+<option value="right" selected="false">Yes, display on the right</option>
+</parameter>
+<!-- QUICK LINKS -->
+<parameter name="quick-links-display" type="select" group="none" prompt="Display Quick Links" alt="Select if a quick links file should be displayed after the side navigation."
+section="Quick Links">
+<option value="true" selected="false">Show</option>
+<option value="false" selected="true">Hide</option>
+</parameter>
+<parameter name="quick-links-file" group="none" prompt="Quick Links File" alt="Choose a quick links file to include after the side navigation." type="filechooser" dependency="yes"
+path="/ai-cybersecurity-computing/events"></parameter>
+<!-- /com.omniupdate.properties -->
+</config>
+<metadata>
+<!-- com.omniupdate.properties -->
+<meta name="Description" content="University of South Florida" />
+<meta name="Keywords" content="University of South Florida" />
+<meta name="Author" content="University of South Florida" />
+<!-- /com.omniupdate.properties -->
+</metadata>
+<maincontent>
+<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- ouc:editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt"
+width="1000"/ --><table class="media-large">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Image - Large <br />Image Dimensions - Width: 720 px, Height: 400 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="{{f:79777684}}" alt="A group of four individuals engaged in a discussion, with a middle-aged man animatedly gesturing while explaining something, as two women and a young man listen attentively, surrounded by informational posters in a bright, modern setting." width="880" height="495" /></td>
+</tr>
+</tbody>
+</table>
+<p>We invite faculty, students, industry partners, and academic leaders to engage with
+emerging scholars whose work represents the future of artificial intelligence and
+computing innovation at the 2nd Bellini College REU Symposium. This USF-hosted event
+offers a distinctive opportunity for the Bellini College community to explore new
+undergraduate research pathways and for faculty to showcase upcoming research initiatives.
+The symposium affirms the university's commitment to research excellence and
+student achievement. </p>
+<h3><strong>Hosted By: Alfredo Weitzenfeld, Phd</strong></h3>
+<p>Director, REU Program<br />Email: <a href="mailto:aweitzenfeld@usf.edu">aweitzenfeld@usf.edu</a> </p>
+<h3><strong>May 1, 2026</strong></h3>
+<p>10:00 a.m. – 1:00 p.m.<br />Research Park – Seminar Room (First Floor)<br />3814 Spectrum Blvd., Tampa, FL 33620</p>
+<table class="button-link-row-snippet" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Button(s) - Centered<br /><em>To add more buttons to this set, insert a row for each button in the table below.</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://usf.az1.qualtrics.com/jfe/form/SV_bPBNpmRuB51qdPE">Register Now</a></td>
+</tr>
+</tbody>
+</table>
+<p><br />The Symposium is a free event open to all USF students and faculty. Register by April
+27, 2026 </p>
+<h3>Lunch Provided</h3>
+<p>Boxed lunches will be provided for the first 50 registrants and participating REU
+students will be provided for those who register by April 27. Vegetarian meals will
+be available. </p>
+<h3>Event Schedule </h3>
+<p>10:00 a.m. – 11:00 a.m. | REU program overview and student panel<br />11:00 a.m. – 12:00 p.m. | Faculty presentations of research labs<br />12:00 p.m. – 1:00 p.m. | REU student poster presentations</p>
+<table class="button-link-row-snippet" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Button(s) - Centered<br /><em>To add more buttons to this set, insert a row for each button in the table below.</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/ai-cybersecurity-computing/documents/2nd-reu-symposium-program-web.pdf">Access the Program</a></td>
+</tr>
+</tbody>
+</table>
+<h3>PARKING</h3>
+<p>Parking information will be emailed to those who RSVP. The USF BullRunner has a stop
+near the venue. </p>
+<table class="media-medium-left">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Image - Medium - Left <br />Image Dimensions - Width: 320 px, Height: 213 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="{{f:79777683}}" alt="A group of four students observes a presentation at an academic poster session, where one student is actively explaining her research on strategies for film-based publication, standing next to a detailed poster while the others listen attentively, holding boxes in their hands. The setting features a modern indoor space with awards displayed on the wall in the background." width="653" height="436" /></td>
+</tr>
+</tbody>
+</table>
+<h3>About the Symposium</h3>
+<p>The Bellini College Research Experience for Undergraduates Symposium showcases the
+innovative, faculty-mentored research conducted by undergraduate students in the Bellini
+College of Artificial Intelligence, Cybersecurity and Computing.<br />This event highlights the impact of hands-on research experiences that prepare students
+for graduate study, industry innovation, and advanced research careers.<br />The symposium provides a forum for undergraduate scholars to present their work, share
+discoveries, and engage with faculty, peers, and industry partners.</p>
+<h3>About the REU Program</h3>
+<p>The Research Experiences for Undergraduates (REU) Program offers students the opportunity
+to work closely with faculty on cutting-edge research projects across AI, cybersecurity,
+and computing disciplines.</p>
+<ul>
+<li>Through immersive research engagement, students:</li>
+<li>Gain real-world research experience</li>
+<li>Develop technical and analytical skills</li>
+<li>Build strong faculty mentorship relationships</li>
+<li>Prepare competitive graduate school applications</li>
+<li>Receive stipends and research support opportunities</li>
+</ul>
+<p>The program is designed to inspire and equip undergraduate students to pursue advanced
+study and research-focused careers.</p>
+<p>Acknowledgements: this is a collaboration between:</p>
+<ul>
+<li><a href="https://testsite.usf.edu/ai-cybersecurity-computing/research/reu-program.aspx">Bellini College (REU Program)</a></li>
+<li><a href="https://testsite.usf.edu/research-innovation/undergraduate-research/seri.aspx">OneUSF SERI</a></li>
+</ul>
+<table class="media-medium-right">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Image - Medium - Right <br />Image Dimensions - Width: 320 px, Height: 213 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="{{f:79777685}}" alt="A speaker gestures animatedly while presenting to an audience of engaged participants seated in a well-lit room, with large windows showing greenery outside and a presentation displayed on a screen behind. The diverse group, including individuals in professional attire, appears attentive and interested in the topic being discussed." width="653" height="436" /></td>
+</tr>
+</tbody>
+</table>
+<h3>Symposium Highlights</h3>
+<p>The REU Symposium offers:</p>
+<ul>
+<li>Formal undergraduate research presentations</li>
+<li>Faculty research opportunity briefings</li>
+<li>Information on advanced research training pathways</li>
+<li>Insight into stipends, funding mechanisms, and academic advancement</li>
+<li>Opportunities for scholarly networking and collaboration</li>
+</ul>
+<p>This event provides a meaningful venue for interdisciplinary dialogue and research
+engagement within the Bellini College community and beyond.</p>
+<h3>Funding Sponsors</h3>
+<p>This program is supported by:</p>
+<ul>
+<li><a href="/research-innovation/innovation-enterprise/florida-high-tech-corridor/undergraduate-research-initiative.aspx">Florida High Tech Corridor</a></li>
+<li><a href="/research-innovation/research-support/funding-resources/researchone.aspx">ResearchOne</a></li>
+<li><a href="https://cra.org/ur2phd/">CRA UR2PhD</a></li>
+</ul>
+<p><em>For reasonable accommodations, please contact us at <a href="mailto:Bellini-CollegeEvents@usf.edu">Bellini-CollegeEvents@usf.edu</a> </em></p><!-- /com.omniupdate.div -->
+</maincontent>
+<additional-content>
+<!-- com.omniupdate.div label="additional-content" group="Everyone" button="707" -->
+<!-- com.omniupdate.editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt"
+width="1000" -->
+<h2> Additional Content</h2>
+<p> This area is used typically if you have included a file below the main content.</p>
+<!-- /com.omniupdate.div -->
+</additional-content>
+</document>
