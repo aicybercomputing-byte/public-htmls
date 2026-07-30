@@ -774,7 +774,7 @@
 <option value="bscsc">BS Computer Science &amp; Criminology</option>
 <option value="bscsiss">BS Computer Science &amp; Interdisciplinary Social Sciences</option>
 <option value="mscs">MS Computer Science</option>
-<option value="mscpe">MS Computer Science and Engineering</option>
+<option value="mscse">MS Computer Science and Engineering</option>
 <option value="msai">MS Artificial Intelligence</option>
 <option value="mscys">MS Cybersecurity</option>
 <option value="phdcse">PhD Computer Science and Engineering</option>
@@ -1053,18 +1053,17 @@
   
     const LIGHTCAST_DEGREE_CONFIGS = {
 
-
-      bscs: { key:"bscs", label: "BS Computer Science", occupationCodes: ["15-1211.00","15-1211.01","15-1242.00","15-1244.00","15-1253.00","15-1255.00","15-1255.01","15-1299.01","15-1299.03","15-1299.04","15-1299.06","15-1299.07","15-1252.00"]},
-      bscse: { key: "bscse", label: "BS Computer Science and Engineering", occupationCodes: ["409743","410108","410473","410839","411204","411569","411934","412300","412665","413030","413395","15-1252.00"]},
+      bscs: { key: "bscs", label: "BS Computer Science", occupationCodes: ["15-1211.00","15-1211.01","15-1242.00","15-1244.00","15-1253.00","15-1255.00","15-1255.01","15-1299.01","15-1299.03","15-1299.04","15-1299.06","15-1299.07","15-1252.00"]},
+      bscse: { key: "bscse", label: "BS Computer Science and Engineering", occupationCodes: ["11-3021.00", "15-1211.00", "15-1221.00", "15-1241.00", "15-1242.00", "15-1243.00", "15-1244.00", "15-1253.00", "15-1255.00", "15-1299.00", "25-1021.00", "15-1252.00"]},
       bsai: { key: "bsai", label: "BS Artificial Intelligence", occupationCodes: ["15-2051.01","15-2051.02","15-1299.01","15-1299.03","15-1253.00","15-1252.00"]},
       bscys: { key: "bscys", label: "BS Cybersecurity", occupationCodes: ["15-1212.00","15-1231.00","15-1244.00","15-1242.00","15-1299.04","15-1299.06"]},
       bsit: { key: "bsit", label: "BS Information Technology", occupationCodes: ["15-1211.00","15-1211.01","15-1212.00","15-1231.00","15-1244.00","15-1252.00","15-1253.00","15-1299.01"]},
-      mscys: { key: "mscys", label: "MS Cybersecurity", occupationCodes: ["15-1212.00","15-1241.00","15-1299.08","13-1199.07","15-1299.05","11-3021.00","15-1299.04"]},
       mscs: { key: "mscs", label: "MS Computer Science", occupationCodes: ["15-1221.00","15-1252.00","15-1253.00","15-1243.00","15-1242.00","15-1299.08","15-1299.09","15-1241.00","15-2051.00"]},
+      mscse: { key: "mscse", label: "MS Computer Science and Engineering", occupationCodes: ["11-3021.00", "15-1211.00", "15-1221.00", "15-1241.00", "15-1242.00", "15-1243.00", "15-1244.00", "15-1253.00", "15-1255.00", "15-1299.00"]},
+      mscys: { key: "mscys", label: "MS Cybersecurity", occupationCodes: ["15-1212.00","15-1241.00","15-1299.08","13-1199.07","15-1299.05","11-3021.00","15-1299.04"]},
       msai: { key: "msai", label: "MS Artificial Intelligence", occupationCodes: ["15-2051.00","15-1221.00","15-1252.00","15-1299.08","15-1243.00","15-2041.00","15-2031.00","15-1241.00"]},
-      phdcse: { key: "phdcse", label: "PhD Computer Science and Engineering", occupationCodes: ["14.0901"]},
-      phdds: { key: "phdds", label: "PhD Data Science", occupationCodes: ["11.0104"]}
-  
+      phdcse: { key: "phdcse", label: "PhD Computer Science and Engineering", occupationCodes: ["15-1221.00"]},
+      phdds: { key: "phdds", label: "PhD Data Science", occupationCodes: ["15-2051.00"]}
   };
   // 
     // Utility functions
@@ -1504,7 +1503,7 @@
         { label: "BS Computer Science & Interdisciplinary Social Sciences", value: "bscsiss" },
   
         { label: "MS Computer Science", value: "mscs" },
-        { label: "MS Computer Science and Engineering", value: "mscpe" },
+        { label: "MS Computer Science and Engineering", value: "mscse" },
         { label: "MS Artificial Intelligence", value: "msai" },
         { label: "MS Cybersecurity", value: "mscys" },
         { label: "PhD Computer Science and Engineering", value: "phdcse" },
