@@ -1534,7 +1534,7 @@
     .ce-face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; line-height: 1.12; font-family: 'Oswald', sans-serif; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
     .ce-face-front { background: #15603a; color: #fff; }
     .ce-face-back { background: #c7b26b; color: #15603a; box-sizing: border-box; transform: rotateY(180deg); }
-    .ce-title { transition: color .3s ease; }
+    .ce-title { transition: color .3s ease; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; }
     .ce-event:hover .ce-title { color: #c2a14a !important; }
     .ce-btn { perspective: 700px; }
     .ce-btn-link { display: block; height: 46px; text-decoration: none; }
