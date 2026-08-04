@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
 sync-box-csv.py
-Download ai-x-events.csv from a Box shared link into the local repo.
+Download CSVs from Box shared links into the local repo (see SYNC_TARGETS).
 
 The existing hourly push script handles git commit/push — this script
-only needs to get the file on disk.
+only needs to get the files on disk.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 SETUP (one time)
@@ -35,6 +35,7 @@ import http.server
 import json
 import os
 import pathlib
+import re
 import sys
 import threading
 import time
@@ -43,12 +44,25 @@ import urllib.parse
 import urllib.request
 import webbrowser
 
-# ── Edit these to match your setup ───────────────────────────────────────
-SHARED_LINK = "https://usf.box.com/s/tzqdz0s986c91ukd2qoj6f5ukm7r89d0"
-DEST        = pathlib.Path(__file__).parent.parent / "ai-x" / "ai-x-events.csv"
+REPO_ROOT = pathlib.Path(__file__).parent.parent
+
+# ── Edit this list to add/remove synced files ─────────────────────────────
+# shared_link: the Box "Shared Link" URL for the file (Share → Copy Link),
+#   or a browser file-view URL like https://host/file/{id}?s={token} — both
+#   are accepted, see normalize_shared_link() below.
+# dest: where to write the downloaded CSV, relative to the repo root.
+SYNC_TARGETS = [
+    {
+        "shared_link": "https://usf.box.com/s/tzqdz0s986c91ukd2qoj6f5ukm7r89d0",
+        "dest": REPO_ROOT / "ai-x" / "ai-x-events.csv",
+    },
+    {
+        "shared_link": "https://usf.app.box.com/file/2302349987066?s=icsswsoc5999tfs47kqqhbs5wdd7hi5w",
+        "dest": REPO_ROOT / "ai-x" / "community-events.csv",
+    },
+]
 # ─────────────────────────────────────────────────────────────────────────
 
-REPO_ROOT    = pathlib.Path(__file__).parent.parent
 ENV_FILE     = REPO_ROOT / ".env"
 TOKEN_FILE   = pathlib.Path.home() / ".box_csv_sync.json"
 REDIRECT_URI = "http://localhost:8080/callback"
@@ -59,6 +73,11 @@ BOX_API      = "https://api.box.com/2.0"
 
 # ── Config loading ────────────────────────────────────────────────────────
 
+def strip_quotes(v):
+    if len(v) >= 2 and v[0] == v[-1] and v[0] in ("'", '"'):
+        return v[1:-1]
+    return v
+
 def load_config():
     env = {}
     if ENV_FILE.exists():
@@ -66,7 +85,7 @@ def load_config():
             line = line.strip()
             if line and not line.startswith("#") and "=" in line:
                 k, _, v = line.partition("=")
-                env[k.strip()] = v.strip()
+                env[k.strip()] = strip_quotes(v.strip())
     env.update(os.environ)
     client_id     = env.get("BOX_CLIENT_ID", "")
     client_secret = env.get("BOX_CLIENT_SECRET", "")
@@ -172,6 +191,22 @@ def do_auth(client_id, client_secret):
 
 # ── Box API download ──────────────────────────────────────────────────────
 
+FILE_VIEW_URL_RE = re.compile(r"^https?://([^/]+)/file/(\d+)\?s=([A-Za-z0-9]+)$")
+
+def normalize_shared_link(url):
+    """Box gives two URL shapes for the same shared file:
+      - the actual Shared Link:      https://host/s/{token}
+      - a browser file-view URL:     https://host/file/{id}?s={token}
+    The API's BoxApi header wants the former. Also return the file id when
+    the view-URL shape hands it to us for free, so we can skip the extra
+    /shared_items lookup.
+    """
+    m = FILE_VIEW_URL_RE.match(url.strip())
+    if m:
+        host, file_id, token = m.groups()
+        return f"https://{host}/s/{token}", file_id
+    return url.strip(), None
+
 def api_get(path, access_token, shared_link=None):
     req = urllib.request.Request(f"{BOX_API}{path}")
     req.add_header("Authorization", f"Bearer {access_token}")
@@ -181,36 +216,40 @@ def api_get(path, access_token, shared_link=None):
         with urllib.request.urlopen(req) as r:
             return r.read()
     except urllib.error.HTTPError as e:
-        sys.exit(f"Box API error {e.code} on {path}: {e.read().decode()}")
+        raise RuntimeError(f"Box API error {e.code} on {path}: {e.read().decode()}") from e
 
-def download_csv(access_token):
-    # Resolve shared link to file metadata
-    raw = api_get("/shared_items?fields=id,name,type", access_token, SHARED_LINK)
-    meta = json.loads(raw)
+def download_csv(access_token, shared_link_raw, dest):
+    shared_link, known_file_id = normalize_shared_link(shared_link_raw)
 
-    if meta.get("type") != "file":
-        sys.exit(
-            f"Shared link points to a '{meta.get('type')}', not a file.\n"
-            "Share a direct link to the CSV file, not a folder."
-        )
+    if known_file_id:
+        file_id = known_file_id
+    else:
+        # Resolve shared link to file metadata
+        raw = api_get("/shared_items?fields=id,name,type", access_token, shared_link)
+        meta = json.loads(raw)
 
-    file_id   = meta["id"]
-    file_name = meta.get("name", "?")
-    print(f"Found: {file_name}  (id={file_id})")
+        if meta.get("type") != "file":
+            raise RuntimeError(
+                f"Shared link points to a '{meta.get('type')}', not a file. "
+                "Share a direct link to the CSV file, not a folder."
+            )
+
+        file_id = meta["id"]
+        print(f"Found: {meta.get('name', '?')}  (id={file_id})")
 
     # Download file content (Box follows the redirect automatically)
     req = urllib.request.Request(f"{BOX_API}/files/{file_id}/content")
     req.add_header("Authorization", f"Bearer {access_token}")
-    req.add_header("BoxApi", f"shared_link={SHARED_LINK}")
+    req.add_header("BoxApi", f"shared_link={shared_link}")
     try:
         with urllib.request.urlopen(req) as r:
             content = r.read()
     except urllib.error.HTTPError as e:
-        sys.exit(f"Download failed ({e.code}): {e.read().decode()}")
+        raise RuntimeError(f"Download failed ({e.code}): {e.read().decode()}") from e
 
-    DEST.parent.mkdir(parents=True, exist_ok=True)
-    DEST.write_bytes(content)
-    print(f"Saved  → {DEST}  ({len(content):,} bytes)")
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_bytes(content)
+    print(f"Saved  → {dest}  ({len(content):,} bytes)")
 
 
 # ── Entry point ───────────────────────────────────────────────────────────
@@ -223,7 +262,18 @@ def main():
         return
 
     access_token = get_fresh_access_token(client_id, client_secret)
-    download_csv(access_token)
+
+    failed = []
+    for target in SYNC_TARGETS:
+        dest = target["dest"]
+        try:
+            download_csv(access_token, target["shared_link"], dest)
+        except RuntimeError as e:
+            print(f"Error syncing {dest.name}: {e}", file=sys.stderr)
+            failed.append(dest.name)
+
+    if failed:
+        sys.exit(f"Failed to sync: {', '.join(failed)}")
 
 
 if __name__ == "__main__":
