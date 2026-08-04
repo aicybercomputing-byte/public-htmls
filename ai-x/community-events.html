@@ -1682,7 +1682,8 @@ class Component extends DCLogic {
       const col = name => header.indexOf(name);
       const events = rows.map(r => {
         const get = n => { const i = col(n); return i >= 0 ? (r[i] || '').trim() : ''; };
-        const month = get('month');
+        const monthFull = get('month');
+        const month = monthFull.trim().slice(0, 3);
         const day = get('day');
         const year = get('year');
         const isRange = /^(y|yes|true|1|starts)$/i.test(get('starts'));
