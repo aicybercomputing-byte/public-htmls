@@ -30,6 +30,7 @@ SETUP (one time)
 import csv
 import io
 import pathlib
+import re
 import sys
 import urllib.error
 import urllib.request
@@ -65,7 +66,9 @@ def cell_to_str(v):
     # avoid writing "16.0" into the CSV.
     if isinstance(v, float) and v.is_integer():
         return str(int(v))
-    return str(v)
+    # Collapse embedded line breaks (e.g. pasted multi-paragraph text) so no
+    # cell — title/detail included — spans multiple physical CSV lines.
+    return re.sub(r"\s+", " ", str(v)).strip()
 
 
 def export_sheet_to_csv(ws, dest):
