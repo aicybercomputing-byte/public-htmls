@@ -1693,8 +1693,10 @@ class Component extends DCLogic {
           rangeLabel: (month + ' ' + day).trim(),
           isRange,
           isSingle: !isRange,
+          sortKey: this.dateSortKey(month, day),
         };
       });
+      events.sort((a, b) => a.sortKey - b.sortKey);
       this.setState({ events, error: null });
     } catch (e) {
       this.setState({ error: e.message, events: [] });
@@ -1706,6 +1708,21 @@ class Component extends DCLogic {
     if (!raw) return 'community-events.csv';
     try { return new URL(raw, window.location.href).href; }
     catch { return raw; }
+  }
+
+  // Maps a "month, day" pair (no year in the CSV) to a sortable timestamp.
+  // Assumes the current year, rolling over to next year for dates already
+  // passed so upcoming events always sort ahead of ones from last year.
+  dateSortKey(monthName, dayStr) {
+    const MONTHS = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 };
+    const monthIndex = MONTHS[String(monthName || '').trim().slice(0, 3).toLowerCase()];
+    const dayNum = parseInt(dayStr, 10);
+    if (monthIndex === undefined || !dayNum) return Infinity;
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    let candidate = new Date(now.getFullYear(), monthIndex, dayNum);
+    if (candidate < today) candidate = new Date(now.getFullYear() + 1, monthIndex, dayNum);
+    return candidate.getTime();
   }
 
   resolveEventUrl(rawUrl, csvUrl) {
