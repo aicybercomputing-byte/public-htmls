@@ -201,67 +201,6 @@
     return rows;
   }
 
-  function parseDate(raw) {
-    var s = clean(raw);
-
-    if (!s) {
-      return null;
-    }
-
-    s = s
-      .replace(/(\d)(st|nd|rd|th)\b/gi, "$1")
-      .replace(/,/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-
-    var dayNum = null;
-    var monthText = null;
-    var yearNum = null;
-    var m = null;
-
-    /*
-      Supported:
-        20-Aug
-        20 Aug
-        20 August
-        20 August 2026
-        August 20
-        August 20 2026
-        2026-08-20
-    */
-
-    m = s.match(/^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})$/);
-    if (m) {
-      yearNum = parseInt(m[1], 10);
-      var isoMonth = parseInt(m[2], 10) - 1;
-      dayNum = parseInt(m[3], 10);
-
-      if (isoMonth < 0 || isoMonth > 11 || dayNum < 1 || dayNum > 31) {
-        return null;
-      }
-
-      return makeDateObject(dayNum, isoMonth, yearNum);
-    }
-
-    m = s.match(/^(\d{1,2})\s*[-\/ ]\s*([A-Za-z]{3,})(?:\s+(\d{4}))?$/);
-    if (m) {
-      dayNum = parseInt(m[1], 10);
-      monthText = m[2];
-      yearNum = m[3] ? parseInt(m[3], 10) : DEFAULT_YEAR;
-      return makeDateFromMonthText(dayNum, monthText, yearNum);
-    }
-
-    m = s.match(/^([A-Za-z]{3,})\s+(\d{1,2})(?:\s+(\d{4}))?$/);
-    if (m) {
-      monthText = m[1];
-      dayNum = parseInt(m[2], 10);
-      yearNum = m[3] ? parseInt(m[3], 10) : DEFAULT_YEAR;
-      return makeDateFromMonthText(dayNum, monthText, yearNum);
-    }
-
-    return null;
-  }
-
   function makeDateFromMonthText(dayNum, monthText, yearNum) {
     var monthKey = String(monthText).slice(0, 3).toLowerCase();
     var monthIndex = MONTHS[monthKey];
@@ -296,20 +235,37 @@
       return [];
     }
 
+    var header = rows[0].map(function (h) {
+      return clean(h).toLowerCase();
+    });
+
+    function colIndex(name) {
+      return header.indexOf(name);
+    }
+
+    var idxTitle = colIndex("title");
+    var idxDetail = colIndex("detail");
+    var idxMonth = colIndex("month");
+    var idxDay = colIndex("day");
+    var idxYear = colIndex("year");
+    var idxSpeaker = colIndex("speaker");
+    var idxBio = colIndex("bio");
+
     var out = [];
 
     rows.slice(1).forEach(function (cols, idx) {
-      var date = clean(cols[0]);
-      var speaker = clean(cols[1]);
-      var title = clean(cols[2]);
-      var description = clean(cols[3]);
-      var bio = clean(cols[4]);
+      var speaker = clean(cols[idxSpeaker]);
+      var title = clean(cols[idxTitle]);
+      var description = clean(cols[idxDetail]);
+      var bio = clean(cols[idxBio]);
+      var dayNum = parseInt(clean(cols[idxDay]), 10);
+      var yearNum = parseInt(clean(cols[idxYear]), 10) || DEFAULT_YEAR;
 
-      if (!date || !speaker || !description) {
+      if (!speaker || !description) {
         return;
       }
 
-      var d = parseDate(date);
+      var d = makeDateFromMonthText(dayNum, clean(cols[idxMonth]), yearNum);
 
       if (!d) {
         return;

@@ -112,20 +112,19 @@
     return (s == null ? "" : String(s)).replace(/\uFFFD/g, "\u2014").trim();
   }
 
-  function parseDate(s) {
-    var m = s.match(/^(\d{1,2})\s*[-\/ ]\s*([A-Za-z]{3,})/);
-    if (!m) return null;
+  function parseDate(dayRaw, monthRaw, yearRaw) {
+    var dayNum = parseInt(clean(dayRaw), 10);
+    var mi = MONTHS[clean(monthRaw).slice(0, 3).toLowerCase()];
+    var yearNum = parseInt(clean(yearRaw), 10) || YEAR;
 
-    var dayNum = parseInt(m[1], 10);
-    var mi = MONTHS[m[2].slice(0, 3).toLowerCase()];
-    if (mi == null) return null;
+    if (!dayNum || mi == null) return null;
 
     return {
       day: String(dayNum).length < 2 ? "0" + dayNum : String(dayNum),
-      mon: m[2].slice(0, 3),
-      year: String(YEAR),
-      label: MONTH_FULL[mi] + " " + dayNum + ", " + YEAR,
-      sortKey: new Date(YEAR, mi, dayNum).getTime()
+      mon: MONTH_FULL[mi].slice(0, 3),
+      year: String(yearNum),
+      label: MONTH_FULL[mi] + " " + dayNum + ", " + yearNum,
+      sortKey: new Date(yearNum, mi, dayNum).getTime()
     };
   }
 
@@ -133,17 +132,27 @@
     var rows = parseCSV(text);
     if (!rows.length) return [];
 
+    var header = rows[0].map(function (h) { return clean(h).toLowerCase(); });
+    function colIndex(name) { return header.indexOf(name); }
+
+    var idxTitle = colIndex("title"),
+        idxDetail = colIndex("detail"),
+        idxMonth = colIndex("month"),
+        idxDay = colIndex("day"),
+        idxYear = colIndex("year"),
+        idxSpeaker = colIndex("speaker"),
+        idxBio = colIndex("bio");
+
     var out = [];
     rows.slice(1).forEach(function (cols, idx) {
-      var date = clean(cols[0]),
-          speaker = clean(cols[1]),
-          title = clean(cols[2]),
-          description = clean(cols[3]),
-          bio = clean(cols[4]);
+      var speaker = clean(cols[idxSpeaker]),
+          title = clean(cols[idxTitle]),
+          description = clean(cols[idxDetail]),
+          bio = clean(cols[idxBio]);
 
-      if (!date || !speaker || !description) return;
+      if (!speaker || !description) return;
 
-      var d = parseDate(date);
+      var d = parseDate(cols[idxDay], cols[idxMonth], cols[idxYear]);
       if (!d) return;
 
       out.push({
