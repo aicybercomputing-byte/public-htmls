@@ -1684,6 +1684,7 @@ class Component extends DCLogic {
         const get = n => { const i = col(n); return i >= 0 ? (r[i] || '').trim() : ''; };
         const month = get('month');
         const day = get('day');
+        const year = get('year');
         const isRange = /^(y|yes|true|1|starts)$/i.test(get('starts'));
         return {
           title: get('title'),
@@ -1693,11 +1694,15 @@ class Component extends DCLogic {
           rangeLabel: (month + ' ' + day).trim(),
           isRange,
           isSingle: !isRange,
-          sortKey: this.dateSortKey(month, day),
+          sortKey: this.dateSortKey(month, day, year),
         };
       });
-      events.sort((a, b) => a.sortKey - b.sortKey);
-      this.setState({ events, error: null });
+      const now = new Date();
+      const todayKey = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+      const upcoming = events
+        .filter(ev => ev.sortKey >= todayKey)
+        .sort((a, b) => a.sortKey - b.sortKey);
+      this.setState({ events: upcoming, error: null });
     } catch (e) {
       this.setState({ error: e.message, events: [] });
     }
@@ -1710,19 +1715,16 @@ class Component extends DCLogic {
     catch { return raw; }
   }
 
-  // Maps a "month, day" pair (no year in the CSV) to a sortable timestamp.
-  // Assumes the current year, rolling over to next year for dates already
-  // passed so upcoming events always sort ahead of ones from last year.
-  dateSortKey(monthName, dayStr) {
+  // Maps a month/day/year to a sortable timestamp. Falls back to the current
+  // year when the year column is blank (older rows), but a real year takes
+  // precedence — no rollover guessing needed once the year is known.
+  dateSortKey(monthName, dayStr, yearStr) {
     const MONTHS = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 };
     const monthIndex = MONTHS[String(monthName || '').trim().slice(0, 3).toLowerCase()];
     const dayNum = parseInt(dayStr, 10);
-    if (monthIndex === undefined || !dayNum) return Infinity;
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    let candidate = new Date(now.getFullYear(), monthIndex, dayNum);
-    if (candidate < today) candidate = new Date(now.getFullYear() + 1, monthIndex, dayNum);
-    return candidate.getTime();
+    if (monthIndex === undefined || !dayNum) return -Infinity;
+    const yearNum = parseInt(yearStr, 10) || new Date().getFullYear();
+    return new Date(yearNum, monthIndex, dayNum).getTime();
   }
 
   resolveEventUrl(rawUrl, csvUrl) {
