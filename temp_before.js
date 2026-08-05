@@ -1,6 +1,6 @@
-/*
+﻿/*
 /**
- * Jobs API — Google Apps Script web app.
+ * Jobs API ΓÇö Google Apps Script web app.
  *
  * Live-only job search.
  *
@@ -418,22 +418,22 @@ function getGetQueryStringLength_(e) {
      * dropping most of their results; (b) the cybersecurity_jobs_sheet provider
      * didn't exist yet.
      * v8 because v7 entries predate: (a) the domain-relevance filter now also
-     * runs on github_markdown (was Handshake-only — "Jobright H1B Tech Jobs"
+     * runs on github_markdown (was Handshake-only ΓÇö "Jobright H1B Tech Jobs"
      * turned out to include non-tech roles like "Life Sciences Creative
      * Director" and "Structural Engineer"); (b) new-grad searches now drop
      * clearly senior/leadership titles (Director, VP, Principal, Manager, ...).
-     * v9 because v8 entries predate the professorship/faculty gate — those
+     * v9 because v8 entries predate the professorship/faculty gate ΓÇö those
      * titles require a terminal degree and now only show up when the search
      * itself is PhD-level (phd/doctorate/doctoral in the query text).
-     * v10 because v9 entries predate degree-level-aware seniority filtering —
+     * v10 because v9 entries predate degree-level-aware seniority filtering ΓÇö
      * bachelor's-level new-grad searches now also drop plain "Senior"/"Sr"/
      * "Lead" titles (previously only Director/VP/Principal/Manager were cut),
      * while MS/PhD-level searches still allow them.
      * v11 because v10 entries predate postdoc coverage in the professorship
-     * gate — "Postdoctoral Scholar"/"Postdoc"/"Post-Doc" titles now require a
+     * gate ΓÇö "Postdoctoral Scholar"/"Postdoc"/"Post-Doc" titles now require a
      * PhD-level query too, same as Professor/Faculty.
      * v12 because v11 entries predate the cs_business/cs_criminology/
-     * cs_social_sciences provider_query fix — those interdisciplinary
+     * cs_social_sciences provider_query fix ΓÇö those interdisciplinary
      * profiles now include the full core CS/software vocabulary (previously
      * cs_criminology had none at all, and the other two only had a single
      * loose "software engineer" token), so a BSCS + <specialty> search
@@ -448,7 +448,7 @@ function getGetQueryStringLength_(e) {
      * silently matching "Officer" (Probation Officer, Police Officer, ...) and
      * canceling out the new criminology domain score.
      * v14 because v13 entries predate a USAJOBS query-routing fix: USAJOBS
-     * was being sent req.query_text (the FULLY EXPANDED provider_query — 20+
+     * was being sent req.query_text (the FULLY EXPANDED provider_query ΓÇö 20+
      * words for the interdisciplinary profiles) as one literal Keyword
      * string instead of the short curated usajobs_query, which is almost
      * certainly why those searches were returning nothing. Also removed a
@@ -461,21 +461,21 @@ function getGetQueryStringLength_(e) {
      * v15 because v14 entries predate interdisciplinary match_score rework:
      * cs_business/cs_criminology/cs_social_sciences results are now rescored
      * as two independent halves (CS core + specialty), each worth up to 50
-     * points, instead of one flat ratio over the combined vocabulary — a job
+     * points, instead of one flat ratio over the combined vocabulary ΓÇö a job
      * matching only one half now lands ~40-50%, matching both lands ~80-99%.
-     * v16 because v15 entries predate the "bscsc" label fix — the frontend
+     * v16 because v15 entries predate the "bscsc" label fix ΓÇö the frontend
      * sends "bscsc" as the short code for BSCS + Criminology (matching the
      * bscp/bscse/bsai/bscys/bsit short-code convention), which didn't match
      * any cs_criminology label, so the whole degree-profile system (query
      * expansion, interdisciplinary domain detection, USAJOBS OR-merge,
      * two-half scoring) was silently never activating for that search.
      * v17 because v16 entries predate the "bscsb" (BSCS + Business) and
-     * "bscsiss" (BSCS + Interdisciplinary Social Sciences) label additions —
+     * "bscsiss" (BSCS + Interdisciplinary Social Sciences) label additions ΓÇö
      * same missing-short-code issue as bscsc, now fixed for all 3.
      * v18 because v17 entries predate two fixes: (a) jobs.html was sending
      * LIGHTCAST_DEGREE_CONFIGS' human-readable label (e.g. "BS Computer
      * Science", "MS Cybersecurity") as query_text instead of the short code
-     * (e.g. "bscs", "mscys") every profile's labels list actually expects —
+     * (e.g. "bscs", "mscys") every profile's labels list actually expects ΓÇö
      * since normalizeProgramQueryForProviders_/v2GetDegreeLevelFromQuery_
      * require an exact normalized match, this meant NO degree (not just the
      * interdisciplinary ones) was ever hitting its curated provider_query,
@@ -484,10 +484,10 @@ function getGetQueryStringLength_(e) {
      * sends the short code. (b) normalizeProgramQueryForProviders_'s
      * substring-substitution fallback (for when skills text is appended
      * after the code) had no rule for bscsb/bscsc/bscsiss, so those 3 still
-     * failed to expand whenever the skills field was non-empty — added.
+     * failed to expand whenever the skills field was non-empty ΓÇö added.
      * v19 because v18 entries predate two USAJOBS scoring fixes: (a) USAJOBS
      * rows never captured any duties/summary text (MatchedObjectDescriptor
-     * only has title/org/location) — v2RescoreForInterdisciplinaryDomain_ and
+     * only has title/org/location) ΓÇö v2RescoreForInterdisciplinaryDomain_ and
      * liveAdapterSimpleMatchScore_ could only ever see the bare job title, so
      * e.g. a federal "Management Analyst" posting whose DUTIES describe
      * exactly the cs_business specialty (data collection, SQL, reporting)
@@ -497,21 +497,21 @@ function getGetQueryStringLength_(e) {
      * specialty_aliases (and the shared bscs core aliases used as the CS-half
      * term set for all 3 interdisciplinary profiles) didn't include common
      * data/quantitative-duty vocabulary (sql, database, data analysis/
-     * collection, statistical/quantitative analysis, reporting, dashboards) —
+     * collection, statistical/quantitative analysis, reporting, dashboards) ΓÇö
      * added, so duty text using this language now contributes to both halves
      * instead of only exact job-title phrases like "management analyst"
      * counting.
      * v20 because v19 entries predate two location-filtering fixes: (a) USAJOBS
-     * results had no post-fetch location check at all — every other provider
+     * results had no post-fetch location check at all ΓÇö every other provider
      * re-verifies location_text against the job's own location string, but
      * USAJOBS just trusted its LocationName query param, which is a soft hint
      * upstream (not a hard filter) and returns "Multiple Locations" with no
-     * state info for many multi-site postings — wrong-state rows (e.g. Arizona
+     * state info for many multi-site postings ΓÇö wrong-state rows (e.g. Arizona
      * for a Florida search) had nothing to catch them. Now checks
      * PositionLocationDisplay + each PositionLocation duty station. (b)
      * liveAdapterLocationMatchesRequest_ (shared by every provider) couldn't
      * parse the compound "City, State" values jobs.html's location dropdown
-     * actually sends (e.g. "Tampa, Florida") — it only recognized a bare state
+     * actually sends (e.g. "Tampa, Florida") ΓÇö it only recognized a bare state
      * name or 2-letter code, so it looked for the literal substring
      * "tampa, florida" in job locations, which real listings never spell out
      * that way ("Tampa, FL" instead). City-level location picks were likely
@@ -519,9 +519,9 @@ function getGetQueryStringLength_(e) {
      * checks each independently.
      * v21 because v20 entries predate a provider filtering-parity audit: (a)
      * github_simplify had its own separate simplifyLocationMatchesRequest_
-     * with the identical "can't parse compound City, State queries" bug —
+     * with the identical "can't parse compound City, State queries" bug ΓÇö
      * removed the duplicate, now shares the one fixed liveAdapterLocationMatchesRequest_.
-     * (b) handshake_rss had NO query_text or location_text filtering at all —
+     * (b) handshake_rss had NO query_text or location_text filtering at all ΓÇö
      * it just took the first `limit` RSS items in feed order and relied
      * entirely on the downstream domain allowlist (which checks broad domain,
      * not the actual query) to weed things out. Now runs the same
@@ -532,13 +532,13 @@ function getGetQueryStringLength_(e) {
      * feed's actual field layout is confirmed via debugDumpHandshakeRssFirstItem_).
      * v22 because v21 entries predate two more fixes: (a) cybersecurity_jobs_sheet
      * now requires genuine criminology/digital-forensics signal (not just plain
-     * "cybersecurity") before contributing to a cs_criminology search — see
+     * "cybersecurity") before contributing to a cs_criminology search ΓÇö see
      * v2FilterCybersecuritySheetForCriminology_. (b) fetchUsaJobsJobs_ and all
      * 3 github_markdown fetch paths (sheet-cache/full-refresh/live-filtered)
      * plus cybersecurity_jobs_sheet were trimming to perProviderCap/perPage
      * using each provider's own pre-rescore baseline match_score, BEFORE
      * v2RescoreForInterdisciplinaryDomain_ (and, for the cybersecurity sheet,
-     * the new criminology filter) ever ran on the full merged list — a genuine
+     * the new criminology filter) ever ran on the full merged list ΓÇö a genuine
      * dual-half match for cs_business/cs_criminology/cs_social_sciences could
      * get discarded here in favor of a weaker single-half match, permanently,
      * before the correct score was ever computed. Removed all 4 premature
@@ -550,7 +550,7 @@ function getGetQueryStringLength_(e) {
      * handshake_rss's only scorer and the catch-all backstop, simpleMatchScore_
      * for github_simplify) split the curated query into bare single words
      * ("engineer", "engineering", "systems", "computer", ...) instead of
-     * matching known multi-word phrases — so ANY "<Discipline> Engineer"
+     * matching known multi-word phrases ΓÇö so ANY "<Discipline> Engineer"
      * posting (Civil Engineer, Electronics Engineer, USAJOBS's catch-all
      * "General Engineer" series, none of them CS/CE-relevant) scored ~75% off
      * generic engineering words alone, on top of a 50-point floor that let
@@ -562,7 +562,7 @@ function getGetQueryStringLength_(e) {
      * v24 because v23 entries predate widening the professorship/postdoc
      * PhD gate (v2FilterJobsByProfessorshipRequiresPhD_) to also drop any
      * title that explicitly says "PhD"/"doctorate"/"doctoral" outside of a
-     * professor/faculty/postdoc title — e.g. "Data Scientist, Core Data -
+     * professor/faculty/postdoc title ΓÇö e.g. "Data Scientist, Core Data -
      * PhD" was leaking through to bachelor's-level searches (bscsb, etc.)
      * because it isn't a professorship/postdoc title and doesn't match any
      * senior/leadership title regex either.
@@ -574,7 +574,7 @@ function getGetQueryStringLength_(e) {
      * github_markdown, the "CybersecurityJobs"/"GitHub Jobs" sheets) is now
      * scored against that specific degree's own curated `aliases` via
      * v2PercentOfCourseMatchScore_, instead of the shared global phrase pool
-     * every provider's baseline score came from — a bscp/bsit/etc. search
+     * every provider's baseline score came from ΓÇö a bscp/bsit/etc. search
      * previously scored jobs against every degree's vocabulary combined, not
      * its own.
      */
@@ -847,8 +847,8 @@ function getGetQueryStringLength_(e) {
   
   
   /**
-   * Manual test: run from the Apps Script editor (select function → Run).
-   * View output: View → Logs, or Executions → click the run → Logs.
+   * Manual test: run from the Apps Script editor (select function ΓåÆ Run).
+   * View output: View ΓåÆ Logs, or Executions ΓåÆ click the run ΓåÆ Logs.
    *
    * Exercises the same live path as the web app: USAJOBS + Simplify (GitHub JSON),
    * then dedupeAndRankJobs_ + rankAndCapResults.
@@ -1038,7 +1038,7 @@ function getGetQueryStringLength_(e) {
   }
   
   /**
-   * Live search: map Simplify JSON → same JobRow shape as USAJOBS in ProvidersLive (result_id, title, location, pay, apply_url, provider, match_score, expiry_at, source).
+   * Live search: map Simplify JSON ΓåÆ same JobRow shape as USAJOBS in ProvidersLive (result_id, title, location, pay, apply_url, provider, match_score, expiry_at, source).
    * Called from ProvidersLive.gs. Uses simpleMatchScore_ / normalizeHttpsUrl_ (global).
    */
   function fetchSimplifyJsonForLiveSearch_(req, limit, expiry) {
@@ -1160,7 +1160,7 @@ function getGetQueryStringLength_(e) {
       }
     }
     // Shared with github_markdown/cybersecurity_jobs_sheet/usajobs instead of a
-    // second copy — this provider used to have its own simplifyLocationMatchesRequest_
+    // second copy ΓÇö this provider used to have its own simplifyLocationMatchesRequest_
     // with the same "can't parse compound City, State queries" bug that
     // liveAdapterLocationMatchesRequest_ had before it was fixed.
     if (!liveAdapterLocationMatchesRequest_(locQ, locStr)) {
@@ -1185,7 +1185,7 @@ function getGetQueryStringLength_(e) {
     }
     var idPart = item.id != null ? String(item.id) : apply + title;
     var resultId = "simplify-" + sha256Hex(idPart).slice(0, 24);
-    var sourceLabel = (company ? company + " · " : "") + feedName;
+    var sourceLabel = (company ? company + " ┬╖ " : "") + feedName;
     return {
       result_id: resultId,
       title: title,
@@ -1545,7 +1545,7 @@ function getGetQueryStringLength_(e) {
   /**
    * Appends {Timestamp, Level, Message, Data} to the "CrawlerLogs" sheet so
    * cache staleness/health is visible without digging through execution logs.
-   * Never throws — a logging failure must not break the caller.
+   * Never throws ΓÇö a logging failure must not break the caller.
    */
   function logToCrawlerLogsSheet_(level, message, data) {
     try {
@@ -1572,7 +1572,7 @@ function getGetQueryStringLength_(e) {
    * One-time setup: run this once from the Apps Script editor (select
    * installGithubJobsScrapeTriggers_ -> Run) to schedule writeJobsToSheet a
    * few times a day, so the "GitHub Jobs" sheet cache (see
-   * fetchGithubMarkdownJobsForLiveSearch_) rarely goes stale on its own —
+   * fetchGithubMarkdownJobsForLiveSearch_) rarely goes stale on its own ΓÇö
    * the opportunistic live-refresh fallback still covers any gap if a
    * trigger run fails or this hasn't been installed yet.
    *
@@ -1763,16 +1763,16 @@ function getGetQueryStringLength_(e) {
   
   /**
    * "Primarily <specialty>" phrases for the BSCS interdisciplinary double-major
-   * profiles (cs_criminology/cs_business/cs_social_sciences) — pure specialty
+   * profiles (cs_criminology/cs_business/cs_social_sciences) ΓÇö pure specialty
    * roles, not just the tech-hybrid ones already covered by TECH_DOMAIN_PHRASES.
    * Deliberately kept OUT of TECH_DOMAIN_PHRASES/JOB_FILTER_CONFIG.allowed_domains,
    * which stay software/data/security/infra/ai_ml only for every other search
-   * (this config is shared with Handshake's noise filter — a random criminology
+   * (this config is shared with Handshake's noise filter ΓÇö a random criminology
    * or marketing posting is exactly what that filter exists to drop). Instead,
    * v2GetInterdisciplinaryDomainFromQuery_ detects when a request's query
    * matches one of these 3 degree profiles, and runProvidersLiveV2_ passes the
    * matching phrase set into v2FilterJobsByRelevance_ as a request-scoped
-   * extra allowed domain — only that search gets the wider net.
+   * extra allowed domain ΓÇö only that search gets the wider net.
    */
   var INTERDISCIPLINARY_DOMAIN_PHRASES = {
     criminology: [
@@ -1783,7 +1783,7 @@ function getGetQueryStringLength_(e) {
     ],
     business: [
       // "account manager"/"account executive"/"human resources" deliberately
-      // omitted — they're exact duplicates of EXCLUDE_DOMAIN_PHRASES.sales/
+      // omitted ΓÇö they're exact duplicates of EXCLUDE_DOMAIN_PHRASES.sales/
       // ops_admin entries, so they'd always net-cancel to zero and contribute
       // nothing (see hr business partner below for the HR-adjacent term that
       // doesn't collide).
@@ -1809,7 +1809,7 @@ function getGetQueryStringLength_(e) {
     cs_social_sciences: "social_science"
   };
   
-  /** Inverse of INTERDISCIPLINARY_PROFILE_TO_DOMAIN — domain -> profile key. */
+  /** Inverse of INTERDISCIPLINARY_PROFILE_TO_DOMAIN ΓÇö domain -> profile key. */
   var INTERDISCIPLINARY_DOMAIN_TO_PROFILE = {
     criminology: "cs_criminology",
     business: "cs_business",
@@ -1870,7 +1870,7 @@ function getGetQueryStringLength_(e) {
    *
    * extraDomainPhrases (optional): a TECH_DOMAIN_PHRASES-shaped object
    * ({domainKey: [phrase, ...]}) scored alongside the built-in tech domains
-   * for this call only — used to request-scope in the interdisciplinary
+   * for this call only ΓÇö used to request-scope in the interdisciplinary
    * criminology/business/social_science phrase sets (see
    * INTERDISCIPLINARY_DOMAIN_PHRASES) without touching the global
    * TECH_DOMAIN_PHRASES table that every other search relies on.
@@ -1991,7 +1991,7 @@ function getGetQueryStringLength_(e) {
    * Full relevance evaluation for one job.
    * Returns { keep, score, domain, tech_score, exclude_score, flags, reason }.
    *
-   * opts (optional): { extra_domain_phrases, extra_allowed_domains } — see
+   * opts (optional): { extra_domain_phrases, extra_allowed_domains } ΓÇö see
    * v2ScoreJobDomains_ and v2FilterJobsByRelevance_.
    */
   function v2EvaluateJobRelevance_(job, opts) {
@@ -2070,7 +2070,7 @@ function getGetQueryStringLength_(e) {
    * extra_domain_phrases/extra_allowed_domains request-scope in additional
    * allowed domains (e.g. INTERDISCIPLINARY_DOMAIN_PHRASES.criminology for a
    * cs_criminology search) without touching the global JOB_FILTER_CONFIG that
-   * every other search relies on — see v2EvaluateJobRelevance_.
+   * every other search relies on ΓÇö see v2EvaluateJobRelevance_.
    */
   function v2FilterJobsByRelevance_(jobs, opts) {
     jobs = Array.isArray(jobs) ? jobs : [];
@@ -2133,11 +2133,11 @@ function getGetQueryStringLength_(e) {
   
   /*
    * Cybersecurity-adjacent terms that specifically bridge into criminology/law
-   * enforcement — kept separate from INTERDISCIPLINARY_DOMAIN_PHRASES.
+   * enforcement ΓÇö kept separate from INTERDISCIPLINARY_DOMAIN_PHRASES.
    * criminology (pure CJ vocabulary) because v2FilterCybersecuritySheetForCriminology_
    * needs both combined: a bare "cybersecurity"/"security analyst" hit alone
    * shouldn't be enough to justify surfacing a job for a cs_criminology search
-   * — that only describes the CS half, not the criminology half.
+   * ΓÇö that only describes the CS half, not the criminology half.
    */
   var CRIMINOLOGY_FORENSICS_BRIDGE_PHRASES = [
     "digital forensics", "cybercrime", "intelligence analyst", "fraud analyst"
@@ -2145,7 +2145,7 @@ function getGetQueryStringLength_(e) {
   
   /**
    * cybersecurity_jobs_sheet skips the general TECH_DOMAIN_PHRASES allowlist
-   * (it's a curated, already tech-scoped source) — but for a cs_criminology
+   * (it's a curated, already tech-scoped source) ΓÇö but for a cs_criminology
    * search, "tech-scoped" isn't restrictive enough on its own, since the
    * search's own expanded query text includes plain "cybersecurity" and would
    * let any generic SOC/security-engineer posting through. This requires
@@ -2285,7 +2285,7 @@ function getGetQueryStringLength_(e) {
    * Strips the HANDSHAKE_RSS_URL token= value out of text before it's logged.
    * UrlFetchApp exceptions can embed the full fetched URL (token included) in
    * err.message, and debug dumps can embed it in a JSON-stringified status
-   * object — this covers both since it just scans for the token= pattern
+   * object ΓÇö this covers both since it just scans for the token= pattern
    * wherever it appears in the string.
    */
   function handshakeRedact_(text) {
@@ -2392,13 +2392,13 @@ function getGetQueryStringLength_(e) {
   
       /*
        * Unlike every other provider, this feed was never checked against
-       * query_text/location_text at all — it just took the first `limit` RSS
+       * query_text/location_text at all ΓÇö it just took the first `limit` RSS
        * items in feed order and relied entirely on the downstream domain
        * allowlist (v2FilterJobsByRelevance_) to weed things out, which only
        * checks broad domain, not the actual query. handshakeParseTitle_ never
        * extracts a real `location` (always ""), so the location check here is
        * best-effort against whatever incidental location text shows up in the
-       * title/description — better than no check, but if this feed encodes
+       * title/description ΓÇö better than no check, but if this feed encodes
        * location in a dedicated field we're not reading yet, that's a
        * follow-up (see debugDumpHandshakeRssFirstItem_).
        */
@@ -2422,7 +2422,7 @@ function getGetQueryStringLength_(e) {
         source: "handshake:usf",
         provider: "handshake_rss",
         /*
-         * Do NOT copy req.employment_type here — that's what the caller
+         * Do NOT copy req.employment_type here ΓÇö that's what the caller
          * searched for, not anything the feed actually reported about this
          * job. v2ClassifyJobRoleType_ trusts employment_type/job_type as a
          * "structured" internship signal, so echoing the request back would
@@ -2588,8 +2588,8 @@ function getGetQueryStringLength_(e) {
   /**
    * CybersecurityJobs sheet provider.
    *
-   * Reads the "CybersecurityJobs" tab of JOBS_SPREADSHEET_ID — populated by an
-   * external crawler of jobs.cybersecurityjobs.com — instead of hitting that
+   * Reads the "CybersecurityJobs" tab of JOBS_SPREADSHEET_ID ΓÇö populated by an
+   * external crawler of jobs.cybersecurityjobs.com ΓÇö instead of hitting that
    * site directly. Columns: Job ID, Title, Company, Location, Posted Date,
    * Job URL, Apply URL, Description, Source, First Seen, Last Seen, Raw Dedupe
    * Key. Same contract as the other V2 providers:
@@ -2672,7 +2672,7 @@ function getGetQueryStringLength_(e) {
       }
     }
   
-    // Not trimmed to perProviderCap here — see the matching comment in
+    // Not trimmed to perProviderCap here ΓÇö see the matching comment in
     // fetchUsaJobsJobs_ (this provider also feeds v2RescoreForDegreeProfile_
     // and the new v2FilterCybersecuritySheetForCriminology_ downstream, both of
     // which need the full candidate set, not a pre-rescore top-N slice).
@@ -2751,7 +2751,7 @@ function getGetQueryStringLength_(e) {
         [title, raw.company, raw.location, raw.description, raw.source].join(" ")
       ),
       expiry_at: expiry,
-      source: (raw.company ? raw.company + " · " : "") + (raw.source || "CybersecurityJobs.com")
+      source: (raw.company ? raw.company + " ┬╖ " : "") + (raw.source || "CybersecurityJobs.com")
     };
   }
   
@@ -2799,71 +2799,56 @@ function getGetQueryStringLength_(e) {
   
   function rankAndCapResults(results, limitPerProvider) {
     limitPerProvider = limitPerProvider || 20;
-
+  
     var byProv = {};
-
+  
     for (var i = 0; i < results.length; i++) {
       var r = results[i];
       var p = r.provider;
-
+  
       // Convert the score to a number and cap it at 100%.
       var score = Number(r.match_score);
-
+  
       if (isNaN(score)) {
         score = 0;
       }
-
+  
       r.match_score = Math.min(score, 100);
-
+  
+      // Drop weak matches instead of showing a job the query barely relates to.
+      if (r.match_score < MIN_MATCH_SCORE_PERCENT) {
+        continue;
+      }
+  
       if (!byProv[p]) {
         byProv[p] = [];
       }
-
+  
       byProv[p].push(r);
     }
-
+  
     var providers = Object.keys(byProv);
     var capped = [];
-
+  
     for (var j = 0; j < providers.length; j++) {
       var providerResults = byProv[providers[j]];
-
-      // Drop weak matches instead of showing a job the query barely relates to.
-      var kept = providerResults.filter(function (r) {
-        return r.match_score >= MIN_MATCH_SCORE_PERCENT;
+  
+      // Sort each provider's results from highest to lowest.
+      providerResults.sort(function (a, b) {
+        return b.match_score - a.match_score;
       });
-
-      if (kept.length > 0) {
-        kept.sort(function (a, b) {
-          return b.match_score - a.match_score;
-        });
-      } else if (providerResults.length > 0) {
-        // A degree-profile rescore can floor out an entire provider (e.g.
-        // short titles with no description can't hit enough alias terms).
-        // Fall back to the provider's pre-rescore ranking instead of
-        // dropping it to zero results.
-        kept = providerResults.slice().sort(function (a, b) {
-          var aScore = a._baseline_match_score != null ? a._baseline_match_score : a.match_score;
-          var bScore = b._baseline_match_score != null ? b._baseline_match_score : b.match_score;
-          return bScore - aScore;
-        });
-
-        Logger.log(
-          "[RANK_FALLBACK] provider " + providers[j] + " had 0 results >= " +
-            MIN_MATCH_SCORE_PERCENT + "%, falling back to pre-rescore ranking for " +
-            kept.length + " result(s)"
-        );
-      }
-
+  
       // Keep only the configured number of results per provider.
-      capped = capped.concat(kept.slice(0, limitPerProvider));
+      capped = capped.concat(
+        providerResults.slice(0, limitPerProvider)
+      );
     }
-
+  
     // Sort the final combined results from highest to lowest.
     capped.sort(function (a, b) {
       return b.match_score - a.match_score;
     });
-
+  
     return capped;
   }
   
@@ -2894,12 +2879,12 @@ function getGetQueryStringLength_(e) {
    * liveAdapterGetUsaJobsQueryVariants_) and merges/dedupes the results.
    *
    * Normally that's a single variant. For the BSCS interdisciplinary double-
-   * majors (cs_business/cs_criminology/cs_social_sciences) it's two — one
-   * short query for the CS half, one for the specialty half — queried and
+   * majors (cs_business/cs_criminology/cs_social_sciences) it's two ΓÇö one
+   * short query for the CS half, one for the specialty half ΓÇö queried and
    * merged independently rather than concatenated into a single Keyword
    * string. USAJOBS's Keyword field isn't documented/verified to treat a
    * multi-word string as OR, and previously req.query_text (the FULL expanded
-   * provider_query — 20+ words for these profiles) was being sent as one
+   * provider_query ΓÇö 20+ words for these profiles) was being sent as one
    * literal Keyword string, which is almost certainly why searches for these
    * profiles were returning nothing.
    */
@@ -2978,7 +2963,7 @@ function getGetQueryStringLength_(e) {
      * Deliberately NOT trimmed to perPage here. For the 3 interdisciplinary
      * profiles this merges up to 2 query variants (CS half + specialty half),
      * and trimming now would use liveAdapterSimpleMatchScore_'s baseline
-     * per-title score — computed before v2RescoreForDegreeProfile_
+     * per-title score ΓÇö computed before v2RescoreForDegreeProfile_
      * runs on the full merged list downstream. A genuine dual-match job (both
      * halves) could score lower under that baseline than a single-half match
      * and get cut here, permanently, before the correct two-half score is ever
@@ -3013,7 +2998,7 @@ function getGetQueryStringLength_(e) {
   
   /**
    * Single USAJOBS Keyword search + row mapping for one query variant.
-   * Never throws — every failure path returns { success: false, error }.
+   * Never throws ΓÇö every failure path returns { success: false, error }.
    */
   function fetchUsaJobsJobsForQuery_(queryText, locationParam, perPage, req, expiry, authKey, userAgent) {
     var qUrl = liveAdapterBuildUsaJobsSearchUrl_(queryText, locationParam, perPage, req.min_pay);
@@ -3106,7 +3091,7 @@ function getGetQueryStringLength_(e) {
   
         /*
          * The `LocationName` query param is a soft hint to USAJOBS, not a hard
-         * filter — a bare state name like "Florida" (as opposed to a specific
+         * filter ΓÇö a bare state name like "Florida" (as opposed to a specific
          * "Tampa, Florida" city entry) can come back loosely matched or
          * effectively ignored, so wrong-state rows (e.g. Arizona for a Florida
          * search) leak straight through with nothing to catch them. Every
@@ -3250,12 +3235,12 @@ function getGetQueryStringLength_(e) {
   }
   
   /**
-   * USAJOBS's MatchedObjectDescriptor carries only title/org/location — the
+   * USAJOBS's MatchedObjectDescriptor carries only title/org/location ΓÇö the
    * actual duties/summary text (what v2RescoreForDegreeProfile_ and
    * liveAdapterSimpleMatchScore_ need to tell e.g. a business-oriented
    * "Management Analyst" posting from an unrelated one) lives under
    * UserArea.Details and QualificationSummary instead. Truncated to keep the
-   * per-row payload/cache size reasonable — this only feeds keyword matching,
+   * per-row payload/cache size reasonable ΓÇö this only feeds keyword matching,
    * not display.
    */
   function liveAdapterExtractUsaJobsDescription_(descriptor) {
@@ -3332,7 +3317,7 @@ function getGetQueryStringLength_(e) {
    * Reads the "GitHub Jobs" sheet and answers from it if the cached snapshot
    * is within GITHUB_JOBS_SHEET_TTL_MINUTES. Returns null (not an empty
    * result) when the cache can't be trusted, so the caller knows to fall back
-   * — an empty array here would otherwise be indistinguishable from "sheet is
+   * ΓÇö an empty array here would otherwise be indistinguishable from "sheet is
    * fresh but nothing matched this query."
    */
   function fetchGithubMarkdownJobsFromSheetCache_(req, limit, expiry) {
@@ -3394,7 +3379,7 @@ function getGetQueryStringLength_(e) {
       }
     }
   
-    // Not trimmed to perProviderCap here — see the matching comment in
+    // Not trimmed to perProviderCap here ΓÇö see the matching comment in
     // fetchUsaJobsJobs_. v2RescoreForDegreeProfile_ and the domain
     // allowlist run downstream on the full merged list and need the complete
     // candidate set, not a pre-rescore top-N slice from this one provider.
@@ -3443,7 +3428,7 @@ function getGetQueryStringLength_(e) {
   
   /**
    * liveAdapterInferGithubSourceKind_/Region_ read source.category (the short
-   * slug, e.g. "swe_internship_usa") and source.source (the display name) —
+   * slug, e.g. "swe_internship_usa") and source.source (the display name) ΓÇö
    * matching the shape of a JOB_MARKDOWN_SOURCES entry, not a normalized job
    * row. Normalized job objects (from normalizeJobRow / githubJobsSheetRowToJobObject_)
    * store that same slug under sourceCategory instead, so this adapts one to
@@ -3541,7 +3526,7 @@ function getGetQueryStringLength_(e) {
       }
     }
   
-    // Not trimmed to perProviderCap here — see the matching comment in
+    // Not trimmed to perProviderCap here ΓÇö see the matching comment in
     // fetchUsaJobsJobs_.
     rows.sort(function (a, b) {
       return (b.match_score || 0) - (a.match_score || 0);
@@ -3563,7 +3548,7 @@ function getGetQueryStringLength_(e) {
    * Original per-request live fetch: only fetches sources whose inferred kind/
    * region match this request, so it's cheaper than a full refresh. Used when
    * the sheet cache is stale but another concurrent request already holds the
-   * refresh lock — answers this request without adding a second full scrape.
+   * refresh lock ΓÇö answers this request without adding a second full scrape.
    */
   function fetchGithubMarkdownJobsLiveFiltered_(req, limit, expiry) {
     req = req || {};
@@ -3668,7 +3653,7 @@ function getGetQueryStringLength_(e) {
       }
     }
   
-    // Not trimmed to perProviderCap here — see the matching comment in
+    // Not trimmed to perProviderCap here ΓÇö see the matching comment in
     // fetchUsaJobsJobs_.
     rows.sort(function (a, b) {
       var scoreDiff = (b.match_score || 0) - (a.match_score || 0);
@@ -3799,7 +3784,7 @@ function getGetQueryStringLength_(e) {
   
   /**
    * search_type ("internship"/"job") is the caller's explicit toggle and takes
-   * priority over the employment_type-derived kind below — otherwise a request
+   * priority over the employment_type-derived kind below ΓÇö otherwise a request
    * like { employment_type: "Already Graduated", search_type: "internship" }
    * would gate out every internship source file before search_type ever gets a
    * chance to filter, silently returning zero github_markdown internship rows.
@@ -3925,7 +3910,7 @@ function getGetQueryStringLength_(e) {
         ].join(" ")
       ),
       expiry_at: expiry,
-      source: (company ? company + " · " : "") + String(job.source || "GitHub Jobs")
+      source: (company ? company + " ┬╖ " : "") + String(job.source || "GitHub Jobs")
     };
   }
   
@@ -4068,7 +4053,7 @@ function getGetQueryStringLength_(e) {
   
     /*
      * jobs.html's location select sends compound "City, State" values (e.g.
-     * "Tampa, Florida" for the "Tampa Bay area" option) — split them so the
+     * "Tampa, Florida" for the "Tampa Bay area" option) ΓÇö split them so the
      * city and state can each be checked separately, since a job's own
      * location string almost never spells out both halves verbatim the same
      * way (e.g. "Tampa, FL" instead of "Tampa, Florida"). For a bare query
@@ -4134,7 +4119,7 @@ function getGetQueryStringLength_(e) {
   
   /**
    * Combined, deduped list of every known multi-word job-domain phrase
-   * (TECH_DOMAIN_PHRASES + every degree profile's aliases/specialty_aliases) —
+   * (TECH_DOMAIN_PHRASES + every degree profile's aliases/specialty_aliases) ΓÇö
    * rebuilt per call, same as getDegreeSearchProfiles_() already is elsewhere
    * in this file. See liveAdapterSimpleMatchScore_ for why this exists.
    */
@@ -4184,13 +4169,13 @@ function getGetQueryStringLength_(e) {
    * engineer", ...) instead of single words. The old version split the
    * already-curated query ("computer engineering software engineer embedded
    * systems firmware hardware systems engineer" for BS Computer Engineering)
-   * into bare words — "engineer", "engineering", "systems" — which any
+   * into bare words ΓÇö "engineer", "engineering", "systems" ΓÇö which any
    * "<Discipline> Engineer" posting contains regardless of field (Civil
    * Engineer, Electronics Engineer, USAJOBS's catch-all "General Engineer"
    * series, ...), so those scored ~75% purely off generic engineering
    * vocabulary. Matching full phrases means a Civil Engineer posting has to
    * actually contain "software engineer" or "systems engineer" verbatim to get
-   * credit, not just the word "engineer". Also drops the old 50-point floor —
+   * credit, not just the word "engineer". Also drops the old 50-point floor ΓÇö
    * a genuine zero-match result should land under the 30% quality cutoff and
    * get dropped, not survive as a default "coin flip".
    */
@@ -4227,7 +4212,7 @@ function getGetQueryStringLength_(e) {
     }
   
     // Fallback for free text that doesn't hit any known phrase (e.g. a skills
-    // box entry with no matching profile) — single-word tokens, same low-
+    // box entry with no matching profile) ΓÇö single-word tokens, same low-
     // signal filtering and alias lookup as before, just the same floor/range.
     var tokens = q
       .replace(/[^\w\s]/g, " ")
@@ -4264,21 +4249,13 @@ function getGetQueryStringLength_(e) {
   }
   
   /**
-   * Degree-profile match score: how well a single degree profile's own
-   * curated `courseTerms` (its `aliases` list) shows up in `blob`. Same
-   * floor(10)/scale(89) convention as liveAdapterSimpleMatchScore_ so it's
-   * comparable against MIN_MATCH_SCORE_PERCENT, but scoped to one degree's
-   * own term list instead of the global merged phrase pool from
-   * liveAdapterGetAllKnownJobPhrases_ — see v2RescoreForDegreeProfile_.
-   *
-   * Delegates to v2TermMatchStrength_ instead of a literal hits/length
-   * ratio. A courseTerms list (e.g. bscs's 13 aliases) is mostly synonyms
-   * for one role concept ("software engineer"/"developer"/"backend"/...)
-   * plus a couple of adjacent skills (sql/database) — a job that hits 2 of
-   * them (say "developer" + "sql") IS a full match, not 15% of one, so
-   * requiring a large fraction of the list to match was scoring genuinely
-   * relevant jobs (e.g. 24% for a real SQL developer role) below the 30%
-   * quality floor and dropping them.
+   * "Percentage of course" match score: what fraction of a single degree
+   * profile's own curated `courseTerms` (its `aliases` list ΓÇö the closest
+   * proxy this app has to that degree's curriculum vocabulary) shows up in
+   * `blob`. Same floor(10)/scale(89) convention as liveAdapterSimpleMatchScore_
+   * so it's comparable against MIN_MATCH_SCORE_PERCENT, but scoped to one
+   * degree's own term list instead of the global merged phrase pool from
+   * liveAdapterGetAllKnownJobPhrases_ ΓÇö see v2RescoreForDegreeProfile_.
    */
   function v2PercentOfCourseMatchScore_(courseTerms, blob) {
     var b = String(blob || "").toLowerCase();
@@ -4287,13 +4264,15 @@ function getGetQueryStringLength_(e) {
       return 10;
     }
 
-    var strength = v2TermMatchStrength_(courseTerms, b);
+    var hits = 0;
 
-    if (strength === 0) {
-      return 10;
+    for (var i = 0; i < courseTerms.length; i++) {
+      if (b.indexOf(String(courseTerms[i]).toLowerCase()) !== -1) {
+        hits++;
+      }
     }
 
-    return Math.max(1, Math.min(99, Math.round(10 + 89 * strength)));
+    return Math.max(1, Math.min(99, Math.round(10 + (89 * hits) / courseTerms.length)));
   }
 
   function liveAdapterIsLowSignalToken_(token) {
@@ -4463,7 +4442,7 @@ function getGetQueryStringLength_(e) {
   
     // Relevance filter applies to Handshake and github_markdown. Handshake's
     // USF feed is mostly noise; github_markdown's "Jobright H1B Tech Jobs"
-    // source turned out NOT to be domain-scoped either — it lists every open
+    // source turned out NOT to be domain-scoped either ΓÇö it lists every open
     // role at H1B-sponsoring companies (Life Sciences, Structural Engineering,
     // Creative Director, etc.), not just tech ones. usajobs/github_simplify
     // are left alone: an earlier relevance-filter pass applied to `merged`
@@ -4498,7 +4477,7 @@ function getGetQueryStringLength_(e) {
      * skips the general TECH_DOMAIN_PHRASES allowlist that Handshake/
      * github_markdown go through (see comment above). But for a cs_criminology
      * search specifically, "already cybersecurity-scoped" isn't restrictive
-     * enough — a plain SOC Analyst / generic Security Engineer posting with no
+     * enough ΓÇö a plain SOC Analyst / generic Security Engineer posting with no
      * criminal-justice or digital-forensics angle at all would otherwise pass
      * straight through just for containing "cybersecurity" (one of the search's
      * own expanded query terms). Require genuine criminology/forensics signal
@@ -4523,7 +4502,7 @@ function getGetQueryStringLength_(e) {
       .concat(h.results || []);
   
     // NO v2FilterJobsByRelevance_ call here. If you have one on `merged` or
-    // `filtered`, DELETE it — that's what's nuking USAJOBS rows.
+    // `filtered`, DELETE it ΓÇö that's what's nuking USAJOBS rows.
   
     var filtered = v2FilterJobsBySearchType_(merged, req.search_type);
     filtered = v2FilterJobsByRemoteMode_(filtered, req.remote_mode);
@@ -4617,8 +4596,8 @@ function getGetQueryStringLength_(e) {
    * Title-only, word-boundary check for clearly senior/leadership roles.
    * Deliberately narrow: only unambiguous seniority signals, not "Senior" by
    * itself doesn't get excluded when the requester is at bachelor's level
-   * (only "Senior"/"Sr"/"Lead" — see SENIOR_OR_LEAD_TITLE_REGEX below).
-   * Not "Staff" here either (ambiguous — used for both senior IC and generic
+   * (only "Senior"/"Sr"/"Lead" ΓÇö see SENIOR_OR_LEAD_TITLE_REGEX below).
+   * Not "Staff" here either (ambiguous ΓÇö used for both senior IC and generic
    * roles).
    */
   var SENIOR_TITLE_EXCLUDE_REGEX = /\b(director|vice president|vp|svp|evp|chief|head of|principal|president|manager)\b/i;
@@ -4635,12 +4614,12 @@ function getGetQueryStringLength_(e) {
   /**
    * Classifies req.original_query_text against the same degree profiles
    * normalizeProgramQueryForProviders_ uses, so "Senior"/"Lead" titles can be
-   * allowed for MS/PhD searches while still being excluded for bachelor's —
+   * allowed for MS/PhD searches while still being excluded for bachelor's ΓÇö
    * a Master's or PhD candidate is a reasonable fit for a senior-adjacent
    * role in a way a fresh BS grad usually isn't. Falls back to the phd/
    * doctorate/doctoral text check (same as v2QueryIndicatesPhD_) for free-text
    * queries that don't exactly match a known profile label. Unmatched,
-   * non-phd-looking queries default to "bachelors" — this app's primary
+   * non-phd-looking queries default to "bachelors" ΓÇö this app's primary
    * audience is undergrads, so that's the safer default when the level can't
    * be positively identified as graduate.
    */
@@ -4693,10 +4672,10 @@ function getGetQueryStringLength_(e) {
   
   /**
    * Same profile-matching approach as v2GetDegreeLevelFromQuery_, but returns
-   * which INTERDISCIPLINARY_DOMAIN_PHRASES key (if any) the query matched —
+   * which INTERDISCIPLINARY_DOMAIN_PHRASES key (if any) the query matched ΓÇö
    * "criminology"/"business"/"social_science" for cs_criminology/cs_business/
    * cs_social_sciences respectively, or null for every other query (including
-   * plain "bscs" — a straight CS search shouldn't get criminology/business/
+   * plain "bscs" ΓÇö a straight CS search shouldn't get criminology/business/
    * social-science jobs mixed in, only the double-major searches should).
    */
   function v2GetInterdisciplinaryDomainFromQuery_(originalQueryText) {
@@ -4744,11 +4723,11 @@ function getGetQueryStringLength_(e) {
    * v2GetInterdisciplinaryDomainFromQuery_, but scans EVERY degree profile
    * (not just the 3 interdisciplinary ones) and returns the matched profile
    * key itself, e.g. "bscys"/"bsit"/"cs_business". Used by
-   * v2RescoreForDegreeProfile_ so every degree — not only the 3
-   * interdisciplinary double-majors — gets scored against its own curated
+   * v2RescoreForDegreeProfile_ so every degree ΓÇö not only the 3
+   * interdisciplinary double-majors ΓÇö gets scored against its own curated
    * `aliases` ("percentage of course" matching) instead of the shared
    * global phrase pool. Returns null for free-text queries that don't match
-   * any curated profile — those keep whatever score their provider already
+   * any curated profile ΓÇö those keep whatever score their provider already
    * computed.
    */
   function v2GetMatchedDegreeProfileKeyFromQuery_(originalQueryText) {
@@ -4790,7 +4769,7 @@ function getGetQueryStringLength_(e) {
    * 0 (no match) to 1 (confident match) for how well `terms` shows up in
    * `blob`. One matching term already counts as a real signal (0.8); a
    * second distinct term pushes it to full confidence (1.0). Deliberately
-   * NOT hits/terms.length — these lists have 15-20+ synonyms, so requiring a
+   * NOT hits/terms.length ΓÇö these lists have 15-20+ synonyms, so requiring a
    * large fraction of them to match would make even an obvious match (a
    * single "software engineer" or "business analyst" hit) score near zero.
    */
@@ -4820,13 +4799,13 @@ function getGetQueryStringLength_(e) {
   
   /**
    * Re-scores every merged job (all 5 providers) against the matched degree
-   * profile's own curated `aliases` — "percentage of course" matching —
+   * profile's own curated `aliases` ΓÇö "percentage of course" matching ΓÇö
    * instead of the shared global phrase pool every provider's baseline
    * match_score comes from (liveAdapterGetAllKnownJobPhrases_ merges every
    * profile's vocabulary together, so a bscp/bsit/etc. search previously
    * scored jobs against ALL degrees' terms combined, not its own). No-op
    * when `profileKey` is null (free-text queries that don't match any
-   * curated profile) — those keep their provider's original score.
+   * curated profile) ΓÇö those keep their provider's original score.
    *
    * For the 3 BSCS interdisciplinary double-majors (cs_business/
    * cs_criminology/cs_social_sciences, identified by having
@@ -4834,7 +4813,7 @@ function getGetQueryStringLength_(e) {
    * half and the specialty half each contribute up to 50 points
    * independently, instead of one flat ratio over the combined CS+specialty
    * vocabulary (which is why "Business Intelligence Analyst" was landing
-   * right at the ~50 baseline almost by accident — a huge combined term list
+   * right at the ~50 baseline almost by accident ΓÇö a huge combined term list
    * dilutes any single match). Matching only one half lands ~40-50; matching
    * both lands ~80-99.
    *
@@ -4867,12 +4846,6 @@ function getGetQueryStringLength_(e) {
         continue;
       }
 
-      // Preserve the provider's pre-rescore score so rankAndCapResults can
-      // fall back to it if this profile's floor filters out every result.
-      if (job._baseline_match_score == null) {
-        job._baseline_match_score = job.match_score;
-      }
-
       var blob = [job.title, job.company, job.location, job.source, job.description]
         .join(" ")
         .toLowerCase();
@@ -4899,11 +4872,11 @@ function getGetQueryStringLength_(e) {
   
   /**
    * Drops obviously senior/leadership titles (Director, VP, Chief, Head of,
-   * Principal, Manager, President) when the request is a new-grad search —
+   * Principal, Manager, President) when the request is a new-grad search ΓÇö
    * and, for bachelor's-level new-grad searches specifically, also drops
    * plain "Senior"/"Sr"/"Lead" titles, which are fine for MS/PhD candidates
    * but not for a fresh BS grad. Scoped to employment_type === new_grad only
-   * — internship and "any" searches are untouched.
+   * ΓÇö internship and "any" searches are untouched.
    */
   function v2FilterJobsBySeniorityForNewGrad_(jobs, req) {
     jobs = Array.isArray(jobs) ? jobs : [];
@@ -4950,7 +4923,7 @@ function getGetQueryStringLength_(e) {
   /**
    * Professorships/faculty positions, postdoctoral roles, AND any other title
    * that explicitly calls out a PhD requirement (e.g. "Data Scientist, Core
-   * Data - PhD", "Research Scientist (PhD)") require a terminal degree —
+   * Data - PhD", "Research Scientist (PhD)") require a terminal degree ΓÇö
    * they have no business showing up for a BS/new-grad/internship search
    * regardless of how loosely the title happens to match tech-domain
    * keywords. Unconditional: applies no matter what employment_type/
@@ -5252,7 +5225,7 @@ function getGetQueryStringLength_(e) {
    *
    * Shares liveAdapterSimpleMatchScore_'s phrase-based approach (and its
    * liveAdapterGetAllKnownJobPhrases_ dictionary) instead of the old bare-word
-   * tokenization — this was the same bug: splitting a curated query into single
+   * tokenization ΓÇö this was the same bug: splitting a curated query into single
    * words like "engineer"/"systems" let any "<Discipline> Engineer" posting
    * score ~75% off generic engineering vocabulary alone, and since Handshake
    * has no other scorer, its results were the most exposed to it.
@@ -5329,7 +5302,7 @@ function getGetQueryStringLength_(e) {
    * delegates to getDegreeAliasesForToken_(), which covers every degree
    * profile. A stale hardcoded duplicate used to live in this file and was
    * silently shadowing that one for every query (Apps Script merges all
-   * files into one global scope, so duplicate function names collide) —
+   * files into one global scope, so duplicate function names collide) ΓÇö
    * see the warning at the top of Util.js. Do not re-add a copy here.
    */
   
@@ -5633,7 +5606,7 @@ function getGetQueryStringLength_(e) {
           "web developer",
           "swe",
           // General technical/data skills that show up in a lot of real
-          // job-duty text (not just literal "software engineer" titles) —
+          // job-duty text (not just literal "software engineer" titles) ΓÇö
           // used as v2RescoreForDegreeProfile_'s shared CS-half
           // term set, so e.g. a "Management Analyst" posting whose duties
           // mention SQL/data analysis gets CS-half credit too, not just
@@ -5774,7 +5747,7 @@ function getGetQueryStringLength_(e) {
       /*
        * These "cs_*" interdisciplinary profiles are BSCS + <specialty> double
        * majors, so their provider_query/aliases lead with the same core CS/SWE
-       * terms as the bscs profile above, then add the specialty's own terms —
+       * terms as the bscs profile above, then add the specialty's own terms ΓÇö
        * a search should return both general CS/software roles AND the
        * specialty-area roles, not just one half of the degree.
        */
@@ -5832,11 +5805,11 @@ function getGetQueryStringLength_(e) {
         ],
         usajobs_query: "software engineer",
         usajobs_query_or: "business analyst",
-        // Specialty half only (excludes the shared core CS terms above) — used
+        // Specialty half only (excludes the shared core CS terms above) ΓÇö used
         // by v2RescoreForDegreeProfile_ to score the CS half and the
         // business half independently instead of one flat combined ratio.
         // Includes quantitative/data-duty vocabulary (data analysis, SQL,
-        // reporting, ...) alongside job-title terms — real business-analyst-
+        // reporting, ...) alongside job-title terms ΓÇö real business-analyst-
         // style postings (e.g. federal "Management Analyst") describe this
         // work in their duties text, not in the title, so title-only terms
         // like "management analyst" were the only thing keeping these from
@@ -6308,7 +6281,7 @@ function getGetQueryStringLength_(e) {
   
     /*
      * Interdisciplinary double-majors (short code from the jobs.html degree
-     * select, e.g. "bscsc python django" when skills text is appended — the
+     * select, e.g. "bscsc python django" when skills text is appended ΓÇö the
      * exact-label match above only fires when query_text is the bare code
      * with nothing else attached).
      */
@@ -6350,13 +6323,13 @@ function getGetQueryStringLength_(e) {
   /**
    * Returns 1-2 short USAJOBS Keyword strings for a query. Must be called
    * with the SHORT original query text (e.g. "cs business"), not the fully
-   * expanded provider_query — this is a profile-label lookup, so it never
+   * expanded provider_query ΓÇö this is a profile-label lookup, so it never
    * matches anything if it's handed the already-expanded 20+ word string.
    *
    * Normally returns a single variant (profile.usajobs_query, or the
    * normalizeProgramQueryForProviders_ fallback for free-text queries that
    * don't match a known profile). For the BSCS interdisciplinary double-
-   * majors, also returns profile.usajobs_query_or as a second variant — see
+   * majors, also returns profile.usajobs_query_or as a second variant ΓÇö see
    * fetchUsaJobsJobs_, which queries USAJOBS once per variant and merges the
    * results, so "business OR computer science" is guaranteed by running two
    * independent short searches rather than trusting a single multi-word
@@ -6478,7 +6451,7 @@ function getGetQueryStringLength_(e) {
   
   /** Shared by JobRanking and ProvidersLive (one global: works if JobRanking.gs is absent). */
   /**
-   * Shares liveAdapterSimpleMatchScore_'s phrase-based approach — the old bare-
+   * Shares liveAdapterSimpleMatchScore_'s phrase-based approach ΓÇö the old bare-
    * word split ("engineer", "systems", ...) let any "<Discipline> Engineer"
    * title score ~75% off generic engineering vocabulary alone, same bug as
    * that function had. Used by github_simplify's row builder (title only, no

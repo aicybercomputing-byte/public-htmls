@@ -2795,75 +2795,97 @@ function getGetQueryStringLength_(e) {
     });
     return out;
   }
+  /*
+  function rankAndCapResults(results, limitPerProvider) {
+    limitPerProvider = limitPerProvider || 20;
+    var byProv = {};
+    for (var i = 0; i < results.length; i++) {
+      var r = results[i];
+      var p = r.provider;
+      if (!byProv[p]) byProv[p] = [];
+      byProv[p].push(r);
+    }
+    var providers = Object.keys(byProv);
+    for (var j = 0; j < providers.length; j++) {
+      byProv[providers[j]].sort(function (a, b) {
+        return b.match_score - a.match_score;
+      });
+    }
+    var capped = [];
+    for (var k = 0; k < providers.length; k++) {
+      capped.push([providers[k], byProv[providers[k]].slice(0, limitPerProvider)]);
+    }
+    var interleaved = [];
+    var idx = 0;
+    var remaining = true;
+    while (remaining) {
+      remaining = false;
+      for (var m = 0; m < capped.length; m++) {
+        var list = capped[m][1];
+        if (idx < list.length) {
+          interleaved.push(list[idx]);
+          remaining = true;
+        }
+      }
+      idx++;
+    }
+    return interleaved;
+  }*/
+  
   var MIN_MATCH_SCORE_PERCENT = 30;
   
   function rankAndCapResults(results, limitPerProvider) {
     limitPerProvider = limitPerProvider || 20;
-
+  
     var byProv = {};
-
+  
     for (var i = 0; i < results.length; i++) {
       var r = results[i];
       var p = r.provider;
-
+  
       // Convert the score to a number and cap it at 100%.
       var score = Number(r.match_score);
-
+  
       if (isNaN(score)) {
         score = 0;
       }
-
+  
       r.match_score = Math.min(score, 100);
-
+  
+      // Drop weak matches instead of showing a job the query barely relates to.
+      if (r.match_score < MIN_MATCH_SCORE_PERCENT) {
+        continue;
+      }
+  
       if (!byProv[p]) {
         byProv[p] = [];
       }
-
+  
       byProv[p].push(r);
     }
-
+  
     var providers = Object.keys(byProv);
     var capped = [];
-
+  
     for (var j = 0; j < providers.length; j++) {
       var providerResults = byProv[providers[j]];
-
-      // Drop weak matches instead of showing a job the query barely relates to.
-      var kept = providerResults.filter(function (r) {
-        return r.match_score >= MIN_MATCH_SCORE_PERCENT;
+  
+      // Sort each provider's results from highest to lowest.
+      providerResults.sort(function (a, b) {
+        return b.match_score - a.match_score;
       });
-
-      if (kept.length > 0) {
-        kept.sort(function (a, b) {
-          return b.match_score - a.match_score;
-        });
-      } else if (providerResults.length > 0) {
-        // A degree-profile rescore can floor out an entire provider (e.g.
-        // short titles with no description can't hit enough alias terms).
-        // Fall back to the provider's pre-rescore ranking instead of
-        // dropping it to zero results.
-        kept = providerResults.slice().sort(function (a, b) {
-          var aScore = a._baseline_match_score != null ? a._baseline_match_score : a.match_score;
-          var bScore = b._baseline_match_score != null ? b._baseline_match_score : b.match_score;
-          return bScore - aScore;
-        });
-
-        Logger.log(
-          "[RANK_FALLBACK] provider " + providers[j] + " had 0 results >= " +
-            MIN_MATCH_SCORE_PERCENT + "%, falling back to pre-rescore ranking for " +
-            kept.length + " result(s)"
-        );
-      }
-
+  
       // Keep only the configured number of results per provider.
-      capped = capped.concat(kept.slice(0, limitPerProvider));
+      capped = capped.concat(
+        providerResults.slice(0, limitPerProvider)
+      );
     }
-
+  
     // Sort the final combined results from highest to lowest.
     capped.sort(function (a, b) {
       return b.match_score - a.match_score;
     });
-
+  
     return capped;
   }
   
@@ -4264,21 +4286,13 @@ function getGetQueryStringLength_(e) {
   }
   
   /**
-   * Degree-profile match score: how well a single degree profile's own
-   * curated `courseTerms` (its `aliases` list) shows up in `blob`. Same
-   * floor(10)/scale(89) convention as liveAdapterSimpleMatchScore_ so it's
-   * comparable against MIN_MATCH_SCORE_PERCENT, but scoped to one degree's
-   * own term list instead of the global merged phrase pool from
+   * "Percentage of course" match score: what fraction of a single degree
+   * profile's own curated `courseTerms` (its `aliases` list — the closest
+   * proxy this app has to that degree's curriculum vocabulary) shows up in
+   * `blob`. Same floor(10)/scale(89) convention as liveAdapterSimpleMatchScore_
+   * so it's comparable against MIN_MATCH_SCORE_PERCENT, but scoped to one
+   * degree's own term list instead of the global merged phrase pool from
    * liveAdapterGetAllKnownJobPhrases_ — see v2RescoreForDegreeProfile_.
-   *
-   * Delegates to v2TermMatchStrength_ instead of a literal hits/length
-   * ratio. A courseTerms list (e.g. bscs's 13 aliases) is mostly synonyms
-   * for one role concept ("software engineer"/"developer"/"backend"/...)
-   * plus a couple of adjacent skills (sql/database) — a job that hits 2 of
-   * them (say "developer" + "sql") IS a full match, not 15% of one, so
-   * requiring a large fraction of the list to match was scoring genuinely
-   * relevant jobs (e.g. 24% for a real SQL developer role) below the 30%
-   * quality floor and dropping them.
    */
   function v2PercentOfCourseMatchScore_(courseTerms, blob) {
     var b = String(blob || "").toLowerCase();
@@ -4287,13 +4301,15 @@ function getGetQueryStringLength_(e) {
       return 10;
     }
 
-    var strength = v2TermMatchStrength_(courseTerms, b);
+    var hits = 0;
 
-    if (strength === 0) {
-      return 10;
+    for (var i = 0; i < courseTerms.length; i++) {
+      if (b.indexOf(String(courseTerms[i]).toLowerCase()) !== -1) {
+        hits++;
+      }
     }
 
-    return Math.max(1, Math.min(99, Math.round(10 + 89 * strength)));
+    return Math.max(1, Math.min(99, Math.round(10 + (89 * hits) / courseTerms.length)));
   }
 
   function liveAdapterIsLowSignalToken_(token) {
@@ -4865,12 +4881,6 @@ function getGetQueryStringLength_(e) {
 
       if (!job) {
         continue;
-      }
-
-      // Preserve the provider's pre-rescore score so rankAndCapResults can
-      // fall back to it if this profile's floor filters out every result.
-      if (job._baseline_match_score == null) {
-        job._baseline_match_score = job.match_score;
       }
 
       var blob = [job.title, job.company, job.location, job.source, job.description]
