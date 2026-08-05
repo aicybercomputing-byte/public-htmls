@@ -69,6 +69,23 @@
       outline: 3px solid var(--jobs-border-strong);
       outline-offset: 3px;
     }
+
+    .jobs-external-search-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .jobs-external-search-buttons[hidden] {
+      display: none !important;
+    }
+
+    .jobs-external-search-buttons .snippetButton {
+      flex: 1 1 260px;
+      min-width: 0;
+      margin: 0 !important;
+    }
   
     .jobs-tabs {
       display: grid;
@@ -979,6 +996,10 @@
 <div class="jobs-form-row full">
 <div class="jobs-form-group"><label for="jm-skills">Your Skills (comma-separated):</label> <input id="jm-skills" type="text" placeholder="e.g. Python, React, SQL, AWS" /></div>
 </div>
+<div id="jm-external-searches" class="jobs-external-search-buttons" aria-label="Search for more jobs on external job sites" hidden>
+<button class="snippetButton" type="button" onclick="openExternalJobSearch('linkedin', 'jm', 'job')">See more on LinkedIn</button>
+<button class="snippetButton" type="button" onclick="openExternalJobSearch('indeed', 'jm', 'job')">See more on Indeed</button>
+</div>
 <button id="jm-btn" class="snippetButton" tabindex="0" type="button" onclick="runJobMatch()">Find My Job Matches &rarr;</button></form>
 <div id="jm-loading" class="jobs-loading" aria-live="polite" aria-busy="true"><span class="jobs-spinner" aria-hidden="true"></span> <span>Loading job matches...</span></div>
 <div id="jm-results" class="jobs-results"></div>
@@ -1001,6 +1022,10 @@
 </div>
 <div class="jobs-form-row full">
 <div class="jobs-form-group"><label for="ji-skills">Your Skills (comma-separated):</label> <input id="ji-skills" type="text" placeholder="e.g. Python, React, SQL, AWS" /></div>
+</div>
+<div id="ji-external-searches" class="jobs-external-search-buttons" aria-label="Search for more internships on external job sites" hidden>
+<button class="snippetButton" type="button" onclick="openExternalJobSearch('linkedin', 'ji', 'internship')">See more on LinkedIn</button>
+<button class="snippetButton" type="button" onclick="openExternalJobSearch('indeed', 'ji', 'internship')">See more on Indeed</button>
 </div>
 <button id="ji-btn" class="snippetButton" tabindex="0" type="button" onclick="runInternshipMatch()">Find My Internship Matches &rarr;</button></form>
 <div id="ji-loading" class="jobs-loading" aria-live="polite" aria-busy="true"><span class="jobs-spinner" aria-hidden="true"></span> <span>Loading internship matches...</span></div>
@@ -1284,6 +1309,83 @@
       });
     }
   
+    function getJobSearchFieldValue(fieldPrefix, fieldName) {
+      const field = document.getElementById(fieldPrefix + '-' + fieldName);
+      return field ? String(field.value || '').trim() : '';
+    }
+
+    function getJobSearchSelectedText(fieldPrefix, fieldName) {
+      const field = document.getElementById(fieldPrefix + '-' + fieldName);
+      if (!field || !field.selectedOptions || !field.selectedOptions.length) return '';
+      return String(field.selectedOptions[0].textContent || '').trim();
+    }
+
+    function buildExternalJobSearch(fieldPrefix, searchType) {
+      const programValue = getJobSearchFieldValue(fieldPrefix, 'program');
+      const programLabel = getJobSearchSelectedText(fieldPrefix, 'program');
+      const grad = getJobSearchFieldValue(fieldPrefix, 'grad');
+      const skills = getJobSearchFieldValue(fieldPrefix, 'skills');
+      const location = getJobSearchFieldValue(fieldPrefix, 'location') || 'Florida';
+      const auth = getJobSearchFieldValue(fieldPrefix, 'auth');
+
+      if (!programValue || !grad) {
+        alert('Please select your degree program and graduation timeline.');
+        return null;
+      }
+
+      // Remove the credential prefix so job boards receive the field of study
+      // rather than treating the degree abbreviation as a required keyword.
+      const programKeywords = programLabel.replace(/^(BS|MS|PhD)\s+/i, '').trim();
+      const terms = [];
+
+      if (searchType === 'internship') {
+        terms.push('internship');
+      } else if (grad === 'Already Graduated') {
+        terms.push('entry level');
+      } else {
+        const gradYear = grad.match(/\b20\d{2}\b/);
+        terms.push(gradYear ? 'new grad ' + gradYear[0] : 'entry level');
+      }
+
+      if (programKeywords) terms.push(programKeywords);
+      if (skills) terms.push(skills);
+
+      // Citizenship/permanent-resident status does not need an extra keyword.
+      // The two sponsorship-related choices are useful search constraints.
+      if (/F-1|OPT/i.test(auth)) {
+        terms.push('OPT STEM OPT');
+      } else if (/H-1B|sponsorship/i.test(auth)) {
+        terms.push('H-1B visa sponsorship');
+      }
+
+      return {
+        keywords: terms.join(' ').replace(/\s+/g, ' ').trim(),
+        location
+      };
+    }
+
+    function openExternalJobSearch(provider, fieldPrefix, searchType) {
+      const search = buildExternalJobSearch(fieldPrefix, searchType);
+      if (!search) return;
+
+      let url;
+
+      if (provider === 'linkedin') {
+        url = new URL('https://www.linkedin.com/jobs/search/');
+        url.searchParams.set('keywords', search.keywords);
+        url.searchParams.set('location', search.location);
+      } else if (provider === 'indeed') {
+        url = new URL('https://www.indeed.com/jobs');
+        url.searchParams.set('q', search.keywords);
+        url.searchParams.set('l', search.location);
+      } else {
+        return;
+      }
+
+      const externalWindow = window.open(url.toString(), '_blank', 'noopener,noreferrer');
+      if (externalWindow) externalWindow.opener = null;
+    }
+
     async function runJobMatch() {
       return runMatchSearch({
         fieldPrefix: 'jm',
@@ -1322,6 +1424,11 @@
         alert('Please select your degree program and graduation timeline.');
         return;
       }
+
+      // Reveal the external job-board searches only after the user starts
+      // a valid personalized match search for this panel.
+      const externalSearches = document.getElementById(config.fieldPrefix + '-external-searches');
+      if (externalSearches) externalSearches.hidden = false;
   
       const btn = document.getElementById(config.btnId);
       const results = document.getElementById(config.resultsId);
