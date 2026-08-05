@@ -102,11 +102,11 @@ assert.ok(
 
 console.log("OK: v2PercentOfCourseMatchScore_ no longer penalizes real matches against long alias lists");
 
-// Regression guard: every non-interdisciplinary degree profile (the 3
+// Regression guard: every non-interdisciplinary degree profile (the 5
 // interdisciplinary double-majors use v2TermMatchStrength_ directly via
 // specialty_aliases, never affected by this bug) must score a genuine
 // single-alias-term hit above the 30% floor, regardless of that profile's
-// alias list length (7-13 terms across the 15 profiles).
+// alias list length (7-13 terms across the 13 remaining profiles).
 var allProfiles = sandbox.getDegreeSearchProfiles_();
 
 Object.keys(allProfiles).forEach(function (key) {
@@ -127,3 +127,69 @@ Object.keys(allProfiles).forEach(function (key) {
 });
 
 console.log("OK: every degree profile scores real matches above the floor");
+
+// cs_economics/cs_anthropology are interdisciplinary CS+specialty double
+// majors, same as cs_business/cs_criminology/cs_social_sciences, but were
+// missing the CS-half USAJOBS OR-query and the interdisciplinary domain-map
+// entry those 3 get — meaning a genuine CS-side USAJOBS role never
+// searched, and Handshake/github_markdown's economics/anthropology-flavored
+// postings got filtered out by the tech-only domain allowlist.
+["cs_economics", "cs_anthropology"].forEach(function (profileKey) {
+  var profile = allProfiles[profileKey];
+
+  assert.ok(
+    profile.usajobs_query_or,
+    profileKey + " should have a usajobs_query_or (specialty-half USAJOBS query)"
+  );
+
+  assert.strictEqual(
+    profile.usajobs_query,
+    "software engineer",
+    profileKey + "'s usajobs_query should be the CS-half query"
+  );
+
+  assert.strictEqual(
+    sandbox.INTERDISCIPLINARY_PROFILE_TO_DOMAIN[profileKey] != null,
+    true,
+    profileKey + " should be wired into INTERDISCIPLINARY_PROFILE_TO_DOMAIN"
+  );
+
+  var domain = sandbox.INTERDISCIPLINARY_PROFILE_TO_DOMAIN[profileKey];
+
+  assert.ok(
+    Array.isArray(sandbox.INTERDISCIPLINARY_DOMAIN_PHRASES[domain]) &&
+      sandbox.INTERDISCIPLINARY_DOMAIN_PHRASES[domain].length > 0,
+    "INTERDISCIPLINARY_DOMAIN_PHRASES." + domain + " should be a non-empty phrase list"
+  );
+
+  var variants = sandbox.liveAdapterGetUsaJobsQueryVariants_(profileKey.replace("cs_", "cs "));
+
+  assert.strictEqual(variants.length, 2, profileKey + " should issue 2 USAJOBS query variants");
+  assert.strictEqual(variants[0], "software engineer", profileKey + "'s first USAJOBS variant should be the CS half");
+});
+
+console.log("OK: cs_economics/cs_anthropology have interdisciplinary parity with cs_business/cs_criminology/cs_social_sciences");
+
+// Dual-half 50/50 match_score split for cs_economics/cs_anthropology, same
+// math as cs_business/cs_criminology/cs_social_sciences: CS-half-only or
+// specialty-half-only should land ~40-50%, both halves ~80-99%.
+[
+  { profileKey: "cs_economics", csBlob: "software engineer", specialtyBlob: "economist", bothBlob: "software engineer and economist" },
+  { profileKey: "cs_anthropology", csBlob: "software engineer", specialtyBlob: "anthropologist", bothBlob: "software engineer and anthropologist" }
+].forEach(function (c) {
+  function scoreFor(blob) {
+    var job = { title: blob, company: "", location: "", source: "", description: "" };
+    sandbox.v2RescoreForDegreeProfile_([job], c.profileKey);
+    return job.match_score;
+  }
+
+  var csOnly = scoreFor(c.csBlob);
+  var specialtyOnly = scoreFor(c.specialtyBlob);
+  var both = scoreFor(c.bothBlob);
+
+  assert.ok(csOnly >= 40 && csOnly <= 50, c.profileKey + " CS-half-only should land ~40-50%, got " + csOnly);
+  assert.ok(specialtyOnly >= 40 && specialtyOnly <= 50, c.profileKey + " specialty-half-only should land ~40-50%, got " + specialtyOnly);
+  assert.ok(both >= 80, c.profileKey + " both halves should land ~80-99%, got " + both);
+});
+
+console.log("OK: cs_economics/cs_anthropology have the two-half 50/50 match_score split");

@@ -577,8 +577,28 @@ function getGetQueryStringLength_(e) {
      * every provider's baseline score came from — a bscp/bsit/etc. search
      * previously scored jobs against every degree's vocabulary combined, not
      * its own.
+     * v26 because v25 entries predate three fixes: (a)
+     * v2PercentOfCourseMatchScore_ (added in v25) computed a literal
+     * hits/courseTerms.length percentage — since most alias lists are mostly
+     * synonyms for one role concept, a real match against just 1-2 terms in
+     * a 10+ term list (e.g. "sql" + "developer") scored as low as 24%,
+     * under the 30% floor, silently dropping genuinely relevant jobs; now
+     * delegates to v2TermMatchStrength_'s hit-based curve instead (1 term
+     * hit ~81%, 2+ hits ~99%), same fix already applied to the
+     * interdisciplinary specialty-half scorer. (b) rankAndCapResults now
+     * falls back to a provider's pre-rescore ranking instead of dropping it
+     * to 0 results when every one of its rows happens to land under the 30%
+     * floor after a degree-profile rescore. (c) cs_economics/cs_anthropology
+     * — interdisciplinary CS+specialty double-majors like cs_business/
+     * cs_criminology/cs_social_sciences, but previously missing everything
+     * those 3 get — now have a usajobs_query_or (CS-half USAJOBS query;
+     * previously only ever searched the specialty term), an
+     * INTERDISCIPLINARY_PROFILE_TO_DOMAIN entry (so Handshake/
+     * github_markdown's economics/anthropology-flavored postings survive
+     * the tech-only domain allowlist), and specialty_aliases for the same
+     * two-half 50/50 match_score split as the original 3.
      */
-    return "v25-per-degree-percent-of-course-scoring";
+    return "v26-course-match-strength-and-interdisciplinary-parity";
   }
   
   function getJobSearchCacheSeconds_() {
@@ -1763,14 +1783,15 @@ function getGetQueryStringLength_(e) {
   
   /**
    * "Primarily <specialty>" phrases for the BSCS interdisciplinary double-major
-   * profiles (cs_criminology/cs_business/cs_social_sciences) — pure specialty
-   * roles, not just the tech-hybrid ones already covered by TECH_DOMAIN_PHRASES.
+   * profiles (cs_criminology/cs_business/cs_social_sciences/cs_economics/
+   * cs_anthropology) — pure specialty roles, not just the tech-hybrid ones
+   * already covered by TECH_DOMAIN_PHRASES.
    * Deliberately kept OUT of TECH_DOMAIN_PHRASES/JOB_FILTER_CONFIG.allowed_domains,
    * which stay software/data/security/infra/ai_ml only for every other search
    * (this config is shared with Handshake's noise filter — a random criminology
    * or marketing posting is exactly what that filter exists to drop). Instead,
    * v2GetInterdisciplinaryDomainFromQuery_ detects when a request's query
-   * matches one of these 3 degree profiles, and runProvidersLiveV2_ passes the
+   * matches one of these profiles, and runProvidersLiveV2_ passes the
    * matching phrase set into v2FilterJobsByRelevance_ as a request-scoped
    * extra allowed domain — only that search gets the wider net.
    */
@@ -1799,6 +1820,17 @@ function getGetQueryStringLength_(e) {
       "social worker", "community outreach", "public health",
       "sociology", "psychology", "nonprofit", "case manager",
       "counselor", "victim services"
+    ],
+    economics: [
+      "economic analyst", "economist", "market research analyst",
+      "financial analyst", "econometrics", "actuary", "underwriter",
+      "cost analyst", "budget analyst", "economic research",
+      "policy analyst"
+    ],
+    anthropology: [
+      "ux researcher", "user researcher", "user experience researcher",
+      "design researcher", "ethnographic research", "qualitative researcher",
+      "market researcher", "anthropologist", "human factors researcher"
     ]
   };
   
@@ -1806,14 +1838,18 @@ function getGetQueryStringLength_(e) {
   var INTERDISCIPLINARY_PROFILE_TO_DOMAIN = {
     cs_criminology: "criminology",
     cs_business: "business",
-    cs_social_sciences: "social_science"
+    cs_social_sciences: "social_science",
+    cs_economics: "economics",
+    cs_anthropology: "anthropology"
   };
   
   /** Inverse of INTERDISCIPLINARY_PROFILE_TO_DOMAIN — domain -> profile key. */
   var INTERDISCIPLINARY_DOMAIN_TO_PROFILE = {
     criminology: "cs_criminology",
     business: "cs_business",
-    social_science: "cs_social_sciences"
+    social_science: "cs_social_sciences",
+    economics: "cs_economics",
+    anthropology: "cs_anthropology"
   };
   
   /* ============================================================
@@ -2894,7 +2930,8 @@ function getGetQueryStringLength_(e) {
    * liveAdapterGetUsaJobsQueryVariants_) and merges/dedupes the results.
    *
    * Normally that's a single variant. For the BSCS interdisciplinary double-
-   * majors (cs_business/cs_criminology/cs_social_sciences) it's two — one
+   * majors (cs_business/cs_criminology/cs_social_sciences/cs_economics/
+   * cs_anthropology — any profile with usajobs_query_or) it's two — one
    * short query for the CS half, one for the specialty half — queried and
    * merged independently rather than concatenated into a single Keyword
    * string. USAJOBS's Keyword field isn't documented/verified to treat a
@@ -4472,10 +4509,12 @@ function getGetQueryStringLength_(e) {
     // this scoped to the two providers actually shown to need it.
     //
     // For the BSCS interdisciplinary double-majors (cs_criminology/cs_business/
-    // cs_social_sciences), request-scope in that specialty's own domain so
-    // Handshake's USF feed (which does carry genuine criminology/business/
-    // social-science postings, not just tech ones) isn't forced through the
-    // tech-only allowlist for these specific searches. Every other search gets
+    // cs_social_sciences/cs_economics/cs_anthropology — any key in
+    // INTERDISCIPLINARY_PROFILE_TO_DOMAIN), request-scope in that specialty's
+    // own domain so Handshake's USF feed (which does carry genuine
+    // criminology/business/social-science/economics/anthropology postings,
+    // not just tech ones) isn't forced through the tech-only allowlist for
+    // these specific searches. Every other search gets
     // the unmodified software/data/security/infra/ai_ml allowlist.
     var interdisciplinaryDomain = v2GetInterdisciplinaryDomainFromQuery_(req.original_query_text);
     var relevanceOpts = { attach_meta: true };
@@ -4820,28 +4859,29 @@ function getGetQueryStringLength_(e) {
   
   /**
    * Re-scores every merged job (all 5 providers) against the matched degree
-   * profile's own curated `aliases` — "percentage of course" matching —
-   * instead of the shared global phrase pool every provider's baseline
-   * match_score comes from (liveAdapterGetAllKnownJobPhrases_ merges every
-   * profile's vocabulary together, so a bscp/bsit/etc. search previously
-   * scored jobs against ALL degrees' terms combined, not its own). No-op
-   * when `profileKey` is null (free-text queries that don't match any
-   * curated profile) — those keep their provider's original score.
+   * profile's own curated `aliases`, instead of the shared global phrase
+   * pool every provider's baseline match_score comes from
+   * (liveAdapterGetAllKnownJobPhrases_ merges every profile's vocabulary
+   * together, so a bscp/bsit/etc. search previously scored jobs against ALL
+   * degrees' terms combined, not its own). No-op when `profileKey` is null
+   * (free-text queries that don't match any curated profile) — those keep
+   * their provider's original score.
    *
-   * For the 3 BSCS interdisciplinary double-majors (cs_business/
-   * cs_criminology/cs_social_sciences, identified by having
-   * `specialty_aliases`), keeps the original two-half math unchanged: the CS
-   * half and the specialty half each contribute up to 50 points
-   * independently, instead of one flat ratio over the combined CS+specialty
-   * vocabulary (which is why "Business Intelligence Analyst" was landing
-   * right at the ~50 baseline almost by accident — a huge combined term list
-   * dilutes any single match). Matching only one half lands ~40-50; matching
-   * both lands ~80-99.
+   * For the 5 BSCS interdisciplinary double-majors (cs_business/
+   * cs_criminology/cs_social_sciences/cs_economics/cs_anthropology,
+   * identified by having `specialty_aliases`), the CS half and the specialty
+   * half each contribute up to 50 points independently via
+   * v2TermMatchStrength_, instead of one flat ratio over the combined
+   * CS+specialty vocabulary (which is why "Business Intelligence Analyst"
+   * was landing right at the ~50 baseline almost by accident — a huge
+   * combined term list dilutes any single match). Matching only one half
+   * lands ~40-50; matching both lands ~80-99.
    *
    * Every other degree profile has no `specialty_aliases`, so its full
-   * `aliases` list IS the course content: match_score becomes the percentage
-   * of that list found in the job, via v2PercentOfCourseMatchScore_ (same
-   * floor/scale convention as liveAdapterSimpleMatchScore_).
+   * `aliases` list is scored via v2PercentOfCourseMatchScore_, which shares
+   * the same v2TermMatchStrength_ hit-based curve rather than a literal
+   * percentage of the list (a real match against 1-2 terms in a 10+ term
+   * synonym list is a full match, not 10-20% of one).
    */
   function v2RescoreForDegreeProfile_(jobs, profileKey) {
     jobs = Array.isArray(jobs) ? jobs : [];
@@ -6039,7 +6079,40 @@ function getGetQueryStringLength_(e) {
           "fintech",
           "business intelligence"
         ],
-        usajobs_query: "data analyst"
+        // CS half + specialty half, same OR-merge pattern as cs_business/
+        // cs_criminology/cs_social_sciences (see fetchUsaJobsJobs_) — this
+        // profile previously only ever searched USAJOBS for "data analyst",
+        // never "software engineer", so a genuine CS-side USAJOBS role
+        // never had a chance to surface.
+        usajobs_query: "software engineer",
+        usajobs_query_or: "data analyst",
+        // Specialty half only (excludes the shared core CS terms, scored via
+        // profiles.bscs.aliases instead) — same two-half match_score math as
+        // cs_business/cs_criminology/cs_social_sciences (see
+        // v2RescoreForDegreeProfile_): CS half and economics half each
+        // contribute up to 50 points independently, so a pure economics role
+        // (no CS terms at all) still lands ~40-50%, and a role hitting both
+        // halves lands ~80-99%.
+        specialty_aliases: [
+          "data analyst",
+          "economic analyst",
+          "economist",
+          "business analyst",
+          "quantitative analyst",
+          "analytics",
+          "financial technology",
+          "fintech",
+          "business intelligence",
+          "market research analyst",
+          "financial analyst",
+          "econometrics",
+          "actuary",
+          "underwriter",
+          "cost analyst",
+          "budget analyst",
+          "economic research",
+          "policy analyst"
+        ]
       },
   
       cs_anthropology: {
@@ -6061,7 +6134,27 @@ function getGetQueryStringLength_(e) {
           "software engineer",
           "research analyst"
         ],
-        usajobs_query: "user researcher"
+        // Same CS-half/specialty-half OR-merge as cs_economics above.
+        usajobs_query: "software engineer",
+        usajobs_query_or: "user researcher",
+        // Specialty half only — same two-half match_score math as
+        // cs_economics above.
+        specialty_aliases: [
+          "ux researcher",
+          "user researcher",
+          "human computer interaction",
+          "hci",
+          "product analyst",
+          "data analyst",
+          "research analyst",
+          "user experience researcher",
+          "design researcher",
+          "ethnographic research",
+          "qualitative researcher",
+          "market researcher",
+          "anthropologist",
+          "human factors researcher"
+        ]
       },
   
       /* ---------------- Graduate ---------------- */
