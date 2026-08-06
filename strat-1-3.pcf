@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pcf-stylesheet path="/_resources/xsl/secondary.xsl" extension="aspx"?>
+<!DOCTYPE document SYSTEM "http://commons.omniupdate.com/dtd/standard.dtd">
+<document>
+<headcode></headcode>
+<bodycode></bodycode>
+<!-- com.omniupdate.properties -->
+<title>strat-1</title>
+<!-- /com.omniupdate.properties -->
+
+<config>
+<parameter name="pagetype" prompt="pagetype" alt="Pagetype" group="None">secondary</parameter>
+<!-- com.omniupdate.properties -->
+<!-- CANONICALIZATION -->
+<parameter name="canonical-display" prompt="Set canonical URL?" alt="" section="Canonical URL" type="select" group="none">
+<option value="true" selected="false">Yes</option>
+<option value="false" selected="true">No</option>
+</parameter>
+
+<parameter name="canonical-url" prompt="Canonical URL" alt="Enter the URL people should see in search results." type="text" group="none"></parameter>
+
+<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">strat-1</parameter>
+
+<!-- SOCIAL SHARING - OPEN GRAPH -->
+<parameter name="social-sharing-display" type="select" prompt="Enable Sharing Content?" alt="When enabled, the page's Title, Description, and selected image (below) will be used when the page is shared on social media." group="Everyone" section="Social Sharing Content (Open Graph)">
+<option value="enable" selected="false">Enable</option>
+<option value="disable" selected="true">Disable</option>
+</parameter>
+<parameter name="social-sharing-image" prompt="Image" type="filechooser" dependency="yes" path="/ai-cybersecurity-computing/about/strategic-plan" alt="Select the image that appears when the page is shared on social media. 1200px width by 630px height." group="Everyone"></parameter>
+<parameter name="social-sharing-image-alt" prompt="Alt Text" alt="A text description of the image conveying the essential nature of an image to users who are visually impaired." group="Everyone" ></parameter>
+
+<parameter name="include-file" prompt="Include File" alt="Do you want to include a file from the server below the maincontent." group="none" type="radio">
+<option value="true" selected="false">True</option>
+<option value="false" selected="true">False</option>
+</parameter>
+<parameter name="include-file-path" prompt="Choose File." alt="Choose a file to include below the maincontent." type="filechooser" group="none" path="/_resources/includes/" lockout="no">/_resources/includes/included-content.html</parameter>
+<parameter name="additional-content" prompt="Additional Content" alt="Add another editable region below the maincontent. This is typically used if you have included a file." group="continuing-education" type="radio">
+<option value="true" selected="false">Show</option>
+<option value="false" selected="true">Hide</option>
+</parameter>
+<parameter name="code-behind" type="select" prompt="ASPX web page model" alt=" Choose code model for you ASPX. NET page" group="none" section="ASPX web page model">
+<option value="" selected="false"></option>
+<option value="single-page" selected="true">Single-page</option>
+<option value="code-behind" selected="false">Code-behind</option>
+</parameter>
+<parameter name="code-behind-source" type="filechooser" group="none" prompt="Code-behind Source file" alt="Choose the code model source of the page.">/_resources/c-sharp/code-behind.cs</parameter>
+<parameter name="inherits-from" prompt="Inherits from " group="none" alt="">_Default</parameter>
+<!-- /com.omniupdate.properties -->
+<parameter name="galleryType" type="select" prompt="Gallery Type" alt="Please select the type of gallery you would like this page to use." section="GALLERY">
+<option value="FlexSlider" selected="true">Flex Slider</option>
+</parameter>
+<!-- com.omniupdate.properties -->
+<parameter name="slideshow" type="select" prompt="Animate Slideshow" alt="Specify if the slideshow will be animated automatically or by user interaction only." section="Gallery">
+<option value="true" selected="true">Animate</option>
+<option value="false" selected="false">Don't Animate</option>
+</parameter>
+
+<!-- SIDE CONTENT LOCATION -->
+<parameter name="side-content-location" type="select" group="none" prompt="Change side content location?" alt="Select if the side content should keep its default location, or change to the left or right of the main content. Note: side content displaying on the right will appear after the main content on mobile." section="Side Content">
+<option value="false" selected="true">No</option>
+<option value="left" selected="false">Yes, display on the left</option>
+<option value="right" selected="false">Yes, display on the right</option>
+</parameter>
+
+<!-- QUICK LINKS -->
+<parameter name="quick-links-display" type="select" group="none" prompt="Display Quick Links" alt="Select if a quick links file should be displayed after the side navigation." section="Quick Links">
+<option value="true" selected="false">Show</option>
+<option value="false" selected="true">Hide</option>
+</parameter>
+<parameter name="quick-links-file" group="none" prompt="Quick Links File" alt="Choose a quick links file to include after the side navigation." type="filechooser" dependency="yes" path="/ai-cybersecurity-computing/about/strategic-plan"></parameter>
+<!-- /com.omniupdate.properties -->
+</config>
+<metadata>
+<!-- com.omniupdate.properties -->
+<meta name="Description" content="University of South Florida" />
+<meta name="Keywords" content="University of South Florida" />
+<meta name="Author" content="University of South Florida" />
+<!-- /com.omniupdate.properties -->
+</metadata>
+
+<maincontent>
+
+<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- ouc:editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000"/ --><table class="two-column-text">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>Text to Replace</p>
+</td>
+<td>
+<table class="media-large">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">News - Image - Large <br />One Column, Image Width: 1000px, Height: 405 px* <br />Two Column, Image Width: 735px, Height: 405 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="/images/news/placeholder/news-large-image.jpg" alt="" /></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Strategies</p>
+<table class="two-column-text">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>Left</p>
+</td>
+<td>
+<p>Right</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Success Indicators</p>
+<ul>
+<li>A</li>
+<li>B</li>
+<li>C</li>
+</ul>
+
+
+<h3>Strategic Priority: Industry and Operational Excellence&nbsp;</h3>
+<p>Establish Bellini College as a financially robust, operationally elite, and industry-integrated engine. This goal ensures long-term viability through optimized infrastructure, including computing and efficient operations, while serving as the primary talent pipeline for Florida&rsquo;s tech economy, targeting the "Professional, Scientific, and Technical Services" and "Manufacturing" sectors from the BOG&rsquo;s Iconic Companies list.&nbsp;</p>
+<h4>Strategies&nbsp;</h4>
+<ul>
+<li>AI governance, policy and compliance readiness: Establish a college-led capability to operationalize emerging state and federal requirements and expectations for AI systems used in education, research and administration, including
+<ol style="list-style-type: lower-roman;">
+<li>transparency/&ldquo;AI interaction&rdquo; notice</li>
+<li>privacy controls and deidentification standards</li>
+<li>youth/parental protections where applicable</li>
+<li>secure procurement and access restrictions related to foreign entities and foreign AI products or services</li>
+</ol>
+</li>
+<li>Set execution cadence: Define an annual review cadence and a public dashboard (owners + KPI definitions) to align with the plan&rsquo;s metric ambition.&nbsp;</li>
+<li>Strategic philanthropy and partnerships: Fundraise for the new building construction, specific laboratory spaces, and endowed faculty chairs to ensure long-term revenue streams. Appoint dedicated faculty or staff to serve as bridges for the Strategic Alliance, connecting corporate partners directly with student talent and research capabilities.&nbsp;</li>
+<li>Infrastructure and operational excellence: Formalize the College Operations &amp; Resource Efficiency with AI group to increase operational efficiency through robotic process automation and AI-agent technology. With industry input, construct a purpose-built AI/Cyber facility and a Teaching Security Operations Center to centralize operations and attract industry funding; Build scalable compute, secure data environments, and modern collaborative spaces for shared services.&nbsp;</li>
+<li>Career and innovation ecosystem: Use the Tech Career Advancement (tCAP) to connect student organizations with industry leaders. Expand mentorship, internship and co-op opportunities with industry partners. Provide direct support for student product development and faculty tech transfer through the Student Innovation Incubator at the USF Research Park.&nbsp;</li>
+<li>Communication and marketing: Establish a unified brand strategy to market the new college nationally and internationally; showcase faculty expertise and research impact through targeted campaigns; improve visibility with outreach to high schools, community colleges and industry partners.&nbsp;</li>
+<li>Student recruitment: Signature competitions (AI/cyber); high school recruitment; Admitted Student Day; graduate student recruitment from four-year colleges in the U.S.&nbsp;</li>
+</ul>
+<h4>Success Indicators&nbsp;</h4>
+<ul>
+<li>Financial sustainability: Surpass the college's operational costs through increased net tuition, external research grants and contracts, targeted fundraising, and naming campaigns.&nbsp;</li>
+<li>Asset optimization: Achieve high utilization of the new building with a minimum of 40 hours/week and 60% occupancy.&nbsp;</li>
+<li>Talent and innovation pipeline: Ensure 100% participation in internships, capstones or clinical research cases for graduating students; scale the number of active partners in tCAP; contribute to the university&rsquo;s annual goal for start-up creation through faculty and student innovation.&nbsp;</li>
+</ul>
+
+<!-- /com.omniupdate.div -->
+</maincontent>
+
+<additional-content>
+<!-- com.omniupdate.div label="additional-content" group="Everyone" button="707" -->
+<!-- com.omniupdate.editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000" -->
+<h2> Additional Content</h2>
+<p> This area is used typically if you have included a file below the main content.</p>
+<!-- /com.omniupdate.div -->
+</additional-content>
+
+</document>
