@@ -95,13 +95,13 @@
 <td class="ou-help mceNonEditable" style="width: 50%;">
 <p>Heading Display. Accepted values: yes, no</p>
 </td>
-<td class="gallery-item-heading-display" style="width: 50%;" data-select-list="yes, no">no</td>
+<td class="gallery-item-heading-display" style="width: 50%;" data-select-list="yes, no">yes</td>
 </tr>
 <tr>
 <td class="ou-help mceNonEditable" style="width: 50%;">
 <p>Heading</p>
 </td>
-<td class="gallery-item-heading" style="width: 50%;">Lorem ipsum dolor sit amet consectetur montes det</td>
+<td class="gallery-item-heading" style="width: 50%;">Creating What&rsquo;s Next</td>
 </tr>
 <tr>
 <td class="ou-help mceNonEditable" style="width: 50%;">
@@ -171,32 +171,26 @@
 </tr>
 </tbody>
 </table>
-
-<table class="gallery-text-image" style="width: 100%;">
+<table class="gallery-text" style="width: 100%;">
 <thead>
 <tr>
-<th class="ou-help mceNonEditable" colspan="2">Gallery Item - Text and Image <br />Image Dimensions - Width: 460 px, Height: 300 px* <br />* Recommended height.</th>
+<th class="ou-help mceNonEditable">Gallery Item - Text</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Heading Display. Accepted values: yes, no</p>
-</td>
-<td class="gallery-item-heading-display" style="width: 50%;" data-select-list="yes, no">yes</td>
-</tr>
+<td>
+<table class="two-column-text">
+<thead>
 <tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Heading</p>
-</td>
-
-<td class="gallery-item-heading" style="width: 50%;">Values</td>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Text</p>
-</td>
-<td class="gallery-item-text" style="width: 50%;">
+<td>
+<h3>Values</h3>
 
 
 <table class="toggle-section">
@@ -216,7 +210,6 @@
 </tr>
 </tbody>
 </table>
-
 <table class="toggle-section">
 <thead>
 <tr>
@@ -234,7 +227,6 @@
 </tr>
 </tbody>
 </table>
-
 <table class="toggle-section">
 <thead>
 <tr>
@@ -252,7 +244,6 @@
 </tr>
 </tbody>
 </table>
-
 <table class="toggle-section">
 <thead>
 <tr>
@@ -270,7 +261,6 @@
 </tr>
 </tbody>
 </table>
-
 <table class="toggle-section">
 <thead>
 <tr>
@@ -290,66 +280,13 @@
 </table>
 
 </td>
-</tr>
-
-
-<tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Image</p>
-</td>
-<td class="gallery-item-image" style="width: 50%;"><img src="/ai-cybersecurity-computing/images/00_promophotos/compsci.jpeg" alt="Alt Text" width="1000" height="667" /></td>
-</tr>
-<tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Image Alignment. Accepted values: left, right</p>
-</td>
-<td class="gallery-item-alignment" style="width: 50%;" data-select-list="left, right">left</td>
-</tr>
-</tbody>
-</table>
-<table class="gallery-text-image" style="width: 100%;">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable" colspan="2">Gallery Item - Text and Image <br />Image Dimensions - Width: 460 px, Height: 300 px* <br />* Recommended height.</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Heading Display. Accepted values: yes, no</p>
-</td>
-<td class="gallery-item-heading-display" style="width: 50%;" data-select-list="yes, no">yes</td>
-</tr>
-<tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Heading</p>
-</td>
-<td class="gallery-item-heading" style="width: 50%;">How Success Is Measured</td>
-</tr>
-<tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Text</p>
-</td>
-<td class="gallery-item-text" style="width: 50%;">
-<table class="two-column-text">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable" width="50%">Column 1</th>
-<th class="ou-help mceNonEditable" width="50%">Column 2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
 <td>
+<h3>How Success Is Measured</h3>
 <ul>
 <li>Student retention and graduation rates</li>
 <li>Career placement</li>
 <li>Interdisciplinary enrollment</li>
 <li>Research expenditures</li>
-</ul>
-</td>
-<td>
-<ul>
 <li>Faculty awards</li>
 <li>Industry partnerships</li>
 <li>Startup activity</li>
@@ -363,17 +300,40 @@
 </table>
 </td>
 </tr>
+</tbody>
+</table>
+
+~[com[27194 1 6{ "version": 6, "data": {"ce9444d0b080bdf2a3392ffffac92ec7":"Values","677ee82b0548c66745888954018b7016":"centered","010c737f4f75cc888e7baa7feb60beb7":"No","b97dfec6f8c76272a9e018ebb5f0e71d":"","4f8e1b0b612e42aa1ff2655078463bcc":"No","5660fa1787542d62758bea4d92b583c9":"No","e50e2b7b4162e86d86238d99470b3595":""}}]]~
+
+<table class="gallery-band-bg-color" style="width: 100%;">
+<thead>
 <tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Image</p>
-</td>
-<td class="gallery-item-image" style="width: 50%;"><img src="/ai-cybersecurity-computing/images/00-academic-pages/bs-ms-pathway-490x327px.jpg" alt="Success" width="490" height="327" /></td>
+<th class="ou-help mceNonEditable">Gallery Item - Band with Background Color</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Image Alignment. Accepted values: left, right</p>
+<td>
+
+<table class="gallery-text" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<h3>STRATEGIC PRIORITY: LEAD IN STUDENT SUCCESS, ACCESS AND CAREER READINESS&nbsp;</h3>
+<p>Establish the college as a national model for AI, cybersecurity and computing education through future-ready curricula that adapt quickly to technological change and ensure every graduate is career-ready.&nbsp;</p>
+
 </td>
-<td class="gallery-item-alignment" style="width: 50%;" data-select-list="left, right">right</td>
+</tr>
+</tbody>
+</table>
+
+</td>
 </tr>
 </tbody>
 </table>
@@ -387,30 +347,88 @@
 <tr>
 <td>
 
-<h3>How Success Is Measured&nbsp;</h3>
-<ul>
-<li>Student retention and graduation rates&nbsp;</li>
-<li>Career placement&nbsp;</li>
-<li>Interdisciplinary enrollment&nbsp;</li>
-<li>Research expenditures&nbsp;</li>
-<li>Faculty awards&nbsp;</li>
-<li>Industry partnerships&nbsp;</li>
-<li>Startup activity&nbsp;</li>
-<li>Philanthropy&nbsp;</li>
-<li>Rankings&nbsp;</li>
-<li>Economic impact&nbsp;</li>
-</ul>
-<h3>STRATEGIC PRIORITY: LEAD IN STUDENT SUCCESS, ACCESS AND CAREER READINESS&nbsp;</h3>
-<p>Establish the college as a national model for AI, cybersecurity and computing education through future-ready curricula that adapt quickly to technological change and ensure every graduate is career-ready.&nbsp;</p>
 
 <h3>STRATEGIC PRIORITY: STRENGTHEN FACULTY CAPACITY AND RESEARCH IN AI AND CYBERSECURITY&nbsp;</h3>
 <p>Elevate USF&rsquo;s status as a top-tier institution in AI and Cybersecurity research by recruiting world-class faculty and building an agile, resilient, and ambitious collaborative research culture.&nbsp;</p>
 
+
+</td>
+</tr>
+</tbody>
+</table>
+<table class="gallery-band-bg-color" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Band with Background Color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<table class="gallery-text" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+
 <h3>STRATEGIC PRIORITY: EXPAND THE "HUB AND SPOKE" ACADEMIC ECOSYSTEM&nbsp;</h3>
 <p>Democratize computing education across the university, connecting the technical "Hub" with multidisciplinary "Spokes" to increase enrollment and interdisciplinary competence.&nbsp;</p>
 
-<h3>Strategic Priority: Industry and Operational Excellence&nbsp;</h3>
+
+
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="gallery-text" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<h3>STRATEGIC PRIORITY: INDUSTRY AND OPERATIONAL EXCELLENCE&nbsp;</h3>
 <p>Establish Bellini College as a financially robust, operationally elite, and industry-integrated engine. This goal ensures long-term viability through optimized infrastructure, including computing and efficient operations, while serving as the primary talent pipeline for Florida&rsquo;s tech economy, targeting the "Professional, Scientific, and Technical Services" and "Manufacturing" sectors from the BOG&rsquo;s Iconic Companies list.&nbsp;</p>
+
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+<table class="gallery-band-bg-color" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Band with Background Color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<table class="gallery-text" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
 <h3>Turning Strategy Into Action&nbsp;</h3>
 <p>The Bellini College strategic plan is a living framework supported by annual reviews, KPI dashboards, accountable ownership and continuous engagement with stakeholders. Progress will be measured through academic, research, operational and economic impact outcomes.&nbsp;</p>
@@ -430,20 +448,21 @@
 <td>
 <h4>Strategic Planning Timeline&nbsp;</h4>
 <p>Phase 1: Discovery and Synthesis (Aug-Dec 2025)&nbsp;<br />Phase 2: Metrics and Leadership Alignment (Jan 2026)&nbsp;<br />Phase 3: Unit Commitments and Governance (Feb 2026)&nbsp;<br />Phase 4: Execution Design (Mar 2026)&nbsp;<br />Phase 5: Publication and Adoption (Apr 2026)&nbsp;</p>
+
 </td>
 </tr>
 </tbody>
 </table>
-<p>&nbsp;</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+
+</td>
+</tr>
+</tbody>
+</table>
+
 <p>&nbsp;</p><!-- /com.omniupdate.div -->
 </maincontent>
 
