@@ -5,7 +5,7 @@
 <headcode></headcode>
 <bodycode></bodycode>
 <!-- com.omniupdate.properties -->
-<title>strat-1</title>
+<title>STRATEGIC PRIORITY: STRENGTHEN FACULTY CAPACITY AND RESEARCH IN AI AND CYBERSECURITY </title>
 <!-- /com.omniupdate.properties -->
 
 <config>
@@ -19,7 +19,7 @@
 
 <parameter name="canonical-url" prompt="Canonical URL" alt="Enter the URL people should see in search results." type="text" group="none"></parameter>
 
-<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">strat-1</parameter>
+<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">STRATEGIC PRIORITY: STRENGTHEN FACULTY CAPACITY AND RESEARCH IN AI AND CYBERSECURITY </parameter>
 
 <!-- SOCIAL SHARING - OPEN GRAPH -->
 <parameter name="social-sharing-display" type="select" prompt="Enable Sharing Content?" alt="When enabled, the page's Title, Description, and selected image (below) will be used when the page is shared on social media." group="Everyone" section="Social Sharing Content (Open Graph)">
@@ -90,7 +90,7 @@
 <tbody>
 <tr>
 <td>
-<p>Text to Replace</p>
+<p>Elevate USF&rsquo;s status as a top-tier institution in AI and Cybersecurity research by recruiting world-class faculty and building an agile, resilient, and ambitious collaborative research culture.&nbsp;</p>
 </td>
 <td>
 <table class="media-large">
@@ -109,7 +109,7 @@
 </tr>
 </tbody>
 </table>
-<p>Strategies</p>
+<h4>Strategies</h4>
 <table class="two-column-text">
 <thead>
 <tr>
@@ -120,40 +120,32 @@
 <tbody>
 <tr>
 <td>
-<p>Left</p>
+<ul>
+<li>Recruit world-class faculty: Execute strategic high-quality faculty recruitments in AI, cybersecurity and computing to build critical mass for large-scale grants via cluster hires, targeted hiring and regular hiring.&nbsp;</li>
+<li>Center-level grants: Pursue large-scale (&gt; $5 million) funding with Bellini College faculty as principal investigators by leveraging the new college structure to unify dispersed research efforts and address convergent problems responsibly and ethically; provide college-level travel funds for envisioning workshops for these grants.&nbsp;</li>
+<li>REU sites: Increase the number of National Science Foundation REU Site grants; leverage resources at CRA to structure undergraduate research programming; leverage external funds, such as from CRA, FHTC.&nbsp;</li>
+<li>Network building: Build partnerships with funded AI/cybersecurity institutes across the nation; engage top faculty members from other universities in proposal studios and external red‑team reviews.&nbsp;</li>
+</ul>
 </td>
 <td>
-<p>Right</p>
+<ul>
+<li>Ph.D. recruitment: Build recruitment strategies for domestic students; offer multiple-year offers for high-quality students; leverage university-level scholarships.&nbsp;</li>
+<li>Centers and institutes: Formulate governance and faculty-hiring policies for centers and institutes in the college; nurture the AI+X Institute and CITA; establish a center/institute for cybersecurity research and education; launch a fourth center or institute on an appropriate topic; encourage annual symposia.&nbsp;</li>
+<li>Nominate faculty for external awards: Utilize USF Awards and Honors resources to nominate faculty for external awards and honors; invite speakers who are National Academy members for campus visits.&nbsp;</li>
+</ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>Success Indicators</p>
+<h4><span style="color: #3f565e; font-size: 1.125em;">Success Indicators&nbsp;</span></h4>
 <ul>
-<li>A</li>
-<li>B</li>
-<li>C</li>
-</ul>
-
-
-<h3>STRATEGIC PRIORITY: EXPAND THE "HUB AND SPOKE" ACADEMIC ECOSYSTEM&nbsp;</h3>
-<p>Democratize computing education across the university, connecting the technical "Hub" with multidisciplinary "Spokes" to increase enrollment and interdisciplinary competence.&nbsp;</p>
-<h4>Strategies</h4>
-<ul>
-<li>Interdisciplinary majors: Launch new "+ X" joint majors to attract students from outside traditional engineering fields.&nbsp;</li>
-<li>Enable joint appointments: Create "MOU templates for joint hires" with cross-college grant credit at 25%, 49%, 51%, and 75% appointment in Bellini College. &nbsp;<br />Recruitment outreach: Improve visibility by engaging high schools, community colleges, four-year colleges and industry partners.&nbsp;</li>
-<li>Flat governance: Maintain a flat administrative structure to minimize bureaucracy and facilitate faster curriculum approval and affiliate faculty appointments.&nbsp;</li>
-<li>Instructional capacity: Hire additional instructional faculty to support the expansion of certificates and badges.&nbsp;</li>
-</ul>
-<h4>Success Indicators&nbsp;</h4>
-<ul>
-<li>Interdisciplinary degrees awarded: Number of degrees awarded in "+ X" joint majors to measure the effectiveness of the "Spoke" integration.&nbsp;</li>
-<li>Cross-college research awards: Dollar value of research grants and contracts involving faculty from Bellini College co-investigating with faculty from other USF colleges and units.&nbsp;</li>
-<li>Affiliate faculty engagement: Number of non-Bellini faculty holding affiliate or joint appointments with the college to measure the effectiveness of true collaboration.&nbsp;</li>
-<li>Non-computing student upskilling: Number of non-computer science majors completing courses, minors, certificates, or "boot camps.&rdquo;&nbsp;<br /><br /></li>
-</ul>
-
-<!-- /com.omniupdate.div -->
+<li>Total annual research expenditures: Track growth from the current $4 million baseline to $10 million, comparable to the top 25 public computing units.&nbsp;</li>
+<li>Faculty awards: Number of faculty members inducted into National Academies (preeminence metric) or receiving highly prestigious awards (e.g., NSF CAREER, Fellows of ACM, AAAS, or IEEE).&nbsp;</li>
+<li>Undergraduate research: Secure faculty commitment for 100 Research Experiences for Undergraduates (REU) per year.&nbsp;</li>
+<li>Ph.D. students: Build a resilient and sustainable doctoral program by achieving a target enrollment of five Ph.D. students per tenure-track faculty member.&nbsp;</li>
+<li>Faculty headcount growth: Track recruitment toward the target of 100 total faculty (75 tenure-track and 25 instructional) within five years to stabilize student-to-faculty ratios.&nbsp;</li>
+<li>National ranking: Achieve and maintain a Faculty Scholarly Productivity Index that places the Bellini College within the top 25 of U.S. public computing units as benchmarked by Academic Analytics.</li>
+</ul><!-- /com.omniupdate.div -->
 </maincontent>
 
 <additional-content>

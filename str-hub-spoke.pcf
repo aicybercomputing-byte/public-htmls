@@ -5,7 +5,7 @@
 <headcode></headcode>
 <bodycode></bodycode>
 <!-- com.omniupdate.properties -->
-<title>strat-1</title>
+<title>STRATEGIC PRIORITY: EXPAND THE &quot;HUB AND SPOKE&quot; ACADEMIC ECOSYSTEM </title>
 <!-- /com.omniupdate.properties -->
 
 <config>
@@ -19,7 +19,7 @@
 
 <parameter name="canonical-url" prompt="Canonical URL" alt="Enter the URL people should see in search results." type="text" group="none"></parameter>
 
-<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">strat-1</parameter>
+<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">STRATEGIC PRIORITY: EXPAND THE &quot;HUB AND SPOKE&quot; ACADEMIC ECOSYSTEM </parameter>
 
 <!-- SOCIAL SHARING - OPEN GRAPH -->
 <parameter name="social-sharing-display" type="select" prompt="Enable Sharing Content?" alt="When enabled, the page's Title, Description, and selected image (below) will be used when the page is shared on social media." group="Everyone" section="Social Sharing Content (Open Graph)">
@@ -90,7 +90,7 @@
 <tbody>
 <tr>
 <td>
-<p>Text to Replace</p>
+<p>Democratize computing education across the university, connecting the technical "Hub" with multidisciplinary "Spokes" to increase enrollment and interdisciplinary competence.&nbsp;</p>
 </td>
 <td>
 <table class="media-large">
@@ -109,7 +109,7 @@
 </tr>
 </tbody>
 </table>
-<p>Strategies</p>
+<h4>Strategies</h4>
 <table class="two-column-text">
 <thead>
 <tr>
@@ -120,42 +120,29 @@
 <tbody>
 <tr>
 <td>
-<p>Left</p>
+<ul>
+<li>Interdisciplinary majors: Launch new "+ X" joint majors to attract students from outside traditional engineering fields.&nbsp;</li>
+<li>Enable joint appointments: Create "MOU templates for joint hires" with cross-college grant credit at 25%, 49%, 51%, and 75% appointment in Bellini College. &nbsp;</li>
+<li>Recruitment outreach: Improve visibility by engaging high schools, community colleges, four-year colleges and industry partners.&nbsp;</li>
+</ul>
 </td>
 <td>
-<p>Right</p>
+<ul>
+<li>Flat governance: Maintain a flat administrative structure to minimize bureaucracy and facilitate faster curriculum approval and affiliate faculty appointments.&nbsp;</li>
+<li>Instructional capacity: Hire additional instructional faculty to support the expansion of certificates and badges.&nbsp;</li>
+</ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>Success Indicators</p>
+<h4>Success Indicators&nbsp;</h4>
 <ul>
-<li>A</li>
-<li>B</li>
-<li>C</li>
-</ul>
-
-
-
-<h3>STRATEGIC PRIORITY: LEAD IN STUDENT SUCCESS, ACCESS AND CAREER READINESS&nbsp;</h3>
-<p>Establish the college as a national model for AI, cybersecurity and computing education through future-ready curricula that adapt quickly to technological change and ensure every graduate is career-ready.&nbsp;</p>
-<h4>Strategies&nbsp;</h4>
-<ul>
-<li>Academic programs and upskilling &ndash; Grow and ensure AI-integration in core majors (cyberecurity, AI, computer science, information technology, computer science and engineering); curricula grounded in computer science and cybersecurity engineering fundamentals as AI is built upon the enduring discipline of computer science; integrate ethics-by-design; launch computer science and engineering major, and interdisciplinary computing degrees; seek accreditation, expand concentrations, minors and stackable certificates; offer no‑code/low‑code/high‑code upskilling for non-computer science learners.&nbsp;</li>
-<li>Enable student progression &ndash; Build semester schedules that are tied to student graduation plans, reduce class section sizes, provide targeted success coaching for retention, expand AI-based learning opportunities, and efficiently use TA support.&nbsp;</li>
-<li>Tech Career Advancement Program (tCAP): Implement and operationalize the career advancement program. tCAP will integrate advising, experiential learning and employer partnerships into every stage of a student&rsquo;s academic journey, ensuring students graduate with strong technical foundations and applied skills, professional networks and the confidence to succeed in a rapidly evolving tech landscape.&nbsp;</li>
-<li>Faculty development: Support faculty with training in emerging technologies and teaching innovation to ensure instructional excellence.&nbsp;</li>
-<li>Predictive advising: Move from &ldquo;clinic&rdquo; based advising to a more proactive/predictive advising model; each student has a designated primary advisor; graduation plans for all at all time; monitor mid-term grades in all undergraduate courses, identify at-risk students, provide outreach to them, and refer them to tutoring support; identify, reach out to, support, and monitor graduates for the following two semesters; implement rule where student non-response or inaction results in a registration hold, starting as early as at the end of the first year.&nbsp;</li>
-</ul>
-<h4>Success Indicators:&nbsp;</h4>
-<ul>
-<li>Retention: Maintain first-year retention rate of &gt; 94% and academic progress rate (2nd-year retention with GPA &ge; 2.0) of at least 92%.&nbsp;</li>
-<li>Four-year graduation rate (FTIC): Maintain or exceed the USF institutional goal of 70%, ensuring the college contributes to the system-wide goal of 70%&nbsp;</li>
-<li>Experiential learning: Achieve 100% undergraduate participation in experiential learning.&nbsp;</li>
-<li>Degrees awarded in strategic emphasis: Track the number of degrees awarded in STEM fields (CIP 11), ensuring 100% alignment with the Board of Governors' Programs of Strategic Emphasis.</li>
-</ul>
-
-<!-- /com.omniupdate.div --></maincontent>
+<li>Interdisciplinary degrees awarded: Number of degrees awarded in "+ X" joint majors to measure the effectiveness of the "Spoke" integration.&nbsp;</li>
+<li>Cross-college research awards: Dollar value of research grants and contracts involving faculty from Bellini College co-investigating with faculty from other USF colleges and units.&nbsp;</li>
+<li>Affiliate faculty engagement: Number of non-Bellini faculty holding affiliate or joint appointments with the college to measure the effectiveness of true collaboration.&nbsp;</li>
+<li>Non-computing student upskilling: Number of non-computer science majors completing courses, minors, certificates, or "boot camps.&rdquo;&nbsp;</li>
+</ul><!-- /com.omniupdate.div -->
+</maincontent>
 
 <additional-content>
 <!-- com.omniupdate.div label="additional-content" group="Everyone" button="707" -->

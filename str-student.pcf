@@ -5,7 +5,7 @@
 <headcode></headcode>
 <bodycode></bodycode>
 <!-- com.omniupdate.properties -->
-<title>strat-1</title>
+<title>STRATEGIC PRIORITY: LEAD IN STUDENT SUCCESS, ACCESS AND CAREER READINESS </title>
 <!-- /com.omniupdate.properties -->
 
 <config>
@@ -19,7 +19,7 @@
 
 <parameter name="canonical-url" prompt="Canonical URL" alt="Enter the URL people should see in search results." type="text" group="none"></parameter>
 
-<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">strat-1</parameter>
+<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">STRATEGIC PRIORITY: LEAD IN STUDENT SUCCESS, ACCESS AND CAREER READINESS </parameter>
 
 <!-- SOCIAL SHARING - OPEN GRAPH -->
 <parameter name="social-sharing-display" type="select" prompt="Enable Sharing Content?" alt="When enabled, the page's Title, Description, and selected image (below) will be used when the page is shared on social media." group="Everyone" section="Social Sharing Content (Open Graph)">
@@ -90,7 +90,7 @@
 <tbody>
 <tr>
 <td>
-<p>Text to Replace</p>
+<p>Establish the college as a national model for AI, cybersecurity and computing education through future-ready curricula that adapt quickly to technological change and ensure every graduate is career-ready.&nbsp;</p>
 </td>
 <td>
 <table class="media-large">
@@ -109,7 +109,7 @@
 </tr>
 </tbody>
 </table>
-<p>Strategies</p>
+<h4>Strategies</h4>
 <table class="two-column-text">
 <thead>
 <tr>
@@ -120,44 +120,28 @@
 <tbody>
 <tr>
 <td>
-<p>Left</p>
+<ul>
+<li>Academic programs and upskilling &ndash; Grow and ensure AI-integration in core majors (cyberecurity, AI, computer science, information technology, computer science and engineering); curricula grounded in computer science and cybersecurity engineering fundamentals as AI is built upon the enduring discipline of computer science; integrate ethics-by-design; launch computer science and engineering major, and interdisciplinary computing degrees; seek accreditation, expand concentrations, minors and stackable certificates; offer no‑code/low‑code/high‑code upskilling for non-computer science learners.&nbsp;</li>
+<li>Enable student progression: Build semester schedules that are tied to student graduation plans, reduce class section sizes, provide targeted success coaching for retention, expand AI-based learning opportunities, and efficiently use TA support.&nbsp;</li>
+<li>Tech Career Advancement Program (tCAP): Implement and operationalize the career advancement program. tCAP will integrate advising, experiential learning and employer partnerships into every stage of a student&rsquo;s academic journey, ensuring students graduate with strong technical foundations and applied skills, professional networks and the confidence to succeed in a rapidly evolving tech landscape.&nbsp;</li>
+</ul>
 </td>
 <td>
-<p>Right</p>
+<ul>
+<li>Faculty development: Support faculty with training in emerging technologies and teaching innovation to ensure instructional excellence.&nbsp;</li>
+<li>Predictive advising: Move from &ldquo;clinic&rdquo; based advising to a more proactive/predictive advising model; each student has a designated primary advisor; graduation plans for all at all time; monitor mid-term grades in all undergraduate courses, identify at-risk students, provide outreach to them, and refer them to tutoring support; identify, reach out to, support, and monitor graduates for the following two semesters; implement rule where student non-response or inaction results in a registration hold, starting as early as at the end of the first year.&nbsp;</li>
+</ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>Success Indicators</p>
+<h4><span style="color: #3f565e; font-size: 1.125em;">Success Indicators:&nbsp;</span></h4>
 <ul>
-<li>A</li>
-<li>B</li>
-<li>C</li>
-</ul>
-
-<h3>STRATEGIC PRIORITY: STRENGTHEN FACULTY CAPACITY AND RESEARCH IN AI AND CYBERSECURITY&nbsp;</h3>
-<p>Elevate USF&rsquo;s status as a top-tier institution in AI and Cybersecurity research by recruiting world-class faculty and building an agile, resilient, and ambitious collaborative research culture.&nbsp;</p>
-<h4>Strategies&nbsp;</h4>
-<ul>
-<li>Recruit world-class faculty: Execute strategic high-quality faculty recruitments in AI, cybersecurity and computing to build critical mass for large-scale grants via cluster hires, targeted hiring and regular hiring.&nbsp;</li>
-<li>Center-level grants: Pursue large-scale (&gt; $5 million) funding with Bellini College faculty as principal investigators by leveraging the new college structure to unify dispersed research efforts and address convergent problems responsibly and ethically; provide college-level travel funds for envisioning workshops for these grants.&nbsp;</li>
-<li>REU sites: Increase the number of National Science Foundation REU Site grants; leverage resources at CRA to structure undergraduate research programming; leverage external funds, such as from CRA, FHTC.&nbsp;<br />Network building: Build partnerships with funded AI/cybersecurity institutes across the nation; engage top faculty members from other universities in proposal studios and external red‑team reviews.&nbsp;</li>
-<li>Ph.D. recruitment: Build recruitment strategies for domestic students; offer multiple-year offers for high-quality students; leverage university-level scholarships.&nbsp;</li>
-<li>Centers and institutes: Formulate governance and faculty-hiring policies for centers and institutes in the college; nurture the AI+X Institute and CITA; establish a center/institute for cybersecurity research and education; launch a fourth center or institute on an appropriate topic; encourage annual symposia.&nbsp;</li>
-<li>Nominate faculty for external awards: Utilize USF Awards and Honors resources to nominate faculty for external awards and honors; invite speakers who are National Academy members for campus visits.&nbsp;</li>
-</ul>
-<h4>Success Indicators&nbsp;</h4>
-<ul>
-<li>Total annual research expenditures: Track growth from the current $4 million baseline to $10 million, comparable to the top 25 public computing units.&nbsp;</li>
-<li>Faculty awards: Number of faculty members inducted into National Academies (preeminence metric) or receiving highly prestigious awards (e.g., NSF CAREER, Fellows of ACM, AAAS, or IEEE).&nbsp;</li>
-<li>Undergraduate research: Secure faculty commitment for 100 Research Experiences for Undergraduates (REU) per year.&nbsp;</li>
-<li>Ph.D. students: Build a resilient and sustainable doctoral program by achieving a target enrollment of five Ph.D. students per tenure-track faculty member.&nbsp;</li>
-<li>Faculty headcount growth: Track recruitment toward the target of 100 total faculty (75 tenure-track and 25 instructional) within five years to stabilize student-to-faculty ratios.&nbsp;</li>
-<li>National ranking: Achieve and maintain a Faculty Scholarly Productivity Index that places the Bellini College within the top 25 of U.S. public computing units as benchmarked by Academic Analytics.&nbsp;</li>
-</ul>
-
-<!-- /com.omniupdate.div -->
-</maincontent>
+<li>Retention: Maintain first-year retention rate of &gt; 94% and academic progress rate (2nd-year retention with GPA &ge; 2.0) of at least 92%.&nbsp;</li>
+<li>Four-year graduation rate (FTIC): Maintain or exceed the USF institutional goal of 70%, ensuring the college contributes to the system-wide goal of 70%&nbsp;</li>
+<li>Experiential learning: Achieve 100% undergraduate participation in experiential learning.&nbsp;</li>
+<li>Degrees awarded in strategic emphasis: Track the number of degrees awarded in STEM fields (CIP 11), ensuring 100% alignment with the Board of Governors' Programs of Strategic Emphasis.</li>
+</ul><!-- /com.omniupdate.div --></maincontent>
 
 <additional-content>
 <!-- com.omniupdate.div label="additional-content" group="Everyone" button="707" -->

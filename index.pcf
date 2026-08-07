@@ -78,8 +78,8 @@ section="Gallery">
 </config>
 <metadata>
 <!-- com.omniupdate.properties -->
-<meta name="Description" content="University of South Florida" />
-<meta name="Keywords" content="University of South Florida" />
+<meta name="Description" content="Bellini College of Artificial Intelligence, Cybersecurity and Computing strategic plan: vision, mission, values, priorities and success measures." />
+<meta name="Keywords" content="Bellini College, strategic plan, AI, cybersecurity, computing, University of South Florida, USF" />
 <meta name="Author" content="University of South Florida" />
 <!-- /com.omniupdate.properties -->
 </metadata>
@@ -99,22 +99,21 @@ display the Gallery Hero text?" options="Yes:Yes;No:No;"/ -->No<!-- /com.omniupd
 </text-display>
 <text>
 <!-- com.omniupdate.div label="brand-text" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="textarea" prompt="Text" alt="Enter the text to display in the
-Gallery Hero, beneath the Content Title."/ -->Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pharetra sapien
-eget cursus vehicula.<!-- /com.omniupdate.div -->
+Gallery Hero, beneath the Content Title."/ -->Bellini College strategic plan for AI, cybersecurity and computing.<!-- /com.omniupdate.div -->
 </text>
 <image-small>
 <!-- com.omniupdate.div label="brand-image-small" group="Everyone" button="hide"
 break="break" --><!-- ouc:multiedit type="image" prompt="Image - Small" alt="Select a JPG image
 for the small version of the Gallery Hero image to be displayed on mobile (650px by
 450px)."/ -->
-<img src="" alt="" /><!-- /com.omniupdate.div -->
+<img src="" alt="Bellini College Strategic Plan" /><!-- /com.omniupdate.div -->
 </image-small>
 <image-large>
 <!-- com.omniupdate.div label="brand-image-large" group="Everyone" button="hide"
 break="break" --><!-- ouc:multiedit type="image" prompt="Image - Large" alt="Select a JPG image
 for the large version of the Gallery Hero image to be displayed on larger screens
 (1400px by 650px)."/ -->
-<img src="{{f:78838669}}" alt="face split horizontally" /><!-- /com.omniupdate.div -->
+<img src="{{f:78838669}}" alt="Bellini College Strategic Plan" /><!-- /com.omniupdate.div -->
 </image-large>
 </brand-hero>
 
@@ -131,13 +130,13 @@ for the large version of the Gallery Hero image to be displayed on larger screen
 <td class="ou-help mceNonEditable" style="width: 50%;">
 <p>Heading Display. Accepted values: yes, no</p>
 </td>
-<td class="gallery-item-heading-display" style="width: 50%;" data-select-list="yes, no">noyes</td>
+<td class="gallery-item-heading-display" style="width: 50%;" data-select-list="yes, no">yes</td>
 </tr>
 <tr>
 <td class="ou-help mceNonEditable" style="width: 50%;">
 <p>Heading</p>
 </td>
-<td class="gallery-item-heading" style="width: 50%;">Lorem ipsum dolor sit amet consectetur montes detCreating What&rsquo;s Next</td>
+<td class="gallery-item-heading" style="width: 50%;">Creating What&rsquo;s Next</td>
 </tr>
 <tr>
 <td class="ou-help mceNonEditable" style="width: 50%;">
@@ -151,7 +150,7 @@ for the large version of the Gallery Hero image to be displayed on larger screen
 <td class="ou-help mceNonEditable" style="width: 50%;">
 <p>Image</p>
 </td>
-<td class="gallery-item-image" style="width: 50%;"><img src="/ai-cybersecurity-computing/images/00_promophotos/ai-plus-x-3rd-symposium-490x327.jpg" alt="Alt Text" width="653" height="436" /></td>
+<td class="gallery-item-image" style="width: 50%;"><img src="/ai-cybersecurity-computing/images/00_promophotos/ai-plus-x-3rd-symposium-490x327.jpg" alt="AI+X symposium at Bellini College" width="653" height="436" /></td>
 </tr>
 <tr>
 <td class="ou-help mceNonEditable" style="width: 50%;">
@@ -335,7 +334,7 @@ for the large version of the Gallery Hero image to be displayed on larger screen
 <td class="ou-help mceNonEditable" style="width: 50%;">
 <p>Image</p>
 </td>
-<td class="gallery-item-image" style="width: 50%;"><img src="/ai-cybersecurity-computing/images/00_promophotos/compsci.jpeg" alt="Alt Text" width="1000" height="667" /></td>
+<td class="gallery-item-image" style="width: 50%;"><img src="/ai-cybersecurity-computing/images/00_promophotos/compsci.jpeg" alt="Students and faculty in a computing classroom" width="1000" height="667" /></td>
 </tr>
 <tr>
 <td class="ou-help mceNonEditable" style="width: 50%;">
@@ -362,9 +361,7 @@ for the large version of the Gallery Hero image to be displayed on larger screen
 <td class="ou-help mceNonEditable" style="width: 50%;">
 <p>Heading</p>
 </td>
-<td class="gallery-item-heading" style="width: 50%;">
-<h3>How Success Is Measured</h3>
-</td>
+<td class="gallery-item-heading" style="width: 50%;">How Success Is Measured</td>
 </tr>
 <tr>
 <td class="ou-help mceNonEditable" style="width: 50%;">
@@ -407,7 +404,7 @@ for the large version of the Gallery Hero image to be displayed on larger screen
 <td class="ou-help mceNonEditable" style="width: 50%;">
 <p>Image</p>
 </td>
-<td class="gallery-item-image" style="width: 50%;"><img src="/ai-cybersecurity-computing/images/00-academic-pages/bs-ms-pathway-490x327px.jpg" alt="Success" width="490" height="327" /></td>
+<td class="gallery-item-image" style="width: 50%;"><img src="/ai-cybersecurity-computing/images/00-academic-pages/bs-ms-pathway-490x327px.jpg" alt="Measures of student, research and partnership success" width="490" height="327" /></td>
 </tr>
 <tr>
 <td class="ou-help mceNonEditable" style="width: 50%;">
@@ -417,8 +414,6 @@ for the large version of the Gallery Hero image to be displayed on larger screen
 </tr>
 </tbody>
 </table>
-
-~[com[27194 1 6{ "version": 6, "data": {"010c737f4f75cc888e7baa7feb60beb7":"No","e50e2b7b4162e86d86238d99470b3595":"","b97dfec6f8c76272a9e018ebb5f0e71d":"","677ee82b0548c66745888954018b7016":"centered","4f8e1b0b612e42aa1ff2655078463bcc":"No","5660fa1787542d62758bea4d92b583c9":"No","ce9444d0b080bdf2a3392ffffac92ec7":"Values"}}]]~
 
 <table class="gallery-band-bg-color" style="width: 100%;">
 <thead>
@@ -446,7 +441,7 @@ for the large version of the Gallery Hero image to be displayed on larger screen
 </thead>
 <tbody>
 <tr>
-<td class="image"><img src="/_resources/images/global/elements/medium-image.jpg" alt="" /></td>
+<td class="image"><img src="/_resources/images/global/elements/medium-image.jpg" alt="Students engaged in AI, cybersecurity and computing education" /></td>
 </tr>
 </tbody>
 </table>
@@ -460,6 +455,7 @@ for the large version of the Gallery Hero image to be displayed on larger screen
 </tr>
 </tbody>
 </table>
+<p>&nbsp;</p>
 <table class="gallery-text" style="width: 100%;">
 <thead>
 <tr>
@@ -477,16 +473,18 @@ for the large version of the Gallery Hero image to be displayed on larger screen
 </thead>
 <tbody>
 <tr>
-<td class="image"><img src="/_resources/images/global/elements/medium-image.jpg" alt="" /></td>
+<td class="image"><img src="/_resources/images/global/elements/medium-image.jpg" alt="Faculty collaborating on AI and cybersecurity research" /></td>
 </tr>
 </tbody>
 </table>
 <h3>STRATEGIC PRIORITY: STRENGTHEN FACULTY CAPACITY AND RESEARCH IN AI AND CYBERSECURITY&nbsp;</h3>
 <p>Elevate USF&rsquo;s status as a top-tier institution in AI and Cybersecurity research by recruiting world-class faculty and building an agile, resilient, and ambitious collaborative research culture.&nbsp;</p>
+<div style="clear: both; margin-bottom: 1.6rem;" aria-hidden="true"></div>
 </td>
 </tr>
 </tbody>
 </table>
+<p>&nbsp;</p>
 <table class="gallery-band-bg-color" style="width: 100%;">
 <thead>
 <tr>
@@ -513,7 +511,7 @@ for the large version of the Gallery Hero image to be displayed on larger screen
 </thead>
 <tbody>
 <tr>
-<td class="image"><img src="/_resources/images/global/elements/medium-image.jpg" alt="" /></td>
+<td class="image"><img src="/_resources/images/global/elements/medium-image.jpg" alt="Interdisciplinary hub and spoke academic collaboration" /></td>
 </tr>
 </tbody>
 </table>
@@ -527,6 +525,7 @@ for the large version of the Gallery Hero image to be displayed on larger screen
 </tr>
 </tbody>
 </table>
+<p>&nbsp;</p>
 <table class="gallery-text" style="width: 100%;">
 <thead>
 <tr>
@@ -544,16 +543,18 @@ for the large version of the Gallery Hero image to be displayed on larger screen
 </thead>
 <tbody>
 <tr>
-<td class="image"><img src="/_resources/images/global/elements/medium-image.jpg" alt="" /></td>
+<td class="image"><img src="/_resources/images/global/elements/medium-image.jpg" alt="Industry partnership and operational excellence at Bellini College" /></td>
 </tr>
 </tbody>
 </table>
 <h3>STRATEGIC PRIORITY: INDUSTRY AND OPERATIONAL EXCELLENCE&nbsp;</h3>
 <p>Establish Bellini College as a financially robust, operationally elite, and industry-integrated engine. This goal ensures long-term viability through optimized infrastructure, including computing and efficient operations, while serving as the primary talent pipeline for Florida&rsquo;s tech economy, targeting the "Professional, Scientific, and Technical Services" and "Manufacturing" sectors from the BOG&rsquo;s Iconic Companies list.&nbsp;</p>
+<p style="clear: both;">&nbsp;</p>
 </td>
 </tr>
 </tbody>
 </table>
+<p>&nbsp;</p>
 <table class="gallery-band-bg-color" style="width: 100%;">
 <thead>
 <tr>
@@ -589,7 +590,7 @@ for the large version of the Gallery Hero image to be displayed on larger screen
 </td>
 <td>
 <h4>Strategic Planning Timeline&nbsp;</h4>
-<p>Phase 1: Discovery and Synthesis (Aug-Dec 2025)&nbsp;<br />Phase 2: Metrics and Leadership Alignment (Jan 2026)&nbsp;<br />Phase 3: Unit Commitments and Governance (Feb 2026)&nbsp;<br />Phase 4: Execution Design (Mar 2026)&nbsp;<br />Phase 5: Publication and Adoption (Apr 2026)&nbsp;</p>
+<p><strong>Phase 1:</strong> Discovery and Synthesis (Aug-Dec 2025)&nbsp;<br /><strong>Phase 2:</strong> Metrics and Leadership Alignment (Jan 2026)&nbsp;<br /><strong>Phase 3:</strong> Unit Commitments and Governance (Feb 2026)&nbsp;<br /><strong>Phase 4:</strong> Execution Design (Mar 2026)&nbsp;<br /><strong>Phase 5:</strong> Publication and Adoption (Apr 2026)&nbsp;</p>
 </td>
 </tr>
 </tbody>

@@ -5,7 +5,7 @@
 <headcode></headcode>
 <bodycode></bodycode>
 <!-- com.omniupdate.properties -->
-<title>strat-1</title>
+<title>Strategic Priority: Industry and Operational Excellence </title>
 <!-- /com.omniupdate.properties -->
 
 <config>
@@ -19,7 +19,7 @@
 
 <parameter name="canonical-url" prompt="Canonical URL" alt="Enter the URL people should see in search results." type="text" group="none"></parameter>
 
-<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">strat-1</parameter>
+<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">Strategic Priority: Industry and Operational Excellence </parameter>
 
 <!-- SOCIAL SHARING - OPEN GRAPH -->
 <parameter name="social-sharing-display" type="select" prompt="Enable Sharing Content?" alt="When enabled, the page's Title, Description, and selected image (below) will be used when the page is shared on social media." group="Everyone" section="Social Sharing Content (Open Graph)">
@@ -90,7 +90,7 @@
 <tbody>
 <tr>
 <td>
-<p>Text to Replace</p>
+<p>Establish Bellini College as a financially robust, operationally elite, and industry-integrated engine. This goal ensures long-term viability through optimized infrastructure, including computing and efficient operations, while serving as the primary talent pipeline for Florida&rsquo;s tech economy, targeting the "Professional, Scientific, and Technical Services" and "Manufacturing" sectors from the BOG&rsquo;s Iconic Companies list.&nbsp;</p>
 </td>
 <td>
 <table class="media-large">
@@ -109,7 +109,7 @@
 </tr>
 </tbody>
 </table>
-<p>Strategies</p>
+<h4>Strategies</h4>
 <table class="two-column-text">
 <thead>
 <tr>
@@ -120,49 +120,38 @@
 <tbody>
 <tr>
 <td>
-<p>Left</p>
-</td>
-<td>
-<p>Right</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p>Success Indicators</p>
-<ul>
-<li>A</li>
-<li>B</li>
-<li>C</li>
-</ul>
-
-
-<h3>Strategic Priority: Industry and Operational Excellence&nbsp;</h3>
-<p>Establish Bellini College as a financially robust, operationally elite, and industry-integrated engine. This goal ensures long-term viability through optimized infrastructure, including computing and efficient operations, while serving as the primary talent pipeline for Florida&rsquo;s tech economy, targeting the "Professional, Scientific, and Technical Services" and "Manufacturing" sectors from the BOG&rsquo;s Iconic Companies list.&nbsp;</p>
-<h4>Strategies&nbsp;</h4>
 <ul>
 <li>AI governance, policy and compliance readiness: Establish a college-led capability to operationalize emerging state and federal requirements and expectations for AI systems used in education, research and administration, including
-<ol style="list-style-type: lower-roman;">
+<ul>
 <li>transparency/&ldquo;AI interaction&rdquo; notice</li>
 <li>privacy controls and deidentification standards</li>
 <li>youth/parental protections where applicable</li>
 <li>secure procurement and access restrictions related to foreign entities and foreign AI products or services</li>
-</ol>
+</ul>
 </li>
 <li>Set execution cadence: Define an annual review cadence and a public dashboard (owners + KPI definitions) to align with the plan&rsquo;s metric ambition.&nbsp;</li>
 <li>Strategic philanthropy and partnerships: Fundraise for the new building construction, specific laboratory spaces, and endowed faculty chairs to ensure long-term revenue streams. Appoint dedicated faculty or staff to serve as bridges for the Strategic Alliance, connecting corporate partners directly with student talent and research capabilities.&nbsp;</li>
+</ul>
+</td>
+<td>
+<ul>
 <li>Infrastructure and operational excellence: Formalize the College Operations &amp; Resource Efficiency with AI group to increase operational efficiency through robotic process automation and AI-agent technology. With industry input, construct a purpose-built AI/Cyber facility and a Teaching Security Operations Center to centralize operations and attract industry funding; Build scalable compute, secure data environments, and modern collaborative spaces for shared services.&nbsp;</li>
 <li>Career and innovation ecosystem: Use the Tech Career Advancement (tCAP) to connect student organizations with industry leaders. Expand mentorship, internship and co-op opportunities with industry partners. Provide direct support for student product development and faculty tech transfer through the Student Innovation Incubator at the USF Research Park.&nbsp;</li>
 <li>Communication and marketing: Establish a unified brand strategy to market the new college nationally and internationally; showcase faculty expertise and research impact through targeted campaigns; improve visibility with outreach to high schools, community colleges and industry partners.&nbsp;</li>
 <li>Student recruitment: Signature competitions (AI/cyber); high school recruitment; Admitted Student Day; graduate student recruitment from four-year colleges in the U.S.&nbsp;</li>
 </ul>
+</td>
+</tr>
+</tbody>
+</table>
 <h4>Success Indicators&nbsp;</h4>
 <ul>
 <li>Financial sustainability: Surpass the college's operational costs through increased net tuition, external research grants and contracts, targeted fundraising, and naming campaigns.&nbsp;</li>
 <li>Asset optimization: Achieve high utilization of the new building with a minimum of 40 hours/week and 60% occupancy.&nbsp;</li>
 <li>Talent and innovation pipeline: Ensure 100% participation in internships, capstones or clinical research cases for graduating students; scale the number of active partners in tCAP; contribute to the university&rsquo;s annual goal for start-up creation through faculty and student innovation.&nbsp;</li>
 </ul>
-
-<!-- /com.omniupdate.div -->
+<p>&nbsp;</p>
+<p>&nbsp;</p><!-- /com.omniupdate.div -->
 </maincontent>
 
 <additional-content>
