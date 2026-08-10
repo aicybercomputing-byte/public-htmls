@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pcf-stylesheet path="/_resources/xsl/secondary.xsl" extension="aspx"?>
+<!DOCTYPE document SYSTEM "http://commons.omniupdate.com/dtd/standard.dtd">
+<document>
+<headcode></headcode>
+<bodycode></bodycode>
+
+<!-- com.omniupdate.properties -->
+<title>Tenure Faculty</title>
+<!-- /com.omniupdate.properties -->
+<config>
+<parameter name="pagetype" prompt="pagetype" alt="Pagetype" group="None">secondary</parameter>
+<!-- com.omniupdate.properties -->
+<!-- CANONICALIZATION -->
+<parameter name="canonical-display" prompt="Set canonical URL?" alt="" section="Canonical URL" type="select" group="none">
+<option value="true" selected="false">Yes</option>
+<option value="false" selected="true">No</option>
+</parameter>
+<parameter name="canonical-url" prompt="Canonical URL" alt="Enter the URL people should see in search results." type="text" group="none"></parameter>
+<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">Tenure Faculty</parameter>
+<parameter name="include-file" prompt="Include File" alt="Do you want to include a file from the server below the maincontent." group="none" type="radio">
+<option value="true" selected="false">True</option>
+<option value="false" selected="true">False</option>
+</parameter>
+<parameter name="include-file-path" prompt="Choose File." alt="Choose a file to include below the maincontent." type="filechooser" group="none" path="/_resources/includes/"
+lockout="no">/_resources/includes/included-content.html</parameter>
+<parameter name="additional-content" prompt="Additional Content" alt="Add another editable region below the maincontent. This is typically used if you have included a file." group="continuing-education" type="radio">
+<option value="true" selected="false">Show</option>
+<option value="false" selected="true">Hide</option>
+</parameter>
+<parameter name="code-behind" type="select" prompt="ASPX web page model" alt="Choose code model for you ASPX. NET page" group="none" section="ASPX web page model">
+<option value="" selected="false"></option>
+<option value="single-page" selected="true">Single-page</option>
+<option value="code-behind" selected="false">Code-behind</option>
+</parameter>
+<parameter name="code-behind-source" type="filechooser" group="none" prompt="Code-behind Source file" alt="Choose the code model source of the page.">/_resources/c-sharp/code-behind.cs</parameter>
+<parameter name="inherits-from" prompt="Inherits from" group="none" alt="">_Default</parameter>
+<!-- /com.omniupdate.properties -->
+<parameter name="galleryType" type="select" prompt="Gallery Type" alt="Please select the type of gallery you would like this page to use." section="GALLERY">
+<option value="FlexSlider" selected="true">Flex Slider</option>
+</parameter>
+<!-- com.omniupdate.properties -->
+<parameter name="slideshow" type="select" prompt="Animate Slideshow" alt="Specify if the slideshow will be animated automatically or by user interaction only." section="Gallery">
+<option value="true" selected="true">Animate</option>
+<option value="false" selected="false">Don't Animate</option>
+</parameter>
+<!-- SIDE CONTENT LOCATION -->
+<parameter name="side-content-location" type="select" group="none" prompt="Change side content location?" alt="Select if the side content should keep its default location, or change to the left or right of the main content. Note: side content displaying on the right will appear after the main content on mobile." section="Side Content">
+<option value="false" selected="true">No</option>
+<option value="left" selected="false">Yes, display on the left</option>
+<option value="right" selected="false">Yes, display on the right</option>
+</parameter>
+<!-- QUICK LINKS -->
+<parameter name="quick-links-display" type="select" group="none" prompt="Display Quick Links" alt="Select if a quick links file should be displayed after the side navigation."
+section="Quick Links">
+<option value="true" selected="false">Show</option>
+<option value="false" selected="true">Hide</option>
+</parameter>
+<parameter name="quick-links-file" group="none" prompt="Quick Links File" alt="Choose a quick links file to include after the side navigation." type="filechooser"></parameter>
+<!-- /com.omniupdate.properties -->
+</config>
+<metadata>
+<!-- com.omniupdate.properties -->
+<meta name="Description" content="University of South Florida" />
+<meta name="Keywords" content="University of South Florida" />
+<meta name="Author" content="University of South Florida" />
+<!-- /com.omniupdate.properties -->
+</metadata>
+<maincontent>
+<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- ouc:editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt"
+width="1000"/ --><h3>The University of South Florida invites applications for tenure-track positions at
+all ranks.</h3>
+<h4>Bellini College of Artificial Intelligence, Cybersecurity and Computing</h4>
+<p>Applications are invited for multiple tenured and tenure-track faculty positions at
+all ranks in the new Bellini College of Artificial Intelligence, Cybersecurity and
+Computing at the University of South Florida. This new college presents a rare opportunity
+to join a forward-looking institution dedicated to high-impact research. USF seeks
+candidates whose research aligns with strategic, high-potential areas for federal
+funding, such as artificial intelligence, cybersecurity, quantum computing, computing
+systems, networking, human-centered computing, edge computing, computing architectures,
+and ethics and trust in technology. Faculty joining the College will have the unique
+advantage of shaping the direction of a college poised for tremendous growth in reputation
+and research impact.&#160;</p>
+<p>All candidates should have an established record of high-quality research publications
+in selective venues, a commitment to excellence in teaching, and a willingness to
+build collaborative research agendas. Candidates for senior-level (Associate/Full
+Professors) positions should also have an established research program with current
+funding. Candidates must have completed a PhD in computer science or a related discipline
+by the start time of the position. Successful candidates are expected to start in
+the Fall of 2026.&#160;<br />&#160;<br />The Bellini College of Artificial Intelligence, Cybersecurity and Computing at the
+University of South Florida is Florida's first and one of only a few nationwide
+to combine AI, cybersecurity, and computing within a single college. Opened in 2025
+and powered by a University of South Florida record $40 million gift from Arnie and
+Lauren Bellini, the largest in USF history, it remains the country's only named
+college dedicated solely to these intersecting fields. The College comprises 67 faculty
+members, ranked in the top 16 percent (Academic Analytics, AAD 2023) nationally among
+computer science programs, with 13 NSF CAREER awardees and numerous IEEE and AAAS
+Fellows. Designed as a hub-and-spoke model, the college connects over 200 top USF
+faculty members specializing in AI, cybersecurity, and computing. USF's research spending
+in computer and information sciences has reached $24 million (FY24 NSF HERD). &#160;<br />&#160;<br />The College educates 3,000+ students across 15 majors in computer science, cybersecurity,
+AI, information technology, and computer engineering at the bachelor's, master's,
+and doctoral levels. Many blended programs have been created in partnership with its
+affiliated colleges. The College houses the USF Institute for Artificial Intelligence
++ X, the Rapid7 Cyber Threat Intelligence Lab, and the Center for Innovation, Technology,
+and Aging. It maintains strong connections with the Florida Center for Cybersecurity
+(Cyber Florida). USF also holds NSA/DHS Center of Academic Excellence designation
+in Cyber Defense. &#160;<br />&#160;<br />The University of South Florida, a high-impact research university dedicated to student
+success and committed to community engagement, generates an annual economic impact
+of more than $6 billion. With campuses in Tampa, St. Petersburg and Sarasota-Manatee,
+USF serves approximately 50,000 students who represent nearly 150 countries. For five
+consecutive years, U.S. News &amp; World Report has ranked USF as one of the nation's
+top 50 public universities, including the current USF's ranking of 43. In 2023,
+USF became the first public university in Florida in nearly 40 years to be invited
+to join the Association of American Universities, a prestigious group of the leading
+universities in the United States and Canada. Through $522 Million in total research
+expenditures in FY 23-24 and as one of top universities in the world for securing
+new patents, USF is a leader in solving global problems and improving lives. USF is
+a member of the American Athletic Conference. Learn more at <a>www.usf.edu</a>.</p>
+<p>An application package should include a cover letter, curriculum vitae, statements
+describing research and teaching experience and goals, and the names and contact information
+of at least three references. Applicants must electronically submit the application
+packet as one PDF file to the appropriate job opening below at <a href="/work-at-usf/careers">https://www.usf.edu/work-at-usf/careers</a>.</p>
+<table class="table-striped">
+<tbody>
+<tr>
+<td><a href="https://jobs.usf.edu/hcmUI/CandidateExperience/en/sites/USF/jobs?keyword=41773">Job ID: 41773</a></td>
+<td>Assistant Professor/ 9003&#160;</td>
+</tr>
+<tr>
+<td><a href="https://jobs.usf.edu/hcmUI/CandidateExperience/en/sites/USF/jobs?keyword=41772">Job ID: 41772</a></td>
+<td>Associate Professor / 9002&#160;</td>
+</tr>
+<tr>
+<td><a href="https://jobs.usf.edu/hcmUI/CandidateExperience/en/sites/USF/jobs?keyword=41770">Job ID: 41770</a></td>
+<td>Professor / 9001&#160;</td>
+</tr>
+</tbody>
+</table>
+<p>Applications will be considered starting immediately until the positions are filled.</p><!-- /com.omniupdate.div -->
+</maincontent>
+<additional-content>
+<!-- com.omniupdate.div label="additional-content" group="Everyone" button="707" -->
+<!-- com.omniupdate.editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt"
+width="1000" -->
+<h2> Additional Content</h2>
+<p> This area is used typically if you have included a file below the main content.</p>
+<!-- /com.omniupdate.div -->
+</additional-content>
+</document>
