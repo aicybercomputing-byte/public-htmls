@@ -1,40 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?pcf-stylesheet path="/_resources/xsl/secondary.xsl" extension="aspx"?>
+<?pcf-stylesheet path="/_resources/xsl/v3/brand.xsl" extension="aspx"?>
 <!DOCTYPE document SYSTEM "http://commons.omniupdate.com/dtd/standard.dtd">
 <document>
-<headcode></headcode>
+<headcode>
+</headcode>
 <bodycode></bodycode>
-
 <!-- com.omniupdate.properties -->
-<title>Faculty | People | College of Artificial Intelligence, Cybersecurity and Computing</title>
+<title>Bellini College Strategic Plan</title>
 <!-- /com.omniupdate.properties -->
+
 <config>
-<parameter name="pagetype" prompt="pagetype" alt="Pagetype" group="None"></parameter>
+<parameter name="pagetype" prompt="pagetype" alt="Pagetype" group="None">secondary</parameter>
 <!-- com.omniupdate.properties -->
-<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">Directory</parameter>
-<parameter name="include-file" prompt="Include File" alt="Do you want to include a file from the server below the maincontent." group="none" type="radio">
+<!-- CANONICALIZATION -->
+<parameter name="canonical-display" prompt="Set canonical URL?" alt=""
+section="Canonical URL" type="select" group="none">
+<option value="true" selected="false">Yes</option>
+<option value="false" selected="true">No</option>
+</parameter>
+
+<parameter name="canonical-url" prompt="Canonical URL"
+alt="Enter the URL people should see in search results." type="text" group="none"></parameter>
+
+<parameter name="content-title" prompt="Content Title"
+alt="Enter the text that will display at the top of the content well." group="Everyone">Bellini
+College Strategic Plan</parameter>
+<parameter name="hero-display" prompt="Display Hero?"
+alt="Select if you would like to display the hero." group="none" type="select">
+<option value="Yes" selected="true">Yes</option>
+<option value="No" selected="false">No</option>
+</parameter>
+<parameter name="breadcrumb-display" prompt="Display Breadcrumbs?"
+alt="Select if you would like to display breadcrumbs." group="Everyone" type="select">
+<option value="Yes" selected="false">Yes</option>
+<option value="No" selected="true">No</option>
+</parameter>
+<parameter name="include-file" prompt="Include File"
+alt="Do you want to include a file from the server below the maincontent." group="none"
+type="radio">
 <option value="true" selected="false">True</option>
 <option value="false" selected="true">False</option>
 </parameter>
-<parameter name="include-file-path" prompt="Choose File." alt="Choose a file to include below the maincontent." type="filechooser" group="none" path="/_resources/includes/"
-lockout="no">/_resources/includes/included-content.html</parameter>
-<parameter name="additional-content" prompt="Additional Content" alt="Add another editable region below the maincontent. This is typically used if you have included a file." group="none" type="radio">
+<parameter name="include-file-path" prompt="Choose File."
+alt="Choose a file to include below the maincontent." type="filechooser" group="none"
+path="/_resources/includes/" lockout="no">/_resources/includes/included-content.html</parameter>
+<parameter name="additional-content" prompt="Additional Content"
+alt="Add another editable region below the maincontent. This is typically used if you have included a file."
+group="none" type="radio">
 <option value="true" selected="false">Show</option>
 <option value="false" selected="true">Hide</option>
 </parameter>
-<parameter name="code-behind" type="select" prompt="ASPX web page model" alt="Choose code model for you ASPX. NET page" group="none" section="ASPX web page model">
+<parameter name="code-behind" type="select" prompt="ASPX web page model"
+alt=" Choose code model for you ASPX. NET page" group="none"
+section="ASPX web page model">
 <option value="" selected="false"></option>
 <option value="single-page" selected="true">Single-page</option>
 <option value="code-behind" selected="false">Code-behind</option>
 </parameter>
-<parameter name="code-behind-source" type="filechooser" group="none" prompt="Code-behind Source file" alt="Choose the code model source of the page.">/_resources/c-sharp/code-behind.cs</parameter>
-<parameter name="inherits-from" prompt="Inherits from" group="none" alt="">_Default</parameter>
+<parameter name="code-behind-source" type="filechooser" group="none"
+prompt="Code-behind Source file" alt="Choose the code model source of the page.">
+/_resources/c-sharp/code-behind.cs</parameter>
+<parameter name="inherits-from" prompt="Inherits from " group="none" alt="">_Default</parameter>
 <!-- /com.omniupdate.properties -->
-<parameter name="galleryType" type="select" prompt="Gallery Type" alt="Please select the type of gallery you would like this page to use." section="GALLERY">
+<parameter name="galleryType" type="select" prompt="Gallery Type"
+alt="Please select the type of gallery you would like this page to use."
+section="GALLERY">
 <option value="FlexSlider" selected="true">Flex Slider</option>
 </parameter>
 <!-- com.omniupdate.properties -->
-<parameter name="slideshow" type="select" prompt="Animate Slideshow" alt="Specify if the slideshow will be animated automatically or by user interaction only." section="Gallery">
+<parameter name="slideshow" type="select" prompt="Animate Slideshow"
+alt="Specify if the slideshow will be animated automatically or by user interaction only."
+section="Gallery">
 <option value="true" selected="true">Animate</option>
 <option value="false" selected="false">Don't Animate</option>
 </parameter>
@@ -42,13 +78,106 @@ lockout="no">/_resources/includes/included-content.html</parameter>
 </config>
 <metadata>
 <!-- com.omniupdate.properties -->
-<meta name="Description" content="Directory of faculty in computer science and engineering at the University of South Florida" />
-<meta name="Keywords" content="Computer Science and Engineering, University of South Florida, College of Engineering, faculty" />
-<meta name="Author" content="University of South Florida College of Engineering" />
+<meta name="Description" content="Bellini College of Artificial Intelligence, Cybersecurity and Computing strategic plan: vision, mission, values, priorities and success measures." />
+<meta name="Keywords" content="Bellini College, strategic plan, AI, cybersecurity, computing, University of South Florida, USF" />
+<meta name="Author" content="University of South Florida" />
 <!-- /com.omniupdate.properties -->
 </metadata>
+
+<brand-hero>
+<display>
+<!-- com.omniupdate.div label="brand-content-display" group="Everyone" button="hide"
+break="break" --><!-- ouc:multiedit type="select" prompt="Display Content" alt="Select if the
+Gallery Hero content (heading and text) should display. If 'No' is selected, the Content
+Title and Image - Large alt text will still be present on the page, but visually
+hidden." options="Yes:Yes;No:No" section="Gallery Hero"/ -->Yes<!-- /com.omniupdate.div -->
+</display>
+<text-display>
+<!-- com.omniupdate.div label="brand-text-display" group="Everyone" button="hide"
+break="break" --><!-- ouc:multiedit type="select" prompt="Display Text" alt="Would you like to
+display the Gallery Hero text?" options="Yes:Yes;No:No;"/ -->No<!-- /com.omniupdate.div -->
+</text-display>
+<text>
+<!-- com.omniupdate.div label="brand-text" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="textarea" prompt="Text" alt="Enter the text to display in the
+Gallery Hero, beneath the Content Title."/ -->Bellini College strategic plan for AI, cybersecurity and computing.<!-- /com.omniupdate.div -->
+</text>
+<image-small>
+<!-- com.omniupdate.div label="brand-image-small" group="Everyone" button="hide"
+break="break" --><!-- ouc:multiedit type="image" prompt="Image - Small" alt="Select a JPG image
+for the small version of the Gallery Hero image to be displayed on mobile (650px by
+450px)."/ -->
+<img src="" alt="Bellini College Strategic Plan" /><!-- /com.omniupdate.div -->
+</image-small>
+<image-large>
+<!-- com.omniupdate.div label="brand-image-large" group="Everyone" button="hide"
+break="break" --><!-- ouc:multiedit type="image" prompt="Image - Large" alt="Select a JPG image
+for the large version of the Gallery Hero image to be displayed on larger screens
+(1400px by 650px)."/ -->
+<img src="{{f:78838669}}" alt="Bellini College Strategic Plan" /><!-- /com.omniupdate.div -->
+</image-large>
+</brand-hero>
+
 <maincontent>
-<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- ouc:editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000"/ --><h3 id="h_2532642722881674927161379"></h3>
+
+<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- ouc:editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000"/ --><table class="gallery-text-image" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" colspan="2">Gallery Item - Text and Image <br />Image Dimensions - Width: 460 px, Height: 300 px* <br />* Recommended height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading Display. Accepted values: yes, no</p>
+</td>
+<td class="gallery-item-heading-display" style="width: 50%;" data-select-list="yes, no">yes</td>
+</tr>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading</p>
+</td>
+<td class="gallery-item-heading" style="width: 50%;">Creating What&rsquo;s Next</td>
+</tr>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Text</p>
+</td>
+<td class="gallery-item-text" style="width: 50%;">
+<p>The Bellini College of Artificial Intelligence, Cybersecurity and Computing was established to position the University of South Florida at the forefront of the technological transformation that impacts every facet of modern life. As the university&rsquo;s center of AI, cybersecurity and computing, the college&rsquo;s unique hub and spoke model connects academic disciplines, industry, research and the next generation of students to address complex challenges and create new opportunities. Building on USF&rsquo;s strengths as an AAU institution and the growing Tampa Bay technology-forward ecosystem, the Bellini College advances groundbreaking research, drives innovation and fosters the responsible development and application of emerging technologies.</p>
+</td>
+</tr>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image</p>
+</td>
+<td class="gallery-item-image" style="width: 50%;"><img src="{{f:84042720}}" alt="Dr. Sarkar in the sunlight" width="490" height="328" /></td>
+</tr>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image Alignment. Accepted values: left, right</p>
+</td>
+<td class="gallery-item-alignment" style="width: 50%;" data-select-list="left, right">right</td>
+</tr>
+</tbody>
+</table>
+<table class="gallery-band-bg-color" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Band with Background Color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<table class="gallery-text" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 <table class="two-column-text">
 <thead>
 <tr>
@@ -59,1428 +188,58 @@ lockout="no">/_resources/includes/included-content.html</parameter>
 <tbody>
 <tr>
 <td>
-<p><a href="#Faculty">Faculty</a></p>
-<p><a href="#Affiliated">Affiliated Faculty</a></p>
-<p><a href="#Adjunct">Adjunct Faculty</a></p>
+<h3>Vision</h3>
+<p>To be the leader positioning the Tampa Bay region as a national economic engine in AI, cybersecurity, computing education and research, fostering interdisciplinary innovation, ethical technology development, along with significant industry and government partnerships.</p>
 </td>
 <td>
-<p><a href="#Courtesy">Courtesy Faculty</a></p>
-<p><a href="#Distinguished">Distinguished University Professor Emeritus</a></p>
-<p><a href="#Emeritus">Emeritus</a></p>
+<h3>Mission</h3>
+<p>Dedicated to transforming the role of computing technologies through high-demand academic programs, research excellence and trusted, responsible innovation.</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p><a id="Faculty"></a></p>
-<table class="image-grid" style="color: var(--cms-region--primary-black);">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable" width="50%">Number of Images in Row <br />Options: 2, 3, or 4</th>
-<td class="grid-number" width="50%" data-select-list="2, 3, 4">3</td>
-</tr>
-<tr>
-<th class="ou-help mceNonEditable">Image</th>
-<th class="ou-help mceNonEditable">Caption</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" src="{{f:74703146}}" alt="A man with dark, curly hair and a beard stands confidently, crossing his arms while wearing a light blue checkered shirt against a plain gray background. His expression is relaxed yet engaged, contributing to an approachable demeanor." width="300" height="400" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:73978715}}">Shareef Ahmed</a><br />Assistant Professor</p>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;">ENB 367 | <a href="mailto:shareefahmed@usf.edu">Email</a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research:</strong><span style="color: #000000; font-size: 16px;"> Real-Time and Cyber-Physical Systems, Autonomous Systems, Formal Methods, Parallel and Distributed Systems, and Algorithms and Theory of Computation.</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img src="{{f:74703156}}" alt="A man with short black hair and glasses smiles while wearing a light blue checkered shirt, standing against a plain gray background." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:74477294}}">MD Rabbi Alam</a><br />Asst Professor of Instruction</p>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;">BEH 313 | <a href="mailto:mdrabbi@usf.edu%20">Email</a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong>Research:</strong> Internet of Things security, cloud security, and machine learning</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img src="{{f:74703157}}" alt="A man with short dark hair and glasses stands confidently with his arms crossed, wearing a light-colored suit over a checkered shirt, in front of a neutral background. His expression conveys professionalism and approachability." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:73978719}}">Amit Seal Ami</a><br />Assistant Professor</p>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="mailto:amitsealami@usf.edu">Email</a> | ENB 343K</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong>Research:</strong> Cybersecurity, Systematic Security Analysis and Evaluation</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img title="James Anderson" src="{{f:71834799}}" alt="A smiling man stands confidently with his arms crossed in a well-lit hallway, wearing a dark pinstripe suit and a colorful tie, with soft yellow walls and framed photographs in the background." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:71781875}}">James Anderson</a><br />Assoc Professor of Instruction</p>
-<p style="font-size: 16px; color: #000000;">ENG 215 | <a href="mailto:jmanderson@usf.edu">Email</a><br />813-974-3032</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="color: #000000; font-size: 16px;">Research:</strong><span style="color: #000000; font-size: 16px;">Electrical and Healthcare Networks, Cybersecurity</span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img title="Raiyan Baten" src="{{f:71834813}}" alt="A man with curly hair and glasses smiles confidently while wearing a dark suit and a white shirt with a maroon tie against a neutral gray background." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:71781873}}">Raiyan Abdul Baten</a><br />Assistant Professor</p>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;">ENG 116 | <a href="mailto:rbaten@usf.edu?subject=">Email</a><br />813-396-2273</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research: </strong><span style="color: #000000; font-size: 16px;">Network science, human-computer interaction, machine learning/deep learning, computational social science, affective computing, natural language processing, and graph data mining. His research focuses on building technology to enhance humans' soft skills and collective performances.</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img title="Shaun Canavan" src="{{f:71821583}}" alt="A man with light hair and a beard smiles gently while wearing glasses and a dark shirt, standing in a brightly lit hallway with windows and doors in the background. The setting conveys a professional atmosphere, suggesting a workplace or educational environment." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a title="Shaun Canavan" href="{{f:71781887}}">Shaun Canavan</a><br />Associate Professor, Director of Collaborative Programs</p>
-<p style="font-size: 16px; color: #000000;">ENB 315 | <a href="mailto:scanavan@usf.edu?subject=">Email</a><br />813-974-3137</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research:</strong><span style="color: #000000; font-size: 16px;"> Computer vision, face and sketch recognition, expression analysis, human computer interaction, facial feature detection and tracking</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" src="{{f:75483371}}" alt="A woman with shoulder-length dark hair smiles warmly, wearing a white blouse with black floral patterns and a gold necklace, set against a neutral background." width="300" height="337" /></td>
-<td>
-<p style="font-size: 16px; color: #000000;"><a href="{{f:75483347}}">Karni Chagal-Feferkorn</a><br />Asst Professor of Instruction</p>
-<p style="font-size: 16px; color: #000000;">LIB618B | <a href="mailto:karnif@usf.edu">Email</a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research:</strong><span style="font-size: 16px; color: #000000;"> Technology, ethics, and regulation and her research focuses on algorithmic liability, data governance, AI risks and children and responsible AI in general</span><span style="font-size: 16px; color: #000000;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img title="Sriram Chellappan" src="{{f:74924120}}" alt="A man with a short beard and a friendly smile stands with his arms crossed in a well-lit hallway, wearing a light gray polo shirt featuring a logo for &quot;Cyber Hero.&quot; The setting is modern, with bright walls and visible doorways in the background." width="600" height="674" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a title="Sriram Chellappan" href="{{f:71781868}}">Sriram Chellappan</a><br />Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 317 | <a href="mailto:sriramc@usf.edu?subject=">Email</a><br />813-974-1379</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong>Research:</strong> Socio-technical systems, cybersecurity, smart health, mobile networking, cyber-physical systems, mobile and wireless computings</p>
-<p style="font-size: 16px; color: #000000;"><strong>Awards:</strong> NSF CAREER (2013)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img title="Anshuman Chhabra" src="{{f:73884653}}" alt="A young man with a beard smiles warmly, wearing a light blue button-up shirt against a plain white background." width="288" height="323" /></td>
-<td>
-<p><a href="{{f:71781862}}">Anshuman Chhabra</a><br />Assistant Professor</p>
-<p>BEH 307 | <a href="mailto:anshumanc@usf.edu">Email</a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong>Research:</strong> AI/ML Safety, Multimodal Generative AI, Generative AI for Social Media Harm Mitigation, and Cooperative AI systems.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img title="Ken Christensen" src="{{f:59757396}}" alt="A middle-aged man with glasses stands confidently in a brightly lit hallway, wearing a blue button-up shirt, with colorful artwork and people blurred in the background." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a title="Ken Christensen" href="{{f:71781885}}">Ken Christensen</a><br />Associate Dean of Academic Affairs &amp; Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 319 | <a href="mailto:christen@cse.usf.edu?subject=">Email</a><br />813-974-4761</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong>Research:</strong> Performance evaluation of computer networks, high-speed packet switch architectures, energy-efficient networks (green networks)</p>
-<p style="font-size: 16px; color: #000000;"><strong>Awards:</strong> NSF CAREER (1998), USF CSE Broadening Participation in Computing Award (2022), USF Kosove Distinguished Undergraduate Teaching and Service Award (2017), USF Excellence in Innovation Award (2009), USF Teaching Incentive Program Award (1998)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img title="Suey Chun Roger Fang" src="{{f:73883617}}" alt="An older man with silver hair smiles gently while wearing a blue polo shirt, standing in a well-lit corridor with large windows in the background, reflecting a warm and inviting atmosphere. The polished floor and soft natural light enhance the welcoming setting." width="1779" height="1998" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a title="Roger Fang" href="{{f:71781892}}">Suey-Chun (Roger) Fang</a><br />Assoc Professor of Instruction</p>
-<p style="font-size: 16px; color: #000000;">ENG 016 | <a href="mailto:fang1@usf.edu?subject=">Email</a><br />813-974-2398</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research:</strong><span style="color: #000000; font-size: 16px;"> Data modeling, data warehousing, information systems, deductive databases, visual programming</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img src="{{f:74703155}}" alt="A man with short, dark hair smiles at the camera, wearing a light-colored, collared shirt with a subtle pattern, set against a plain gray background." width="300" height="400" /></td>
-<td>
-<p><a href="{{f:74477303}}">Kurt Friday</a><br />Asst Professor of Instruction</p>
-<p>ENB 301C | <a href="mailto:kurtfriday@usf.edu%20">Email</a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong>Research:</strong> performant, resilient , and cohesive hardware‑software ecosystems</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Alessio Gaspar" src="{{f:60368950}}" alt="A middle-aged man with short gray hair and glasses stands confidently with his arms crossed in a brightly lit hallway, adorned with posters in the background. He wears a dark blue shirt and displays a serious expression, suggesting a contemplative or assertive demeanor." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><strong><a title="Alessio Gaspar" href="{{f:71781855}}">Alessio Gaspar</a><br /></strong>Associate Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 343E |<a href="mailto:alessio@usf.edu?subject=">Email</a><br />813-974-2932</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research:</strong><span style="color: #000000; font-size: 16px;"> Evolutionary algorithms, computing education research, computer assisted learning, intelligent tutoring systems</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img title="William Gauvin" src="{{f:59530189}}" alt="A smiling man with short dark hair and a light skin tone is dressed in a collared shirt and blazer, set against a dark blurred background. His expression is warm and approachable, conveying friendliness." width="300" height="337" /></td>
-<td>
-<p style="font-size: 16px; color: #000000;"><strong><a href="{{f:71781944}}">William Gauvin</a><br /></strong>Professor of Practice</p>
-<p style="font-size: 16px; color: #000000;">ENB 343B | <a href="mailto:wgauvin@usf.edu?subject=">Email</a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research:</strong><span style="color: #000000; font-size: 16px;"> Malware analysis techniques using machine learning, Cyber Threat Information Sharing (CTIS) aggregation, replication and autodetection/mitigation</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Dmitry Goldgof" src="{{f:59881287}}" alt="A middle-aged man with glasses and a mustache stands confidently with his arms crossed, wearing a dark blazer over a blue shirt, while a softly blurred corridor serves as the background, suggesting a professional setting. A small pin is visible on his blazer, adding a personal touch to his formal appearance." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><strong><a title="Dmitry Goldgof" href="{{f:71781891}}">Dmitry B. Goldgof</a><br /></strong>Distinguished Univ Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 326 | <a href="mailto:goldgof@usf.edu">Email</a><br />813-974-4055</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong>Research:</strong> Medical image analysis, image and video processing, computer vision and pattern recognition, ethics and computing, bioinformatics and bioengineering</p>
-<p style="font-size: 16px; color: #000000;"><strong>Awards:</strong> AAIA Fellow (2018), AIMBE Fellow (2017), AAAS Fellow (2016), IAPR Fellow (2010), USF Excellence in Innovation Award (2020)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Lawrence Hall" src="{{f:71756006}}" alt="A smiling man with curly gray hair wears a light blue button-up shirt and stands in a brightly lit hallway, which features yellow walls and hints of furniture in the background. The setting conveys a welcoming atmosphere, complemented by the man's friendly expression." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><strong><a title="Lawrence Hall" href="{{f:71781864}}">Lawrence Hall</a><br /></strong>Associate Dean of Research and Innovation &amp; Distinguished Univ Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 330 | <a href="mailto:lohall@usf.edu?subject=">Email</a><br />813-974-4195</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong>Research:</strong> Intelligent systems, machine learning/data mining, fuzzy logic in intelligent systems, artificial intelligence in visual pattern recognition</p>
-<p style="font-size: 16px; color: #000000;"><strong>Awards:</strong> AIMBE Fellow (2018), AAAS Fellow (2013), IAPR Fellow (2010), IEEE Fellow (2003)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Zhao Han" src="{{f:57735043}}" alt="A man with short black hair and a friendly smile wears a white button-up shirt, set against a blurred natural background. His expression conveys warmth and approachability." width="300" height="336" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:71781957}}">Zhao Han</a><br />Assistant Professor</p>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;">ENB 255 | <a href="mailto:zhaohan@usf.edu?subject=">Email</a><br />813-396-0979</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research:</strong><span style="color: #000000; font-size: 16px;"> Human-robot interaction (HRI), robotics, artificial intelligence (AI), augmented reality (AR), cognitive science, explainable AI, robot explanation, mobile manipulation, natural language generation and pragmatics, references, assistive robotics</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Isabela Hidalgo" src="{{f:71762019}}" alt="A smiling woman with curly hair wears a black and white floral blouse, posing in front of a textured gray background. Her friendly expression conveys warmth and approachability." width="300" height="336" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><strong><a title="Isabela Hidalgo" href="{{f:71781878}}">Isabela M. Hidalgo</a><br /></strong>Asst Professor of Instruction</p>
-<p style="font-size: 16px; color: #000000;">ENB 301B | <a href="mailto:imoura@usf.edu?subject=">Email</a><br />813-974-6048</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research:</strong><span style="color: #000000; font-size: 16px;"> Human-computer interaction, programming languages</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Amanda Holloman" src="{{f:73883604}}" alt="A woman with styled hair stands confidently with her arms crossed, wearing a green and blue plaid shirt, in a well-lit hallway featuring large windows and a polished floor. The setting suggests a school or professional environment, with light filtering through the background." width="1430" height="1606" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" title="sdaf" href="{{f:71781858}}">Amanda Holloman</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Asst Professor of Instruction</p>
-<p style="--tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; font-size: 16px; color: #000000;">ENB 343M | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:akholloman@usf.edu">Email</a><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:haozheng@usf.edu"> </a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Research:</strong> Exploring the influence of olfactory-based computing systems and interactions on human cognitive experiences and abilities.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img src="{{f:74703145}}" alt="A man with short black hair and glasses stands against a plain wall, wearing a light blue button-up shirt and crossing his arms with a serious expression. The setting appears to be an office or studio environment." width="300" height="400" /></td>
-<td>
-<p><a href="{{f:73978700}}">Jiajun Huang</a><br />Assistant Professor</p>
-<p>ENB 323 | <a href="mailto:jiajunhuang@usf.edu">Email </a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong>Research:</strong> High-Performance Computing and Communication; Machine Learning Systems; High-Performance Deep Learning; Distributed and Parallel Computing/Systems; Big Data Management and Reduction</p>
-<p><strong>Awards:</strong> First Place Award, ACM Student Research Competition, SC 2023; Best Paper Finalist, HPDC 2025; Dissertation Completion Fellowship Award, UC Riverside (2025); Dean's Distinguished Fellowship, UC Riverside (2022)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img title="Hendrick Jeanty" src="{{f:60708425}}" alt="A man with a light yellow shirt and a salt-and-pepper beard smiles slightly, sitting against a softly blurred background with handwritten notes or symbols." width="1284" height="1442" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><strong><a title="Henrick Jeanty" href="{{f:71781894}}">Henrick Jeanty</a><br /></strong>Asst Professor of Instruction</p>
-<p style="font-size: 16px; color: #000000;">ENG 017 | <a href="mailto:hjeanty@mail.usf.edu?subject=">Email</a><br />813-974-1982</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research:</strong><span style="color: #000000; font-size: 16px;"> Technical analysis algorithm, optical character recognition</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img src="{{f:74703151}}" alt="A smiling man stands confidently in a light-colored button-up shirt against a softly lit background, with a casual pose and approachable demeanor." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:73978740}}">Anowarul Kabir</a><br />Assistant Professor</p>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;">ENB 327 | <a href="mailto:akabir@usf.edu">Email</a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong>Research:</strong> AI-enabled biological discovery, using machine learning, deep learning, and foundation models to unlock new insights from molecular biology data</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Kaushal Kafle" src="{{f:73884673}}" alt="A man with dark hair is smiling while wearing a light blue and white checked shirt, standing in a well-lit hallway adorned with large windows, showcasing a blurred outdoor view in the background. The setting conveys a professional atmosphere, emphasizing the subject's approachable demeanor." width="500" height="550" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:71781893}}">Kaushal Kafle</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Assistant Professor</p>
-<p style="font-size: 16px; color: #000000;">BEH 309 | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:kafle@usf.edu?subject=">Email</a><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:haozheng@usf.edu"> </a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Research:</strong> IoT Security, Emerging OS Security, Privacy Policy analysis</p>
-<p style="font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Awards:</strong> 2023 Commonwealth of Virginia Engineering &amp; Science (COVES) Policy Fellow, CCI Symposium 2023 Best Poster, ACM CODASPY 2019 Best Paper Award</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img src="{{f:74703149}}" alt="A woman with dark hair, wearing a beige blazer over a navy blouse, stands confidently against a light grey background, looking directly at the camera with a neutral expression." width="300" height="337" /></td>
-<td>
-<p><a href="{{f:74477299}}">FNU Kaleemunnisa</a><br />Asst Professor of Instruction</p>
-<p>ENB 343B</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong>Research:</strong> biotechnology, environmental sustainability, generative AI for the fashion industry, software engineering, and education</p>
-<p><strong>Awards:</strong> Best Paper Award at AISys in 2024</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img src="{{f:74703153}}" alt="A man with short hair and a slight smile stands against a neutral background, wearing a brown plaid blazer over a checkered shirt. The setting is simple and professional, focusing on his confident demeanor." width="300" height="337" /></td>
-<td>
-<p><a href="{{f:73978816}}">Chandra Kambhamettu</a><br />Professor</p>
-<p>ENB 339 | <a href="mailto:ckambhamettu@usf.edu">Email</a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong>Research:</strong> optical flow estimation, 3D modeling, dynamic scene understanding, and biomedical image analysis</p>
-<p><strong>Awards:</strong> NSF CAREER Award, Senior Member of the IEEE, NASA's Outstanding Scientist Award in 1996, "Test of Time" award from Winter Conference on Applications of Computer Vision</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img title="Robert Karam" src="{{f:71822233}}" alt="A smiling man in a dark green polo shirt stands confidently in a brightly lit hallway with large windows, creating a welcoming atmosphere. The background features blurred settings of doors and a polished floor, enhancing the focus on his friendly expression." width="1688" height="1896" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a title="Robert Karam" href="{{f:71781883}}">Robert Karam</a><br />Director of Undergraduate Affairs, Associate Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 341 | <a href="mailto:rkaram@usf.edu?subject=">Email</a><br />813-974-4184</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research: </strong><span style="color: #000000; font-size: 16px;">Hardware security, reconfigurable computing, bioimplantable devices (algorithms &amp; digital hardware)</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img src="{{f:74703152}}" alt="A man with short dark hair and a slight smile stands confidently with his arms crossed, wearing a white collared shirt against a neutral gray background. The setting appears to be an indoor space, emphasizing a professional yet approachable demeanor." width="300" height="400" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:73978822}}">Nima Karimian</a><br />Assistant Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 311 | <a href="mailto:nkarimian@usf.edu">Email</a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong>Research:</strong> biometrics, cybersecurity, generative AI, and trustworthy AI, particularly in healthcare</p>
-<p style="font-size: 16px; color: #000000;"><strong>Awards:</strong> NSF CAREER Award, Best Paper Award from the IEEE Computer Society Annual Symposium on VLSI, Best Paper Award from the International Conference on Computer Design</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img title="Srinivas Katkoori" src="{{f:71807531}}" alt="A man with dark hair and a serious expression wears a black suit jacket over a checkered shirt, set against a softly blurred light background that suggests an indoor setting." width="437" height="491" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a title="Srinivas Katkoori" href="{{f:71781888}}">Srinivas Katkoori</a><br />Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 258 | <a href="mailto:katkoori@usf.edu">Email</a><br />813-974-5737</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong>Research:</strong> High-level synthesis, low power synthesis, radiation tolerant VLSI design and CAD</p>
-<p style="font-size: 16px; color: #000000;"><strong>Awards:</strong> NSF CAREER (2001), USF Jerome Krivanek Distinguished Teacher Award (2013), USF Outstanding Undergraduate Teaching Award (2007), USF Outstanding Faculty Research Achievement Award (2003)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Gene Louis Kim" src="{{f:59853090}}" alt="A young man with long, dark hair and glasses smiles confidently in a well-lit hallway, wearing a patterned shirt. The background features light-colored walls and an open entrance leading to greenery outside." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:71781865}}">Gene Louis Kim</a><br />Assistant Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 376 | <a href="mailto:genekim@usf.edu" target="_blank" rel="noopener">Email</a><br />813-396-2882</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong>Research: </strong>Gene's research aims to integrate the benefits of neural and symbolic methods for modeling language meaning which supports automatic parsing and computer reasoning while being informed by linguistic semantics.</p>
-<p style="font-size: 16px; color: #000000;"><strong>Awards:</strong> University of Rochester Robert L. and Mary L. Sproull Fellow (2015-2017)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Seungbae Kim" src="{{f:71756904}}" alt="A professional-looking man with short hair and glasses smiles confidently while wearing a dark suit and a light blue dress shirt, set against a neutral gray background." width="1820" height="2045" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:71781886}}">Seungbae Kim</a><br />Assistant Professor</p>
-<p style="font-size: 16px; color: #000000;">NEC 117D | <a href="mailto:seungbae@usf.edu">Email</a><br />813-396-2881</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research</strong><span style="color: #000000; font-size: 16px;">: Artificial intelligence, Graph neural networks, Machine learning (Fairness and Explainability), Social network analysis, Applied data science</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="John Licato" src="{{f:73883606}}" alt="A man with short, dark hair stands confidently with his arms crossed in a well-lit corridor, wearing a gray suit jacket over a light blue checked shirt, while a faint reflection of light from windows can be seen in the background." width="1529" height="1717" /></td>
-<td>
-<p style="margin-top: 1.5em;"><a title="John Licato" href="{{f:71781876}}">John Licato</a><br />Associate Professor</p>
-<p>ENB 301D | <a href="mailto:licato@usf.edu?subject=">Email</a><br />813-974-6212</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><strong>Research:</strong> Artificial Intelligence, natural language processing (NLP), computational cognitive modeling, cognitive science and robotics, automated theorem provers, argumentation, human reasoning</p>
-<p style="font-size: 16px; color: #000000;"><strong>Awards:</strong> AFOSR Young Investigator's Award (2017)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img title="Jay Ligatti" src="{{f:59531034}}" alt="A man in a blue polo shirt stands confidently, smiling slightly, with a well-lit hallway and large windows in the background. The polished floor reflects the warm tones of the surrounding walls and natural light." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a title="Jay Ligatti" href="{{f:71781884}}">Jay Ligatti</a><br />Associate Dean of Faculty Affairs, Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 333 | <a href="mailto:ligatti@usf.edu?subject=">Email</a><br />813-974-0908</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong>Research:</strong> Runtime Security Mechanisms, Authentication, Policy Composition, Injection Attacks, Enforceability Theory, Type Systems, Subtyping, Policy-Specification Languages</p>
-<p style="font-size: 16px; color: #000000;"><strong>Awards:</strong> NSF CAREER (2008), Best-paper award at ACM PLDI (2007), Test of Time Award at ACM CCS (2015)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Ankur Mali" src="{{f:59531075}}" alt="A man with a beard, wearing a light blue shirt, stands confidently with his arms crossed in a well-lit hallway, featuring a modern aesthetic with glass doors in the background. The setting suggests an academic or professional environment, adding to the subject's composed demeanor." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:71781871}}">Ankur Mali</a><br />Assistant Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 247A | <a href="mailto:ankurarjunmali@usf.edu">Email</a><br />813-396-2826</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research</strong><span style="color: #000000; font-size: 16px;">: Trustworthy AI, Deep learning theory, Natural language processing, Memory augmented neural networks, Physics informed NNs, Bio-inspired neural architectures, and Lifelong learning. </span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="float: left;" title="Provost Mohapatra" src="{{f:71756035}}" alt="A man wearing a blue suit and a patterned tie stands confidently outside a modern building, with trees and windows visible in the background. He is looking directly at the camera with a slight smile." width="267" height="300" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a title="Prasant Mohapatra" href="{{f:71781857}}">Prasant Mohapatra</a> <br />Professor, Provost and Executive Vice President of Academic Affairs</p>
-<p style="font-size: 16px; color: #000000;">ENB 320| <a href="mailto:pmohapatra@usf.edu" target="_blank" rel="noopener">Email</a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong>Research: </strong>Computer networks, wireless networks, mobile systems and communications, artificial intelligence, cybersecurity.</p>
-<p style="font-size: 16px; color: #000000;"><strong style="font-size: 16px; margin-top: 0px;">Awards: </strong><span style="font-size: 16px;">Certificate of Recognition for Research Response to Community Crisis, APLU (2021), Distinguished Professor of UC Davis (2019), Distinguished Alumnus Award, National Institute of Technology, Rourkela, India (2015), Biju Patnaik Lifetime Scientific Excellence Award, Government of Odisha, India (2015), Fellow of AAAS (2013), HP Labs Innovation Award (2011, 2012, 2013), Outstanding Engineering Faculty Research Award, College of Engineering, UC Davis (2011), Outstanding Engineering Alumni Award, Pennsylvania State University (2008).</span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Mehran Mozaffari Kermani" src="{{f:59531084}}" alt="A man with dark hair and a checked shirt stands smiling with arms crossed in a brightly lit hallway, flanked by yellow walls and glimpses of outdoor greenery in the background." width="300" height="350" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:71781872}}">Mehran Mozaffari Kermani</a><br />Director of Graduate Programs, Associate Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 338 | <a href="mailto:mehran2@usf.edu">Email</a><br />813-974-2671</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong>Research:</strong> Fault diagnosis and tolerance in cryptography, cryptographic engineering, computer arithmetic</p>
-<p style="font-size: 16px; color: #000000;"><strong>Awards:</strong> USF Faculty Outstanding Research Achievement Award (2020), USF Nexus Initiative Global Award (2019), USF College of Engineering Outstanding Junior Research Achievement Award (2018)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img title="John Murray-Bruce" src="{{f:59531093}}" alt="A man with curly hair and glasses smiles confidently, wearing a light blue shirt against a softly blurred neutral background." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:71781879}}">John Murray-Bruce</a><br /><span style="color: var(--cms-region--primary-black);">Assistant Professor</span></p>
-<p style="font-size: 16px; color: #000000;">ENG 117A | <a href="mailto:murraybruce@usf.edu?subject=">Email</a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research:</strong><span style="color: #000000; font-size: 16px;"> Computational imaging, PDE-constrained inverse problems, computational sensing, sampling theory and applications</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Tempestt Neal" src="{{f:60683905}}" alt="A smiling woman with long, curly dreadlocks stands confidently with her arms crossed in a brightly lit corridor, wearing a teal top. The background features light-colored walls and several doorways, suggesting a welcoming indoor setting." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:71781880}}">Tempestt Neal</a><br />Associate Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 310 | <a href="mailto:tjneal@usf.edu?subject=">Email</a><br />813-396-9353</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong>Research:</strong> Biometrics; Applied Smart Sensing; Applied Artificial Intelligence; Inclusive Cybersecurity; Human-Centered Computing</p>
-<p style="font-size: 16px; color: #000000;"><strong>Awards:</strong> NSF CAREER (2023), McKnight Junior Faculty Fellow (2021)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img src="{{f:74703147}}" alt="A young man with dark, curly hair smiles warmly while wearing a white shirt against a neutral gray background. His approachable demeanor and clear expression convey friendliness and confidence." width="300" height="337" /></td>
-<td>
-<p><a href="{{f:73978730}}">Utkarsh Ojha</a><br />Assistant Professor</p>
-<p>ENB 329 | <a href="mailto:uojha@usf.edu">Email</a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong>Research</strong>: the philosophical and technical differences between AI-generated and human-generated content</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Xinming (Simon) Ou" src="{{f:59880730}}" alt="A man with short, slightly tousled hair smiles warmly while wearing a light blue button-up shirt, standing in a bright hallway with large windows and polished floors in the background. The setting conveys a professional atmosphere, and the man's expression suggests friendliness and approachability." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a title="Xinming (Simon) Ou" href="{{f:71781895}}"><strong>Xinming (Simon) Ou</strong></a><br />Professor</p>
-<p style="font-size: 16px; color: #000000;">ENC 2501 | <a href="mailto:xou@usf.edu?subject=">Email</a><br />813-974-4522</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong>Research:</strong> Cyber security, cyber physical systems, programming languages, cloud computing, human aspects of computing</p>
-<p><strong style="color: #000000; font-size: 16px;">Awards:</strong><span style="color: #000000; font-size: 16px;"> NSF CAREER (2010)</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Mauricio Pamplona Segundo" src="{{f:60708392}}" alt="A smiling man with a beard stands with his arms crossed in a well-lit hallway, wearing a gray polo shirt featuring a green university logo, surrounded by bright walls and large windows." width="1340" height="1506" /><br /><br /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="{{f:71781866}}">Mauricio Pamplona Segundo</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Assoc Professor of Instruction</p>
-<p style="font-size: 16px; color: #000000;">ENB 343H | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:mauriciop@usf.edu">Email</a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="color: #000000; font-size: 16px;">Research:</strong><span style="color: #000000; font-size: 16px;">Computer vision (biometric recognition, remote sensing, video analysis, 3D vision); machine learning (few-shot learning, distribution modeling)</span></p>
-<p style="font-size: 16px; color: #000000;"><strong>Awards:</strong> IET Biometrics Best Paper Award, The IET Premium Awards 2020, IET 2020</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img src="{{f:74703154}}" alt="A young man with glasses and dark hair, wearing a white shirt, stands confidently with his arms crossed, smiling slightly against a light gray background." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:73978808}}">Santosh Pandey</a><br />Assistant Professor</p>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;">ENB 325 | <a href="mailto:spandey1@usf.edu">Email</a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong>Research:</strong> Scalable machine learning-based microarchitecture simulators, instruction embeddings for fast simulation, and system design frameworks that optimize computing from the program level to the hardware level</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Marbin Pazos-Revilla" src="{{f:59945399}}" alt="A smiling man with glasses stands confidently with his arms crossed, dressed in a light blue shirt and a green and gold patterned tie, in a well-lit hallway with large windows and soft, reflective flooring. The background features a glimpse of greenery visible through the windows, adding to the professional yet welcoming atmosphere." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:71781859}}">Marbin Pazos-Revilla</a><br />Asst Professor of Instruction</p>
-<p style="font-size: 16px; color: #000000;">ENB 343C | <a href="mailto:marbin@usf.edu?subject=">Email</a><br />813-974-5043</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research:</strong><span style="color: #000000; font-size: 16px;"> Cybersecurity, cyber-physical systems, internet of things, engineering education</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img src="{{f:74703150}}" alt="A young man with short black hair and glasses stands against a light gray wall, wearing a black polo shirt and displaying a neutral expression." width="300" height="400" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:73978724}}">Fengchun Qiao</a><br />Assistant Professor</p>
-<p>ENB 369 | <a href="mailto:fengchun@usf.edu">Email</a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong>Research:</strong> Trustworthy machine learning, Out-of-distribution generalization, Optimization and Graph Theory</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Taseef Rahman" src="{{f:57689022}}" alt="A man with a short beard stands confidently with his arms crossed, wearing a black suit and a light blue checkered shirt, set against a well-lit hallway with large windows and a polished floor. The background features a glimpse of open doors, suggesting an inviting environment." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:71781953}}">Taseef Rahman</a><br />Asst Professor of Instruction</p>
-<p style="font-size: 16px; color: #000000;">ENG 214 | <a href="mailto:taseefr@usf.edu">Email</a><br />813-396-2274</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research:</strong><span style="color: #000000; font-size: 16px;"> Bioinformatics, generative deep learning</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Richard Rauscher" src="{{f:60626829}}" alt="A smiling man in a dark striped suit and patterned tie stands in a brightly lit corridor, with a few people visible in the background, suggesting an informal gathering or event." width="300" height="337" /></td>
-<td>
-<p style="font-size: 16px; color: #000000;"><a href="{{f:71781856}}">Richard Rauscher</a><strong><br /></strong>Director of Computing Infrastructure, Assoc Professor of Instruction</p>
-<p style="font-size: 16px; color: #000000;">LIB 628N | <a href="mailto:rauscher@usf.edu">Email</a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px;">Research:</strong><span style="font-size: 16px;"> Network/IoT security related to healthcare environments, optimization of basic/clinical research data flows/data warehousing/"big data", quantum computing as applied to life sciences and healthcare</span><span style="font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Assistant Professor" src="{{f:71756004}}" alt="A woman with shoulder-length brown hair smiles warmly, wearing a purple top and a delicate necklace, while standing in a brightly lit corridor with large windows and a green table in the background. The setting features polished floors and yellow walls, creating a welcoming atmosphere." width="2000" height="2247" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="{{f:71781870}}">Dayane Reis</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Assistant Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 318 | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:dayane3@usf.edu">Email</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />813-396-2837</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="color: #000000; font-size: 16px; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Research</strong><span style="color: #000000; font-size: 16px;">: VLSI, low power design, AI accelerators, emerging technologies, hardware security</span></p>
-<p style="font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Awards</strong>: Best paper award at the ACM/IEEE International Symposium on Electronics and Low Power Design in 2018 (ISLPED'18), Cadence Women in Technology (WIT) Scholar 2018/2019</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Assistant Professor" src="{{f:60368948}}" alt="A young man stands confidently with his arms crossed, wearing glasses and a dark button-up shirt, against a softly blurred backdrop of a hall with large windows and warm-toned walls. The setting suggests an academic or professional environment, enhancing his serious demeanor." width="343" height="2307" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="{{f:71781945}}">Yili Ren</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Assistant Professor</p>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;">ENB 378 | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:yiliren@usf.edu?subject=">Email</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />813-396-2303</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research: </strong><span style="color: #000000; font-size: 16px;">Mobile Wireless Sensing Systems, Human-Computer Interaction Applications, Smart Home and Internet of Things Applications, Mobile Authentication, Novel Biometrics, Smart Home and Internet of Things Security.</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Sudeep Sarkar" src="{{f:71755999}}" alt="A man in a gray suit and turquoise shirt stands confidently with his arms crossed, smiling at the camera, in a bright indoor corridor featuring large windows and muted colors. In the background, a blurred image of a person observing a science experiment is visible." width="300" height="337" /></td>
-<td>
-<p style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; font-size: 16px;" title="Sudeep Sarkar" href="{{f:71781952}}"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Sudeep Sarkar</strong></a><br />Launch Dean, Distinguished University Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 345 | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:sarkar@usf.edu?subject=">Email</a><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:sarkar@usf.edu"> </a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />813-974-2113</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Research:</strong><span style="color: #000000; font-size: 16px;"> Computer vision and image analysis, automated sign language, recognition biometrics and human identification, perceptual organization for grouping and segmentation, Bayesian methods </span></p>
-<p style="font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Awards:</strong> NAI Fellow (2017), AIMBE Fellow (2016), NSF CAREER (1995), USF Outstanding Undergraduate Teaching Award (1998)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img src="{{f:74794953}}" alt="A young woman with glasses stands confidently, arms crossed, wearing a dark blazer with gold trim over a white shirt, against a light gray background. She exudes a professional demeanor with a subtle smile." width="368" height="1405" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:73978711}}">Yi Sheng</a><br />Assistant Professor</p>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;">ENB 342B | <a href="mailto:sheng1@usf.edu">Email</a><br />(571) 587-2623</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; font-size: 16px;">Research:</strong><span style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; font-size: 16px;"> Electrical design automation, medical image processing and hardware and software co-design</span></p>
-<p style="font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Awards:</strong> ASP-DAC Research Award; Best Poster award at the Student Research Forum at ASP-DAC</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Schinnel Small" src="{{f:73885421}}" alt="A smiling woman wearing black glasses and a green blazer stands confidently in a well-lit hallway with large windows in the background. The setting features polished floors and a modern architectural design, enhancing her professional look." width="2079" height="2335" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" title="Schinnel Small" href="{{f:71781942}}">Schinnel Small</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Assistant Dean for Academic Planning, Assoc Professor of Instruction</p>
-<p style="font-size: 16px; color: #000000;">LIB 618E | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:sksmall@usf.edu?subject=">Email</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />813-974-2126</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research:</strong><span style="color: #000000; font-size: 16px;"> Programming languages, computer architecture, visual analytics</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Yu Sun" src="{{f:59881183}}" alt="A man with short, graying hair and a beard stands in a brightly lit hallway, dressed casually in a gray t-shirt, with a subtle smile as he faces the camera. The background features soft, blurred elements of windows and walls, creating a warm and inviting atmosphere." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a title="Yu Sun" href="{{f:75867706}}"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Yu Sun</strong></a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 331 | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:yusun@usf.edu">Email</a><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:yusun@mail.usf.edu"> </a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />813-974-7508</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Research:</strong> Intelligent systems, robotics, cyber physical systems and virtual reality, computer vision, medical image processing, deep learning</p>
-<p style="font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Awards: </strong>USF Excellence in Innovation Award (2018), USF Neuroscience Collaborative Award (2010)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img src="{{f:78294723}}" alt="A smiling man with short, light-colored hair wears a blue shirt with a gray jacket, standing in front of a colorful background that features industrial elements. His expression is friendly and welcoming, suggesting a casual and approachable atmosphere." width="560" height="629" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">David Tahmoush<br /></strong>Professor of Practice<strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;"><br /></strong></p>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="mailto:dtahmoush@usf.edu">Email</a></p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p>Coming soon</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="John Templeton" src="{{f:58339194}}" alt="A smiling man with a beard and long hair wears a gray sweater, standing outdoors with an architectural background featuring columns and soft, blurred colors. His expression conveys warmth and friendliness, making him appear approachable." width="300" height="336" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="{{f:71781882}}">John Templeton</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Assistant Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 247 | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:jtemplet@usf.edu?subject=">Email</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />813-396-0962</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research</strong><span style="color: #000000; font-size: 16px;">: Smart Health Systems, Human Factored Design, IoT, Mobile Computing, App Development, and Machine Learning</span><span style="color: #000000; font-size: 16px;"></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Oguzhan Topsakal" src="{{f:76805665}}" alt="A man with curly dark hair smiles confidently while standing with his arms crossed in a well-lit hallway featuring glass doors and artwork on the walls. He wears a dark blazer over a white shirt, conveying a professional appearance." width="1100" height="1248" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" title="sdaf" href="{{f:71781867}}">Oguzhan Topsakal</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Director of Accreditation, Assoc Professor of Instruction</p>
-<p style="font-size: 16px; color: #000000;">ENB 343F | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:topsakal@usf.edu">Email</a><br />(813) 396-0636</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Research:</strong> Utilization of Deep Learning &amp; Large Language Models for Education and Medicine</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Yicheng Tu" src="{{f:60658618}}" alt="A middle-aged man with short black hair, wearing a light-grey button-up shirt, stands confidently in a well-lit corridor with a polished floor and large windows in the background. The setting suggests a professional or academic environment." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" title="Yicheng Tu" href="{{f:71781949}}"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Yicheng Tu</strong></a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" /><span style="color: var(--cms-region--primary-black); font-weight: 400;">Professor</span></p>
-<p style="font-size: 16px; color: #000000;">ENB 340 | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:tuy@usf.edu">Email</a><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:Tuy@mail.usf.edu"> </a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />813-974-2114</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Research:</strong> Database systems, multimedia systems, distributed systems</p>
-<p style="font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Awards: </strong>NSF CAREER (2013), USF Outstanding Research Achievement Award (2014), USF Outstanding Faculty Award (2014)</p>
 </td>
 </tr>
 </tbody>
 </table>
 </td>
 </tr>
-<tr>
-<td><img style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; font-size: 16px; color: #000000;" title="Philip Ventura" src="{{f:59531256}}" alt="A man with short, dark hair and a cheerful expression smiles directly at the camera, wearing a black shirt against a plain background." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" title="Philip Ventura" href="{{f:71781943}}"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Philip Ventura</strong></a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Assoc Professor of Instruction</p>
-<p style="font-size: 16px; color: #000000;">ENG 211 | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:pventura@usf.edu?subject=">Email</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />813-974-0552</p>
-<table class="toggle-section">
+</tbody>
+</table>
+<table class="gallery-text-image" style="width: 100%;">
 <thead>
 <tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
+<th class="ou-help mceNonEditable" colspan="2">Gallery Item - Text and Image <br />Image Dimensions - Width: 460 px, Height: 300 px* <br />* Recommended height.</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
 <tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research:</strong><span style="color: #000000; font-size: 16px;"> Computer science education, pedagogy of object orientation, objects-first introductory CS curricula</span><span style="color: #000000; font-size: 16px;"></span></p>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading Display. Accepted values: yes, no</p>
 </td>
+<td class="gallery-item-heading-display" style="width: 50%;" data-select-list="yes, no">yes</td>
 </tr>
-</tbody>
-</table>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading</p>
 </td>
+<td class="gallery-item-heading" style="width: 50%;">Values</td>
 </tr>
 <tr>
-<td><img style="font-size: 16px; color: #000000;" title="Guangjing Wang" src="{{f:73883607}}" alt="A young man with glasses and short hair is smiling warmly while wearing a dark polo shirt in a well-lit indoor setting, with blurred backgrounds suggesting a hallway and some furniture. The environment appears casual and welcoming, highlighting his friendly demeanor." width="1766" height="1984" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" title="sdaf" href="{{f:71781853}}">Guangjing Wang</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Assistant Professor</p>
-<p style="font-size: 16px; color: #000000;">BEH 311 | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:guangjingwang@usf.edu?subject=">Email</a><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:haozheng@usf.edu"> </a></p>
-<table class="toggle-section">
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Text</p>
+</td>
+<td class="gallery-item-text" style="width: 50%;">
+<table class="two-column-text">
 <thead>
 <tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Research: </strong><span style="color: #000000; font-size: 16px;">LLM Agents,Security and Privacy, Sensing and its data management.</span></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
 <tr>
-<td><img style="font-size: 16px; color: #000000;" title="Jing Wang" src="{{f:59853180}}" alt="A woman with long dark hair smiles softly while wearing a blue button-up shirt, standing in a well-lit corridor with large windows in the background. The setting appears to be an indoor space, emphasizing a calm and professional atmosphere." width="300" height="337" /></td>
 <td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" title="Jing Wang" href="{{f:71781881}}"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Jing Wang</strong></a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Professor of Instruction</p>
-<p style="font-size: 16px; color: #000000;">ENC 3501 | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:jw@usf.edu">Email</a><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:jw@mail.usf.edu"> </a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />813-974-6897</p>
-<table class="toggle-section">
+<table class="toggle-section" style="color: #000000;">
 <thead>
 <tr>
 <th class="ou-help mceNonEditable">Toggle Section</th>
@@ -1488,23 +247,15 @@ lockout="no">/_resources/includes/included-content.html</parameter>
 </thead>
 <tbody>
 <tr>
-<td class="toggle-text">Research and Awards</td>
+<td class="toggle-text">Collaborative synergy</td>
 </tr>
 <tr>
 <td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Research:</strong> Computer animation, broadening participation in computing, undergraduate computer science and engineering education</p>
-<p style="font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Awards: </strong>USF Women in Leadership &amp; Philanthropy Dr. Kathleen Moore Faculty Excellence Award (2020), Outstanding Undergraduate Teaching Award, University of South Florida (2011)</p>
+<p>We value a cohesive academic environment where the college serves as the university&rsquo;s central hub for AI and cybersecurity, connecting distinct disciplines as spokes. We believe that integrating artificial intelligence and cybersecurity with fields such as medicine, science, engineering, the arts, humanities and business creates a dynamic force that exceeds the capabilities of isolated endeavors. We are committed to maintaining the integrity of existing departments while facilitating extensive interdisciplinary collaborations that bridge technical expertise with various fields.&nbsp;</p>
 </td>
 </tr>
 </tbody>
 </table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Ning Wang" src="{{f:60658617}}" alt="A young woman with long black hair, wearing a sleeveless black top, stands confidently in a well-lit hallway, with large windows in the background revealing a hint of outdoor scenery. Her expression is calm and composed as she gazes directly at the viewer." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="{{f:71781874}}">Ning Wang</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Assistant Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 316 | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:ningw@usf.edu?subject=">Email</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />813-396-2297</p>
 <table class="toggle-section">
 <thead>
 <tr>
@@ -1513,22 +264,15 @@ lockout="no">/_resources/includes/included-content.html</parameter>
 </thead>
 <tbody>
 <tr>
-<td class="toggle-text">Research and Awards</td>
+<td class="toggle-text">Student empowerment and workforce readiness</td>
 </tr>
 <tr>
 <td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research Interests:</strong><span style="color: #000000; font-size: 16px;"> Machine learning-based intrusion detection systems, adversarial machine learning, federated learning, privacy-preserving machine learning, differential privacy, IoT security, and cyber-physical system security.</span></p>
+<p>We are dedicated to elevating student success by preparing a pipeline of graduates with deep technical skills and ethical grounding required by the modern workforce. We value curricula that are rigorous, relevant and responsive to the sustained demand for high-skilled professionals in AI and cybersecurity. We are committed to ensuring our graduates secure high-wage positions and possess the agility to adapt to rapid technological change.&nbsp;</p>
 </td>
 </tr>
 </tbody>
 </table>
-</td>
-</tr>
-<tr>
-<td><img style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; font-size: 16px; color: #000000;" title="Alfredo Weitzenfeld" src="{{f:60658663}}" alt="A middle-aged man with glasses and arms crossed stands confidently in a brightly lit hallway, featuring colorful walls and artwork in the background." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" title="Alfredo Weitzenfeld" href="{{f:71781956}}"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Alfredo Weitzenfeld</strong></a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 314 | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:aweitzenfeld@usf.edu?subject=">Email</a><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:aweitzenfeld@usf.edu"> </a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />813-974-4905</p>
 <table class="toggle-section">
 <thead>
 <tr>
@@ -1537,22 +281,15 @@ lockout="no">/_resources/includes/included-content.html</parameter>
 </thead>
 <tbody>
 <tr>
-<td class="toggle-text">Research and Awards</td>
+<td class="toggle-text">Transformative and responsible innovation</td>
 </tr>
 <tr>
 <td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research:</strong><span style="color: #000000; font-size: 16px;"> Biologically-inspired robotics, cognitive robotics, humanoid robots, multi-robot systems</span><span style="color: #000000; font-size: 16px;"></span></p>
+<p>We pursue innovative research excellence that pushes the boundaries of knowledge while strictly adhering to ethical standards. We value curiosity, creativity, and critical thinking, striving to solve large-scale societal problems through convergence research. We are committed to instilling a deep sense of responsibility in our community, promoting ethically driven policies that mitigate potential risks, ensure security and accountability, protect privacy and foster trust in digital transformation.&nbsp;</p>
 </td>
 </tr>
 </tbody>
 </table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Julia Woodward" src="{{f:71761919}}" alt="A woman with shoulder-length blonde hair and glasses stands confidently with her arms crossed, smiling slightly in a well-lit hallway featuring large windows and polished floors. She wears a dark blue top and is set against a backdrop that suggests a welcoming, professional environment." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="{{f:71781954}}">Julia Woodward</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Assistant Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 332 | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:juliaevewoodward@usf.edu">Email</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />813-396-2828</p>
 <table class="toggle-section">
 <thead>
 <tr>
@@ -1561,23 +298,15 @@ lockout="no">/_resources/includes/included-content.html</parameter>
 </thead>
 <tbody>
 <tr>
-<td class="toggle-text">Research and Awards</td>
+<td class="toggle-text">Strategic partnership and economic impact</td>
 </tr>
 <tr>
 <td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Research:</strong> Human-centered computing, human-computer interaction, natural user interfaces, child-computer interaction, mobile computing, multimodal interaction, learning technologies</p>
-<p style="font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Awards:</strong> National Science Foundation Graduate Research Fellow (2019)</p>
+<p>We view industry and government collaboration not only as a resource but also as a core component of our mission. We value deep integration with partners, ranging from defense agencies to tech giants, to co-develop curricula, accelerate commercialization and drive Florida's economic prosperity. We strive to be the primary source of high-quality computing talent for our partners and a catalyst for regional economic growth.&nbsp;</p>
 </td>
 </tr>
 </tbody>
 </table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Yavuz Attila" src="{{f:54237476}}" alt="A man in a navy suit and glasses smiles warmly while standing in a brightly lit corridor with modern architecture, featuring polished floors and large windows in the background." width="300" height="336" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="{{f:71781946}}">Attila A. Yavuz</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" /><span style="color: var(--cms-region--primary-black);">Associate Professor</span></p>
-<p style="font-size: 16px; color: #000000;">ENG 117 | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:attilaayavuz@usf.edu?subject=">Email</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />813-974-0419</p>
 <table class="toggle-section">
 <thead>
 <tr>
@@ -1586,482 +315,344 @@ lockout="no">/_resources/includes/included-content.html</parameter>
 </thead>
 <tbody>
 <tr>
-<td class="toggle-text">Research and Awards</td>
+<td class="toggle-text">Operational excellence and stewardship</td>
 </tr>
 <tr>
 <td class="toggle-content">
-<p><strong>Research:</strong> Applied cryptography, privacy enhancing technologies, light-weight cryptography, cyber-security for critical cyber-infrastructures (e.g., internet of things and cloud systems), network security</p>
-<p><strong>Awards:</strong> NSF CAREER (2017-2023), Cisco Research Awards (2019,2020, 2022), USF Excellence in Innovation Award (2022), USF Faculty Outstanding Research Achievement Award (2020), USF College of Engineering's Outstanding Research Achievement Award (2020)</p>
+<p>We are committed to sustainable growth and financial self-sufficiency. We value the efficient use of resources through a "flat" administrative structure that minimizes bureaucracy and fosters agility. &ldquo;Flat structure" means no departmental administrative overhead, modeled after the USF College of Nursing and Northeastern University&rsquo;s Khoury College of Computing. We are dedicated to maintaining a robust financial base through various revenue streams, including tuition, research funding, and philanthropy, to ensure the college's long-term viability and national prominence.&nbsp;</p>
 </td>
 </tr>
 </tbody>
 </table>
 </td>
 </tr>
-<tr>
-<td><img style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; font-size: 16px; color: #000000;" title="Hye Seon Yi" src="{{f:60708391}}" alt="A woman with shoulder-length dark hair and glasses stands confidently with her arms crossed, wearing a blue floral blouse, set against a softly blurred interior background. The setting features large windows that suggest a bright and welcoming atmosphere." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="{{f:71781860}}">Hye Seon Yi</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Asst Professor of Instruction</p>
-<p style="font-size: 16px; color: #000000;">ENG 216 | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:hsyi@usf.edu">Email</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />813-396-0721</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
+</tbody>
+</table>
+</td>
 </tr>
-</thead>
-<tbody>
 <tr>
-<td class="toggle-text">Research and Awards</td>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image</p>
+</td>
+<td class="gallery-item-image" style="width: 50%;"><img src="{{f:84042716}}" alt="Dr. Licato with students" width="490" height="328" /></td>
 </tr>
 <tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research:</strong><span style="color: #000000; font-size: 16px;"> Data science, image processing, machine learning, deep learning</span><span style="color: #000000; font-size: 16px;"></span></p>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image Alignment. Accepted values: left, right</p>
 </td>
+<td class="gallery-item-alignment" style="width: 50%;" data-select-list="left, right">left</td>
 </tr>
 </tbody>
 </table>
-</td>
-</tr>
-<tr>
-<td><img src="{{f:74703148}}" alt="A man with short black hair and round glasses stands confidently with his arms crossed, wearing a black button-up shirt against a light gray background." width="300" height="400" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a href="{{f:73978735}}">Shichen Zhang</a><br />Assistant Professor</p>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;">ENB 226A | <a href="mailto:szhang1@usf.edu">Email</a></p>
-<table class="toggle-section">
+<table class="gallery-text-image" style="width: 100%;">
 <thead>
 <tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
+<th class="ou-help mceNonEditable" colspan="2">Gallery Item - Text and Image <br />Image Dimensions - Width: 460 px, Height: 300 px* <br />* Recommended height.</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
 <tr>
-<td class="toggle-content">
-<p><strong>Research:</strong> Integrating advanced AI technologies into wireless communication systems to enable sensing capabilities, high-speed performance, and seamless connectivity</p>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading Display. Accepted values: yes, no</p>
 </td>
+<td class="gallery-item-heading-display" style="width: 50%;" data-select-list="yes, no">yes</td>
 </tr>
-</tbody>
-</table>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading</p>
 </td>
+<td class="gallery-item-heading" style="width: 50%;">How Success Is Measured</td>
 </tr>
 <tr>
-<td><img style="font-size: 16px; color: #000000;" title="Yan Zhang" src="{{f:71822204}}" alt="A woman with glasses smiles while standing in a well-lit, modern interior space, wearing a gray dress with a v-neck and subtle detailing on the shoulders. The background features blurred elements of a hallway, suggesting a professional or academic setting." width="212" height="238" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" title="Yan Zhang" href="{{f:71781955}}"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Yan Zhang</strong></a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Assoc Professor of Instruction</p>
-<p style="font-size: 16px; color: #000000;">ENB 343A | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:yzhang16@mail.usf.edu?subject=">Email</a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />813-974-9653</p>
-<table class="toggle-section">
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Text</p>
+</td>
+<td class="gallery-item-text" style="width: 50%;">
+<table class="two-column-text">
 <thead>
 <tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
 <tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Research:</strong><span style="color: #000000; font-size: 16px;"> Congestion control and energy optimization in data center networks, content delivery acceleration over wide area networks, energy efficient networking</span><span style="color: #000000; font-size: 16px;"></span></p>
+<td>
+<ul>
+<li>Student retention and graduation rates</li>
+<li>Career placement</li>
+<li>Interdisciplinary enrollment</li>
+<li>Research expenditures</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Faculty awards</li>
+<li>Industry partnerships</li>
+<li>Startup activity</li>
+<li>Philanthropy</li>
+<li>Rankings</li>
+<li>Economic impact</li>
+</ul>
 </td>
 </tr>
 </tbody>
 </table>
 </td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Hao Zheng" src="{{f:71761918}}" alt="A man with dark hair and a friendly smile is dressed in a gray suit and light blue shirt, posing against a soft, neutral background. His confident demeanor suggests professionalism and approachability." width="1061" height="1156" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" title="Hao Zheng" href="{{f:71781951}}"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Hao Zheng</strong></a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />Associate Professor</p>
-<p style="font-size: 16px; color: #000000;">ENB 312 | <a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:haozheng@usf.edu?subject=">Email</a><a style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" href="mailto:haozheng@usf.edu"> </a><br style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;" />813-974-4757</p>
-<table class="toggle-section">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
 </tr>
 <tr>
-<td class="toggle-content">
-<p style="font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Research:</strong> Hardware/Software testing and verification, embedded systems, computer architecture, VLSI design, electronic design automation</p>
-<p style="font-size: 16px; color: #000000;"><strong style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;">Awards:</strong> NSF CAREER (2006), Best Paper Award, the 21st International SPIN Symposium of Model Checking of Software (2014), USF Outstanding Research Achievement Award (2007)</p>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image</p>
 </td>
+<td class="gallery-item-image" style="width: 50%;"><img src="{{f:84042725}}" alt="Graduating student" width="320" height="213" /></td>
 </tr>
-</tbody>
-</table>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image Alignment. Accepted values: left, right</p>
 </td>
+<td class="gallery-item-alignment" style="width: 50%;" data-select-list="left, right">right</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h3><strong>research faculty</strong></h3>
-<table class="image-grid">
+<table class="gallery-band-bg-color" style="width: 100%;">
 <thead>
-<tr>
-<th class="ou-help mceNonEditable" width="50%">Number of Images in Row <br />Options: 2, 3, or 4</th>
-<td class="grid-number" width="50%" data-select-list="2, 3, 4">3</td>
-</tr>
 <tr>
-<th class="ou-help mceNonEditable">Image</th>
-<th class="ou-help mceNonEditable">Caption</th>
+<th class="ou-help mceNonEditable">Gallery Item - Band with Background Color</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><img src="{{f:75231380}}" alt="A man with a beard stands confidently with his arms crossed, wearing a gray athletic shirt that reads &quot;Punta Mita,&quot; against a plain gray background. He has a friendly smile and a relaxed demeanor." width="300" height="337" /></td>
 <td>
-<p><a href="{{f:75156516}}">Mohammad Al Olaimat</a><br />Asst Research Professor</p>
-<p>MHC 1352 | <a href="mailto:mohammadalolaimat@usf.edu">Email</a></p>
-<table class="toggle-section">
+<table class="gallery-text-image" style="width: 100%;">
 <thead>
 <tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
+<th class="ou-help mceNonEditable" colspan="2">Gallery Item - Text and Image <br />Image Dimensions - Width: 460 px, Height: 300 px* <br />* Recommended height.</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="toggle-text">Research and Awards</td>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading Display. Accepted values: yes, no</p>
+</td>
+<td class="gallery-item-heading-display" style="width: 50%;" data-select-list="yes, no">yes</td>
 </tr>
 <tr>
-<td class="toggle-content">
-<p><strong>Research</strong>: artificial intelligence and deep learning models to analyze multimodal electronic health records (EHRs), clinical notes, imaging, and biological data</p>
-<p><strong>Awards</strong>: Best Poster Presentation, BioDiscovery Institute Expo</p>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading</p>
 </td>
-</tr>
-</tbody>
-</table>
+<td class="gallery-item-heading" style="width: 50%;">
+<h3 style="margin: 1.5em 0px 0px;"><a href="{{f:84003284}}">STRATEGIC PRIORITY: LEAD IN STUDENT SUCCESS, ACCESS AND CAREER READINESS</a></h3>
 </td>
-</tr>
-</tbody>
-</table>
-<h3><strong><a id="Affiliated"></a>Affiliated Faculty </strong></h3>
-<table class="image-grid">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable" width="50%">Number of Images in Row <br />Options: 2, 3, or 4</th>
-<td class="grid-number" width="50%" data-select-list="2, 3, 4">3</td>
 </tr>
-<tr>
-<th class="ou-help mceNonEditable">Image</th>
-<th class="ou-help mceNonEditable">Caption</th>
-</tr>
-</thead>
-<tbody>
 <tr>
-<td><img src="{{f:71927046}}" alt="A bull mascot with large horns and an expressive face sits at a wooden table, intently typing on a laptop while holding a green mug, set against a backdrop of large windows letting in natural light." width="300" height="337" /></td>
-<td>
-<p style="font-size: 16px; color: #000000;"><strong>Yael Bensoussan<br /><a href="mailto:yaelbensoussan@usf.edu">Email</a></strong></p>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Text</p>
 </td>
-</tr>
-<tr>
-<td><img src="{{f:71927046}}" alt="A bull mascot with large horns and an expressive face sits at a wooden table, intently typing on a laptop while holding a green mug, set against a backdrop of large windows letting in natural light." width="300" height="337" /></td>
-<td>
-<p style="font-size: 16px; color: #000000;"><strong>Wolfgang Jank<br /><a href="mailto:wjank@usf.edu">Email</a></strong></p>
+<td class="gallery-item-text" style="width: 50%;">
+<p style="font-size: 16px; color: #000000;">Establish the college as a national model for AI, cybersecurity and computing education through future-ready curricula that adapt quickly to technological change and ensure every graduate is career-ready.&nbsp;</p>
 </td>
 </tr>
 <tr>
-<td><img style="margin-top: 0px; font-size: 16px; color: #000000;" src="{{f:76153021}}" alt="A man with short black hair and glasses smiles confidently while crossing his arms, standing in a well-lit hallway with soft, natural light filtering through windows in the background. He wears a black blazer over a white shirt, creating a professional appearance in a modern setting." width="1217" height="1367" /></td>
-<td><strong style="font-size: 16px; color: #000000;">Xiaomin Lin<br /><a href="mailto:xlin2@usf.edu">Email</a></strong></td>
-</tr>
-<tr>
-<td><img src="{{f:71927046}}" alt="A bull mascot with large horns and an expressive face sits at a wooden table, intently typing on a laptop while holding a green mug, set against a backdrop of large windows letting in natural light." width="300" height="337" /></td>
-<td>
-<p style="font-size: 16px; color: #000000;"><strong>Joel Rosenfeld<br /><a href="mailto:rosenfeldj@usf.edu">Email</a><br /></strong></p>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image</p>
 </td>
+<td class="gallery-item-image" style="width: 50%;"><img src="{{f:84042722}}" alt="Alt Text" width="320" height="213" /></td>
 </tr>
 <tr>
-<td><img style="font-size: 16px; color: #000000;" title="Arman Sargolzaei" src="{{f:59271479}}" alt="A man with short hair and a slight smile wears a purple shirt, standing against a plain, light-colored background that emphasizes his friendly expression." width="300" height="337" /></td>
-<td>
-<p style="font-size: 16px; color: #000000;"><strong>Arman Sargolzaei<br /></strong><a href="mailto:armans@usf.edu">Email</a></p>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image Alignment. Accepted values: left, right</p>
 </td>
+<td class="gallery-item-alignment" style="width: 50%;" data-select-list="left, right">left</td>
 </tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" src="{{f:78294724}}" alt="A woman with shoulder-length dark hair and a warm smile stands in a bright, outdoor setting, showcasing a casual yet elegant demeanor against a softly blurred background of greenery." width="650" height="633" /><br /><br /></td>
-<td>
-<p style="font-size: 16px; color: #000000;"><strong style="font-size: 16px; margin-top: 0px;">Triparna de Vreede</strong></p>
-<a style="font-size: 16px;" href="mailto:tdevreede@usf.edu"><strong>Email</strong></a></td>
-</tr>
 </tbody>
 </table>
-<hr />
-<h3><strong><a id="Courtesy"></a>Courtesy FACULTY</strong></h3>
-<table class="image-grid">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable" width="50%">Number of Images in Row <br />Options: 2, 3, or 4</th>
-<td class="grid-number" width="50%" data-select-list="2, 3, 4">3</td>
-</tr>
-<tr>
-<th class="ou-help mceNonEditable">Image</th>
-<th class="ou-help mceNonEditable">Caption</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Kevin Kwiat" src="{{f:58377073}}" alt="A man with a warm smile wears a dark suit and a patterned tie, standing against a textured white wall that provides a bright backdrop. Sunlight highlights his features, creating a friendly and approachable appearance." width="300" height="337" /></td>
-<td>
-<p style="font-size: 16px; color: #000000;"><span style="color: var(--cms-region--primary-black);"><strong>Kevin Kwiat<br /></strong></span><a style="font-size: 16px;" href="mailto:kwiatk@usf.edu">Email</a></p>
-</td>
-</tr>
-<tr>
-<td><img title="John McHugh" src="{{f:71927046}}" alt="A bull mascot with large horns and an expressive face sits at a wooden table, intently typing on a laptop while holding a green mug, set against a backdrop of large windows letting in natural light." width="300" height="337" /></td>
-<td>
-<p style="font-size: 16px; color: #000000;"><strong>John McHugh<br /></strong><a href="mailto:johnmchugh@usf.edu">Email</a></p>
 </td>
 </tr>
-<tr>
-<td><img src="{{f:78294722}}" alt="A middle-aged man with a mustache smiles confidently, wearing a light-colored shirt and a patterned tie under a navy blazer, set against a light gray background. His relaxed expression suggests approachability and professionalism." width="960" height="1172" /></td>
-<td>
-<p style="font-size: 16px; color: #000000;"><strong>Peter Mouton</strong><br /><a href="mailto:petermouton@usf.edu">Email</a></p>
-</td>
-</tr>
 </tbody>
 </table>
-<hr />
-<h3><a id="Adjunct"></a>Adjunct Faculty</h3>
-<table class="image-grid">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable" width="50%">Number of Images in Row <br />Options: 2, 3, or 4</th>
-<td class="grid-number" width="50%" data-select-list="2, 3, 4">3</td>
-</tr>
-<tr>
-<th class="ou-help mceNonEditable">Image</th>
-<th class="ou-help mceNonEditable">Caption</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><img src="{{f:74811815}}" alt="A smiling man with short, light hair and a gray suit stands outdoors, surrounded by modern architecture and soft natural light. He exhibits a friendly demeanor, highlighting a professional yet approachable presence." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><strong style="font-size: 16px; color: #000000;">Bruce Caulkins<br /><a href="mailto:caulkins@cyberflorida.org">Email</a></strong></p>
-<table class="toggle-section">
+<table class="gallery-text-image" style="width: 100%;">
 <thead>
 <tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
+<th class="ou-help mceNonEditable" colspan="2">Gallery Item - Text and Image <br />Image Dimensions - Width: 460 px, Height: 300 px* <br />* Recommended height.</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="toggle-text">Schedule</td>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading Display. Accepted values: yes, no</p>
+</td>
+<td class="gallery-item-heading-display" style="width: 50%;" data-select-list="yes, no">yes</td>
 </tr>
 <tr>
-<td class="toggle-content">
-<p><strong style="font-size: 16px; color: #000000;">Office Hours:</strong><span style="color: #000000; font-size: 16px;"> Monday 9:00am to 12:00pm (Online), or by appt</span></p>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading</p>
 </td>
-</tr>
-</tbody>
-</table>
+<td class="gallery-item-heading" style="width: 50%;">
+<h3 style="margin: 1.5em 0px 0px;"><a style="text-underline-offset: 4px;" href="{{f:84003281}}">STRATEGIC PRIORITY: STRENGTHEN FACULTY CAPACITY AND RESEARCH IN AI AND CYBERSECURITY</a></h3>
 </td>
 </tr>
 <tr>
-<td><img src="{{f:74666769}}" alt="A woman with long, wavy hair and glasses smiles warmly at the camera, wearing a classy beige turtleneck under a light gray blazer, set against a neutral, textured background. Her friendly expression conveys confidence and approachability." width="554" height="622" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><strong style="font-size: 16px; color: #000000;">Manisha Chakraburtty <br /></strong><a href="mailto:mchakraburtty@usf.edu">Email</a></p>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Text</p>
 </td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Carol Hoeke" src="{{f:61955864}}" alt="A smiling woman with short gray hair wearing a black blazer and blue blouse poses against a softly blurred background in shades of blue and purple. She accessorizes with a star-shaped necklace, exuding a confident and approachable demeanor." width="300" height="338" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><strong style="font-size: 16px; color: #000000;">Carol Hoeke<br /></strong><a href="mailto:mailto:hoeke@usf.edu?subject=?subject=">Email </a></p>
+<td class="gallery-item-text" style="width: 50%;">
+<p>Elevate USF&rsquo;s status as a top-tier institution in AI and Cybersecurity research by recruiting world-class faculty and building an agile, resilient, and ambitious collaborative research culture.&nbsp;</p>
 </td>
 </tr>
 <tr>
-<td><img title="Scott Hollingsworth" src="{{f:73885716}}" alt="A man wearing sunglasses and a red shirt stands outdoors with trees in the background, looking towards the camera with a neutral expression. The setting appears to be sunny, suggesting a warm environment." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><strong style="font-size: 16px; color: #000000;">Scot Hollingsworth<br /><a href="mailto:scoth@usf.edu">Email</a></strong></p>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image</p>
 </td>
+<td class="gallery-item-image" style="width: 50%;"><img style="font-size: 16px; color: #000000;" src="{{f:84042721}}" alt="Faculty Capacity" width="320" height="213" /></td>
 </tr>
 <tr>
-<td><img src="{{f:71927046}}" alt="A bull mascot with large horns and an expressive face sits at a wooden table, intently typing on a laptop while holding a green mug, set against a backdrop of large windows letting in natural light." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><strong style="font-size: 16px; color: #000000;">Ryan Irving<br /></strong><a href="mailto:irvingr@usf.edu">Email</a></p>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image Alignment. Accepted values: left, right</p>
 </td>
+<td class="gallery-item-alignment" style="width: 50%;" data-select-list="left, right">right</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h3><a id="Distinguished"></a>Distinguished University Professor Emeritus</h3>
-<table class="image-grid">
+<table class="gallery-band-bg-color" style="width: 100%;">
 <thead>
-<tr>
-<th class="ou-help mceNonEditable" width="50%">Number of Images in Row <br />Options: 2, 3, or 4</th>
-<td class="grid-number" width="50%" data-select-list="2, 3, 4">3</td>
-</tr>
 <tr>
-<th class="ou-help mceNonEditable">Image</th>
-<th class="ou-help mceNonEditable">Caption</th>
+<th class="ou-help mceNonEditable">Gallery Item - Band with Background Color</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><img style="font-size: 16px; color: #000000;" title="Abraham Kandel" src="{{f:61955865}}" alt="A middle-aged man with short brown hair and glasses smiles confidently, wearing a dark suit and a red tie, set against a blurred blue background." width="300" height="337" /></td>
 <td>
-<p style="margin-top: 0px; font-size: 16px; color: #000000;"><a style="font-size: 16px;" title="Abraham Kandel" href="{{f:71781854}}">Abraham Kandel</a><br /><a href="mailto:kandel@cse.usf.edu?subject=">Email</a></p>
-<table class="toggle-section">
+<table class="gallery-text-image">
 <thead>
 <tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
+<th class="ou-help mceNonEditable" colspan="2">Gallery Item - Text and Image <br />Image Dimensions - Width: 460 px, Height: 300 px* <br />* Recommended height.</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
 <tr>
-<td class="toggle-content"><strong style="color: #000000; font-size: 16px;">Research:</strong><span style="color: #000000; font-size: 16px; font-weight: 400;">Applied fuzzy logic and computational intelligence, software testing and productivity, decision-making in uncertain environments, data </span><span style="color: #000000; font-size: 16px; font-weight: 400;">mining</span></td>
-</tr>
-</tbody>
-</table>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading Display. Accepted values: yes, no</p>
 </td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h3><strong><a id="Emeritus"></a>Emeritus Faculty</strong></h3>
-<table class="image-grid">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable" width="50%">Number of Images in Row <br />Options: 2, 3, or 4</th>
-<td class="grid-number" width="50%" data-select-list="2, 3, 4">3</td>
+<td class="gallery-item-heading-display" style="width: 50%;" data-select-list="yes, no">yes</td>
 </tr>
 <tr>
-<th class="ou-help mceNonEditable">Image</th>
-<th class="ou-help mceNonEditable">Caption</th>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading</p>
+</td>
+<td class="gallery-item-heading" style="width: 50%;">
+<h3><a href="{{f:84003283}}">STRATEGIC PRIORITY: INDUSTRY AND OPERATIONAL EXCELLENCE</a></h3>
+</td>
 </tr>
-</thead>
-<tbody>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Harvey Glass" src="{{f:61955818}}" alt="An older man with short gray hair and a thoughtful expression sits in front of a bookshelf filled with books, giving a sense of intellectual engagement and warmth. The background features various colorful objects that add a personal touch to the setting." width="300" height="337" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><span style="color: #000000;"><a href="{{f:71781890}}"><span style="color: #000000;">Harvey Glass</span></a></span></p>
-<span style="color: #000000;"><a href="mailto:glass@cse.usf.edu?subject=">Email</a></span>
-<table class="toggle-section">
-<thead>
 <tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Text</p>
+</td>
+<td class="gallery-item-text" style="width: 50%;">
+<p>Establish Bellini College as a financially robust, operationally elite, and industry-integrated engine. This goal ensures long-term viability through optimized infrastructure, including computing and efficient operations, while serving as the primary talent pipeline for Florida&rsquo;s tech economy, targeting the "Professional, Scientific, and Technical Services" and "Manufacturing" sectors from the BOG&rsquo;s Iconic Companies list.</p>
+</td>
 </tr>
-</thead>
-<tbody>
 <tr>
-<td class="toggle-text">Research and Awards</td>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image</p>
+</td>
+<td class="gallery-item-image" style="width: 50%;"><img src="{{f:84042717}}" alt="Industry and Operational Excellence" width="490" height="328" /></td>
 </tr>
 <tr>
-<td class="toggle-content"><span style="color: #000000;"><span style="font-size: 16px; color: #000000;">Research:</span><span style="color: #000000; font-size: 16px;"> Operating systems, programming languages, embedded systems design</span></span></td>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image Alignment. Accepted values: left, right</p>
+</td>
+<td class="gallery-item-alignment" style="width: 50%;" data-select-list="left, right">left</td>
 </tr>
 </tbody>
 </table>
 </td>
 </tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Rangachar Kasturi" src="{{f:61955817}}" alt="A smiling older man with gray hair and glasses wears a light blue button-up shirt, standing in an indoor setting with green plants and soft lighting in the background." width="300" height="338" /></td>
-<td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><span style="color: #000000;"><span style="color: #000000;"><span style="font-weight: 400;"><a href="{{f:71781877}}">Rangachar Kasturi</a><br />Douglas W. Hood Professor Emeritus<br /></span></span><a href="mailto:R1K@mail.usf.edu?subject="><span style="color: #000000;">Email</span></a></span></p>
-<table class="toggle-section">
+</tbody>
+</table>
+<table class="gallery-text-image" style="width: 100%;">
 <thead>
 <tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
+<th class="ou-help mceNonEditable" colspan="2">Gallery Item - Text and Image <br />Image Dimensions - Width: 460 px, Height: 300 px* <br />* Recommended height.</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="toggle-text">Research and Awards</td>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading Display. Accepted values: yes, no</p>
+</td>
+<td class="gallery-item-heading-display" style="width: 50%;" data-select-list="yes, no">yes</td>
 </tr>
 <tr>
-<td class="toggle-content"><span style="color: #000000;"><span style="font-size: 16px; color: #000000;">Research:</span><span style="color: #000000; font-size: 16px;"> Computer vision, pattern recognition, document image analysis</span></span></td>
-</tr>
-</tbody>
-</table>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading</p>
+</td>
+<td class="gallery-item-heading" style="width: 50%;">
+<h3 style="margin: 1.5em 0px 0px;"><a href="{{f:84003282}}">STRATEGIC PRIORITY: EXPAND THE "HUB AND SPOKE" ACADEMIC ECOSYSTEM</a></h3>
 </td>
 </tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Rafael Perez" src="{{f:61955814}}" alt="A smiling middle-aged man with short, dark hair and a neatly trimmed mustache wears a dark suit with a light green shirt and striped tie, posed against a softly blurred, neutral-toned background." width="300" height="337" /></td>
-<td>
-<blockquote>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><span style="color: #000000;"><span style="font-weight: 400;"><a href="{{f:71781889}}"><span style="color: #000000;">Rafael Perez</span></a><br /><a style="font-size: 16px;" href="mailto:perez@usf.edu?subject="><span style="color: #000000;">Email</span></a></span></span></p>
-</blockquote>
-<table class="toggle-section">
-<thead>
 <tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Text</p>
+</td>
+<td class="gallery-item-text" style="width: 50%;">
+<p>Democratize computing education across the university, connecting the technical "Hub" with multidisciplinary "Spokes" to increase enrollment and interdisciplinary competence.&nbsp;</p>
+</td>
 </tr>
-</thead>
-<tbody>
 <tr>
-<td class="toggle-text">Research and Awards</td>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image</p>
+</td>
+<td class="gallery-item-image" style="width: 50%;"><img style="font-size: 16px;" src="{{f:84118314}}" alt="hub and spoke" width="920" height="600" /></td>
 </tr>
 <tr>
-<td class="toggle-content"><span style="color: #000000;"><span style="font-size: 16px; color: #000000;">Research:</span><span style="color: #000000; font-size: 16px;"> Artificial intelligence, neural networks, genetic algorithms </span></span></td>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image Alignment. Accepted values: left, right</p>
+</td>
+<td class="gallery-item-alignment" style="width: 50%;" data-select-list="left, right">right</td>
 </tr>
 </tbody>
 </table>
-</td>
-</tr>
-<tr>
-<td><img style="font-size: 16px; color: #000000;" title="Les A. Piegl" src="{{f:59531179}}" alt="A smiling man with glasses and neatly combed hair poses in front of a bookshelf filled with colorful books, wearing a light blue shirt. The warm atmosphere suggests a professional or academic setting." width="300" height="337" /></td>
-<td>
-<p><span style="color: #000000;"><span style="font-weight: 400;"><a href="{{f:71781869}}"><span style="color: #000000;">Les A. Piegl</span></a><br /><a href="mailto:lespiegl@mail.usf.edu?subject="><span style="color: #000000;">Email</span></a></span></span></p>
-<table class="toggle-section">
+<table class="gallery-band-bg-color" style="width: 100%;">
 <thead>
 <tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
+<th class="ou-help mceNonEditable">Gallery Item - Band with Background Color</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content">
-<p>Research: Computer-aided design, geometric modeling, computer graphics and analysis, design of geometric algorithms</p>
-<p>Awards: William Mong Research Fellow The University of Hong Kong (2003), Alexander von Humboldt Research Fellow (1985), USF Outstanding Undergraduate Teaching Award (1991), USF Teaching Incentive Program Award (1993)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
 <tr>
-<td><img style="font-size: 16px; color: #000000;" title="Dewey Rundus" src="{{f:61955815}}" alt="A man with gray hair and a slight smile wears a bright red shirt, set against a softly blurred background in earthy tones. His expression is friendly and approachable, conveying warmth." width="300" height="337" /></td>
 <td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><span style="color: #000000;"><span style="font-weight: 400;"><a title="Dewey Rundus" href="{{f:71781863}}"><span style="color: #000000;">Dewey Rundus</span></a><br /><a href="mailto:rundus@cse.usf.edu?subject="><span style="color: #000000;">Email</span></a></span></span></p>
-<table class="toggle-section">
+<table class="gallery-text">
 <thead>
 <tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
+<th class="ou-help mceNonEditable">Gallery Item - Text</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td class="toggle-text">Research and Awards</td>
-</tr>
-<tr>
-<td class="toggle-content"><span style="color: #000000;"><span style="font-size: 16px; color: #000000;">Research:</span><span style="color: #000000; font-size: 16px;"> Human-computer interaction</span></span></td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
 <tr>
-<td><img style="font-size: 16px; color: #000000;" title="Murali Varanasi" src="{{f:61955816}}" alt="An elderly man with a serious expression wears a dark suit and a patterned tie, against a blurred, dark background that highlights his features. His close-up portrait conveys a sense of wisdom and experience." width="300" height="338" /></td>
 <td>
-<p style="margin-top: 1.5em; font-size: 16px; color: #000000;"><span style="color: #000000;"><span style="font-weight: 400;"><a href="{{f:71781947}}"><span style="color: #000000;">Murali Varanasi</span></a><br /><span style="color: #000000;"><span style="font-weight: 400;"><a href="mailto:varanasi@cse.usf.edu?subject=">Email</a><a href="mailto:varanasi@cse.usf.edu"> </a></span></span></span></span></p>
-<table class="toggle-section">
+<h3>Turning Strategy Into Action&nbsp;</h3>
+<p>The Bellini College strategic plan is a living framework supported by annual reviews, KPI dashboards, accountable ownership and continuous engagement with stakeholders. Progress will be measured through academic, research, operational and economic impact outcomes.&nbsp;</p>
+<table class="two-column-text">
 <thead>
 <tr>
-<th class="ou-help mceNonEditable">Toggle Section</th>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="toggle-text">Research and Awards</td>
+<td>
+<h4>Our Process&nbsp;</h4>
+<p>The strategic planning process was collaborative, data-informed, and action-oriented. Beginning with SWOT analyses and stakeholder engagement, the plan was refined through leadership review, KPI development, advisory board input, implementation planning and public feedback. The result is a shared vision for advancing artificial intelligence, cybersecurity and computing at USF.&nbsp;</p>
+</td>
+<td>
+<h4>Strategic Planning Timeline&nbsp;</h4>
+<p><strong>Phase 1:</strong> Discovery and Synthesis (Aug-Dec 2025)&nbsp;<br /><strong>Phase 2:</strong> Metrics and Leadership Alignment (Jan 2026)&nbsp;<br /><strong>Phase 3:</strong> Unit Commitments and Governance (Feb 2026)&nbsp;<br /><strong>Phase 4:</strong> Execution Design (Mar 2026)&nbsp;<br /><strong>Phase 5:</strong> Publication and Adoption (Apr 2026)&nbsp;</p>
+</td>
 </tr>
-<tr>
-<td class="toggle-content"><span style="color: #000000;"><span style="font-size: 16px; color: #000000;">Research:</span><span style="color: #000000; font-size: 16px;"> Coding theory, computer arithmetic</span></span></td>
+</tbody>
+</table>
+</td>
 </tr>
 </tbody>
 </table>
@@ -2070,12 +661,14 @@ lockout="no">/_resources/includes/included-content.html</parameter>
 </tbody>
 </table><!-- /com.omniupdate.div -->
 </maincontent>
+
+
 <additional-content>
 <!-- com.omniupdate.div label="additional-content" group="Everyone" button="707" -->
-<!-- com.omniupdate.editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt"
-width="1000" -->
+<!-- com.omniupdate.editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000" -->
 <h2> Additional Content</h2>
 <p> This area is used typically if you have included a file below the main content.</p>
 <!-- /com.omniupdate.div -->
 </additional-content>
+
 </document>
