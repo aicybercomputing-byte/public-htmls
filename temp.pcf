@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pcf-stylesheet path="/_resources/xsl/secondary.xsl" extension="aspx"?>
+<!DOCTYPE document SYSTEM "http://commons.omniupdate.com/dtd/standard.dtd">
+<document>
+<headcode></headcode>
+<bodycode></bodycode>
+<!-- com.omniupdate.properties -->
+<title>The Second Tech for Aging Summer Hackathon (TASH)</title>
+<!-- /com.omniupdate.properties -->
+
+<config>
+<parameter name="pagetype" prompt="pagetype" alt="Pagetype" group="None">secondary</parameter>
+<!-- com.omniupdate.properties -->
+<!-- CANONICALIZATION -->
+<parameter name="canonical-display" prompt="Set canonical URL?" alt="" section="Canonical URL" type="select" group="none">
+<option value="true" selected="false">Yes</option>
+<option value="false" selected="true">No</option>
+</parameter>
+
+<parameter name="canonical-url" prompt="Canonical URL" alt="Enter the URL people should see in search results." type="text" group="none"></parameter>
+
+<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">The Second Tech for Aging Summer Hackathon (TASH)</parameter>
+
+<!-- SOCIAL SHARING - OPEN GRAPH -->
+<parameter name="social-sharing-display" type="select" prompt="Enable Sharing Content?" alt="When enabled, the page's Title, Description, and selected image (below) will be used when the page is shared on social media." group="Everyone" section="Social Sharing Content (Open Graph)">
+<option value="enable" selected="false">Enable</option>
+<option value="disable" selected="true">Disable</option>
+</parameter>
+<parameter name="social-sharing-image" prompt="Image" type="filechooser" dependency="yes" path="/ai-cybersecurity-computing/centers/cita/news-events" alt="Select the image that appears when the page is shared on social media. 1200px width by 630px height." group="Everyone"></parameter>
+<parameter name="social-sharing-image-alt" prompt="Alt Text" alt="A text description of the image conveying the essential nature of an image to users who are visually impaired." group="Everyone" ></parameter>
+
+<parameter name="include-file" prompt="Include File" alt="Do you want to include a file from the server below the maincontent." group="none" type="radio">
+<option value="true" selected="false">True</option>
+<option value="false" selected="true">False</option>
+</parameter>
+<parameter name="include-file-path" prompt="Choose File." alt="Choose a file to include below the maincontent." type="filechooser" group="none" path="/_resources/includes/" lockout="no">/_resources/includes/included-content.html</parameter>
+<parameter name="additional-content" prompt="Additional Content" alt="Add another editable region below the maincontent. This is typically used if you have included a file." group="continuing-education" type="radio">
+<option value="true" selected="false">Show</option>
+<option value="false" selected="true">Hide</option>
+</parameter>
+<parameter name="code-behind" type="select" prompt="ASPX web page model" alt=" Choose code model for you ASPX. NET page" group="none" section="ASPX web page model">
+<option value="" selected="false"></option>
+<option value="single-page" selected="true">Single-page</option>
+<option value="code-behind" selected="false">Code-behind</option>
+</parameter>
+<parameter name="code-behind-source" type="filechooser" group="none" prompt="Code-behind Source file" alt="Choose the code model source of the page.">/_resources/c-sharp/code-behind.cs</parameter>
+<parameter name="inherits-from" prompt="Inherits from " group="none" alt="">_Default</parameter>
+<!-- /com.omniupdate.properties -->
+<parameter name="galleryType" type="select" prompt="Gallery Type" alt="Please select the type of gallery you would like this page to use." section="GALLERY">
+<option value="FlexSlider" selected="true">Flex Slider</option>
+</parameter>
+<!-- com.omniupdate.properties -->
+<parameter name="slideshow" type="select" prompt="Animate Slideshow" alt="Specify if the slideshow will be animated automatically or by user interaction only." section="Gallery">
+<option value="true" selected="true">Animate</option>
+<option value="false" selected="false">Don't Animate</option>
+</parameter>
+
+<!-- SIDE CONTENT LOCATION -->
+<parameter name="side-content-location" type="select" group="none" prompt="Change side content location?" alt="Select if the side content should keep its default location, or change to the left or right of the main content. Note: side content displaying on the right will appear after the main content on mobile." section="Side Content">
+<option value="false" selected="true">No</option>
+<option value="left" selected="false">Yes, display on the left</option>
+<option value="right" selected="false">Yes, display on the right</option>
+</parameter>
+
+<!-- QUICK LINKS -->
+<parameter name="quick-links-display" type="select" group="none" prompt="Display Quick Links" alt="Select if a quick links file should be displayed after the side navigation." section="Quick Links">
+<option value="true" selected="false">Show</option>
+<option value="false" selected="true">Hide</option>
+</parameter>
+<parameter name="quick-links-file" group="none" prompt="Quick Links File" alt="Choose a quick links file to include after the side navigation." type="filechooser" dependency="yes" path="/ai-cybersecurity-computing/centers/cita/news-events"></parameter>
+<!-- /com.omniupdate.properties -->
+</config>
+<metadata>
+<!-- com.omniupdate.properties -->
+<meta name="Description" content="University of South Florida" />
+<meta name="Keywords" content="University of South Florida" />
+<meta name="Author" content="University of South Florida" />
+<!-- /com.omniupdate.properties -->
+</metadata>
+
+<maincontent>
+
+<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- ouc:editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000"/ --><table class="media-large">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">News - Image - Large with Caption <br />One Column, Image Width: 1000px, Height: 405 px* <br />Two Column, Image Width: 735px, Height: 405 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="{{f:84248799}}" alt="" /></td>
+</tr>
+<tr>
+<td class="caption">TASH 2026 participants, mentors, and organizers gather after the final presentations on July 13, 2026.</td>
+</tr>
+</tbody>
+</table>
+<p>After nine weeks of building, eleven undergraduate student teams took the stage to present technology aimed at one of society&rsquo;s most pressing challenges &mdash; helping people age with dignity, safety, and independence. It was the culminating day of the Tech for Aging Summer Hackathon (TASH) 2026, an annual program run by the University of South Florida&rsquo;s Center for Innovation, Technology and Aging (CITA). What began in the spring as an open call to undergraduate and graduate students had, by July 13, become a showcase of working prototypes: a robotic dog engineered to carry oxygen up a flight of stairs, a wearable vest that measures how hard a caregiver pushes and pulls during physical assistance, and AI agents that let biologists analyze single-cell aging data without writing a line of code.</p>
+<h3>A Nine-Week Sprint</h3>
+<p>TASH launched with an ambitious pitch. Announced in the spring with a sign-up deadline of April 15, the program invited students to spend nine weeks &mdash; May 11 through July 13 &mdash; tackling real-world problems in healthy aging and caregiving. Each team was paired with a faculty mentor drawn from CITA and met regularly to keep the project on track.</p>
+<p>The response was strong. Ninety undergraduate students signed up, and more than sixty went on to participate, organizing into eighteen teams across a slate of faculty-mentored projects spanning AI, robotics, mobile-app development, bioinformatics, data science, and wearable systems. The projects were grounded in live research questions &mdash; from training machine-learning models on large-scale health datasets, to programming a stair-climbing robotic dog, to rebuilding a music-therapy app for dementia home care.</p>
+<p>A hackathon is as much a test of endurance as of engineering. Five teams stepped away in the first four weeks and two more could not complete their projects, but eleven teams held the course &mdash; finishing their work and earning a place at the final presentations.</p>
+<table class="media-large">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">News - Image - Large with Caption <br />One Column, Image Width: 1000px, Height: 405 px* <br />Two Column, Image Width: 735px, Height: 405 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="{{f:84248799}}" alt="" /></td>
+</tr>
+<tr>
+<td class="caption">A participant shows off wearable hardware during the demo session, held in the atrium beneath USF&rsquo;s hall of international flags.</td>
+</tr>
+</tbody>
+</table>
+<h3>The Projects</h3>
+<p>The eleven finalist teams tackled a strikingly diverse set of problems, united by a single thread: technology built with older adults in mind. Several took on mobility and oxygen therapy through assistive robotics; others turned to cognitive health, from dementia screening to predicting cognitive decline; a cluster pushed the frontier of AI agents for single-cell aging biology; and still others built wearables and in-vehicle systems to keep older adults safe. Each project is profiled below with its team, mentor, and presentation video.</p>
+<table class="two-column-text">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<h4>Senescence Agent &mdash; A Governed AI Agent for Trustworthy Single-Cell Aging Analysis</h4>
+<p>Team: Rodela Ghosh, Aviral Gupta</p>
+<p>Mentor: Fei He (Health Informatics Institute)</p>
+<p><a href="https://www.dropbox.com/scl/fi/zwbaonq179ofyiaalbtk1/P03_senescence_agent_Rodela_Aviral-Rodela-Ghosh.mp4?rlkey=akoz7xhp494ym73ali2xv54za&amp;dl=0">▶ &nbsp;Watch the presentation video</a></p>
+</td>
+<td>
+<table class="media-large">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">News - Image - Large <br />One Column, Image Width: 1000px, Height: 405 px* <br />Two Column, Image Width: 735px, Height: 405 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="{{f:84248799}}" alt="" /></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<hr />
+<table class="two-column-text">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<h4>A Robot Dog That Carries Oxygen and Climbs Stairs</h4>
+<p>Team: Olga Druzhkova, Aibek Shadybekov, Chi Vo</p>
+<p>Mentor: William Kearns (College of Behavioral &amp; Community Sciences)</p>
+<p><a href="https://www.dropbox.com/scl/fi/vsj2kflxehg3n0qy88r7u/Go2-O2-Team-3-Project-6-Aibek-Olga-Chi-Olga-Druzhkova.mp4?rlkey=lxpa6h7q89vbtnr2mmi47iec7&amp;dl=0">▶ &nbsp;Watch the presentation video</a></p>
+</td>
+<td>
+<table class="media-large">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">News - Image - Large <br />One Column, Image Width: 1000px, Height: 405 px* <br />Two Column, Image Width: 735px, Height: 405 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="{{f:84248799}}" alt="" /></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table class="two-column-text">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<h4>Assistive Robot for Long-Term Oxygen Therapy</h4>
+<p>Team: Seyoung Kan, Laray Lopez</p>
+<p>Mentor: William Kearns (College of Behavioral &amp; Community Sciences)</p>
+<p><a href="https://www.dropbox.com/scl/fi/2w4rzpgdfctk574rf2k07/Kan-Lopez-presentation-video-Seyoung-Kan.mp4?rlkey=eunewho734h7zpmqhypcwxmtw&amp;dl=0">▶ &nbsp;Watch the presentation video</a></p>
+</td>
+<td>
+<table class="media-large">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">News - Image - Large <br />One Column, Image Width: 1000px, Height: 405 px* <br />Two Column, Image Width: 735px, Height: 405 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="{{f:84248799}}" alt="" /></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table class="two-column-text">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<h4>Multimodal Prediction of Cognitive Decline</h4>
+<p>Team: Haneen Shabaneh, Md Mushfiqul Islam</p>
+<p>Mentor: Mohammad Al Olaimat (Bellini College of AI, Cybersecurity and Computing)</p>
+<p><a href="https://www.dropbox.com/scl/fi/dpq1m70v3houujvi7g9nv/TASH_P05_MRI_Modality_Haneen_-_Mushfiqul-Haneen-Shabaneh.mp4?rlkey=f4ti7b0110f8qtp4lvib3322x&amp;dl=0">▶ &nbsp;Watch the presentation video</a></p>
+</td>
+<td>
+<table class="media-large">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">News - Image - Large <br />One Column, Image Width: 1000px, Height: 405 px* <br />Two Column, Image Width: 735px, Height: 405 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="{{f:84248799}}" alt="" /></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="two-column-text" style="color: #000000;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<h4>AI-Driven Analysis of Hearing Loss &amp; Physical Activity</h4>
+<p>Team: Theresa Alsaindor, Fiorella Cam Wu, Christine Chinapoo, Lynda Gordon, Fuad Yunusov, Annisha Wazed</p>
+<p>Mentor: Michelle Arnold (College of Behavioral &amp; Community Sciences)</p>
+<p><a href="https://www.dropbox.com/scl/fi/7ps4poy6r6j3ghyjuxpl1/AI-Driven-Analysis-of-Hearing-Loss-Physical-Activity.mp4?rlkey=n67lfb1hho0aiqkwwsiltrhl1&amp;dl=0">▶ &nbsp;Watch the presentation video</a></p>
+</td>
+<td>
+<table class="media-large">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">News - Image - Large <br />One Column, Image Width: 1000px, Height: 405 px* <br />Two Column, Image Width: 735px, Height: 405 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="{{f:84248799}}" alt="" /></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table class="two-column-text">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<h4>Predicting Baseline Diagnosis from ADNI and HABS-HD Datasets</h4>
+<p>Team: Adhithi Mudaliyar, Hong Gao</p>
+<p>Mentor: Mohammad Al Olaimat (Bellini College of AI, Cybersecurity and Computing)</p>
+<p><a href="https://www.dropbox.com/scl/fi/eavg57qnqh2n1nmfipm00/Project5_Cognitive-_team_-Video-Hong-Gao.mp4?rlkey=enh66wmp5yqu8gjohz13ljdge&amp;dl=0">▶ &nbsp;Watch the presentation video</a></p>
+</td>
+<td>
+<table class="media-large">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">News - Image - Large <br />One Column, Image Width: 1000px, Height: 405 px* <br />Two Column, Image Width: 735px, Height: 405 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="{{f:84248799}}" alt="" /></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table class="two-column-text">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<h4>Culturally Aware Dementia Screening for Aging Adults</h4>
+<p>Team: Harshavardan Yuvaraj, Fares Ibrahim, Brandon Ugbesia</p>
+<p>Mentor: Chuanhai Cao (Taneja College of Pharmacy)</p>
+<p><a href="https://www.dropbox.com/scl/fi/ykgh48l869drcec844085/Culturally-Aware-Dementia-Screening-for-Aging-Adults-Harshavardan-Yuvaraj.mp4?rlkey=dj5xiqm4nn99q5yyok9kv1kw8&amp;dl=0">▶ &nbsp;Watch the presentation video</a></p>
+</td>
+<td>
+<table class="media-large">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">News - Image - Large <br />One Column, Image Width: 1000px, Height: 405 px* <br />Two Column, Image Width: 735px, Height: 405 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="{{f:84248799}}" alt="" /></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table class="two-column-text">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<h4>Wearable System for Measuring Engagement Force During Physical Assistance</h4>
+<p>Team: Nandhu Shankar, Bethelhem Tadesse</p>
+<p>Mentor: Yu Sun (Bellini College of AI, Cybersecurity and Computing)</p>
+<p><a href="https://www.dropbox.com/scl/fi/eqxhvup6ewyjtg3ruwxg2/Project10VideoNandhuShankar-Nandhu-Shankar.mp4?rlkey=uu6ix00io57mjht0tsu4h0fgy&amp;dl=0">▶ &nbsp;Watch the presentation video</a></p>
+</td>
+<td>
+<table class="media-large">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">News - Image - Large <br />One Column, Image Width: 1000px, Height: 405 px* <br />Two Column, Image Width: 735px, Height: 405 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="{{f:84248799}}" alt="" /></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table class="two-column-text">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<h4>Measured Response for Driverless Cabins</h4>
+<p>Team: Quynh Giang Ho, Khai Dong Nguyen, Phu Vinh Khang Dang</p>
+<p>Mentor: Yu (April) Zhang (College of Engineering)</p>
+<p><a href="https://www.dropbox.com/scl/fi/toqa3oc0afecyimarjsw5/Team02-Project07-TASH-Video.mp4?rlkey=dkkvvqn5cxtdmbi9wuwu1uo0c&amp;dl=0">▶ &nbsp;Watch the presentation video</a></p>
+</td>
+<td>
+<table class="media-large">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">News - Image - Large <br />One Column, Image Width: 1000px, Height: 405 px* <br />Two Column, Image Width: 735px, Height: 405 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="{{f:84248799}}" alt="" /></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table class="two-column-text">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<h4>AI Agent for Single-Cell Aging Atlas Analysis</h4>
+<p>Team: Trung Lam</p>
+<p>Mentor: Fei He (Health Informatics Institute)</p>
+<p><a href="https://www.dropbox.com/scl/fi/wb6vxiqog34wxxuizws46/TASH26-FinalPresentation_TrungLam-Trung-Lam.mp4?rlkey=0712kin14s80ycs7wowptuzo4&amp;dl=0">▶ &nbsp;Watch the presentation video</a></p>
+</td>
+<td>
+<table class="media-large">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">News - Image - Large <br />One Column, Image Width: 1000px, Height: 405 px* <br />Two Column, Image Width: 735px, Height: 405 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="{{f:84248799}}" alt="" /></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table class="two-column-text">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<h4>Stair-Climbing Robotic Oxygen Carrier</h4>
+<p>Team: Anthony Sinchi</p>
+<p>Mentor: William Kearns (College of Behavioral &amp; Community Sciences)</p>
+<p><a href="https://www.dropbox.com/scl/fi/ozchlrslssg9hxr5aiugh/project-video-anthony-sinchi.mp4?rlkey=101ail16esupjkipu201bevub&amp;dl=0">▶ &nbsp;Watch the presentation video</a></p>
+</td>
+<td>
+<table class="media-large">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">News - Image - Large <br />One Column, Image Width: 1000px, Height: 405 px* <br />Two Column, Image Width: 735px, Height: 405 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="{{f:84248799}}" alt="" /></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color: #000000;">Awards</span></p>
+<p>On July 13, five judges attended the final presentations and scored every team. To keep the evaluation fair, mentors who served as judges reviewed only the projects they had not mentored. The panel brought together clinical, academic, and industry expertise: Michelle Arnold, Associate Professor in the Department of Communication Sciences &amp; Disorders at USF; Chuanhai Cao, Professor in the Department of Pharmaceutical Sciences at USF; Jonathan Clapp, a post-doctoral fellow in the School of Aging Studies at USF; Jeff Craighead, Lead Scientist at Accelint AI; and Jacqueline Hausmann, a senior Ph.D. student at the Bellini College of AI, Cybersecurity and Computing.</p>
+<p>Based on the judges&rsquo; scores, CITA named five award winners across distinct categories &mdash; recognizing not only the strongest overall solution but also standout innovation, engineering, presentation, and live demonstration.</p>
+<p>The 2026 TASH Award Winners</p>
+<p>Best Overall Solution &nbsp;&mdash; &nbsp;Culturally Aware Dementia Screening for Aging Adults<br />Team: Harshavardan Yuvaraj, Fares Ibrahim, Brandon Ugbesia<br />Mentor: Chuanhai Cao (Taneja College of Pharmacy)</p>
+<p>Best Innovation Solution &nbsp;&mdash; &nbsp;AI Agent for Single-Cell Aging Atlas Analysis<br />Team: Trung Lam<br />Mentor: Fei He (Health Informatics Institute)</p>
+<p>Best Technical Execution &nbsp;&mdash; &nbsp;A Robot Dog That Carries Oxygen and Climbs Stairs<br />Team: Olga Druzhkova, Aibek Shadybekov, Chi Vo<br />Mentor: William Kearns (College of Behavioral &amp; Community Sciences)</p>
+<p>Best Presentation &nbsp;&mdash; &nbsp;Measured Response for Driverless Cabins<br />Team: Quynh Giang Ho, Khai Dong Nguyen, Phu Vinh Khang Dang<br />Mentor: Yu (April) Zhang (College of Engineering)</p>
+<p>Best Demo &nbsp;&mdash; &nbsp;Wearable System for Measuring Engagement Force During Physical Assistance<br />Team: Nandhu Shankar, Bethelhem Tadesse<br />Mentor: Yu Sun (Bellini College of AI, Cybersecurity and Computing)<br />&nbsp;</p>
+<p>The TASH 2026 final-presentation judges &mdash; Chuanhai Cao, Jacqueline Hausmann, Jeff Craighead, Jonathan Clapp, and Michelle Arnold &mdash; with organizer Yu Sun. The five judges scored all eleven finalist teams.</p>
+<p>Clinical &amp; Innovation Review Panel<br />Every team also produced a five-minute video of its work, reviewed by a Clinical &amp; Innovation Review Panel, a group of industry leaders and clinicians assembled to weigh each project&rsquo;s real-world potential. Each panelist independently scored the videos, and based on those scores CITA named two additional awards, recognizing the projects with the greatest real-world impact and the strongest translational promise.</p>
+<p>The review panel comprised six members:</p>
+<p>● &nbsp; &nbsp; &nbsp; &nbsp;Katie Desorcy, Operational Leader at InnovAge</p>
+<p>● &nbsp; &nbsp; &nbsp; &nbsp;Tzu-Jen Kao, Senior Biomedical Engineer at GE HealthCare</p>
+<p>● &nbsp; &nbsp; &nbsp; &nbsp;Haru Okuda, Executive Director of CAMLS</p>
+<p>● &nbsp; &nbsp; &nbsp; &nbsp;John Reinhart, innovator, strategist, and advisor active with the National Institute on Aging</p>
+<p>● &nbsp; &nbsp; &nbsp; &nbsp;Jason Wilson, Chairman of the Department of Emergency Medicine at USF</p>
+<p>● &nbsp; &nbsp; &nbsp; &nbsp;Ghada Zamzmi, Regulatory Science Principal at Heartflow</p>
+<p>Clinical &amp; Innovation Review Panel Awards</p>
+<p>Real-World Impact Award &nbsp;&mdash; &nbsp;Culturally Aware Dementia Screening for Aging Adults<br />Team: Harshavardan Yuvaraj, Fares Ibrahim, Brandon Ugbesia<br />Mentor: Chuanhai Cao (Taneja College of Pharmacy)</p>
+<p>Translational Promise Award &nbsp;&mdash; &nbsp;Stair-Climbing Robotic Oxygen Carrier<br />Team: Anthony Sinchi<br />Mentor: William Kearns (College of Behavioral &amp; Community Sciences)<br />Looking Ahead<br />TASH is a beginning, not an endpoint. The Center will work with mentors and students to advance the most promising solutions into life-changing technologies by building partnerships with local organizations and securing external funding. Outstanding participants may also be selected for paid research positions in Fall 2026 to continue developing and translating their innovations.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p><!-- /com.omniupdate.div -->
+</maincontent>
+
+<additional-content>
+<!-- com.omniupdate.div label="additional-content" group="Everyone" button="707" -->
+<!-- com.omniupdate.editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000" -->
+<h2> Additional Content</h2>
+<p> This area is used typically if you have included a file below the main content.</p>
+<!-- /com.omniupdate.div -->
+</additional-content>
+
+</document>

@@ -269,34 +269,6 @@
       resize: vertical;
     }
   
-    .jobs-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1.5rem 0;
-      border-bottom: 3px solid var(--jobs-border-strong);
-    }
-  
-    .jobs-table th,
-    .jobs-table td {
-      padding: 0.75rem;
-      text-align: left;
-      border-bottom: 1px solid var(--jobs-border);
-      color: var(--jobs-text);
-    }
-  
-    .jobs-table td:nth-child(4) {
-      padding-right: 1rem;
-    }
-  
-    .jobs-table th {
-      font-weight: 700;
-      border-bottom: 3px solid var(--jobs-border-strong);
-    }
-  
-    .jobs-table tbody tr:hover {
-      background-color: var(--jobs-surface-subtle);
-    }
-  
     .jobs-loading {
       display: none;
       width: 100%;
@@ -372,34 +344,6 @@
     h3 {
       margin-top: 1.5rem;
       margin-bottom: 1rem;
-    }
-  
-    .bar-cell {
-      vertical-align: middle;
-    }
-  
-    .bar-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      height: auto;
-      min-height: 20px;
-      width: 100%;
-      overflow: visible;
-    }
-  
-    .bar {
-      height: 8px;
-      background: #006747;
-    }
-  
-    .is-safari #jobs-asset-root .bar {
-      margin-left: 1rem;
-      max-width: calc(100% - 1rem);
-    }
-  
-    .is-safari #jobs-asset-root .jobs-table th:nth-child(5) {
-      padding-left: 1rem;
     }
   
     .spotlight-grid {
@@ -606,85 +550,6 @@
         min-height: 52px !important;
       }
   
-      .jobs-table {
-        display: grid;
-        grid-template-columns: 1fr;
-        border: none;
-      }
-  
-      .jobs-table thead {
-        display: none;
-      }
-  
-      .jobs-table tbody {
-        display: contents;
-      }
-  
-      .jobs-table tr {
-        display: grid;
-        /* 3 columns so 2023 Jobs / 2033 Est. / Growth (cells 2-4) land in a
-           single row together instead of splitting 2-then-1. Occupation and
-           Trend (cells 1 and 5) still span the full row via `1 / -1` below,
-           so this only affects how the three stat cells lay out. */
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.5rem;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        border: 1px solid var(--jobs-border);
-        border-radius: 4px;
-        background: var(--jobs-surface-subtle);
-      }
-  
-      .jobs-table td {
-        border: none !important;
-        padding: 0.5rem 0;
-      }
-  
-      .jobs-table td:nth-child(1) {
-        grid-column: 1 / -1;
-        font-weight: 700;
-        font-size: 1rem;
-      }
-  
-      .jobs-table td:nth-child(n + 2) {
-        margin-top: 0.5rem;
-        padding-top: 0.5rem;
-      }
-  
-      .jobs-table td:nth-child(5) {
-        grid-column: 1 / -1;
-      }
-  
-      .jobs-table td:nth-child(2)::before {
-        content: "2023 Jobs";
-        display: block;
-        font-weight: 700;
-        font-size: 0.75rem;
-        color: var(--jobs-text-muted);
-        opacity: 1;
-        margin-bottom: 0.25rem;
-      }
-  
-      .jobs-table td:nth-child(3)::before {
-        content: "2033 Est.";
-        display: block;
-        font-weight: 700;
-        font-size: 0.75rem;
-        color: var(--jobs-text-muted);
-        opacity: 1;
-        margin-bottom: 0.25rem;
-      }
-  
-      .jobs-table td:nth-child(4)::before {
-        content: "Growth";
-        display: block;
-        font-weight: 700;
-        font-size: 0.75rem;
-        color: var(--jobs-text-muted);
-        opacity: 1;
-        margin-bottom: 0.25rem;
-      }
-  
       .metro-grid {
         grid-template-columns: 1fr;
         gap: 15px;
@@ -728,35 +593,6 @@
         font-size: 0.7rem;
       }
   
-      .jobs-table tr {
-        gap: 0.35rem;
-      }
-  
-      .jobs-table td {
-        border: none !important;
-        padding: 0.75rem 0 0.5rem;
-      }
-  
-      .jobs-table td:nth-child(n + 2) {
-        margin-top: 0.5rem;
-        padding-top: 0.5rem;
-      }
-  
-      /* 2023 Jobs / 2033 Est. / Growth stay 3-across even at this width —
-         shrink their value and label text so figures like "1,995,900" don't
-         wrap inside a ~100px-wide column. */
-      .jobs-table td:nth-child(2),
-      .jobs-table td:nth-child(3),
-      .jobs-table td:nth-child(4) {
-        font-size: 0.85rem;
-      }
-  
-      .jobs-table td:nth-child(2)::before,
-      .jobs-table td:nth-child(3)::before,
-      .jobs-table td:nth-child(4)::before {
-        font-size: 0.65rem;
-      }
-  
       .jobs-form-group input,
       .jobs-form-group select,
       .jobs-form-group textarea {
@@ -779,9 +615,10 @@
 <div id="jobs-asset-root">
 <div class="jobs-tabs"><button class="active" style="font-weight: 600;" tabindex="0" data-panel="prospective" onclick="switchPanel('prospective', this)">Prospective Students</button> <button tabindex="0" data-panel="current" onclick="switchPanel('current', this)">Current Students</button> <button tabindex="0" data-panel="matchme" onclick="switchPanel('matchme', this)">Find My Job ✨</button> <button tabindex="0" data-panel="internships" onclick="switchPanel('internships', this)">Find My Internship ✨</button></div>
 <div id="prospective" class="jobs-panel active">
-<h3>National Occupation Projections &mdash; 2023 to 2033</h3>
+<h3>Explore a Degree Program</h3>
 <div style="margin: 1.5rem 0;">
-<div class="jobs-form-group"><label for="prospective-degree">Select Degree Program:</label><select id="prospective-degree" style="max-width: 400px;" onchange="updateProjections()">
+<div class="jobs-form-group"><label for="prospective-degree">Select Degree Program:</label><select id="prospective-degree" style="max-width: 400px;" onchange="goToDegreeProgramPage(this.value)">
+<option value="">Select a degree program&hellip;</option>
 <option value="bscs">BS Computer Science</option>
 <option value="bscse">BS Computer Science and Engineering</option>
 <option value="bsai">BS Artificial Intelligence</option>
@@ -797,65 +634,7 @@
 <option value="phdcse">PhD Computer Science and Engineering</option>
 <option value="phdds">PhD Data Science</option>
 </select></div>
-<div id="projection-status" style="margin-top: 0.5rem; font-size: 0.9rem;"></div>
 </div>
-<table class="jobs-table">
-<thead>
-<tr>
-<th style="width: 50%;">Occupation</th>
-<th style="width: 10%;">2023 Jobs</th>
-<th style="width: 10%;">2033 Est.</th>
-<th style="width: 5%;">Growth</th>
-<th style="width: 25%;">Trend</th>
-</tr>
-</thead>
-<tbody id="projection-body">
-<tr>
-<td>Software developers</td>
-<td>1,692,100</td>
-<td>1,995,900</td>
-<td>+17.9%</td>
-<td class="bar-cell">
-<div class="bar-wrap">
-<div class="bar" style="width: 100%;">&nbsp;</div>
-</div>
-</td>
-</tr>
-<tr>
-<td>Computer occupations (all)</td>
-<td>5,021,800</td>
-<td>5,610,700</td>
-<td>+11.7%</td>
-<td class="bar-cell">
-<div class="bar-wrap">
-<div class="bar" style="width: 100%;">&nbsp;</div>
-</div>
-</td>
-</tr>
-<tr>
-<td>Database architects</td>
-<td>61,400</td>
-<td>68,000</td>
-<td>+10.8%</td>
-<td class="bar-cell">
-<div class="bar-wrap">
-<div class="bar" style="width: 100%;">&nbsp;</div>
-</div>
-</td>
-</tr>
-<tr>
-<td>Financial &amp; investment analysts</td>
-<td>347,400</td>
-<td>380,300</td>
-<td>+9.5%</td>
-<td class="bar-cell">
-<div class="bar-wrap">
-<div class="bar" style="width: 100%;">&nbsp;</div>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
 <h3>Florida Spotlight</h3>
 <div class="spotlight-grid">
 <div class="c-calloutText c-calloutText--grey">
@@ -1045,7 +824,7 @@
 <li>Jacksonville: <a tabindex="0" href="https://jaxusa.org/wp-content/uploads/2026/Technology-Services-Business-Case.pdf"> JAXUSA Partnership </a></li>
 </ol>
 <p class="all-sources-text">Updated quarterly.</p>
-<p class="all-sources-text">Wage and workforce figures are aggregate regional estimates. Individual earnings vary by role, employer, experience, and location. Employment projections are national estimates from the U.S. Bureau of Labor Statistics and Lightcast, based on historical trends and modeling. They are not guarantees of job availability, salary, or outcomes for any individual or program.</p>
+<p class="all-sources-text">Wage and workforce figures are aggregate regional estimates. Individual earnings vary by role, employer, experience, and location. They are not guarantees of job availability, salary, or outcomes for any individual or program.</p>
 <p class="all-sources-text">Listings are aggregated from third-party sources (including USAJOBS) and are not verified or endorsed by the University of South Florida. Match scores are automated estimates and do not guarantee eligibility, fit, or employment. Results may be incomplete or inaccurate and should not be your only source for career decisions. Confirm all details on the original posting before applying.</p>
 </section>
 </div>
@@ -1067,194 +846,34 @@
       button.classList.add('active');
     }
   
-    // ═══ LIGHTCAST API CONFIGURATION ═══
-    const LIGHTCAST_BASE_CONFIG = {
-      apiKey: "n3pncM4UFnbKWMWVoFy65EOR9AkCZTd93WC2Q1x8",
-      clientName: "UniversitySouthFloridaCMS",
-      country: "us",
-      geoIds: ["-1"],
-      level: "nation"
-    };
-  
-    const LIGHTCAST_DEGREE_CONFIGS = {
+    // ═══ DEGREE PROGRAM PAGE LINKS ═══
+    // Replaces the retired Lightcast widget: selecting a degree in the
+    // "prospective-degree" dropdown now sends the visitor straight to that
+    // program's page instead of loading live occupation projections.
+    const DEGREE_PROGRAM_LINKS = [
+      { name: "bscs", link: "https://usf.to/BS-Computer-Science" },
+      { name: "bscse", link: "https://usf.to/Computer-Science-and-Engineering-BSCSE" },
+      { name: "bsai", link: "https://usf.to/BS-Artificial-Intelligence" },
+      { name: "bscys", link: "https://usf.to/BS-Cybersecurity" },
+      { name: "bsit", link: "https://usf.to/BS-Information-Technology" },
+      { name: "bscsb", link: "https://usf.to/BS-CS-BUSINESS" },
+      { name: "bscsc", link: "https://usf.to/BS-CS-Crime" },
+      { name: "bscsiss", link: "https://usf.to/BS-CS-ISS" },
+      { name: "mscs", link: "https://usf.to/MSComputerScience" },
+      { name: "mscse", link: "https://usf.to/MSComputerEngineering" },
+      { name: "msai", link: "https://usf.to/MSArtificialIntelligence" },
+      { name: "mscys", link: "https://usf.to/MSCybersecurity" },
+      { name: "phdcse", link: "https://usf.to/PhD-Computer-Science-and-Engineering" },
+      { name: "phdds", link: "https://usf.to/PhD-Data-Science-and-AI" }
+    ];
 
-      bscs: { key: "bscs", label: "BS Computer Science", occupationCodes: ["15-1211.00","15-1211.01","15-1242.00","15-1244.00","15-1253.00","15-1255.00","15-1255.01","15-1299.01","15-1299.03","15-1299.04","15-1299.06","15-1299.07","15-1252.00"]},
-      bscse: { key: "bscse", label: "BS Computer Science and Engineering", occupationCodes: ["11-3021.00", "15-1211.00", "15-1221.00", "15-1241.00", "15-1242.00", "15-1243.00", "15-1244.00", "15-1253.00", "15-1255.00", "15-1299.00", "25-1021.00", "15-1252.00"]},
-      bsai: { key: "bsai", label: "BS Artificial Intelligence", occupationCodes: ["15-2051.01","15-2051.02","15-1299.01","15-1299.03","15-1253.00","15-1252.00"]},
-      bscys: { key: "bscys", label: "BS Cybersecurity", occupationCodes: ["15-1212.00","15-1231.00","15-1244.00","15-1242.00","15-1299.04","15-1299.06"]},
-      bsit: { key: "bsit", label: "BS Information Technology", occupationCodes: ["15-1211.00","15-1211.01","15-1212.00","15-1231.00","15-1244.00","15-1252.00","15-1253.00","15-1299.01"]},
-      mscs: { key: "mscs", label: "MS Computer Science", occupationCodes: ["15-1221.00","15-1252.00","15-1253.00","15-1243.00","15-1242.00","15-1299.08","15-1299.09","15-1241.00","15-2051.00"]},
-      mscse: { key: "mscse", label: "MS Computer Science and Engineering", occupationCodes: ["11-3021.00", "15-1211.00", "15-1221.00", "15-1241.00", "15-1242.00", "15-1243.00", "15-1244.00", "15-1253.00", "15-1255.00", "15-1299.00"]},
-      mscys: { key: "mscys", label: "MS Cybersecurity", occupationCodes: ["15-1212.00","15-1241.00","15-1299.08","13-1199.07","15-1299.05","11-3021.00","15-1299.04"]},
-      msai: { key: "msai", label: "MS Artificial Intelligence", occupationCodes: ["15-2051.00","15-1221.00","15-1252.00","15-1299.08","15-1243.00","15-2041.00","15-2031.00","15-1241.00"]},
-      phdcse: { key: "phdcse", label: "PhD Computer Science and Engineering", occupationCodes: ["15-1221.00"]},
-      phdds: { key: "phdds", label: "PhD Data Science", occupationCodes: ["15-2051.00"]}
-  };
-  // 
-    // Utility functions
-    function parseNum(v) {
-      if (typeof v === "number") return Number.isFinite(v) ? v : null;
-      if (typeof v !== "string") return null;
-      const n = Number(v.replace(/,/g, "").trim());
-      return Number.isFinite(n) ? n : null;
-    }
-  
-    function formatInt(n) {
-      return (parseNum(n) ?? 0).toLocaleString("en-US");
-    }
-  
-    function formatPct(n) {
-      const v = parseNum(n) ?? 0;
-      return (v >= 0 ? "+" : "") + v.toFixed(1) + "%";
-    }
-  
-    function pickNum(obj, keys) {
-      for (const k of keys) {
-        if (obj && Object.prototype.hasOwnProperty.call(obj, k)) {
-          const n = parseNum(obj[k]);
-          if (n != null) return { value: n, key: k };
-        }
+    function goToDegreeProgramPage(degreeKey) {
+      const entry = DEGREE_PROGRAM_LINKS.find(d => d.name === degreeKey);
+      if (entry && entry.link) {
+        window.location.href = entry.link;
       }
-      return { value: null, key: null };
     }
-  
-    function pickEmploymentYear(career, year) {
-      if (!career || !Array.isArray(career.employment)) {
-        return { value: null, key: null, raw: null };
-      }
-      for (const row of career.employment) {
-        if (!row || parseNum(row.year) !== year) continue;
-        const n = parseNum(row.number);
-        if (n != null) {
-          return { value: n, key: "employment[" + year + "]", raw: row.number };
-        }
-      }
-      return { value: null, key: null, raw: null };
-    }
-  
-    // Build Lightcast API URL
-    function buildLightcastWidgetDataUrl(degreeKey) {
-      const degreeConfig = LIGHTCAST_DEGREE_CONFIGS[degreeKey];
-      if (!degreeConfig || !Array.isArray(degreeConfig.occupationCodes) || !degreeConfig.occupationCodes.length) {
-        throw new Error("No occupation codes configured.");
-      }
-      const params = new URLSearchParams();
-      params.set("occupationCodes", degreeConfig.occupationCodes.join(","));
-      params.set("geoIds", LIGHTCAST_BASE_CONFIG.geoIds.join(","));
-      params.set("level", LIGHTCAST_BASE_CONFIG.level);
-      params.set("cacheTimestamp", Date.now().toString());
-      return "https://api.pathways.moderncampus.net/v1/tenant-public/clients/" +
-        encodeURIComponent(LIGHTCAST_BASE_CONFIG.clientName) + "/" +
-        encodeURIComponent(LIGHTCAST_BASE_CONFIG.country) + "/widget-data?" + params.toString();
-    }
-  
-    // Fetch Lightcast data
-    async function fetchLightcastDataForDegree(degreeKey) {
-      const response = await fetch(buildLightcastWidgetDataUrl(degreeKey), {
-        method: "GET",
-        mode: "cors",
-        cache: "default",
-        credentials: "omit",
-        headers: {
-          "Accept": "application/json",
-          "x-api-key": LIGHTCAST_BASE_CONFIG.apiKey
-        }
-      });
-      if (!response.ok) throw new Error("Projection API request failed (" + response.status + ").");
-      const payload = await response.json();
-      if (!payload || !payload.data || !Array.isArray(payload.data.careers)) {
-        throw new Error("Unexpected projection payload.");
-      }
-      return payload.data.careers;
-    }
-  
-    // Convert career object to projection row with robust field extraction
-    function toProjectionRow(career) {
-      const title = career.occupationTitle || career.title || career.name || (career.occupation && career.occupation.title) || "Occupation";
-      const jobs2023YearPick = pickEmploymentYear(career, 2023);
-      const jobs2033YearPick = pickEmploymentYear(career, 2033);
-      const jobs2023FallbackPick = pickNum(career, [
-        "jobsCurrent",
-        "currentEmployment",
-        "employment",
-        "employment2023",
-        "baseEmployment",
-        "jobsBase",
-        "currentJobs"
-      ]);
-      const jobs2033FallbackPick = pickNum(career, [
-        "jobsProjected",
-        "projectedEmployment",
-        "projectedJobs",
-        "employment2033",
-        "futureEmployment",
-        "forecastEmployment"
-      ]);
-      const apiGrowthPick = pickNum(career, [
-        "percentChange",
-        "growthRate",
-        "projectedGrowthPercent",
-        "percent_growth"
-      ]);
-      const jobs2023 = jobs2023YearPick.value ?? jobs2023FallbackPick.value ?? 0;
-      const jobs2033 = jobs2033YearPick.value ?? jobs2033FallbackPick.value;
-      const apiGrowthPct = apiGrowthPick.value;
-      const computedGrowthPct =
-        jobs2033 != null && jobs2023 > 0
-          ? ((jobs2033 - jobs2023) / jobs2023) * 100
-          : null;
-      const growthPct = computedGrowthPct != null ? computedGrowthPct : (apiGrowthPct ?? 0);
-      return {
-        title,
-        jobs2023,
-        jobs2033,
-        growthPct
-      };
-    }
-  
-    function updateProjections() {
-      const degree = document.getElementById('prospective-degree').value;
-      const status = document.getElementById('projection-status');
-      if (!degree) return;
-  
-      if (status) status.textContent = "Loading projections...";
-  
-      fetchLightcastDataForDegree(degree)
-        .then(careers => {
-          const rows = careers.map(toProjectionRow).filter(r => r.title && r.jobs2023 != null && r.growthPct != null);
-          const sorted = [...rows].sort((a, b) => b.growthPct - a.growthPct).slice(0, 8);
-          const maxGrowth = Math.max(...sorted.map(r => Math.max(r.growthPct, 0)), 1);
-  
-          const body = document.getElementById('projection-body');
-          if (body) {
-            let html = '';
-            sorted.forEach(r => {
-              const w = Math.max(4, Math.round((Math.max(r.growthPct, 0) / maxGrowth) * 100));
-              if(r.growthPct > 0) {
-              html += `<tr>
-                <td>${r.title}</td>
-                <td>${formatInt(r.jobs2023)}</td>
-                <td>${r.jobs2033 != null ? formatInt(r.jobs2033) : "–"}</td>
-                <td>${formatPct(r.growthPct)}</td>
-                <td class="bar-cell">
-                  <div class="bar-wrap">
-                    <div class="bar" style="width: ${w}%;"></div>
-                  </div>
-                </td>
-              </tr>`;
-              }
-            });
-            body.innerHTML = html;
-          }
-  
-          const label = LIGHTCAST_DEGREE_CONFIGS[degree] ? LIGHTCAST_DEGREE_CONFIGS[degree].label : "Program";
-          if (status) status.textContent = "Showing latest national projections for " + label + ".";
-        })
-        .catch(err => {
-          if (status) status.textContent = "Could not load projections. Please try again.";
-        });
-    }
-  
+
     // ═══ GOOGLE APPS SCRIPT API ═══
     const JOB_SEARCH_API_URL = "https://script.google.com/macros/s/AKfycby_UnVBnXTt9hol70MzN_SRCpcydVtl18WdkaAme5ZgnQn4L9CBzKFlObO_3XpZmw/exec";
     const JOB_SEARCH_API_KEY = "";
@@ -1461,7 +1080,7 @@
           action: 'job-search',
           // The backend's degree-profile matcher (normalizeProgramQueryForProviders_
           // in full_google_code.js) recognizes short codes like "bscs"/"mscys"/"bscsc"
-          // as profile labels, not the human-readable LIGHTCAST_DEGREE_CONFIGS label —
+          // as profile labels, not the human-readable OPTION_SETS.degreePrograms label —
           // sending the descriptive label here silently skips all profile expansion.
           query_text: [program, (skills || '').trim()]
             .filter(Boolean)
@@ -1648,8 +1267,6 @@
     }
   
     document.addEventListener('DOMContentLoaded', function () {
-      document.getElementById('prospective-degree').value = 'bscs';
-      updateProjections();
       populateConfiguredSelects();
     });
     //]]>
