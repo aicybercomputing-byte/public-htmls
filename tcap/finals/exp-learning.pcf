@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?pcf-stylesheet path="/_resources/xsl/secondary.xsl" extension="aspx"?>
+<?pcf-stylesheet path="/_resources/xsl/v3/brand.xsl" extension="aspx"?>
 <!DOCTYPE document SYSTEM "http://commons.omniupdate.com/dtd/standard.dtd">
 <document>
 <headcode></headcode>
 <bodycode></bodycode>
 <!-- com.omniupdate.properties -->
-<title>Experiential Learning</title>
+<title>Tech Career Advancement Program (tCAP)</title>
 <!-- /com.omniupdate.properties -->
 
 <config>
@@ -19,22 +19,21 @@
 
 <parameter name="canonical-url" prompt="Canonical URL" alt="Enter the URL people should see in search results." type="text" group="none"></parameter>
 
-<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">Experiential Learning</parameter>
-
-<!-- SOCIAL SHARING - OPEN GRAPH -->
-<parameter name="social-sharing-display" type="select" prompt="Enable Sharing Content?" alt="When enabled, the page's Title, Description, and selected image (below) will be used when the page is shared on social media." group="Everyone" section="Social Sharing Content (Open Graph)">
-<option value="enable" selected="false">Enable</option>
-<option value="disable" selected="true">Disable</option>
+<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">Tech Career Advancement Program (tCAP)</parameter>
+<parameter name="hero-display" prompt="Display Hero?" alt="Select if you would like to display the hero." group="none" type="select">
+<option value="Yes" selected="true">Yes</option>
+<option value="No" selected="false">No</option>
 </parameter>
-<parameter name="social-sharing-image" prompt="Image" type="filechooser" dependency="yes" path="/ai-cybersecurity-computing/tech-career-accelerator-program" alt="Select the image that appears when the page is shared on social media. 1200px width by 630px height." group="Everyone"></parameter>
-<parameter name="social-sharing-image-alt" prompt="Alt Text" alt="A text description of the image conveying the essential nature of an image to users who are visually impaired." group="Everyone" ></parameter>
-
+<parameter name="breadcrumb-display" prompt="Display Breadcrumbs?" alt="Select if you would like to display breadcrumbs." group="Everyone" type="select">
+<option value="Yes" selected="false">Yes</option>
+<option value="No" selected="true">No</option>
+</parameter>
 <parameter name="include-file" prompt="Include File" alt="Do you want to include a file from the server below the maincontent." group="none" type="radio">
 <option value="true" selected="false">True</option>
 <option value="false" selected="true">False</option>
 </parameter>
 <parameter name="include-file-path" prompt="Choose File." alt="Choose a file to include below the maincontent." type="filechooser" group="none" path="/_resources/includes/" lockout="no">/_resources/includes/included-content.html</parameter>
-<parameter name="additional-content" prompt="Additional Content" alt="Add another editable region below the maincontent. This is typically used if you have included a file." group="continuing-education" type="radio">
+<parameter name="additional-content" prompt="Additional Content" alt="Add another editable region below the maincontent. This is typically used if you have included a file." group="none" type="radio">
 <option value="true" selected="false">Show</option>
 <option value="false" selected="true">Hide</option>
 </parameter>
@@ -54,20 +53,6 @@
 <option value="true" selected="true">Animate</option>
 <option value="false" selected="false">Don't Animate</option>
 </parameter>
-
-<!-- SIDE CONTENT LOCATION -->
-<parameter name="side-content-location" type="select" group="none" prompt="Change side content location?" alt="Select if the side content should keep its default location, or change to the left or right of the main content. Note: side content displaying on the right will appear after the main content on mobile." section="Side Content">
-<option value="false" selected="true">No</option>
-<option value="left" selected="false">Yes, display on the left</option>
-<option value="right" selected="false">Yes, display on the right</option>
-</parameter>
-
-<!-- QUICK LINKS -->
-<parameter name="quick-links-display" type="select" group="none" prompt="Display Quick Links" alt="Select if a quick links file should be displayed after the side navigation." section="Quick Links">
-<option value="true" selected="false">Show</option>
-<option value="false" selected="true">Hide</option>
-</parameter>
-<parameter name="quick-links-file" group="none" prompt="Quick Links File" alt="Choose a quick links file to include after the side navigation." type="filechooser" dependency="yes" path="/ai-cybersecurity-computing/tech-career-accelerator-program"></parameter>
 <!-- /com.omniupdate.properties -->
 </config>
 <metadata>
@@ -78,86 +63,83 @@
 <!-- /com.omniupdate.properties -->
 </metadata>
 
+<brand-hero>
+<display>
+<!-- com.omniupdate.div label="brand-content-display" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="select" prompt="Display Content" alt="Select if the Gallery Hero content (heading and text) should display. If 'No' is selected, the Content Title and Image - Large alt text will still be present on the page, but visually hidden." options="Yes:Yes;No:No" section="Gallery Hero"/ -->Yes<!-- /com.omniupdate.div -->
+</display>
+<text-display>
+<!-- com.omniupdate.div label="brand-text-display" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="select" prompt="Display Text" alt="Would you like to display the Gallery Hero text?" options="Yes:Yes;No:No;"/ -->No<!-- /com.omniupdate.div -->
+</text-display>
+<text>
+<!-- com.omniupdate.div label="brand-text" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="textarea" prompt="Text" alt="Enter the text to display in the Gallery Hero, beneath the Content Title."/ --><!-- /com.omniupdate.div -->
+</text>
+<image-small>
+<!-- com.omniupdate.div label="brand-image-small" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="image" prompt="Image - Small" alt="Select a JPG image for the small version of the Gallery Hero image to be displayed on mobile (650px by 450px)."/ --><img src="{{f:82739161}}" alt="3 images of tcap students" /><!-- /com.omniupdate.div -->
+</image-small>
+<image-large>
+<!-- com.omniupdate.div label="brand-image-large" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="image" prompt="Image - Large" alt="Select a JPG image for the large version of the Gallery Hero image to be displayed on larger screens (1400px by 650px)."/ --><img src="{{f:82739161}}" alt="3 images of tcap students" /><!-- /com.omniupdate.div -->
+</image-large>
+</brand-hero>
+
 <maincontent>
 
-<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- ouc:editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000"/ --><h3>How It Works</h3>
-<p>Experiential learning is a required component of tCAP and gives students the opportunity to apply classroom knowledge in real-world environments.</p>
-<table style="border-style: none;">
-<tbody>
-<tr>
-<td style="border-style: none;">
-<table class="media-small-left">
+<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- ouc:editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000"/ --><p>&nbsp;</p>
+<table class="gallery-band-bg-color" style="width: 100%;">
 <thead>
 <tr>
-<th class="ou-help mceNonEditable">Image - Small - Left <br />Image Dimensions - Width: 100 px, Height: 100 px* <br />* Recommended Height.</th>
+<th class="ou-help mceNonEditable">Gallery Item - Band with Background Color</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td class="image"><img src="{{f:82757024}}" alt="1" width="1254" height="1254" /></td>
-</tr>
-</tbody>
-</table>
-<strong><span style="color: #006747; font-size: 1.25em; letter-spacing: 1px; text-transform: uppercase;">Choose an experience</span></strong>
-<p>Select an eligible pathway such as an internship, research, capstone, hackathon or study abroad experience.</p>
-</td>
-</tr>
 <tr>
 <td>
-<table class="media-small-left">
+<table class="gallery-text">
 <thead>
 <tr>
-<th class="ou-help mceNonEditable">News - Image - Small - Left <br />Image Width: 100 px, Height: 100 px* <br />* Recommended Height.</th>
+<th class="ou-help mceNonEditable">Gallery Item - Text</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td class="image"><img src="{{f:82757023}}" alt="2" width="1254" height="1254" /></td>
-</tr>
-</tbody>
-</table>
-<strong><span style="color: #006747; font-size: 1.25em; letter-spacing: 1px; text-transform: uppercase;">Get pre-approval</span></strong>
-<p>Pre-approval of a plan of work and faculty mentor or quality supervisor.</p>
-</td>
-</tr>
 <tr>
 <td>
-<table class="media-small-left">
+<table class="button-link-row-snippet">
 <thead>
 <tr>
-<th class="ou-help mceNonEditable">News - Image - Small - Left <br />Image Width: 100 px, Height: 100 px* <br />* Recommended Height.</th>
+<th class="ou-help mceNonEditable">Button(s) - Centered<br /><em>To add more buttons to this set, insert a row for each button in the table below.</em></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="image"><img src="{{f:82757025}}" alt="3" width="1254" height="1254" /></td>
+<td><a href="{{f:82761834}}">tCAP Program</a></td>
+</tr>
+<tr>
+<td><a style="text-underline-offset: 4px; font-size: 16px;" href="{{f:82808588}}">Experiential Learning</a></td>
+</tr>
+<tr>
+<td><a href="{{f:82808589}}">tCAP FAQs</a></td>
+</tr>
+<tr>
+<td><a href="{{f:82808590}}">Internship/Jobs Finder</a></td>
 </tr>
 </tbody>
 </table>
-<strong><span style="color: #006747; font-size: 1.25em; letter-spacing: 1px; text-transform: uppercase;">Complete the work</span></strong>
-<p>Meet the minimum threshold of 135 verified hours and deliver a mid-point update.</p>
 </td>
 </tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="gallery-text" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Text</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>
-<table class="media-small-left">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">News - Image - Small - Left <br />Image Width: 100 px, Height: 100 px* <br />* Recommended Height.</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="image"><img src="{{f:82757026}}" alt="4" width="1254" height="1254" /></td>
-</tr>
-</tbody>
-</table>
-<strong><span style="color: #006747; font-size: 1.25em; letter-spacing: 1px; text-transform: uppercase;">Reflect and record</span></strong>
-<p>Develop and deliver a final report with structured reflection, pass/fail assessment and CIS 4950 notation.</p>
-</td>
-</tr>
-</tbody>
-</table>
 <h3>Approved Pathways</h3>
 <p>Eligible experiences include internships, undergraduate research through USF Student Engagement in Research &amp; Innovation, capstone projects, cybersecurity support services, entrepreneurship initiatives, competitions, hackathons and study abroad experiences.</p>
 <h3>Requirements</h3>
@@ -194,6 +176,225 @@
 <td>CIS 4950</td>
 <td>Recorded as CIS 4950 (badge and transcript notation)</td>
 <td>Badge and transcript notation<br /><br /></td>
+</tr>
+</tbody>
+</table>
+<h4>Career Development</h4>
+<table>
+<tbody>
+<tr>
+<td>
+<table class="media-medium-center" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Image - Medium - Left with Caption <br />Image Dimensions - Width: 320 px, Height: 213 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img style="font-size: 16px; color: #000000;" src="/ai-cybersecurity-computing/images/00-icons/reliaquest-labs.png" alt="Sample" width="96" height="100" /></td>
+</tr>
+<tr>
+<td class="caption">&nbsp;<br style="font-size: 16px; color: #000000;" /><a style="text-underline-offset: 4px; font-size: 16px;" href="/ai-cybersecurity-computing/academics/student-opportunities/reliaquest-labs.aspx">ReliaQuest Labs</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="media-medium-center" style="border-style: none; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Image - Medium - Left with Caption <br />Image Dimensions - Width: 320 px, Height: 213 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image">
+<p><img style="font-size: 16px; color: #000000;" src="/ai-cybersecurity-computing/images/00-icons/internships.png" alt="Sample" width="110" height="100" /></p>
+</td>
+</tr>
+<tr>
+<td class="caption">&nbsp;<br /><a href="/ai-cybersecurity-computing/academics/student-opportunities/internships.aspx">Internships</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="media-medium-center" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Image - Medium - Left with Caption <br />Image Dimensions - Width: 320 px, Height: 213 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image">
+<p><img style="font-size: 16px; color: #000000;" src="/ai-cybersecurity-computing/images/00-icons/assistantships.png" alt="Sample" width="118" height="100" /></p>
+</td>
+</tr>
+<tr>
+<td class="caption">&nbsp;<br /><a href="/ai-cybersecurity-computing/academics/student-opportunities/assistantships.aspx">Assistantships</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td style="border-style: none;">
+<table class="media-medium-center" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Image - Medium - Left with Caption <br />Image Dimensions - Width: 320 px, Height: 213 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image">
+<p><img style="font-size: 16px; color: #000000;" src="/ai-cybersecurity-computing/images/00-icons/career-services.png" alt="Icon" width="84" height="100" /></p>
+</td>
+</tr>
+<tr>
+<td class="caption">&nbsp;<br /><a href="/ai-cybersecurity-computing/images/00-icons/career-services.png">Career Services</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style="border-style: none;">
+<table class="media-medium-center" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Image - Medium - Left with Caption <br />Image Dimensions - Width: 320 px, Height: 213 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image">
+<p><img style="font-size: 16px; color: #000000;" src="/ai-cybersecurity-computing/images/00-icons/international-study.png" alt="Icon" width="100" height="100" /></p>
+</td>
+</tr>
+<tr>
+<td class="caption">&nbsp;<br /><a href="/ai-cybersecurity-computing/images/00-icons/international-study.png">International Study</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style="border-style: none;">
+<table class="media-medium-center" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Image - Medium - Left with Caption <br />Image Dimensions - Width: 320 px, Height: 213 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image">
+<p><img style="font-size: 16px; color: #000000;" src="/ai-cybersecurity-computing/images/00-icons/student-orgs.png" alt="Icon" width="68" height="100" /></p>
+</td>
+</tr>
+<tr>
+<td class="caption">&nbsp;<br /><a href="/ai-cybersecurity-computing/images/00-icons/student-orgs.png">Student Organizations</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td style="border-style: none;">
+<table class="media-medium-center" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Image - Medium - Left with Caption <br />Image Dimensions - Width: 320 px, Height: 213 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image">
+<p><img style="font-size: 16px; color: #000000;" src="/ai-cybersecurity-computing/images/00-icons/scholarships.png" alt="Icon" width="100" height="100" /></p>
+</td>
+</tr>
+<tr>
+<td class="caption">
+<p>&nbsp;</p>
+<p><a href="/ai-cybersecurity-computing/images/00-icons/scholarships.png">Scholarships</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style="border-style: none;">
+<table class="media-medium-center" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Image - Medium - Left with Caption <br />Image Dimensions - Width: 320 px, Height: 213 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image"><img src="/ai-cybersecurity-computing/images/00-icons/peer-tutoring.png" alt="Icon" width="130" height="100" /></td>
+</tr>
+<tr>
+<td class="caption">&nbsp;<br /><a href="/ai-cybersecurity-computing/academics/student-opportunities/peer_tut.aspx">Peer Tutoring</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style="border-style: none;">
+<table class="media-medium-center" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Image - Medium - Left with Caption <br />Image Dimensions - Width: 320 px, Height: 213 px* <br />* Recommended Height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="image">
+<p><img src="/ai-cybersecurity-computing/images/00-icons/cyberherd.png" alt="Icon" width="80" height="100" /></p>
+</td>
+</tr>
+<tr>
+<td class="caption">&nbsp;<br /><a href="/ai-cybersecurity-computing/academics/student-opportunities/cyberherd.aspx">Cyberherd</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<h4>Growing Metro Areas</h4>
+<table style="border-style: none; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td colspan="2">
+~[com[25521 1 5{ "version": 5, "data": {"1ff9293aa70f1287839118e20047120e":"Tampa Bay","3a1d87b2b8edc6d4f3852fb41a9db8e1":"block","bddd634fa791fcbf693280a10590caf0":"gray","ed8ad87adcee2515c3a0d955e98d32ed":"h3","daa6e542c0af5dcdfb194372e03f0602":"https://tampabayedc.com/why-tampa-bay/work-tampa/","f633a01da926fb500abeda2c1c0b665a":"u-more","ae6222b72cbbad79f60c292a110a8bfc":"Read more here!","087a81a63aac0dd93f9b6aaf0f578000":"_blank","784349a1c88c40abfa9cad4b25da2f4d":"#1 year-over-year job growth among all Florida counties"}}]]~
+</td>
+<td colspan="2">
+~[com[25521 6 5{ "version": 5, "data": {"1ff9293aa70f1287839118e20047120e":"St. Petersburg","3a1d87b2b8edc6d4f3852fb41a9db8e1":"block","bddd634fa791fcbf693280a10590caf0":"gray","ed8ad87adcee2515c3a0d955e98d32ed":"h3","daa6e542c0af5dcdfb194372e03f0602":"https://becomestpete.com/industries-and-businesses/data-analytics-and-technology/","f633a01da926fb500abeda2c1c0b665a":"u-more","ae6222b72cbbad79f60c292a110a8bfc":"Read more here!","087a81a63aac0dd93f9b6aaf0f578000":"_blank","784349a1c88c40abfa9cad4b25da2f4d":"#2 place in Florida for tech jobs in 2024"}}]]~
+
+<p>&nbsp;</p>
+</td>
+<td colspan="2">
+~[com[25521 7 5{ "version": 5, "data": {"1ff9293aa70f1287839118e20047120e":"Orlando","3a1d87b2b8edc6d4f3852fb41a9db8e1":"block","bddd634fa791fcbf693280a10590caf0":"gray","ed8ad87adcee2515c3a0d955e98d32ed":"h3","daa6e542c0af5dcdfb194372e03f0602":"https://business.orlando.org/l/technology/","f633a01da926fb500abeda2c1c0b665a":"u-more","ae6222b72cbbad79f60c292a110a8bfc":"Read more here!","087a81a63aac0dd93f9b6aaf0f578000":"_blank","784349a1c88c40abfa9cad4b25da2f4d":"Almost 25,000 Industry Professionals"}}]]~
+
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td style="border-style: none;">&nbsp;</td>
+<td style="border-style: none;" colspan="2">
+~[com[25521 8 5{ "version": 5, "data": {"1ff9293aa70f1287839118e20047120e":"Miami","3a1d87b2b8edc6d4f3852fb41a9db8e1":"block","bddd634fa791fcbf693280a10590caf0":"gray","ed8ad87adcee2515c3a0d955e98d32ed":"h3","daa6e542c0af5dcdfb194372e03f0602":"https://www.beaconcouncil.com/technology/","f633a01da926fb500abeda2c1c0b665a":"u-more","ae6222b72cbbad79f60c292a110a8bfc":"Read more here!","087a81a63aac0dd93f9b6aaf0f578000":"_blank","784349a1c88c40abfa9cad4b25da2f4d":"More than 2,000 startups supporting roughly 90,000 jobs"}}]]~
+
+<p>&nbsp;</p>
+</td>
+<td style="border-style: none;" colspan="2">
+~[com[25521 9 5{ "version": 5, "data": {"1ff9293aa70f1287839118e20047120e":"Jacksonville","3a1d87b2b8edc6d4f3852fb41a9db8e1":"block","bddd634fa791fcbf693280a10590caf0":"gray","ed8ad87adcee2515c3a0d955e98d32ed":"h3","daa6e542c0af5dcdfb194372e03f0602":"https://jaxusa.org/industry/technology-services/","f633a01da926fb500abeda2c1c0b665a":"u-more","ae6222b72cbbad79f60c292a110a8bfc":"Read more here!","087a81a63aac0dd93f9b6aaf0f578000":"_blank","784349a1c88c40abfa9cad4b25da2f4d":"28,000 professionals employed in the technology services industry."}}]]~
+
+<p>&nbsp;</p>
+</td>
+<td style="border-style: none;">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</td>
 </tr>
 </tbody>
 </table><!-- /com.omniupdate.div -->

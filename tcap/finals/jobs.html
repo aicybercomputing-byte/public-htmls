@@ -15162,320 +15162,123 @@ Component - Widget - Text Navigation
 		<div class="mainContent fullContent">
 			<div id="jobs-asset-root">
 				<div class="jobs-tabs">
-					<button class="active" style="font-weight: 600;" tabindex="0" data-panel="prospective"
-						onclick="switchPanel('prospective', this)">Prospective Students</button>
-					<button tabindex="0" data-panel="current" onclick="switchPanel('current', this)">Current
-						Students</button>
+					<button class="active" style="font-weight: 600;" tabindex="0" data-panel="internships"
+						onclick="switchPanel('internships', this)">Find My Internship ✨</button>
 					<button tabindex="0" data-panel="matchme" onclick="switchPanel('matchme', this)">Find My Job
 						✨</button>
-					<button tabindex="0" data-panel="internships"
-						onclick="switchPanel('internships', this)">Find My Internship ✨</button>
 				</div>
-				<div id="prospective" class="jobs-panel active">
-					<h3>Explore a Degree Program</h3>
-					<div style="margin: 1.5rem 0;">
-						<div class="jobs-form-group"><label for="prospective-degree">Select Degree
-								Program:</label><select id="prospective-degree" style="max-width: 400px;"
-								onchange="goToDegreeProgramPage(this.value)">
-								<option value="">Select a degree program&hellip;</option>
-								<option value="bscs">BS Computer Science</option>
-								<option value="bscse">BS Computer Science and Engineering</option>
-								<option value="bsai">BS Artificial Intelligence</option>
-								<option value="bscys">BS Cybersecurity</option>
-								<option value="bsit">BS Information Technology</option>
-								<option value="bscsb">BS Computer Science &amp; Business</option>
-								<option value="bscsc">BS Computer Science &amp; Criminology</option>
-								<option value="bscsiss">BS Computer Science &amp; Interdisciplinary Social
-									Sciences</option>
-								<option value="mscs">MS Computer Science</option>
-								<option value="mscse">MS Computer Science and Engineering</option>
-								<option value="msai">MS Artificial Intelligence</option>
-								<option value="mscys">MS Cybersecurity</option>
-								<option value="phdcse">PhD Computer Science and Engineering</option>
-								<option value="phdds">PhD Data Science</option>
-							</select></div>
+				<!-- FIND MY INTERNSHIP: Two columns with program+grad on left, skills on right -->
+				<div id="internships" class="jobs-panel active">
+					<h3>Find My Internship Match</h3>
+					<form class="jobs-form">
+						<div class="jobs-form-row">
+							<div class="jobs-form-group"><label for="ji-program">Your Degree Program:</label><select
+									id="ji-program" data-option-set="degreePrograms"></select></div>
+							<div class="jobs-form-group"><label for="ji-grad">Graduation Year:</label><select id="ji-grad"
+									data-option-set="graduationTerms"></select></div>
+						</div>
+						<div class="jobs-form-row">
+							<div class="jobs-form-group"><label for="ji-location">Preferred Location:</label><select
+									id="ji-location" data-option-set="locations"></select></div>
+							<div class="jobs-form-group"><label for="ji-auth">Work Authorization:</label><select
+									id="ji-auth">
+									<option>US citizen / permanent resident</option>
+									<option>F-1 OPT / STEM OPT eligible</option>
+									<option>H-1B sponsorship needed</option>
+								</select></div>
+						</div>
+						<div class="jobs-form-row full">
+							<div class="jobs-form-group"><label for="ji-skills">Your Skills (comma-separated):</label>
+								<input id="ji-skills" type="text" placeholder="e.g. Python, React, SQL, AWS" />
+							</div>
+						</div>
+						<div id="ji-external-searches" class="jobs-external-search-buttons"
+							aria-label="Search for more internships on external job sites" hidden>
+							<button class="snippetButton" type="button"
+								onclick="openExternalJobSearch('linkedin', 'ji', 'internship')">See more on
+								LinkedIn</button>
+							<button class="snippetButton" type="button"
+								onclick="openExternalJobSearch('indeed', 'ji', 'internship')">See more on
+								Indeed</button>
+						</div>
+						<button id="ji-btn" class="snippetButton" tabindex="0" type="button"
+							onclick="runInternshipMatch()">Find My Internship Matches &rarr;</button>
+					</form>
+					<div id="ji-loading" class="jobs-loading" aria-live="polite" aria-busy="true"><span class="jobs-spinner"
+							aria-hidden="true"></span> <span>Loading internship matches...</span>
 					</div>
-					<h3>Florida Spotlight</h3>
-					<div class="spotlight-grid">
-						<div class="c-calloutText c-calloutText--grey">
-							<h3 class="c-calloutText_heading">107,404</h3>
-							<div class="c-calloutText_text">
-								<p class="p1">Software development jobs in Florida &mdash; +5% projected 2025
-									(3.2&times; benchmark)</p>
-							</div>
-						</div>
-						<div class="c-calloutText c-calloutText--grey">
-							<h3 class="c-calloutText_heading">16,973</h3>
-							<div class="c-calloutText_text">
-								<p class="p1">Data science and Machine Learning jobs &mdash; +5.6% projected,
-									fastest-growing Florida category</p>
-							</div>
-						</div>
-						<div class="c-calloutText c-calloutText--grey">
-							<h3 class="c-calloutText_heading">No. 3</h3>
-							<div class="c-calloutText_text">
-								<p class="p1">Florida&rsquo;s aggregate CompTIA ranking among all 50 states</p>
-							</div>
-						</div>
-					</div>
-					<h3>Why the AI Era Boosts &mdash; Not Replaces &mdash; Computing Careers</h3>
-					<div class="spotlight-grid">
-						<div class="c-calloutText c-calloutText--grey">
-							<h3 class="c-calloutText_heading">Productivity Creates Demand</h3>
-							<div class="c-calloutText_text">
-								<p class="p1"><strong>Bureau of Labor Statistics finding:</strong> AI-assisted
-									productivity lowers software costs, expands the market and boosts demand for
-									developers who build AI tools.</p>
-							</div>
-						</div>
-						<div class="c-calloutText c-calloutText--grey">
-							<h3 class="c-calloutText_heading">Data &amp; AI: Fastest-Growing Segment</h3>
-							<div class="c-calloutText_text">
-								<p class="p1"><strong>CompTIA 2025:</strong> Data science, Machine Learning, and
-									database roles are Florida&rsquo;s fastest-growing tech category at 5.6% annually
-									&mdash; 3.6&times; the national benchmark, which directly aligns with Bellini
-									College programs.</p>
-							</div>
-						</div>
-					</div>
+					<div id="ji-results" class="jobs-results"></div>
 				</div>
+				<!-- FIND MY JOB: Left column (degree+grad) | Right column (location+auth) | Full-width skills -->
+				<div id="matchme" class="jobs-panel">
+					<h3>Find My Job Match</h3>
+					<form class="jobs-form">
+						<div class="jobs-form-row">
+							<div class="jobs-form-group"><label for="jm-program">Your Degree Program:</label><select
+									id="jm-program" data-option-set="degreePrograms"></select></div>
+							<div class="jobs-form-group"><label for="jm-grad">Graduation Year:</label><select id="jm-grad"
+									data-option-set="graduationTerms"></select></div>
+						</div>
+						<div class="jobs-form-row">
+							<div class="jobs-form-group"><label for="jm-location">Preferred Location:</label><select
+									id="jm-location" data-option-set="locations"></select></div>
+							<div class="jobs-form-group"><label for="jm-auth">Work Authorization:</label><select
+									id="jm-auth">
+									<option>US citizen / permanent resident</option>
+									<option>F-1 OPT / STEM OPT eligible</option>
+									<option>H-1B sponsorship needed</option>
+								</select></div>
+						</div>
+						<div class="jobs-form-row full">
+							<div class="jobs-form-group"><label for="jm-skills">Your Skills (comma-separated):</label>
+								<input id="jm-skills" type="text" placeholder="e.g. Python, React, SQL, AWS" />
+							</div>
+						</div>
+						<div id="jm-external-searches" class="jobs-external-search-buttons"
+							aria-label="Search for more jobs on external job sites" hidden>
+							<button class="snippetButton" type="button"
+								onclick="openExternalJobSearch('linkedin', 'jm', 'job')">See more on LinkedIn</button>
+							<button class="snippetButton" type="button"
+								onclick="openExternalJobSearch('indeed', 'jm', 'job')">See more on Indeed</button>
+						</div>
+						<button id="jm-btn" class="snippetButton" tabindex="0" type="button" onclick="runJobMatch()">Find My
+							Job Matches &rarr;</button>
+					</form>
+					<div id="jm-loading" class="jobs-loading" aria-live="polite" aria-busy="true"><span class="jobs-spinner"
+							aria-hidden="true"></span> <span>Loading job matches...</span></div>
+					<div id="jm-results" class="jobs-results"></div>
+				</div>
+				<section class="all-sources" aria-labelledby="all-sources-heading">
+					<h4 id="all-sources-heading" class="all-sources-heading">Sources &amp; Disclaimers</h4>
+					<ol class="all-sources-list">
+						<li>BLS Monthly Labor Review Feb. 2025</li>
+						<li>CompTIA State of the Tech Workforce 2025</li>
+						<li>AIMaps / LinkUp.</li>
+						<li>Maintained by Bellini College Career Services.</li>
+						<li>Tampa Bay: <a tabindex="0" href="https://tampabayedc.com/why-tampa-bay/work-tampa/"> Tampa
+								Bay Economic Development Council </a></li>
+						<li>St. Petersburg: <a tabindex="0"
+								href="https://becomestpete.com/industries-and-businesses/data-analytics-and-technology/">
+								St. Petersburg Area Economic Development Corporation </a></li>
+						<li>Orlando: <a tabindex="0" href="https://business.orlando.org/l/technology/"> Orlando Economic
+								Partnership </a></li>
+						<li>Miami: <a tabindex="0" href="https://www.beaconcouncil.com/technology/"> Miami-Dade Beacon
+								Council </a></li>
+						<li>Jacksonville: <a tabindex="0"
+								href="https://jaxusa.org/wp-content/uploads/2026/Technology-Services-Business-Case.pdf">
+								JAXUSA Partnership </a></li>
+					</ol>
+					<p class="all-sources-text">Updated quarterly.</p>
+					<p class="all-sources-text">Wage and workforce figures are aggregate regional estimates. Individual
+						earnings vary by role, employer, experience, and location. They are not guarantees of job
+						availability, salary, or outcomes for any individual or program.</p>
+					<p class="all-sources-text">Listings are aggregated from third-party sources (including USAJOBS) and
+						are not verified or endorsed by the University of South Florida. Match scores are automated
+						estimates and do not guarantee eligibility, fit, or employment. Results may be incomplete or
+						inaccurate and should not be your only source for career decisions. Confirm all details on the
+						original posting before applying.</p>
+				</section>
 			</div>
-			<div id="current" class="jobs-panel">
-				<h3>Resources for Current Students</h3>
-				<h2>Career Development</h2>
-				<div class="career-grid">
-					<div class="c-calloutText c-calloutText--grey">
-						<div class="c-calloutText_text"><img class="career-dev-img"
-								src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/reliaquest-labs.png"
-								alt="USF Logo" />
-							<h4 class="c-calloutText_heading"><a tabindex="0"
-									href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/reliaquest-labs.aspx">
-									ReliaQuest Labs</a></h4>
-						</div>
-					</div>
-					<div class="c-calloutText c-calloutText--grey">
-						<div class="c-calloutText_text"><img class="career-dev-img"
-								src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/internships.png"
-								alt="USF Logo" />
-							<h4 class="c-calloutText_heading"><a tabindex="0"
-									href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/internships.aspx">
-									Internships</a></h4>
-						</div>
-					</div>
-					<div class="c-calloutText c-calloutText--grey">
-						<div class="c-calloutText_text"><img class="career-dev-img"
-								src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/assistantships.png"
-								alt="USF Logo" />
-							<h4 class="c-calloutText_heading"><a tabindex="0"
-									href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/assistantships.aspx">
-									Assistantships</a></h4>
-						</div>
-					</div>
-					<div class="c-calloutText c-calloutText--grey">
-						<div class="c-calloutText_text"><img class="career-dev-img"
-								src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/career-services.png"
-								alt="USF Logo" />
-							<h4 class="c-calloutText_heading"><a tabindex="0"
-									href="https://www.usf.edu/career-services/"> Career Services </a></h4>
-						</div>
-					</div>
-					<div class="c-calloutText c-calloutText--grey">
-						<div class="c-calloutText_text"><img class="career-dev-img"
-								src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/international-study.png"
-								alt="USF Logo" />
-							<h4 class="c-calloutText_heading"><a tabindex="0"
-									href="https://educationabroad.global.usf.edu/_portal/program-discovery?search=%5B%7B%22filterType%22:%22programDiscoveryKeyword%22,%22filterValues%22:%5B%7B%22value%22:%22cyber%22%7D%5D%7D%5D">
-									International Study</a></h4>
-						</div>
-					</div>
-					<div class="c-calloutText c-calloutText--grey">
-						<div class="c-calloutText_text"><img class="career-dev-img"
-								src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/student-orgs.png"
-								alt="USF Logo" />
-							<h4 class="c-calloutText_heading"><a tabindex="0"
-									href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/student-organizations.aspx">
-									Student Organizations</a></h4>
-						</div>
-					</div>
-					<div class="c-calloutText c-calloutText--grey">
-						<div class="c-calloutText_text"><img class="career-dev-img"
-								src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/scholarships.png"
-								alt="USF Logo" />
-							<h4 class="c-calloutText_heading"><a tabindex="0"
-									href="https://www.usf.edu/financial-aid/scholarships/index.aspx">
-									Scholarships</a></h4>
-						</div>
-					</div>
-					<div class="c-calloutText c-calloutText--grey">
-						<div class="c-calloutText_text"><img class="career-dev-img"
-								src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/peer-tutoring.png"
-								alt="USF Logo" />
-							<h4 class="c-calloutText_heading"><a tabindex="0"
-									href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/peer_tut.aspx">
-									Peer Tutoring</a></h4>
-						</div>
-					</div>
-					<div class="c-calloutText c-calloutText--grey">
-						<div class="c-calloutText_text"><img class="career-dev-img"
-								src="https://www.usf.edu/ai-cybersecurity-computing/images/00-icons/cyberherd.png"
-								alt="USF Logo" />
-							<h4 class="c-calloutText_heading"><a tabindex="0"
-									href="https://www.usf.edu/ai-cybersecurity-computing/academics/student-opportunities/cyberherd.aspx">
-									Cyberherd</a></h4>
-						</div>
-					</div>
-				</div>
-				<h2>Growing Metro Areas</h2>
-				<div class="metro-grid">
-					<div class="c-calloutText c-calloutText--grey metro-card metro-card--top">
-						<h3 class="c-calloutText_heading"><a tabindex="0"
-								href="https://tampabayedc.com/why-tampa-bay/work-tampa/">Tampa Bay</a></h3>
-						<div class="c-calloutText_text">
-							<p class="p1">#1 year-over-year job growth among all Florida counties</p>
-						</div>
-					</div>
-					<div class="c-calloutText c-calloutText--grey metro-card metro-card--top">
-						<h3 class="c-calloutText_heading"><a tabindex="0"
-								href="https://becomestpete.com/industries-and-businesses/data-analytics-and-technology/">St.
-								Petersburg</a></h3>
-						<div class="c-calloutText_text">
-							<p class="p1">#2 place in Florida for tech jobs in 2024</p>
-						</div>
-					</div>
-					<div class="c-calloutText c-calloutText--grey metro-card metro-card--top">
-						<h3 class="c-calloutText_heading"><a tabindex="0"
-								href="https://business.orlando.org/l/technology/">Orlando</a></h3>
-						<div class="c-calloutText_text">
-							<p class="p1">Almost 25,000 Industry Professionals</p>
-						</div>
-					</div>
-					<div class="c-calloutText c-calloutText--grey metro-card metro-card--bottom-left">
-						<h3 class="c-calloutText_heading"><a tabindex="0"
-								href="https://www.beaconcouncil.com/technology/">Miami</a></h3>
-						<div class="c-calloutText_text">
-							<p class="p1">More than 2,000 startups supporting roughly 90,000 jobs</p>
-						</div>
-					</div>
-					<div class="c-calloutText c-calloutText--grey metro-card metro-card--bottom-right">
-						<h3 class="c-calloutText_heading"><a tabindex="0"
-								href="https://jaxusa.org/industry/technology-services/">Jacksonville</a></h3>
-						<div class="c-calloutText_text">
-							<p class="p1">28,000 professionals employed in the technology services industry.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- FIND MY INTERNSHIP: Two columns with program+grad on left, skills on right -->
-			<div id="internships" class="jobs-panel">
-				<h3>Find My Internship Match</h3>
-				<form class="jobs-form">
-					<div class="jobs-form-row">
-						<div class="jobs-form-group"><label for="ji-program">Your Degree Program:</label><select
-								id="ji-program" data-option-set="degreePrograms"></select></div>
-						<div class="jobs-form-group"><label for="ji-grad">Graduation Year:</label><select id="ji-grad"
-								data-option-set="graduationTerms"></select></div>
-					</div>
-					<div class="jobs-form-row">
-						<div class="jobs-form-group"><label for="ji-location">Preferred Location:</label><select
-								id="ji-location" data-option-set="locations"></select></div>
-						<div class="jobs-form-group"><label for="ji-auth">Work Authorization:</label><select
-								id="ji-auth">
-								<option>US citizen / permanent resident</option>
-								<option>F-1 OPT / STEM OPT eligible</option>
-								<option>H-1B sponsorship needed</option>
-							</select></div>
-					</div>
-					<div class="jobs-form-row full">
-						<div class="jobs-form-group"><label for="ji-skills">Your Skills (comma-separated):</label>
-							<input id="ji-skills" type="text" placeholder="e.g. Python, React, SQL, AWS" />
-						</div>
-					</div>
-					<div id="ji-external-searches" class="jobs-external-search-buttons"
-						aria-label="Search for more internships on external job sites" hidden>
-						<button class="snippetButton" type="button"
-							onclick="openExternalJobSearch('linkedin', 'ji', 'internship')">See more on
-							LinkedIn</button>
-						<button class="snippetButton" type="button"
-							onclick="openExternalJobSearch('indeed', 'ji', 'internship')">See more on
-							Indeed</button>
-					</div>
-					<button id="ji-btn" class="snippetButton" tabindex="0" type="button"
-						onclick="runInternshipMatch()">Find My Internship Matches &rarr;</button>
-				</form>
-				<div id="ji-loading" class="jobs-loading" aria-live="polite" aria-busy="true"><span class="jobs-spinner"
-						aria-hidden="true"></span> <span>Loading internship matches...</span>
-				</div>
-				<div id="ji-results" class="jobs-results"></div>
-			</div>
-			<!-- FIND MY JOB: Left column (degree+grad) | Right column (location+auth) | Full-width skills -->
-			<div id="matchme" class="jobs-panel">
-				<h3>Find My Job Match</h3>
-				<form class="jobs-form">
-					<div class="jobs-form-row">
-						<div class="jobs-form-group"><label for="jm-program">Your Degree Program:</label><select
-								id="jm-program" data-option-set="degreePrograms"></select></div>
-						<div class="jobs-form-group"><label for="jm-grad">Graduation Year:</label><select id="jm-grad"
-								data-option-set="graduationTerms"></select></div>
-					</div>
-					<div class="jobs-form-row">
-						<div class="jobs-form-group"><label for="jm-location">Preferred Location:</label><select
-								id="jm-location" data-option-set="locations"></select></div>
-						<div class="jobs-form-group"><label for="jm-auth">Work Authorization:</label><select
-								id="jm-auth">
-								<option>US citizen / permanent resident</option>
-								<option>F-1 OPT / STEM OPT eligible</option>
-								<option>H-1B sponsorship needed</option>
-							</select></div>
-					</div>
-					<div class="jobs-form-row full">
-						<div class="jobs-form-group"><label for="jm-skills">Your Skills (comma-separated):</label>
-							<input id="jm-skills" type="text" placeholder="e.g. Python, React, SQL, AWS" />
-						</div>
-					</div>
-					<div id="jm-external-searches" class="jobs-external-search-buttons"
-						aria-label="Search for more jobs on external job sites" hidden>
-						<button class="snippetButton" type="button"
-							onclick="openExternalJobSearch('linkedin', 'jm', 'job')">See more on LinkedIn</button>
-						<button class="snippetButton" type="button"
-							onclick="openExternalJobSearch('indeed', 'jm', 'job')">See more on Indeed</button>
-					</div>
-					<button id="jm-btn" class="snippetButton" tabindex="0" type="button" onclick="runJobMatch()">Find My
-						Job Matches &rarr;</button>
-				</form>
-				<div id="jm-loading" class="jobs-loading" aria-live="polite" aria-busy="true"><span class="jobs-spinner"
-						aria-hidden="true"></span> <span>Loading job matches...</span></div>
-				<div id="jm-results" class="jobs-results"></div>
-			</div>
-			<section class="all-sources" aria-labelledby="all-sources-heading">
-				<h4 id="all-sources-heading" class="all-sources-heading">Sources &amp; Disclaimers</h4>
-				<ol class="all-sources-list">
-					<li>BLS Monthly Labor Review Feb. 2025</li>
-					<li>CompTIA State of the Tech Workforce 2025</li>
-					<li>AIMaps / LinkUp.</li>
-					<li>Maintained by Bellini College Career Services.</li>
-					<li>Tampa Bay: <a tabindex="0" href="https://tampabayedc.com/why-tampa-bay/work-tampa/"> Tampa
-							Bay Economic Development Council </a></li>
-					<li>St. Petersburg: <a tabindex="0"
-							href="https://becomestpete.com/industries-and-businesses/data-analytics-and-technology/">
-							St. Petersburg Area Economic Development Corporation </a></li>
-					<li>Orlando: <a tabindex="0" href="https://business.orlando.org/l/technology/"> Orlando Economic
-							Partnership </a></li>
-					<li>Miami: <a tabindex="0" href="https://www.beaconcouncil.com/technology/"> Miami-Dade Beacon
-							Council </a></li>
-					<li>Jacksonville: <a tabindex="0"
-							href="https://jaxusa.org/wp-content/uploads/2026/Technology-Services-Business-Case.pdf">
-							JAXUSA Partnership </a></li>
-				</ol>
-				<p class="all-sources-text">Updated quarterly.</p>
-				<p class="all-sources-text">Wage and workforce figures are aggregate regional estimates. Individual
-					earnings vary by role, employer, experience, and location. They are not guarantees of job
-					availability, salary, or outcomes for any individual or program.</p>
-				<p class="all-sources-text">Listings are aggregated from third-party sources (including USAJOBS) and
-					are not verified or endorsed by the University of South Florida. Match scores are automated
-					estimates and do not guarantee eligibility, fit, or employment. Results may be incomplete or
-					inaccurate and should not be your only source for career decisions. Confirm all details on the
-					original posting before applying.</p>
-			</section>
 		</div>
 		<script>
 			function isSafariBrowser() {
