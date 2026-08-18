@@ -5,7 +5,7 @@
 <headcode></headcode>
 <bodycode></bodycode>
 <!-- com.omniupdate.properties -->
-<title>Tech Career Accelerator Program (tCAP)</title>
+<title>Tech Career Advancement Program (tCAP)</title>
 <!-- /com.omniupdate.properties -->
 
 <config>
@@ -19,7 +19,7 @@
 
 <parameter name="canonical-url" prompt="Canonical URL" alt="Enter the URL people should see in search results." type="text" group="none"></parameter>
 
-<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">Tech Career Accelerator Program (tCAP)</parameter>
+<parameter name="content-title" prompt="Content Title" alt="Enter the text that will display at the top of the content well." group="Everyone">Tech Career Advancement Program (tCAP)</parameter>
 <parameter name="hero-display" prompt="Display Hero?" alt="Select if you would like to display the hero." group="none" type="select">
 <option value="Yes" selected="true">Yes</option>
 <option value="No" selected="false">No</option>
@@ -74,16 +74,178 @@
 <!-- com.omniupdate.div label="brand-text" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="textarea" prompt="Text" alt="Enter the text to display in the Gallery Hero, beneath the Content Title."/ --><!-- /com.omniupdate.div -->
 </text>
 <image-small>
-<!-- com.omniupdate.div label="brand-image-small" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="image" prompt="Image - Small" alt="Select a JPG image for the small version of the Gallery Hero image to be displayed on mobile (650px by 450px)."/ --><img src="{{f:82739161}}" alt="woman with glasses and lots of tech graphics imposed on her face" /><!-- /com.omniupdate.div -->
+<!-- com.omniupdate.div label="brand-image-small" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="image" prompt="Image - Small" alt="Select a JPG image for the small version of the Gallery Hero image to be displayed on mobile (650px by 450px)."/ --><img src="{{f:82739161}}" alt="3 images of tcap students" /><!-- /com.omniupdate.div -->
 </image-small>
 <image-large>
-<!-- com.omniupdate.div label="brand-image-large" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="image" prompt="Image - Large" alt="Select a JPG image for the large version of the Gallery Hero image to be displayed on larger screens (1400px by 650px)."/ --><img src="{{f:82739161}}" alt="business analytics" /><!-- /com.omniupdate.div -->
+<!-- com.omniupdate.div label="brand-image-large" group="Everyone" button="hide" break="break" --><!-- ouc:multiedit type="image" prompt="Image - Large" alt="Select a JPG image for the large version of the Gallery Hero image to be displayed on larger screens (1400px by 650px)."/ --><img src="{{f:82739161}}" alt="3 images of tcap students" /><!-- /com.omniupdate.div -->
 </image-large>
 </brand-hero>
 
 <maincontent>
 
-<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- ouc:editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000"/ -->{{a:445477}}
+<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- ouc:editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000"/ --><table class="gallery-band-bg-color" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Band with Background Color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<table class="gallery-text">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<table class="button-link-row-snippet">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Button(s) - Centered<br /><em>To add more buttons to this set, insert a row for each button in the table below.</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a style="text-underline-offset: 4px; font-size: 16px;" href="{{f:82808588}}">Experiential Learning</a></td>
+</tr>
+<tr>
+<td><a href="{{f:82808589}}">tCAP FAQs</a></td>
+</tr>
+<tr>
+<td><a href="{{f:82808590}}">Internship/Jobs Finder</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="gallery-text" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<table class="two-column-text">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<h3>What is tCAP?</h3>
+<p>tCAP is a structured, multiyear career development program designed exclusively for undergraduate students in the Bellini College. Instead of waiting until their final year to focus on internships and career preparation, tCAP helps students steadily build experience, skills and professional connections throughout their academic journey.</p>
+</td>
+<td>
+<h3>Why tCAP matters?</h3>
+<p>Employers increasingly seek graduates who can communicate effectively, collaborate on teams, use critical thinking skills to solve problems and contribute immediately in professional environments. tCAP combines career readiness, experiential learning and employer engagement to help develop those capabilities before graduation.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="ou-timeline-snippet" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" colspan="4">Timeline Snippet with Components<br /><em>Insert additional rows to add more time periods</em></th>
+</tr>
+<tr>
+<th class="ou-help mceNonEditable" colspan="2">Timeline Style <br /><em>Highly recommend using the 'Centered' style on one column page.</em></th>
+<td class="timeline-style" colspan="2" data-select-list="Basic,Centered">Centered</td>
+</tr>
+<tr>
+<th class="ou-help mceNonEditable" colspan="1">Time Period<br /><em>For example, "1956" or "December 1963"</em></th>
+<th class="ou-help mceNonEditable" colspan="3">Timeline Event Components<br /><em>Insert "Timeline Event" components here to add timeline events to the time period</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="period-heading" colspan="1">Student Journey</td>
+<td class="events" colspan="3">
+<table class="gallery-text">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Gallery Item - Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<h3>A Four-Stage Path to Career Readiness</h3>
+<p style="font-size: 16px; color: #000000;">Each stage builds on the last, so students keep developing career readiness, technical confidence and professional experience all the way to graduation.</p>
+
+~[com[23820 10 5{ "version": 5, "data": {"0b9ff278bb43569aaf5286507d834270":"Yes","b9f3592988b3bea636b875f3981d3d67":"Default","64697919ca70c018318bc5df3632541f":"Choose an experience","d27658aac18dc678712660d0c0e91096":"&lt;p&gt;&lt;strong&gt;Semester 1 (1 Credit)&lt;/strong&gt;&lt;br /&gt;You start building the professional basics: a resume that works, a LinkedIn that gets you noticed, a GitHub that shows your work, and a clear sense of your goals.&lt;/p&gt;","5aba1636b2e0a3ab06c8ec1ca91e2616":"student at desk","2f5ee4929def77d47d4ac4d9273df508":"{{f:84163796}}","60f763dec32e20edc085aeb1d58d957f":"Freshmen Year"}}]]~
+
+~[com[23820 9 5{ "version": 5, "data": {"0b9ff278bb43569aaf5286507d834270":"Yes","b9f3592988b3bea636b875f3981d3d67":"Default","64697919ca70c018318bc5df3632541f":"Core Application","d27658aac18dc678712660d0c0e91096":"&lt;p&gt;&lt;strong&gt;Semester 3 (1 Credit) -- Semester 4 (1 Credit)&lt;/strong&gt;&lt;br /&gt;&lt;em&gt;Experiential Lab &amp;lowast; Industry Software&lt;/em&gt;&lt;br /&gt;Mentorship, leadership opportunities and networking turn what you know into professional confidence. This is also where your first hands-on labs start, built using the same software our industry partners use on the job.&lt;/p&gt;","5aba1636b2e0a3ab06c8ec1ca91e2616":"Student with laptop","2f5ee4929def77d47d4ac4d9273df508":"{{f:84163798}}","60f763dec32e20edc085aeb1d58d957f":"Sophmore Year"}}]]~
+
+~[com[23820 11 5{ "version": 5, "data": {"0b9ff278bb43569aaf5286507d834270":"Yes","b9f3592988b3bea636b875f3981d3d67":"Default","64697919ca70c018318bc5df3632541f":"Advanced Practice","d27658aac18dc678712660d0c0e91096":"&lt;strong&gt;Semester 5 (1 Credit)&lt;/strong&gt;&lt;br /&gt;&lt;em&gt;Experiential Lab &amp;lowast; Industry Software&lt;/em&gt;&lt;br /&gt;Career readiness gets real: internship prep, employer and alumni engagement, career fair coaching, interview practice and team-based projects with actual deliverables.","5aba1636b2e0a3ab06c8ec1ca91e2616":"Students at Reliaquest","2f5ee4929def77d47d4ac4d9273df508":"{{f:84163797}}","60f763dec32e20edc085aeb1d58d957f":"Junior Year"}}]]~
+
+~[com[23820 12 5{ "version": 5, "data": {"0b9ff278bb43569aaf5286507d834270":"Yes","b9f3592988b3bea636b875f3981d3d67":"Default","64697919ca70c018318bc5df3632541f":"Professional Mastery","d27658aac18dc678712660d0c0e91096":"&lt;strong&gt;Semester 5 (1 Credit) -- Semester 7 (No Credit Hours)&lt;/strong&gt;&lt;br /&gt;&lt;em&gt;Career Ready&lt;/em&gt;&lt;br /&gt;You prove it -- through a capstone, advanced coursework, certifications and an intership or job placement. Most students finish junior year already career ready. Senior year is yours.","5aba1636b2e0a3ab06c8ec1ca91e2616":"Students all done!","2f5ee4929def77d47d4ac4d9273df508":"{{f:84163795}}","60f763dec32e20edc085aeb1d58d957f":"Junior Year"}}]]~
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="gallery-text-image" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable" colspan="2">Gallery Item - Text and Image <br />Image Dimensions - Width: 460 px, Height: 300 px* <br />* Recommended height.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading Display. Accepted values: yes, no</p>
+</td>
+<td class="gallery-item-heading-display" style="width: 50%;" data-select-list="yes, no">yes</td>
+</tr>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Heading</p>
+</td>
+<td class="gallery-item-heading" style="width: 50%;">Experiential Learning</td>
+</tr>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Text</p>
+</td>
+<td class="gallery-item-text" style="width: 50%;">Every tCAP student completes applied experiential learning through internships, research, capstones, hackathons, entrepreneurship or other approved opportunities.
+~[com[31423 3 3{ "version": 3, "data": {"149ceff49b330d0b4434c46c19ce623e":[{"2d112ed19fed39c395d4530634b1c698":"{{f:82808590}}","79acd35720242a8be246b66800a51440":"_self","5143616b90cc867fb6f40ee659a4c5fe":"Internships"},{"2d112ed19fed39c395d4530634b1c698":"{{f:71695204}}","79acd35720242a8be246b66800a51440":"_self","5143616b90cc867fb6f40ee659a4c5fe":"Undergrad Research"},{"2d112ed19fed39c395d4530634b1c698":"https://educationabroad.global.usf.edu/_portal/program-discovery?search=%5B%7B%22filterType%22%3A%22programDiscoveryIsActive%22%2C%22filterValues%22%3A%5B%7B%22value%22%3Atrue%7D%5D%7D%2C%7B%22filterType%22%3A%22programDiscoveryKeyword%22%2C%22filterValues%22%3A%5B%7B%22value%22%3A%22cyber%22%7D%5D%7D%5D","79acd35720242a8be246b66800a51440":"_self","5143616b90cc867fb6f40ee659a4c5fe":"Study Abroad"}],"4de45f0243cd8938d1c6b54a9fb03ca0":"chevrons-list chevrons-list_apple"}}]]~
+</td>
+</tr>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image</p>
+</td>
+<td class="gallery-item-image" style="width: 50%;"><img src="{{f:82740503}}" alt="Experiential Learning" width="1133" height="800" /></td>
+</tr>
+<tr>
+<td class="ou-help mceNonEditable" style="width: 50%;">
+<p>Image Alignment. Accepted values: left, right</p>
+</td>
+<td class="gallery-item-alignment" style="width: 50%;" data-select-list="left, right">left</td>
+</tr>
+</tbody>
+</table>
 <table class="gallery-band-bg-color" style="width: 100%;">
 <thead>
 <tr>
@@ -110,141 +272,21 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="#">tCAP Program</a></td>
-</tr>
-<tr>
-<td><a style="text-underline-offset: 4px; font-size: 16px;" href="{{f:82756862}}">Experiential Learning</a></td>
-</tr>
-<tr>
-<td><a style="text-underline-offset: 4px; font-size: 16px; text-decoration: underline; background-color: #ffffff;" href="{{f:82758179}}">tCAP FAQs</a></td>
-</tr>
-<tr>
-<td><a style="text-underline-offset: 4px; font-size: 16px; text-decoration: underline; background-color: #ffffff;" href="{{f:81628827}}">Jobs</a></td>
+<td><a href="https://outlook.office.com/book/CareerDevelopment@bookings.usf.edu/?ismsaljsauthenabled">Talk to a Career Advisor</a></td>
 </tr>
 </tbody>
 </table>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody>
-</table>
-{{a:445476}}
-~[com[27194 2 5{ "version": 5, "data": {"010c737f4f75cc888e7baa7feb60beb7":"No","e50e2b7b4162e86d86238d99470b3595":"","b97dfec6f8c76272a9e018ebb5f0e71d":"","677ee82b0548c66745888954018b7016":"centered","4f8e1b0b612e42aa1ff2655078463bcc":"No","5660fa1787542d62758bea4d92b583c9":"No","ce9444d0b080bdf2a3392ffffac92ec7":"the tcap model"}}]]~
-{{a:445474}}
-~[com[27194 1 5{ "version": 5, "data": {"010c737f4f75cc888e7baa7feb60beb7":"No","e50e2b7b4162e86d86238d99470b3595":"","b97dfec6f8c76272a9e018ebb5f0e71d":"","677ee82b0548c66745888954018b7016":"centered","4f8e1b0b612e42aa1ff2655078463bcc":"No","5660fa1787542d62758bea4d92b583c9":"No","ce9444d0b080bdf2a3392ffffac92ec7":"Student Journey"}}]]~
-
-<table class="gallery-text" style="width: 100%;">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Gallery Item - Text</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<h3>A Four-Stage Path to Career Readiness</h3>
-<p>Each stage builds on the last, so students keep developing career readiness, technical confidence and professional experience all the way to graduation.</p>
-</td>
-</tr>
-</tbody>
-</table>
-{{a:445472}}
-<table class="gallery-band-bg-color" style="width: 100%;">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Gallery Item - Band with Background Color</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<table class="gallery-text-image" style="width: 100%;">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable" colspan="2">Gallery Item - Text and Image <br />Image Dimensions - Width: 460 px, Height: 300 px* <br />* Recommended height.</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Heading Display. Accepted values: yes, no</p>
-</td>
-<td class="gallery-item-heading-display" style="width: 50%;" data-select-list="yes, no">yes</td>
-</tr>
-<tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Heading</p>
-</td>
-<td class="gallery-item-heading" style="width: 50%;">Experiential Learning</td>
-</tr>
-<tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Text</p>
-</td>
-<td class="gallery-item-text" style="width: 50%;">
-<p>Every tCAP student completes applied experiential learning through internships, research, capstones, hackathons, entrepreneurship or other approved opportunities.</p>
-
-~[com[31423 3 2{ "version": 2, "data": {"149ceff49b330d0b4434c46c19ce623e":[{"2d112ed19fed39c395d4530634b1c698":"#","79acd35720242a8be246b66800a51440":"_blank","5143616b90cc867fb6f40ee659a4c5fe":"Internships"},{"2d112ed19fed39c395d4530634b1c698":"#","79acd35720242a8be246b66800a51440":"_self","5143616b90cc867fb6f40ee659a4c5fe":"Undergrad Research"},{"2d112ed19fed39c395d4530634b1c698":"#","79acd35720242a8be246b66800a51440":"_self","5143616b90cc867fb6f40ee659a4c5fe":"Capstone Projects"},{"2d112ed19fed39c395d4530634b1c698":"#","79acd35720242a8be246b66800a51440":"_self","5143616b90cc867fb6f40ee659a4c5fe":"Cyber Support"},{"2d112ed19fed39c395d4530634b1c698":"#","79acd35720242a8be246b66800a51440":"_self","5143616b90cc867fb6f40ee659a4c5fe":"Entrepreneurship"},{"2d112ed19fed39c395d4530634b1c698":"#","79acd35720242a8be246b66800a51440":"_self","5143616b90cc867fb6f40ee659a4c5fe":"Competitions"},{"2d112ed19fed39c395d4530634b1c698":"#","79acd35720242a8be246b66800a51440":"_self","5143616b90cc867fb6f40ee659a4c5fe":"Hackathons"},{"2d112ed19fed39c395d4530634b1c698":"#","79acd35720242a8be246b66800a51440":"_self","5143616b90cc867fb6f40ee659a4c5fe":"Study Abroad"}],"4de45f0243cd8938d1c6b54a9fb03ca0":"chevrons-list chevrons-list_apple"}}]]~
-</td>
-</tr>
-<tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Image</p>
-</td>
-<td class="gallery-item-image" style="width: 50%;"><img src="/ai-cybersecurity-computing/images/00_promophotos/t-cap-web-experiential-learning.jpg" alt="Alt Text" width="1133" height="800" /></td>
-</tr>
-<tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Image Alignment. Accepted values: left, right</p>
-</td>
-<td class="gallery-item-alignment" style="width: 50%;" data-select-list="left, right">left</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="button-link-row-snippet" style="width: 100%;">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Button(s) - Centered<br /><em>To add more buttons to this set, insert a row for each button in the table below.</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="#">TALK TO AN ADVISOR</a></td>
-</tr>
-</tbody>
-</table>
-<table class="gallery-text" style="width: 100%;">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Gallery Item - Text</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<h6><strong>Sources</strong></h6>
+<h5>Sources</h5>
 <ol>
-<li>
-<h6>Software developer growth 2023&ndash;2033: BLS / MLR 2025.</h6>
-</li>
-<li>
-<h6>Florida tech workforce count: CompTIA 2025.</h6>
-</li>
-<li>
-<h6>Median Florida tech wage: CompTIA / Lightcast 2024.</h6>
-</li>
-<li>
-<h6>Florida AI-skill job postings: CompTIA 2024.</h6>
-</li>
+<li>Software developer growth 2023&ndash;2033: BLS / MLR 2025.</li>
+<li>Florida tech workforce count: CompTIA 2025.</li>
+<li>Median Florida tech wage: CompTIA / Lightcast 2024.</li>
+<li>Florida AI-skill job postings: CompTIA 2024.</li>
 </ol>
-<p>&nbsp; &nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table>
 </td>
 </tr>
 </tbody>
