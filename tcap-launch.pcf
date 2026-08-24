@@ -84,9 +84,7 @@
 
 <maincontent>
 
-<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- ouc:editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000"/ --><p>&nbsp;</p>
-
-~[com[27194 1 5{ "version": 5, "data": {"010c737f4f75cc888e7baa7feb60beb7":"No","e50e2b7b4162e86d86238d99470b3595":"","b97dfec6f8c76272a9e018ebb5f0e71d":"","677ee82b0548c66745888954018b7016":"centered","4f8e1b0b612e42aa1ff2655078463bcc":"No","5660fa1787542d62758bea4d92b583c9":"No","ce9444d0b080bdf2a3392ffffac92ec7":"ICM Degree Program Offerings"}}]]~
+<!-- com.omniupdate.div label="maincontent" group="Everyone" button="707" --><!-- ouc:editor csspath="/_resources/ou/editor/maincontent.css" cssmenu="/_resources/ou/editor/classes.txt" width="1000"/ -->
 
 <table class="gallery-text" style="width: 100%;">
 <thead>
@@ -97,112 +95,77 @@
 <tbody>
 <tr>
 <td>
-<p>The Interdisciplinary Computing and Methods (ICM) degree programs unite a strong foundation in computer science with focused study in business, criminology or social sciences. These programs prepare students to understand and shape how computing drives decision‑making, security and social impact. By integrating technical skills with domain knowledge, graduates are equipped for complex, interdisciplinary careers.</p>
-<table class="image-grid">
+
+<table class="media-large">
 <thead>
 <tr>
-<th class="ou-help mceNonEditable" width="50%">Number of Images in Row <br />Options: 2, 3, or 4</th>
-<td class="grid-number" width="50%" data-select-list="2, 3, 4">3</td>
-</tr>
-<tr>
-<th class="ou-help mceNonEditable">Image</th>
-<th class="ou-help mceNonEditable">Caption</th>
+<th class="ou-help mceNonEditable">News - Image - Large <br />One Column, Image Width: 1000px, Height: 405 px* <br />Two Column, Image Width: 735px, Height: 405 px* <br />* Recommended Height.</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="{{f:76379966}}"><img src="{{f:78390797}}" alt="{{f:73635003}}" width="490" height="328" /></a></td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td><a href="{{f:78014068}}"><img src="{{f:78390792}}" alt="{{f:73635003}}" width="490" height="328" /></a></td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td><a href="{{f:76379977}}"><img src="{{f:78390790}}" alt="{{f:73635003}}" width="490" height="328" /></a></td>
-<td>&nbsp;</td>
+<td class="image"><img src="{{f:84394603}}" alt="tcap" width="720" height="405" /></td>
 </tr>
 </tbody>
 </table>
-</td>
-</tr>
-</tbody>
-</table>
-
-~[com[27194 2 5{ "version": 5, "data": {"010c737f4f75cc888e7baa7feb60beb7":"No","e50e2b7b4162e86d86238d99470b3595":"","b97dfec6f8c76272a9e018ebb5f0e71d":"","677ee82b0548c66745888954018b7016":"centered","4f8e1b0b612e42aa1ff2655078463bcc":"No","5660fa1787542d62758bea4d92b583c9":"No","ce9444d0b080bdf2a3392ffffac92ec7":"Innovative Curriculum"}}]]~
-
-<table class="gallery-text" style="width: 100%;">
+<h4>Registration is Required to attend! Please register by October 5 to reserve your seat.</h4>
+<h3>From Classroom to Career: Launching tCAP</h3>
+<h5>Building Connections. Creating Opportunities. Preparing Future Innovators.</h5>
+<p>Join Bellini College for the launch of <strong>tCAP (Tech Career Advancement Program)</strong> and discover how this new initiative will help you connect with industry professionals, gain real-world experience, and prepare for a successful career in technology.&nbsp;</p>
+<h3>EVENT DETAILS</h3>
+<table class="two-column-text">
 <thead>
 <tr>
-<th class="ou-help mceNonEditable">Gallery Item - Text</th>
+<th class="ou-help mceNonEditable" width="50%">Column 1</th>
+<th class="ou-help mceNonEditable" width="50%">Column 2</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
-<p>Each program blends core computer science coursework with discipline‑specific study tailored to its field. Students in computer science and business explore computing alongside analytics, management and organizational systems. Computer science and criminology integrates computing with studies of crime, justice and cybersecurity. The social sciences program connects computational methods with social data, policy and human behavior, highlighting how technology informs society.</p>
+<p><strong style="font-size: 16px; color: #000000;">Monday, October 12, 2026</strong><br style="font-size: 16px; color: #000000;" /><strong style="font-size: 16px; color: #000000;">Check-In:</strong><span style="color: #000000; font-size: 16px;"> </span><span style="color: #000000; font-size: 16px;">9:30 a.m.</span><br style="font-size: 16px; color: #000000;" /><strong style="font-size: 16px; color: #000000;">Program:</strong><span style="color: #000000; font-size: 16px;"> </span><span style="color: #000000; font-size: 16px;">10:00 a.m.&ndash;1:00 p.m.</span></p>
 </td>
-</tr>
-</tbody>
-</table>
-
-~[com[27194 4 5{ "version": 5, "data": {"010c737f4f75cc888e7baa7feb60beb7":"No","e50e2b7b4162e86d86238d99470b3595":"","b97dfec6f8c76272a9e018ebb5f0e71d":"","677ee82b0548c66745888954018b7016":"centered","4f8e1b0b612e42aa1ff2655078463bcc":"No","5660fa1787542d62758bea4d92b583c9":"No","ce9444d0b080bdf2a3392ffffac92ec7":"Flexible Electives"}}]]~
-
-<table class="gallery-text-image" style="width: 100%;">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable" colspan="2">Gallery Item - Text and Image <br />Image Dimensions - Width: 460 px, Height: 300 px* <br />* Recommended height.</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Heading Display. Accepted values: yes, no</p>
-</td>
-<td class="gallery-item-heading-display" style="width: 50%;" data-select-list="yes, no">no</td>
-</tr>
-<tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Heading</p>
-</td>
-<td class="gallery-item-heading" style="width: 50%;">Lorem ipsum dolor sit amet consectetur montes det</td>
-</tr>
-<tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Text</p>
-</td>
-<td class="gallery-item-text" style="width: 50%;">
-<p>Elective options allow students to tailor their interdisciplinary focus within each ICM pathway. Choose courses that deepen technical expertise, expand knowledge in your partner discipline or explore emerging areas where computing and society intersect. This flexibility supports customized academic and career goals, whether preparing for industry, graduate study or cross‑sector work.</p>
-</td>
-</tr>
-<tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Image</p>
-</td>
-<td class="gallery-item-image" style="width: 50%;"><img src="{{f:74294402}}" alt="Alt Text" width="1177" height="815" /></td>
-</tr>
-<tr>
-<td class="ou-help mceNonEditable" style="width: 50%;">
-<p>Image Alignment. Accepted values: left, right</p>
-</td>
-<td class="gallery-item-alignment" style="width: 50%;" data-select-list="left, right">left</td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-
-~[com[27194 3 5{ "version": 5, "data": {"010c737f4f75cc888e7baa7feb60beb7":"No","e50e2b7b4162e86d86238d99470b3595":"","b97dfec6f8c76272a9e018ebb5f0e71d":"","677ee82b0548c66745888954018b7016":"centered","4f8e1b0b612e42aa1ff2655078463bcc":"No","5660fa1787542d62758bea4d92b583c9":"No","ce9444d0b080bdf2a3392ffffac92ec7":"Integrated Projects"}}]]~
-
-<table class="gallery-text" style="width: 100%;">
-<thead>
-<tr>
-<th class="ou-help mceNonEditable">Gallery Item - Text</th>
-</tr>
-</thead>
-<tbody>
-<tr>
 <td>
-<p>Students apply their interdisciplinary learning through projects that connect computing with business challenges, criminal justice systems or social analysis. Capstone and project‑based experiences emphasize collaboration, real‑world problem‑solving and the practical application of computational methods within each discipline, demonstrating the value of integrated expertise in professional and academic settings.</p>
+<p>Judy Genshaft Building (HON)<br />12260 USF Genshaft Drive<br />Tampa, FL 33620</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="button-link-row-snippet" style="width: 100%;">
+<thead>
+<tr>
+<th class="ou-help mceNonEditable">Button(s) - Centered<br /><em>To add more buttons to this set, insert a row for each button in the table below.</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://usf.az1.qualtrics.com/jfe/form/SV_8As4nnvvodX8qsC">Register Now!</a></td>
+</tr>
+</tbody>
+</table>
+<h3>WHAT YOU&rsquo;LL GAIN</h3>
+<p>Through tCAP, you&rsquo;ll discover opportunities to:</p>
+<ul>
+<li>Explore internship and job opportunities</li>
+<li>Build connections with employers and Bellini College alumni</li>
+<li>Receive career guidance and mentoring</li>
+<li>Gain hands-on, real-world experience</li>
+</ul>
+<h3>WHO SHOULD ATTEND</h3>
+<p>All undergraduate students in Bellini College interested in careers in AI, cybersecurity, and computing. Whether you&rsquo;re just beginning your college journey or preparing to enter the workforce, tCAP is designed to help you move from classroom to career.</p>
+<p>All class levels are welcome!</p>
+<h3>WHAT TO EXPECT</h3>
+<p>Join us for an engaging afternoon featuring interactive sessions, networking, and opportunities to connect with employers, alumni, mentors, faculty, and staff.</p>
+<h6>Morning refreshments and lunch will be provided.</h6>
+<h3>PARKING</h3>
+<p>Complimentary event parking is available for registered guests. Please park in <strong>Lot 22D or 22D</strong>. Please follow the event parking signage.</p>
+<p>Please visit USF Parking &amp; Transportation Services for more parking information and the campus parking map.</p>
+<p><a href="/parking/parking/visitor-parking.aspx?utm_source=chatgpt.com">USF Visitor Parking Information</a><br /><a href="/parking/maps/?utm_source=chatgpt.com">USF Campus Parking Maps</a></p>
+<h3>BE PART OF THE LAUNCH</h3>
+<p>Be among the first students to experience <strong>tCAP</strong> and discover how this new initiative can help you build connections, gain experience, and accelerate your career.</p>
+<p><strong>Your event hub is just a click away.</strong> Bookmark this page for the latest agenda, logistics, parking information, and event announcements as October 12 approaches.</p>
+
+
 </td>
 </tr>
 </tbody>
