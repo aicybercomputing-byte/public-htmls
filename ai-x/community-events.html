@@ -1680,13 +1680,15 @@ class Component extends DCLogic {
       if (!rows.length) { this.setState({ events: [] }); return; }
       const header = rows.shift().map(h => h.trim().toLowerCase());
       const col = name => header.indexOf(name);
+      const MONTH_FULL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
       const events = rows.map(r => {
         const get = n => { const i = col(n); return i >= 0 ? (r[i] || '').trim() : ''; };
-        const monthFull = get('month');
-        const month = monthFull.trim().slice(0, 3);
-        const day = get('day');
-        const year = get('year');
-        const isRange = /^(y|yes|true|1|starts)$/i.test(get('starts'));
+        const startDate = this.parseIsoDate(get('start_date'));
+        const endDateStr = get('end_date');
+        if (!startDate) return null;
+        const month = MONTH_FULL[startDate.monthIndex].slice(0, 3);
+        const day = String(startDate.day);
+        const isRange = !!endDateStr && endDateStr !== get('start_date');
         return {
           title: get('title'),
           detail: get('detail'),
@@ -1695,9 +1697,9 @@ class Component extends DCLogic {
           rangeLabel: (month + ' ' + day).trim(),
           isRange,
           isSingle: !isRange,
-          sortKey: this.dateSortKey(month, day, year),
+          sortKey: startDate.sortKey,
         };
-      });
+      }).filter(Boolean);
       const now = new Date();
       const todayKey = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
       const upcoming = events
@@ -1716,16 +1718,19 @@ class Component extends DCLogic {
     catch { return raw; }
   }
 
-  // Maps a month/day/year to a sortable timestamp. Falls back to the current
-  // year when the year column is blank (older rows), but a real year takes
-  // precedence — no rollover guessing needed once the year is known.
-  dateSortKey(monthName, dayStr, yearStr) {
-    const MONTHS = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 };
-    const monthIndex = MONTHS[String(monthName || '').trim().slice(0, 3).toLowerCase()];
-    const dayNum = parseInt(dayStr, 10);
-    if (monthIndex === undefined || !dayNum) return -Infinity;
-    const yearNum = parseInt(yearStr, 10) || new Date().getFullYear();
-    return new Date(yearNum, monthIndex, dayNum).getTime();
+  // Parses a 'YYYY-MM-DD' ISO date string (as emitted by sync-box-csv.py)
+  // into local-midnight date parts. Pinned to midnight local time (not a
+  // bare `new Date(str)`) so the date never shifts a day due to UTC parsing.
+  // Returns null for blank/invalid input.
+  parseIsoDate(isoStr) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(isoStr || '').trim());
+    if (!m) return null;
+    const year = parseInt(m[1], 10);
+    const monthIndex = parseInt(m[2], 10) - 1;
+    const day = parseInt(m[3], 10);
+    const d = new Date(year, monthIndex, day);
+    if (d.getFullYear() !== year || d.getMonth() !== monthIndex || d.getDate() !== day) return null;
+    return { year, monthIndex, day, sortKey: d.getTime() };
   }
 
   resolveEventUrl(rawUrl, csvUrl) {

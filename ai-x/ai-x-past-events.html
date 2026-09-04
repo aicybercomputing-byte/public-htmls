@@ -112,18 +112,26 @@
     return (s == null ? "" : String(s)).replace(/\uFFFD/g, "\u2014").trim();
   }
 
-  function parseDate(dayRaw, monthRaw, yearRaw) {
-    var dayNum = parseInt(clean(dayRaw), 10);
-    var mi = MONTHS[clean(monthRaw).slice(0, 3).toLowerCase()];
-    var yearNum = parseInt(clean(yearRaw), 10) || YEAR;
+  function parseDate(startDateRaw, endDateRaw) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(clean(startDateRaw));
+    if (!m) return null;
 
-    if (!dayNum || mi == null) return null;
+    var yearNum = parseInt(m[1], 10);
+    var mi = parseInt(m[2], 10) - 1;
+    var dayNum = parseInt(m[3], 10);
+
+    if (mi < 0 || mi > 11 || !dayNum) return null;
+
+    var endDateStr = clean(endDateRaw);
+    var isRange = !!endDateStr && endDateStr !== clean(startDateRaw);
 
     return {
       day: String(dayNum).length < 2 ? "0" + dayNum : String(dayNum),
       mon: MONTH_FULL[mi].slice(0, 3),
       year: String(yearNum),
       label: MONTH_FULL[mi] + " " + dayNum + ", " + yearNum,
+      isRange: isRange,
+      endDateStr: endDateStr,
       sortKey: new Date(yearNum, mi, dayNum).getTime()
     };
   }
@@ -137,22 +145,27 @@
 
     var idxTitle = colIndex("title"),
         idxDetail = colIndex("detail"),
-        idxMonth = colIndex("month"),
-        idxDay = colIndex("day"),
-        idxYear = colIndex("year"),
+        idxStartDate = colIndex("start_date"),
+        idxEndDate = colIndex("end_date"),
+        idxStartTime = colIndex("start_time"),
+        idxEndTime = colIndex("end_time"),
         idxSpeaker = colIndex("speaker"),
-        idxBio = colIndex("bio");
+        idxBio = colIndex("bio"),
+        idxLocation = colIndex("location");
 
     var out = [];
     rows.slice(1).forEach(function (cols, idx) {
       var speaker = clean(cols[idxSpeaker]),
           title = clean(cols[idxTitle]),
           description = clean(cols[idxDetail]),
-          bio = clean(cols[idxBio]);
+          bio = clean(cols[idxBio]),
+          location = idxLocation >= 0 ? clean(cols[idxLocation]) : "",
+          startTime = idxStartTime >= 0 ? clean(cols[idxStartTime]) : "",
+          endTime = idxEndTime >= 0 ? clean(cols[idxEndTime]) : "";
 
       if (!speaker || !description) return;
 
-      var d = parseDate(cols[idxDay], cols[idxMonth], cols[idxYear]);
+      var d = parseDate(cols[idxStartDate], idxEndDate >= 0 ? cols[idxEndDate] : "");
       if (!d) return;
 
       out.push({
@@ -161,10 +174,15 @@
         title: title,
         description: description,
         bio: bio,
+        location: location,
+        startTime: startTime,
+        endTime: endTime,
         day: d.day,
         mon: d.mon,
         year: d.year,
         dateLabel: d.label,
+        isRange: d.isRange,
+        endDateStr: d.endDateStr,
         sortKey: d.sortKey
       });
     });
@@ -174,6 +192,14 @@
     });
 
     return out;
+  }
+
+  function formatEndDateLabel(endDateStr, fallbackLabel) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(endDateStr || ""));
+    if (!m) return fallbackLabel;
+    var monthIndex = parseInt(m[2], 10) - 1;
+    var dayNum = parseInt(m[3], 10);
+    return MONTH_FULL[monthIndex] + " " + dayNum + ", " + m[1];
   }
 
   /* ---------- rendering ---------- */
@@ -289,8 +315,16 @@
     var meta = el("div", "display:flex; flex-wrap:wrap; gap:8px 20px; padding:0 0 16px; margin:0 0 20px; border-bottom:2px solid " + GREEN + ";");
     var dateChip = el("span", "display:inline-flex; align-items:center; gap:7px; font-size:13.5px; color:#444;");
     dateChip.appendChild(el("span", "display:inline-block; width:8px; height:8px; border-radius:50%; background:" + GOLD + "; flex:none;"));
-    dateChip.appendChild(el("span", "", { text: ev.dateLabel }));
+    dateChip.appendChild(el("span", "", { text: ev.isRange ? (ev.dateLabel + " – " + formatEndDateLabel(ev.endDateStr, ev.dateLabel)) : ev.dateLabel }));
     meta.appendChild(dateChip);
+
+    if (ev.startTime) {
+      var timeChip = el("span", "display:inline-flex; align-items:center; gap:7px; font-size:13.5px; color:#444;");
+      timeChip.appendChild(el("span", "display:inline-block; width:8px; height:8px; border-radius:50%; background:" + GOLD + "; flex:none;"));
+      timeChip.appendChild(el("span", "", { text: (ev.endTime && ev.endTime !== ev.startTime ? ev.startTime + "\u2013" + ev.endTime : ev.startTime) + " ET" }));
+      meta.appendChild(timeChip);
+    }
+
     pad.appendChild(meta);
 
     ev.description.split(/\n\s*\n/).map(function (p) {

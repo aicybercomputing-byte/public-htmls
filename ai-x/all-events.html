@@ -201,11 +201,17 @@
     return rows;
   }
 
-  function makeDateFromMonthText(dayNum, monthText, yearNum) {
-    var monthKey = String(monthText).slice(0, 3).toLowerCase();
-    var monthIndex = MONTHS[monthKey];
+  function makeDateFromIso(isoStr) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(isoStr || "").trim());
+    if (!m) {
+      return null;
+    }
 
-    if (monthIndex == null || dayNum < 1 || dayNum > 31 || !yearNum) {
+    var yearNum = parseInt(m[1], 10);
+    var monthIndex = parseInt(m[2], 10) - 1;
+    var dayNum = parseInt(m[3], 10);
+
+    if (monthIndex < 0 || monthIndex > 11 || dayNum < 1 || dayNum > 31) {
       return null;
     }
 
@@ -245,11 +251,13 @@
 
     var idxTitle = colIndex("title");
     var idxDetail = colIndex("detail");
-    var idxMonth = colIndex("month");
-    var idxDay = colIndex("day");
-    var idxYear = colIndex("year");
+    var idxStartDate = colIndex("start_date");
+    var idxEndDate = colIndex("end_date");
+    var idxStartTime = colIndex("start_time");
+    var idxEndTime = colIndex("end_time");
     var idxSpeaker = colIndex("speaker");
     var idxBio = colIndex("bio");
+    var idxLocation = colIndex("location");
 
     var out = [];
 
@@ -258,18 +266,23 @@
       var title = clean(cols[idxTitle]);
       var description = clean(cols[idxDetail]);
       var bio = clean(cols[idxBio]);
-      var dayNum = parseInt(clean(cols[idxDay]), 10);
-      var yearNum = parseInt(clean(cols[idxYear]), 10) || DEFAULT_YEAR;
+      var startDateStr = clean(cols[idxStartDate]);
+      var endDateStr = idxEndDate >= 0 ? clean(cols[idxEndDate]) : "";
+      var startTime = idxStartTime >= 0 ? clean(cols[idxStartTime]) : "";
+      var endTime = idxEndTime >= 0 ? clean(cols[idxEndTime]) : "";
+      var location = idxLocation >= 0 ? clean(cols[idxLocation]) : "";
 
       if (!speaker || !description) {
         return;
       }
 
-      var d = makeDateFromMonthText(dayNum, clean(cols[idxMonth]), yearNum);
+      var d = makeDateFromIso(startDateStr);
 
       if (!d) {
         return;
       }
+
+      var isRange = !!endDateStr && endDateStr !== startDateStr;
 
       out.push({
         id: idx,
@@ -277,6 +290,7 @@
         title: title,
         description: description,
         bio: bio,
+        location: location,
         day: d.day,
         dayNum: d.dayNum,
         mon: d.mon,
@@ -285,6 +299,10 @@
         year: d.year,
         yearNum: d.yearNum,
         dateLabel: d.label,
+        isRange: isRange,
+        endDate: endDateStr,
+        startTime: startTime,
+        endTime: endTime,
         sortKey: d.sortKey
       });
     });
@@ -294,6 +312,27 @@
     });
 
     return out;
+  }
+
+  function formatTimeLabel(startTime, endTime) {
+    if (endTime && endTime !== startTime) {
+      return startTime + "\u2013" + endTime;
+    }
+
+    return startTime;
+  }
+
+  function formatEndDateLabel(ev) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(ev.endDate || ""));
+
+    if (!m) {
+      return ev.dateLabel;
+    }
+
+    var monthIndex = parseInt(m[2], 10) - 1;
+    var dayNum = parseInt(m[3], 10);
+
+    return MONTH_FULL[monthIndex] + " " + dayNum + ", " + m[1];
   }
 
   function frame(inner) {
@@ -701,10 +740,31 @@
     dateChip.appendChild(el(
       "span",
       "",
-      { text: ev.dateLabel }
+      { text: ev.isRange ? (ev.dateLabel + " – " + formatEndDateLabel(ev)) : ev.dateLabel }
     ));
 
     meta.appendChild(dateChip);
+
+    if (ev.startTime) {
+      var timeChip = el(
+        "span",
+        "display:inline-flex; align-items:center; gap:7px; font-size:13.5px; color:#444;"
+      );
+
+      timeChip.appendChild(el(
+        "span",
+        "display:inline-block; width:8px; height:8px; border-radius:50%; background:" + GOLD + "; flex:none;"
+      ));
+
+      timeChip.appendChild(el(
+        "span",
+        "",
+        { text: formatTimeLabel(ev.startTime, ev.endTime) + " ET" }
+      ));
+
+      meta.appendChild(timeChip);
+    }
+
     pad.appendChild(meta);
 
     ev.description
