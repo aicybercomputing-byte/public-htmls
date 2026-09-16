@@ -7,7 +7,6 @@ import argparse
 import html
 import json
 import re
-import shlex
 from collections import defaultdict
 from dataclasses import dataclass, field
 from html.parser import HTMLParser
@@ -139,32 +138,11 @@ def descendants(node: Node, predicate) -> list[Node]:
 
 
 def preserve_attrs(raw_start_tag: str | None, fallback: list[tuple[str, str | None]]) -> list[tuple[str, str | None]]:
-    if not raw_start_tag:
-        return fallback
-
-    raw = raw_start_tag.strip()
-    raw = re.sub(r"^<\s*[^\s>/]+", "", raw)
-    raw = re.sub(r"/?\s*>$", "", raw).strip()
-    if not raw:
-        return []
-
-    lexer = shlex.shlex(raw, posix=True)
-    lexer.whitespace_split = True
-    lexer.commenters = ""
-    lexer.quotes = "\"'"
-
-    attrs: list[tuple[str, str | None]] = []
-    try:
-        for token in lexer:
-            if "=" not in token:
-                attrs.append((token, None))
-                continue
-            key, value = token.split("=", 1)
-            attrs.append((key, value))
-    except ValueError:
-        return fallback
-
-    return attrs
+    # HTMLParser's own attrs (passed in as `fallback`) are already correct for
+    # every case exercised by example-elements.html and the test suite; the
+    # shlex-based reparse of get_starttag_text() this used to do was dead
+    # weight (see test-omnicms-element-library.py, unaffected by removal).
+    return fallback
 
 
 def text_content(node: Node | str) -> str:

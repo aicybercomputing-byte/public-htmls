@@ -10,6 +10,15 @@ import tempfile
 # Filename normalization
 # ----------------------------
 
+def _slugify_core(s: str, allow_hyphen: bool = False) -> str:
+    """Lowercase, spaces->_, keep only [a-z0-9_] (plus '-' if allow_hyphen),
+    collapse repeated underscores, strip leading/trailing underscores."""
+    s = s.lower().replace(" ", "_")
+    s = re.sub(r"[^a-z0-9_-]" if allow_hyphen else r"[^a-z0-9_]", "", s)
+    s = re.sub(r"_+", "_", s).strip("_")
+    return s
+
+
 def sanitize_filename(name: str) -> str:
     """
     Lowercase, spaces->_, and keep only [a-z0-9_.-] in the final filename.
@@ -17,11 +26,7 @@ def sanitize_filename(name: str) -> str:
     """
     p = Path(name)
 
-    stem = p.stem.lower().replace(" ", "_")
-    stem = re.sub(r"[^a-z0-9_]", "", stem)
-    stem = re.sub(r"_+", "_", stem).strip("_")
-    if not stem:
-        stem = "file"
+    stem = _slugify_core(p.stem) or "file"
 
     suffix = p.suffix.lower()
     suffix = re.sub(r"[^a-z0-9.]", "", suffix)
@@ -60,10 +65,7 @@ def sanitize_slug(s: str) -> str:
     For output HTML filename (based on folder name).
     Keeps it simple: lowercase, spaces->_, only [a-z0-9_-].
     """
-    s = s.lower().replace(" ", "_")
-    s = re.sub(r"[^a-z0-9_-]", "", s)
-    s = re.sub(r"_+", "_", s).strip("_")
-    return s or "carousel"
+    return _slugify_core(s, allow_hyphen=True) or "carousel"
 
 
 def build_carousel_html(

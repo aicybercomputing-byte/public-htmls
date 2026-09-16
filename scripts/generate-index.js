@@ -24,7 +24,6 @@ const EXCLUDE_RELATIVE_FILES = new Set(["index.html", "preview.html"]);
 const SECTION_LABELS = {
   "ai-x": "AI+X Events",
   carosels: "Carousels",
-  jobs_page: "Jobs Page",
   "main-page": "Main Page",
   "more-info": "More Info",
   "now-serving": "Now Serving",
