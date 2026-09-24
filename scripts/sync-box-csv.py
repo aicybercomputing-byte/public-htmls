@@ -31,6 +31,7 @@ import csv
 import io
 import pathlib
 import re
+import subprocess
 import sys
 import urllib.error
 import urllib.request
@@ -107,6 +108,14 @@ def main():
 
     if failed:
         sys.exit(f"Failed to sync: {', '.join(failed)}")
+
+    # Re-bake the CSV data directly into the AI+X widget HTML files so they
+    # render standalone (no runtime fetch/CORS/path failure modes). See
+    # scripts/bake_ai_x_widgets.py for why.
+    bake_script = REPO_ROOT / "scripts" / "bake_ai_x_widgets.py"
+    result = subprocess.run([sys.executable, str(bake_script)], cwd=REPO_ROOT)
+    if result.returncode != 0:
+        sys.exit("Failed to bake CSV data into AI+X widget HTML files")
 
 
 if __name__ == "__main__":
