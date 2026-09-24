@@ -1723,7 +1723,7 @@ class Component extends DCLogic {
   // bare `new Date(str)`) so the date never shifts a day due to UTC parsing.
   // Returns null for blank/invalid input.
   parseIsoDate(isoStr) {
-    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(isoStr || '').trim());
+    const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(isoStr || '').trim());
     if (!m) return null;
     const year = parseInt(m[1], 10);
     const monthIndex = parseInt(m[2], 10) - 1;

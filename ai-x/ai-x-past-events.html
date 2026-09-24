@@ -113,7 +113,7 @@
   }
 
   function parseDate(startDateRaw, endDateRaw) {
-    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(clean(startDateRaw));
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(clean(startDateRaw));
     if (!m) return null;
 
     var yearNum = parseInt(m[1], 10);
@@ -195,7 +195,7 @@
   }
 
   function formatEndDateLabel(endDateStr, fallbackLabel) {
-    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(endDateStr || ""));
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(endDateStr || ""));
     if (!m) return fallbackLabel;
     var monthIndex = parseInt(m[2], 10) - 1;
     var dayNum = parseInt(m[3], 10);

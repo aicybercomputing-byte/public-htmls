@@ -202,7 +202,7 @@
   }
 
   function makeDateFromIso(isoStr) {
-    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(isoStr || "").trim());
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(isoStr || "").trim());
     if (!m) {
       return null;
     }
@@ -323,7 +323,7 @@
   }
 
   function formatEndDateLabel(ev) {
-    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(ev.endDate || ""));
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(ev.endDate || ""));
 
     if (!m) {
       return ev.dateLabel;
