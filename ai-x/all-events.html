@@ -260,6 +260,7 @@ var EVENTS_CSV = "confirm_deny,url,title,detail,location,speaker,bio,start_date,
     var idxSpeaker = colIndex("speaker");
     var idxBio = colIndex("bio");
     var idxLocation = colIndex("location");
+    var idxConfirmDeny = colIndex("confirm_deny");
 
     var out = [];
 
@@ -273,6 +274,11 @@ var EVENTS_CSV = "confirm_deny,url,title,detail,location,speaker,bio,start_date,
       var startTime = idxStartTime >= 0 ? clean(cols[idxStartTime]) : "";
       var endTime = idxEndTime >= 0 ? clean(cols[idxEndTime]) : "";
       var location = idxLocation >= 0 ? clean(cols[idxLocation]) : "";
+      var confirmDeny = idxConfirmDeny >= 0 ? clean(cols[idxConfirmDeny]).toLowerCase() : "";
+
+      if (confirmDeny !== "confirmed") {
+        return;
+      }
 
       if (!speaker || !description) {
         return;

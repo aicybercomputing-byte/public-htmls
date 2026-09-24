@@ -153,7 +153,8 @@ var EVENTS_CSV = "confirm_deny,url,title,detail,location,speaker,bio,start_date,
         idxEndTime = colIndex("end_time"),
         idxSpeaker = colIndex("speaker"),
         idxBio = colIndex("bio"),
-        idxLocation = colIndex("location");
+        idxLocation = colIndex("location"),
+        idxConfirmDeny = colIndex("confirm_deny");
 
     var out = [];
     rows.slice(1).forEach(function (cols, idx) {
@@ -163,7 +164,10 @@ var EVENTS_CSV = "confirm_deny,url,title,detail,location,speaker,bio,start_date,
           bio = clean(cols[idxBio]),
           location = idxLocation >= 0 ? clean(cols[idxLocation]) : "",
           startTime = idxStartTime >= 0 ? clean(cols[idxStartTime]) : "",
-          endTime = idxEndTime >= 0 ? clean(cols[idxEndTime]) : "";
+          endTime = idxEndTime >= 0 ? clean(cols[idxEndTime]) : "",
+          confirmDeny = idxConfirmDeny >= 0 ? clean(cols[idxConfirmDeny]).toLowerCase() : "";
+
+      if (confirmDeny !== "confirmed") return;
 
       if (!speaker || !description) return;
 

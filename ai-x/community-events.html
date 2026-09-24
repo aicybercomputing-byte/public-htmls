@@ -1678,6 +1678,7 @@ class Component extends DCLogic {
       const MONTH_FULL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
       const events = rows.map(r => {
         const get = n => { const i = col(n); return i >= 0 ? (r[i] || '').trim() : ''; };
+        if (get('confirm_deny').toLowerCase() !== 'confirmed') return null;
         const startDate = this.parseIsoDate(get('start_date'));
         const endDateStr = get('end_date');
         if (!startDate) return null;
