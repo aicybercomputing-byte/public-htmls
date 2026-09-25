@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
 bake_ai_x_widgets.py
-Bake the ai-x/*.csv contents directly into the three AI+X event widget HTML
-files, so they render with zero runtime fetch(). This makes them work
+Bake the local ai-x/*.csv contents directly into the three AI+X event widget
+HTML files, so they render with zero runtime fetch(). The all-events archive
+combines the local AI+X and community CSVs. This makes them work
 identically wherever they're placed (GitHub Pages iframe, OmniCMS paste,
 local file://) with no CORS/path/caching failure modes.
 
@@ -35,12 +36,14 @@ import sys
 REPO_ROOT = pathlib.Path(__file__).parent.parent
 AI_X_DIR = REPO_ROOT / "ai-x"
 
-# (html file, JS var name, source CSV) triples.
+# (html file, JS var name, source CSVs, source types) tuples.
 TARGETS = [
-    # (html file, JS var name, source CSV, source_type) triples.
-    (AI_X_DIR / "ai-x-past-events.html", "EVENTS_CSV", AI_X_DIR / "ai-x-events.csv", "ai-x"),
-    (AI_X_DIR / "all-events.html", "EVENTS_CSV", AI_X_DIR / "ai-x-events.csv", "ai-x"),
-    (AI_X_DIR / "community-events.html", "COMMUNITY_EVENTS_CSV", AI_X_DIR / "community-events.csv", "community"),
+    (AI_X_DIR / "ai-x-past-events.html", "EVENTS_CSV", [AI_X_DIR / "ai-x-events.csv"], ["ai-x"]),
+    # The archive is the combined confirmed history: AI+X Featured + community.
+    (AI_X_DIR / "all-events.html", "EVENTS_CSV",
+     [AI_X_DIR / "ai-x-events.csv", AI_X_DIR / "community-events.csv"],
+     ["ai-x", "community"]),
+    (AI_X_DIR / "community-events.html", "COMMUNITY_EVENTS_CSV", [AI_X_DIR / "community-events.csv"], ["community"]),
 ]
 
 
@@ -52,41 +55,50 @@ def js_string_literal(text: str) -> str:
     return json.dumps(text)
 
 
-def add_source_type_to_csv(csv_text: str, source_type: str) -> str:
-    # Read the CSV content
-    input_stream = io.StringIO(csv_text)
-    reader = csv.reader(input_stream)
-    rows = list(reader)
+def combined_csv_text(csv_paths: list[pathlib.Path], source_types: list[str]) -> str:
+    """Combine CSVs into one baked CSV and label each row by source."""
+    if len(csv_paths) != len(source_types):
+        raise ValueError("csv_paths and source_types must have the same length")
 
-    if not rows:
-        return csv_text
+    combined_rows: list[list[str]] = []
+    header: list[str] | None = None
+    source_index = -1
 
-    header = rows[0]
-    if "source_type" not in header:
-        header.append("source_type")
-        for i in range(1, len(rows)):
-            rows[i].append(source_type)
-    else:
-        # If source_type already exists, update its value
-        source_type_idx = header.index("source_type")
-        for i in range(1, len(rows)):
-            if i < len(rows): # Ensure row exists
-                rows[i][source_type_idx] = source_type
+    for csv_path, source_type in zip(csv_paths, source_types):
+        if not csv_path.exists():
+            raise FileNotFoundError(csv_path)
+        rows = list(csv.reader(io.StringIO(csv_path.read_text(encoding="utf-8"))))
+        if not rows:
+            continue
+        current_header = [cell.strip() for cell in rows[0]]
+        if header is None:
+            header = current_header
+            if "source_type" not in header:
+                header.append("source_type")
+            source_index = header.index("source_type")
+        elif current_header != header[:len(current_header)]:
+            raise ValueError(f"CSV headers do not match: {csv_path}")
 
-    # Write the modified CSV content
-    output_stream = io.StringIO()
-    writer = csv.writer(output_stream)
-    writer.writerows(rows)
-    return output_stream.getvalue()
+        for row in rows[1:]:
+            if not any(cell.strip() for cell in row):
+                continue
+            row = row + [""] * (len(header) - len(row))
+            row[source_index] = source_type
+            combined_rows.append(row[:len(header)])
+
+    if header is None:
+        return ""
+    output = io.StringIO()
+    csv.writer(output).writerows([header, *combined_rows])
+    return output.getvalue()
 
 
-def bake_one(html_path: pathlib.Path, var_name: str, csv_path: pathlib.Path, source_type: str) -> bool:
-    if not csv_path.exists():
-        print(f"Error: source CSV missing: {csv_path}", file=sys.stderr)
+def bake_one(html_path: pathlib.Path, var_name: str, csv_paths: list[pathlib.Path], source_types: list[str]) -> bool:
+    try:
+        modified_csv_text = combined_csv_text(csv_paths, source_types)
+    except (FileNotFoundError, ValueError) as exc:
+        print(f"Error: {exc}", file=sys.stderr)
         return False
-
-    csv_text = csv_path.read_text(encoding="utf-8")
-    modified_csv_text = add_source_type_to_csv(csv_text, source_type)
     literal = js_string_literal(modified_csv_text)
 
     html_text = html_path.read_text(encoding="utf-8")
@@ -113,14 +125,14 @@ def bake_one(html_path: pathlib.Path, var_name: str, csv_path: pathlib.Path, sou
 
     html_text = html_text[:start_idx] + new_block + html_text[end_idx:]
     html_path.write_text(html_text, encoding="utf-8")
-    print(f"Baked {csv_path.name} ({len(csv_text)} bytes) -> {html_path.relative_to(REPO_ROOT)}::{var_name}")
+    print(f"Baked {len(modified_csv_text)} bytes from {len(csv_paths)} CSV(s) -> {html_path.relative_to(REPO_ROOT)}::{var_name}")
     return True
 
 
 def main() -> int:
     ok = True
-    for html_path, var_name, csv_path, source_type in TARGETS:
-        if not bake_one(html_path, var_name, csv_path, source_type):
+    for html_path, var_name, csv_paths, source_types in TARGETS:
+        if not bake_one(html_path, var_name, csv_paths, source_types):
             ok = False
     return 0 if ok else 1
 
