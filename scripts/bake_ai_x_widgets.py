@@ -25,6 +25,8 @@ automations_hud_core.py: sync_ai_x_csv() calls this script immediately
 after sync-box-csv.py.
 """
 
+import csv
+import io
 import json
 import pathlib
 import re
@@ -35,9 +37,10 @@ AI_X_DIR = REPO_ROOT / "ai-x"
 
 # (html file, JS var name, source CSV) triples.
 TARGETS = [
-    (AI_X_DIR / "ai-x-past-events.html", "EVENTS_CSV", AI_X_DIR / "ai-x-events.csv"),
-    (AI_X_DIR / "all-events.html", "EVENTS_CSV", AI_X_DIR / "ai-x-events.csv"),
-    (AI_X_DIR / "community-events.html", "COMMUNITY_EVENTS_CSV", AI_X_DIR / "community-events.csv"),
+    # (html file, JS var name, source CSV, source_type) triples.
+    (AI_X_DIR / "ai-x-past-events.html", "EVENTS_CSV", AI_X_DIR / "ai-x-events.csv", "ai-x"),
+    (AI_X_DIR / "all-events.html", "EVENTS_CSV", AI_X_DIR / "ai-x-events.csv", "ai-x"),
+    (AI_X_DIR / "community-events.html", "COMMUNITY_EVENTS_CSV", AI_X_DIR / "community-events.csv", "community"),
 ]
 
 
@@ -49,13 +52,42 @@ def js_string_literal(text: str) -> str:
     return json.dumps(text)
 
 
-def bake_one(html_path: pathlib.Path, var_name: str, csv_path: pathlib.Path) -> bool:
+def add_source_type_to_csv(csv_text: str, source_type: str) -> str:
+    # Read the CSV content
+    input_stream = io.StringIO(csv_text)
+    reader = csv.reader(input_stream)
+    rows = list(reader)
+
+    if not rows:
+        return csv_text
+
+    header = rows[0]
+    if "source_type" not in header:
+        header.append("source_type")
+        for i in range(1, len(rows)):
+            rows[i].append(source_type)
+    else:
+        # If source_type already exists, update its value
+        source_type_idx = header.index("source_type")
+        for i in range(1, len(rows)):
+            if i < len(rows): # Ensure row exists
+                rows[i][source_type_idx] = source_type
+
+    # Write the modified CSV content
+    output_stream = io.StringIO()
+    writer = csv.writer(output_stream)
+    writer.writerows(rows)
+    return output_stream.getvalue()
+
+
+def bake_one(html_path: pathlib.Path, var_name: str, csv_path: pathlib.Path, source_type: str) -> bool:
     if not csv_path.exists():
         print(f"Error: source CSV missing: {csv_path}", file=sys.stderr)
         return False
 
     csv_text = csv_path.read_text(encoding="utf-8")
-    literal = js_string_literal(csv_text)
+    modified_csv_text = add_source_type_to_csv(csv_text, source_type)
+    literal = js_string_literal(modified_csv_text)
 
     html_text = html_path.read_text(encoding="utf-8")
 
@@ -87,8 +119,8 @@ def bake_one(html_path: pathlib.Path, var_name: str, csv_path: pathlib.Path) -> 
 
 def main() -> int:
     ok = True
-    for html_path, var_name, csv_path in TARGETS:
-        if not bake_one(html_path, var_name, csv_path):
+    for html_path, var_name, csv_path, source_type in TARGETS:
+        if not bake_one(html_path, var_name, csv_path, source_type):
             ok = False
     return 0 if ok else 1
 
