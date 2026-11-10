@@ -1682,11 +1682,15 @@ class Component extends DCLogic {
         const startDate = this.parseIsoDate(get('start_date'));
         const endDateStr = get('end_date');
         if (!startDate) return null;
+        // No title: a speaker row shows as "Special Guest: {name}"; no speaker either means skip it.
+        const speaker = get('speaker');
+        const title = get('title') || (speaker ? 'Special Guest: ' + speaker : '');
+        if (!title) return null;
         const month = MONTH_FULL[startDate.monthIndex].slice(0, 3);
         const day = String(startDate.day);
         const isRange = !!endDateStr && endDateStr !== get('start_date');
         return {
-          title: get('title'),
+          title,
           detail: get('detail'),
           url: this.resolveEventUrl(get('url'), window.location.href),
           month, day,
